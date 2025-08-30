@@ -1,0 +1,42 @@
+.arrowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.arrowLink:hover {
+  text-decoration: none;
+  color: var(--ifm-color-primary-dark);
+  background-color: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary-light);
+}
+
+.text {
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrow {
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.arrowLink:hover .arrow {
+  transform: translateX(4px);
+}
+
+.arrowLink:hover .text {
+  transform: translateX(2px);
+}
+
+/* Dark mode support */
+[data-theme='dark'] .arrowLink:hover {
+  background-color: rgba(232, 3, 3, 0.1);
+  border-color: var(--ifm-color-primary);
+}
