@@ -140,5 +140,11 @@ h3 {
 }
 
 h4, h5, h6 {
-  font-weight: 425 !important;
+  font-weight: 525 !important;
+  font-size: 1.4rem;
+}
+
+.special-links {
+  border-style: solid;
+  border-color: red;
 }
