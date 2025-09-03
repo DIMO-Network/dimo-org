@@ -1,0 +1,80 @@
+---
+sidebar_position: 1
+---
+
+import Stepper, { Step } from '@site/src/components/Stepper';
+
+# DIMO Connect
+
+<h4>Expedite your build using DIMO Connect</h4>
+
+DIMO Connect is a **robust privacy engine** that allows app developers to
+specify and request data from vehicle owners. Developers can get started using
+either the React Component SDK or by simply creating a DIMO Connect URL.
+
+### How It Works
+
+<Stepper>
+  <Step title="User Authentication">
+    Users connect their DIMO account and authenticate through our secure OAuth flow. This ensures that only authorized users can share their vehicle data with your application.
+  </Step>
+
+<Step title="Vehicle Selection">
+  Once authenticated, users can select which of their connected vehicles they
+  want to share data from. DIMO supports a wide range of vehicle makes and
+  models.
+</Step>
+
+<Step title="Data Permission">
+  Users review and approve the specific data types your application is
+  requesting. This gives users full control over what information they share.
+</Step>
+
+  <Step title="Data Access">
+    Your application receives secure access to the approved vehicle data through our APIs. You can now build amazing experiences with real-time and historical vehicle data.
+  </Step>
+</Stepper>
+
+### Try It Yourself
+
+<Stepper>
+  <Step title="Install the SDK" image="/img/DeveloperConsole.png">
+    Install the DIMO Connect React SDK in your project:
+
+    ```bash
+    npm install @dimo-network/connect-react
+    ```
+
+    Or use the simple URL approach if you prefer a lightweight integration.
+
+  </Step>
+
+  <Step title="Configure Your App">
+    Set up your DIMO Connect configuration with your client credentials:
+
+    ```javascript
+    import { DimoConnect } from '@dimo-network/connect-react';
+
+    const config = {
+      clientId: 'your-client-id',
+      redirectUri: 'https://yourapp.com/callback'
+    };
+    ```
+
+  </Step>
+
+  <Step title="Launch the Flow">
+    Trigger the DIMO Connect flow when users want to connect their vehicle:
+
+    ```javascript
+    <DimoConnect
+      config={config}
+      onSuccess={(data) => console.log('Vehicle connected!', data)}
+      onError={(error) => console.error('Connection failed:', error)}
+    />
+    ```
+
+  </Step>
+</Stepper>
+
+### Advanced Features

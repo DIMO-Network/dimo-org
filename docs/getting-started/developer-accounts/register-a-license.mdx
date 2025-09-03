@@ -3,49 +3,64 @@ sidebar_position: 2
 ---
 
 # DIMO Developer License
+
 <h4>Create your DIMO Developer License</h4>
 
-Before accessing the DIMO APIs, you will need to obtain and configure a Developer License. You can 
-easily obtain a Developer License directly via the console. Once you're logged in, simply give your 
-license a name and hit "Create". 
+Before accessing the DIMO APIs, you will need to obtain and configure a
+Developer License. You can easily obtain a Developer License directly via the
+console. Once you're logged in, simply give your license a name and hit
+"Create".
 
 :::info Developer Notes
 
-Creating a Developer License is FREE, and the name that you give your license is public to all other developers. 
-Your Developer License name is like a username - it must be unique amongst all the existing licenses on the DIMO Network.
-:::
-
+Creating a Developer License is FREE, and the name that you give your license is
+public to all other developers. Your Developer License name is like a username -
+it must be unique amongst all the existing licenses on the DIMO Network. :::
 
 ![Developer Console](/img/Register-license.png)
 
-Once your license is created, you will be redirected to your license detail page. This includes your license credentials 
-and will be where you can configure additional settings. You should take note of the following:
+Once your license is created, you will be redirected to your license detail
+page. This includes your license credentials and will be where you can configure
+additional settings. You should take note of the following:
 
-`Client ID` – The public key for your DIMO Developer License, located underneath your license name. Can be used to retrieve public information about your license, as well as for with authentication purposes.
+`Client ID` – The public key for your DIMO Developer License, located underneath
+your license name. Can be used to retrieve public information about your
+license, as well as for with authentication purposes.
 
-
-`Token ID` – The unique number associated with your license, which is located to the left of your license name. Can be used to retrieve public information about your license.
+`Token ID` – The unique number associated with your license, which is located to
+the left of your license name. Can be used to retrieve public information about
+your license.
 
 <h4>Manage Your License</h4>
 
 <h5>API Keys</h5>
-In your license details, you will need to generate an API Key (also known as private keys) to use for authentication. When generating a new API
-Key, it's important that you save and store your keys in a secure vault, as DIMO will only display this key once and does not store your API keys.
-Your API Key will only be displayed once, and we also recommend that you rotate your API Keys on a regular basis for enhanced security.
+In your license details, you will need to generate an API Key (also known as
+private keys) to use for authentication. When generating a new API Key, it's
+important that you save and store your keys in a secure vault, as DIMO will only
+display this key once and does not store your API keys. Your API Key will only
+be displayed once, and we also recommend that you rotate your API Keys on a
+regular basis for enhanced security.
 
 <h5>Redirect URIs</h5>
-You should also configure at least one `Redirect URI` as you're getting started. Redirect URIs are used for both authentication and for redirecting 
-users back to your application when you're using the Login with DIMO component. A Redirect URI should be a valid domain that you own and must include `http://` 
-or `https://`. You're also welcome to use `localhost` while you're in the build phase.
+You should also configure at least one `Redirect URI` as you're getting started.
+Redirect URIs are used for both authentication and for redirecting users back to
+your application when you're using the Login with DIMO component. A Redirect URI
+should be a valid domain that you own and must include `http://` or `https://`.
+You're also welcome to use `localhost` while you're in the build phase.
 
 <h4>Using Your License</h4>
 
-With a valid combination of the three parameters (Client ID, API key, and Redirect URI), you have now everything you need to access DIMO APIs. 
-For more information, check out how to use these details with the Data SDK or the Login Component SDK.  
+With a valid combination of the three parameters (Client ID, API key, and
+Redirect URI), you have now everything you need to access DIMO APIs. For more
+information, check out how to use these details with the Data SDK or the Login
+Component SDK.
 
 <h5>Vehicles Table</h5>
 
-You can easily see the the vehicles that have provided privileged access with your developer license via the Vehicles Table at the bottom 
-of your License Details Page. In the table you'll be able to see each vehicle's `Token ID`, `Token DID`, and the Make, Model, and Year.
+You can easily see the the vehicles that have provided privileged access with
+your developer license via the Vehicles Table at the bottom of your License
+Details Page. In the table you'll be able to see each vehicle's `Token ID`,
+`Token DID`, and the Make, Model, and Year.
 
-If there are no vehicles shared with your license yet, check out how to get started with Login with DIMO. 
+If there are no vehicles shared with your license yet, check out how to get
+started with Login with DIMO.

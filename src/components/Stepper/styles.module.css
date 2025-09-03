@@ -1,0 +1,236 @@
+/* Main stepper container */
+.stepper {
+  position: relative;
+  margin: 2rem 0;
+  padding: 0;
+}
+
+/* Individual step container */
+.step {
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 3rem;
+}
+
+.step:last-child {
+  margin-bottom: 0;
+}
+
+.step:last-child .stepConnector {
+  display: none;
+}
+
+/* Step header with number and title */
+.stepHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+/* Step number circle */
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #e80303 0%, #b80202 100%);
+  color: white;
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(232, 3, 3, 0.25);
+  transition: all 0.3s ease;
+}
+
+.stepNumber:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(232, 3, 3, 0.35);
+}
+
+/* Step title */
+.stepTitle {
+  margin: 0;
+  font-weight: 525;
+  font-size: 1.5rem;
+  color: var(--ifm-color-emphasis-800);
+  line-height: 1.3;
+}
+
+/* Step content area */
+.stepContent {
+  margin-left: 4rem;
+  position: relative;
+}
+
+/* Step image */
+.stepImage {
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.stepImage:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.stepImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Step text content */
+.stepText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.stepText p {
+  margin-bottom: 1rem;
+}
+
+.stepText p:last-child {
+  margin-bottom: 0;
+}
+
+/* Connector line between steps */
+.stepConnector {
+  position: absolute;
+  left: 1.5rem;
+  top: 3rem;
+  width: 2px;
+  height: calc(100% + 1rem);
+  background: linear-gradient(to bottom, #e80303 0%, #f04545 50%, #e80303 100%);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .stepTitle {
+  color: var(--ifm-color-emphasis-900);
+}
+
+[data-theme='dark'] .stepText {
+  color: var(--ifm-color-emphasis-800);
+}
+
+[data-theme='dark'] .stepImage {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .stepImage:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .stepConnector {
+  background: linear-gradient(to bottom, #e80303 0%, #f04545 50%, #e80303 100%);
+  opacity: 0.7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .stepHeader {
+    gap: 0.75rem;
+  }
+
+  .stepNumber {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .stepTitle {
+    font-size: 1.3rem;
+  }
+
+  .stepContent {
+    margin-left: 3.25rem;
+  }
+
+  .stepConnector {
+    left: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stepHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .stepContent {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .stepConnector {
+    display: none;
+  }
+
+  .step {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background: var(--ifm-color-emphasis-100);
+    border-radius: 12px;
+    border-left: 4px solid var(--ifm-color-primary);
+  }
+}
+
+/* Animation for step entrance */
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step {
+  animation: stepFadeIn 0.6s ease-out;
+}
+
+/* Stagger animation delay for multiple steps */
+.step:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.step:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.step:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.step:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.step:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.step:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.step:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.step:nth-child(8) {
+  animation-delay: 0.8s;
+}
+.step:nth-child(9) {
+  animation-delay: 0.9s;
+}
+.step:nth-child(10) {
+  animation-delay: 1s;
+}

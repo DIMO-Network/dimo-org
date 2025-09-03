@@ -1,0 +1,6 @@
+node_modules/
+build/
+.docusaurus/
+package-lock.json
+*.min.js
+*.min.css

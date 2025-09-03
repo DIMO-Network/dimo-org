@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "stkb.rewrap",
+    "unifiedjs.vscode-mdx",
+    "yzhang.markdown-all-in-one"
+  ]
+}
