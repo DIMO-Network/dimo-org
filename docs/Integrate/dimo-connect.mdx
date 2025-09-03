@@ -3,6 +3,9 @@ sidebar_position: 1
 ---
 
 import Stepper, { Step } from '@site/src/components/Stepper';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
 
 # DIMO Connect
 
@@ -15,66 +18,95 @@ either the React Component SDK or by simply creating a DIMO Connect URL.
 ### How It Works
 
 <Stepper>
-  <Step title="User Authentication">
-    Users connect their DIMO account and authenticate through our secure OAuth flow. This ensures that only authorized users can share their vehicle data with your application.
+  <Step title="Configure Your URL" image="/img/ConfigureConnectURL.png">
+    Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
   </Step>
 
-<Step title="Vehicle Selection">
-  Once authenticated, users can select which of their connected vehicles they
-  want to share data from. DIMO supports a wide range of vehicle makes and
-  models.
+<Step title="Share with Users" image="/img/ShareWithUsers.png">
+  Share your DIMO Connect URL with your users and allow them to grant you
+  permission to begin pulling their vehicle data.
 </Step>
 
-<Step title="Data Permission">
-  Users review and approve the specific data types your application is
-  requesting. This gives users full control over what information they share.
+<Step title="Check Vehicle Status" image="/img/VehiclesTable.png">
+  Use the DIMO Developer Console or the Identity API to track which vehicles
+  have shared permissions with you.
 </Step>
 
-  <Step title="Data Access">
-    Your application receives secure access to the approved vehicle data through our APIs. You can now build amazing experiences with real-time and historical vehicle data.
+  <Step title="Start Getting Data" image="/img/TelemetrySample.png">
+    Begin polling the DIMO APIs or setting up DIMO Webhooks using one of the available Data SDKs.
   </Step>
 </Stepper>
 
 ### Try It Yourself
 
-<Stepper>
-  <Step title="Install the SDK" image="/img/DeveloperConsole.png">
-    Install the DIMO Connect React SDK in your project:
+We recommend starting out with the URL method to quickly begin requesting
+permissioned vehicle data. Then, you can move onto integrating the DIMO Connect
+component using the React Compoonent SDK.
 
-    ```bash
-    npm install @dimo-network/connect-react
-    ```
+<Tabs>
+  <TabItem value="URL Method" label="URL Method">
+    <DimoUrlBuilder />
+  </TabItem>
+  <TabItem value="SDK Method" label="SDK Method">
+  ```jsx
+  import {
+    LoginWithDimo,
+    ShareVehiclesWithDimo,
+    ExecuteAdvancedTransactionWithDimo,
+    initializeDimoSDK,
+    useDimoAuthState,
+} from "@dimo-network/login-with-dimo";
 
-    Or use the simple URL approach if you prefer a lightweight integration.
+const { isAuthenticated, getValidJWT, email, walletAddress, getEmail } =
+useDimoAuthState();
 
-  </Step>
+useEffect(()=>{ if ( isAuthenticated ) {
+//makeAuthenticatedRequest(getValidJWT()) console.log(email);
+console.log(walletAddress); } },[isAuthenticated])
 
-  <Step title="Configure Your App">
-    Set up your DIMO Connect configuration with your client credentials:
+initializeDimoSDK({ clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
+redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!, });
 
-    ```javascript
-    import { DimoConnect } from '@dimo-network/connect-react';
+...
 
-    const config = {
-      clientId: 'your-client-id',
-      redirectUri: 'https://yourapp.com/callback'
-    };
-    ```
+{isAuthenticated ? (
 
-  </Step>
+<ShareVehiclesWithDimo
+  mode="popup"
+  onSuccess={authData => console.log('Success:', authData)}
+  onError={error => console.error('Error:', error)}
+  permissionTemplateId={'1'}
+  // expirationDate={} // Optional ISO string
+/>
 
-  <Step title="Launch the Flow">
-    Trigger the DIMO Connect flow when users want to connect their vehicle:
-
-    ```javascript
-    <DimoConnect
-      config={config}
-      onSuccess={(data) => console.log('Vehicle connected!', data)}
-      onError={(error) => console.error('Connection failed:', error)}
-    />
-    ```
-
-  </Step>
-</Stepper>
+  <ExecuteAdvancedTransactionWithDimo
+    mode="popup"
+    onSuccess={(transactionData: any) =>
+      console.log("Transaction Hash:", transactionData.transactionHash)
+    }
+    onError={(error: any) => console.error("Error:", error)}
+    address="0x21cFE003997fB7c2B3cfe5cf71e7833B7B2eCe10"
+    value="0"
+    abi={sampleAbi}
+    functionName="transfer"
+    args={["0x62b98e019e0d3e4A1Ad8C786202e09017Bd995e1", "0"]}
+  />
+) : (
+  <LoginWithDimo
+    mode="popup"
+    onSuccess={(authData) => console.log("Success:", authData)}
+    onError={(error) => console.error("Error:", error)}
+    permissionTemplateId={permissionsEnabled ? "1" : undefined}
+    // expirationDate={} // Optional ISO string
+    // vehicles={["585","586"]}
+  />
+)}
+```
+  </TabItem>
+</Tabs>
 
 ### Advanced Features
+
+<h4>Entry States</h4>
+<h4>Setting Regions</h4>
+<h4>Setting Custom Expiration Dates</h4>

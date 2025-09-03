@@ -46,6 +46,11 @@ export default [
         global: 'readonly',
         Buffer: 'readonly',
         console: 'readonly',
+        navigator: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: {
