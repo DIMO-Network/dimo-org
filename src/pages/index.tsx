@@ -1,5 +1,6 @@
 import Link from '@docusaurus/Link';
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 
 import styles from './index.module.css';
 
@@ -21,6 +22,16 @@ const imgLogoStreamr = '/img/logo-streamr.svg';
 const imgLogoStaex = '/img/logo-staex.svg';
 
 function CustomNavbar() {
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleDropdownEnter = (dropdown: string) => {
+    setActiveDropdown(dropdown);
+  };
+
+  const handleDropdownLeave = () => {
+    setActiveDropdown(null);
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContent}>
@@ -31,22 +42,92 @@ function CustomNavbar() {
 
         {/* Navigation Links */}
         <div className={styles.navLinks}>
-          <div className={styles.navItem}>
-            <span>Learn</span>
-            <img
-              alt=""
-              src={imgDropdownArrow}
-              className={styles.dropdownIcon}
-            />
+          {/* Learn Dropdown */}
+          <div
+            className={`${styles.navItem} ${styles.dropdownContainer}`}
+            onMouseEnter={() => handleDropdownEnter('learn')}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <div className={styles.dropdownTrigger}>
+              <span>Learn</span>
+              <img
+                alt=""
+                src={imgDropdownArrow}
+                className={`${styles.dropdownIcon} ${
+                  activeDropdown === 'learn' ? styles.rotated : ''
+                }`}
+              />
+            </div>
+            {activeDropdown === 'learn' && (
+              <div className={styles.dropdownMenu}>
+                <a
+                  href="https://docs.dimo.org/developer-platform"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Read
+                </a>
+                <a
+                  href="https://youtu.be/nktm5m9LhIU"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Watch
+                </a>
+                <a
+                  href="https://1352636538-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fxj7jMSjVBtR92AFN0SNC%2Fuploads%2FDcDoks4W5cbWrkVG6G37%2FDIMO%20Cheat%20Sheet.png?alt=media&token=d8028035-d25f-4709-b9ca-30a650602106"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Cheat Sheet
+                </a>
+              </div>
+            )}
           </div>
-          <div className={styles.navItem}>
-            <span>Tools</span>
-            <img
-              alt=""
-              src={imgDropdownArrow}
-              className={styles.dropdownIcon}
-            />
+
+          {/* Tools Dropdown */}
+          <div
+            className={`${styles.navItem} ${styles.dropdownContainer}`}
+            onMouseEnter={() => handleDropdownEnter('tools')}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <div className={styles.dropdownTrigger}>
+              <span>Tools</span>
+              <img
+                alt=""
+                src={imgDropdownArrow}
+                className={`${styles.dropdownIcon} ${
+                  activeDropdown === 'tools' ? styles.rotated : ''
+                }`}
+              />
+            </div>
+            {activeDropdown === 'tools' && (
+              <div className={styles.dropdownMenu}>
+                <a
+                  href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Developer SDKs
+                </a>
+                <a
+                  href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/low-code-tools"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Low Code
+                </a>
+                <a
+                  href="https://github.com/DIMO-Network/dimo-developer-kit"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  AI Examples
+                </a>
+              </div>
+            )}
           </div>
+
           <div className={styles.navItem}>
             <span>Community</span>
           </div>
