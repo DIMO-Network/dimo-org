@@ -82,7 +82,17 @@ function HeroSection() {
         <div className={styles.heroBackgroundImage}>
           <img alt="" src={imgHeroHighway} />
         </div>
-        <div className={styles.heroOverlay} />
+        <div className={styles.heroOverlay}>
+          <div className={styles.trustedByContent}>
+            <span className={styles.trustedByText}>TRUSTED BY</span>
+            <div className={styles.trustedByLogos}>
+              <img alt="Coinbase" src={imgLogoCoinbase} />
+              <img alt="Polygon" src={imgLogoPolygon} />
+              <img alt="Streamr" src={imgLogoStreamr} />
+              <img alt="Staex" src={imgLogoStaex} />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="container">
         <div className={styles.heroContent}>
@@ -102,24 +112,6 @@ function HeroSection() {
             >
               See documentation
             </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrustedBySection() {
-  return (
-    <section className={styles.trustedBy}>
-      <div className="container">
-        <div className={styles.trustedByContent}>
-          <span className={styles.trustedByText}>TRUSTED BY</span>
-          <div className={styles.trustedByLogos}>
-            <img alt="Coinbase" src={imgLogoCoinbase} />
-            <img alt="Polygon" src={imgLogoPolygon} />
-            <img alt="Streamr" src={imgLogoStreamr} />
-            <img alt="Staex" src={imgLogoStaex} />
           </div>
         </div>
       </div>
@@ -150,7 +142,11 @@ function WhyDimoSection() {
 
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
-              <img alt="" src={imgIconPrivacyPreserving} />
+              <img
+                alt=""
+                src={imgIconPrivacyPreserving}
+                className={styles.largerIcon}
+              />
             </div>
             <h3 className={styles.featureTitle}>Privacy preserving</h3>
             <p className={styles.featureDescription}>
@@ -161,7 +157,11 @@ function WhyDimoSection() {
 
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
-              <img alt="" src={imgIconRealTimeData} />
+              <img
+                alt=""
+                src={imgIconRealTimeData}
+                className={styles.largerIcon}
+              />
             </div>
             <h3 className={styles.featureTitle}>Real-time data</h3>
             <p className={styles.featureDescription}>
@@ -228,7 +228,6 @@ export default function Home(): ReactNode {
 
       {/* Page Content */}
       <HeroSection />
-      <TrustedBySection />
       <main>
         <WhyDimoSection />
         <BottomFeaturesSection />

@@ -116,7 +116,7 @@
   padding: 8rem 0 6rem;
   background: linear-gradient(135deg, #e6f0ff 0%, #f0f4ff 50%, #dae7ff 100%);
   overflow: hidden;
-  min-height: 900px;
+  min-height: 905px;
   margin: 2rem;
   border-radius: 40px;
 }
@@ -159,6 +159,10 @@
   height: 15%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
 }
 
 .heroContent {
@@ -247,42 +251,38 @@
   transform: translateY(-1px);
 }
 
-/* Trusted By Section */
-.trustedBy {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-  padding: 2rem 0;
-  text-align: center;
-}
-
+/* Trusted By Content (now inside hero overlay) */
 .trustedByContent {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .trustedByText {
   font-family: 'Universal Sans Display', sans-serif;
   font-weight: 900;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #ffffff;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .trustedByLogos {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
 }
 
 .trustedByLogos img {
-  height: 32px;
-  width: auto;
-  max-width: 120px;
+  height: 29px;
+  width: 130px;
   opacity: 0.9;
   filter: brightness(0) invert(1);
   transition: opacity 0.2s ease;
@@ -301,8 +301,8 @@
 }
 
 .whyDimoTitle {
-  font-family: 'Universal Sans Display', sans-serif;
-  font-weight: 900;
+  font-family: 'Universal Sans Display', sans-serif !important;
+  font-weight: 900 !important;
   font-size: 3.5rem;
   color: #000000;
   margin-bottom: 2rem;
@@ -340,20 +340,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-  border-radius: 20px;
   padding: 1rem;
 }
 
 .featureIcon img {
   width: 48px;
   height: 48px;
-  /* Removed filter to show original blue colors from SVG */
+}
+
+.featureIcon img.largerIcon {
+  width: 96px !important;
+  height: 56px !important;
 }
 
 .featureTitle {
   font-family: 'Universal Sans Display', sans-serif;
-  font-weight: 900;
+  font-weight: 900 !important;
   font-size: 2rem;
   color: #000000;
   margin-bottom: 1rem;
