@@ -12,9 +12,10 @@ const imgDropdownArrow = '/img/icon-dropdown-arrow.svg';
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
 const imgIconRealTimeData = '/img/icon-real-time-data.svg';
 const imgIconPrivacyPreserving = '/img/icon-privacy-preserving.svg';
-const imgIconSecureCompliant = '/img/icon-secure-compliant.svg';
-const imgIconUniversalCompatibility = '/img/icon-universal-compatibility.svg';
-const imgIconStarsAI = '/img/icon-stars-ai.svg';
+const imgOpenSource = '/img/icon-open-source.svg';
+const imgIconSecureCompliant = '/img/icon-secure.svg';
+const imgIconUniversalCompatibility = '/img/icon-universal.svg';
+const imgIconStarsAI = '/img/icon-ai.svg';
 const imgIconConsentManagement = '/img/icon-consent-management.svg';
 const imgLogoCoinbase = '/img/logo-coinbase.svg';
 const imgLogoPolygon = '/img/logo-polygon.svg';
@@ -129,7 +130,13 @@ function CustomNavbar() {
           </div>
 
           <div className={styles.navItem}>
-            <span>Community</span>
+            <Link
+              href="https://discord.com/invite/dimonetwork"
+              className={styles.navItem}
+              target="blank"
+            >
+              Community
+            </Link>
           </div>
           <div className={styles.navItem}>
             <a
@@ -259,7 +266,7 @@ function BottomFeaturesSection() {
   const features = [
     {
       title: 'Open source',
-      icon: null,
+      icon: imgOpenSource,
     },
     {
       title: 'Secure + compliant',
