@@ -91,7 +91,7 @@
 .signInButtonNav {
   background-color: #000000;
   color: #ffffff;
-  padding: 0.2rem 1rem;
+  padding: 0.3rem 1.1rem;
   border-radius: 24px;
   text-decoration: none;
   font-family: 'Universal Sans Display', sans-serif;
@@ -116,7 +116,7 @@
   padding: 8rem 0 6rem;
   background: linear-gradient(135deg, #e6f0ff 0%, #f0f4ff 50%, #dae7ff 100%);
   overflow: hidden;
-  min-height: 700px;
+  min-height: 900px;
   margin: 2rem;
   border-radius: 40px;
 }
@@ -156,9 +156,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-  backdrop-filter: blur(7px);
+  height: 15%;
+  background: rgba(0, 0, 0, 0.6);
   z-index: 2;
 }
 
@@ -176,8 +175,9 @@
   font-size: 4.5rem;
   line-height: 1.1;
   color: #000000;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem auto;
   letter-spacing: -0.02em;
+  max-width: 700px;
 }
 
 .heroButtons {

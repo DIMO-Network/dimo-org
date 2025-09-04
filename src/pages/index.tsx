@@ -55,6 +55,7 @@ function CustomNavbar() {
               href="https://github.com/DIMO-Network"
               className={styles.githubLink}
               aria-label="GitHub"
+              target="blank"
             >
               <img alt="GitHub" src={imgGithub} />
             </a>
@@ -63,6 +64,7 @@ function CustomNavbar() {
             <Link
               className={styles.signInButtonNav}
               to="https://console.dimo.org/sign-in"
+              target="_blank"
             >
               Sign in
             </Link>
@@ -96,7 +98,7 @@ function HeroSection() {
             </Link>
             <Link
               className={styles.docsButton}
-              to="/docs/getting-started/introduction"
+              to="https://docs.dimo.org/developer-platform"
             >
               See documentation
             </Link>
