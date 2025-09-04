@@ -5,8 +5,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'DIMO Build',
-  tagline: 'Dinosaurs are cool',
+  title: 'DIMO BUILD',
+  tagline: 'The vehicle data platform that puts privacy first',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -75,23 +75,45 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      // title: 'My Site!',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'DIMO BUILD',
         src: 'img/logo.svg',
+        width: 100,
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          label: 'Learn',
           position: 'left',
-          label: 'Tutorial',
+          items: [
+            {
+              type: 'docSidebar',
+              sidebarId: 'tutorialSidebar',
+              label: 'Documentation',
+            },
+            { to: '/blog', label: 'Blog' },
+          ],
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          label: 'Tools',
+          position: 'left',
+          href: '#',
+        },
+        {
+          label: 'Community',
+          position: 'left',
+          href: '#',
+        },
+        {
+          href: 'https://github.com/DIMO-Network',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
+        },
+        {
+          label: 'Sign in',
+          href: 'https://console.dimo.org/sign-in',
+          position: 'right',
+          className: 'navbar-signin-button',
         },
       ],
     },

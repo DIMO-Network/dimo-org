@@ -4,20 +4,76 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+  padding: 6rem 0 4rem;
   position: relative;
   overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.heroContent {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 3rem;
+  color: #1a1a1a;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.signInButton {
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff;
+  font-weight: 525;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+}
+
+.signInButton:hover {
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.docsButton {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+  color: #ffffff;
+  font-weight: 525;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+}
+
+.docsButton:hover {
+  background-color: #357abd;
+  border-color: #357abd;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 4rem 2rem 2rem;
+    min-height: 500px;
   }
-}
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
