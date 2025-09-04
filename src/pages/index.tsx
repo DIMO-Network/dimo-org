@@ -1,61 +1,199 @@
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Heading from '@theme/Heading';
-import Layout from '@theme/Layout';
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import { useState } from 'react';
 
 import styles from './index.module.css';
 
-function HomepageHeader() {
+// Asset imports - descriptive names
+const imgHeroHighway = '/img/hero-highway-image.png';
+const imgLogoDimo = '/img/dimo-build-logo.svg';
+const imgGithub = '/img/icon-github.svg';
+const imgDropdownArrow = '/img/icon-dropdown-arrow.svg';
+const imgIconPlugPlay = '/img/icon-plug-play.svg';
+const imgIconRealTimeData = '/img/icon-real-time-data.svg';
+const imgIconPrivacyPreserving = '/img/icon-privacy-preserving.svg';
+const imgIconSecureCompliant = '/img/icon-secure-compliant.svg';
+const imgIconUniversalCompatibility = '/img/icon-universal-compatibility.svg';
+const imgIconStarsAI = '/img/icon-stars-ai.svg';
+const imgIconConsentManagement = '/img/icon-consent-management.svg';
+const imgLogoCoinbase = '/img/logo-coinbase.svg';
+const imgLogoPolygon = '/img/logo-polygon.svg';
+const imgLogoStreamr = '/img/logo-streamr.svg';
+const imgLogoStaex = '/img/logo-staex.svg';
+
+function CustomNavbar() {
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleDropdownEnter = (dropdown: string) => {
+    setActiveDropdown(dropdown);
+  };
+
+  const handleDropdownLeave = () => {
+    setActiveDropdown(null);
+  };
+
   return (
-    <header className={clsx('hero-gradient', styles.heroBanner)}>
+    <nav className={styles.navbar}>
+      <div className={styles.navContent}>
+        {/* Logo */}
+        <div className={styles.navLogo}>
+          <img alt="DIMO" src={imgLogoDimo} />
+        </div>
+
+        {/* Navigation Links */}
+        <div className={styles.navLinks}>
+          {/* Learn Dropdown */}
+          <div
+            className={`${styles.navItem} ${styles.dropdownContainer}`}
+            onMouseEnter={() => handleDropdownEnter('learn')}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <div className={styles.dropdownTrigger}>
+              <span>Learn</span>
+              <img
+                alt=""
+                src={imgDropdownArrow}
+                className={`${styles.dropdownIcon} ${
+                  activeDropdown === 'learn' ? styles.rotated : ''
+                }`}
+              />
+            </div>
+            {activeDropdown === 'learn' && (
+              <div className={styles.dropdownMenu}>
+                <a
+                  href="https://docs.dimo.org/developer-platform"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Read
+                </a>
+                <a
+                  href="https://youtu.be/nktm5m9LhIU"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Watch
+                </a>
+                <a
+                  href="https://1352636538-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fxj7jMSjVBtR92AFN0SNC%2Fuploads%2FDcDoks4W5cbWrkVG6G37%2FDIMO%20Cheat%20Sheet.png?alt=media&token=d8028035-d25f-4709-b9ca-30a650602106"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Cheat Sheet
+                </a>
+              </div>
+            )}
+          </div>
+
+          {/* Tools Dropdown */}
+          <div
+            className={`${styles.navItem} ${styles.dropdownContainer}`}
+            onMouseEnter={() => handleDropdownEnter('tools')}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <div className={styles.dropdownTrigger}>
+              <span>Tools</span>
+              <img
+                alt=""
+                src={imgDropdownArrow}
+                className={`${styles.dropdownIcon} ${
+                  activeDropdown === 'tools' ? styles.rotated : ''
+                }`}
+              />
+            </div>
+            {activeDropdown === 'tools' && (
+              <div className={styles.dropdownMenu}>
+                <a
+                  href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Developer SDKs
+                </a>
+                <a
+                  href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/low-code-tools"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  Low Code
+                </a>
+                <a
+                  href="https://github.com/DIMO-Network/dimo-developer-kit"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  AI Examples
+                </a>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.navItem}>
+            <span>Community</span>
+          </div>
+          <div className={styles.navItem}>
+            <a
+              href="https://github.com/DIMO-Network"
+              className={styles.githubLink}
+              aria-label="GitHub"
+              target="blank"
+            >
+              <img alt="GitHub" src={imgGithub} />
+            </a>
+          </div>
+          <div className={styles.navItem}>
+            <Link
+              className={styles.signInButtonNav}
+              to="https://console.dimo.org/sign-in"
+              target="_blank"
+            >
+              Sign in
+            </Link>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function HeroSection() {
+  return (
+    <section className={styles.hero}>
+      <div className={styles.heroBackground}>
+        <div className={styles.heroBackgroundImage}>
+          <img alt="" src={imgHeroHighway} />
+        </div>
+        <div className={styles.heroOverlay}>
+          <div className={styles.trustedByContent}>
+            <span className={styles.trustedByText}>TRUSTED BY</span>
+            <div className={styles.trustedByLogos}>
+              <img alt="Coinbase" src={imgLogoCoinbase} />
+              <img alt="Polygon" src={imgLogoPolygon} />
+              <img alt="Streamr" src={imgLogoStreamr} />
+              <img alt="Staex" src={imgLogoStaex} />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className={styles.heroContent}>
-          <Heading as="h1" className={styles.heroTitle}>
-            The vehicle data
-            <br />
-            platform that puts
-            <br />
-            privacy first
-          </Heading>
+          <h1 className={styles.heroTitle}>
+            The vehicle data platform that puts privacy first
+          </h1>
           <div className={styles.heroButtons}>
             <Link
-              className={clsx(
-                'button button--primary button--lg',
-                styles.signInButton
-              )}
+              className={styles.signInButton}
               to="https://console.dimo.org/sign-in"
             >
               Sign in
             </Link>
             <Link
-              className={clsx(
-                'button button--outline button--lg',
-                styles.docsButton
-              )}
-              to="/docs/getting-started/introduction"
+              className={styles.docsButton}
+              to="https://docs.dimo.org/developer-platform"
             >
               See documentation
             </Link>
           </div>
-        </div>
-        <div className="hero-vehicles"></div>
-      </div>
-    </header>
-  );
-}
-
-function TrustedBySection() {
-  return (
-    <section className="trusted-by-section">
-      <div className="container">
-        <div className="trusted-by-text">Trusted by</div>
-        <div className="trusted-by-logos">
-          <div className="trusted-logo">COINBASE</div>
-          <div className="trusted-logo">POLYGON</div>
-          <div className="trusted-logo">STREAMR</div>
-          <div className="trusted-logo">STAEX</div>
         </div>
       </div>
     </section>
@@ -64,117 +202,52 @@ function TrustedBySection() {
 
 function WhyDimoSection() {
   return (
-    <section className="why-dimo-section">
+    <section className={styles.whyDimo}>
       <div className="container">
-        <Heading as="h2" className="why-dimo-title">
-          Why DIMO?
-        </Heading>
-        <p className="why-dimo-subtitle">
-          DIMO lets you tap into $100B+ with real-time telemetry
-          <br />
-          and connected services
+        <h2 className={styles.whyDimoTitle}>Why DIMO?</h2>
+        <p className={styles.whyDimoSubtitle}>
+          DIMO lets you tap into $100B+ with real-time telemetry and connected
+          services
         </p>
 
-        <div className="features-grid">
-          <div className="feature-item">
-            <div className="feature-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
-                <path d="M19 12v7H5v-7M12 2l7 5v5l-7 5-7-5V7l7-5z" />
-              </svg>
+        <div className={styles.featuresGrid}>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>
+              <img alt="" src={imgIconPlugPlay} />
             </div>
-            <Heading as="h3" className="feature-title">
-              Plug & play
-            </Heading>
-            <p className="feature-description">
-              Built to scale, AI-ready
-              <br />
-              API and developer
-              <br />
-              infrastructure
+            <h3 className={styles.featureTitle}>Plug & play</h3>
+            <p className={styles.featureDescription}>
+              Built to scale, AI-ready API and developer infrastructure
             </p>
           </div>
 
-          <div className="feature-item">
-            <div className="feature-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
-                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
-              </svg>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>
+              <img
+                alt=""
+                src={imgIconPrivacyPreserving}
+                className={styles.largerIcon}
+              />
             </div>
-            <Heading as="h3" className="feature-title">
-              Privacy preserving
-            </Heading>
-            <p className="feature-description">
-              Connect to vehicles while maintaining
-              <br />
-              user privacy and onboard app developers
-              <br />
-              while honoring OEM agreements
+            <h3 className={styles.featureTitle}>Privacy preserving</h3>
+            <p className={styles.featureDescription}>
+              Connect to vehicles while maintaining user privacy and onboard app
+              developers while honoring OEM agreements
             </p>
           </div>
 
-          <div className="feature-item">
-            <div className="feature-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
-                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
-              </svg>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>
+              <img
+                alt=""
+                src={imgIconRealTimeData}
+                className={styles.largerIcon}
+              />
             </div>
-            <Heading as="h3" className="feature-title">
-              Real-time data
-            </Heading>
-            <p className="feature-description">
-              Be a data source, host,
-              <br />
-              and/or consumer of real-
-              <br />
-              time vehicle data
+            <h3 className={styles.featureTitle}>Real-time data</h3>
+            <p className={styles.featureDescription}>
+              Be a data source, host, and/or consumer of real-time vehicle data
             </p>
-          </div>
-        </div>
-
-        <div className="bottom-features">
-          <div className="bottom-feature-card">
-            <div className="bottom-feature-title">
-              Open
-              <br />
-              source
-            </div>
-            <div className="bottom-feature-arrow">→</div>
-          </div>
-
-          <div className="bottom-feature-card">
-            <div className="bottom-feature-title">
-              Secure +<br />
-              compliant
-            </div>
-            <div className="bottom-feature-arrow">→</div>
-          </div>
-
-          <div className="bottom-feature-card">
-            <div className="bottom-feature-title">
-              Universal
-              <br />
-              compatibility
-            </div>
-            <div className="bottom-feature-arrow">→</div>
-          </div>
-
-          <div className="bottom-feature-card">
-            <div className="bottom-feature-title">
-              Consent
-              <br />
-              management
-              <br />
-              off-the-shelf
-            </div>
-            <div className="bottom-feature-arrow">→</div>
-          </div>
-
-          <div className="bottom-feature-card">
-            <div className="bottom-feature-title">
-              Gen-AI &<br />
-              MCP-ready
-            </div>
-            <div className="bottom-feature-arrow">→</div>
           </div>
         </div>
       </div>
@@ -182,18 +255,64 @@ function WhyDimoSection() {
   );
 }
 
-export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
+function BottomFeaturesSection() {
+  const features = [
+    {
+      title: 'Open source',
+      icon: null,
+    },
+    {
+      title: 'Secure + compliant',
+      icon: imgIconSecureCompliant,
+    },
+    {
+      title: 'Universal compatibility',
+      icon: imgIconUniversalCompatibility,
+    },
+    {
+      title: 'Consent management off-the-shelf',
+      icon: imgIconConsentManagement,
+    },
+    {
+      title: 'Gen-AI & MCP-ready',
+      icon: imgIconStarsAI,
+      special: true,
+    },
+  ];
+
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="The vehicle data platform that puts privacy first"
-    >
-      <HomepageHeader />
-      <TrustedBySection />
+    <section className={styles.bottomFeatures}>
+      <div className="container">
+        <div className={styles.featureCards}>
+          {features.map((feature, index) => (
+            <div key={index} className={styles.featureCard}>
+              {feature.icon && (
+                <div className={styles.featureCardIcon}>
+                  <img alt="" src={feature.icon} />
+                </div>
+              )}
+              <h4 className={styles.featureCardTitle}>{feature.title}</h4>
+              <div className={styles.featureCardArrow}>→</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function Home(): ReactNode {
+  return (
+    <div className={styles.homePage}>
+      {/* Custom Navigation */}
+      <CustomNavbar />
+
+      {/* Page Content */}
+      <HeroSection />
       <main>
         <WhyDimoSection />
+        <BottomFeaturesSection />
       </main>
-    </Layout>
+    </div>
   );
 }
