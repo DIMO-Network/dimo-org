@@ -1,0 +1,8 @@
+{
+  "label": "Telemetry API",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Telemetry API for accessing vehicle data"
+  }
+}
