@@ -483,21 +483,21 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerColumns}>
-          {/* Column 1 - Product */}
+          {/* Column 1 - Learn More */}
           <div className={styles.footerColumn}>
-            <h4 className={styles.footerColumnTitle}>Product</h4>
+            <h4 className={styles.footerColumnTitle}>Learn More</h4>
             <ul className={styles.footerLinks}>
               <li>
                 <Link
                   to="https://docs.dimo.org/developer-platform"
                   target="_blank"
                 >
-                  Documentation
+                  Docs
                 </Link>
               </li>
               <li>
-                <Link to="https://console.dimo.org/sign-in" target="_blank">
-                  Developer Console
+                <Link to="https://dimo.co/blogs/the-pit-stop/" target="_blank">
+                  Developer Blog
                 </Link>
               </li>
               <li>
@@ -505,48 +505,29 @@ function Footer() {
                   to="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks"
                   target="_blank"
                 >
-                  SDKs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="https://github.com/DIMO-Network/dimo-developer-kit"
-                  target="_blank"
-                >
-                  AI Examples
+                  Developer SDKs
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 2 - Community */}
+          {/* Column 2 - Resources */}
           <div className={styles.footerColumn}>
-            <h4 className={styles.footerColumnTitle}>Community</h4>
+            <h4 className={styles.footerColumnTitle}>Resources</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link
-                  to="https://discord.com/invite/dimonetwork"
-                  target="_blank"
-                >
-                  Discord
+                <Link to="https://console.dimo.org/sign-in" target="_blank">
+                  DIMO Developer Console
                 </Link>
               </li>
               <li>
-                <Link to="https://github.com/DIMO-Network" target="_blank">
-                  GitHub
+                <Link to="https://dimo.co/pages/build" target="_blank">
+                  Developer Newsletter
                 </Link>
               </li>
               <li>
-                <Link
-                  to="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/low-code-tools"
-                  target="_blank"
-                >
-                  Low Code Tools
-                </Link>
-              </li>
-              <li>
-                <Link to="https://youtu.be/nktm5m9LhIU" target="_blank">
-                  Tutorials
+                <Link to="mailto:developer-support@dimo.org" target="_blank">
+                  Get Support
                 </Link>
               </li>
             </ul>
