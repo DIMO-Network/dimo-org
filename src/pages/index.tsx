@@ -308,9 +308,22 @@ function HeroSection() {
             <span className={styles.trustedByText}>TRUSTED BY</span>
             <div className={styles.trustedByLogos}>
               <img alt="Coinbase" src={imgLogoCoinbase} />
-              <img alt="Polygon" src={imgLogoPolygon} />
-              <img alt="Streamr" src={imgLogoStreamr} />
-              <img alt="Staex" src={imgLogoStaex} />
+              <img
+                alt="Polygon"
+                src={imgLogoPolygon}
+                className={styles.polygonLogo}
+              />
+              <img
+                id="Streamr"
+                alt="Streamr"
+                src={imgLogoStreamr}
+                className={styles.streamrLogo}
+              />
+              <img
+                alt="Staex"
+                src={imgLogoStaex}
+                className={styles.staexLogo}
+              />
             </div>
           </div>
         </div>
@@ -355,7 +368,7 @@ function WhyDimoSection() {
             <div className={styles.featureIcon}>
               <img alt="" src={imgIconPlugPlay} />
             </div>
-            <h3 className={styles.featureTitle}>Plug & play</h3>
+            <h3 className={styles.featureTitle}>Plug & Play</h3>
             <p className={styles.featureDescription}>
               Built to scale, AI-ready API and developer infrastructure
             </p>
@@ -369,7 +382,7 @@ function WhyDimoSection() {
                 className={styles.largerIcon}
               />
             </div>
-            <h3 className={styles.featureTitle}>Privacy preserving</h3>
+            <h3 className={styles.featureTitle}>Privacy Preserving</h3>
             <p className={styles.featureDescription}>
               Connect to vehicles while maintaining user privacy and onboard app
               developers while honoring OEM agreements
@@ -384,7 +397,7 @@ function WhyDimoSection() {
                 className={styles.largerIcon}
               />
             </div>
-            <h3 className={styles.featureTitle}>Real-time data</h3>
+            <h3 className={styles.featureTitle}>Real-time Data</h3>
             <p className={styles.featureDescription}>
               Be a data source, host, and/or consumer of real-time vehicle data
             </p>
