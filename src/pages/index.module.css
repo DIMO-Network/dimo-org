@@ -215,6 +215,12 @@
   border-radius: 40px;
 }
 
+@media screen and (max-width: 480px) {
+  .heroBackgroundImage img {
+    object-position: 60% 30%;
+  }
+}
+
 .heroOverlay {
   position: absolute;
   bottom: 0;
@@ -817,8 +823,8 @@
   }
 
   .heroOverlay {
-    height: 30%;
-    padding: 2rem 1rem;
+    height: 25%;
+    padding: 1.5rem 1rem;
   }
 
   .mobileMenuHeader {
@@ -841,7 +847,7 @@
 
   .trustedByContent {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
   }
 
@@ -851,17 +857,19 @@
   }
 
   .trustedByLogos {
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+    justify-items: center;
+    align-items: center;
     max-width: 100%;
   }
 
   .trustedByLogos img {
-    height: 22px;
+    height: 20px;
     width: auto;
-    min-width: 70px;
-    max-width: 90px;
+    min-width: 80px;
+    max-width: 120px;
     object-fit: contain;
   }
 }
