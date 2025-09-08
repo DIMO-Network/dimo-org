@@ -8,6 +8,7 @@ import styles from './index.module.css';
 const imgHeroHighway = '/img/hero-highway-image.png';
 const imgLogoDimo = '/img/dimo-build-logo.svg';
 const imgGithub = '/img/icon-github.svg';
+const imgDune = '/img/icon-dune.svg';
 const imgDropdownArrow = '/img/icon-dropdown-arrow.svg';
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
 const imgIconRealTimeData = '/img/icon-real-time-data.svg';
@@ -167,11 +168,19 @@ function CustomNavbar() {
           <div className={styles.navItem}>
             <a
               href="https://github.com/DIMO-Network"
-              className={styles.githubLink}
+              className={styles.navIcon}
               aria-label="GitHub"
               target="blank"
             >
               <img alt="GitHub" src={imgGithub} />
+            </a>
+            <a
+              href="https://dune.com/dimo_network/dimo-protocol"
+              className={styles.navIcon}
+              aria-label="Dune"
+              target="blank"
+            >
+              <img alt="Dune" src={imgDune} />
             </a>
           </div>
           <div className={styles.navItem}>
@@ -277,6 +286,16 @@ function CustomNavbar() {
                   >
                     <img alt="GitHub" src={imgGithub} />
                     GitHub
+                  </a>
+                  <a
+                    href="https://dune.com/dimo_network/dimo-protocol"
+                    className={styles.mobileMenuGitHub}
+                    aria-label="Dune"
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    <img alt="Dune" src={imgDune} />
+                    Dune
                   </a>
                   <Link
                     className={styles.mobileMenuSignIn}
@@ -521,12 +540,18 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="https://dimo.co/pages/build" target="_blank">
-                  Developer Newsletter
+                <Link
+                  to="https://www.youtube.com/watch?v=nktm5m9LhIU"
+                  target="_blank"
+                >
+                  DIMO University
                 </Link>
               </li>
               <li>
-                <Link to="mailto:developer-support@dimo.org" target="_blank">
+                <Link
+                  to="https://chatgpt.com/g/g-68b72a6088d08191b80a6bd57c0fae3f-dimo-build-gpt"
+                  target="_blank"
+                >
                   Get Support
                 </Link>
               </li>
