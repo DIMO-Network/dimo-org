@@ -1,0 +1,107 @@
+/* Two Column Layout Component */
+.twoColumnContainer {
+  display: grid;
+  gap: var(--column-gap, 2rem);
+  width: 100%;
+  margin: 1rem 0;
+  align-items: start;
+}
+
+/* Column ratio variants */
+.ratio11 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ratio21 {
+  grid-template-columns: 2fr 1fr;
+}
+
+.ratio12 {
+  grid-template-columns: 1fr 2fr;
+}
+
+/* Column styling */
+.leftColumn {
+  min-width: 0; /* Prevents content from overflowing */
+}
+
+.rightColumn {
+  min-width: 0; /* Prevents content from overflowing */
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 768px) {
+  .twoColumnContainer,
+  .ratio11,
+  .ratio21,
+  .ratio12 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* On mobile, ensure proper stacking order */
+  .leftColumn {
+    order: 1;
+  }
+
+  .rightColumn {
+    order: 2;
+  }
+}
+
+/* Support for custom breakpoint via CSS variables */
+@media screen and (max-width: var(--stack-breakpoint, 768px)) {
+  .twoColumnContainer,
+  .ratio11,
+  .ratio21,
+  .ratio12 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Optional: Add some visual separation for code/example columns */
+.rightColumn pre,
+.rightColumn code {
+  background-color: var(--ifm-code-background, #f6f8fa);
+  border-radius: 8px;
+}
+
+/* Ensure responsive tables and images */
+.leftColumn img,
+.rightColumn img {
+  max-width: 100%;
+  height: auto;
+}
+
+.leftColumn table,
+.rightColumn table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 769px) {
+  .leftColumn table,
+  .rightColumn table {
+    display: table;
+    white-space: normal;
+  }
+}
+
+/* Dark mode support */
+[data-theme='dark'] .rightColumn pre,
+[data-theme='dark'] .rightColumn code {
+  background-color: var(--ifm-code-background, #1e1e1e);
+}
+
+/* Print styles */
+@media print {
+  .twoColumnContainer,
+  .ratio11,
+  .ratio21,
+  .ratio12 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
