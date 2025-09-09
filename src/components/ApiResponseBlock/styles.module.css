@@ -1,0 +1,104 @@
+/* Main container */
+.apiResponseBlock {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  margin: 1rem 0;
+  background: var(--ifm-background-color);
+  overflow: hidden;
+}
+
+/* Header section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.75rem 1rem;
+  background: var(--ifm-background-surface-color);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ifm-color-content);
+}
+
+/* Code container */
+.codeContainer {
+  position: relative;
+  background: #1e1e1e;
+}
+
+.codeHeader {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 0.75rem;
+  background: #2d2d2d;
+  border-bottom: 1px solid #404040;
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: 1px solid #404040;
+  color: #a0a0a0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.copyButton:hover {
+  background: #404040;
+  border-color: #606060;
+  color: #ffffff;
+}
+
+.copyButton:active {
+  background: #505050;
+}
+
+/* Code block */
+.codeBlock {
+  margin: 0;
+  padding: 1rem;
+  background: #1e1e1e !important;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  border-radius: 0;
+}
+
+/* Scrollbar styling for code block */
+.codeBlock::-webkit-scrollbar {
+  height: 8px;
+}
+
+.codeBlock::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+.codeBlock::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+.codeBlock::-webkit-scrollbar-thumb:hover {
+  background: #505050;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .title {
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,159 @@
+/* Main container */
+.parametersBlock {
+  margin: 1.5rem 0;
+}
+
+/* Title with underline */
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ifm-color-content);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+/* Parameters list container */
+.parametersList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual parameter item */
+.parameterItem {
+  padding: 1rem 0;
+}
+
+.parameterItem:first-child {
+  padding-top: 0;
+}
+
+.parameterItem:last-child {
+  padding-bottom: 0;
+}
+
+/* Parameter header with name, type, and badge */
+.parameterHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Parameter name in code style */
+.parameterName {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ifm-color-content);
+  background: var(--ifm-color-emphasis-100);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+}
+
+[data-theme='dark'] .parameterName {
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* Parameter type */
+.parameterType {
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+  font-style: italic;
+}
+
+/* Required/Optional badges */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.required {
+  background: #fff3e0;
+  color: #e65100;
+  border: 1px solid #ff9800;
+}
+
+.optional {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-content-secondary);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+/* Dark theme badge colors */
+[data-theme='dark'] .required {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ffb74d;
+  border: 1px solid #ff9800;
+}
+
+[data-theme='dark'] .optional {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-content-secondary);
+  border: 1px solid var(--ifm-color-emphasis-400);
+}
+
+/* Parameter description */
+.parameterDescription {
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--ifm-color-content);
+  margin-left: 0;
+}
+
+/* Separator between parameters */
+.separator {
+  height: 1px;
+  background: var(--ifm-color-emphasis-200);
+  margin: 1rem 0 0 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .parameterHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .parameterName {
+    font-size: 0.875rem;
+  }
+
+  .parameterType {
+    font-size: 0.8125rem;
+  }
+
+  .badge {
+    font-size: 0.6875rem;
+    padding: 0.1875rem 0.375rem;
+  }
+
+  .parameterDescription {
+    font-size: 0.875rem;
+  }
+}
+
+/* Enhanced styling for better visual hierarchy */
+.parameterItem:hover .parameterName {
+  background: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .parameterItem:hover .parameterName {
+  background: var(--ifm-color-emphasis-300);
+}
+
+/* Links in descriptions */
+.parameterDescription a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.parameterDescription a:hover {
+  text-decoration: underline;
+}
