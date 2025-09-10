@@ -32,6 +32,11 @@ export interface TwoColumnLayoutProps {
    * Breakpoint at which columns stack (in pixels). Default: 768
    */
   stackAt?: number;
+
+  /**
+   * Optional unique ID for anchor linking from ApiEndpointsBlock
+   */
+  id?: string;
 }
 
 const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
@@ -41,6 +46,7 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   ratio = '1:1',
   gap = 2,
   stackAt = 768,
+  id,
 }) => {
   const containerClasses = clsx(
     styles.twoColumnContainer,
@@ -58,7 +64,7 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className={containerClasses} style={containerStyle}>
+    <div className={containerClasses} style={containerStyle} id={id}>
       <div className={styles.leftColumn}>{leftColumn}</div>
 
       <div className={styles.rightColumn}>{rightColumn}</div>

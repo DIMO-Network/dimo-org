@@ -1,0 +1,167 @@
+/* API Endpoints Block Component */
+.endpointsContainer {
+  margin: 1rem 0;
+}
+
+.endpointsTitle {
+  font-size: 1.1rem;
+  font-weight: 525;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-content);
+}
+
+.endpointsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.endpointItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.endpointItem:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.endpointItem:active {
+  transform: translateX(1px);
+}
+
+.endpointMethod {
+  flex-shrink: 0;
+}
+
+.methodBadge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--ifm-font-family-monospace);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.methodGet {
+  background-color: #10b981;
+  color: white;
+}
+
+.methodPost {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.methodPut {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.methodDelete {
+  background-color: #ef4444;
+  color: white;
+}
+
+.methodPatch {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.methodDefault {
+  background-color: var(--ifm-color-emphasis-600);
+  color: white;
+}
+
+.endpointPath {
+  flex: 1;
+  min-width: 0;
+}
+
+.pathCode {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.endpointDescription {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ifm-color-content-secondary);
+  font-weight: 425;
+  line-height: 1.3;
+}
+
+.endpointArrow {
+  flex-shrink: 0;
+  color: var(--ifm-color-emphasis-600);
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+}
+
+.endpointItem:hover .endpointArrow {
+  transform: translateX(2px);
+  opacity: 1;
+  color: var(--ifm-color-primary);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .endpointItem {
+  border-color: var(--ifm-color-emphasis-400);
+  background: var(--ifm-background-surface-color);
+}
+
+[data-theme='dark'] .endpointItem:hover {
+  background: var(--ifm-color-emphasis-200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .pathCode {
+  color: var(--ifm-color-content);
+}
+
+[data-theme='dark'] .endpointDescription {
+  color: var(--ifm-color-content-secondary);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .endpointItem {
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .pathCode {
+    font-size: 0.8rem;
+  }
+
+  .endpointDescription {
+    font-size: 0.75rem;
+  }
+
+  .methodBadge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
