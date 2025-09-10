@@ -1,0 +1,54 @@
+---
+sidebar_position: 1
+---
+
+import ImageTooltips from '@site/src/components/ImageTooltips';
+
+
+# Create Your Account
+
+<h4>Create your DIMO Developer Account</h4>
+
+The [DIMO Developer Console](https://console.dimo.org) is a self-service portal that assists with developers
+in getting their Developer License, configuring API Keys, viewing information of
+shared vehicles, purchasing API credits, and many more. You can also track your credit
+usage directly within the DIMO Developer Console as well.
+
+To get started, head to <span className="special-links"> [console.dimo.org](https://console.dimo.org)</span>
+and sign up for an account using either your email address, or via one of the
+available social login links. If you've already registered for an account with
+DIMO mobile, you can log in to the DIMO Developer Console with the same email
+address here.
+
+:::info Developer Notes
+
+If you are using
+[Google Chrome Profiles](https://support.google.com/chrome/answer/2364824?hl=en&co=GENIE.Platform%3DDesktop),
+be sure to select the matching email to login when going through Login with
+Google. A mismatching email may result in a passkey error..
+
+:::
+
+
+	<ImageTooltips
+		src="/img/DeveloperConsole.png"
+		alt="DIMO Developer Console"
+		tooltipAreas={[
+			{
+				x: 13.5, y: 35, width: 25, height: 20,
+				title: "Sign in with Email",
+				text: "Sign in with any type of email"
+			},
+			{
+				x: 13.5, y: 55, width: 25, height: 11,
+				title: "Social Logins",
+				text: "Use either Google, Apple, or GitHub to sign in"
+			},
+			{
+				x: 13.5, y: 66, width: 25, height: 6,
+				title: "Get Help",
+				text: "Reset passkeys with your email or get in contact with support"
+			}
+		]}
+	/>
+
