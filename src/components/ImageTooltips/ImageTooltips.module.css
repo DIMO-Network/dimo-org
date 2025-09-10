@@ -1,0 +1,80 @@
+.imageContainer {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.tooltipArea {
+  position: absolute;
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.tooltipArea:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-100%);
+  margin-top: -5px;
+}
+
+.tooltipContent {
+  background: #1f2937;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+.tooltipTitle {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #60a5fa;
+}
+
+.tooltipText {
+  font-size: 13px;
+}
+
+.tooltipArrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #1f2937;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Dark mode support */
+[data-theme='dark'] .tooltipContent {
+  background: #374151;
+  color: #f9fafb;
+}
+
+[data-theme='dark'] .tooltipTitle {
+  color: #93c5fd;
+}
+
+[data-theme='dark'] .tooltipArrow {
+  border-top-color: #374151;
+}

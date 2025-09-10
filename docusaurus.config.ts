@@ -125,7 +125,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting Started',
-              to: '/docs/introduction',
+              to: '/docs/introduction/what-can-you-build',
             },
           ],
         },
