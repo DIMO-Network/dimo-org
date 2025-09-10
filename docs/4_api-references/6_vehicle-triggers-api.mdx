@@ -2,111 +2,114 @@
 sidebar_position: 7
 ---
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
 
 # Vehicle Triggers API
 
-<h4>Expedite your build using DIMO Connect</h4>
+{/* TODO: Add links */}
+:::info Developer Notes
+New to authentication on DIMO? Check out the Authentication Explainer here, or
+check out our video on how the different JSON Web Tokens (JWTs) work.
+:::
 
-DIMO Connect is a **robust privacy engine** that allows app developers to
-specify and request data from vehicle owners. Developers can get started using
-either the React Component SDK or by simply creating a DIMO Connect URL.
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
 
-### How It Works
+    This is a private API endpoint for developers on the DIMO Network. It handles the exchange to obtain a Vehicle JWT. When users shared permissions with an app, the app can now request for vehicle data on behalf of the users.
+    </div>
+  }
+  rightColumn={
+    <div>
+     <h2>Base URL</h2>
 
-<Stepper>
-  <Step title="Configure Your URL" image="/img/ConfigureConnectURL.png">
-    Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
-  </Step>
+      <code>https://token-exchange-api.dimo.zone</code>
 
-<Step title="Share with Users" image="/img/ShareWithUsers.png">
-  Share your DIMO Connect URL with your users and allow them to grant you
-  permission to begin pulling their vehicle data.
-</Step>
+      <h3>Endpoints</h3>
 
-<Step title="Check Vehicle Status" image="/img/VehiclesTable.png">
-  Use the DIMO Developer Console or the Identity API to track which vehicles
-  have shared permissions with you.
-</Step>
+      <code>POST /v1/tokens/exchange</code>
+      {/* TODO: FIX SPACING HERE - new component */}
 
-  <Step title="Start Getting Data" image="/img/TelemetrySample.png">
-    Begin polling the DIMO APIs or setting up DIMO Webhooks using one of the available Data SDKs.
-  </Step>
-</Stepper>
+      {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
 
-### Try It Yourself
 
-We recommend starting out with the URL method to quickly begin requesting
-permissioned vehicle data. Then, you can move onto integrating the DIMO Connect
-component using the React Compoonent SDK.
-
-<Tabs>
-  <TabItem value="URL Method" label="URL Method">
-    <DimoUrlBuilder />
-  </TabItem>
-  <TabItem value="SDK Method" label="SDK Method">
-  ```jsx
-  import {
-    LoginWithDimo,
-    ShareVehiclesWithDimo,
-    ExecuteAdvancedTransactionWithDimo,
-    initializeDimoSDK,
-    useDimoAuthState,
-} from "@dimo-network/login-with-dimo";
-
-const { isAuthenticated, getValidJWT, email, walletAddress, getEmail } =
-useDimoAuthState();
-
-useEffect(()=>{ if ( isAuthenticated ) {
-//makeAuthenticatedRequest(getValidJWT()) console.log(email);
-console.log(walletAddress); } },[isAuthenticated])
-
-initializeDimoSDK({ clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
-redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!, });
-
-...
-
-{isAuthenticated ? (
-
-<ShareVehiclesWithDimo
-  mode="popup"
-  onSuccess={authData => console.log('Success:', authData)}
-  onError={error => console.error('Error:', error)}
-  permissionTemplateId={'1'}
-  // expirationDate={} // Optional ISO string
+    </div>
+  }
 />
 
-  <ExecuteAdvancedTransactionWithDimo
-    mode="popup"
-    onSuccess={(transactionData: any) =>
-      console.log("Transaction Hash:", transactionData.transactionHash)
-    }
-    onError={(error: any) => console.error("Error:", error)}
-    address="0x21cFE003997fB7c2B3cfe5cf71e7833B7B2eCe10"
-    value="0"
-    abi={sampleAbi}
-    functionName="transfer"
-    args={["0x62b98e019e0d3e4A1Ad8C786202e09017Bd995e1", "0"]}
-  />
-) : (
-  <LoginWithDimo
-    mode="popup"
-    onSuccess={(authData) => console.log("Success:", authData)}
-    onError={(error) => console.error("Error:", error)}
-    permissionTemplateId={permissionsEnabled ? "1" : undefined}
-    // expirationDate={} // Optional ISO string
-    // vehicles={["585","586"]}
-  />
-)}
-```
-  </TabItem>
-</Tabs>
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Create a token exchange</h2>
+      Creates a token exchange to obtain a Vehicle JWT. The response will provide a short-lived token that last you 10 minutes to access additional vehicle information such as Trips and Telemetry data.
 
-### Advanced Features
+      <ParametersBlock
+        parameters={[
+          {
+            name: "nftContractAddress",
+            type: "string",
+            required: true,
+            description: "The Vehicle NFT address, in the Production environment, this is: 0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF."
+          },
+          {
+            name: "privileges",
+            type: "[integer]",
+            required: true,
+            description: "An array of integers indicating the level of privileges provided to the token bearer. While this parameter is required when making direct calls to the API, the latest versions of the Data SDKs can handle this for you. See the examples to the right for more information."
+          },
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v1/tokens/exchange"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vehicleJwt = await dimo.tokenExchange.exchange({
+    developerJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `vehicle_jwt_request = dimo.token_exchange.exchange(
+    developer_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient.TokenExchangeService.GetPrivilegeTokenAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    privileges = [1,3,4,5],
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
 
-<h4>Entry States</h4>
-<h4>Setting Regions</h4>
-<h4>Setting Custom Expiration Dates</h4>
+      <ApiResponseBlock
+        code={`{
+    "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJmMGM3NTc5ZmYyYTAzMGY0NmY1YzVkMzMyY2YyYjMyMzkxMzIxZGIifQ.eyJjb250cmFjdF9hZGRyZXNzIjoiMHhiYTU3MzhhMThkODNkNDE4NDdkZmZiZGM2MTAxZDM3YzY5YzliMGNmIiwiZXhwIjoxNzA2MDM4MTI4LCJpYXQiOjE3MDYwMzc1MjgsImlzcyI6Imh0dHBzOi8vYXV0aC1yb2xlcy1yaWdodHMuZGltby56b25lIiwicHJpdmlsZWdlX2lkcyI6WzRdLCJzdWIiOiIweGJBNTczOGExOGQ4M0Q0MTg0N2RmRmJEQzYxMDFkMzdDNjljOUIwY0YvMjE5NTciLCJ0b2tlbl9pZCI6IjIxOTU3In0.0J3HIsNeG5-JvMBcTwR8KHhTnXb31jvwjxiKVRnNaFidE0vLbyd6PtPsouniZQMIC46wzqwm2c7aZ61WhPIx9p5TB-cKcMmeKFE9mFZfBuSmvNbDd5icAvkxogWlNPki5WM2_otaGf9WtsZPlWW9GgUmBoPaRhiKB3fX7TPROcn0tTjtVir9HJKnf2CMkDwTk9rZxer8eGB6ekBSJr1aDjdqlY6HRxF_azy_rWVdzB1Wd1He9KyB3HHr1qBk5XK8d_zTA-4X3i3IEP5Z8Q3gxgoQRem70SnBNpjJjeRgAgzjfqHnKaFcjhKlxWD0h9mnpGWvd3oZLd9BPqR3WyDUCA"
+}`}
+      />
+    </div>
+  }
+/>

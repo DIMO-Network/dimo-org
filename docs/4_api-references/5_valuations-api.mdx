@@ -1,112 +1,244 @@
 ---
 sidebar_position: 6
 ---
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+# Valuations
 
-# Valuations API
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
 
-<h4>Expedite your build using DIMO Connect</h4>
+    The Valuations API provides real-time vehicle valuation data and purchase offers from third-party services using vehicle token IDs. The API delivers comprehensive vehicle valuations including trade-in and retail values from providers like Drivly, as well as instant purchase offers from services such as Carvana, CarMax, and Vroom. Valuations and offers are calculated based on the vehicle's make, model, year, and odometer readings. If for some reason the valuation cannot be determined based on the odometer reading of a vehicle, DIMO defaults to the valuation from 12,000 annual mileage.
 
-DIMO Connect is a **robust privacy engine** that allows app developers to
-specify and request data from vehicle owners. Developers can get started using
-either the React Component SDK or by simply creating a DIMO Connect URL.
+    </div>
+  }
+  rightColumn={
+    <div>
+     <h2>Base URL</h2>
 
-### How It Works
+      <code>https://valuations-api.dimo.zone/</code>
 
-<Stepper>
-  <Step title="Configure Your URL" image="/img/ConfigureConnectURL.png">
-    Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
-  </Step>
+      <h3>Endpoints</h3>
 
-<Step title="Share with Users" image="/img/ShareWithUsers.png">
-  Share your DIMO Connect URL with your users and allow them to grant you
-  permission to begin pulling their vehicle data.
-</Step>
+      <code>GET /v2/vehicles/:tokenId/valuations</code>
+      <p></p>
+      <code>POST /v2/vehicles/:tokenId/instant-offer</code>
+      <p></p>
+      <code>GET /v2/vehicles/:tokenId/offers</code>
+      {/* TODO: FIX SPACING HERE - new component */}
 
-<Step title="Check Vehicle Status" image="/img/VehiclesTable.png">
-  Use the DIMO Developer Console or the Identity API to track which vehicles
-  have shared permissions with you.
-</Step>
+      {/* TODO: ADD A HEADERS SECTION FOR VEHICLE JWT */}
 
-  <Step title="Start Getting Data" image="/img/TelemetrySample.png">
-    Begin polling the DIMO APIs or setting up DIMO Webhooks using one of the available Data SDKs.
-  </Step>
-</Stepper>
 
-### Try It Yourself
-
-We recommend starting out with the URL method to quickly begin requesting
-permissioned vehicle data. Then, you can move onto integrating the DIMO Connect
-component using the React Compoonent SDK.
-
-<Tabs>
-  <TabItem value="URL Method" label="URL Method">
-    <DimoUrlBuilder />
-  </TabItem>
-  <TabItem value="SDK Method" label="SDK Method">
-  ```jsx
-  import {
-    LoginWithDimo,
-    ShareVehiclesWithDimo,
-    ExecuteAdvancedTransactionWithDimo,
-    initializeDimoSDK,
-    useDimoAuthState,
-} from "@dimo-network/login-with-dimo";
-
-const { isAuthenticated, getValidJWT, email, walletAddress, getEmail } =
-useDimoAuthState();
-
-useEffect(()=>{ if ( isAuthenticated ) {
-//makeAuthenticatedRequest(getValidJWT()) console.log(email);
-console.log(walletAddress); } },[isAuthenticated])
-
-initializeDimoSDK({ clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
-redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!, });
-
-...
-
-{isAuthenticated ? (
-
-<ShareVehiclesWithDimo
-  mode="popup"
-  onSuccess={authData => console.log('Success:', authData)}
-  onError={error => console.error('Error:', error)}
-  permissionTemplateId={'1'}
-  // expirationDate={} // Optional ISO string
+    </div>
+  }
 />
 
-  <ExecuteAdvancedTransactionWithDimo
-    mode="popup"
-    onSuccess={(transactionData: any) =>
-      console.log("Transaction Hash:", transactionData.transactionHash)
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Get a vehicle valuation</h2>
+      Retrieves current valuation of a vehicle.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v2/vehicles/:tokenId/valuations"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const valuations = await dimo.Valuations.getValuations({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `valuations = dimo.valuations.get_valuations(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient..ValuationsService.GetValuationsAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  valuationSets: [
+    {
+      vendor: 'drivly',
+      updated: '2024-03-17T02:37:50Z',
+      mileage: 36000,
+      tradeInSource: 'drivly',
+      tradeIn: 28824,
+      tradeInAverage: 28824,
+      retailSource: 'drivly',
+      retail: 33097,
+      retailAverage: 33097,
+      odometerUnit: 'miles',
+      odometer: 36000,
+      odometerMeasurementType: 'Estimated',
+      userDisplayPrice: 30960,
+      currency: 'USD'
     }
-    onError={(error: any) => console.error("Error:", error)}
-    address="0x21cFE003997fB7c2B3cfe5cf71e7833B7B2eCe10"
-    value="0"
-    abi={sampleAbi}
-    functionName="transfer"
-    args={["0x62b98e019e0d3e4A1Ad8C786202e09017Bd995e1", "0"]}
-  />
-) : (
-  <LoginWithDimo
-    mode="popup"
-    onSuccess={(authData) => console.log("Success:", authData)}
-    onError={(error) => console.error("Error:", error)}
-    permissionTemplateId={permissionsEnabled ? "1" : undefined}
-    // expirationDate={} // Optional ISO string
-    // vehicles={["585","586"]}
-  />
-)}
-```
-  </TabItem>
-</Tabs>
+  ]
+}`}
+      />
+    </div>
+  }
+/>
 
-### Advanced Features
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Submit a vehicle offers request</h2>
+      Submits an offer request to 3rd party services such as Carvana, Carmax, and Vroom. Note that this endpoint will refresh the existing unexpired offers (if any).
 
-<h4>Entry States</h4>
-<h4>Setting Regions</h4>
-<h4>Setting Custom Expiration Dates</h4>
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v2/vehicles/:tokenId/instant-offer"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const instantOffer = await dimo.Valuations.getInstantOffers({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `valuations = dimo.valuations.offers_lookup(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient..ValuationsService.GetInstantOfferAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>List vehicle offers</h2>
+      Lists existing unexpired offers for a given vehicle that was retrieved in
+      a prior submission of the Valuations API. If offers expired, this endpoint
+      will not return any results.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v2/vehicles/:tokenId/offers"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const instantOffer = await dimo.Valuations.getOffers({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `valuations = dimo.valuations.list_vehicle_offers(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient..ValuationsService.GetInstantOfferAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    offerSets: [
+      {
+        source: 'drivly',
+        updated: '2024-02-01T03:11:09Z',
+        odometerMeasurementType: 'Estimated',
+        offers: [Array]
+      }
+    ]
+}`}
+      />
+    </div>
+  }
+/>
