@@ -2,10 +2,252 @@
 sidebar_position: 2
 ---
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
 
 # Device Definitions API
 
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
+
+    The Device Definitions API provides helper functions for accessing vehicle device definitions that are now stored in Tableland, a decentralized cloud database. The API enables developers to decode Vehicle Identification Numbers (VINs) to retrieve corresponding device definition IDs and search for vehicle definitions by make, model, year, and other filters.
+
+    </div>
+  }
+  rightColumn={
+    <div>
+     <h2>Base URL</h2>
+
+      <code>https://device-definitions-api.dimo.zone</code>
+
+      <h3>Endpoints</h3>
+
+      <code>POST /device-definitions/decode-vin</code>
+      {/* TODO: FIX SPACING HERE - new component */}
+      <p></p>
+      <code>POST /device-definitions/search</code>
+
+      {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
+
+
+    </div>
+  }
+/>
+
+{/* VIN DECODING REQUESTS */}
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Submit a VIN decoding request</h2>
+      Submits a decoding request for vehicle identification number, returns the device definition ID corresponding to the VIN.
+      Use <code>application/json</code> for raw body parameters.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "countryCode",
+            type: "string",
+            required: true,
+            description: "3-letter ISO 3166-1 alpha-3 country code. Examples: 'USA', 'CHL', 'JPN'."
+          },
+          {
+            name: "vin",
+            type: "string",
+            required: true,
+            description: "The Vehicle Identitifcation Number (VIN) of the vehicle."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/device-definitions/decode-vin"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vinDecodeRequest = await dimo.deviceDefinitions.decodeVin({
+    devJwt: "eyJhbGc...ILlujqw",
+    countryCode: "USA",
+    vin: "1HGCM66886A015965"
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `vin_decode_request = dimo.device_definitions.decode_vin(
+    dev_jwt="eyJhbGc...ILlujqw",
+    country_code="USA"
+    vin="1HGCM66886A015965"
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vinDecodeRequest = await dimoClient.DeviceDefinitionsService.DecodeVinAsync(
+    countryCode = "USA"
+    access_token = "eyJhbGc...ILlujqw",
+    vin ="1HGCM66886A015965"
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    deviceDefinitionId: 'lexus_nx_2021',
+    newTransactionHash: ''
+  }`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Get device definitions by search</h2>
+      Submits a decoding request for vehicle identification number, returns the device definition ID corresponding to the VIN.
+      Use <code>application/json</code> for raw body parameters.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "query",
+            type: "string",
+            required: true,
+            description: "Query filter (e.g. Lexus gx 2023)"
+          },
+          {
+            name: "makeSlug",
+            type: "string",
+            required: false,
+            description: "Make of the vehicle (e.g. audi, lexus, etc)"
+          },
+          {
+            name: "modelSlug",
+            type: "string",
+            required: false,
+            description: "Model of the vehicle (e.g. Tacoma, Accord, etc)"
+          },
+          {
+            name: "year",
+            type: "integer",
+            required: false,
+            description: "Year of the vehicle (e.g. 2024) "
+          },
+          {
+            name: "page",
+            type: "integer",
+            required: false,
+            description: "Page number (for pagination, defaults to the 1st page)"
+          },
+          {
+            name: "pageSize",
+            type: "integer",
+            required: false,
+            description: "Page size (to specify the items to show in one page)"
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/device-definitions/decode-vin"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vinDecodeRequest = await dimo.deviceDefinitions.decodeVin({
+    devJwt: "eyJhbGc...ILlujqw",
+    countryCode: "USA",
+    vin: "1HGCM66886A015965"
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `vin_decode_request = dimo.device_definitions.decode_vin(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vinVc = await dimoClient.AttestationService.CreateVinVcAsync(
+    VehicleJwt = "eyJhbGc...ILlujqw",
+    TokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  "deviceDefinitions": [
+    {
+      "id": "lexus_gx_2023",
+      "legacy_ksuid": "2ZvYP0pSbQoXPh2WUdQPeA6g4dM",
+      "name": "2023 Lexus GX",
+      "make": "Lexus",
+      "model": "GX",
+      "year": 2023,
+      "imageUrl": ""
+    },
+    {
+      "id": "lexus_gx-460_2023",
+      "legacy_ksuid": "2CMmZpP6YjaKQlQnGDSAzQ4PJEG",
+      "name": "2023 Lexus GX 460",
+      "make": "Lexus",
+      "model": "GX 460",
+      "year": 2023,
+      "imageUrl": ""
+    }
+  ],
+  "facets": {
+    "makes": [
+      {
+        "name": "Lexus",
+        "count": 2
+      }
+    ],
+    "models": [
+      {
+        "name": "GX",
+        "count": 1
+      },
+      {
+        "name": "GX 460",
+        "count": 1
+      }
+    ],
+    "years": [
+      {
+        "name": "2023",
+        "count": 2
+      }
+    ]
+  },
+  "pagination": {
+    "page": 1,
+    "pageSize": 20,
+    "totalItems": 2,
+    "totalPages": 1
+  }
+}`}
+      />
+    </div>
+  }
+/>

@@ -14,12 +14,23 @@
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": ["*.md", "*.mdx"],
+      "files": ["*.md"],
       "options": {
         "proseWrap": "always",
         "printWidth": 80,
         "tabWidth": 2,
         "useTabs": false
+      }
+    },
+    {
+      "files": ["*.mdx"],
+      "options": {
+        "proseWrap": "preserve",
+        "printWidth": 120,
+        "tabWidth": 2,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true
       }
     },
     {

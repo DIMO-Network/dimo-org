@@ -2,10 +2,105 @@
 sidebar_position: 1
 ---
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
 
 # Attestation API
 
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
+
+    The DIMO Attestation API provides cryptographic, on-chain attestations for vehicle data and identity verification. This API enables developers to generate verifiable VIN credentials.
+
+    <h2>Base URL</h2>
+
+      <code>https://attestation-api.dimo.zone</code>
+
+
+    </div>
+  }
+  rightColumn={
+    <div>
+      <h3>Endpoints</h3>
+
+      <code>POST /v1/vc/vin/:tokenId</code>
+
+
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Create a vehicle VIN VC</h2>
+      Generates the VIN VC for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired VC is found, returns the VC. After
+      you've obtained the rawVC from the response, you can use it to perform
+      queries on the Telemetry API, such as getting the VIN of a vehicle.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "vehicleJwt",
+            type: "string",
+            required: true,
+            description: "A valid JWT token that represents the vehicle's authentication credentials. This token must be obtained through the DIMO authentication flow."
+          },
+          {
+            name: "tokenId",
+            type: "string",
+            required: true,
+            description: "The unique identifier of the vehicle token. This is provided in the URL path."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v1/vc/vin/:tokenId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vinVc = await dimo.attestation.createVinVc({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `vin_vc = dimo.attestation.create_vin_vc(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vinVc = await dimoClient.AttestationService.CreateVinVcAsync(
+    VehicleJwt = "eyJhbGc...ILlujqw",
+    TokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "vcUrl": "https://telemetry-api.dimo.zone/query",
+    "vcQuery": "query {vinVCLatest(tokenId: <TOKEN_ID>) {rawVC}}",
+    "message": "VC generated successfully. Retrieve using the provided GQL URL and query parameter."
+}`}
+      />
+    </div>
+  }
+/>

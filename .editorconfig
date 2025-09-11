@@ -7,20 +7,9 @@ indent_style = space
 indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
-max_line_length = 80
 
-[*.{md,mdx}]
-trim_trailing_whitespace = false
-max_line_length = 80
-
-[*.{ts,tsx,js,jsx}]
-max_line_length = 80
-
-[*.json]
-indent_size = 2
-
-[*.yml]
-indent_size = 2
-
-[package.json]
-indent_size = 2
+[*.mdx]
+# Disable all formatting for MDX files
+indent_style = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset

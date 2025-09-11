@@ -1,11 +1,244 @@
 ---
 sidebar_position: 6
 ---
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+# Valuations
 
-# Valuations API
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
 
+    The Valuations API provides real-time vehicle valuation data and purchase offers from third-party services using vehicle token IDs. The API delivers comprehensive vehicle valuations including trade-in and retail values from providers like Drivly, as well as instant purchase offers from services such as Carvana, CarMax, and Vroom. Valuations and offers are calculated based on the vehicle's make, model, year, and odometer readings. If for some reason the valuation cannot be determined based on the odometer reading of a vehicle, DIMO defaults to the valuation from 12,000 annual mileage.
+
+    </div>
+  }
+  rightColumn={
+    <div>
+     <h2>Base URL</h2>
+
+      <code>https://valuations-api.dimo.zone/</code>
+
+      <h3>Endpoints</h3>
+
+      <code>GET /v2/vehicles/:tokenId/valuations</code>
+      <p></p>
+      <code>POST /v2/vehicles/:tokenId/instant-offer</code>
+      <p></p>
+      <code>GET /v2/vehicles/:tokenId/offers</code>
+      {/* TODO: FIX SPACING HERE - new component */}
+
+      {/* TODO: ADD A HEADERS SECTION FOR VEHICLE JWT */}
+
+
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Get a vehicle valuation</h2>
+      Retrieves current valuation of a vehicle.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v2/vehicles/:tokenId/valuations"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const valuations = await dimo.Valuations.getValuations({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `valuations = dimo.valuations.get_valuations(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient..ValuationsService.GetValuationsAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  valuationSets: [
+    {
+      vendor: 'drivly',
+      updated: '2024-03-17T02:37:50Z',
+      mileage: 36000,
+      tradeInSource: 'drivly',
+      tradeIn: 28824,
+      tradeInAverage: 28824,
+      retailSource: 'drivly',
+      retail: 33097,
+      retailAverage: 33097,
+      odometerUnit: 'miles',
+      odometer: 36000,
+      odometerMeasurementType: 'Estimated',
+      userDisplayPrice: 30960,
+      currency: 'USD'
+    }
+  ]
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Submit a vehicle offers request</h2>
+      Submits an offer request to 3rd party services such as Carvana, Carmax, and Vroom. Note that this endpoint will refresh the existing unexpired offers (if any).
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v2/vehicles/:tokenId/instant-offer"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const instantOffer = await dimo.Valuations.getInstantOffers({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `valuations = dimo.valuations.offers_lookup(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient..ValuationsService.GetInstantOfferAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>List vehicle offers</h2>
+      Lists existing unexpired offers for a given vehicle that was retrieved in
+      a prior submission of the Valuations API. If offers expired, this endpoint
+      will not return any results.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The Vehicle ID that you are requesting permission to. This is an integer that indicates the vehicle you are inquiring about."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v2/vehicles/:tokenId/offers"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const instantOffer = await dimo.Valuations.getOffers({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `valuations = dimo.valuations.list_vehicle_offers(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456
+  )`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var vehicleJwt = await dimoClient..ValuationsService.GetInstantOfferAsync(
+    accessToken = "eyJhbGc...ILlujqw",
+    tokenId = 123456
+  );`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    offerSets: [
+      {
+        source: 'drivly',
+        updated: '2024-02-01T03:11:09Z',
+        odometerMeasurementType: 'Estimated',
+        offers: [Array]
+      }
+    ]
+}`}
+      />
+    </div>
+  }
+/>

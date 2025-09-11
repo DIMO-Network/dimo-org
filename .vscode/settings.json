@@ -9,7 +9,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+    "source.organizeImports": "never"
   },
 
   // Language-specific settings
@@ -33,10 +33,15 @@
       "strings": "off",
       "other": "off"
     },
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false,
     "editor.wordWrapColumn": 80,
-    "rewrap.wrappingColumn": 80
+    "rewrap.wrappingColumn": 80,
+    "editor.codeActionsOnSave": {},
+    "typescript.suggest.enabled": false,
+    "javascript.suggest.enabled": false,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false
   },
 
   "[typescript]": {
@@ -77,8 +82,7 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact",
-    "mdx"
+    "typescriptreact"
   ],
   "eslint.workingDirectories": ["."],
 

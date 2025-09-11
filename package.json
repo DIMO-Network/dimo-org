@@ -15,9 +15,9 @@
     "typecheck": "tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,json,css}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,json,css}\"",
-    "format:docs": "prettier --write \"docs/**/*.{md,mdx}\" \"blog/**/*.{md,mdx}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json,css}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,json,css}\"",
+    "format:docs": "prettier --write \"docs/**/*.md\" \"blog/**/*.md\"",
     "check-all": "npm run typecheck && npm run lint && npm run format:check"
   },
   "dependencies": {
