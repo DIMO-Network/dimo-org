@@ -10,267 +10,104 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 
 # Vehicle Triggers API
 
-{/* TODO: Add links */}
-:::info Developer Notes
-Webhooks that you configure are tied to a specific Developer License.
+<h4>Expedite your build using DIMO Connect</h4>
 
-If you have multiple Developer Licenses under a single account in the DIMO Developer Console, please make sure to authenticate using the Developer JWT associated with the specific license.
-:::
+DIMO Connect is a **robust privacy engine** that allows app developers to
+specify and request data from vehicle owners. Developers can get started using
+either the React Component SDK or by simply creating a DIMO Connect URL.
 
-<TwoColumnLayout
-  leftColumn={
-    <div>
-      <h2>Overview</h2>
+### How It Works
 
-    Webhooks can also be setup directly via the DIMO Developer Console, but the options below provide a programmatic way of configuring vehicle triggers and subscribing vehicles to triggers you have configured.
-{/* TODO: Add links */}
-     Webhooks are currently available in public beta. If you have feedback to share, please reach out to developer-support@dimo.org.
-    </div>
-  }
-  rightColumn={
-    <div>
-     <h2>Base URL</h2>
+<Stepper>
+  <Step title="Configure Your URL" image="/img/ConfigureConnectURL.png">
+    Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
+  </Step>
 
-      <code>https://vehicle-triggers-api.dimo.zone</code>
+<Step title="Share with Users" image="/img/ShareWithUsers.png">
+  Share your DIMO Connect URL with your users and allow them to grant you
+  permission to begin pulling their vehicle data.
+</Step>
 
-      <ApiEndpointsBlock
-        endpoints={[
-          {
-            method: 'GET',
-            path: '/v1/webhooks',
-            id: 'get-webhooks'
-          },
-          {
-            method: 'POST',
-            path: '/v1/webhooks',
-            id: 'create-webhook'
-          },
-          {
-            method: 'GET',
-            path: '/v1/webhooks/signals',
-            id: 'get-webhook-signals'
-          },
-          {
-            method: 'PUT',
-            path: '/v1/webhooks/:webhookId',
-            id: 'update-webhook'
-          },
-          {
-            method: 'DELETE',
-            path: '/v1/webhooks/:webhookId',
-            id: 'delete-webhook'
-          },
-          {
-            method: 'GET',
-            path: '/v1/webhooks/:webhookId',
-            id: 'get-webhook'
-          },
-          {
-            method: 'GET',
-            path: '/v1/webhooks/vehicles/:tokenDID',
-            id: 'get-vehicle-webhooks'
-          },
-          {
-            method: 'POST',
-            path: '/v1/webhooks/:webhookId/subscribe/:tokenDID',
-            id: 'subscribe-vehicle'
-          },
-          {
-            method: 'POST',
-            path: '/v1/webhooks/:webhookId/subscribe/all',
-            id: 'subscribe-all-vehicles'
-          },
-          {
-            method: 'DELETE',
-            path: '/v1/webhooks/:webhookId/unsubscribe/:tokenDID',
-            id: 'unsubscribe-vehicle'
-          },
-          {
-            method: 'DELETE',
-            path: '/v1/webhooks/:webhookId/unsubscribe/all',
-            id: 'unsubscribe-all-vehicles'
-          }
-        ]}
-      />
+<Step title="Check Vehicle Status" image="/img/VehiclesTable.png">
+  Use the DIMO Developer Console or the Identity API to track which vehicles
+  have shared permissions with you.
+</Step>
 
-      {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
+  <Step title="Start Getting Data" image="/img/TelemetrySample.png">
+    Begin polling the DIMO APIs or setting up DIMO Webhooks using one of the available Data SDKs.
+  </Step>
+</Stepper>
 
+### Try It Yourself
 
-    </div>
-  }
+We recommend starting out with the URL method to quickly begin requesting
+permissioned vehicle data. Then, you can move onto integrating the DIMO Connect
+component using the React Compoonent SDK.
+
+<Tabs>
+  <TabItem value="URL Method" label="URL Method">
+    <DimoUrlBuilder />
+  </TabItem>
+  <TabItem value="SDK Method" label="SDK Method">
+  ```jsx
+  import {
+    LoginWithDimo,
+    ShareVehiclesWithDimo,
+    ExecuteAdvancedTransactionWithDimo,
+    initializeDimoSDK,
+    useDimoAuthState,
+} from "@dimo-network/login-with-dimo";
+
+const { isAuthenticated, getValidJWT, email, walletAddress, getEmail } =
+useDimoAuthState();
+
+useEffect(()=>{ if ( isAuthenticated ) {
+//makeAuthenticatedRequest(getValidJWT()) console.log(email);
+console.log(walletAddress); } },[isAuthenticated])
+
+initializeDimoSDK({ clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
+redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!, });
+
+...
+
+{isAuthenticated ? (
+
+<ShareVehiclesWithDimo
+  mode="popup"
+  onSuccess={authData => console.log('Success:', authData)}
+  onError={error => console.error('Error:', error)}
+  permissionTemplateId={'1'}
+  // expirationDate={} // Optional ISO string
 />
 
-<TwoColumnLayout
-  id="get-webhooks"
-  leftColumn={
-    <div>
-      <h2>List all webhooks</h2>
-      Retrieves a list of all the webhooks that have been created under your Developer License.
-    </div>
-  }
-  rightColumn={
-    <div>
-      <ApiCodeBlock
-        requestType="GET"
-        path="/v1/webhooks"
-        codeExamples={[{
-            label: "TypeScript",
-            language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
-  });
-  `
-          },
-          {
-            label: "Python",
-            language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
-  )`
-          }
-        ]}
-        defaultLanguage="typescript"
-      />
-
-      <ApiResponseBlock
-        code={`[
-    [
-      {
-        "id": "2r8653ab-721c-4356-ac1d-f2a620b345bc",
-        "service": "telemetry.signals",
-        "metricName": "speed",
-        "condition": "valueNumber > 95",
-        "targetURL": "https://api.igottafastcar.com/webhook-receiver",
-        "coolDownPeriod": 30,
-        "status": "enabled",
-        "description": "Fires whenever a subscribed vehicle travels over 95kph",
-        "createdAt": "2025-08-12T20:06:38.285919Z",
-        "updatedAt": "2025-08-12T20:06:38.285919Z",
-        "failureCount": 0,
-        "displayName": "Speeding check"
-      },
-      {
-        "id": "9d5fd26c-7d21-4425-b43c-dc279bb76036",
-        "service": "telemetry.signals",
-        "metricName": "powertrainTractionBatteryChargingIsCharging",
-        "condition": "valueNumber == 1",
-        "targetURL": "https://api.igottafastcar.com/webhook-receiver",
-        "coolDownPeriod": 0,
-        "status": "enabled",
-        "description": "Fires when a subscribed vehicle begins a charging session",
-        "createdAt": "2025-08-19T13:42:23.654711Z",
-        "updatedAt": "2025-08-19T13:42:23.654711Z",
-        "failureCount": 0,
-        "displayName": "Vehicle charging check"
-      }
-    ]
-]`}
-      />
-    </div>
-  }
-/>
-
-<TwoColumnLayout
-  id="create-webhook"
-  leftColumn={
-    <div>
-      <h2>Create a webhook</h2>
-      Registers a new webhook with the specified configurations and conditions.
-
-      {/* TODO: Inline linking, code, fomatting, etc */}
-      {/* TODO: Read thru and fix up all language, need better examples/samples in new code blocks */}
-      <ParametersBlock
-        parameters={[
-          {
-            name: "service",
-            type: "string",
-            required: true,
-            description: "The subsystem producing the metric. For example, telemetry.signals or telemetry.events"
-          },
-          {
-            name: "metricName",
-            type: "string",
-            required: true,
-            description: "The fully qualified signal or event name to monitor. Examples: Signals: speed, powertrainTransmissionTravelledDistance, powertrainTractionBatteryChargingIsCharging, etc. Events: ExtremeBraking, HarshAcceleration, HarshBraking, HarshCornering"
-          },
-          {
-            name: "condition",
-            type: "string",
-            required: true,
-            description: "The CEL expression evaluated against the metric to decide when to fire. You can use the following condition statements: >=, <=, >, <, ==. You should always include value. In the example above, we're checking when the speed (value) is greater than 55 kph. Optionally, you can also include a previousValue to perform a check to see if things have changed, i.e. value > 55 && value != previousValue"
-          },
-          {
-            name: "coolDownPeriod",
-            type: "integer",
-            required: true,
-            description: "The minimum number of seconds between successive firings of your webhook. "
-          },
-          {
-            name: "description",
-            type: "string",
-            required: true,
-            description: "A brief description of the webhook conditions for your own reference."
-          },
-          {
-            name: "displayName",
-            type: "string",
-            required: false,
-            description: "An optional input to easily identify your webhook. If left blank, displayName will default to the webhookId."
-          },
-          {
-            name: "targetURL",
-            type: "string",
-            required: true,
-            description: "The HTTPS endpoint URL that will receive webhook callbacks. "
-          },
-          {
-            name: "status",
-            type: "string",
-            required: true,
-            description: "Should be one of the following: enabled - the webhook is actively in use, disabled - the webhook exists, but is not actively in use."
-          },
-          {
-            name: "verificationToken",
-            type: "string",
-            required: true,
-            description: "A plain/text string that is the expected token that your endpoint must echo back during verification."
-          },
-        ]}
-      />
-    </div>
-  }
-  rightColumn={
-    <div>
-      <ApiCodeBlock
-        requestType="POST"
-        path="/v1/webhooks"
-        codeExamples={[{
-            label: "TypeScript",
-            language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
-  });
-  `
-          },
-          {
-            label: "Python",
-            language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
-  )`
-          }
-        ]}
-        defaultLanguage="typescript"
-      />
-
-      <ApiResponseBlock
-        code={`[
-    {
-      "id": "124e4d57-8952-4ded-96c1-0g99f1fa1234",
-      "message": "Webhook registered successfully"
+  <ExecuteAdvancedTransactionWithDimo
+    mode="popup"
+    onSuccess={(transactionData: any) =>
+      console.log("Transaction Hash:", transactionData.transactionHash)
     }
-]`}
-      />
-    </div>
-  }
-/>
+    onError={(error: any) => console.error("Error:", error)}
+    address="0x21cFE003997fB7c2B3cfe5cf71e7833B7B2eCe10"
+    value="0"
+    abi={sampleAbi}
+    functionName="transfer"
+    args={["0x62b98e019e0d3e4A1Ad8C786202e09017Bd995e1", "0"]}
+  />
+) : (
+  <LoginWithDimo
+    mode="popup"
+    onSuccess={(authData) => console.log("Success:", authData)}
+    onError={(error) => console.error("Error:", error)}
+    permissionTemplateId={permissionsEnabled ? "1" : undefined}
+    // expirationDate={} // Optional ISO string
+    // vehicles={["585","586"]}
+  />
+)}
+```
+  </TabItem>
+</Tabs>
+
+### Advanced Features
+
+<h4>Entry States</h4>
+<h4>Setting Regions</h4>
+<h4>Setting Custom Expiration Dates</h4>
