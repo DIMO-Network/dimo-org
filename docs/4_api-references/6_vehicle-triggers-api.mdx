@@ -38,67 +38,56 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           {
             method: 'GET',
             path: '/v1/webhooks',
-            description: 'List all webhooks for your account',
             id: 'get-webhooks'
           },
           {
             method: 'POST',
             path: '/v1/webhooks',
-            description: 'Create a new webhook',
             id: 'create-webhook'
           },
           {
             method: 'GET',
             path: '/v1/webhooks/signals',
-            description: 'Get available webhook signals',
             id: 'get-webhook-signals'
           },
           {
             method: 'PUT',
             path: '/v1/webhooks/:webhookId',
-            description: 'Update a specific webhook',
             id: 'update-webhook'
           },
           {
             method: 'DELETE',
             path: '/v1/webhooks/:webhookId',
-            description: 'Delete a specific webhook',
             id: 'delete-webhook'
           },
           {
             method: 'GET',
             path: '/v1/webhooks/:webhookId',
-            description: 'Get a specific webhook',
             id: 'get-webhook'
           },
           {
             method: 'GET',
             path: '/v1/webhooks/vehicles/:tokenDID',
-            description: 'Get webhooks for a specific vehicle',
             id: 'get-vehicle-webhooks'
           },
           {
             method: 'POST',
             path: '/v1/webhooks/:webhookId/subscribe/:tokenDID',
-            description: 'Subscribe a vehicle to a webhook',
             id: 'subscribe-vehicle'
           },
           {
             method: 'POST',
             path: '/v1/webhooks/:webhookId/subscribe/all',
-            description: 'Subscribe all vehicles to a webhook',
             id: 'subscribe-all-vehicles'
           },
           {
             method: 'DELETE',
             path: '/v1/webhooks/:webhookId/unsubscribe/:tokenDID',
-            description: 'Unsubscribe a vehicle from a webhook',
             id: 'unsubscribe-vehicle'
           },
           {
             method: 'DELETE',
             path: '/v1/webhooks/:webhookId/unsubscribe/all',
-            description: 'Unsubscribe all vehicles from a webhook',
             id: 'unsubscribe-all-vehicles'
           }
         ]}
@@ -112,31 +101,139 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 />
 
 <TwoColumnLayout
+  id="get-webhooks"
+  leftColumn={
+    <div>
+      <h2>List all webhooks</h2>
+      Retrieves a list of all the webhooks that have been created under your Developer License.
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/webhooks"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`[
+    [
+      {
+        "id": "2r8653ab-721c-4356-ac1d-f2a620b345bc",
+        "service": "telemetry.signals",
+        "metricName": "speed",
+        "condition": "valueNumber > 95",
+        "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+        "coolDownPeriod": 30,
+        "status": "enabled",
+        "description": "Fires whenever a subscribed vehicle travels over 95kph",
+        "createdAt": "2025-08-12T20:06:38.285919Z",
+        "updatedAt": "2025-08-12T20:06:38.285919Z",
+        "failureCount": 0,
+        "displayName": "Speeding check"
+      },
+      {
+        "id": "9d5fd26c-7d21-4425-b43c-dc279bb76036",
+        "service": "telemetry.signals",
+        "metricName": "powertrainTractionBatteryChargingIsCharging",
+        "condition": "valueNumber == 1",
+        "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+        "coolDownPeriod": 0,
+        "status": "enabled",
+        "description": "Fires when a subscribed vehicle begins a charging session",
+        "createdAt": "2025-08-19T13:42:23.654711Z",
+        "updatedAt": "2025-08-19T13:42:23.654711Z",
+        "failureCount": 0,
+        "displayName": "Vehicle charging check"
+      }
+    ]
+]`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
   id="create-webhook"
   leftColumn={
     <div>
       <h2>Create a webhook</h2>
-      Creates a new webhook trigger for vehicle events. You can configure what events trigger the webhook and which vehicles should be monitored.
+      Registers a new webhook with the specified configurations and conditions.
 
+      {/* TODO: Inline linking, code, fomatting, etc */}
+      {/* TODO: Read thru and fix up all language, need better examples/samples in new code blocks */}
       <ParametersBlock
         parameters={[
           {
-            name: "url",
+            name: "service",
             type: "string",
             required: true,
-            description: "The URL endpoint where webhook notifications will be sent. Must be a valid HTTPS URL."
+            description: "The subsystem producing the metric. For example, telemetry.signals or telemetry.events"
           },
           {
-            name: "events",
-            type: "[string]",
+            name: "metricName",
+            type: "string",
             required: true,
-            description: "Array of event types that should trigger this webhook. Available events include vehicle status changes, trip events, and telemetry thresholds."
+            description: "The fully qualified signal or event name to monitor. Examples: Signals: speed, powertrainTransmissionTravelledDistance, powertrainTractionBatteryChargingIsCharging, etc. Events: ExtremeBraking, HarshAcceleration, HarshBraking, HarshCornering"
+          },
+          {
+            name: "condition",
+            type: "string",
+            required: true,
+            description: "The CEL expression evaluated against the metric to decide when to fire. You can use the following condition statements: >=, <=, >, <, ==. You should always include value. In the example above, we're checking when the speed (value) is greater than 55 kph. Optionally, you can also include a previousValue to perform a check to see if things have changed, i.e. value > 55 && value != previousValue"
+          },
+          {
+            name: "coolDownPeriod",
+            type: "integer",
+            required: true,
+            description: "The minimum number of seconds between successive firings of your webhook. "
           },
           {
             name: "description",
             type: "string",
+            required: true,
+            description: "A brief description of the webhook conditions for your own reference."
+          },
+          {
+            name: "displayName",
+            type: "string",
             required: false,
-            description: "Optional description for the webhook to help identify its purpose."
+            description: "An optional input to easily identify your webhook. If left blank, displayName will default to the webhookId."
+          },
+          {
+            name: "targetURL",
+            type: "string",
+            required: true,
+            description: "The HTTPS endpoint URL that will receive webhook callbacks. "
+          },
+          {
+            name: "status",
+            type: "string",
+            required: true,
+            description: "Should be one of the following: enabled - the webhook is actively in use, disabled - the webhook exists, but is not actively in use."
+          },
+          {
+            name: "verificationToken",
+            type: "string",
+            required: true,
+            description: "A plain/text string that is the expected token that your endpoint must echo back during verification."
           },
         ]}
       />
@@ -148,46 +245,31 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         requestType="POST"
         path="/v1/webhooks"
         codeExamples={[{
-            label: "cURL",
-            language: "bash",
-            code: `curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \\
-  -H "Authorization: Bearer YOUR_DEV_JWT" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "url": "https://your-app.com/webhook",
-    "events": ["trip.start", "trip.end"],
-    "description": "Trip tracking webhook"
-  }'`
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
           },
           {
-            label: "JavaScript",
-            language: "javascript",
-            code: `const response = await fetch('https://vehicle-triggers-api.dimo.zone/v1/webhooks', {
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer YOUR_DEV_JWT',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    url: 'https://your-app.com/webhook',
-    events: ['trip.start', 'trip.end'],
-    description: 'Trip tracking webhook'
-  })
-});`
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
           }
         ]}
-        defaultLanguage="bash"
+        defaultLanguage="typescript"
       />
 
       <ApiResponseBlock
-        code={`{
-  "webhookId": "webhook_1234567890",
-  "url": "https://your-app.com/webhook",
-  "events": ["trip.start", "trip.end"],
-  "description": "Trip tracking webhook",
-  "active": true,
-  "createdAt": "2024-01-15T10:30:00Z"
-}`}
+        code={`[
+    {
+      "id": "124e4d57-8952-4ded-96c1-0g99f1fa1234",
+      "message": "Webhook registered successfully"
+    }
+]`}
       />
     </div>
   }

@@ -14,11 +14,6 @@ export interface ApiEndpoint {
   path: string;
 
   /**
-   * Optional description for the endpoint
-   */
-  description?: string;
-
-  /**
    * Unique ID for anchor linking
    */
   id: string;
@@ -85,34 +80,15 @@ const ApiEndpointsBlock: React.FC<ApiEndpointsBlockProps> = ({
             onClick={() => handleEndpointClick(endpoint.id)}
             type="button"
           >
-            <div className={styles.endpointMethod}>
-              <span
-                className={clsx(
-                  styles.methodBadge,
-                  getMethodColor(endpoint.method)
-                )}
-              >
-                {endpoint.method.toUpperCase()}
-              </span>
-            </div>
-            <div className={styles.endpointPath}>
-              <code className={styles.pathCode}>{endpoint.path}</code>
-              {endpoint.description && (
-                <span className={styles.endpointDescription}>
-                  {endpoint.description}
-                </span>
+            <span
+              className={clsx(
+                styles.methodBadge,
+                getMethodColor(endpoint.method)
               )}
-            </div>
-            <div className={styles.endpointArrow}>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-              >
-                <path d="M6 3l5 5-5 5V3z" />
-              </svg>
-            </div>
+            >
+              {endpoint.method.toUpperCase()}
+            </span>
+            <code className={styles.pathCode}>{endpoint.path}</code>
           </button>
         ))}
       </div>
