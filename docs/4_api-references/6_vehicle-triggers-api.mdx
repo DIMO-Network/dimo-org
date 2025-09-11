@@ -63,12 +63,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           {
             method: 'GET',
             path: '/v1/webhooks/:webhookId',
-            id: 'get-webhook'
+            id: 'vehicles-subbed-to-webhook'
           },
           {
             method: 'GET',
             path: '/v1/webhooks/vehicles/:tokenDID',
-            id: 'get-vehicle-webhooks'
+            id: 'webhook-subs-per-vehicle'
           },
           {
             method: 'POST',
@@ -134,7 +134,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 
       <ApiResponseBlock
         code={`[
-    [
       {
         "id": "2r8653ab-721c-4356-ac1d-f2a620b345bc",
         "service": "telemetry.signals",
@@ -163,7 +162,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         "failureCount": 0,
         "displayName": "Vehicle charging check"
       }
-    ]
 ]`}
       />
     </div>
@@ -264,12 +262,331 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       />
 
       <ApiResponseBlock
-        code={`[
-    {
-      "id": "124e4d57-8952-4ded-96c1-0g99f1fa1234",
-      "message": "Webhook registered successfully"
-    }
-]`}
+        code={`{
+    "id": "124e4d57-8952-4ded-96c1-0g99f1fa1234",
+    "message": "Webhook registered successfully"
+  }`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="get-webhook-signals"
+  leftColumn={
+    <div>
+      <h2>Get webhook signals</h2>
+      Retrieves a list of signal names available for the data field.
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/webhooks/signals"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`...
+      {
+        "name": "powertrainTransmissionTravelledDistance",
+        "description": "Odometer reading, total distance travelled during the lifetime of the transmission.",
+        "unit": "km",
+        "valueType": "float64",
+        "permissions": [
+          "privilege:GetNonLocationHistory"
+        ]
+      },
+  ...`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="update-webhook"
+  leftColumn={
+    <div>
+      <h2>Update a webhook</h2>
+      Updates the parameters or configurations of an existing webhook via the
+      webhooks webhookId.
+      <ParametersBlock
+        parameters={[
+          {
+            name: "webhookId",
+            type: "string",
+            required: true,
+            description: "The Webhook ID."
+          },
+          {
+            name: "request",
+            type: "object",
+            required: true,
+            description: "The full request payload for the webhook you're updating. "
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="PUT"
+        path="/v1/webhooks/:webhookId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "message": "Webhook updated successfully"
+  }`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="delete-webhook"
+  leftColumn={
+    <div>
+      <h2>Delete a webhook</h2>
+      Deletes an existing webhook that was configured under your Developer
+      License.
+      <ParametersBlock
+        parameters={[
+          {
+            name: "webhookId",
+            type: "string",
+            required: true,
+            description: "The Webhook ID."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="DELETE"
+        path="/v1/webhooks/:webhookId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "message": "Webhook deleted successfully"
+  }`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="vehicles-subbed-to-webhook"
+  leftColumn={
+    <div>
+      <h2>Get vehicles susbcribed to a webhook</h2>
+      Lists all of the vehicles that are subscribed to a specific webhook that you've created.
+      <ParametersBlock
+        parameters={[
+          {
+            name: "webhookId",
+            type: "string",
+            required: true,
+            description: "The Webhook ID."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/webhooks/:webhookId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    [12345, 54321]
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="webhook-subs-per-vehicle"
+  leftColumn={
+    <div>
+      <h2>Get a list of webhooks a vehicle is subscribed to</h2>
+      Lists all the webhooks that a provided vehicle tokenDID is subscribed to.
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenDID",
+            type: "string",
+            required: true,
+            description: "The vehicles token DID."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/webhooks/vehicles/:tokenDID"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "webhookId": "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+    "assetDid": "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345",
+    "createdAt": "2025-08-19T13:55:13.768969Z",
+    "description": "Fires when a vehicle begins charging"
+  }`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="subscribe-vehicle"
+  leftColumn={
+    <div>
+      <h2>Get a list of webhooks a vehicle is subscribed to</h2>
+      Subscribes a vehicle tokenDID to a specified webhook.
+      <ParametersBlock
+        parameters={[
+          {
+            name: "webhookId",
+            type: "string",
+            required: true,
+            description: "The Webhook ID."
+          },
+          {
+            name: "tokenDID",
+            type: "string",
+            required: true,
+            description: "The vehicles token DID."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v1/webhooks/:webhookId/subscribe/:tokenDID"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+      developerJwt: "eyJhbGc...ILlujqw"
+  });
+  `
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw"
+  )`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+	  "message": "Vehicle assigned successfully"
+}`}
       />
     </div>
   }
