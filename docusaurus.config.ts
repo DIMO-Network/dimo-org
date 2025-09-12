@@ -22,8 +22,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'DIMO-Network', // Usually your GitHub org/user name.
+  projectName: 'dimo-org', // Usually your repo name.
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -64,7 +64,7 @@ const config: Config = {
       logo: {
         alt: 'DIMO BUILD',
         src: 'img/logo.svg',
-        width: 100,
+        width: 200,
       },
       items: [
         {

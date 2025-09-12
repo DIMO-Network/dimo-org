@@ -7,7 +7,7 @@ import ImageTooltips from '@site/src/components/ImageTooltips';
 
 # Register a Developer License
 
-<h4>Create your DIMO Developer License</h4>
+#### Register your DIMO Developer License
 
 Before accessing the DIMO APIs, you will need to obtain and configure a
 Developer License. 
@@ -20,7 +20,7 @@ public and unique amongst the DIMO Network.
 :::
 
 
-### How It Works
+#### How It Works
 
 	<Stepper>
 		<Step title="Login">
@@ -53,16 +53,24 @@ public and unique amongst the DIMO Network.
 			Share these with anyone that's working with you on your app.
 			For `API Keys`, please follow our best practices and share using a secured vault.
 		</Step>
+		<Step title="Using Your License">
+			You will need a Developer JWT in order to start interacting with most APIs, go to the next section to learn more about authentication.
+		</Step>
 	</Stepper>
 
 
-<h4>About Your License</h4>
+#### About Your License
 Here are the key components to your Developer License:
 
 	<ImageTooltips
 		src="/img/dev-license-details.png"
 		alt="Developer License Details"
 		tooltipAreas={[
+			{
+				x: 10, y: 5, width: 65, height: 7,
+				title: "Developer License URL",
+				text: "Shareable URL including your public ID (481 for instance) to other console users."
+			},
 			{
 				x: 19, y: 20, width: 78, height: 7,
 				title: "Developer License Info",
@@ -71,17 +79,17 @@ Here are the key components to your Developer License:
 			{
 				x: 19, y: 30, width: 38, height: 12,
 				title: "Usage Section",
-				text: "Track your API credits consumed and usage statistics"
+				text: "Track your API credits consumed and usage statistics."
 			},
 			{
 				x: 57, y: 30, width: 38, height: 12,
 				title: "Connected Vehicles",
-				text: "View and manage vehicles connected to your application"
+				text: "View and manage vehicles connected to your application."
 			},
 			{
 				x: 19, y: 44, width: 78, height: 11,
 				title: "Developer JWTs",
-				text: "Generate a one-time Developer JSON Web Token for authentication"
+				text: "Generate a one-time Developer JSON Web Token for authentication, the system generates one for you using your DIMO Account for testing purposes."
 			},
 			{
 				x: 19, y: 54, width: 78, height: 24,
@@ -91,7 +99,7 @@ Here are the key components to your Developer License:
 			{
 				x: 19, y: 78, width: 78, height: 16,
 				title: "Redirect URIs",
-				text: "Authorized Redirect URIs used to authenticate your API calls and to redirect users back to your app"
+				text: "Authorized Redirect URIs used to authenticate your API calls and to redirect users back to your app."
 			}
 		]}
 	/>
