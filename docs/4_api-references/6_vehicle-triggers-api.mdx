@@ -38,7 +38,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           {
             method: 'GET',
             path: '/v1/webhooks',
-            id: 'get-webhooks'
+            id: 'list-webhooks'
           },
           {
             method: 'POST',
@@ -101,7 +101,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 />
 
 <TwoColumnLayout
-  id="get-webhooks"
+  id="list-webhooks"
   leftColumn={
     <div>
       <h2>List all webhooks</h2>
@@ -245,16 +245,37 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
-  });
-  `
+            code: `const newWebhook = await dimo.VehicleTriggers.createWebhook({
+      developerJwt: "eyJhbGc...ILlujqw",
+      service: "telemetry.signals",
+      metricName: "speed",
+      condition: "valueNumber > 95",
+      coolDownPeriod: 30,
+      description: "Fires whenever a subscribed vehicle travels over 95kph",
+      displayName: "Speeding check",
+      targetURL: "https://api.igottafastcar.com/webhook-receiver",
+      status: "enabled",
+      verificationToken: "abc123",
+  });`
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `webhook_config = {
+      "service": "telemetry.signals",
+      "metricName": "speed",
+      "condition": "valueNumber > 95",
+      "coolDownPeriod": 30,
+      "description": "Fires whenever a subscribed vehicle travels over 95kph",
+      "displayName": "Speeding check",
+      "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+      "status": "enabled",
+      "verificationToken": "abc123",
+  }
+
+  new_webhook = dimo.vehicle_triggers.register_webhook(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      request = webhook_config
   )`
           }
         ]}
@@ -287,7 +308,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+            code: `const webhookSignals = await dimo.VehicleTriggers.getWebhookSignalNames({
       developerJwt: "eyJhbGc...ILlujqw"
   });
   `
@@ -295,7 +316,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
+            code: `webhook_signals = dimo.vehicle_triggers.webhook_signals(
       developer_jwt = "eyJhbGc...ILlujqw"
   )`
           }
@@ -304,7 +325,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       />
 
       <ApiResponseBlock
-        code={`...
+        code={`// Abbreviated sample response below:
+      ...
       {
         "name": "powertrainTransmissionTravelledDistance",
         "description": "Odometer reading, total distance travelled during the lifetime of the transmission.",
