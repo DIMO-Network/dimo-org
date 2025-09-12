@@ -49,7 +49,8 @@ export interface TwoColumnLayoutProps {
   stickyLeft?: boolean;
 
   /**
-   * Top offset for sticky positioning (in rem). Useful if you have a fixed header. Default: 1
+   * Top offset for sticky positioning (in rem). Accounts for fixed navigation headers.
+   * Default: 5rem (appropriate for most Docusaurus sites). Adjust if your navigation height differs.
    */
   stickyTop?: number;
 }
@@ -64,7 +65,7 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   id,
   stickyRight = false,
   stickyLeft = false,
-  stickyTop = 1,
+  stickyTop = 5,
 }) => {
   const containerClasses = clsx(
     styles.twoColumnContainer,

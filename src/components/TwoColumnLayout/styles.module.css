@@ -30,21 +30,21 @@
   min-width: 0; /* Prevents content from overflowing */
 }
 
-/* Sticky left column */
+/* Sticky left column - 5rem default accounts for typical Docusaurus navigation */
 .stickyLeft {
   position: sticky;
-  top: var(--sticky-top, 1rem);
+  top: var(--sticky-top, 5rem);
   align-self: start;
-  max-height: calc(100vh - var(--sticky-top, 1rem) - 2rem);
+  max-height: calc(100vh - var(--sticky-top, 5rem) - 2rem);
   overflow-y: auto;
 }
 
-/* Sticky right column */
+/* Sticky right column - 5rem default accounts for typical Docusaurus navigation */
 .stickyRight {
   position: sticky;
-  top: var(--sticky-top, 1rem);
+  top: var(--sticky-top, 5rem);
   align-self: start;
-  max-height: calc(100vh - var(--sticky-top, 1rem) - 2rem);
+  max-height: calc(100vh - var(--sticky-top, 5rem) - 2rem);
   overflow-y: auto;
 }
 
