@@ -1,0 +1,175 @@
+---
+sidebar_position: 2
+---
+
+import Stepper, { Step } from '@site/src/components/Stepper';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+
+# Server SDK
+
+## Get Vehicle Data From DIMO APIs
+DIMO Server SDK is a suite of Developer SDKs that allows app developers to access data from the DIMO APIs. 
+Developers have a choice between several popular programming languages such as NodeJS, Typescript, Python, and C#.
+
+## How It Works
+<Stepper>
+  <Step title="Install the SDK">
+		<Tabs>
+			<TabItem value="JS/TS">
+				- `npm install @dimo-network/data-sdk`
+				- `yarn add @dimo-network/data-sdk`
+			</TabItem>
+			<TabItem value="Python">
+				- `pip install dimo-python-sdk`
+			</TabItem>
+			<TabItem value="C#">
+				- Windows Users: `Install-Package Dimo.Client`
+				- Mac Users: `dotnet add package Dimo.Client`
+			</TabItem>
+		</Tabs>
+	</Step>
+  <Step title="Initiate the SDK">
+		<Tabs>
+			<TabItem value="JS/TS">
+				```ts
+				import { DIMO } from '@dimo-network/data-sdk';
+
+				const dimo = new DIMO('Production');
+				```
+			</TabItem>
+			<TabItem value="Python">
+				```python
+				from dimo import DIMO
+
+				dimo = DIMO("Production")
+				```
+			</TabItem>
+			<TabItem value="C#">
+				```cs
+				using Dimo.Client;
+
+				var dimoClient = new DimoClientBuilder().AddAllServices().Build();
+				```
+			</TabItem>
+		</Tabs>
+  </Step>
+  <Step title="Authenticate Using Your Developer License">
+		<Tabs>
+			<TabItem value="JS/TS">
+			```ts
+			const developerJwt = await dimo.auth.getDeveloperJwt({
+				client_id: '<client_id>',
+				domain: '<redirect_uri>',
+				private_key: '<api_key>',
+			});
+			```
+			</TabItem>
+			<TabItem value="Python">
+			```python
+			auth_header = dimo.auth.get_dev_jwt(
+				client_id = '<client_id>',
+				domain = '<redirect_uri>',
+				private_key = '<api_key>'
+			)
+
+			dev_jwt = auth_header["access_token"]
+			```
+			</TabItem>
+			<TabItem value="C#">
+			```cs
+			var auth = await dimoClient.AuthenticationService.GetTokenAsync(
+				clientId: "<client_id>",
+				domain: "<redirect_uri>",
+				privateKey: "<api_key>"
+			);
+				
+			var devJwt = auth.AccessToken;
+			```
+			</TabItem>
+		</Tabs>
+  </Step>
+	<Step title="Getting a Vehicle JWT">
+		<Tabs>
+			<TabItem value="JS/TS">
+			```ts
+			const vehicleJwt = await dimo.tokenexchange.getVehicleJwt({
+				...developerJwt,
+				tokenId: <token_id>
+			});
+			```
+			</TabItem>
+			<TabItem value="Python">
+			```python
+			get_vehicle_jwt = dimo.token_exchange.exchange(
+				developer_jwt = dev_jwt
+				token_id ="<token_id>"
+			)
+
+			vehicle_jwt = get_vehicle_jwt['token']
+			```
+			</TabItem>
+			<TabItem value="C#">
+			```cs
+			var vehicleJwt = await dimoClient.TokenExchangeService.GetPrivilegeTokenAsync(
+				accessToken: devJwt,
+				tokenId: <tokenId>,
+				privileges: [ 
+						PrivilegeSharing.AllTimeNoLocationData,
+						PrivilegeSharing.Commands, 
+						PrivilegeSharing.CurrentLocation, 
+						PrivilegeSharing.AllTimeLocation 
+				]
+			);
+
+			```
+			</TabItem>
+		</Tabs>
+  </Step>
+	  <Step title="Fetching Vehicle Data">
+		<Tabs>
+			<TabItem value="JS/TS">
+			```ts
+			const something = await dimo.telemetry.query({
+				...vehicleJwt,
+				query: `
+					query {
+						some_valid_GraphQL_query
+					}`
+			});
+			```
+			</TabItem>
+			<TabItem value="Python">
+			```python
+			telemetry_data = dimo.telemetry.query(
+				vehicle_jwt=vehicle_jwt,
+				query= """
+						query {
+								some_valid_GraphQL_query
+								}
+						"""
+			)
+			```
+			</TabItem>
+			<TabItem value="C#">
+			```cs
+			var query = @"
+			{
+				some_valid_GraphQL_query
+			}
+			";
+
+			var variables = new
+			{
+					VariableName = "VariableValue"
+			};
+
+			var result = await dimoClient.TelemetryService.ExecuteQueryAsync<TResponse>(query, variables, vehicleJwt.Token);
+
+			Console.WriteLine(result);
+			```
+			</TabItem>
+		</Tabs>
+	</Step>
+</Stepper>

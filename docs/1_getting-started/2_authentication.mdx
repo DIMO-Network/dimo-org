@@ -6,11 +6,13 @@ import ApiTester from '@site/src/components/ApiTester';
 
 
 # Authentication
-#### What is JWT?
+How to authenticate using your DIMO Developer License.
+
+### What is JWT?
 A JWT (JSON Web Token) is a short piece of text that safely carries information between computers, like from an app to an API.
 It is digitally signed, so no one can change its contents without being detected.
 
-#### Authenticating your DIMO Developer License
+### Authenticating your DIMO Developer License
 Authentication with DIMO starts off with obtaining a **Developer JWT**, proving that you are who you say you are. 
 Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **Vehicle JWT** for a specific vehicle in order to access vehicle data.
 
@@ -19,7 +21,7 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
 | Developer JWT          | Allows general access to DIMO APIs for a longer period of time | No access to vehicle data; keeps general platform open but protected              |
 | Vehicle JWT            | Grants access to a specific vehicle’s data for a short time    | Data access is very limited in time and only for one vehicle; protects sensitive info |
 
-#### How It Works
+### How It Works
 
 <Stepper>
   <Step title="Prerequisites">
