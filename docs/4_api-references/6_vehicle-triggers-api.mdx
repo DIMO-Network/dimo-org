@@ -814,3 +814,129 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     </div>
   }
 />
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Event Responses</h2>
+      When a vehicle that you have subscribed to an event meets the criteria you've configured in your webhook trigger, it will send a <code>POST</code> request to your specified <code>targetURL</code>. The response body will contain the information that you need to handle the event as required by your application.
+      <ParametersBlock
+        title = "Data"
+        parameters={[
+          {
+            name: "id",
+            description: "The Webhook ID."
+          },
+          {
+            name: "source",
+            description: "The Webhook ID."
+          },
+          {
+            name: "producer",
+            description: "The Webhook ID."
+          },
+          {
+            name: "specVersion",
+            description: "The Webhook ID."
+          },
+          {
+            name: "subject",
+            description: "The Webhook ID."
+          },
+          {
+            name: "time",
+            description: "The Webhook ID."
+          },
+          {
+            name: "type",
+            description: "The Webhook ID."
+          },
+          {
+            name: "datacontenttype",
+            description: "The Webhook ID."
+          },
+          {
+            name: "dataversion",
+            description: "The Webhook ID."
+          },
+          {
+            name: "service",
+            description: "The Webhook ID."
+          },
+          {
+            name: "metricName",
+            description: "The Webhook ID."
+          },
+          {
+            name: "webhookId",
+            description: "The Webhook ID."
+          },
+          {
+            name: "webhookName",
+            description: "The Webhook ID."
+          },
+          {
+            name: "assetDID",
+            description: "The Webhook ID."
+          },
+          {
+            name: "condition",
+            description: "The Webhook ID."
+          },
+          {
+            name: "name",
+            description: "The Webhook ID."
+          },
+          {
+            name: "unit",
+            description: "The Webhook ID."
+          },
+          {
+            name: "timestamp",
+            description: "The Webhook ID."
+          },
+          {
+            name: "valuetype",
+            description: "The Webhook ID."
+          },
+          {
+            name: "value",
+            description: "The Webhook ID."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiResponseBlock
+        code={`{
+    "id": "6be980f3-7edf-4cab-ba72-3871f61e6cdb",
+    "source": "vehicle-triggers-api",
+    "producer": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
+    "specversion": "1.0",
+    "subject": "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345",
+    "time": "2025-08-14T11:04:29.685302958Z",
+    "type": "dimo.trigger",
+    "datacontenttype": "application/json",
+    "dataversion": "telemetry.signals/v1.0",
+    "data": {
+      "service": "telemetry.signals",
+      "metricName": "speed",
+      "webhookId": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
+      "webhookName": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
+      "assetDID": "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345",
+      "condition": "value > 55",
+      "signal": {
+        "name": "speed",
+        "unit": "km/h",
+        "timestamp": "0001-01-01T00:00:00Z",
+        "valueType": "float64",
+        "value": 59
+      }
+    }
+  }`}
+      />
+    </div>
+  }
+/>
