@@ -116,7 +116,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
+            code: `const allWebhooks = await dimo.VehicleTriggers.listWebhooks({
       developerJwt: "eyJhbGc...ILlujqw"
   });
   `
@@ -361,7 +361,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             name: "request",
             type: "object",
             required: true,
-            description: "The full request payload for the webhook you're updating. "
+            description: "The full request payload for the webhook you're updating. See: 'Create a webhook' for more details"
           },
         ]}
       />
@@ -375,16 +375,39 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
-  });
-  `
+            code: `const updateWebhook = await dimo.VehicleTriggers.updateWebhook({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+      service: "telemetry.signals",
+      metricName: "speed",
+      condition: "valueNumber > 99",
+      coolDownPeriod: 30,
+      description: "Fires whenever a subscribed vehicle travels over 99kph",
+      displayName: "Speeding check",
+      targetURL: "https://api.igottafastcar.com/webhook-receiver",
+      status: "enabled",
+      verificationToken: "abc123",
+  });`
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `webhook_config = {
+      "service": "telemetry.signals",
+      "metricName": "speed",
+      "condition": "valueNumber > 95",
+      "coolDownPeriod": 30,
+      "description": "Fires whenever a subscribed vehicle travels over 95kph",
+      "displayName": "Speeding check",
+      "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+      "status": "enabled",
+      "verificationToken": "abc123",
+  }
+
+  updated_webhook = dimo.vehicle_triggers.update_webhook(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+      request = webhook_config
   )`
           }
         ]}
@@ -406,7 +429,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     <div>
       <h2>Delete a webhook</h2>
       Deletes an existing webhook that was configured under your Developer
-      License.
+      License. In order to successfully delete a webhook, you must have first
+      unsubscribed all vehicles from the webhook. Otherwise, the deletion will fail.
       <ParametersBlock
         parameters={[
           {
@@ -427,16 +451,18 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const deletedWebhook = await dimo.VehicleTriggers.deleteWebhook({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `deleted_webhook = dimo.vehicle_triggers.delete_webhook(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
           }
         ]}
@@ -478,16 +504,18 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const subscribedVehicles = await dimo.VehicleTriggers.listSubscribedVehicles({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `subscribed_vehicles = dimo.vehicle_triggers.list_vehicle_subscriptions_by_trigger(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
           }
         ]}
@@ -529,16 +557,18 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const vehicleSubscriptions = await dimo.VehicleTriggers.listVehicleSubscriptions({
+      developerJwt: "eyJhbGc...ILlujqw",
+      tokenDid: "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `vehicle_subscriptions = dimo.vehicle_triggers.list_vehicle_subscriptions(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      token_did = "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   )`
           }
         ]}
@@ -589,16 +619,20 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const subVehicle = await dimo.VehicleTriggers.subscribeVehicle({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+      tokenDid: "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `sub_vehicle = dimo.vehicle_triggers.subscribe_vehicle(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+      token_did = "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   )`
           }
         ]}
@@ -640,16 +674,18 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const subscribeAll = await dimo.VehicleTriggers.subscribeAllVehicles({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `subscribeAll = dimo.vehicle_triggers.subscribe_all_vehicles(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhook_id = ""1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
           }
         ]}
@@ -658,7 +694,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 
       <ApiResponseBlock
         code={`{
-	  "message": "Vehicle assigned successfully"
+	  "message": "Subscribed 100 assets"
 }`}
       />
     </div>
@@ -697,16 +733,20 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const unsubVehicle = await dimo.VehicleTriggers.unsubscribeVehicle({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+      tokenDid: "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `unsub_vehicle = dimo.vehicle_triggers.list_all_webhooks(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhookId = "1d2bef3c-4d56-7890-b12c-dc345ee67906",
+      tokenDid = "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   )`
           }
         ]}
@@ -727,7 +767,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   leftColumn={
     <div>
       <h2>Unsubscribe all vehicles from a webhook</h2>
-      Unsubscribes a vehicle tokenDID from a specified webhook.
+      Unsubscribes all previously subscribed vehicles from a webhook you've created.
       <ParametersBlock
         parameters={[
           {
@@ -735,12 +775,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             type: "string",
             required: true,
             description: "The Webhook ID."
-          },
-          {
-            name: "tokenDID",
-            type: "string",
-            required: true,
-            description: "The vehicles token DID."
           },
         ]}
       />
@@ -754,16 +788,18 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const allWebhooks = await dimo.VehicleTriggers.ListWebhooks({
-      developerJwt: "eyJhbGc...ILlujqw"
+            code: `const unsubAll = await dimo.VehicleTriggers.unsubscribeAllVehicles({
+      developerJwt: "eyJhbGc...ILlujqw",
+      webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   });
   `
           },
           {
             label: "Python",
             language: "python",
-            code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
-      developer_jwt = "eyJhbGc...ILlujqw"
+            code: `all_webhooks = dimo.vehicle_triggers.unsubscribe_all_vehicles(
+      developer_jwt = "eyJhbGc...ILlujqw",
+      webhookId = "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
           }
         ]}
