@@ -1,8 +1,107 @@
 ---
 sidebar_position: 3
 ---
+import Stepper, { Step } from '@site/src/components/Stepper';
+import ApiTester from '@site/src/components/ApiTester';
+
 
 # Authentication
+#### What is JWT?
+A JWT (JSON Web Token) is a short piece of text that safely carries information between computers, like from an app to an API.
+It is digitally signed, so no one can change its contents without being detected.
 
-<h4>Authenticating your DIMO Developer License</h4>
+#### Authenticating your DIMO Developer License
+Authentication with DIMO starts off with obtaining a **Developer JWT**, proving that you are who you say you are. 
+Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **Vehicle JWT** for a specific vehicle in order to access vehicle data.
 
+| JWT Type               | What It Does                                                   | Security Purpose                                                                  |
+|------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| Developer JWT          | Allows general access to DIMO APIs for a longer period of time | No access to vehicle data; keeps general platform open but protected              |
+| Vehicle JWT            | Grants access to a specific vehicle’s data for a short time    | Data access is very limited in time and only for one vehicle; protects sensitive info |
+
+#### How It Works
+
+<Stepper>
+  <Step title="Prerequisites">
+    You will need your `Client ID`, `Redirect URI`, and `API Key` to get your **Developer JWT**.
+  </Step>
+  <Step title="Getting Your Developer JWT">
+    There are two ways that this can be done in the [Developer Console](https://console.dimo.org): <br />
+      - Use the system generated **Developer JWT** without using an API key <br />
+      - Generate a new **Developer JWT** using an API key
+  </Step>
+  <Step title="Using Your Developer JWT">
+    Test using your **Developer JWT** by interacting with one of our APIs that's secured by a **Developer JWT**, 
+    for example: Vehicle Triggers API.
+    <details>
+      <summary>Test it out</summary>
+      <ApiTester 
+        defaultUrl="https://vehicle-triggers-api.dimo.zone"
+        method="GET"
+        title="Test Using Your Developer JWT"
+      />
+    </details>
+  </Step>
+  <Step title="Fetching a Vehicle JWT">
+    When you have a vehicle available, attempt to get a **Vehicle JWT** by sending a request to the Token Exchange API.
+    <details>
+      <summary>Test it out</summary>
+      <ApiTester
+        title="Exchange Developer JWT for a Vehicle JWT"
+        method="POST"
+        defaultUrl="https://token-exchange-api.dimo.zone/v1/tokens/exchange"
+        requestBody={`{ "nftContractAddress": "0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF" }`}
+        userInputs={[
+          {
+            key: 'tokenId',
+            label: 'Vehicle Token ID',
+            type: 'number'
+          },
+          {
+            key: 'privileges',
+            label: 'Permissions Requested',
+            type: 'array',
+            options: [
+              { label: 'All-time, non-location data', value: 1 },
+              { label: 'Commands', value: 2 },
+              { label: 'Current location', value: 3 },
+              { label: 'All-time location', value: 4 },
+              { label: 'View VIN credentials', value: 5 },
+              { label: 'Live data streams', value: 6 },
+              { label: 'Raw data', value: 7 },
+              { label: 'Approximate location', value: 8 },
+            ],
+            helpText: 'Select one or more by clicking while holding down Command (⌘ on a Mac) or Ctrl (PC)',
+          }
+        ]}
+      />
+    </details>
+  </Step>
+  <Step title="Using a Vehicle JWT">
+    Use your **Vehicle JWT** in [Telemetry API](https://telemetry-api.dimo.zone/). 
+
+    <details>
+      <summary>Test it out</summary>
+      <p>Simply copy and paste this following header & query while replacing `<yourVehicleJwt>` and `<vehicleTokenId>`: </p>
+    
+      ```json
+      { "Authorization": "<yourVehicleJwt>" }
+      ```
+
+      ```graphql
+      query GetAvailable {
+        availableSignals(
+          tokenId: <vehicleTokenId>
+        )
+      }
+      ```
+      <iframe 
+        src="https://telemetry-api.dimo.zone"
+        width="100%"
+        height="600px"
+      >
+      </iframe>
+    </details>
+  </Step>
+
+</Stepper>

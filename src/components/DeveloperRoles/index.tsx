@@ -34,10 +34,10 @@ const DeveloperRoles: React.FC<DeveloperRolesProps> = () => {
         { label: 'Beginner', style: getBadgeStyle('difficulty', 'Beginner') },
         { label: 'Available', style: getBadgeStyle('status', 'Available') }
       ],
-      // actions: [
-      //   { label: 'Quick Start', href: '/quickstart/dimo-connect', variant: 'primary' },
-      //   { label: 'Docs', href: '/docs/data-consumers', variant: 'outline' }
-      // ]
+      actions: [
+        { label: 'Quick Start', href: '/docs/introduction/where-can-you-start#app-developers', variant: 'primary' },
+        // { label: 'Docs', href: '/docs/data-consumers', variant: 'outline' }
+      ]
     },
     {
       id: 'data-providers',
@@ -45,18 +45,18 @@ const DeveloperRoles: React.FC<DeveloperRolesProps> = () => {
       icon: '📊',
       backTitle: 'Contribute Data through Connections',
       backItems: [
-        'Build DIMO-compatible aftermarket solutions or integrate with existing OEM platforms',
-        'Provide raw or intepreted data, get access to the network of data consumers',
+        'Bring your existing device or build DIMO-compatible aftermarket solutions for scale',
+        'Integrate your own telematics data feed and make it available to other developers',
         'Contribute to network discoverability and data availability'
       ],
       badges: [
         { label: 'Intermediate', style: getBadgeStyle('difficulty', 'Intermediate') },
         { label: 'Available', style: getBadgeStyle('status', 'Available') }
       ],
-      // actions: [
-      //   { label: 'Quick Start', href: '/quickstart/hardware-integration', variant: 'primary' },
-      //   { label: 'Docs', href: '/docs/data-providers', variant: 'outline' }
-      // ]
+      actions: [
+        { label: 'Quick Start', href: '/docs/introduction/where-can-you-start#connection-oracles', variant: 'primary' },
+        // { label: 'Docs', href: '/docs/data-consumers', variant: 'outline' }
+      ]
     },
     
     {
@@ -73,10 +73,10 @@ const DeveloperRoles: React.FC<DeveloperRolesProps> = () => {
         { label: 'Advanced', style: getBadgeStyle('difficulty', 'Advanced') },
         { label: 'Available', style: getBadgeStyle('status', 'Available') }
       ],
-      // actions: [
-      //   { label: 'Quick Start', href: '/quickstart/storage-node', variant: 'primary' },
-      //   { label: 'Docs', href: '/docs/storage-providers', variant: 'outline' }
-      // ]
+      actions: [
+        { label: 'Quick Start', href: '/docs/introduction/where-can-you-start#storage-nodes', variant: 'primary' },
+        // { label: 'Docs', href: '/docs/data-consumers', variant: 'outline' }
+      ]
     },
     {
       id: 'data-validators',

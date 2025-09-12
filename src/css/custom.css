@@ -173,6 +173,11 @@ h6 {
   margin-right: 2rem;
 }
 
+.navbar__brand .navbar__logo {
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
 .navbar__item {
   font-weight: 525;
   font-size: 1rem;
