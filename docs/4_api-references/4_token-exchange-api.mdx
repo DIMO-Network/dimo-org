@@ -6,6 +6,8 @@ import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
 import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Token Exchange API
 
@@ -25,15 +27,16 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
   }
   rightColumn={
     <div>
-     <h2>Base URL</h2>
-
-      <code>https://token-exchange-api.dimo.zone</code>
-
-      <h3>Endpoints</h3>
-
-      <code>POST /v1/tokens/exchange</code>
-      {/* TODO: FIX SPACING HERE - new component */}
-
+      <BaseUrlBlock url="https://token-exchange-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/v1/tokens/exchange',
+            id: 'exchange'
+          },
+        ]}
+      />
       {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
 
 
@@ -42,6 +45,8 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
 />
 
 <TwoColumnLayout
+  id="exchange"
+  stickyRight={true}
   leftColumn={
     <div>
       <h2>Create a token exchange</h2>
@@ -53,7 +58,7 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
             name: "nftContractAddress",
             type: "string",
             required: true,
-            description: "The Vehicle NFT address, in the Production environment, this is: 0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF."
+            description: "The Vehicle NFT address, in the Production environment, this is: 0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF. If you're using any of the SDKs, this is set for you when you initialize a DIMO instance in production."
           },
           {
             name: "privileges",

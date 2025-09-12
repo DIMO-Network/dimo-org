@@ -6,6 +6,8 @@ import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
 import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Attestation API
 
@@ -15,21 +17,20 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
       <h2>Overview</h2>
 
     The DIMO Attestation API provides cryptographic, on-chain attestations for vehicle data and identity verification. This API enables developers to generate verifiable VIN credentials.
-
-    <h2>Base URL</h2>
-
-      <code>https://attestation-api.dimo.zone</code>
-
-
     </div>
   }
   rightColumn={
     <div>
-      <h3>Endpoints</h3>
-
-      <code>POST /v1/vc/vin/:tokenId</code>
-
-
+      <BaseUrlBlock url="https://attestation-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/v1/vc/vin/:tokenId',
+            id: 'vin-vc'
+          },
+        ]}
+      />
     </div>
   }
 />

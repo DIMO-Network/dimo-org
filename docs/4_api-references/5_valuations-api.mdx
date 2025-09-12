@@ -6,6 +6,7 @@ import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
 import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Valuations
 
@@ -20,10 +21,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
   }
   rightColumn={
     <div>
-     <h2>Base URL</h2>
-
-      <code>https://valuations-api.dimo.zone/</code>
-
+      <BaseUrlBlock url="https://valuations-api.dimo.zone"/>
       <ApiEndpointsBlock
         endpoints={[
           {
@@ -50,6 +48,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 
 <TwoColumnLayout
   id="valuations"
+  stickyLeft={true}
   leftColumn={
     <div>
       <h2>Get a vehicle valuation</h2>
@@ -128,6 +127,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 
 <TwoColumnLayout
   id="instant-offer"
+  stickyLeft={true}
   leftColumn={
     <div>
       <h2>Submit a vehicle offers request</h2>
@@ -187,6 +187,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 
 <TwoColumnLayout
   id="offers"
+  stickyLeft={true}
   leftColumn={
     <div>
       <h2>List vehicle offers</h2>

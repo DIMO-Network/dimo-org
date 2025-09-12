@@ -6,6 +6,8 @@ import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
 import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Device Definitions API
 
@@ -20,16 +22,21 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
   }
   rightColumn={
     <div>
-     <h2>Base URL</h2>
-
-      <code>https://device-definitions-api.dimo.zone</code>
-
-      <h3>Endpoints</h3>
-
-      <code>POST /device-definitions/decode-vin</code>
-      {/* TODO: FIX SPACING HERE - new component */}
-      <p></p>
-      <code>POST /device-definitions/search</code>
+      <BaseUrlBlock url="https://device-definitions-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/device-definitions/decode-vin',
+            id: 'decode-vin'
+          },
+          {
+            method: 'POST',
+            path: '/device-definitions/search',
+            id: 'search'
+          },
+        ]}
+      />
 
       {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
 
@@ -41,6 +48,7 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
 {/* VIN DECODING REQUESTS */}
 
 <TwoColumnLayout
+  id="decode-vin"
   leftColumn={
     <div>
       <h2>Submit a VIN decoding request</h2>
@@ -73,7 +81,7 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const vinDecodeRequest = await dimo.deviceDefinitions.decodeVin({
+            code: `const vinDecodeRequest = await dimo.DeviceDefinitions.decodeVin({
     devJwt: "eyJhbGc...ILlujqw",
     countryCode: "USA",
     vin: "1HGCM66886A015965"
@@ -112,6 +120,8 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
 />
 
 <TwoColumnLayout
+  id="search"
+  stickyRight={true}
   leftColumn={
     <div>
       <h2>Get device definitions by search</h2>
@@ -164,31 +174,45 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
     <div>
       <ApiCodeBlock
         requestType="POST"
-        path="/device-definitions/decode-vin"
+        path="/device-definitions/search"
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const vinDecodeRequest = await dimo.deviceDefinitions.decodeVin({
+            code: `const vinDecodeRequest = await dimo.DeviceDefinitions.search({
     devJwt: "eyJhbGc...ILlujqw",
-    countryCode: "USA",
-    vin: "1HGCM66886A015965"
+    query: "Lexus gx 2023",
+    makeSlug,
+    modelSlug,
+    year,
+    page,
+    pageSize
   })`
           },
           {
             label: "Python",
             language: "python",
-            code: `vin_decode_request = dimo.device_definitions.decode_vin(
-    vehicle_jwt="eyJhbGc...ILlujqw",
-    token_id=123456
+            code: `device_defs_search = dimo.device_definitions.search(
+    developer_jwt="eyJhbGc...ILlujqw",
+    query = "Lexus gx 2023",
+    make_slug,
+    model_slug,
+    year,
+    page,
+    page_size)
   )`
           },
           {
             label: ".NET",
             language: "csharp",
-            code: `var vinVc = await dimoClient.AttestationService.CreateVinVcAsync(
-    VehicleJwt = "eyJhbGc...ILlujqw",
-    TokenId = 123456
-  );`
+            code: `var vinVc = await dimoClient.DeviceDefinitionsService.SearchAsync(
+    accessToken,
+    query,
+    makeSlug,
+    modelSlug,
+    year,
+    page,
+    pageSize
+);`
           }
         ]}
         defaultLanguage="typescript"

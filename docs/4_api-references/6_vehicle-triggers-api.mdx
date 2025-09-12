@@ -7,6 +7,7 @@ import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
 import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Vehicle Triggers API
 
@@ -24,16 +25,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       <h2>Overview</h2>
 
     Webhooks can also be setup directly via the DIMO Developer Console, but the options below provide a programmatic way of configuring vehicle triggers and subscribing vehicles to triggers you have configured.
-{/* TODO: Add links */}
-     Webhooks are currently available in public beta. If you have feedback to share, please reach out to developer-support@dimo.org.
+    Webhooks are currently available in public beta. If you have feedback to
+    share, please reach out to <a href="mailto:developersupport@dimo.org">developer-support@dimo.org</a>.
     </div>
   }
   rightColumn={
     <div>
-     <h2>Base URL</h2>
-
-      <code>https://vehicle-triggers-api.dimo.zone</code>
-
+      <BaseUrlBlock url="https://vehicle-triggers-api.dimo.zone"/>
       <ApiEndpointsBlock
         endpoints={[
           {
