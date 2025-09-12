@@ -37,6 +37,22 @@ export interface TwoColumnLayoutProps {
    * Optional unique ID for anchor linking from ApiEndpointsBlock
    */
   id?: string;
+
+  /**
+   * Make the right column sticky to the top when scrolling. Default: false
+   */
+  stickyRight?: boolean;
+
+  /**
+   * Make the left column sticky to the top when scrolling. Default: false
+   */
+  stickyLeft?: boolean;
+
+  /**
+   * Top offset for sticky positioning (in rem). Accounts for fixed navigation headers.
+   * Default: 5rem (appropriate for most Docusaurus sites). Adjust if your navigation height differs.
+   */
+  stickyTop?: number;
 }
 
 const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
@@ -47,6 +63,9 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   gap = 2,
   stackAt = 768,
   id,
+  stickyRight = false,
+  stickyLeft = false,
+  stickyTop = 5,
 }) => {
   const containerClasses = clsx(
     styles.twoColumnContainer,
@@ -61,13 +80,24 @@ const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   const containerStyle: React.CSSProperties = {
     '--column-gap': `${gap}rem`,
     '--stack-breakpoint': `${stackAt}px`,
+    '--sticky-top': `${stickyTop}rem`,
   } as React.CSSProperties;
+
+  const leftColumnClasses = clsx(
+    styles.leftColumn,
+    stickyLeft && styles.stickyLeft
+  );
+
+  const rightColumnClasses = clsx(
+    styles.rightColumn,
+    stickyRight && styles.stickyRight
+  );
 
   return (
     <div className={containerClasses} style={containerStyle} id={id}>
-      <div className={styles.leftColumn}>{leftColumn}</div>
+      <div className={leftColumnClasses}>{leftColumn}</div>
 
-      <div className={styles.rightColumn}>{rightColumn}</div>
+      <div className={rightColumnClasses}>{rightColumn}</div>
     </div>
   );
 };
