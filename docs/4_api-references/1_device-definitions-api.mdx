@@ -82,7 +82,7 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
             label: "TypeScript",
             language: "typescript",
             code: `const vinDecodeRequest = await dimo.DeviceDefinitions.decodeVin({
-    devJwt: "eyJhbGc...ILlujqw",
+    developerJwt: "eyJhbGc...ILlujqw",
     countryCode: "USA",
     vin: "1HGCM66886A015965"
   })`
@@ -125,8 +125,7 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
   leftColumn={
     <div>
       <h2>Get device definitions by search</h2>
-      Submits a decoding request for vehicle identification number, returns the device definition ID corresponding to the VIN.
-      Use <code>application/json</code> for raw body parameters.
+      Retrieves a list of device definitions by search filters.
 
       <ParametersBlock
         parameters={[
@@ -179,7 +178,7 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
             label: "TypeScript",
             language: "typescript",
             code: `const vinDecodeRequest = await dimo.DeviceDefinitions.search({
-    devJwt: "eyJhbGc...ILlujqw",
+    developerJwt: "eyJhbGc...ILlujqw",
     query: "Lexus gx 2023",
     makeSlug,
     modelSlug,
@@ -198,7 +197,7 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
     model_slug,
     year,
     page,
-    page_size)
+    page_size
   )`
           },
           {
