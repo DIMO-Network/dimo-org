@@ -1,0 +1,61 @@
+---
+sidebar_position: 3
+---
+
+import Stepper, { Step } from '@site/src/components/Stepper';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import ImageTooltips from '@site/src/components/ImageTooltips';
+
+# Developer Kit
+
+## Using Client & Server SDKs Together
+[DIMO Developer Kit (DDK)](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) is a boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
+both the [DIMO Connect Client SDK](/docs/build/building-with-tools/client-sdk-dimo-connect) and the [Server SDK](/docs/build/building-with-tools/server-sdk) in Typescript.
+Deploying an app literally takes you less than **60 seconds**.
+
+## How It Works
+<iframe 
+	width="560" 
+	height="315" 
+	src="https://www.youtube.com/embed/xGdE8GgZ1iI?si=HA_tz5lrWdJlUfT0" 
+	title="YouTube video player" 
+	frameborder="0" 
+	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+	referrerpolicy="strict-origin-when-cross-origin" 
+	allowfullscreen
+></iframe>
+
+<Stepper>
+  <Step title="Remix the App">
+		Powered by Replit, you can either [remix the app on Replit](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) as shown here or [fork the GitHub repository](https://github.com/DIMO-Network/dimo-developer-kit) directly.
+		<ImageTooltips
+      src="/img/ddk.png"
+      alt="DIMO Developer Kit"
+      tooltipAreas={[
+        {
+          x: 2, y: 50, width: 30, height: 10,
+          title: "Remix this app",
+          text: "Sign up for a Replit account and remix the DIMO Developer Kit."
+        },
+				{
+          x: 32, y: 22, width: 66, height: 74,
+          title: "Quick preview of the app",
+          text: "The code of the boilerplate, it is also open-sourced and hosted on GitHub."
+        }
+      ]}
+    />
+	</Step>
+
+  <Step title="Update Secrets on the App">
+		You will need to update the secrets required on the Developer Kit boilerplate. 
+		You can find these keys in the [Developer Console](https://console.dimo.org):
+		- Client ID: `DIMO_CLIENT_ID` & `VITE_DIMO_CLIENT_ID`
+		- Redirect URI: `DIMO_REDIRECT_URI` & `VITE_DIMO_REDIRECT_URI`
+		- API Key: `DIMO_API_KEY`
+	</Step>
+	<Step title="Preview & Deploy">
+		Once secrets are updated, simply restart your app and you're ready to deploy your first DIMO app.
+	</Step>
+</Stepper>

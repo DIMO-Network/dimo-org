@@ -31,6 +31,13 @@ export interface UserInputDef {
   maxSelections?: number;
 }
 
+export interface GraphQLVariable {
+  name: string;
+  type: string;
+  defaultValue?: any;
+  description?: string;
+}
+
 export interface ApiTesterProps {
   defaultUrl?: string;
   userInputs?: UserInputDef[];
@@ -42,14 +49,22 @@ export interface ApiTesterProps {
   urlPlaceholder?: string;
   title?: string;
   showDetails?: boolean;
+	requireAuth?: boolean;
+  
+  // GraphQL-specific props
+  isGraphQL?: boolean;
+  defaultQuery?: string;
+  graphQLVariables?: GraphQLVariable[];
+  operationType?: 'query' | 'mutation' | 'subscription';
 }
 
 // ---------------- Utils ----------------
 function parseInputValue(raw: string, type: InputType): any {
   if (type === 'number') {
-    const n = Number(raw);
-    return isFinite(n) ? n : undefined;
-  }
+		const trimmed = String(raw).trim();
+  	if (trimmed === '') return '';
+  	const n = Number(trimmed);
+	  return isFinite(n) ? n : '';  }
   if (type === 'boolean') {
     const v = String(raw).toLowerCase().trim();
     return v === 'true';
@@ -70,45 +85,64 @@ function parseInputValue(raw: string, type: InputType): any {
   return raw;
 }
 
-// function toCurl(opts: {
-//   method: string;
-//   url: string;
-//   headers: Record<string, string>;
-//   body?: any;
-// }): string {
-//   const method = opts.method;
-//   const url = opts.url;
-//   const headers = opts.headers;
-//   const body = opts.body;
+function parseGraphQLType(type: string): { baseType: string; isRequired: boolean; isList: boolean } {
+  let baseType = type;
+  let isRequired = false;
+  let isList = false;
 
-//   const headerLines = Object.keys(headers).map(function (k) {
-//     return '-H ' + JSON.stringify(k + ': ' + headers[k]);
-//   });
+  // Remove outer non-null
+  if (baseType.endsWith('!')) {
+    isRequired = true;
+    baseType = baseType.slice(0, -1);
+  }
 
-//   const dataLine =
-//     body !== undefined &&
-//     (method === 'POST' || method === 'PUT' || method === 'PATCH')
-//       ? '--data ' + JSON.stringify(JSON.stringify(body))
-//       : '';
+  // Check for list
+  if (baseType.startsWith('[') && baseType.endsWith(']')) {
+    isList = true;
+    baseType = baseType.slice(1, -1);
+    // Remove inner non-null
+    if (baseType.endsWith('!')) {
+      baseType = baseType.slice(0, -1);
+    }
+  }
 
-//   return ['curl', '-sS', '-X', method]
-//     .concat(headerLines)
-//     .concat([dataLine, JSON.stringify(url)])
-//     .filter(Boolean)
-//     .join(' ');
-// }
+  return { baseType, isRequired, isList };
+}
+
+function getInputTypeFromGraphQLType(graphqlType: string): InputType {
+  const { baseType, isList } = parseGraphQLType(graphqlType);
+  
+  if (isList) return 'array';
+  
+  switch (baseType.toLowerCase()) {
+    case 'int':
+    case 'float':
+      return 'number';
+    case 'boolean':
+      return 'boolean';
+    default:
+      return 'string';
+  }
+}
 
 // ---------------- Component ----------------
 const ApiTester: React.FC<ApiTesterProps> = ({
   defaultUrl = '',
   userInputs = [],
-  method = 'GET',
+  method = 'POST', // GraphQL typically uses POST
   requestBody = '',
   additionalHeaders = {},
   jwtPlaceholder = 'Enter your JWT token...',
   urlPlaceholder = 'Enter API endpoint URL...',
   title = 'API Tester',
   showDetails = true,
+  requireAuth = true,
+
+  // GraphQL props
+  isGraphQL = false,
+  defaultQuery = '',
+  graphQLVariables = [],
+  operationType = 'query',
 }) => {
   const [jwt, setJwt] = useState<string>('');
   const [url, setUrl] = useState<string>(defaultUrl);
@@ -116,50 +150,139 @@ const ApiTester: React.FC<ApiTesterProps> = ({
   const [response, setResponse] = useState<ApiResponse | null>(null);
   const [error, setError] = useState<ApiError | null>(null);
 
+  // GraphQL-specific state
+  const [graphQLQuery, setGraphQLQuery] = useState<string>(defaultQuery);
+  const [graphQLVariableValues, setGraphQLVariableValues] = useState<Record<string, any>>({});
+
   // dynamic values for all inputs
   const [userInputValues, setUserInputValues] = useState<Record<string, any>>({});
   // drafts for custom array items (per field)
   const [customArrayDrafts, setCustomArrayDrafts] = useState<Record<string, string>>({});
+	const JWT_CACHE_KEY = 'apitester.jwt';
+	const JWT_CACHE_EXPIRY_KEY = 'apitester.jwt.expiry';
+	const JWT_CACHE_DURATION_MS = 15 * 60 * 1000; // 15 minutes
 
-  // restore JWT
-  useEffect(function () {
-    try {
-      if (typeof window !== 'undefined') {
-        const saved = localStorage.getItem('apitester.jwt');
-        if (saved) setJwt(saved);
-      }
-    } catch (e) {}
-  }, []);
-  // persist JWT
-  useEffect(function () {
-    try {
-      if (jwt && typeof window !== 'undefined') {
-        localStorage.setItem('apitester.jwt', jwt);
-      }
-    } catch (e) {}
-  }, [jwt]);
+	// Restore JWT if not expired
+	useEffect(function () {
+		try {
+			if (typeof window !== 'undefined') {
+				const saved = localStorage.getItem(JWT_CACHE_KEY);
+				const expiry = localStorage.getItem(JWT_CACHE_EXPIRY_KEY);
+				if (saved && expiry && Date.now() < Number(expiry)) {
+						setJwt(saved);
+				} else {
+						localStorage.removeItem(JWT_CACHE_KEY);
+						localStorage.removeItem(JWT_CACHE_EXPIRY_KEY);
+				}
+			}
+		} catch (e) {}
+	}, []);	
 
-  // ensure keys exist for current schema
-  useEffect(function () {
-    setUserInputValues(function (prev) {
-      const next: Record<string, any> = {};
-      // keep only current schema keys, add defaults for missing
-      for (let i = 0; i < userInputs.length; i++) {
-        const def = userInputs[i];
-        if (prev.hasOwnProperty(def.key)) {
-          next[def.key] = prev[def.key];
-        } else {
-          next[def.key] = def.type === 'boolean' ? false : (def.type === 'array' ? [] : '');
+	// Persist JWT with expiry
+	useEffect(function () {
+		try {
+			if (jwt && typeof window !== 'undefined') {
+				localStorage.setItem(JWT_CACHE_KEY, jwt);
+				localStorage.setItem(JWT_CACHE_EXPIRY_KEY, String(Date.now() + JWT_CACHE_DURATION_MS));
+			}
+		} catch (e) {}
+	}, [jwt]);
+
+// helpers
+function shallowEqual(a: Record<string, any>, b: Record<string, any>) {
+  const ak = Object.keys(a);
+  const bk = Object.keys(b);
+  if (ak.length !== bk.length) return false;
+  for (let i = 0; i < ak.length; i++) {
+    const k = ak[i];
+    if (a[k] !== b[k]) return false;
+  }
+  return true;
+}
+
+function buildValuesFromSchema(
+  defs: { key: string; type: 'string' | 'number' | 'boolean' | 'array' }[],
+  prev: Record<string, any>
+) {
+  const next: Record<string, any> = {};
+  for (let i = 0; i < defs.length; i++) {
+    const def = defs[i];
+    if (Object.prototype.hasOwnProperty.call(prev, def.key)) {
+      next[def.key] = prev[def.key];
+    } else {
+      next[def.key] = def.type === 'boolean' ? false : def.type === 'array' ? [] : '';
+    }
+  }
+  return next;
+}
+
+function buildGraphQLVariableValues(
+  variables: GraphQLVariable[],
+  prev: Record<string, any>
+) {
+  const next: Record<string, any> = {};
+  for (let i = 0; i < variables.length; i++) {
+    const variable = variables[i];
+    const { baseType, isList } = parseGraphQLType(variable.type);
+    
+    if (Object.prototype.hasOwnProperty.call(prev, variable.name)) {
+      next[variable.name] = prev[variable.name];
+    } else if (variable.defaultValue !== undefined) {
+      next[variable.name] = variable.defaultValue;
+    } else {
+      // Set default based on type
+      if (isList) {
+        next[variable.name] = [];
+      } else {
+        switch (baseType.toLowerCase()) {
+          case 'boolean':
+            next[variable.name] = false;
+            break;
+          case 'int':
+          case 'float':
+            next[variable.name] = '';
+            break;
+          default:
+            next[variable.name] = '';
         }
       }
-      return next;
+    }
+  }
+  return next;
+}
+
+// EFFECT: derive userInputValues from schema, but bail if unchanged
+useEffect(() => {
+  if (!isGraphQL) {
+    setUserInputValues(prev => {
+      const next = buildValuesFromSchema(userInputs, prev);
+      return shallowEqual(prev, next) ? prev : next;
     });
-  }, [userInputs]);
+  }
+}, [userInputs, isGraphQL]);
+
+// EFFECT: derive GraphQL variable values from schema
+useEffect(() => {
+  if (isGraphQL) {
+    setGraphQLVariableValues(prev => {
+      const next = buildGraphQLVariableValues(graphQLVariables, prev);
+      return shallowEqual(prev, next) ? prev : next;
+    });
+  }
+}, [graphQLVariables, isGraphQL]);
 
   const handleUserInputChange = useCallback(function (key: string, value: any) {
     setUserInputValues(function (v) {
       const nv = Object.assign({}, v);
       nv[key] = value;
+      return nv;
+    });
+  }, []);
+
+  const handleGraphQLVariableChange = useCallback(function (name: string, value: any) {
+    setGraphQLVariableValues(function (v) {
+      const nv = Object.assign({}, v);
+      nv[name] = value;
       return nv;
     });
   }, []);
@@ -219,6 +342,46 @@ const ApiTester: React.FC<ApiTesterProps> = ({
 
   // final payload (merge valid JSON base with inputs)
   const payload = useMemo(function () {
+    if (isGraphQL) {
+      // For GraphQL, create the standard GraphQL request format
+      const graphQLRequest: any = {
+        query: graphQLQuery.trim() || undefined,
+      };
+
+      // Add variables if there are any non-empty values
+      const cleanedVariables: Record<string, any> = {};
+      const keys = Object.keys(graphQLVariableValues);
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        const v = graphQLVariableValues[k];
+        if (v !== '' && v !== undefined && v !== null) {
+          // Find the variable definition to get its type
+          const variableDef = graphQLVariables.find(gv => gv.name === k);
+          if (variableDef) {
+            const inputType = getInputTypeFromGraphQLType(variableDef.type);
+			    	if (inputType === 'number') {
+       			// For numbers, only include if it's a valid number
+       				const parsed = parseInputValue(String(v), inputType);
+       				if (parsed !== '' && isFinite(parsed)) {
+         				cleanedVariables[k] = parsed;
+       				}
+     				} else {
+       				cleanedVariables[k] = parseInputValue(String(v), inputType);
+     				}
+          } else {
+            cleanedVariables[k] = v;
+          }
+        }
+      }
+
+      if (Object.keys(cleanedVariables).length > 0) {
+        graphQLRequest.variables = cleanedVariables;
+      }
+
+      return graphQLRequest;
+    }
+
+    // REST API logic (unchanged)
     let base: any = undefined;
     if (requestBody && String(requestBody).trim()) {
       try {
@@ -244,17 +407,22 @@ const ApiTester: React.FC<ApiTesterProps> = ({
       return merged;
     }
     return Object.keys(cleaned).length ? cleaned : undefined;
-  }, [requestBody, userInputValues]);
+  }, [isGraphQL, graphQLQuery, graphQLVariableValues, graphQLVariables, requestBody, userInputValues]);
 
   const abortRef = useRef<AbortController | null>(null);
 
   const makeApiCall = useCallback(async function () {
-    if (!jwt.trim()) {
+		if (requireAuth && !jwt.trim()) {
       setError({ message: 'JWT token is required' });
       return;
     }
     if (!url.trim()) {
       setError({ message: 'API URL is required' });
+      return;
+    }
+
+    if (isGraphQL && !graphQLQuery.trim()) {
+      setError({ message: 'GraphQL query is required' });
       return;
     }
 
@@ -273,12 +441,12 @@ const ApiTester: React.FC<ApiTesterProps> = ({
       );
 
       const config: RequestInit = {
-        method: method,
+        method: isGraphQL ? 'POST' : method, // GraphQL always uses POST
         headers: headers,
         signal: abortRef.current.signal,
       };
 
-      if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
+      if (isGraphQL || method === 'POST' || method === 'PUT' || method === 'PATCH') {
         if (payload !== undefined) {
           config.body = JSON.stringify(payload);
         } else if (requestBody && String(requestBody).trim()) {
@@ -311,7 +479,15 @@ const ApiTester: React.FC<ApiTesterProps> = ({
         headers: respHeaders,
       });
 
-      if (!res.ok) {
+      // For GraphQL, check for GraphQL errors even on HTTP 200
+      if (isGraphQL && data && data.errors && data.errors.length > 0) {
+        const errorMessages = data.errors.map((err: any) => err.message || 'Unknown GraphQL error');
+        setError({
+          message: 'GraphQL Error(s): ' + errorMessages.join(', '),
+          status: res.status,
+          statusText: res.statusText,
+        });
+      } else if (!res.ok) {
         setError({
           message: 'HTTP ' + res.status + ': ' + res.statusText,
           status: res.status,
@@ -328,7 +504,7 @@ const ApiTester: React.FC<ApiTesterProps> = ({
     } finally {
       setLoading(false);
     }
-  }, [jwt, url, method, requestBody, additionalHeaders, payload]);
+  }, [jwt, url, method, requestBody, additionalHeaders, payload, isGraphQL, graphQLQuery]);
 
   const formatJson = function (obj: any): string {
     try {
@@ -347,13 +523,63 @@ const ApiTester: React.FC<ApiTesterProps> = ({
     return merged;
   }, [jwt, additionalHeaders]);
 
-//   const curlPreview = useMemo(function () {
-//     try {
-//       return toCurl({ method: method, url: url || '<url>', headers: effectiveHeaders, body: payload });
-//     } catch (e) {
-//       return '';
-//     }
-//   }, [method, url, effectiveHeaders, payload]);
+  // Render GraphQL variable input
+  const renderGraphQLVariableInput = function (variable: GraphQLVariable) {
+    const inputType = getInputTypeFromGraphQLType(variable.type);
+    const { isRequired } = parseGraphQLType(variable.type);
+    const value = graphQLVariableValues[variable.name];
+
+    return (
+      <div key={variable.name} className={styles.inputGroup}>
+        <label htmlFor={'gql-var-' + variable.name} className={styles.label}>
+          ${variable.name}: {variable.type}
+          {isRequired ? <span className={styles.required}> *</span> : null}
+        </label>
+
+        {inputType === 'boolean' && (
+          <select
+            id={'gql-var-' + variable.name}
+            className={styles.input}
+            value={String(value !== undefined ? value : false)}
+            onChange={function (e) {
+              handleGraphQLVariableChange(variable.name, parseInputValue(e.target.value, inputType));
+            }}
+          >
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        )}
+
+        {inputType === 'array' && (
+          <input
+            id={'gql-var-' + variable.name}
+            type="text"
+            className={styles.input}
+            value={Array.isArray(value) ? (value as any[]).join(', ') : (value || '')}
+            onChange={function (e) {
+              handleGraphQLVariableChange(variable.name, parseInputValue(e.target.value, inputType));
+            }}
+            placeholder="Enter comma-separated values or JSON array"
+          />
+        )}
+
+        {(inputType === 'string' || inputType === 'number') && (
+          <input
+            id={'gql-var-' + variable.name}
+            type={inputType === 'number' ? 'number' : 'text'}
+            className={styles.input}
+            value={value !== undefined ? value : ''}
+            onChange={function (e) {
+              handleGraphQLVariableChange(variable.name, parseInputValue(e.target.value, inputType));
+            }}
+            placeholder={variable.description || 'Enter ' + variable.name}
+          />
+        )}
+
+        {variable.description ? <small className={styles.helpText}>{variable.description}</small> : null}
+      </div>
+    );
+  };
 
   // ---------------- Render ----------------
   return (
@@ -361,25 +587,47 @@ const ApiTester: React.FC<ApiTesterProps> = ({
       <div className={styles.header}>
         <h3>{title}</h3>
         <div className={styles.methodBadge}>
-          <span className={styles.badge + ' ' + (styles as any)[method.toLowerCase()]}>{method}</span>
+          {isGraphQL ? (
+            <span className={styles.badge + ' ' + (styles as any).graphql}>
+              GraphQL {operationType.toUpperCase()}
+            </span>
+          ) : (
+            <span className={styles.badge + ' ' + (styles as any)[method.toLowerCase()]}>{method}</span>
+          )}
         </div>
       </div>
 
       <div className={styles.inputSection}>
-        <div className={styles.inputGroup}>
-          <label htmlFor="jwt-input" className={styles.label}>JWT Token</label>
-          <textarea
-            id="jwt-input"
-            className={styles.textarea}
-            value={jwt}
-            onChange={function (e) { setJwt(e.target.value); }}
-            placeholder={jwtPlaceholder}
-            rows={3}
-          />
-        </div>
+        {requireAuth ? (
+					<div className={styles.inputGroup}>
+            <div className={styles.labelRow}>
+							<label htmlFor="jwt-input" className={styles.label}>JWT Token</label>
+							{jwt && (
+								<button
+									type="button"
+									className={styles.clearButton}
+									onClick={function () { setJwt(''); }}
+									aria-label="Clear JWT token"
+								>
+									Clear
+								</button>
+							)}
+						</div>
+						<textarea
+							id="jwt-input"
+							className={styles.textarea}
+							value={jwt}
+							onChange={function (e) { setJwt(e.target.value); }}
+							placeholder={jwtPlaceholder}
+              rows={3}
+						/>
+					</div>
+				) : null }
 
         <div className={styles.inputGroup}>
-          <label htmlFor="url-input" className={styles.label}>API Endpoint</label>
+          <label htmlFor="url-input" className={styles.label}>
+            {isGraphQL ? 'GraphQL Endpoint' : 'API Endpoint'}
+          </label>
           <input
             id="url-input"
             type="url"
@@ -392,7 +640,31 @@ const ApiTester: React.FC<ApiTesterProps> = ({
           />
         </div>
 
-        {userInputs.length > 0 && (
+        {isGraphQL && (
+          <div className={styles.inputGroup}>
+            <label htmlFor="graphql-query" className={styles.label}>
+              GraphQL {operationType === 'query' ? 'Query' : operationType === 'mutation' ? 'Mutation' : 'Subscription'}
+            </label>
+            <textarea
+              id="graphql-query"
+              className={styles.textarea}
+              value={graphQLQuery}
+              onChange={function (e) { setGraphQLQuery(e.target.value); }}
+              placeholder={`Enter your GraphQL ${operationType}...`}
+              rows={8}
+              style={{ fontFamily: 'monospace', fontSize: '14px' }}
+            />
+          </div>
+        )}
+
+        {isGraphQL && graphQLVariables.length > 0 && (
+          <div className={styles.userInputsSection}>
+            <h4 className={styles.sectionTitle}>GraphQL Variables</h4>
+            {graphQLVariables.map(renderGraphQLVariableInput)}
+          </div>
+        )}
+
+        {!isGraphQL && userInputs.length > 0 && (
           <div className={styles.userInputsSection}>
             <h4 className={styles.sectionTitle}>Request Parameters</h4>
 
@@ -534,7 +806,7 @@ const ApiTester: React.FC<ApiTesterProps> = ({
           </div>
         )}
 
-        {(method === 'POST' || method === 'PUT' || method === 'PATCH') && (
+        {((isGraphQL || method === 'POST' || method === 'PUT' || method === 'PATCH') && !isGraphQL) && (
           <div className={styles.inputGroup}>
             <label className={styles.label}>Request Body</label>
             <pre className={styles.codeBlock}>
@@ -547,20 +819,28 @@ const ApiTester: React.FC<ApiTesterProps> = ({
           </div>
         )}
 
-        {/* {showDetails && (
+        {isGraphQL && (
           <div className={styles.inputGroup}>
-            <label className={styles.label}>cURL Preview</label>
-            <pre className={styles.codeBlock}>{curlPreview}</pre>
+            <label className={styles.label}>GraphQL Request</label>
+            <pre className={styles.codeBlock}>
+              {payload !== undefined
+                ? formatJson(payload)
+                : 'No GraphQL request'}
+            </pre>
           </div>
-        )} */}
+        )}
 
         <div className={styles.actions}>
           <button
             onClick={makeApiCall}
-            disabled={loading || !jwt.trim() || !url.trim()}
+            disabled={loading || !url.trim() || (isGraphQL && !graphQLQuery.trim()) || (requireAuth && !jwt.trim())}
             className={styles.button + ' ' + (loading ? (styles as any).loading : '')}
           >
-            {loading ? 'Testing...' : 'Test ' + method + ' Request'}
+            {loading 
+              ? 'Testing...' 
+              : isGraphQL 
+                ? `Test ${operationType.charAt(0).toUpperCase() + operationType.slice(1)}` 
+                : 'Test ' + method + ' Request'}
           </button>
           {loading ? (
             <button
@@ -593,14 +873,37 @@ const ApiTester: React.FC<ApiTesterProps> = ({
           {showDetails ? (
             <>
               <div className={styles.section}>
-                <h5>Response Data</h5>
-                <pre className={styles.codeBlock}>{formatJson(response.data)}</pre>
+                <h5>{isGraphQL ? 'GraphQL Response' : 'Response Data'}</h5>
+                {isGraphQL && response.data ? (
+                  <div>
+                    {response.data && (
+                      <>
+                        <h6>Data:</h6>
+                        <pre className={styles.codeBlock}>{formatJson(response.data)}</pre>
+                      </>
+                    )}
+                    {response.data.errors && response.data.errors.length > 0 && (
+                      <>
+                        <h6>Errors:</h6>
+                        <pre className={styles.codeBlock}>{formatJson(response.data.errors)}</pre>
+                      </>
+                    )}
+                    {response.data.extensions && (
+                      <>
+                        <h6>Extensions:</h6>
+                        <pre className={styles.codeBlock}>{formatJson(response.data.extensions)}</pre>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <pre className={styles.codeBlock}>{formatJson(response.data)}</pre>
+                )}
               </div>
 
-              <div className={styles.section}>
+              {/* <div className={styles.section}>
                 <h5>Response Headers</h5>
                 <pre className={styles.codeBlock}>{formatJson(response.headers)}</pre>
-              </div>
+              </div> */}
             </>
           ) : null}
         </div>
