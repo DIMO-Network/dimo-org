@@ -88,11 +88,7 @@ function CustomNavbar() {
             </div>
             {activeDropdown === 'learn' && (
               <div className={styles.dropdownMenu}>
-                <a
-                  href="https://docs.dimo.org/developer-platform"
-                  className={styles.dropdownItem}
-                  target="blank"
-                >
+                <a href="/docs" className={styles.dropdownItem}>
                   Read
                 </a>
                 <a
@@ -103,7 +99,7 @@ function CustomNavbar() {
                   Watch
                 </a>
                 <a
-                  href="https://1352636538-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fxj7jMSjVBtR92AFN0SNC%2Fuploads%2FDcDoks4W5cbWrkVG6G37%2FDIMO%20Cheat%20Sheet.png?alt=media&token=d8028035-d25f-4709-b9ca-30a650602106"
+                  href="/img/cheat-sheet.png"
                   className={styles.dropdownItem}
                   target="blank"
                 >
@@ -132,16 +128,14 @@ function CustomNavbar() {
             {activeDropdown === 'tools' && (
               <div className={styles.dropdownMenu}>
                 <a
-                  href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks"
+                  href="/docs/category/building-with-tools"
                   className={styles.dropdownItem}
-                  target="blank"
                 >
                   Developer SDKs
                 </a>
                 <a
-                  href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/low-code-tools"
+                  href="/docs/build/building-with-tools/low-code-integrations"
                   className={styles.dropdownItem}
-                  target="blank"
                 >
                   Low Code
                 </a>
@@ -359,10 +353,7 @@ function HeroSection() {
             >
               Sign In
             </Link>
-            <Link
-              className={styles.docsButton}
-              to="https://docs.dimo.org/developer-platform"
-            >
+            <Link className={styles.docsButton} to="/docs">
               Read The Docs
             </Link>
           </div>
@@ -507,12 +498,7 @@ function Footer() {
             <h4 className={styles.footerColumnTitle}>Learn More</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link
-                  to="https://docs.dimo.org/developer-platform"
-                  target="_blank"
-                >
-                  Docs
-                </Link>
+                <Link to="/docs">Docs</Link>
               </li>
               <li>
                 <Link to="https://dimo.co/blogs/the-pit-stop/" target="_blank">
@@ -520,10 +506,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks"
-                  target="_blank"
-                >
+                <Link to="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks">
                   Developer SDKs
                 </Link>
               </li>

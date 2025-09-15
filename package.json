@@ -26,6 +26,8 @@
     "@docusaurus/theme-mermaid": "^3.8.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "graphiql": "^5.2.0",
+    "graphql": "^16.11.0",
     "lucide-react": "^0.543.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",

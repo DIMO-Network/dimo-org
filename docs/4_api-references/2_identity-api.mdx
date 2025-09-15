@@ -2,10 +2,35 @@
 sidebar_position: 3
 ---
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Identity API
 
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Introduction</h2>
+
+    The Identity API serves as an open registry for vehicles and developers on the DIMO Network. All data in the Identity API is public, can be read by anyone, and does not require any authentication. The DIMO Identity API is written in graphQL, and there is only a single endpoint, <code>/query</code>, which is used for executing queries.
+
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://identity-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/query',
+          },
+        ]}
+      />
+    </div>
+  }
+/>
