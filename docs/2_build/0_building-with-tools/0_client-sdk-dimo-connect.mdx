@@ -1,0 +1,257 @@
+---
+sidebar_position: 1
+---
+
+import Stepper, { Step } from '@site/src/components/Stepper';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import ImageTooltips from '@site/src/components/ImageTooltips';
+import ApiTester from '@site/src/components/ApiTester';
+import GitHubButton from "react-github-btn";
+
+
+# Client SDK - DIMO Connect
+
+## Get Data Permissions From Vehicle Owners
+
+DIMO Connect is a user interface built on our **robust privacy engine** that allows app developers to specify and request data from vehicle owners. 
+Developers can get started using either the [React Component SDK (aka Login with DIMO)](https://www.npmjs.com/package/@dimo-network/login-with-dimo) or by simply creating a DIMO Connect URL.
+
+## How It Works
+
+<Stepper>
+  <Step title="Configure Your URL">
+    <ImageTooltips
+      src="/img/ConfigureConnectURL.png"
+      alt="DIMO Connect URL"
+      tooltipAreas={[
+        {
+          x: 24, y: 45, width: 10, height: 17,
+          title: "DIMO Connect URL",
+          text: "Make sure you recognize login.dimo.org as this is the base URL for DIMO Connect."
+        },
+        {
+          x: 34, y: 45, width: 42, height: 17,
+          title: "Client ID",
+          text: "Get this public ID from your Developer License."
+        },
+        {
+          x: 77, y: 45, width: 22, height: 17,
+          title: "Redirect URI",
+          text: "Make sure you configure this properly on your Developer License."
+        }
+      ]}
+    />
+    Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
+    <details>
+      <summary>Try it out</summary>
+      <Tabs>
+        <TabItem value="URL Method" label="URL Method">
+          <DimoUrlBuilder />
+        </TabItem>
+        <TabItem value="SDK Method" label="SDK Method">
+        ```jsx
+        import {
+          LoginWithDimo,
+          ShareVehiclesWithDimo,
+          ExecuteAdvancedTransactionWithDimo,
+          initializeDimoSDK,
+          useDimoAuthState,
+      } from "@dimo-network/login-with-dimo";
+
+      const { isAuthenticated, getValidJWT, email, walletAddress, getEmail } =
+      useDimoAuthState();
+
+      useEffect(()=>{ if ( isAuthenticated ) {
+      //makeAuthenticatedRequest(getValidJWT()) console.log(email);
+      console.log(walletAddress); } },[isAuthenticated])
+
+      initializeDimoSDK({ clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
+      redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!, });
+
+      ...
+
+      {isAuthenticated ? (
+
+      <ShareVehiclesWithDimo
+        mode="popup"
+        onSuccess={authData => console.log('Success:', authData)}
+        onError={error => console.error('Error:', error)}
+        permissionTemplateId={'1'}
+        // expirationDate={} // Optional ISO string
+      />
+
+        <ExecuteAdvancedTransactionWithDimo
+          mode="popup"
+          onSuccess={(transactionData: any) =>
+            console.log("Transaction Hash:", transactionData.transactionHash)
+          }
+          onError={(error: any) => console.error("Error:", error)}
+          address="0x21cFE003997fB7c2B3cfe5cf71e7833B7B2eCe10"
+          value="0"
+          abi={sampleAbi}
+          functionName="transfer"
+          args={["0x62b98e019e0d3e4A1Ad8C786202e09017Bd995e1", "0"]}
+        />
+      ) : (
+        <LoginWithDimo
+          mode="popup"
+          onSuccess={(authData) => console.log("Success:", authData)}
+          onError={(error) => console.error("Error:", error)}
+          permissionTemplateId={permissionsEnabled ? "1" : undefined}
+          // expirationDate={} // Optional ISO string
+          // vehicles={["585","586"]}
+        />
+      )}
+      ```
+        </TabItem>
+      </Tabs>
+    </details>
+  </Step>
+
+  <Step title="Share with Users">
+    <ImageTooltips
+      src="/img/ShareWithUsers.png"
+      alt="Login with DIMO"
+      tooltipAreas={[
+        {
+          x: 26, y: 26, width: 23, height: 8,
+          title: "Your Developer License Name",
+          text: "This is your Developer License Name, where end users can easily identify your app."
+        },
+        {
+          x: 30, y: 40, width: 40, height: 8,
+          title: "Optionally Capture User Emails",
+          text: "You can easily toggle this to be enforced or optional."
+        },
+        {
+          x: 26, y: 48, width: 48, height: 12,
+          title: "User Email Input",
+          text: "Optionally, users can put in their email address here manually to connect to their DIMO Account."
+        },
+        {
+          x: 26, y: 69, width: 48, height: 10,
+          title: "Social Logins",
+          text: "Optionally user can use their social logins as seen on the DIMO Mobile App."
+        }
+      ]}
+    />
+
+    Users using your DIMO Connect URL can grant you permissions to begin accessing their vehicle data.
+  </Step>
+
+  <Step title="Check Vehicle Status">
+    <ImageTooltips
+      src="/img/VehiclesTable.png"
+      alt="Login with DIMO"
+      tooltipAreas={[
+        {
+          x: 2, y: 14, width: 12, height: 68,
+          title: "Shared Vehicle Token IDs",
+          text: "In Console, you will find a list of vehicles that have shared their data permissions with you."
+        },
+        {
+          x: 20, y: 14, width: 40, height: 68,
+          title: "Shared Vehicle Token DID",
+          text: "In Console, you will also find the token DID of the shared vehicles, this is used for webhooks."
+        },
+        {
+          x: 65, y: 14, width: 18, height: 68,
+          title: "Shared Vehicle MMY",
+          text: "In Console, you will also find the make model and year of the shared vehicles."
+        }
+      ]}
+    />
+    Use the [DIMO Developer Console](https://console.dimo.org) or the [Identity API](https://identity-api.dimo.zone/) to track which vehicles have shared permissions with you.
+    <details>
+      <summary>Try it out</summary>
+      <ApiTester
+        title="Identity API"
+        isGraphQL={true}
+        defaultUrl="https://identity-api.dimo.zone/query"
+        operationType="query"
+        requireAuth={false}
+        defaultQuery={`query GetVehicleByDevLicense($clientId: Address!) {
+          vehicles(
+            filterBy: { privileged: $clientId }
+            first: 3
+          ) {
+            nodes {
+              owner
+              tokenId
+              definition {
+                make
+                model
+                year
+              }
+            }
+            totalCount
+            pageInfo {
+              startCursor
+              hasPreviousPage
+              hasNextPage
+            }
+          }
+        }`}
+        graphQLVariables={[
+          { name: "clientId", type: "Address!", description: "Client ID of your Developer License" }
+        ]}
+      />
+    </details>
+  </Step>
+
+  <Step title="Start Getting Data" image="/img/TelemetrySample.png">
+    Begin polling the DIMO APIs or setting up DIMO Webhooks using one of the available Data SDKs.
+    <details>
+      <summary>Try it out</summary>
+      <ApiTester
+        title="Telemetry API"
+        isGraphQL={true}
+        defaultUrl="https://telemetry-api.dimo.zone/query"
+        operationType="query"
+        jwtPlaceholder="Enter a valid Vehicle JWT"
+        defaultQuery={`query GetAvailable($tokenId: Int!) {
+          availableSignals(
+            tokenId: $tokenId
+          )
+        }`}
+        graphQLVariables={[
+          { name: "tokenId", type: "Int!", description: "Vehicle Token ID of a shared vehicle" }
+        ]}
+      />
+    </details>
+  </Step>
+</Stepper>
+
+## Using the SDK
+If you are a React developer, you are more than welcome to use the SDK directly and skip using the DIMO Connect URL.
+The SDK is guaranteed to have more functionalities as the DIMO Connect URL is bounded by query parameter limitations.
+
+<GitHubButton
+  href="https://github.com/dimo-network/login-with-dimo/tree/main/sdk"
+  data-color-scheme="no-preference: light; light: light; dark: dark;"
+  data-icon="github"
+  data-size="large"
+  data-show-count="false"
+  aria-label="Star dimo-network/login-with-dimo on GitHub"
+>
+  Client SDK: DIMO Connect
+</GitHubButton>
+
+## Full Feature List
+
+|                               | React SDK    | Connect URL      | Details                                            |
+|-------------------------------|--------------|------------------|----------------------------------------------------|
+| Account Creation/Login        |   ✅         |   ✅              | Login with DIMO allow developers to onboard users to DIMO, enabling logins across all DIMO platforms with the use of a passkey or email OTP.  |
+| Permissions                   |   ✅         |   ✅              | This is an optional entry state where users are asked to share their vehicles with your application, login is required before entering the vehicle permissions state.   |
+| Entry States                  |   ✅         |   ✅              | Multiple entry states to customize user flow       |
+| Campaign Tracking             |   ✅         |   ✅              | UTM parameter allows you to drive campaigns with channel partners of yours, maximizing the potential of your application.  |
+| Advanced Filtering            |   ✅         |   ✅              | Ensure that vehicles are compatible with your app by applying filters on vehicle token IDs, vehicle brand, and/or powertrain types.   |
+| Custom Button                 |   ℹ️         |   ✅              | Customize button style and text to fit your design needs  |
+| Custom Expiration Dates       |   ✅         |   ✅              | Customize expiration dates for your user data permissions.   |
+| Popup Mode                    |   ✅         |   ❌              | Web popup mode |
+| Advanced Transactions         |   ✅         |   ❌              | Execute specific blockchain transactions |
+| Customized Messaging          |   ✅         |   ❌              | Customize text fields with your brand messaging to better cater to your audiences.    |
+| Callbacks (onSuccess/onError) |   ✅         |   ❌              | Customizable actions on callbacks, ensuring a full e2e experience for your beloved users.   |
+| Vehicle Onboarding (beta)     |   ✅         |   ✅              | Onboarding new vehicles onto the DIMO Network, supports Tesla only.  |
