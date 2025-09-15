@@ -6,6 +6,7 @@ import Stepper, { Step } from '@site/src/components/Stepper';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import ImageTooltips from '@site/src/components/ImageTooltips';
 import GitHubButton from "react-github-btn";
 
 # Low Code Integrations
@@ -18,15 +19,99 @@ DIMO offers developers and non-developers an easy way to build data integration 
 
 <Stepper>
 	<Step title="Sign Up or Deploy">
-
-        <Tabs>
+		<Tabs>
 			<TabItem value="n8n">
-                https://github.com/DIMO-Network/dimo-n8n
+				https://github.com/DIMO-Network/dimo-n8n
 			</TabItem>
 			<TabItem value="Activepieces">
-                https://www.activepieces.com/pieces/dimo
+				https://www.activepieces.com/pieces/dimo
+			</TabItem>
+		</Tabs>
+	</Step>
+	<Step title="Setup Your First Workflow">
+		Setting up your first workflow on the platform of your choice. 
+		To start, simply set up trigger(s) and add action(s).
+		Triggers are conditionals (systematically-triggered, time-triggered, event-triggered, or even manually triggered) where the workflow will automatically start. 
+		Actions are where the workflow executes something. DIMO is supported on both triggers & actions.
+		<Tabs>
+			<TabItem value="n8n">
+        <ImageTooltips
+					src="/img/lowcode-n8n-flow.png"
+					alt="n8n - create a new flow"
+					tooltipAreas={[
+						{
+							x: 25, y: 2, width: 50, height: 10,
+							title: "Manage Your Flow",
+							text: "Update name, tags, and manage your workflow."
+						},
+						{
+							x: 22, y: 16, width: 78, height: 80,
+							title: "Main Canvas",
+							text: "The logic section of your workflow, start by adding a first trigger step."
+						}
+					]}
+				/>
+			</TabItem>
+			<TabItem value="Activepieces">        
+				<ImageTooltips
+					src="/img/lowcode-activepieces-flow.png"
+					alt="n8n - create a new flow"
+					tooltipAreas={[
+						{
+							x: 25, y: 1, width: 58, height: 10,
+							title: "Manage Your Flow",
+							text: "Update name, tags, and manage your workflow."
+						},
+						{
+							x: 24, y: 12, width: 76, height: 86,
+							title: "Main Canvas",
+							text: "The logic section of your workflow, start by adding a first trigger step."
+						}
+					]}
+				/>
 			</TabItem>
 		</Tabs>
 
+	</Step>
+	<Step title="Get Connected to DIMO">
+		Here are some examples on how a DIMO API call can be made at a specific time for your application:
+		<Tabs>
+			<TabItem value="n8n">
+				<ImageTooltips
+					src="/img/lowcode-n8n-dimo.png"
+					alt="n8n - create a new flow"
+					tooltipAreas={[
+						{
+							x: 12, y: 8, width: 24, height: 55,
+							title: "Trigger",
+							text: "A simple cron job trigger that kicks off the workflow at a given time."
+						},
+						{
+							x: 55, y: 8, width: 24, height: 55,
+							title: "DIMO Actions",
+							text: "A simple call to DIMO's Telemetry API."
+						}
+					]}
+				/>
+			</TabItem>
+			<TabItem value="Activepieces">
+				<ImageTooltips
+					src="/img/lowcode-activepieces-dimo.png"
+					alt="n8n - create a new flow"
+					tooltipAreas={[
+						{
+							x: 10, y: 12, width: 80, height: 18,
+							title: "Trigger",
+							text: "A simple cron job trigger that kicks off the workflow at a given time."
+						},
+						{
+							x: 10, y: 48, width: 80, height: 18,
+							title: "DIMO Actions",
+							text: "A simple call to DIMO's Telemetry API."
+						}
+					]}
+				/>
+			</TabItem>
+		</Tabs>
 	</Step>
 </Stepper>
