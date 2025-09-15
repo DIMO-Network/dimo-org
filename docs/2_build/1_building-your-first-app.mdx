@@ -9,4 +9,48 @@ import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
 
 # Building Your First App
 
-<h4>Expedite building your DIMO-integrated application</h4>
+## Walkthrough on building your 1st DIMO-integrated app
+Here's an over-simplified walkthrough on how to build your 1st DIMO-integrated app. 
+We highly recommend building your application based on a **client-server architecture** as it decouples the user interface with your backend that's responsible for retrieving vehicle data.
+
+```mermaid
+flowchart TD
+	Start([Account Creation & Client Implementation]) --> Step1[Step1: Create A Developer License]
+
+	%% Step 1: Setup
+	Step1 --> A([Generate API Key + Add Redirect URIs])
+
+	%% Step 2: Permissions
+	A --> Step2[Step2: Get A Vehicle Shared]
+	Step2 --> B{Use React?}
+	B --> |Yes| C([Download DIMO Connect React SDK])
+	B --> |No| D([Generate DIMO Connect URL])
+	C --> E([Implement DIMO Connect])
+	D --> E
+	%% User Actions
+	E --> Step3[Step3: Surface Your App]
+	Step3 --> F[User logs into DIMO, optionally shares vehicles with you]
+	F --> G[Redirected back to your app, authenticated]
+
+	%% Step 3: Accessing Data
+	2ndStart([Server Implementation]) --> Step4[Step4: Build Your Backend]
+	Step4 --> HH([Get Identity Data])
+	Step4 --> H([Auth: Get Developer JWT])
+	HH --> H
+	H --> I([Auth: Get Vehicle JWT])
+	I --> J([Get Vehicle Data])
+	J --> K[Send data to your storage + frontend]
+
+	%% Styling
+	classDef redBox fill:#ff6b47,stroke:#333,stroke-width:2px,color:#fff
+	classDef blueBox fill:#2196f3,stroke:#333,stroke-width:2px,color:#fff
+	classDef purpleBox fill:#8b5cf6,stroke:#333,stroke-width:2px,color:#fff
+	classDef yellowBox fill:#fbbf24,stroke:#333,stroke-width:2px,color:#000
+	classDef stepBox fill:#e5e7eb,stroke:#333,stroke-width:3px,color:#000
+
+	class B redBox
+	class E,F,G blueBox
+	class A,C,D,E,H,HH,I,L,J purpleBox
+	class F,G,K yellowBox
+	class Step1,Step2,Step3,Step4 stepBox
+```
