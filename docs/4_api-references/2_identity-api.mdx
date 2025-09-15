@@ -8,6 +8,7 @@ import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
 import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import GraphQLBlock from '@site/src/components/GraphQLBlock';
 
 # Identity API
 
@@ -33,4 +34,155 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
       />
     </div>
   }
+/>
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h3> Schema and Types</h3>
+      The basic unit of components of a GraphQL schema are object types - it represents an object you can fetch for and the definitions of what fields will be included in the response. A representation of GraphQL schema language may look like this in Identity API:
+
+     <ParametersBlock
+      title=""
+      parameters={[
+        {
+          name: "SyntheticDevice",
+          description: "SyntheticDevice is a GraphQL Object Type, meaning it's a type with some fields. Most of the types in your schema will be object types."
+        },
+        {
+          name: "tokenId, integrationId, address, and mintedAt",
+          description: "Fields on the SyntheticDevice type. That means these 4 fields can appear in any part of a GraphQL query that operates on the SyntheticDevice type."
+        },
+        {
+          name: "Int",
+          description: "One of the built-in scalar types - these are types that resolve to a single scalar object, and can't have sub-selections in the query."
+        },
+        {
+          name: "Int!",
+          description: "Means that the field is non-nullable, meaning that the DIMO GraphQL service promises to always return a value when queried."
+        },
+      ]}
+    />
+    </div>
+  }
+  rightColumn={
+          <pre><code className="language-graphql">{`type SyntheticDevice {
+    tokenId: Int!
+    integrationId: Int!
+    address: Address!
+    mintedAt: Time!
+}`}</code></pre>
+  }
+/>
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h3> Scalars</h3>
+      Scalars are the value types that every field in a GraphQL document eventually resolves to. It can be viewed as the primitive data type that stores a single value. There are 5 built-in scalars: int, float, string, Boolean, and id - we have also defined custom scalars to help define the data we return.
+
+     <ParametersBlock
+      title=""
+      parameters={[
+        {
+          name: "Address",
+          description: "A 20-byte Ethereum address, encoded as a checksummed hex string with 0x prefix."
+        },
+        {
+          name: "BigDecimal",
+          description: "An arbitrary-precision decimal data type, per the General Decimal Arithmetic specification."
+        },
+        {
+          name: "BigInt",
+          description: "An integer of arbitrary precision, decimal-encoded. Typically a uint256."
+        },
+        {
+          name: "Boolean",
+          description: "Represents a boolean value that can be either true or false."
+        },
+        {
+          name: "Bytes",
+          description: "An array of byte, encoded as a lowercase hex string with 0x prefix."
+        },
+        {
+          name: "Float",
+          description: "A signed double-precision floating-point value."
+        },
+        {
+          name: "ID",
+          description: "A unique identifier, often used to refetch an object or as a key for caching."
+        },
+        {
+          name: "Int",
+          description: "A signed 32-bit integer."
+        },
+        {
+          name: "String",
+          description: "A UTF-8 character sequence."
+        },
+        {
+          name: "Time",
+          description: "A point in time, encoded per RFC-3999. This is in second precision and in UTC, an example would be 2023-12-04T18:32:12Z."
+        },
+      ]}
+    />
+    </div>
+  }
+  rightColumn={
+<pre><code className="language-graphql">{`# Sample query
+
+query GetVehicleMMY($MyAddress: Address!) {
+    vehicles(filterBy: {owner: $MyAddress}, first: 100) {
+      nodes {
+        tokenId
+        tokenDID
+        definition {
+          make
+          model
+          year
+        }
+      }
+    }
+}`}</code></pre>
+  }
+/>
+
+<GraphQLBlock
+  title="DIMO Identity API Playground"
+  endpoint="https://identity-api.dimo.zone/query"
+  initialQuery={`{
+  connections(first: 100) {
+    nodes {
+      name
+      address
+      owner
+    }
+  }
+}`}
+  variables={`{
+  "tokenId": "123"
+}`}
+  response={{
+    data: {
+      vehicle: {
+        tokenId: "123",
+        owner: "0x742d35Cc6C5E53532dd4d2E4A2F8a9c6F3b7E8d9",
+        definition: {
+          make: "Tesla",
+          model: "Model 3",
+          year: 2023
+        },
+        syntheticDevice: {
+          tokenId: "456",
+          integrationNode: {
+            name: "Tesla",
+            type: "OEM"
+          }
+        }
+      }
+    }
+  }}
+  viewOnly={false}
 />

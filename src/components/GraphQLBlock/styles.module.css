@@ -1,0 +1,389 @@
+/* Authentic GraphiQL-style Component */
+.graphiqlContainer {
+  border: 1px solid #2c2c2c;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  background: #1a1a1a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Bar */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #333;
+  color: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.logoIcon {
+  color: #e91e63;
+  font-size: 12px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Execute Button */
+.executeButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.executeButton:hover:not(:disabled) {
+  background: #d81b60;
+}
+
+.executeButton:disabled {
+  background: #555;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Main Content Layout */
+.mainContent {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.leftPane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-right: 1px solid #333;
+  min-width: 0;
+}
+
+.rightPane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Editor Container */
+.editorContainer {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.queryEditor {
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  border: none;
+  color: #e0e0e0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px;
+  resize: none;
+  outline: none;
+}
+
+.queryEditor::placeholder {
+  color: #666;
+}
+
+.readOnlyEditor {
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px;
+  margin: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+/* Bottom Pane - Variables/Headers */
+.bottomPane {
+  border-top: 1px solid #333;
+  background: #1a1a1a;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabBar {
+  display: flex;
+  background: #2a2a2a;
+  border-bottom: 1px solid #333;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #aaa;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: #e0e0e0;
+}
+
+.activeTab {
+  color: #e91e63 !important;
+  border-bottom-color: #e91e63;
+}
+
+.tabContent {
+  flex: 1;
+  display: flex;
+}
+
+.variablesEditor,
+.headersEditor {
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  border: none;
+  color: #e0e0e0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px;
+  resize: none;
+  outline: none;
+}
+
+.variablesEditor::placeholder,
+.headersEditor::placeholder {
+  color: #666;
+}
+
+/* Response Pane */
+.responseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #2a2a2a;
+  border-bottom: 1px solid #333;
+  color: #e0e0e0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid #444;
+  color: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copyButton:hover {
+  background: #333;
+  border-color: #555;
+}
+
+.responseContent {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.responseDisplay {
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px;
+  margin: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+/* Loading State */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: #aaa;
+  font-size: 14px;
+  gap: 16px;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #333;
+  border-top: 2px solid #e91e63;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 16px;
+}
+
+.errorMessage {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid #f44336;
+  color: #ff5722;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 16px;
+}
+
+.emptyMessage {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Light theme overrides for Docusaurus */
+[data-theme='light'] .graphiqlContainer {
+  background: #f8f9fa;
+  border-color: #d0d7de;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .topBar {
+  background: #f1f3f4;
+  border-bottom-color: #d0d7de;
+  color: #24292f;
+}
+
+[data-theme='light'] .logo {
+  color: #24292f;
+}
+
+[data-theme='light'] .queryEditor,
+[data-theme='light'] .readOnlyEditor,
+[data-theme='light'] .variablesEditor,
+[data-theme='light'] .headersEditor,
+[data-theme='light'] .responseDisplay {
+  background: #ffffff;
+  color: #24292f;
+}
+
+[data-theme='light'] .bottomPane {
+  background: #f8f9fa;
+  border-top-color: #d0d7de;
+}
+
+[data-theme='light'] .tabBar {
+  background: #f1f3f4;
+  border-bottom-color: #d0d7de;
+}
+
+[data-theme='light'] .tab {
+  color: #656d76;
+}
+
+[data-theme='light'] .tab:hover {
+  color: #24292f;
+}
+
+[data-theme='light'] .responseHeader {
+  background: #f1f3f4;
+  border-bottom-color: #d0d7de;
+  color: #24292f;
+}
+
+[data-theme='light'] .copyButton {
+  border-color: #d0d7de;
+  color: #24292f;
+}
+
+[data-theme='light'] .copyButton:hover {
+  background: #f3f4f6;
+  border-color: #8b949e;
+}
+
+[data-theme='light'] .errorMessage {
+  background: rgba(244, 67, 54, 0.05);
+  color: #d32f2f;
+}
+
+[data-theme='light'] .emptyMessage {
+  color: #656d76;
+}
+
+[data-theme='light'] .loadingState {
+  color: #656d76;
+}
+
+[data-theme='light'] .spinner {
+  border-color: #d0d7de;
+  border-top-color: #e91e63;
+}
