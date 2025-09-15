@@ -88,7 +88,7 @@ const ApiEndpointsBlock: React.FC<ApiEndpointsBlockProps> = ({
             >
               {endpoint.method.toUpperCase()}
             </span>
-            <code className={styles.pathCode}>{endpoint.path}</code>
+            <p className={styles.pathCode}>{endpoint.path}</p>
           </button>
         ))}
       </div>

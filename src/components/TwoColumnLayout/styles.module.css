@@ -30,6 +30,24 @@
   min-width: 0; /* Prevents content from overflowing */
 }
 
+/* Sticky left column - 5rem default accounts for typical Docusaurus navigation */
+.stickyLeft {
+  position: sticky;
+  top: var(--sticky-top, 5rem);
+  align-self: start;
+  max-height: calc(100vh - var(--sticky-top, 5rem) - 2rem);
+  overflow-y: auto;
+}
+
+/* Sticky right column - 5rem default accounts for typical Docusaurus navigation */
+.stickyRight {
+  position: sticky;
+  top: var(--sticky-top, 5rem);
+  align-self: start;
+  max-height: calc(100vh - var(--sticky-top, 5rem) - 2rem);
+  overflow-y: auto;
+}
+
 /* Responsive behavior */
 @media screen and (max-width: 768px) {
   .twoColumnContainer,
@@ -48,6 +66,14 @@
   .rightColumn {
     order: 2;
   }
+
+  /* Disable sticky behavior on mobile/stacked layouts */
+  .stickyLeft,
+  .stickyRight {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
 }
 
 /* Support for custom breakpoint via CSS variables */
@@ -57,6 +83,14 @@
   .ratio21,
   .ratio12 {
     grid-template-columns: 1fr;
+  }
+
+  /* Disable sticky behavior at custom breakpoint */
+  .stickyLeft,
+  .stickyRight {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
   }
 }
 

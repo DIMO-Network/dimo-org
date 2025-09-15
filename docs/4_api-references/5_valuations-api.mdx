@@ -5,6 +5,8 @@ import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
 import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Valuations
 
@@ -19,27 +21,34 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
   }
   rightColumn={
     <div>
-     <h2>Base URL</h2>
-
-      <code>https://valuations-api.dimo.zone/</code>
-
-      <h3>Endpoints</h3>
-
-      <code>GET /v2/vehicles/:tokenId/valuations</code>
-      <p></p>
-      <code>POST /v2/vehicles/:tokenId/instant-offer</code>
-      <p></p>
-      <code>GET /v2/vehicles/:tokenId/offers</code>
-      {/* TODO: FIX SPACING HERE - new component */}
-
+      <BaseUrlBlock url="https://valuations-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'GET',
+            path: '/v2/vehicles/:tokenId/valuations',
+            id: 'valuations'
+          },
+          {
+            method: 'POST',
+            path: '/v2/vehicles/:tokenId/instant-offer',
+            id: 'instant-offer'
+          },
+          {
+            method: 'GET',
+            path: '/v2/vehicles/:tokenId/offers',
+            id: 'offers'
+          },
+        ]}
+      />
       {/* TODO: ADD A HEADERS SECTION FOR VEHICLE JWT */}
-
-
     </div>
   }
 />
 
 <TwoColumnLayout
+  id="valuations"
+  stickyLeft={true}
   leftColumn={
     <div>
       <h2>Get a vehicle valuation</h2>
@@ -117,6 +126,8 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
 />
 
 <TwoColumnLayout
+  id="instant-offer"
+  stickyLeft={true}
   leftColumn={
     <div>
       <h2>Submit a vehicle offers request</h2>
@@ -175,6 +186,8 @@ import ParametersBlock from '@site/src/components/ParametersBlock';
 />
 
 <TwoColumnLayout
+  id="offers"
+  stickyLeft={true}
   leftColumn={
     <div>
       <h2>List vehicle offers</h2>
