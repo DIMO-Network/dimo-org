@@ -13,8 +13,7 @@ import ApiTester from '@site/src/components/ApiTester';
 
 # Query Reference
 
-
-### aftermarketDevice
+### AftermarketDevice
 
 The AftermarketDevice resource is a hardware connection established to connect
 the vehicle to the DIMO network. This refers to viewing a particular device.
@@ -136,6 +135,857 @@ title="Hierarchy"
             name: "earnings",
             type: "AftermarketDeviceEarning",
             description: "The earnings attached to the aftermarket device."
+          }
+          ]}
+/>
+
+### AftermarketDevices
+
+Get a list of minted aftermarket devices ordered by `tokenId` in descending order.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "first",
+            type: "Int",
+            description: "Returns the first records given the argument provided."
+          },
+          {
+            name: "last",
+            type: "Int",
+            description: "Returns the last records given the argument provided."
+          },
+          {
+            name: "after",
+            type: "String",
+            description: "Used for pagination, returns records after given the identifier provided."
+          },
+          {
+            name: "before",
+            type: "String",
+            description: "Used for pagination, returns records before given the identifier provided."
+          },
+          {
+            name: "filterBy: beneficiary",
+            type: "Address",
+            description: "0x address of the beneficiary user."
+          },
+          {
+            name: "filterBy: owner",
+            type: "Address",
+            description: "0x address of the aftermarket device owner."
+          },
+          {
+            name: "filterBy: manufacturerId",
+            type: "Int",
+            description:"The identifier for the manufacturer of the aftermarket device."
+          },
+          ]}
+/>
+
+```graphql
+{
+  aftermarketDevices(
+    first: 10
+    filterBy: { owner: "0x8E075A4696E84d5e69CA04F657Fac205FC9Fe31E" }
+  ) {
+    totalCount
+  }
+}
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "totalCount",
+            type: "Int!",
+            description: "The total number of aftermarket devices available."
+          },
+          {
+            name: "pageInfo",
+            type: "PageInfo!",
+            description: "Information about the current page of results for pagination."
+          },
+          {
+            name: "edges",
+            type: "[AftermarketDeviceEdge!]!",
+            description: "A list of edges containing AftermarketDevice nodes."
+          }
+          ]}
+/>
+
+### DCN
+
+The DCN resource is the DIMO Canonical Name registered to a given vehicle on the
+DIMO network. This refers to viewing a particular DCN.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "node",
+            type: "Bytes",
+          },
+          {
+            name: "name",
+            type: "String",
+          },
+          ]}
+/>
+
+```graphql
+{
+    dcn(
+        by: {
+            name: "slickdriver.dimo"
+            node: "0x"
+        }
+    ) {
+        node
+        tokenId
+        owner
+        mintedAt
+        name
+    }
+}
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "node",
+            type: "Bytes!",
+            description: "The namehash of the domain."
+          },
+          {
+            name: "tokenId",
+            type: "Int!",
+            description: "The ERC-721 token identifier for the domain."
+          },
+          {
+            name: "name",
+            type: "String!",
+            description: "Human readable name, if any, for the domain; for example, reddy.dimo."
+          },
+          {
+            name: "owner",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain for the owner of the DCN, encoded as a checksummed hex string with 0x prefix."
+          },
+          {
+            name: "mintedAt",
+            type: "Time!",
+            description: "The RFC-3339 timestamp at which the DCN was minted, formatted as YYYY-MM-DDThh:mm:ssZ."
+          },
+          {
+            name: "expiredAt",
+            type: "Time!",
+            description: "he RFC-3339 timestamp at which the DCN was minted, formatted as YYYY-MM-DDThh:mm:ssZ."
+          },
+          {
+            name: "vehicle",
+            type: "Vehicle",
+            description: "The vehicle, if any, to which the domain is attached."
+          }
+          ]}
+/>
+
+### DCNConnection
+
+The DCNConnection query returns a paginated list of minted DIMO Canonical Names ordered by `mintedAt` timestamps in descending order.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "first",
+            type: "Int",
+            description: "Returns the first records given the argument provided."
+          },
+          {
+            name: "last",
+            type: "Int",
+            description: "Returns the last records given the argument provided."
+          },
+          {
+            name: "after",
+            type: "String",
+            description: "Used for pagination, returns records after given the identifier provided."
+          },
+          {
+            name: "before",
+            type: "String",
+            description: "Used for pagination, returns records before given the identifier provided."
+          },
+          {
+            name: "filterBy: owner",
+            type: "Address",
+            description: "0x address of the DCN owner."
+          },
+          ]}
+/>
+
+```graphql
+{
+    dcns(
+        first: 10
+        filterBy: { owner: "0x8E075A4696E84d5e69CA04F657Fac205FC9Fe31E" }
+    ) {
+        nodes {
+            node
+            owner
+        }
+    }
+}
+```
+
+### DeveloperLicense
+
+DeveloperLicense is the resource that was issued to a developer building on DIMO.
+
+```graphql
+query SpecificDevLicense($Address: Address!) {
+  developerLicense(by: { clientId: $Address }) {
+    tokenId
+    owner
+    alias
+    clientId
+    mintedAt
+    redirectURIs(first: 100) {
+      nodes {
+        uri
+        enabledAt
+      }
+    }
+  }
+}
+
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            description: "The token id of the license as an NFT."
+          },
+          {
+            name: "owner",
+            type: "Address!",
+            description: "The owner of the license. A single owner can own multiple licenses."
+          },
+          {
+            name: "clientId",
+            type: "Address!",
+            description: "Serves as the client id for OAuth as well as the address of the associated contract."
+          },
+          {
+            name: "alias",
+            type: "String",
+            description: "A human-readable alias for this license. Unique among all licenses if present."
+          },
+          {
+            name: "mintedAt",
+            type: "Time!",
+            description: "The block timestamp for the transaction that minted this license."
+          },
+          {
+            name: "signers",
+            type: "SignerConnection!",
+            description: "The public signer address for this license."
+          },
+          {
+            name: "redirectURIs",
+            type: "RedirectURIConnection!",
+            description: "The registered redirect URIs for this license."
+          },
+          ]}
+/>
+
+### DeviceDefinition
+
+Device Definition is the resource definition for device(s).
+
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "deviceDefinitionId",
+            type: "String!",
+            description: "The identifier for this device definition."
+          },
+          {
+            name: "legacyId",
+            type: "String!",
+            description: "The legacy identifier for this device definition. Does not apply to newer device definitions."
+          },
+          {
+            name: "manufacturer",
+            type: "Manufacturer",
+            description: "Manufacturer for this device definition."
+          },
+          {
+            name: "model",
+            type: "String",
+            description: "Model for this device definition."
+          },
+          {
+            name: "year",
+            type: "Int!",
+            description: "Year for this device definition."
+          },
+          {
+            name: "deviceType",
+            type: "String!",
+            description: "Device type for this device definition."
+          },
+          {
+            name: "imageURI",
+            type: "String",
+            description: "Image URI for this device definition."
+          },
+          {
+            name: "attributes",
+            type: "[DeviceDefinitionAttribute!]!",
+            description: "Device attributes for this device definition."
+          }
+          ]}
+/>
+
+### earning
+
+The Earning resource represents earnings data for devices or entities in the DIMO network. This refers to viewing earning details and rewards.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "id",
+            type: "ID",
+          },
+          {
+            name: "week",
+            type: "Int",
+          },
+          ]}
+/>
+
+```graphql
+{
+  earning(by: { id: "1", week: 52 }) {
+    id
+    week
+    totalTokens
+    device {
+      id
+      tokenId
+    }
+    beneficiary
+    claimedAt
+  }
+}
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "id",
+            type: "ID!",
+            description: "A unique global identifier for the earning record."
+          },
+          {
+            name: "week",
+            type: "Int!",
+            description: "The week number for which this earning was calculated."
+          },
+          {
+            name: "totalTokens",
+            type: "Float!",
+            description: "The total number of tokens earned in this period."
+          },
+          {
+            name: "device",
+            type: "Device",
+            description: "The device associated with this earning."
+          },
+          {
+            name: "beneficiary",
+            type: "Address!",
+            description: "The address that receives the earnings."
+          },
+          {
+            name: "claimedAt",
+            type: "Time",
+            description: "The RFC-3339 timestamp when the earning was claimed, formatted as YYYY-MM-DDThh:mm:ssZ. Shows null if not yet claimed."
+          }
+          ]}
+/>
+
+### Earning
+
+Earning is the resource that was rewarded to a DIMO-connected vehicle.
+
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "week",
+            type: "Int!",
+            description: "The week number that the reward was issued."
+          },
+          {
+            name: "beneficiary",
+            type: "Address!",
+            description: "The 0x address of beneficiary that received rewards."
+          },
+          {
+            name: "connectionStreak",
+            type: "Int!",
+            description: "The number of consecutive period of which the vehicle was connected."
+          },
+          {
+            name: "streakTokens",
+            type: "BigDecimal!",
+            description: "The number of tokens earned for the connected period."
+          },
+          {
+            name: "aftermarketDevice",
+            type: "AftermarketDevice",
+            description: "The AftermarketDevice that is connected to the vehicle."
+          },
+          {
+            name: "aftermarketDeviceTokens",
+            type: "BigDecimal!",
+            description: "The number of tokens earned for the AftermarketDevice."
+          },
+          {
+            name: "syntheticDevice",
+            type: "SyntheticDevice",
+            description: "The SyntheticDevice that is connected to the vehicle."
+          },
+          {
+            name: "syntheticDeviceTokens",
+            type: "BigDecimal!",
+            description: "The number of tokens earned for the SyntheticDevice."
+          },
+          {
+            name: "vehicle",
+            type: "Vehicle",
+            description: "The vehicle that the reward is assigned to."
+          },
+          {
+            name: "sentAt",
+            type: "Time!",
+            description: "When the tokens were earned."
+          }
+          ]}
+/>
+
+### EarningsConnection
+
+Get a list of DIMO Earnings in reverse chronological order.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "first",
+            type: "Int",
+            description: "Returns the first records given the argument provided."
+          },
+          {
+            name: "last",
+            type: "String",
+            description: "Returns the last records given the argument provided."
+          },
+          {
+            name: "after",
+            type: "Int",
+            description: "Used for pagination, returns records after the given identifier."
+          },
+          {
+            name: "before",
+            type: "String",
+            description: "Used for pagination, returns records before the given identifier."
+          },
+          ]}
+/>
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "totalTokens",
+            type: "Int!",
+            description: "Total DIMO tokens distributed to the vehicle."
+          },
+          {
+            name: "edges",
+            type: "[EarningsEdge!]!",
+            description: ""
+          },
+          {
+            name: "nodes",
+            type: "[Earnings!]!",
+            description: ""
+          }
+          ]}
+/>
+
+### manufacturer
+
+The Manufacturer resource is a registered manufacturer on the DIMO network. This refers to viewing a particular manufacturer.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "name",
+            type: "String",
+          },
+          {
+            name: "tokenId",
+            type: "Int",
+          },
+          ]}
+/>
+
+```graphql
+{
+    manufacturer(by: { name: "Tesla", tokenId: 123 }) {
+        id
+        tokenId
+        name
+        owner
+        mintedAt
+        aftermarketDevices {
+            totalCount
+            edges {
+                node {
+                    id
+                    tokenId
+                }
+            }
+        }
+    }
+}
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "id",
+            type: "ID!",
+            description: "An opaque global identifier for the manufacturer."
+          },
+          {
+            name: "tokenId",
+            type: "Int!",
+            description: "The ERC-721 token identifier for the manufacturer."
+          },
+          {
+            name: "name",
+            type: "String!",
+            description: "The name of the manufacturer."
+          },
+          {
+            name: "owner",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain, encoded as a checksummed hex string with 0x prefix."
+          },
+          {
+            name: "mintedAt",
+            type: "Time!",
+            description: "The RFC-3339 timestamp at which the manufacturer was minted, formatted as YYYY-MM-DDThh:mm:ssZ."
+          },
+          {
+            name: "aftermarketDevices",
+            type: "AftermarketDeviceConnection!",
+            description: "A Relay-style connection listing of aftermarket devices associated with the manufacturer."
+          }
+          ]}
+/>
+
+### Sacd
+
+The SACD resource is related to the permissions attached to the vehicle with regards to the permissions contract. For more details on SACD, please visit the permissions-contract-sacd section.
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "grantee",
+            type: "Address!",
+            description: "Recipient of SACD permission grant."
+          },
+          {
+            name: "permissions",
+            type: "String!",
+            description: "Hex string of permissions, see permissions table for more details."
+          },
+          {
+            name: "source",
+            type: "String!",
+            description: "Permission source."
+          },
+          {
+            name: "createdAt",
+            type: "Time!",
+            description: "The block timestamp at which this permission was set."
+          },
+          {
+            name: "expiresAt",
+            type: "Time!",
+            description: "The block timestamp at which the permission expires."
+          }
+          ]}
+/>
+
+### SyntheticDevice
+
+The SyntheticDevice resource is a software connection established to connect the vehicle to the DIMO network. Despite the lack of an actual device, we abstracted this software-connected concept to the term `synthetic`. This refers to viewing a particular API connection to a vehicle.
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            description: "The ERC-721 token identifier for the device."
+          },
+          {
+            name: "integrationId",
+            type: "Int!",
+            description: "Refers to the types of integration."
+          },
+          {
+            name: "address",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain for the device, encoded as a checksummed hex string with 0x prefix."
+          },
+          {
+            name: "mintedAt",
+            type: "Time!",
+            description: "The RFC-3339 timestamp at which the device was minted, formatted as YYYY-MM-DDThh:mm:ssZ."
+          }
+          ]}
+/>
+
+### UserRewards
+
+User Reward is the resource that was rewarded to a given user.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "user",
+            type: "Address!",
+            description: "The user where rewards were distributed to, this is the 0x address where DIMO tokens were sent to."
+          },
+          ]}
+/>
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "totalTokens",
+            type: "BigDecimal!",
+            description: "The total number of DIMO tokens distributed to the given user."
+          },
+          {
+            name: "history",
+            type: "EarningsConnection!",
+            description: "The history of earnings for the given user."
+          }
+          ]}
+/>
+
+### Vehicle
+
+The vehicle in DIMO is the moving object that was registered. This refers to viewing a particular vehicle.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int",
+          },
+          ]}
+/>
+
+```graphql
+{
+    vehicle(tokenId: 123) {
+        id
+        name
+    }
+}
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "id",
+            type: "ID!",
+            description: "A unique global identifier for the vehicle."
+          },
+          {
+            name: "tokenId",
+            type: "Int!",
+            description: "The ERC-721 token identifier for the vehicle."
+          },
+          {
+            name: "manufacturer",
+            type: "Manufacturer",
+            description: "The manufacturer of the vehicle."
+          },
+          {
+            name: "definition",
+            type: "Definition",
+            description: "The device definition for this vehicle, including make, model, and year among other things."
+          },
+          {
+            name: "image",
+            type: "String!",
+            description: "The image URL of the vehicle."
+          },
+          {
+            name: "owner",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain for the vehicle, encoded as a checksummed hex string with 0x prefix."
+          },
+          {
+            name: "mintedAt",
+            type: "Time!",
+            description: "The RFC-3339 timestamp at which the vehicle was minted, formatted as YYYY-MM-DDThh:mm:ssZ."
+          },
+          {
+            name: "aftermarketDevice",
+            type: "AftermarketDevice",
+            description: "The paired aftermarket device, if any."
+          },
+          {
+            name: "privileges",
+            type: "PrivilegesConnection!",
+            description: "A Relay-style connection listing of active privilege grants on this vehicle."
+          },
+          {
+            name: "syntheticDevice",
+            type: "SyntheticDevice",
+            description: "The paired synthetic device, if any."
+          },
+          {
+            name: "dcn",
+            type: "DCN",
+            description: "DIMO Canonical Name. Human-readable labels for this vehicle, if any."
+          },
+          {
+            name: "earnings",
+            type: "VehicleEarnings",
+            description: "Reward earnings for the vehicle."
+          },
+          {
+            name: "name",
+            type: "String!",
+            description: "A 3-word-representation of the vehicle, generated randomly."
+          }
+          ]}
+/>
+
+### VehicleConnection
+
+Get a list of minted vehicles ordered by `tokenId` in descending order.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "first",
+            type: "Int",
+            description: "Returns the first records given the argument provided."
+          },
+          {
+            name: "last",
+            type: "Int",
+            description: "Returns the last records given the argument provided."
+          },
+          {
+            name: "after",
+            type: "String",
+            description: "Used for pagination, returns records after the given identifier."
+          },
+          {
+            name: "before",
+            type: "String",
+            description: "Used for pagination, returns records before the given identifier."
+          },
+          {
+            name: "filterBy.privileged",
+            type: "Address",
+            description: "0x address of the privileged user."
+          },
+          {
+            name: "filterBy.owner",
+            type: "Address",
+            description: "0x address of the vehicle owner."
+          },
+          ]}
+/>
+
+```graphql
+{
+    vehicles(
+        first: 100
+        after: "NDIyMTg="
+        filterBy: { owner: "0x84B0EEeCD3bd243603df244D33587FF23c78D6B0" }
+    ) {
+        nodes {
+            id
+            tokenId
+            owner
+            mintedAt
+            name
+            image
+        }
+        pageInfo {
+            startCursor
+            endCursor
+            hasPreviousPage
+            hasNextPage
+        }
+    }
+}
+```
+
+### VehicleEarnings
+
+The VehicleEarnings resource is a collection of DIMO token earnings on a vehicle object.
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "totalTokens",
+            type: "BigDecimal!",
+            description: "The total amount of DIMO tokens distributed to a vehicle."
+          },
+          {
+            name: "history",
+            type: "EarningsConnection!",
+            description: "A Relay-style connection listing earnings history on a vehicle."
           }
           ]}
 />

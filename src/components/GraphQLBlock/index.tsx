@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { EditorView } from 'codemirror';
+import { EditorState } from '@codemirror/state';
+import { javascript } from '@codemirror/lang-javascript';
+import { oneDark } from '@codemirror/theme-one-dark';
+import { basicSetup } from 'codemirror';
+import { keymap } from '@codemirror/view';
 import styles from './styles.module.css';
 
 // Simple icons as React components
@@ -19,6 +25,101 @@ const Check = ({ size = 16 }: { size?: number }) => (
     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
   </svg>
 );
+
+// GraphQL Editor with CodeMirror 6
+const GraphQLEditor: React.FC<{
+  value: string;
+  onChange: (value: string) => void;
+  onExecute?: () => void;
+}> = ({ value, onChange, onExecute }) => {
+  const editorRef = useRef<any>(null);
+  const viewRef = useRef<EditorView | null>(null);
+
+  useEffect(() => {
+    if (!editorRef.current) return;
+
+    // Detect theme from document
+    const isDark =
+      document.documentElement.getAttribute('data-theme') === 'dark' ||
+      document.documentElement.getAttribute('data-theme') === null; // Default to dark
+
+    const startState = EditorState.create({
+      doc: value,
+      extensions: [
+        basicSetup,
+        javascript(), // Using JavaScript highlighting as a base for GraphQL-like syntax
+        ...(isDark ? [oneDark] : []),
+        keymap.of([
+          {
+            key: 'Ctrl-Enter',
+            run: () => {
+              if (onExecute) {
+                onExecute();
+                return true;
+              }
+              return false;
+            },
+          },
+        ]),
+        EditorView.theme({
+          '&': {
+            height: '100%',
+            fontSize: '13px',
+            fontFamily:
+              "'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace",
+          },
+          '.cm-scroller': {
+            height: '100%',
+            padding: '16px',
+          },
+          '.cm-focused': { outline: 'none' },
+          '.cm-editor': {
+            backgroundColor: isDark ? '#1e1e1e' : '#ffffff',
+          },
+          '.cm-content': {
+            color: isDark ? '#e0e0e0' : '#24292f',
+          },
+          '.cm-cursor': {
+            borderLeftColor: isDark ? '#e0e0e0' : '#24292f',
+          },
+        }),
+        EditorView.updateListener.of(update => {
+          if (update.docChanged) {
+            const newValue = update.state.doc.toString();
+            onChange(newValue);
+          }
+        }),
+      ],
+    });
+
+    const view = new EditorView({
+      state: startState,
+      parent: editorRef.current,
+    });
+
+    viewRef.current = view;
+
+    return () => {
+      view.destroy();
+    };
+  }, []);
+
+  // Update editor content when value prop changes
+  useEffect(() => {
+    if (viewRef.current && value !== viewRef.current.state.doc.toString()) {
+      const transaction = viewRef.current.state.update({
+        changes: {
+          from: 0,
+          to: viewRef.current.state.doc.length,
+          insert: value,
+        },
+      });
+      viewRef.current.dispatch(transaction);
+    }
+  }, [value]);
+
+  return <div ref={editorRef} style={{ height: '100%', width: '100%' }} />;
+};
 
 interface GraphQLBlockProps {
   query?: string;
@@ -139,21 +240,10 @@ const GraphQLBlock: React.FC<GraphQLBlockProps> = ({
                 <code>{currentQuery}</code>
               </pre>
             ) : (
-              <textarea
-                className={styles.queryEditor}
+              <GraphQLEditor
                 value={currentQuery}
-                onChange={e => setCurrentQuery(e.target.value)}
-                placeholder="# Welcome to GraphiQL
-#
-# Type queries in this space and press the Run button to execute them.
-#"
-                onKeyDown={e => {
-                  if (e.ctrlKey && e.key === 'Enter') {
-                    e.preventDefault();
-                    executeQuery();
-                  }
-                }}
-                spellCheck={false}
+                onChange={setCurrentQuery}
+                onExecute={executeQuery}
               />
             )}
           </div>

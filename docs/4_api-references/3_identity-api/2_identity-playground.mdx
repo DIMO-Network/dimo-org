@@ -1,0 +1,60 @@
+---
+sidebar_position: 2
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import GraphQLBlock from '@site/src/components/GraphQLBlock';
+import ApiTester from '@site/src/components/ApiTester';
+
+## Identity Playground
+
+### Developer License Lookups
+
+<GraphQLBlock
+  title="DIMO Identity API Playground"
+  endpoint="https://identity-api.dimo.zone/query"
+  query={`query GetDevLicenseByTokenId {
+    developerLicense (by: { tokenId: <dev_license_token_id> } ) {
+      owner
+      tokenId
+      alias
+      clientId
+      mintedAt
+      redirectURIs (first: 10) {
+        nodes {
+          uri
+          enabledAt
+        }
+      }
+    }
+}`}
+  variables={`{
+  "tokenId": "123"
+}`}
+  response={{
+    data: {
+      vehicle: {
+        tokenId: "123",
+        owner: "0x742d35Cc6C5E53532dd4d2E4A2F8a9c6F3b7E8d9",
+        definition: {
+          make: "Tesla",
+          model: "Model 3",
+          year: 2023
+        },
+        syntheticDevice: {
+          tokenId: "456",
+          integrationNode: {
+            name: "Tesla",
+            type: "OEM"
+          }
+        }
+      }
+    }
+  }}
+  viewOnly={false}
+/>
