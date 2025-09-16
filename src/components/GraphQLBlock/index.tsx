@@ -113,7 +113,7 @@ const GraphQLBlock: React.FC<GraphQLBlockProps> = ({
       <div className={styles.topBar}>
         <div className={styles.logo}>
           <div className={styles.logoIcon}>◉</div>
-          <span>GraphiQL</span>
+          <span>GraphQL</span>
         </div>
 
         <div className={styles.toolbar}>

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
@@ -10,7 +10,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 import GraphQLBlock from '@site/src/components/GraphQLBlock';
 
-# Identity API
+# Introduction
 
 <TwoColumnLayout
   leftColumn={
@@ -147,42 +147,4 @@ query GetVehicleMMY($MyAddress: Address!) {
     }
 }`}</code></pre>
   }
-/>
-
-<GraphQLBlock
-  title="DIMO Identity API Playground"
-  endpoint="https://identity-api.dimo.zone/query"
-  initialQuery={`{
-  connections(first: 100) {
-    nodes {
-      name
-      address
-      owner
-    }
-  }
-}`}
-  variables={`{
-  "tokenId": "123"
-}`}
-  response={{
-    data: {
-      vehicle: {
-        tokenId: "123",
-        owner: "0x742d35Cc6C5E53532dd4d2E4A2F8a9c6F3b7E8d9",
-        definition: {
-          make: "Tesla",
-          model: "Model 3",
-          year: 2023
-        },
-        syntheticDevice: {
-          tokenId: "456",
-          integrationNode: {
-            name: "Tesla",
-            type: "OEM"
-          }
-        }
-      }
-    }
-  }}
-  viewOnly={false}
 />

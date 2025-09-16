@@ -1,0 +1,141 @@
+---
+sidebar_position: 1
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import GraphQLBlock from '@site/src/components/GraphQLBlock';
+import ApiTester from '@site/src/components/ApiTester';
+
+# Query Reference
+
+
+### aftermarketDevice
+
+The AftermarketDevice resource is a hardware connection established to connect
+the vehicle to the DIMO network. This refers to viewing a particular device.
+
+<ParametersBlock
+title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int",
+          },
+          {
+            name: "address",
+            type: "Address",
+          },
+          {
+            name: "serial",
+            type: "String",
+          },
+          ]}
+/>
+
+```graphql
+{
+  aftermarketDevice(by: { tokenId: 1, address: "0x", serial: "123" }) {
+    id
+    tokenId
+    manufacturer {
+      name
+    }
+    address
+    owner
+    serial
+    imei
+    mintedAt
+    claimedAt
+    vehicle {
+      name
+    }
+    beneficiary
+    name
+    image
+    earnings {
+      totalTokens
+    }
+  }
+}
+```
+
+<ParametersBlock
+title="Hierarchy"
+        parameters={[
+          {
+            name: "id",
+            type: "ID!",
+            description: "A unique global identifier for the aftermarket device."
+          },
+          {
+            name: "tokenId",
+            type: "Int!",
+            description: "The ERC-721 token identifier for the device."
+          },
+          {
+            name: "manufacturer",
+            type: "Manufacturer",
+            description: "The manufacturer of the device."
+          },
+          {
+            name: "address",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain for the device, encoded as a checksummed hex string with 0x prefix."
+          },
+          {
+            name: "owner",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain for the owner of the device, encoded as a checksummed hex string with 0x prefix."
+          },
+          {
+            name: "serial",
+            type: "String",
+            description: "The serial number on the physical device."
+          },
+          {
+            name: "imei",
+            type: "String",
+            description: "The International Mobile Equipment Identity (IMEI) for the device."
+          },
+          {
+            name: "mintedAt",
+            type: "Time!",
+            description: "The RFC-3339 timestamp at which the device was minted, formatted as YYYY-MM-DDThh:mm:ssZ."
+          },
+          {
+            name: "claimedAt",
+            type: "Time",
+            description: "The RFC-3339 timestamp at which the device was claimed, formatted as YYYY-MM-DDThh:mm:ssZ. Shows null if the device has not been claimed. Devices must be claimed before pairing."
+          },
+          {
+            name: "vehicle",
+            type: "Vehicle",
+            description: "The vehicle, if any, with which the device is paired."
+          },
+          {
+            name: "beneficiary",
+            type: "Address!",
+            description: "A 20-byte Ethereum address registered on the blockchain as the beneficiary of this device. This is defined as who receives any associated rewards. Defaults to the owner."
+          },
+          {
+            name: "name",
+            type: "String!",
+            description: "A 3-word-representation of the device, generated randomly."
+          },
+          {
+            name: "image",
+            type: "String!",
+            description: "The image URL of the device."
+          },
+          {
+            name: "earnings",
+            type: "AftermarketDeviceEarning",
+            description: "The earnings attached to the aftermarket device."
+          }
+          ]}
+/>
