@@ -1,0 +1,43 @@
+---
+sidebar_position: 1
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import GraphQLBlock from '@site/src/components/GraphQLBlock';
+
+# Telemetry API
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Introduction</h2>
+
+    The Telemetry API is the entrypoint for getting realtime and historica vehicle data for DIMO-connected vehicles.
+
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://telemetry-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/query',
+          },
+        ]}
+      />
+    </div>
+  }
+/>
+
+:::info Developer Notes
+To access the Vehicle data under the Telemetry API, a token exchange transaction
+is required to obtain a Vehicle JWT with permissions to access a given vehicle.
+Please check Token Exchange API prior to using this endpoint.
+:::
