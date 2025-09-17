@@ -60,48 +60,6 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/dimo-social-card.png',
-    navbar: {
-      logo: {
-        alt: 'DIMO BUILD',
-        src: 'img/logo.svg',
-        width: 200,
-      },
-      items: [
-        {
-          label: 'Learn',
-          position: 'right',
-          items: [
-            {
-              type: 'docSidebar',
-              sidebarId: 'tutorialSidebar',
-              label: 'Documentation',
-            },
-          ],
-        },
-        {
-          label: 'Tools',
-          position: 'left',
-          href: '#',
-        },
-        {
-          label: 'Community',
-          position: 'left',
-          href: '#',
-        },
-        {
-          href: 'https://github.com/DIMO-Network',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
-        },
-        {
-          label: 'Sign in',
-          href: 'https://console.dimo.org/sign-in',
-          position: 'right',
-          className: 'navbar-signin-button',
-        },
-      ],
-    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
