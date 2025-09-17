@@ -59,7 +59,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/dimo-social-card.png',
     navbar: {
       logo: {
         alt: 'DIMO BUILD',
@@ -69,7 +69,7 @@ const config: Config = {
       items: [
         {
           label: 'Learn',
-          position: 'left',
+          position: 'right',
           items: [
             {
               type: 'docSidebar',
@@ -101,47 +101,6 @@ const config: Config = {
           className: 'navbar-signin-button',
         },
       ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Getting Started',
-              to: '/docs/introduction/what-can-you-build',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/DIMO-Network',
-            },
-            {
-              label: 'Discord',
-              href: 'https://chat.dimo.zone',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/dimo_network',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Console',
-              href: 'https://console.dimo.org',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} DIMO Build.`,
     },
     prism: {
       theme: prismThemes.github,
