@@ -2,9 +2,194 @@
 sidebar_position: 2
 ---
 
-import Stepper, { Step } from '@site/src/components/Stepper';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import GraphQLBlock from '@site/src/components/GraphQLBlock';
+import TelemetryFieldsBlock from '@site/src/components/TelemetryFieldsBlock';
+import { allTelemetryData } from '@site/src/components/TelemetryFieldsBlock/telemetry-data';
 
-# Signals
+# Vehicle Signals
+
+There are two types of query fields that you can use to retrieve vehicle signals from the Telemetry API, depending on if you’re looking for the latest signal data, or if you need to look up historical signal data from the past:
+
+- The `signals` query allows you to retrieve signal data from a vehicle for a given time period. It is commonly used to perform look backs with a set interval within a time period for a vehicle.
+
+- The `signalsLatest` query allows you to retrieve the most recent signal data from
+a vehicle. It returns the latest signals received from the respective data
+sources.
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h3>signals</h3>
+      The signals  resource is an aggregation of detailed signal fields, used to
+      retrieve vehicle signal data between a specified time period in the past.
+
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            required: true,
+          },
+          {
+            name: "from",
+            type: "Time!",
+            required: true,
+          },
+          {
+            name: "to",
+            type: "Time!",
+            required: true,
+          },
+          {
+            name: "interval",
+            type: "String!",
+            required: true,
+          },
+          {
+            name: "filter",
+            type: "SignalFilter",
+            required: false,
+          },
+          ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+    When using signals, be sure to also include the relevant aggregation type.
+    <pre><code className="language-graphql">{`# Sample Telemetry Query
+
+query GetHistoricalSignals{
+    signals(
+      tokenId: 12345
+      from: "2024-05-07T09:21:19Z"
+      to: "2024-05-10T09:21:19Z"
+      interval: "24h"
+    ) {
+      timestamp
+      speed(agg: MAX)
+    }
+}`}</code></pre></div>
+  }
+/>
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h3>signalsLatest</h3>
+      The signalsLatest resource is a SignalCollection that returns data for any signal that was most recently seen matching the filter.
+
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            required: true,
+          },
+          {
+            name: "filter",
+            type: "SignalFilter",
+            required: false,
+          },
+          ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+    When using signalsLatest, be sure to include a value and optionally a timestamp.
+    <pre><code className="language-graphql">{`# Sample Telemetry Query
+
+query {
+    signalsLatest(tokenId: 12345) {
+      powertrainTransmissionTravelledDistance {
+        value
+      }
+      powertrainFuelSystemRelativeLevel {
+        value
+        timestamp
+      }
+    }
+}`}</code></pre></div>
+  }
+/>
+
+## Fields by Category
+### Key:
+- **Signal**: The field name that can be queried for signals or signalsLatest.
+
+- **Common Name**: A simplified, consumer-friendly naming convention for the signal.
+
+- **Aggregation (Agg.) Type**: The Aggregation Type as specified for the signals resource.
+
+- **Units**: The unit returned for the specific signal quieried, if relevant.
+
+- **Description**: A longer description for the specific signal.
+
+<TelemetryFieldsBlock
+  title="Vehicle Info & Status"
+  fields={allTelemetryData.vehicleInfo.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Location"
+  fields={allTelemetryData.location.fields}
+  hint={allTelemetryData.location.hint}
+/>
+
+<TelemetryFieldsBlock
+  title="Battery & Charging"
+  fields={allTelemetryData.battery.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Devices"
+  fields={allTelemetryData.devices.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Diagnostics"
+  fields={allTelemetryData.diagnostics.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Engine"
+  fields={allTelemetryData.engine.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Environment"
+  fields={allTelemetryData.environment.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Fuel"
+  fields={allTelemetryData.fuel.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Tire Pressure"
+  fields={allTelemetryData.tirePressure.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Doors"
+  fields={allTelemetryData.doors.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Windows"
+  fields={allTelemetryData.windows.fields}
+/>
