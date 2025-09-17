@@ -3,6 +3,6 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Telemetry API for accessing vehicle data"
+    "description": "The Telemetry API is the entrypoint for getting realtime and historical vehicle data for DIMO-connected vehicles."
   }
 }

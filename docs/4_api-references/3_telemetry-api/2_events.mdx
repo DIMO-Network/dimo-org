@@ -1,0 +1,75 @@
+---
+sidebar_position: 3
+---
+
+import ParametersBlock from '@site/src/components/ParametersBlock';
+
+# Vehicle Events
+
+:::info Notice
+DIMO Events are only available on vehicles equipped with R1 LTE's. For additional support for DIMO Events, reach out to our Developer Support team via the Console.
+:::
+
+## Overview
+
+DIMO Events are vehicle events pre-defined by each data connection, as of August 2025, only the R1 LTE supports vehicle events. Think of it as **"risky events"** that the data source provider determines for the vehicle connected.
+
+## R1 Event Glossary
+
+| Event Type | Description |
+| --- | --- |
+| ExtremeBraking | Extreme rapid deceleration detected by the device. |
+| HarshAcceleration | Rapid acceleration detected by the device. |
+| HarshBraking | Rapid deceleration detected by the device. |
+| HarshCornering | Rapid change in direction and significant lateral acceleration detected by the device. |
+
+## events
+
+The `events` resource is a collection of vehicle events.
+
+<ParametersBlock
+  title="Arguments"
+  parameters={[
+    {
+      name: "name",
+      type: "StringValueFilter",
+      description: "Filter events by name"
+    },
+    {
+      name: "source",
+      type: "StringValueFilter",
+      description: "Filter events by source"
+    }
+  ]}
+/>
+
+<ParametersBlock
+  title="Fields"
+  parameters={[
+    {
+      name: "timestamp",
+      type: "Time!",
+      description: "The time the event occurred."
+    },
+    {
+      name: "name",
+      type: "String!",
+      description: "Name of the event."
+    },
+    {
+      name: "source",
+      type: "String!",
+      description: "Name of the source connection that created the event."
+    },
+    {
+      name: "durationNs",
+      type: "Int!",
+      description: "The duration of the event in nanoseconds."
+    },
+    {
+      name: "metadata",
+      type: "String",
+      description: "Metadata of the event."
+    }
+  ]}
+/>

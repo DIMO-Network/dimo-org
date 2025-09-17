@@ -1,0 +1,259 @@
+---
+sidebar_position: 1
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import GraphQLBlock from '@site/src/components/GraphQLBlock';
+
+# Introduction
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
+
+    The Telemetry API is the entrypoint for getting realtime and historical vehicle data for DIMO-connected vehicles. The DIMO Telemetry API is written in GraphQL, and there is only a single endpoint, <code>/query</code>, which is used for executing queries.
+
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://telemetry-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/query',
+          },
+        ]}
+      />
+    </div>
+  }
+/>
+
+:::info Developer Notes
+To access the Vehicle data under the Telemetry API, a token exchange transaction
+is required to obtain a Vehicle JWT with permissions to access a given vehicle.
+Please review our section on [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for more information.
+:::
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h3>Schema & Types</h3>
+      The Telemetry API displays data in two aggregation types, FloatAggregation & StringAggregation. To specify for each aggregation type, you will need to provide an interval.<br/><br/>
+      <h4>Interval String</h4>
+      Interval is the time span that is used for aggregating the data with. A
+      duration string is a sequence of decimal numbers, each with optional
+      fraction and a unit suffix, such as <code>300ms</code>, <code>-1.5h</code>
+      or <code>2h45m</code>.
+
+
+      <ParametersBlock
+        title="Valid Interval Units"
+        parameters={[
+          {
+            name: "ms",
+            description: "milliseconds"
+          },
+          {
+            name: "s",
+            description: "seconds"
+          },
+          {
+            name: "m",
+            description: "minutes"
+          },
+          {
+            name: "h",
+            description: "hours"
+          },
+        ]}
+      />
+
+      <h4>FloatAggregationType</h4>
+      Aggregation type for floats.
+
+      <ParametersBlock
+        title=""
+        parameters={[
+          {
+            name: "AVG",
+            description: "Returns the **average** value from the dataset."
+          },
+          {
+            name: "MAX",
+            description: "Returns the **maximum** value from the dataset."
+          },
+          {
+            name: "MED",
+            description: "Returns the **median** value from the dataset."
+          },
+          {
+            name: "MIN",
+            description: "Returns the **minimum** value from the dataset."
+          },
+          {
+            name: "RAND",
+            description: "Returns a **randomly-selected** value from the dataset."
+          },
+        ]}
+      />
+
+      <h4>StringAggregationType</h4>
+      Aggregation type for strings.
+
+      <ParametersBlock
+        title=""
+        parameters={[
+          {
+            name: "RAND",
+            description: "Returns a **randomly-selected** value from the dataset."
+          },
+          {
+            name: "TOP",
+            description: "Returns the **most frequently occurring value** in the dataset."
+          },
+          {
+            name: "UNIQUE",
+            description: "Return **a list of unique values** in the dataset."
+          },
+        ]}
+      />
+
+      <h4>StringValueFilter</h4>
+      Filter type for vehicle events.
+
+      <ParametersBlock
+        title=""
+        parameters={[
+          {
+            name: "eq",
+            description: "String - Exact string match."
+          },
+          {
+            name: "neq",
+            description: "String - Not equal."
+          },
+          {
+            name: "notin",
+            description: "[String!] - Not in the provided array of strings."
+          },
+          {
+            name: "in",
+            description: "[String!] - In the provided array of strings."
+          },
+        ]}
+      />
+
+      <h4>SignalFilter</h4>
+      The SignalFilter filters signals by source type, valid source types are described below:
+
+      <ParametersBlock
+        title="Valid Source Input"
+        parameters={[
+          {
+            name: "autopi",
+            description: "Signals from AutoPi aftermarket device."
+          },
+          {
+            name: "macaron",
+            description: "Signals from Macaron aftermarket device."
+          },
+          {
+            name: "ruptela",
+            description: "Signals from R1 LTE aftermarket device."
+          },
+          {
+            name: "tesla",
+            description: "Signals from Tesla integration."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`# Sample Telemetry Query
+
+query {
+    signals(
+      tokenId: 12345,
+      interval: "24h",
+      from: "2025-09-01T17:00:00Z",
+      to: "2025-09-30T17:00:00Z"
+    ) {
+      currentLocationLatitude(agg: AVG)
+      currentLocationLongitude(agg: AVG)
+      speed(agg: MAX)
+      powertrainFuelSystemRelativeLevel(agg: AVG)
+      powertrainRange(agg: MIN)
+      timestamp
+    }
+}`}</code></pre>
+  }
+/>
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h3> Scalars</h3>
+      Scalars are the value types that every field in a GraphQL document eventually resolves to. It can be viewed as the primitive data type that stores a single value. There are 5 built-in scalars: <code>int</code>, <code>float</code>, <code>string</code>, <code>Boolean</code>, and <code>id</code> - we have also defined custom scalars to help define the data we return.
+
+     <ParametersBlock
+      title=""
+      parameters={[
+        {
+          name: "Boolean",
+          description: "Represents a boolean value that can be either true or false."
+        },
+        {
+          name: "Float",
+          description: "A signed double-precision floating-point value."
+        },
+        {
+          name: "ID",
+          description: "A unique identifier, often used to refetch an object or as a key for caching."
+        },
+        {
+          name: "Int",
+          description: "A signed 32-bit integer."
+        },
+        {
+          name: "String",
+          description: "A UTF-8 character sequence."
+        },
+        {
+          name: "Time",
+          description: "A point in time, encoded per RFC-3999. This is in second precision and in UTC, an example would be 2023-12-04T18:32:12Z."
+        },
+      ]}
+    />
+    </div>
+  }
+  rightColumn={
+<pre><code className="language-graphql">{`# Sample Telemetry Query
+
+query {
+    signals(
+      tokenId: 12345,
+      interval: "24h",
+      from: "2025-09-01T17:00:00Z",
+      to: "2025-09-30T17:00:00Z"
+    ) {
+      currentLocationLatitude(agg: AVG)
+      currentLocationLongitude(agg: AVG)
+      speed(agg: MAX)
+      powertrainFuelSystemRelativeLevel(agg: AVG)
+      powertrainRange(agg: MIN)
+      timestamp
+    }
+}`}</code></pre>
+  }
+/>

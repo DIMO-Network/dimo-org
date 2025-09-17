@@ -1,0 +1,8 @@
+{
+  "label": "Identity API",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The Identity API serves as an open registry for vehicles and developers on the DIMO Network. "
+  }
+}
