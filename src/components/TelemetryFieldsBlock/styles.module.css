@@ -256,16 +256,7 @@
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.8125rem;
   color: var(--ifm-color-primary);
-}
-
-.aggType a {
-  color: var(--ifm-color-primary);
-  text-decoration: none;
   font-weight: 525;
-}
-
-.aggType a:hover {
-  text-decoration: underline;
 }
 
 /* Units styling */

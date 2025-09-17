@@ -6,7 +6,7 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'lastSeen',
     commonName: 'Last Seen',
-    aggregationType: '<a href="../../scalars#time">Time!</a>',
+    aggregationType: 'Time!',
     units: 'UTC',
     description:
       'The last time any signal was seen matching the filter. Only available on <code>signalsLatest</code>',
@@ -14,8 +14,7 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'availableSignals',
     commonName: 'Available Vehicle Signals',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'N/A',
     description:
       'Returns a list of queryable signal names that have stored data for a given <code>tokenId</code>.',
@@ -23,8 +22,7 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'powertrainTransmissionTravelledDistance',
     commonName: 'Odometer',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'km',
     description:
       'Odometer reading in kilometers, total distance travelled during the lifetime of the transmission.',
@@ -32,16 +30,14 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'vinVC',
     commonName: 'VIN #',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'N/A',
     description: 'Returns the latest VINVC data for a given token',
   },
   {
     signal: 'isIgnitionOn',
     commonName: 'Vehicle Ignition Status',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>Vehicle ignition status.</p><p>True (1) = Vehicle Ignition On<br>False (0) = Vehicle Ignition Off</p>',
@@ -49,8 +45,7 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'speed',
     commonName: 'Vehicle Speed',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'km/hr',
     description: 'The vehicle speed in km/hr',
   },
@@ -60,8 +55,7 @@ export const locationFields: TelemetryField[] = [
   {
     signal: 'currentLocationLatitude',
     commonName: 'Latitude Location',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees',
     description:
       'Current latitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
@@ -69,8 +63,7 @@ export const locationFields: TelemetryField[] = [
   {
     signal: 'currentLocationLongitude',
     commonName: 'Longitude Location',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees',
     description:
       'Current longitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
@@ -78,8 +71,7 @@ export const locationFields: TelemetryField[] = [
   {
     signal: 'currentLocationAltitude',
     commonName: 'Altitude Level',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees',
     description:
       'Current altitude relative to WGS 84 reference ellipsoid, as measured at the position of GNSS receiver antenna.',
@@ -87,8 +79,7 @@ export const locationFields: TelemetryField[] = [
   {
     signal: 'currentLocationApproximateLatitude',
     commonName: 'Approximate Latitude Location',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees',
     description:
       'Approximation of current latitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
@@ -96,8 +87,7 @@ export const locationFields: TelemetryField[] = [
   {
     signal: 'currentLocationApproximateLongitude',
     commonName: 'Approximate Longitude Location',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees',
     description:
       'Approximation of current longitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
@@ -105,8 +95,7 @@ export const locationFields: TelemetryField[] = [
   {
     signal: 'currentLocationIsRedacted',
     commonName: 'Location Privacy Zones',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       'Indicates if the latitude and longitude signals at the current timestamp have been redacted using a privacy zone.<br>True (1) = Current Location Redacted<br>False (0) = Current Location not Redacted',
@@ -123,8 +112,7 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'powertrainTractionBatteryChargingChargeCurrentAC',
     commonName: 'AC Current Charge (Alternating Current)',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'amps',
     description:
       'Current AC charging current (rms) at inlet. Negative if returning energy to grid. Used when per-phase numbers are unavailable.',
@@ -132,16 +120,14 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'powertrainTractionBatteryChargingChargeLimit',
     commonName: 'Charge Limit',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'percent',
     description: 'Target charge limit (state of charge) for battery.',
   },
   {
     signal: 'powertrainTractionBatteryChargingChargeVoltageUnknownType',
     commonName: 'Charging Voltage',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'volts',
     description:
       'Current charging voltage at inlet. Used when the data source does not indicate the current type (AC or DC) in use.',
@@ -149,8 +135,7 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'powertrainTractionBatteryChargingIsCharging',
     commonName: 'Charging Status',
-    aggregationType:
-      '<a href="../../schema-and-types#stringaggregationtype">StringAggregation!</a>',
+    aggregationType: 'StringAggregation!',
     units: '0 or 1',
     description:
       'True if charging is ongoing. Charging is considered to be ongoing if energy is flowing from charger to vehicle.<br>True (1) - Vehicle is charging.<br>False (0) - Vehicle is not charging.',
@@ -158,8 +143,7 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'powertrainTractionBatteryCurrentPower',
     commonName: 'Battery Power',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'watts',
     description:
       'Current electrical energy flowing in/out of battery. Positive = Energy flowing in to battery, e.g. during charging. Negative = Energy flowing out of battery, e.g. during driving.',
@@ -167,16 +151,14 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'powertrainTractionBatteryGrossCapacity',
     commonName: 'Total Battery Capacity',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kWh',
     description: 'Gross capacity of the battery.',
   },
   {
     signal: 'powertrainTractionBatteryStateOfChargeCurrent',
     commonName: 'Current Charge Level',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'percent',
     description:
       'Physical state of charge of the high voltage battery, relative to net capacity. This is not necessarily the state of charge being displayed to the customer.',
@@ -184,16 +166,14 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'powertrainTractionBatteryStateOfChargeCurrentEnergy',
     commonName: 'Remaining Energy',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kWh',
     description: 'Physical state of charge of the high voltage battery.',
   },
   {
     signal: 'powertrainTractionBatteryChargingAddedEnergy',
     commonName: 'Session Energy',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kWh',
     description:
       'The amount of charge added to the battery during the current charging session.',
@@ -201,8 +181,7 @@ export const batteryFields: TelemetryField[] = [
   {
     signal: 'lowVoltageBatteryCurrentVoltage',
     commonName: 'Low Voltage Battery',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'volts',
     description: 'Current Voltage of the low voltage battery.',
   },
@@ -212,32 +191,28 @@ export const devicesFields: TelemetryField[] = [
   {
     signal: 'dimoAftermarketWPAState',
     commonName: 'Wifi Protected Access (WPA)',
-    aggregationType:
-      '<a href="../../schema-and-types#stringaggregationtype">StringAggregation!</a>',
+    aggregationType: 'StringAggregation!',
     units: 'N/A',
     description: 'Indicate the current WPA state for the devices Wi-Fi.',
   },
   {
     signal: 'dimoAftermarketSSID',
     commonName: 'Service Set Identifier (SSID)',
-    aggregationType:
-      '<a href="../../schema-and-types#stringaggregationtype">StringAggregation!</a>',
+    aggregationType: 'StringAggregation!',
     units: 'N/A',
     description: 'Service Set Identifier for the Wi-Fi.',
   },
   {
     signal: 'dimoAftermarketNSAT',
     commonName: 'Number of Satellites (NSAT)',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'N/A',
     description: 'Number of sync satellites for GPS.',
   },
   {
     signal: 'dimoAftermarketHDOP',
     commonName: 'Horizontal Dilution of Precision (HDOP)',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'N/A',
     description: 'Horizontal dilution of precision of GPS.',
   },
@@ -247,8 +222,7 @@ export const diagnosticsFields: TelemetryField[] = [
   {
     signal: 'obdDTCList',
     commonName: 'Diagnostic Trouble Codes',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'OBD II Standard',
     description:
       'List of currently active DTCs formatted according OBD II (SAE-J2012DA_201812) standard ([P|C|B|U]XXXXX )',
@@ -256,24 +230,21 @@ export const diagnosticsFields: TelemetryField[] = [
   {
     signal: 'obdRunTime',
     commonName: 'Engine runtime',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'seconds',
     description: 'PID 1F - Engine run time.',
   },
   {
     signal: 'obdIntakeTemp',
     commonName: 'Intake temperature',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees (ºC)',
     description: 'PID 0F - Intake temperature.',
   },
   {
     signal: 'obdEngineLoad',
     commonName: 'Engine Load',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'percentage',
     description:
       'PID 04 - Engine load in percent - 0 = no load, 100 = full load.',
@@ -281,8 +252,7 @@ export const diagnosticsFields: TelemetryField[] = [
   {
     signal: 'obdBarometricPressure',
     commonName: 'Barometric Pressure',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kPa',
     description: 'PID 33 - Barometric pressure.',
   },
@@ -292,16 +262,14 @@ export const engineFields: TelemetryField[] = [
   {
     signal: 'powertrainType',
     commonName: 'Powertrain Type',
-    aggregationType:
-      '<a href="../../schema-and-types#stringaggregationtype">StringAggregation!</a>',
+    aggregationType: 'StringAggregation!',
     units: 'N/A',
     description: 'Defines the powertrain type of the vehicle.',
   },
   {
     signal: 'powertrainRange',
     commonName: 'Range (remaining)',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kilometers',
     description:
       'Remaining range in km using all energy sources available in the vehicle.',
@@ -309,40 +277,35 @@ export const engineFields: TelemetryField[] = [
   {
     signal: 'powertrainCombustionEngineTPS',
     commonName: 'Throttle Position',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'percent',
     description: 'Current throttle position.',
   },
   {
     signal: 'powertrainCombustionEngineSpeed',
     commonName: 'Engine RPM',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'rpm',
     description: 'Engine speed measured as rotations per minute (rpm).',
   },
   {
     signal: 'powertrainCombustionEngineMAF',
     commonName: 'Engine Air Intake',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'grams/second',
     description: 'Grams of air drawn into engine per second.',
   },
   {
     signal: 'powertrainCombustionEngineEngineOilLevel',
     commonName: 'Oil Level',
-    aggregationType:
-      '<a href="../../schema-and-types#stringaggregationtype">StringAggregation!</a>',
+    aggregationType: 'StringAggregation!',
     units: 'liters',
     description: 'Engine oil level.',
   },
   {
     signal: 'powertrainCombustionEngineECT',
     commonName: 'Coolant Temperature',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees (ºC)',
     description: 'Engine coolant temperature.',
   },
@@ -352,8 +315,7 @@ export const environmentFields: TelemetryField[] = [
   {
     signal: 'exteriorAirTemperature',
     commonName: 'Air Temperature',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'degrees (ºC)',
     description: 'Air temperature outside the vehicle.',
   },
@@ -363,24 +325,21 @@ export const fuelFields: TelemetryField[] = [
   {
     signal: 'powertrainFuelSystemSupportedFuelTypes',
     commonName: 'Supported Fuel Types',
-    aggregationType:
-      '<a href="../../schema-and-types#stringaggregationtype">StringAggregation!</a>',
+    aggregationType: 'StringAggregation!',
     units: 'N/A',
     description: 'High level information of fuel types supported.',
   },
   {
     signal: 'powertrainFuelSystemRelativeLevel',
     commonName: 'Fuel Percentage',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'percent',
     description: 'Current available fuel in the fuel tank in %, from 0 to 100.',
   },
   {
     signal: 'powertrainFuelSystemAbsoluteLevel',
     commonName: 'Fuel Level',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'liters',
     description: 'Current available fuel in the fuel tank expressed in liters.',
   },
@@ -390,32 +349,28 @@ export const tirePressureFields: TelemetryField[] = [
   {
     signal: 'chassisAxleRow1WheelLeftTirePressure',
     commonName: 'Front Left Wheel',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kPa',
     description: 'Tire pressure of the front left tire in kilo-Pascal.',
   },
   {
     signal: 'chassisAxleRow1WheelRightTirePressure',
     commonName: 'Front Right Wheel',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kPa',
     description: 'Tire pressure of the front right tire in kilo-Pascal.',
   },
   {
     signal: 'chassisAxleRow2WheelLeftTirePressure',
     commonName: 'Back Left Wheel',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kPa',
     description: 'Tire pressure of the rear left tire in kilo-Pascal.',
   },
   {
     signal: 'chassisAxleRow2WheelRightTirePressure',
     commonName: 'Back Right Wheel',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: 'kPa',
     description: 'Tire pressure of the rear right tire in kilo-Pascal.',
   },
@@ -425,8 +380,7 @@ export const doorsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow1DriverSideIsOpen',
     commonName: 'Front Driver Side Door',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -434,8 +388,7 @@ export const doorsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow1PassengerSideIsOpen',
     commonName: 'Front Passenger Side Door',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -443,8 +396,7 @@ export const doorsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow2DriverSideIsOpen',
     commonName: 'Back Driver Side Door',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -452,8 +404,7 @@ export const doorsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow2PassengerSideIsOpen',
     commonName: 'Back Passenger Side Door',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -464,8 +415,7 @@ export const windowsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow1DriverSideWindowIsOpen',
     commonName: 'Front Driver Side Window',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -473,8 +423,7 @@ export const windowsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow1PassengerSideWindowIsOpen',
     commonName: 'Front Passenger Side Window',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -482,8 +431,7 @@ export const windowsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow2DriverSideWindowIsOpen',
     commonName: 'Back Driver Side Window',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',
@@ -491,8 +439,7 @@ export const windowsFields: TelemetryField[] = [
   {
     signal: 'cabinDoorRow2PassengerSideWindowIsOpen',
     commonName: 'Back Passenger Side Window',
-    aggregationType:
-      '<a href="../../schema-and-types#floataggregationtype">FloatAggregation!</a>',
+    aggregationType: 'FloatAggregation!',
     units: '0 or 1',
     description:
       '<p>True (1) = Fully or partially open.</p><p>False (0) = Fully closed.</p>',

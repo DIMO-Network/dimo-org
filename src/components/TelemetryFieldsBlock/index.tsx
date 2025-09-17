@@ -150,12 +150,9 @@ function TelemetryFieldsBlock({
                         </span>
                       </td>
                       <td className={styles.cell}>
-                        <span
-                          className={styles.aggType}
-                          dangerouslySetInnerHTML={{
-                            __html: field.aggregationType,
-                          }}
-                        />
+                        <span className={styles.aggType}>
+                          {field.aggregationType}
+                        </span>
                       </td>
                       <td className={styles.cell}>
                         <span className={styles.units}>{field.units}</span>

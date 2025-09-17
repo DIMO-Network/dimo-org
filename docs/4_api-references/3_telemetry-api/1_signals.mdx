@@ -65,7 +65,7 @@ sources.
   }
   rightColumn={
     <div>
-    When using signals, be sure to also include the relevant aggregation type.
+    When using <code>signals</code>, be sure to also include the relevant aggregation type.
     <pre><code className="language-graphql">{`# Sample Telemetry Query
 
 query GetHistoricalSignals{
@@ -109,10 +109,10 @@ query GetHistoricalSignals{
   }
   rightColumn={
     <div>
-    When using signalsLatest, be sure to include a value and optionally a timestamp.
+    When using <code>signalsLatest</code>, be sure to include a value and optionally a timestamp.
     <pre><code className="language-graphql">{`# Sample Telemetry Query
 
-query {
+query GetLatestSignals{
     signalsLatest(tokenId: 12345) {
       powertrainTransmissionTravelledDistance {
         value
