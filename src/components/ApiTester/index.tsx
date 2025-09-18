@@ -819,7 +819,7 @@ useEffect(() => {
           </div>
         )}
 
-        {isGraphQL && (
+        {/* {isGraphQL && (
           <div className={styles.inputGroup}>
             <label className={styles.label}>GraphQL Request</label>
             <pre className={styles.codeBlock}>
@@ -828,7 +828,7 @@ useEffect(() => {
                 : 'No GraphQL request'}
             </pre>
           </div>
-        )}
+        )} */}
 
         <div className={styles.actions}>
           <button

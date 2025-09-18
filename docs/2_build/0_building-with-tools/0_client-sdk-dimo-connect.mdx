@@ -172,30 +172,67 @@ Developers can get started using either the [React Component SDK (aka Login with
         defaultUrl="https://identity-api.dimo.zone/query"
         operationType="query"
         requireAuth={false}
-        defaultQuery={`query GetVehicleByDevLicense($clientId: Address!) {
-          vehicles(
-            filterBy: { privileged: $clientId }
-            first: 3
-          ) {
-            nodes {
-              owner
-              tokenId
-              definition {
-                make
-                model
-                year
-              }
-            }
-            totalCount
-            pageInfo {
-              startCursor
-              hasPreviousPage
-              hasNextPage
-            }
-          }
-        }`}
+        defaultQuery={
+`query GetVehicleByDevLicense($clientId: Address!) {
+    vehicles(filterBy: { 
+      privileged: $clientId } 
+      first: 3
+    ) {
+      nodes {
+        owner
+        tokenId
+        definition {
+          make
+          model
+          year
+        }
+      }
+      totalCount
+      pageInfo {
+        startCursor
+        hasPreviousPage
+        hasNextPage
+      }
+    }
+}`
+        }
         graphQLVariables={[
           { name: "clientId", type: "Address!", description: "Client ID of your Developer License" }
+        ]}
+      />
+    </details>
+  </Step>
+
+  <Step title="Get Vehicle JWT">
+    <details>
+      <summary>Try it out</summary>
+      <ApiTester
+        title="Exchange Developer JWT for a Vehicle JWT"
+        method="POST"
+        defaultUrl="https://token-exchange-api.dimo.zone/v1/tokens/exchange"
+        requestBody={`{ "nftContractAddress": "0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF" }`}
+        userInputs={[
+          {
+            key: 'tokenId',
+            label: 'Vehicle Token ID',
+            type: 'number'
+          },
+          {
+            key: 'privileges',
+            label: 'Permissions Requested',
+            type: 'array',
+            options: [
+              { label: 'All-time, non-location data', value: 1 },
+              { label: 'Commands', value: 2 },
+              { label: 'Current location', value: 3 },
+              { label: 'All-time location', value: 4 },
+              { label: 'View VIN credentials', value: 5 },
+              { label: 'Live data streams', value: 6 },
+              { label: 'Raw data', value: 7 },
+              { label: 'Approximate location', value: 8 },
+            ],
+            helpText: 'Select one or more by clicking while holding down Command (⌘ on a Mac) or Ctrl (PC)',
+          }
         ]}
       />
     </details>
@@ -211,11 +248,11 @@ Developers can get started using either the [React Component SDK (aka Login with
         defaultUrl="https://telemetry-api.dimo.zone/query"
         operationType="query"
         jwtPlaceholder="Enter a valid Vehicle JWT"
-        defaultQuery={`query GetAvailable($tokenId: Int!) {
-          availableSignals(
-            tokenId: $tokenId
-          )
-        }`}
+        defaultQuery={
+`query GetAvailable($tokenId: Int!) {
+    availableSignals(tokenId: $tokenId)
+}`
+        }
         graphQLVariables={[
           { name: "tokenId", type: "Int!", description: "Vehicle Token ID of a shared vehicle" }
         ]}
