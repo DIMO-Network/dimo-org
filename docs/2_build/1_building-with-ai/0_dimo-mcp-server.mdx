@@ -1,0 +1,105 @@
+---
+sidebar_position: 1
+---
+
+import Stepper, { Step } from '@site/src/components/Stepper';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import ImageTooltips from '@site/src/components/ImageTooltips';
+import GitHubButton from "react-github-btn";
+
+# DIMO MCP Server
+
+## Run Your Own MCP Server
+An MCP (Model Context Protocol) server that provides seamless access to the DIMO APIs, 
+enabling AI assistants to query vehicle data, execute vehicle commands, decode VINs, 
+create verifiable credentials, and interact with the DIMO ecosystem.
+
+## How It Works
+<Stepper>
+  <Step title="Prerequisites">
+		1. Your `Client ID`, `Redirect URI`, and `API Key` from the [Developer Console](https://console.dimo.org)
+		2. Node.js 18 or higher, or [Bun runtime](https://bun.com/)
+		3. Claude Desktop with a Claude Pro Plan or above
+  </Step>
+
+  <Step title="Install">
+		<GitHubButton
+			href="https://github.com/dimo-network/mcp-dimo"
+			data-color-scheme="no-preference: light; light: light; dark: dark;"
+			data-icon="github"
+			data-size="large"
+			data-show-count="false"
+			aria-label="Star dimo-network/mcp-dimo on GitHub"
+		>
+			DIMO MCP Server
+		</GitHubButton>
+		Install via npm package registry:
+		```shell
+npm install -g mcp-dimo
+		```
+		Alternatively, you can download and build locally:
+```shell
+git clone https://github.com/DIMO-Network/mcp-dimo.git
+cd mcp-dimo
+bun install
+bun run build
+```
+	</Step>
+
+  <Step title="Configure">
+		In the `.env` file, set up your environment variables:
+```
+# Required - DIMO Developer License credentials
+DIMO_CLIENT_ID=your_client_id_here
+DIMO_DOMAIN=your_domain  
+DIMO_PRIVATE_KEY=your_private_key_here
+
+# Optional - Fleet mode (skips ownership checks)
+FLEET_MODE=false
+
+# Optional - Custom login URL
+DIMO_LOGIN_BASE_URL=https://login.dimo.org
+```
+	</Step>
+	<Step title="Client Setup">
+		In your Claude Desktop, configure the DIMO MCP Server by updating the config file with the following JSON:
+		<ImageTooltips
+      src="/img/claude-setup.png"
+      alt="DIMO MCP Server Configuration on Claude"
+      tooltipAreas={[
+        {
+          x: 13, y: 22, width: 20, height: 28,
+          title: "Locate Settings in Claude",
+          text: "Click on the bottom left corner to open up Settings."
+        },
+        {
+          x: 32, y: 54, width: 20, height: 44,
+          title: "Locate Developer under Settings",
+          text: "Scroll all the way to the bottom to find the Developer settings."
+        },
+        {
+          x: 50, y: 54, width: 36, height: 44,
+          title: "Edit MCP Server Configs",
+          text: "Edit your local MCP server configurations, this will open up your config file for Claude."
+        }
+      ]}
+    />
+
+```json
+{
+  "mcpServers": {
+    "dimo": {
+      "command": "mcp-dimo",
+      "env": {
+        "DIMO_CLIENT_ID": "your_client_id_here",
+        "DIMO_DOMAIN": "your_domain.com",
+        "DIMO_PRIVATE_KEY": "your_private_key_here"
+      }
+    }
+  }
+}
+```
+	</Step>
+</Stepper>

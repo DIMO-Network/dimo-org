@@ -99,6 +99,40 @@ export default function Navbar(): ReactNode {
             )}
           </div>
 
+          {/* AI Dropdown */}
+          <div
+            className={`${styles.navItem} ${styles.dropdownContainer}`}
+            onMouseEnter={() => handleDropdownEnter('ai')}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <div className={styles.dropdownTrigger}>
+              <span>AI</span>
+              <img
+                alt=""
+                src={imgDropdownArrow}
+                className={`${styles.dropdownIcon} ${
+                  activeDropdown === 'ai' ? styles.rotated : ''
+                }`}
+              />
+            </div>
+            {activeDropdown === 'ai' && (
+              <div className={styles.dropdownMenu}>
+                <Link
+                  to="/docs/build/building-with-ai/dimo-mcp-server"
+                  className={styles.dropdownItem}
+                >
+                  DIMO MCP Server
+                </Link>
+                <Link
+                  to="/docs/build/building-with-ai/developer-kit"
+                  className={styles.dropdownItem}
+                >
+                  AI App Builder
+                </Link>
+              </div>
+            )}
+          </div>
+
           {/* Tools Dropdown */}
           <div
             className={`${styles.navItem} ${styles.dropdownContainer}`}
@@ -129,13 +163,6 @@ export default function Navbar(): ReactNode {
                 >
                   Low Code
                 </Link>
-                <a
-                  href="https://github.com/DIMO-Network/dimo-developer-kit"
-                  className={styles.dropdownItem}
-                  target="blank"
-                >
-                  AI Examples
-                </a>
               </div>
             )}
           </div>
@@ -173,7 +200,7 @@ export default function Navbar(): ReactNode {
               to="https://console.dimo.org/sign-in"
               target="_blank"
             >
-              Sign In
+              Console
             </Link>
           </div>
         </div>
@@ -218,6 +245,27 @@ export default function Navbar(): ReactNode {
                     Cheat Sheet
                   </a>
                 </div>
+
+                {/* AI Section */}
+                <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>AI</div>
+
+                  <Link
+                    to="/docs/build/building-with-ai/dimo-mcp-server"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    DIMO MCP Server
+                  </Link>
+                  <Link
+                    to="/docs/build/building-with-ai/developer-kit"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    AI App Builder
+                  </Link>
+                </div>
+
 
                 {/* Tools Section */}
                 <div className={styles.mobileMenuSection}>

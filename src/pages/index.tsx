@@ -109,6 +109,42 @@ function CustomNavbar() {
             )}
           </div>
 
+          {/* AI Dropdown */}
+          <div
+            className={`${styles.navItem} ${styles.dropdownContainer}`}
+            onMouseEnter={() => handleDropdownEnter('ai')}
+            onMouseLeave={handleDropdownLeave}
+          >
+            <div className={styles.dropdownTrigger}>
+              <span>AI</span>
+              <img
+                alt=""
+                src={imgDropdownArrow}
+                className={`${styles.dropdownIcon} ${
+                  activeDropdown === 'ai' ? styles.rotated : ''
+                }`}
+              />
+            </div>
+            {activeDropdown === 'ai' && (
+              <div className={styles.dropdownMenu}>
+                <a
+                  href="/docs/category/building-with-ai"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  DIMO MCP Server
+                </a>
+                <a
+                  href="/docs/category/building-with-ai"
+                  className={styles.dropdownItem}
+                >
+                  AI App Builder
+                </a>
+              </div>
+            )}
+          </div>
+
+
           {/* Tools Dropdown */}
           <div
             className={`${styles.navItem} ${styles.dropdownContainer}`}
@@ -138,13 +174,6 @@ function CustomNavbar() {
                   className={styles.dropdownItem}
                 >
                   Low Code
-                </a>
-                <a
-                  href="https://github.com/DIMO-Network/dimo-developer-kit"
-                  className={styles.dropdownItem}
-                  target="blank"
-                >
-                  AI Examples
                 </a>
               </div>
             )}
@@ -183,7 +212,7 @@ function CustomNavbar() {
               to="https://console.dimo.org/sign-in"
               target="_blank"
             >
-              Sign In
+              Console
             </Link>
           </div>
         </div>
@@ -297,7 +326,7 @@ function CustomNavbar() {
                     target="_blank"
                     onClick={closeMobileMenu}
                   >
-                    Sign in
+                    Console
                   </Link>
                 </div>
               </div>
@@ -351,7 +380,7 @@ function HeroSection() {
               className={styles.signInButton}
               to="https://console.dimo.org/sign-in"
             >
-              Sign In
+              Console
             </Link>
             <Link className={styles.docsButton} to="/docs">
               Read The Docs

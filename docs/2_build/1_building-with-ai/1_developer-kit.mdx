@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 import Stepper, { Step } from '@site/src/components/Stepper';
@@ -11,8 +11,8 @@ import GitHubButton from "react-github-btn";
 
 # Developer Kit
 
-## Using Client & Server SDKs Together
-[DIMO Developer Kit (DDK)](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) is a boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
+## AI App Builder
+[DIMO Developer Kit (DDK)](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) is an AI Agent-powered boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
 both the [DIMO Connect Client SDK](/docs/build/building-with-tools/client-sdk-dimo-connect) and the [Server SDK](/docs/build/building-with-tools/server-sdk) in Typescript.
 Deploying an app literally takes you less than **60 seconds**.
 
@@ -31,6 +31,16 @@ Deploying an app literally takes you less than **60 seconds**.
 <Stepper>
   <Step title="Remix the App">
 		Powered by Replit, you can either [remix the app on Replit](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) as shown here or [fork the GitHub repository](https://github.com/DIMO-Network/dimo-developer-kit) directly.
+		<GitHubButton
+			href="https://github.com/dimo-network/dimo-developer-kit"
+			data-color-scheme="no-preference: light; light: light; dark: dark;"
+			data-icon="github"
+			data-size="large"
+			data-show-count="false"
+			aria-label="Star dimo-network/dimo-developer-kit on GitHub"
+		>
+			DIMO Developer Kit
+		</GitHubButton>
 		<ImageTooltips
       src="/img/ddk.png"
       alt="DIMO Developer Kit"
@@ -49,12 +59,15 @@ Deploying an app literally takes you less than **60 seconds**.
     />
 	</Step>
 
-  <Step title="Update Secrets on the App">
+  	<Step title="Update Secrets on the App">
 		You will need to update the secrets required on the Developer Kit boilerplate. 
 		You can find these keys in the [Developer Console](https://console.dimo.org):
 		- Client ID: `DIMO_CLIENT_ID` & `VITE_DIMO_CLIENT_ID`
 		- Redirect URI: `DIMO_REDIRECT_URI` & `VITE_DIMO_REDIRECT_URI`
 		- API Key: `DIMO_API_KEY`
+	</Step>
+	<Step title="Build with AI">
+		Using the Replit agent, you can build with the AI's assistance. You can manually update the code as needed.
 	</Step>
 	<Step title="Preview & Deploy">
 		Once secrets are updated, simply restart your app and you're ready to deploy your first DIMO app.
