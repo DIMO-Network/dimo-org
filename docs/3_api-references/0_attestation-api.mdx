@@ -10,6 +10,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Attestation API
+Generate verifiable proof about a vehicle's data.
 
 <TwoColumnLayout
   leftColumn={
@@ -26,9 +27,24 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
         endpoints={[
           {
             method: 'POST',
-            path: '/v1/vc/vin/:tokenId',
+            path: '/v2/attestation/vin/:tokenId',
             id: 'vin-vc'
           },
+          {
+            method: 'POST',
+            path: '/v2/attestation/odometer-statement/:tokenId',
+            id: 'odometer-vc'
+          },
+          {
+            method: 'POST',
+            path: '/v2/attestation/vehicle-health/:tokenId',
+            id: 'health-vc'
+          },
+          {
+            method: 'POST',
+            path: '/v2/attestation/vehicle-position/:tokenId',
+            id: 'position-vc'
+          }
         ]}
       />
     </div>
@@ -66,7 +82,7 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
     <div>
       <ApiCodeBlock
         requestType="POST"
-        path="/v1/vc/vin/:tokenId"
+        path="/v2/attestation/vin/:tokenId"
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
@@ -100,6 +116,223 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
     "vcUrl": "https://telemetry-api.dimo.zone/query",
     "vcQuery": "query {vinVCLatest(tokenId: <TOKEN_ID>) {rawVC}}",
     "message": "VC generated successfully. Retrieve using the provided GQL URL and query parameter."
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Create a vehicle odometer statement VC</h2>
+      Generates the odometer statement VC for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired VC is found, returns the VC. After
+      you've obtained the <code>rawVC</code> from the response, you can use it to perform
+      queries on the Telemetry API, such as getting the odometer of a vehicle.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "vehicleJwt",
+            type: "string",
+            required: true,
+            description: "A valid JWT token that represents the vehicle's authentication credentials. This token must be obtained through the DIMO authentication flow."
+          },
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The unique identifier of the vehicle token. This is provided in the URL path."
+          },
+          {
+            name: "timestamp",
+            type: "time",
+            required: false,
+            description: "Optional timestamp."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v2/attestation/odometer-statement/:tokenId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vinVc = await dimo.attestation.createOdometerStatementVC({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    timestamp: '2023-01-01T00:00:00Z' // Optional
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `coming soon`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `coming soon`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  "message": "VC generated successfully, retrieve using the provided telemetry-api."
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Create a vehicle health VC</h2>
+      Generates the vehicle health VC for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired VC is found, returns the VC. After
+      you've obtained the <code>rawVC</code> from the response, you can use it to perform
+      queries on the Telemetry API, such as getting the health status of a vehicle.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "vehicleJwt",
+            type: "string",
+            required: true,
+            description: "A valid JWT token that represents the vehicle's authentication credentials. This token must be obtained through the DIMO authentication flow."
+          },
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The unique identifier of the vehicle token. This is provided in the URL path."
+          },
+          {
+            name: "startTime",
+            type: "time",
+            required: true,
+            description: "The start time of the vehicle health report."
+          },
+          {
+            name: "endTime",
+            type: "time",
+            required: true,
+            description: "The end time of the vehicle health report."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v2/attestation/vehicle-health/:tokenId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vinVc = await dimo.attestation.createVehicleHealthVc({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    startTime: '2023-01-01T00:00:00Z',
+    endTime: '2023-01-15T00:00:00Z'
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `coming soon`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `coming soon`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  "message": "VC generated successfully, retrieve using the provided telemetry-api."
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Create a vehicle position VC</h2>
+      Generates the vehicle position VC for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired VC is found, returns the VC. After
+      you've obtained the <code>rawVC</code> from the response, you can use it to perform
+      queries on the Telemetry API, such as getting the position of a vehicle.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "vehicleJwt",
+            type: "string",
+            required: true,
+            description: "A valid JWT token that represents the vehicle's authentication credentials. This token must be obtained through the DIMO authentication flow."
+          },
+          {
+            name: "tokenId",
+            type: "integer",
+            required: true,
+            description: "The unique identifier of the vehicle token. This is provided in the URL path."
+          },
+          {
+            name: "timestamp",
+            type: "time",
+            required: true,
+            description: "The time of the vehicle position."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/v2/attestation/vehicle-position/:tokenId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const vinVc = await dimo.attestation.createVehiclePositionVc({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    timestamp: '2023-01-01T00:00:00Z'
+  })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `coming soon`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `coming soon`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  "message": "VC generated successfully, retrieve using the provided telemetry-api."
 }`}
       />
     </div>
