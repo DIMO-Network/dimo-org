@@ -106,7 +106,7 @@ export default function Navbar(): ReactNode {
             onMouseLeave={handleDropdownLeave}
           >
             <div className={styles.dropdownTrigger}>
-              <span>AI</span>
+              <span>AI Use Case</span>
               <img
                 alt=""
                 src={imgDropdownArrow}
@@ -129,6 +129,15 @@ export default function Navbar(): ReactNode {
                 >
                   AI App Builder
                 </Link>
+                <a
+                  href="https://dimo.co"
+                  className={styles.dropdownItem}
+                  aria-label="DIMO Mobile"
+                  target="blank"
+                  onClick={closeMobileMenu}
+                >
+                  DIMO Mobile
+                </a>
               </div>
             )}
           </div>
@@ -248,7 +257,7 @@ export default function Navbar(): ReactNode {
 
                 {/* AI Section */}
                 <div className={styles.mobileMenuSection}>
-                  <div className={styles.mobileMenuSectionTitle}>AI</div>
+                  <div className={styles.mobileMenuSectionTitle}>AI Use Case</div>
 
                   <Link
                     to="/docs/build/building-with-ai/dimo-mcp-server"
@@ -264,6 +273,15 @@ export default function Navbar(): ReactNode {
                   >
                     AI App Builder
                   </Link>
+                  <a
+                    href="https://dimo.co"
+                    className={styles.mobileMenuItem}
+                    aria-label="DIMO Mobile"
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    DIMO Mobile
+                  </a>
                 </div>
 
 
@@ -284,14 +302,6 @@ export default function Navbar(): ReactNode {
                   >
                     Low Code
                   </Link>
-                  <a
-                    href="https://github.com/DIMO-Network/dimo-developer-kit"
-                    className={styles.mobileMenuItem}
-                    target="blank"
-                    onClick={closeMobileMenu}
-                  >
-                    AI Examples
-                  </a>
                 </div>
 
                 {/* Community */}

@@ -116,7 +116,7 @@ function CustomNavbar() {
             onMouseLeave={handleDropdownLeave}
           >
             <div className={styles.dropdownTrigger}>
-              <span>AI</span>
+              <span>AI Use Case</span>
               <img
                 alt=""
                 src={imgDropdownArrow}
@@ -140,6 +140,13 @@ function CustomNavbar() {
                 >
                   AI App Builder
                 </a>
+                <Link
+                  href="https://dimo.co"
+                  className={styles.dropdownItem}
+                  target="blank"
+                >
+                  DIMO Mobile
+                </Link>
               </div>
             )}
           </div>
