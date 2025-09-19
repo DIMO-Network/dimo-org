@@ -1,6 +1,7 @@
 import React, { type ReactNode, useState } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
+import { LINKS } from '../../links';
 
 // Asset imports - descriptive names
 const imgLogoDimo = '/img/dimo-build-logo.svg';
@@ -78,18 +79,18 @@ export default function Navbar(): ReactNode {
             </div>
             {activeDropdown === 'learn' && (
               <div className={styles.dropdownMenu}>
-                <Link to="/docs" className={styles.dropdownItem}>
+                <Link to={LINKS.docs.base} className={styles.dropdownItem}>
                   Read
                 </Link>
                 <a
-                  href="https://youtu.be/nktm5m9LhIU"
+                  href={LINKS.external.dimoUniversity}
                   className={styles.dropdownItem}
                   target="blank"
                 >
                   Watch
                 </a>
                 <a
-                  href="/img/cheat-sheet.png"
+                  href={LINKS.docs.cheatSheet}
                   className={styles.dropdownItem}
                   target="blank"
                 >
@@ -118,19 +119,19 @@ export default function Navbar(): ReactNode {
             {activeDropdown === 'ai' && (
               <div className={styles.dropdownMenu}>
                 <Link
-                  to="/docs/build/building-with-ai/dimo-mcp-server"
+                  to={LINKS.docs.dimoMcpServer}
                   className={styles.dropdownItem}
                 >
                   DIMO MCP Server
                 </Link>
                 <Link
-                  to="/docs/build/building-with-ai/developer-kit"
+                  to={LINKS.docs.aiAppBuilder}
                   className={styles.dropdownItem}
                 >
                   AI App Builder
                 </Link>
                 <a
-                  href="https://dimo.co"
+                  href={LINKS.external.dimoMobile}
                   className={styles.dropdownItem}
                   aria-label="DIMO Mobile"
                   target="blank"
@@ -161,13 +162,13 @@ export default function Navbar(): ReactNode {
             {activeDropdown === 'tools' && (
               <div className={styles.dropdownMenu}>
                 <Link
-                  to="/docs/category/building-with-tools"
+                  to={LINKS.docs.developerSdk}
                   className={styles.dropdownItem}
                 >
                   Developer SDKs
                 </Link>
                 <Link
-                  to="/docs/build/building-with-tools/low-code-integrations"
+                  to={LINKS.docs.lowCodeIntegrations}
                   className={styles.dropdownItem}
                 >
                   Low Code
@@ -178,7 +179,7 @@ export default function Navbar(): ReactNode {
 
           <div className={styles.navItem}>
             <a
-              href="https://discord.com/invite/dimonetwork"
+              href={LINKS.external.discord}
               className={styles.navItem}
               target="blank"
             >
@@ -187,7 +188,7 @@ export default function Navbar(): ReactNode {
           </div>
           <div className={styles.navItem}>
             <a
-              href="https://github.com/DIMO-Network"
+              href={LINKS.external.github}
               className={styles.navIcon}
               aria-label="GitHub"
               target="blank"
@@ -195,7 +196,7 @@ export default function Navbar(): ReactNode {
               <img alt="GitHub" src={imgGithub} />
             </a>
             <a
-              href="https://dune.com/dimo_network/dimo-protocol"
+              href={LINKS.external.dune}
               className={styles.navIcon}
               aria-label="Dune"
               target="blank"
@@ -206,7 +207,7 @@ export default function Navbar(): ReactNode {
           <div className={styles.navItem}>
             <Link
               className={styles.signInButtonNav}
-              to="https://console.dimo.org/sign-in"
+              to={LINKS.external.console}
               target="_blank"
             >
               Console
@@ -231,14 +232,14 @@ export default function Navbar(): ReactNode {
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Learn</div>
                   <Link
-                    to="/docs"
+                    to={LINKS.docs.base}
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
                     Read
                   </Link>
                   <a
-                    href="https://youtu.be/nktm5m9LhIU"
+                    href={LINKS.external.dimoUniversity}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -246,7 +247,7 @@ export default function Navbar(): ReactNode {
                     Watch
                   </a>
                   <a
-                    href="/img/cheat-sheet.png"
+                    href={LINKS.docs.cheatSheet}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -260,21 +261,21 @@ export default function Navbar(): ReactNode {
                   <div className={styles.mobileMenuSectionTitle}>AI Use Case</div>
 
                   <Link
-                    to="/docs/build/building-with-ai/dimo-mcp-server"
+                    to={LINKS.docs.dimoMcpServer}
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
                     DIMO MCP Server
                   </Link>
                   <Link
-                    to="/docs/build/building-with-ai/developer-kit"
+                    to={LINKS.docs.aiAppBuilder}
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
                     AI App Builder
                   </Link>
                   <a
-                    href="https://dimo.co"
+                    href={LINKS.external.dimoMobile}
                     className={styles.mobileMenuItem}
                     aria-label="DIMO Mobile"
                     target="blank"
@@ -289,14 +290,14 @@ export default function Navbar(): ReactNode {
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Tools</div>
                   <Link
-                    to="/docs/category/building-with-tools"
+                    to={LINKS.docs.developerSdk}
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
                     Developer SDKs
                   </Link>
                   <Link
-                    to="/docs/build/building-with-tools/low-code-integrations"
+                    to={LINKS.docs.lowCodeIntegrations}
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
@@ -307,7 +308,7 @@ export default function Navbar(): ReactNode {
                 {/* Community */}
                 <div className={styles.mobileMenuSection}>
                   <a
-                    href="https://discord.com/invite/dimonetwork"
+                    href={LINKS.external.discord}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -319,7 +320,7 @@ export default function Navbar(): ReactNode {
                 {/* GitHub and Sign In */}
                 <div className={styles.mobileMenuActions}>
                   <a
-                    href="https://github.com/DIMO-Network"
+                    href={LINKS.external.github}
                     className={styles.mobileMenuGitHub}
                     aria-label="GitHub"
                     target="blank"
@@ -329,7 +330,7 @@ export default function Navbar(): ReactNode {
                     GitHub
                   </a>
                   <a
-                    href="https://dune.com/dimo_network/dimo-protocol"
+                    href={LINKS.external.dune}
                     className={styles.mobileMenuGitHub}
                     aria-label="Dune"
                     target="blank"
@@ -340,11 +341,11 @@ export default function Navbar(): ReactNode {
                   </a>
                   <Link
                     className={styles.mobileMenuSignIn}
-                    to="https://console.dimo.org/sign-in"
+                    to={LINKS.external.console}
                     target="_blank"
                     onClick={closeMobileMenu}
                   >
-                    Sign in
+                    Console
                   </Link>
                 </div>
               </div>

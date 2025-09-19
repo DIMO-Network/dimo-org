@@ -1,6 +1,7 @@
 import Link from '@docusaurus/Link';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
+import { LINKS } from '../links';
 
 import styles from './index.module.css';
 
@@ -92,14 +93,14 @@ function CustomNavbar() {
                   Read
                 </a>
                 <a
-                  href="https://youtu.be/nktm5m9LhIU"
+                  href={LINKS.external.dimoUniversity}
                   className={styles.dropdownItem}
                   target="blank"
                 >
                   Watch
                 </a>
                 <a
-                  href="/img/cheat-sheet.png"
+                  href={LINKS.docs.cheatSheet}
                   className={styles.dropdownItem}
                   target="blank"
                 >
@@ -128,20 +129,20 @@ function CustomNavbar() {
             {activeDropdown === 'ai' && (
               <div className={styles.dropdownMenu}>
                 <a
-                  href="/docs/category/building-with-ai"
+                  href={LINKS.docs.dimoMcpServer}
                   className={styles.dropdownItem}
                   target="blank"
                 >
                   DIMO MCP Server
                 </a>
                 <a
-                  href="/docs/category/building-with-ai"
+                  href={LINKS.docs.aiAppBuilder}
                   className={styles.dropdownItem}
                 >
                   AI App Builder
                 </a>
                 <Link
-                  href="https://dimo.co"
+                  href={LINKS.external.dimoMobile}
                   className={styles.dropdownItem}
                   target="blank"
                 >
@@ -171,13 +172,13 @@ function CustomNavbar() {
             {activeDropdown === 'tools' && (
               <div className={styles.dropdownMenu}>
                 <a
-                  href="/docs/category/building-with-tools"
+                  href={LINKS.docs.developerSdk}
                   className={styles.dropdownItem}
                 >
                   Developer SDKs
                 </a>
                 <a
-                  href="/docs/build/building-with-tools/low-code-integrations"
+                  href={LINKS.docs.lowCodeIntegrations}
                   className={styles.dropdownItem}
                 >
                   Low Code
@@ -188,7 +189,7 @@ function CustomNavbar() {
 
           <div className={styles.navItem}>
             <Link
-              href="https://discord.com/invite/dimonetwork"
+              href={LINKS.external.discord}
               className={styles.navItem}
               target="blank"
             >
@@ -197,7 +198,7 @@ function CustomNavbar() {
           </div>
           <div className={styles.navItem}>
             <a
-              href="https://github.com/DIMO-Network"
+              href={LINKS.external.github}
               className={styles.navIcon}
               aria-label="GitHub"
               target="blank"
@@ -205,7 +206,7 @@ function CustomNavbar() {
               <img alt="GitHub" src={imgGithub} />
             </a>
             <a
-              href="https://dune.com/dimo_network/dimo-protocol"
+              href={LINKS.external.dune}
               className={styles.navIcon}
               aria-label="Dune"
               target="blank"
@@ -216,7 +217,7 @@ function CustomNavbar() {
           <div className={styles.navItem}>
             <Link
               className={styles.signInButtonNav}
-              to="https://console.dimo.org/sign-in"
+              to={LINKS.external.console}
               target="_blank"
             >
               Console
@@ -239,7 +240,7 @@ function CustomNavbar() {
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Learn</div>
                   <a
-                    href="https://docs.dimo.org/developer-platform"
+                    href={LINKS.docs.base}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -247,7 +248,7 @@ function CustomNavbar() {
                     Read
                   </a>
                   <a
-                    href="https://youtu.be/nktm5m9LhIU"
+                    href={LINKS.external.dimoUniversity}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -255,7 +256,7 @@ function CustomNavbar() {
                     Watch
                   </a>
                   <a
-                    href="https://1352636538-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fxj7jMSjVBtR92AFN0SNC%2Fuploads%2FDcDoks4W5cbWrkVG6G37%2FDIMO%20Cheat%20Sheet.png?alt=media&token=d8028035-d25f-4709-b9ca-30a650602106"
+                    href={LINKS.docs.cheatSheet}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -264,11 +265,40 @@ function CustomNavbar() {
                   </a>
                 </div>
 
+
+                {/* AI Section */}
+                <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>AI Use Case</div>
+                  <a
+                    href={LINKS.docs.dimoMcpServer}
+                    className={styles.mobileMenuItem}
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    DIMO MCP Server
+                  </a>
+                  <a
+                    href={LINKS.docs.aiAppBuilder}
+                    className={styles.mobileMenuItem}
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    AI App Builder
+                  </a>
+                  <a href={LINKS.external.dimoMobile}
+                    className={styles.mobileMenuItem}
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    DIMO Mobile
+                  </a>
+                </div>
+
                 {/* Tools Section */}
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Tools</div>
                   <a
-                    href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks"
+                    href={LINKS.docs.developerSdk}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -276,27 +306,19 @@ function CustomNavbar() {
                     Developer SDKs
                   </a>
                   <a
-                    href="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/low-code-tools"
+                    href={LINKS.docs.lowCodeIntegrations}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
                   >
                     Low Code
                   </a>
-                  <a
-                    href="https://github.com/DIMO-Network/dimo-developer-kit"
-                    className={styles.mobileMenuItem}
-                    target="blank"
-                    onClick={closeMobileMenu}
-                  >
-                    AI Examples
-                  </a>
                 </div>
 
                 {/* Community */}
                 <div className={styles.mobileMenuSection}>
                   <Link
-                    href="https://discord.com/invite/dimonetwork"
+                    href={LINKS.external.discord}
                     className={styles.mobileMenuItem}
                     target="blank"
                     onClick={closeMobileMenu}
@@ -308,7 +330,7 @@ function CustomNavbar() {
                 {/* GitHub and Sign In */}
                 <div className={styles.mobileMenuActions}>
                   <a
-                    href="https://github.com/DIMO-Network"
+                    href={LINKS.external.github}
                     className={styles.mobileMenuGitHub}
                     aria-label="GitHub"
                     target="blank"
@@ -318,7 +340,7 @@ function CustomNavbar() {
                     GitHub
                   </a>
                   <a
-                    href="https://dune.com/dimo_network/dimo-protocol"
+                    href={LINKS.external.dune}
                     className={styles.mobileMenuGitHub}
                     aria-label="Dune"
                     target="blank"
@@ -329,7 +351,7 @@ function CustomNavbar() {
                   </a>
                   <Link
                     className={styles.mobileMenuSignIn}
-                    to="https://console.dimo.org/sign-in"
+                    to={LINKS.external.console}
                     target="_blank"
                     onClick={closeMobileMenu}
                   >
@@ -542,7 +564,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks">
+                <Link to="/docs/category/building-with-tools">
                   Developer SDKs
                 </Link>
               </li>
