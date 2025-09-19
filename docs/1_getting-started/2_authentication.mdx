@@ -30,7 +30,7 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
   <Step title="Getting Your Developer JWT">
     There are two ways that this can be done in the [Developer Console](https://console.dimo.org): <br />
       - Use the system generated **Developer JWT** without using an API key <br />
-      - Generate a new **Developer JWT** using an API key
+      - Generate a new **Developer JWT** using an API key, learn more about [fetching a Developer JWT using server SDKs](/docs/build/building-with-tools/server-sdk#how-it-works).
   </Step>
   <Step title="Using Your Developer JWT">
     Test using your **Developer JWT** by interacting with one of our APIs that's secured by a **Developer JWT**, 
@@ -46,6 +46,10 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
   </Step>
   <Step title="Fetching a Vehicle JWT">
     When you have a vehicle available, attempt to get a **Vehicle JWT** by sending a request to the [Token Exchange API](/docs/api-references/token-exchange-api).
+    :::warning Developer Notes
+    You will need to have a vehicle shared with you in order to fetch a Vehicle JWT. 
+    Learn more about vehicle sharing using [DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect).
+    :::
     <details>
       <summary>Try it out</summary>
       <ApiTester

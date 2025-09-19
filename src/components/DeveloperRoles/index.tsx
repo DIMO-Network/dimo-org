@@ -71,7 +71,7 @@ const DeveloperRoles: React.FC<DeveloperRolesProps> = () => {
       ],
       badges: [
         { label: 'Advanced', style: getBadgeStyle('difficulty', 'Advanced') },
-        { label: 'Available', style: getBadgeStyle('status', 'Available') }
+        { label: 'Alpha', style: getBadgeStyle('status', 'Alpha') }
       ],
       actions: [
         { label: 'Quick Start', href: '/docs/introduction/where-can-you-start#storage-nodes', variant: 'primary' },

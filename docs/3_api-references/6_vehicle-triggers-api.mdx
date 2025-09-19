@@ -8,6 +8,7 @@ import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
 import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import Link from '@docusaurus/Link';
 
 # Vehicle Triggers API
 ## Commonly known as webhooks
@@ -200,7 +201,19 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             name: "condition",
             type: "string",
             required: true,
-            description: "The CEL expression evaluated against the metric to decide when to fire. You can use the following condition statements: >=, <=, >, <, ==. You should always include value. In the example above, we're checking when the speed (value) is greater than 55 kph. Optionally, you can also include a previousValue to perform a check to see if things have changed, i.e. value > 55 && value != previousValue"
+            description: "The CEL expression evaluated against the metric to decide when to fire. You can use the following condition statements: >=, <=, >, <, ==. You should always include value. In the example above, we're checking when the speed (value) is greater than 55 kph. Optionally, you can also include a previousValue to perform a check to see if things have changed, i.e. value > 55 && value != previousValue",
+            expandable: {
+              summary: "CEL Conditions",
+              content: (
+                <div>
+                  To learn more about how CEL conditions work, check out{" "}
+                  <Link to="https://github.com/DIMO-Network/vehicle-triggers-api?tab=readme-ov-file#cel-conditions">
+                    this README
+                  </Link>
+                </div>
+              ),
+              defaultOpen: false
+            }
           },
           {
             name: "coolDownPeriod",

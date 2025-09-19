@@ -17,7 +17,7 @@ Generate verifiable proof about a vehicle's data.
     <div>
       <h2>Overview</h2>
 
-    The DIMO Attestation API provides cryptographic, on-chain attestations for vehicle data and identity verification. This API enables developers to generate verifiable VIN credentials.
+    The DIMO Attestation API provides cryptographic, on-chain attestations for vehicle data and identity verification. This API enables developers to generate verifiable attestations.
     </div>
   }
   rightColumn={
@@ -54,9 +54,9 @@ Generate verifiable proof about a vehicle's data.
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Create a vehicle VIN VC</h2>
-      Generates the VIN VC for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired VC is found, returns the VC. After
+      <h2>Create a vehicle VIN attestation</h2>
+      Generates the VIN attestation for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
       queries on the Telemetry API, such as getting the VIN of a vehicle.
 
@@ -126,8 +126,8 @@ Generate verifiable proof about a vehicle's data.
   leftColumn={
     <div>
       <h2>Create a vehicle odometer statement VC</h2>
-      Generates the odometer statement VC for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired VC is found, returns the VC. After
+      Generates the odometer statement attestation for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
       queries on the Telemetry API, such as getting the odometer of a vehicle.
 
@@ -195,9 +195,9 @@ Generate verifiable proof about a vehicle's data.
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Create a vehicle health VC</h2>
-      Generates the vehicle health VC for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired VC is found, returns the VC. After
+      <h2>Create a vehicle health attestation</h2>
+      Generates the vehicle health attestation for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
       queries on the Telemetry API, such as getting the health status of a vehicle.
 
@@ -272,9 +272,9 @@ Generate verifiable proof about a vehicle's data.
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Create a vehicle position VC</h2>
-      Generates the vehicle position VC for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired VC is found, returns the VC. After
+      <h2>Create a vehicle position attestation</h2>
+      Generates the vehicle position attestation for a given vehicle if it has never been created, or
+      if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
       queries on the Telemetry API, such as getting the position of a vehicle.
 
