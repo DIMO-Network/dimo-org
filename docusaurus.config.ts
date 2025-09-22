@@ -65,6 +65,10 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  clientModules: [
+    require.resolve('./src/clientModules/analytics.ts'),
+  ]
 };
 
 export default config;
