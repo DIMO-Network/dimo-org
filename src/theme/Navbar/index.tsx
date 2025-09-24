@@ -176,7 +176,15 @@ export default function Navbar(): ReactNode {
               </div>
             )}
           </div>
-
+          <div className={styles.navItem}>
+            <a
+              href={LINKS.external.status}
+              className={styles.navItem}
+              target="blank"
+            >
+              Status
+            </a>
+          </div>
           <div className={styles.navItem}>
             <a
               href={LINKS.external.discord}
@@ -304,7 +312,17 @@ export default function Navbar(): ReactNode {
                     Low Code
                   </Link>
                 </div>
-
+                {/* Status */}
+                <div className={styles.mobileMenuSection}>
+                  <a
+                    href={LINKS.external.status}
+                    className={styles.mobileMenuItem}
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    Status
+                  </a>
+                </div>
                 {/* Community */}
                 <div className={styles.mobileMenuSection}>
                   <a

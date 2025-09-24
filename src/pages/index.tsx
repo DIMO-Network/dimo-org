@@ -186,7 +186,15 @@ function CustomNavbar() {
               </div>
             )}
           </div>
-
+          <div className={styles.navItem}>
+            <Link
+              href={LINKS.external.status}
+              className={styles.navItem}
+              target="blank"
+            >
+              Status
+            </Link>
+          </div>
           <div className={styles.navItem}>
             <Link
               href={LINKS.external.discord}
@@ -313,6 +321,18 @@ function CustomNavbar() {
                   >
                     Low Code
                   </a>
+                </div>
+
+                {/* Status */}
+                <div className={styles.mobileMenuSection}>
+                  <Link
+                    href={LINKS.external.status}
+                    className={styles.mobileMenuItem}
+                    target="blank"
+                    onClick={closeMobileMenu}
+                  >
+                    Status
+                  </Link>
                 </div>
 
                 {/* Community */}
