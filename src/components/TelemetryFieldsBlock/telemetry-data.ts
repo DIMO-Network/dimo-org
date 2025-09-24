@@ -53,6 +53,14 @@ export const vehicleInfoFields: TelemetryField[] = [
 
 export const locationFields: TelemetryField[] = [
   {
+    signal: 'currentLocationCoordinates',
+    commonName: 'Coordinates',
+    aggregationType: 'LocationAggregation!',
+    units: 'WGS 84 coordinates',
+    description:
+      'Current location of the vehicle in WGS 84 coordinates, as measured at the position of GNSS receiver antenna.',
+  },
+  {
     signal: 'currentLocationLatitude',
     commonName: 'Latitude Location',
     aggregationType: 'FloatAggregation!',

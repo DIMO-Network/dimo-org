@@ -10,6 +10,7 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 import GraphQLBlock from '@site/src/components/GraphQLBlock';
 import TelemetryFieldsBlock from '@site/src/components/TelemetryFieldsBlock';
+import MapWidget from '@site/src/components/MapWidget';
 import { allTelemetryData } from '@site/src/components/TelemetryFieldsBlock/telemetry-data';
 
 # Vehicle Signals
@@ -149,6 +150,15 @@ query GetLatestSignals{
   fields={allTelemetryData.location.fields}
   hint={allTelemetryData.location.hint}
 />
+<details>
+  <summary> Try it out </summary>
+    <MapWidget 
+      title="In Circle Filtering"
+      initialCenter={[40.7128, -74.0060]} 
+      initialRadius={10} 
+      initialZoom={10} 
+    />
+</details>
 
 <TelemetryFieldsBlock
   title="Battery & Charging"
