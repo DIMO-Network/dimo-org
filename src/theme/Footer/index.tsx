@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
+import { LINKS } from '../../links';
 
 const imgGithub = '/img/icon-github.svg';
 
@@ -14,15 +15,15 @@ function Footer(): ReactNode {
             <h4 className={styles.footerColumnTitle}>Learn More</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link to="/docs">Docs</Link>
+                <Link to={LINKS.docs.base}>Developer Docs</Link>
               </li>
               <li>
-                <Link to="https://dimo.co/blogs/the-pit-stop/" target="_blank">
+                <Link to={LINKS.external.blogs} target="_blank">
                   Developer Blog
                 </Link>
               </li>
               <li>
-                <Link to="https://docs.dimo.org/developer-platform/developer-guide/developer-suite/dimo-developer-sdks">
+                <Link to={LINKS.docs.developerSdk}>
                   Developer SDKs
                 </Link>
               </li>
@@ -34,13 +35,13 @@ function Footer(): ReactNode {
             <h4 className={styles.footerColumnTitle}>Resources</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link to="https://console.dimo.org/sign-in" target="_blank">
+                <Link to={LINKS.external.console} target="_blank">
                   DIMO Developer Console
                 </Link>
               </li>
               <li>
                 <Link
-                  to="https://www.youtube.com/watch?v=nktm5m9LhIU"
+                  to={LINKS.external.dimoUniversity}
                   target="_blank"
                 >
                   DIMO University
@@ -48,7 +49,7 @@ function Footer(): ReactNode {
               </li>
               <li>
                 <Link
-                  to="https://chatgpt.com/g/g-68b72a6088d08191b80a6bd57c0fae3f-dimo-build-gpt"
+                  to={LINKS.external.chatgpt}
                   target="_blank"
                 >
                   Get Support

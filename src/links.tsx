@@ -15,7 +15,9 @@ export const DOCS_LINKS = {
 // External links
 export const EXTERNAL_LINKS = {
   console: 'https://console.dimo.org/sign-in',
+  chatgpt: 'https://chatgpt.com/g/g-68b72a6088d08191b80a6bd57c0fae3f-dimo-build-gpt',
   github: 'https://github.com/DIMO-Network',
+  blogs: 'https://dimo.co/blogs/the-pit-stop/',
   discord: 'https://discord.com/invite/dimonetwork',
   dimoUniversity: 'https://youtu.be/nktm5m9LhIU',
   dimoMobile: 'https://dimo.co',
