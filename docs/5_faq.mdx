@@ -1,0 +1,42 @@
+---
+sidebar_position: 6
+---
+
+import Stepper, { Step } from '@site/src/components/Stepper';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
+import CustomDetails from '@site/src/components/CustomDetails';
+
+# FAQs
+
+Here are our answers to some frequently asked questions:
+
+<CustomDetails summary="API">
+	<CustomDetails summary="What are the API rate limits?">
+		<p>Our universal API rate limit is enforced at 10 requests per second per API service per client host. 
+		DIMO does not send the number of remaining requests back in the HTTP headers.</p>
+	</CustomDetails>
+	<CustomDetails summary="What are the API response types?">
+		| Status Code | Status | Description |
+		|-------------|--------|-------------|
+		| `200` | OK | The request was successfully processed by DIMO. |
+		| `201` | Created | The request has been fulfilled and a new resource has been created. |
+		| `204` | No Content | The request has been accepted, but no content will be returned. |
+		| `400` | Bad Request | The request was not understood by the server. |
+		| `401` | Unauthorized | The request has not been completed because it lacks valid authentication credentials for the requested resource. |
+		| `403` | Forbidden | The server understands the request but refuses to authorize it. |
+		| `404` | Not Found | The requested resource was not found at the moment of the request. |
+		| `405` | Method Not Allowed | The requested method is not allowed by DIMO. |
+		| `409` | Resource Conflict | The requested resource could not be processed because of a conflict in the request. |
+		| `424` | Failed Dependency | The requested operation can not be performed because it depends on another action that had failed. |
+		| `500` | Internal Server Error | An internal error occurred in DIMO. |
+	</CustomDetails>
+</CustomDetails>
+
+<CustomDetails summary="Security">
+	<CustomDetails summary="Where can I find the public keys of DIMO?">
+		<p>We host our public keys [here](https://auth.dimo.zone/keys). 
+		Developers use this to validate that returned responses are indeed coming from DIMO.</p>
+	</CustomDetails>
+</CustomDetails>

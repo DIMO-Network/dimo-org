@@ -1,0 +1,116 @@
+/* Main container */
+.detailsBlock {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  background: var(--ifm-background-color);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.detailsBlock:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+/* Header/Toggle Button */
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: var(--ifm-background-surface-color);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  border-bottom: 1px solid transparent;
+}
+
+.header:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.header.open {
+  border-bottom-color: var(--ifm-color-emphasis-200);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 525;
+  color: var(--ifm-color-content);
+  font-family: var(--ifm-font-family-base);
+}
+
+.toggleIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--ifm-color-emphasis-100);
+  transition: all 0.2s ease;
+}
+
+.header:hover .toggleIcon {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.chevron {
+  color: var(--ifm-color-content-secondary);
+  transition: transform 0.2s ease;
+}
+
+.chevron.rotated {
+  transform: rotate(180deg);
+}
+
+/* Content container */
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.content.contentOpen {
+  max-height: 2000px; /* Large enough to accommodate content */
+}
+
+.contentInner {
+  padding: 1rem 1rem 1rem 1.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .detailsBlock {
+    margin: 1rem 0;
+    border-radius: 8px;
+  }
+
+  .header {
+    padding: 1rem 1.25rem;
+  }
+
+  .contentInner {
+    padding: 1rem 1rem 1rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .detailsBlock,
+  .header,
+  .toggleIcon,
+  .chevron,
+  .content {
+    transition: none;
+  }
+}
