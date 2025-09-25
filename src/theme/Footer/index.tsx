@@ -15,7 +15,9 @@ function Footer(): ReactNode {
             <h4 className={styles.footerColumnTitle}>Learn More</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link to={LINKS.docs.base}>Developer Docs</Link>
+                <Link to={LINKS.docs.base}>
+                  Developer Docs
+                </Link>
               </li>
               <li>
                 <Link to={LINKS.external.blogs} target="_blank">
