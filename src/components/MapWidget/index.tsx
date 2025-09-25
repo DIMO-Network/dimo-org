@@ -1,15 +1,18 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { MapContainer, TileLayer, Circle, Marker, Polygon, useMapEvents } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useState, useCallback, useEffect } from 'react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
-// Fix for default markers in React Leaflet
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
+// Fix for default markers in React Leaflet (will only run client-side)
+const fixLeafletIcons = () => {
+  if (typeof window !== 'undefined') {
+    const L = require('leaflet');
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    });
+  }
+};
 
 interface MapWidgetProps {
   title?: string;
@@ -36,20 +39,10 @@ interface PolygonData {
 type FilterMode = 'circle' | 'polygon';
 type InteractionMode = 'center' | 'radius' | 'polygon';
 
-const MapClickHandler: React.FC<{
-  onMapClick: (lat: number, lng: number) => void;
-}> = ({ onMapClick }) => {
-  useMapEvents({
-    click: (e) => {
-      onMapClick(e.latlng.lat, e.latlng.lng);
-    },
-  });
-  return null;
-};
-
-const MapWidget: React.FC<MapWidgetProps> = ({
+// Client-side only map component
+const MapComponent: React.FC<MapWidgetProps> = ({
   title = "Interactive Map Widget",
-  initialCenter = [36.1886316, -115.33711110133304], // Las Vegas coordinates
+  initialCenter = [36.1886316, -115.33711110133304],
   initialRadius = 10,
   initialZoom = 10,
 }) => {
@@ -58,15 +51,99 @@ const MapWidget: React.FC<MapWidgetProps> = ({
   const [polygonCoordinates, setPolygonCoordinates] = useState<[number, number][]>([]);
   const [filterMode, setFilterMode] = useState<FilterMode>('circle');
   const [interactionMode, setInteractionMode] = useState<InteractionMode>('center');
+  const [mapComponents, setMapComponents] = useState<any>(null);
+
+  // Load Leaflet components dynamically
+  useEffect(() => {
+    const loadMapComponents = async () => {
+      if (typeof window !== 'undefined') {
+        try {
+          // Import Leaflet and React Leaflet components
+          const L = await import('leaflet');
+          const { MapContainer, TileLayer, Circle, Marker, Polygon, useMapEvents } = await import('react-leaflet');
+          
+          // Import Leaflet CSS
+          await import('leaflet/dist/leaflet.css');
+          
+          // Fix Leaflet icons
+          fixLeafletIcons();
+          
+          // Force map to invalidate size after load and add resize listener
+          setTimeout(() => {
+            if (window.dispatchEvent) {
+              window.dispatchEvent(new Event('resize'));
+            }
+          }, 100);
+          
+          // Add additional invalidation for stubborn sizing issues
+          const handleResize = () => {
+            setTimeout(() => {
+              if (window.dispatchEvent) {
+                window.dispatchEvent(new Event('resize'));
+              }
+            }, 50);
+          };
+          
+          window.addEventListener('resize', handleResize);
+          
+          // Cleanup
+          return () => {
+            window.removeEventListener('resize', handleResize);
+          };
+
+          // Create MapClickHandler component
+          const MapClickHandler: React.FC<{
+            onMapClick: (lat: number, lng: number) => void;
+          }> = ({ onMapClick }) => {
+            const map = useMapEvents({
+              click: (e) => {
+                onMapClick(e.latlng.lat, e.latlng.lng);
+              },
+            });
+            
+            // Handle map sizing on mount
+            React.useEffect(() => {
+              if (map) {
+                setTimeout(() => {
+                  map.invalidateSize();
+                }, 100);
+                setTimeout(() => {
+                  map.invalidateSize();
+                }, 500);
+              }
+            }, [map]);
+            
+            return null;
+          };
+
+          setMapComponents({
+            MapContainer,
+            TileLayer,
+            Circle,
+            Marker,
+            Polygon,
+            MapClickHandler,
+            L
+          });
+        } catch (error) {
+          console.error('Failed to load map components:', error);
+        }
+      }
+    };
+
+    loadMapComponents();
+  }, []);
 
   const handleMapClick = useCallback((lat: number, lng: number) => {
     if (filterMode === 'circle') {
       if (interactionMode === 'radius') {
         // In radius mode, calculate distance from center
-        const centerLatLng = L.latLng(center[0], center[1]);
-        const clickLatLng = L.latLng(lat, lng);
-        const distance = centerLatLng.distanceTo(clickLatLng) / 1000; // Convert to kilometers
-        setRadius(Math.round(distance * 100) / 100); // Round to 2 decimal places
+        if (mapComponents?.L) {
+          const centerLatLng = mapComponents.L.latLng(center[0], center[1]);
+          const clickLatLng = mapComponents.L.latLng(lat, lng);
+          const distance = centerLatLng.distanceTo(clickLatLng) / 1000; // Convert to kilometers
+          setRadius(Math.round(distance * 100) / 100); // Round to 2 decimal places
+        }
       } else if (interactionMode === 'center') {
         // Normal mode: set center
         setCenter([lat, lng]);
@@ -75,7 +152,7 @@ const MapWidget: React.FC<MapWidgetProps> = ({
       // Add point to polygon
       setPolygonCoordinates(prev => [...prev, [lat, lng]]);
     }
-  }, [interactionMode, filterMode, center]);
+  }, [interactionMode, filterMode, center, mapComponents]);
 
   const handleRadiusInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value);
@@ -115,6 +192,33 @@ const MapWidget: React.FC<MapWidgetProps> = ({
       longitude: lng,
     })),
   };
+
+  // Show loading state while map components are loading
+  if (!mapComponents) {
+    return (
+      <div style={{ margin: '20px 0' }}>
+        <div style={{ marginBottom: '20px' }}>
+          <h3>{title}</h3>
+          <p>Loading map...</p>
+        </div>
+        <div style={{ 
+          height: '400px', 
+          width: '100%', 
+          marginBottom: '20px', 
+          border: '1px solid #ccc', 
+          borderRadius: '4px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#f5f5f5'
+        }}>
+          <div>Loading interactive map...</div>
+        </div>
+      </div>
+    );
+  }
+
+  const { MapContainer, TileLayer, Circle, Marker, Polygon, MapClickHandler } = mapComponents;
 
   return (
     <div style={{ margin: '20px 0' }}>
@@ -261,16 +365,27 @@ const MapWidget: React.FC<MapWidgetProps> = ({
         </div>
       </div>
       
-      <div style={{ height: '400px', width: '100%', marginBottom: '20px', border: '1px solid #ccc', borderRadius: '4px' }}>
-        <MapContainer
-          center={center}
-          zoom={initialZoom}
-          style={{ height: '100%', width: '100%' }}
-          scrollWheelZoom={true}
-        >
+      <div style={{ 
+        height: '400px', 
+        width: '100%', 
+        marginBottom: '20px', 
+        border: '1px solid #ccc', 
+        borderRadius: '4px',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{ height: '100%', width: '100%' }}>
+          <MapContainer
+            center={center}
+            zoom={initialZoom}
+            style={{ height: '100%', width: '100%', minHeight: '400px' }}
+            scrollWheelZoom={true}
+          >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            maxZoom={19}
+            minZoom={1}
           />
           
           <MapClickHandler onMapClick={handleMapClick} />
@@ -315,6 +430,7 @@ const MapWidget: React.FC<MapWidgetProps> = ({
             </>
           )}
         </MapContainer>
+        </div>
       </div>
       
       <div style={{ 
@@ -371,6 +487,35 @@ const MapWidget: React.FC<MapWidgetProps> = ({
         </ul>
       </div>
     </div>
+  );
+};
+
+// Main wrapper component that handles SSR
+const MapWidget: React.FC<MapWidgetProps> = (props) => {
+  return (
+    <BrowserOnly fallback={
+      <div style={{ margin: '20px 0' }}>
+        <div style={{ marginBottom: '20px' }}>
+          <h3>{props.title || "Interactive Map Widget"}</h3>
+          <p>Loading map components...</p>
+        </div>
+        <div style={{ 
+          height: '400px', 
+          width: '100%', 
+          marginBottom: '20px', 
+          border: '1px solid #ccc', 
+          borderRadius: '4px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#f5f5f5'
+        }}>
+          <div>Map will load on client-side...</div>
+        </div>
+      </div>
+    }>
+      {() => <MapComponent {...props} />}
+    </BrowserOnly>
   );
 };
 
