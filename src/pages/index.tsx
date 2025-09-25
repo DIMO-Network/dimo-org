@@ -394,30 +394,6 @@ function HeroSection() {
         <div className={styles.heroBackgroundImage}>
           <img alt="" src={imgHeroHighway} />
         </div>
-        <div className={styles.heroOverlay}>
-          <div className={styles.trustedByContent}>
-            <span className={styles.trustedByText}>TRUSTED BY</span>
-            <div className={styles.trustedByLogos}>
-              <img alt="Coinbase" src={imgLogoCoinbase} />
-              <img
-                alt="Polygon"
-                src={imgLogoPolygon}
-                className={styles.polygonLogo}
-              />
-              <img
-                id="Streamr"
-                alt="Streamr"
-                src={imgLogoStreamr}
-                className={styles.streamrLogo}
-              />
-              <img
-                alt="Staex"
-                src={imgLogoStaex}
-                className={styles.staexLogo}
-              />
-            </div>
-          </div>
-        </div>
       </div>
       <div className="container">
         <div className={styles.heroContent}>
