@@ -408,15 +408,34 @@ function HeroSection() {
               Read The Docs
             </Link>
           </div>
-          {/* Product Hunt Badge */}
-          <div className={styles.productHuntBadge}>
-            <a href="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo" target="_blank">
-              <img 
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1019734&theme=light&t=1758908398048" 
-                alt="DIMO - The&#0032;vehicle&#0032;data&#0032;platform&#0032;that&#0032;puts&#0032;privacy&#0032;first | Product Hunt" 
-                style={{width: '250px', height: '54px'}}
-              />
-            </a>
+          
+          {/* Badges Container */}
+          <div className={styles.badgesContainer}>
+            {/* Product Hunt Badge */}
+            <div className={styles.productHuntBadge}>
+              <a href="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo" target="_blank">
+                <img 
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1019734&theme=light&t=1758908398048" 
+                  alt="DIMO - The&#0032;vehicle&#0032;data&#0032;platform&#0032;that&#0032;puts&#0032;privacy&#0032;first | Product Hunt" 
+                  style={{width: '250px', height: '54px'}}
+                />
+              </a>
+            </div>
+
+            {/* DIMO Japan Badge */}
+            <div className={styles.dimoJapanBadge}>
+              <a href="https://dimo.zone" target="_blank" className={styles.dimoJapanLink}>
+                <div className={styles.dimoJapanContent}>
+                  <div className={styles.dimoJapanIcon}>
+                    <img src="/img/dimo-build-logo-round.png" alt="DIMO" />
+                  </div>
+                  <div className={styles.dimoJapanTextContainer}>
+                    <div className={styles.dimoJapanSubText}>EXPLORE OUR AFFILIATES</div>
+                    <div className={styles.dimoJapanMainText}>DIMO Japan</div>
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
 
         </div>
