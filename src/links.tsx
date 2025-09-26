@@ -21,6 +21,7 @@ export const EXTERNAL_LINKS = {
   discord: 'https://discord.com/invite/dimonetwork',
   dimoUniversity: 'https://youtu.be/nktm5m9LhIU',
   dimoMobile: 'https://dimo.co',
+  dimoJapan: 'https://dimojapan.com/',
   dune: 'https://dune.com/dimo_network/dimo-protocol',
   status: 'https://status.dimo.co/'
 } as const;

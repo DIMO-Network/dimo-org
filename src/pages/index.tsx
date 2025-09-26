@@ -400,7 +400,7 @@ function HeroSection() {
           <div className={styles.heroButtons}>
             <Link
               className={styles.signInButton}
-              to="https://console.dimo.org/sign-in"
+              to={LINKS.external.console}
             >
               Console
             </Link>
@@ -424,7 +424,7 @@ function HeroSection() {
 
             {/* DIMO Japan Badge */}
             <div className={styles.dimoJapanBadge}>
-              <a href="https://dimo.zone" target="_blank" className={styles.dimoJapanLink}>
+              <a href={LINKS.external.dimoJapan} target="_blank" className={styles.dimoJapanLink}>
                 <div className={styles.dimoJapanContent}>
                   <div className={styles.dimoJapanIcon}>
                     <img src="/img/dimo-build-logo-round.png" alt="DIMO" />
