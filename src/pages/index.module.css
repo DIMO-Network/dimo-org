@@ -143,6 +143,13 @@
   animation: dropdownFadeIn 0.2s ease-out;
 }
 
+.productHuntBadge {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
