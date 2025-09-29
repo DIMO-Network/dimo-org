@@ -586,6 +586,24 @@ function BottomFeaturesSection() {
   );
 }
 
+function WatchHowItWorksSection() {
+  return (
+    <section className={styles.whyDimo}>
+      <div className="container">
+        <h2 className={styles.whyDimoTitle}>Watch How It Works</h2>
+        <div className={styles.videoContainer}>
+          <iframe
+            src="https://www.youtube.com/embed/swdRxufYB3A"
+            title="DIMO - How It Works"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home(): ReactNode {
   return (
     <div className={styles.homePage}>
@@ -597,6 +615,7 @@ export default function Home(): ReactNode {
       <main>
         <WhyDimoSection />
         <BottomFeaturesSection />
+        <WatchHowItWorksSection />
       </main>
 
       {/* Footer */}
