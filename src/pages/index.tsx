@@ -11,6 +11,8 @@ const imgHeroHighway = '/img/hero-highway-image.png';
 const imgLogoDimo = '/img/dimo-build-logo.svg';
 const imgGithub = '/img/icon-github.svg';
 const imgDune = '/img/icon-dune.svg';
+const imgDimoIconBlue = '/img/dimo-build-logo-round.png';
+const imgDimoIcon = '/img/dimo-logo-red.png';
 const imgDropdownArrow = '/img/icon-dropdown-arrow.svg';
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
 const imgIconRealTimeData = '/img/icon-real-time-data.svg';
@@ -411,6 +413,21 @@ function HeroSection() {
           
           {/* Badges Container */}
           <div className={styles.badgesContainer}>
+            {/* DIMO Mobile Badge */}
+            <div className={styles.dimoMobileBadge}>
+              <a href={LINKS.external.dimoMobile} target="_blank" className={styles.dimoMobileLink}>
+                <div className={styles.dimoMobileContent}>
+                  <div className={styles.dimoMobileIcon}>
+                    <img src={imgDimoIcon} alt="DIMO Mobile" />
+                  </div>
+                  <div className={styles.dimoJapanTextContainer}>
+                    <div className={styles.dimoJapanSubText}>SIGN UP AS A CONSUMER</div>
+                    <div className={styles.dimoJapanMainText}>DIMO Mobile</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
             {/* Product Hunt Badge */}
             <div className={styles.productHuntBadge}>
               <a href="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo" target="_blank">
@@ -427,7 +444,7 @@ function HeroSection() {
               <a href={LINKS.external.dimoJapan} target="_blank" className={styles.dimoJapanLink}>
                 <div className={styles.dimoJapanContent}>
                   <div className={styles.dimoJapanIcon}>
-                    <img src="/img/dimo-build-logo-round.png" alt="DIMO" />
+                    <img src={imgDimoIconBlue} alt="DIMO Japan" />
                   </div>
                   <div className={styles.dimoJapanTextContainer}>
                     <div className={styles.dimoJapanSubText}>EXPLORE OUR AFFILIATES</div>

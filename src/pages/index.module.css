@@ -154,6 +154,93 @@
   flex-wrap: wrap;
 }
 
+/* DIMO Mobile Badge */
+/* DIMO Mobile Badge - Product Hunt style with Red theme */
+.dimoMobileBadge {
+  display: flex;
+  align-items: center;
+}
+
+.dimoMobileLink {
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.dimoMobileLink:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.dimoMobileContent {
+  background: linear-gradient(135deg, #f79797 0%, #de3b3b 100%);
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 250px;
+  height: 54px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.25);
+  transition: all 0.2s ease;
+}
+
+.dimoMobileContent:hover {
+  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.35);
+}
+
+.dimoMobileIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-left: -4px;
+}
+
+.dimoMobileIcon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.dimoMobileTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.dimoMobileMainText {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: #ffffff;
+  margin: 0;
+  margin-left: -1px;
+  margin-top: -3px;
+  letter-spacing: 0.01em;
+}
+
+.dimoMobileSubText {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 525;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+
 /* Product Hunt Badge */
 .productHuntBadge {
   display: flex;
@@ -200,8 +287,8 @@
 }
 
 .dimoJapanContent {
-  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-  border: 2px solid #ffffff;
+  background: linear-gradient(135deg, #82afe1 0%, #357abd 100%);
+  border: 1px solid #ffffff;
   border-radius: 12px;
   padding: 8px 16px;
   display: flex;
@@ -222,8 +309,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 50%;
   backdrop-filter: blur(10px);
@@ -233,8 +320,8 @@
 }
 
 .dimoJapanIcon img {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
