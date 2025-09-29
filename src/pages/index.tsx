@@ -420,9 +420,9 @@ function HeroSection() {
                   <div className={styles.dimoMobileIcon}>
                     <img src={imgDimoIcon} alt="DIMO Mobile" />
                   </div>
-                  <div className={styles.dimoJapanTextContainer}>
-                    <div className={styles.dimoJapanSubText}>SIGN UP AS A CONSUMER</div>
-                    <div className={styles.dimoJapanMainText}>DIMO Mobile</div>
+                  <div className={styles.dimoMobileTextContainer}>
+                    <div className={styles.dimoMobileSubText}>SIGN UP AS A CONSUMER</div>
+                    <div className={styles.dimoMobileMainText}>DIMO Mobile</div>
                   </div>
                 </div>
               </a>
