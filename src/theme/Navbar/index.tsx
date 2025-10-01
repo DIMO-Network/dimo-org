@@ -185,7 +185,8 @@ export default function Navbar(): ReactNode {
               Status
             </a>
           </div>
-          <div className={styles.navItem}>
+
+          {/* <div className={styles.navItem}>
             <a
               href={LINKS.external.discord}
               className={styles.navItem}
@@ -193,7 +194,7 @@ export default function Navbar(): ReactNode {
             >
               Community
             </a>
-          </div>
+          </div> */}
           <div className={styles.navItem}>
             <a
               href={LINKS.external.github}
@@ -212,6 +213,8 @@ export default function Navbar(): ReactNode {
               <img alt="Dune" src={imgDune} />
             </a>
           </div>
+
+
           <div className={styles.navItem}>
             <Link
               className={styles.signInButtonNav}

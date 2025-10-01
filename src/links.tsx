@@ -23,6 +23,7 @@ export const EXTERNAL_LINKS = {
   dimoMobile: 'https://dimo.co',
   dimoJapan: 'https://dimojapan.com/',
   dune: 'https://dune.com/dimo_network/dimo-protocol',
+  twitter: 'https://twitter.com/dimo_network',
   status: 'https://status.dimo.co/'
 } as const;
 
