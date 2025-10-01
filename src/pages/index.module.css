@@ -672,6 +672,22 @@
   margin: 0 auto;
 }
 
+/* Wall Of Love Section */
+.wallOfLove {
+  padding: 0;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.wallOfLoveTitle {
+  font-family: 'Universal Sans Display', sans-serif !important;
+  font-weight: 900 !important;
+  font-size: 3.5rem;
+  color: #000000;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
 /* Bottom Features Section */
 .bottomFeatures {
   padding: 4rem 0;
@@ -1063,6 +1079,10 @@
     font-size: 2.8rem;
   }
 
+  .wallOfLoveTitle {
+    font-size: 2.8rem;
+  }
+
   .featureCards {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -1189,6 +1209,10 @@
     font-size: 1.1rem;
   }
 
+  .wallOfLoveTitle {
+    font-size: 2.2rem;
+  }
+
   .featureTitle {
     font-size: 1.6rem;
   }
@@ -1257,6 +1281,10 @@
   }
 
   .whyDimoTitle {
+    font-size: 1.8rem;
+  }
+  
+  .wallOfLoveTitle {
     font-size: 1.8rem;
   }
 

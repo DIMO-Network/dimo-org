@@ -606,9 +606,13 @@ function WatchHowItWorksSection() {
 
 function WallOfLoveSection() {
   return (
-    <section className={styles.wallOfLove}>
+    <section>
+      <div className={styles.wallOfLove}>
+        <h2 className={styles.wallOfLoveTitle}>Hear What Devs Say</h2>
+      </div>
       <div className="feedspace-embed" data-id="217207bd-2013-4903-8545-d7f149fda8a2"></div>
       <script src="https://js.feedspace.io/v1/embed/embed.min.js" type="text/javascript" async></script>
+
     </section>
   );
 }
