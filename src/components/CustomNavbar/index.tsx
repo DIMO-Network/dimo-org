@@ -31,7 +31,7 @@ export default function CustomNavbar() {
   };
 
   return (
-    <nav className={`navbar ${styles.navbar}`} id="navbar">
+    <nav className={styles.navbar}>
       <div className={styles.navContent}>
         {/* Logo */}
         <div className={styles.navLogo}>
