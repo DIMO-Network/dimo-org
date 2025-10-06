@@ -60,15 +60,50 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/dimo-social-card.png',
+    navbar: {
+      logo: {
+        alt: 'DIMO',
+        src: 'img/dimo-build-logo.svg',
+        href: '/',
+      },
+      items: [
+        {
+          href: 'https://dimo.org',
+          label: 'Dimo.org',
+          position: 'right',
+        },
+        {
+          href: 'https://github.com/DIMO-Network',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub',
+        },
+        {
+          href: 'https://console.dimo.org/sign-in',
+          label: 'Log In',
+          position: 'right',
+          className: 'header-login-button',
+        },
+      ],
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
 
-  clientModules: [
-    require.resolve('./src/clientModules/analytics.ts'),
-  ]
+  clientModules: [require.resolve('./src/clientModules/analytics.ts')],
 };
 
 export default config;

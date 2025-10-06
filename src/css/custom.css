@@ -55,8 +55,8 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #124BDB;
-  --ifm-color-primary-dark: #BABABA;
+  --ifm-color-primary: #124bdb;
+  --ifm-color-primary-dark: #bababa;
   --ifm-color-primary-darker: #717171;
   --ifm-color-primary-darkest: #323232;
   --ifm-color-primary-light: #3965d6;
@@ -162,55 +162,334 @@ h6 {
   border-color: red;
 }
 
-/* Navbar customizations */
-/* Custom Navbar */
+/* ================================
+   Navbar Styling - Hasura-Inspired Layout
+   ================================ */
+
+/* Main navbar container */
 .navbar {
-  background-color: #ffffff;
-  padding: 2rem 0 1rem 0;
-  position: relative;
-  z-index: 100;
-  width: 100%;
+  padding: 0.75rem 1.5rem !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  height: 60px;
 }
 
+.navbar__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Logo styling */
 .navbar__brand {
-  margin-right: 2rem;
+  margin-right: auto;
+  height: 36px;
+  display: flex;
+  align-items: center;
 }
 
-.navbar__brand .navbar__logo {
-  margin-left: 15px;
-  margin-bottom: 15px;
+.navbar__logo {
+  height: 32px;
+  width: auto;
+}
+
+.navbar__title {
+  display: none;
+}
+
+/* Navbar items */
+.navbar__items {
+  gap: 0.5rem;
 }
 
 .navbar__item {
-  font-weight: 525;
-  font-size: 1rem;
+  font-weight: 425;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.navbar-signin-button {
-  background-color: #000000;
-  color: #ffffff !important;
-  border-radius: 8px;
-  padding: 0.5rem 1rem !important;
-  font-weight: 525;
-  text-decoration: none !important;
-  transition: background-color 0.2s ease;
+.navbar__link {
+  text-decoration: none;
+  font-weight: 425;
 }
 
-.navbar-signin-button:hover {
-  background-color: #333333;
+.navbar__link:hover {
+  background-color: var(--ifm-color-emphasis-200);
+  text-decoration: none;
+}
+
+/* GitHub icon link */
+.header-github-link {
+  padding: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .header-github-link:before {
   content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-    no-repeat;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat center;
+  background-size: contain;
+}
+
+html[data-theme='dark'] .header-github-link:before {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+    no-repeat center;
+  background-size: contain;
 }
 
 .header-github-link:hover {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+/* Login button with arrow */
+.header-login-button {
+  background: #124bdb !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 525 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.header-login-button:after {
+  content: '→';
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.header-login-button:hover {
+  background: #0d3ba8 !important;
+  color: #ffffff !important;
+  transform: translateX(2px);
+}
+
+.header-login-button:hover:after {
+  transform: translateX(3px);
+}
+
+/* ================================
+   Sidebar Styling - Hasura-Inspired Layout
+   ================================ */
+
+/* Sidebar container - respects theme colors */
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--ifm-toc-border-color) !important;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--ifm-color-emphasis-300);
+  border-radius: 3px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--ifm-color-emphasis-400);
+}
+
+/* Sidebar menu */
+.theme-doc-sidebar-menu {
+  padding: 1rem 0.75rem !important;
+}
+
+/* Menu items */
+.menu__list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.menu__list-item {
+  margin: 0.25rem 0 !important;
+}
+
+.menu__link {
+  font-size: 0.9rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  font-weight: 425 !important;
+  line-height: 1.4 !important;
+}
+
+.menu__link:hover {
+  background-color: var(--ifm-color-emphasis-200) !important;
+  text-decoration: none !important;
+}
+
+.menu__link--active {
+  background-color: rgba(18, 75, 219, 0.1) !important;
+  color: var(--ifm-color-primary) !important;
+  font-weight: 525 !important;
+  border-left: 3px solid #124bdb !important;
+  padding-left: calc(0.75rem - 3px) !important;
+}
+
+html[data-theme='dark'] .menu__link--active {
+  background-color: rgba(18, 75, 219, 0.15) !important;
+}
+
+/* Category labels (collapsible sections) */
+.menu__list-item-collapsible {
+  margin: 0.5rem 0 !important;
+}
+
+.menu__list-item-collapsible > .menu__link {
+  font-weight: 525 !important;
+  font-size: 0.95rem !important;
+  padding: 0.6rem 0.75rem !important;
+}
+
+.menu__list-item-collapsible > .menu__link:hover {
+  background-color: var(--ifm-color-emphasis-100) !important;
+}
+
+/* Caret/chevron for collapsible items */
+.menu__caret {
   opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.menu__caret:hover {
+  opacity: 1;
+}
+
+.menu__list-item-collapsible--active > .menu__link .menu__caret {
+  transform: rotate(90deg);
+}
+
+/* Nested menu items */
+.menu__list .menu__list {
+  margin-left: 0 !important;
+  padding-left: 1rem !important;
+  border-left: 1px solid var(--ifm-color-emphasis-200);
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Sidebar divider */
+.theme-doc-sidebar-item-category-level-1 {
+  margin-top: 1rem !important;
+}
+
+.theme-doc-sidebar-item-category-level-1:first-child {
+  margin-top: 0 !important;
+}
+
+/* Mobile menu styling */
+@media (max-width: 996px) {
+  .navbar-sidebar__item {
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-sidebar .menu__link {
+    font-size: 1rem;
+  }
+
+  /* Adjust content padding on mobile */
+  .docMainContainer {
+    padding: 1rem;
+  }
+}
+
+/* Back button in sidebar */
+.theme-doc-sidebar-item-link-level-1 {
+  font-weight: 525 !important;
+}
+
+/* ================================
+   Main Content Area Styling
+   ================================ */
+
+/* Docs container */
+.docMainContainer {
+  padding: 2rem;
+}
+
+/* Doc item wrapper */
+.docItemWrapper {
+  max-width: 900px;
+}
+
+/* Table of Contents (right sidebar) */
+.table-of-contents {
+  font-size: 0.85rem;
+}
+
+.table-of-contents__link {
+  font-weight: 425;
+  padding: 0.25rem 0;
+  transition: all 0.2s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 525;
+  border-left: 2px solid var(--ifm-color-primary);
+  padding-left: 0.5rem;
+  margin-left: -0.5rem;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbs__link {
+  font-size: 0.9rem;
+}
+
+.breadcrumbs__link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* Pagination nav */
+.pagination-nav__link {
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(18, 75, 219, 0.1);
+}
+
+/* Code blocks */
+.theme-code-block {
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Admonitions (info boxes) */
+.admonition {
+  border-radius: 8px;
+  border-left-width: 4px;
 }
 
 /* Hero section gradient background */
