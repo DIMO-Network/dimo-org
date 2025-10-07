@@ -2,58 +2,273 @@
 sidebar_position: 3
 ---
 
-import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
-import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
-import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
-import ParametersBlock from '@site/src/components/ParametersBlock';
-import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
-import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
-import GraphQLBlock from '@site/src/components/GraphQLBlock';
-import ApiTester from '@site/src/components/ApiTester';
+import GraphQLPlayground from '@site/src/components/GraphQLPlayground';
 
-# Identity Playground - Coming Soon
-Coming Soon
+# Identity Playground
 
-<GraphQLBlock
+Explore the DIMO Identity API using the interactive GraphQL playground below. You can run queries directly against the live API endpoint.
+
+<GraphQLPlayground
   title="DIMO Identity API Playground"
-  endpoint="https://identity-api.dimo.zone/query"
+  endpoint="https://identity-api.dimo.zone/"
   query={`query GetDevLicenseByTokenId {
-    developerLicense (by: { tokenId: <dev_license_token_id> } ) {
+  developerLicense(by: { tokenId: <dev_license_token_id> }) {
+    owner
+    tokenId
+    alias
+    clientId
+    mintedAt
+    redirectURIs(first: 10) {
+      nodes {
+        uri
+        enabledAt
+      }
+    }
+  }
+}`}
+  variables={{
+    tokenId: "123"
+  }}
+  height="700px"
+/>
+
+## Common Queries
+
+Below are common queries you can try in the playground above. Simply copy any query and paste it into the playground to execute it.
+
+---
+
+### General Info
+
+<details>
+<summary>Getting the total count of vehicles on the DIMO Network</summary>
+
+```graphql
+query GetTotalVehicles {
+  vehicles (first: 10) {
+    totalCount
+  }
+}
+```
+
+</details>
+
+---
+
+### Developer License Info
+
+<details>
+<summary>Getting information on Developer License for a given License Token ID</summary>
+
+```graphql
+query GetDevLicenseByTokenId {
+  developerLicense (by: { tokenId: <dev_license_token_id> } ) {
+    owner
+    tokenId
+    alias
+    clientId
+    mintedAt
+    redirectURIs (first: 10) {
+      nodes {
+        uri
+        enabledAt
+      }
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Getting a list of Vehicle Token IDs and Token DIDs granted to a given Developer License</summary>
+
+```graphql
+query GetVehicleByDevLicense {
+  vehicles(filterBy: { privileged: "<dev_license_0x>" }, first: 100) {
+    nodes {
       owner
       tokenId
-      alias
-      clientId
-      mintedAt
-      redirectURIs (first: 10) {
-        nodes {
-          uri
-          enabledAt
-        }
+      tokenDID
+      definition {
+        make
+        model
+        year
       }
     }
-}`}
-  variables={`{
-  "tokenId": "123"
-}`}
-  response={{
-    data: {
-      vehicle: {
-        tokenId: "123",
-        owner: "0x742d35Cc6C5E53532dd4d2E4A2F8a9c6F3b7E8d9",
-        definition: {
-          make: "Tesla",
-          model: "Model 3",
-          year: 2023
-        },
-        syntheticDevice: {
-          tokenId: "456",
-          integrationNode: {
-            name: "Tesla",
-            type: "OEM"
+  }
+}
+```
+
+</details>
+
+---
+
+### Vehicle Ownership Info
+
+<details>
+<summary>Getting the total count of vehicles for a given owner</summary>
+
+```graphql
+query GetVehiclesByOwner {
+  vehicles(filterBy: {owner: "<0x_address>"}, first: 100) {
+    totalCount
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Getting a Make/Model/Year and vehicle <code>tokenId</code>, <code>tokenDID</code> list for a given owner</summary>
+
+```graphql
+query GetVehicleMMYByOwner {
+  vehicles(filterBy: {owner: "<0x_Address>"}, first: 100) {
+    nodes {
+      tokenId
+      tokenDID
+      definition {
+        make
+        model
+        year
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Vehicle Basic Info
+
+<details>
+<summary>Getting Make/Model/Year and owner address for a given Vehicle Token ID</summary>
+
+```graphql
+query GetVehicleMMYByTokenId {
+  vehicle (tokenId: <token_id>) {
+    owner
+    definition {
+      make
+      model
+      year
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Vehicle Permissions (SACD) Info
+
+Permissions are encoded in hexadecimals - reference the [common permissions table](https://docs.dimo.org/developer-platform/getting-started/developer-guide/permissions-contract-sacd#permissions-table) for details.
+
+<details>
+<summary>Getting permissions shared for a given Vehicle Token ID</summary>
+
+```graphql
+query GetSacdForVehicle {
+  vehicle (tokenId: 3) {
+    sacds (first: 10) {
+      nodes {
+        permissions
+        grantee
+        source
+        createdAt
+        expiresAt
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Rewards
+
+<details>
+<summary>Getting the Rewards data for a given owner</summary>
+
+```graphql
+query GetRewardsByOwner {
+  rewards (user: "<0x_address>") {
+    totalTokens
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Getting the Reward history for a given owner</summary>
+
+```graphql
+query GetRewardHistoryByOwner {
+  vehicles(filterBy: {owner: "<0x_address>"}, first: 10) {
+    nodes {
+      earnings {
+        history (first: 10) {
+          edges {
+            node {
+              week
+              aftermarketDeviceTokens
+              syntheticDeviceTokens
+              sentAt
+              beneficiary
+              connectionStreak
+              streakTokens
+            }
           }
         }
+        totalTokens
       }
     }
-  }}
-  viewOnly={false}
-/>
+  }
+}
+```
+
+</details>
+
+---
+
+### Vehicle Device Definitions
+
+<details>
+<summary>Getting the Device Definition ID by a given Vehicle Token ID</summary>
+
+```graphql
+query GetDDIdByVehicleTokenId {
+  vehicle(tokenId: <vehicle_token_id>) {
+    definition {
+      id
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Getting the Device Definitions by Device Definition ID</summary>
+
+```graphql
+query GetDefinitionByDeviceId {
+  deviceDefinition (by: { id: "<device_definition_id>"})  {
+    year
+    model
+    attributes {
+      name
+      value
+    }
+  }
+}
+```
+
+</details>
