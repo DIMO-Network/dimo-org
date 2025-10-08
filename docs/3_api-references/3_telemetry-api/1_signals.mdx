@@ -5,6 +5,7 @@ sidebar_position: 2
 import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
 import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import CustomDetails from '@site/src/components/CustomDetails';
 import ParametersBlock from '@site/src/components/ParametersBlock';
 import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
@@ -14,7 +15,8 @@ import MapWidget from '@site/src/components/MapWidget';
 import { allTelemetryData } from '@site/src/components/TelemetryFieldsBlock/telemetry-data';
 
 # Vehicle Signals
-## Signals from DIMO-connected vehicles
+Signals from DIMO-connected vehicles.
+## Overview
 There are two types of query fields that you can use to retrieve vehicle signals from the Telemetry API, 
 depending on if you’re looking for the latest signal data, or if you need to look up historical signal data from the past:
 
@@ -128,17 +130,14 @@ query GetLatestSignals{
   }
 />
 
-## Fields by Category
-### Key:
+## Categories of Data
+:::info Keys
 - **Signal**: The field name that can be queried for signals or signalsLatest.
-
 - **Common Name**: A simplified, consumer-friendly naming convention for the signal.
-
 - **Aggregation (Agg.) Type**: The Aggregation Type as specified for the signals resource.
-
 - **Units**: The unit returned for the specific signal quieried, if relevant.
-
 - **Description**: A longer description for the specific signal.
+:::
 
 <TelemetryFieldsBlock
   title="Vehicle Info & Status"
@@ -195,3 +194,16 @@ query GetLatestSignals{
   title="Windows"
   fields={allTelemetryData.windows.fields}
 />
+
+## Advanced Filtering
+### `currentLocationCoordinates` Filters
+This is an advanced filter that you can apply on the `currentLocationCoordinates` field under `signals`.
+It is used to filter by a user-defined geofence that can be set using circles or polygons:
+<CustomDetails summary="Try it out">
+  <MapWidget 
+    title="In Circle Filtering"
+    initialCenter={[40.7128, -74.0060]} 
+    initialRadius={10} 
+    initialZoom={10} 
+  />
+</CustomDetails>

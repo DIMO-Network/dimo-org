@@ -68,51 +68,22 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           // Fix Leaflet icons
           fixLeafletIcons();
           
-          // Force map to invalidate size after load and add resize listener
+          // Force map to invalidate size after load
           setTimeout(() => {
             if (window.dispatchEvent) {
               window.dispatchEvent(new Event('resize'));
             }
           }, 100);
-          
-          // Add additional invalidation for stubborn sizing issues
-          const handleResize = () => {
-            setTimeout(() => {
-              if (window.dispatchEvent) {
-                window.dispatchEvent(new Event('resize'));
-              }
-            }, 50);
-          };
-          
-          window.addEventListener('resize', handleResize);
-          
-          // Cleanup
-          return () => {
-            window.removeEventListener('resize', handleResize);
-          };
 
           // Create MapClickHandler component
           const MapClickHandler: React.FC<{
             onMapClick: (lat: number, lng: number) => void;
           }> = ({ onMapClick }) => {
-            const map = useMapEvents({
+            useMapEvents({
               click: (e) => {
                 onMapClick(e.latlng.lat, e.latlng.lng);
               },
             });
-            
-            // Handle map sizing on mount
-            React.useEffect(() => {
-              if (map) {
-                setTimeout(() => {
-                  map.invalidateSize();
-                }, 100);
-                setTimeout(() => {
-                  map.invalidateSize();
-                }, 500);
-              }
-            }, [map]);
-            
             return null;
           };
 
@@ -374,13 +345,18 @@ const MapComponent: React.FC<MapWidgetProps> = ({
         position: 'relative',
         overflow: 'hidden'
       }}>
-        <div style={{ height: '100%', width: '100%' }}>
-          <MapContainer
-            center={center}
-            zoom={initialZoom}
-            style={{ height: '100%', width: '100%', minHeight: '400px' }}
-            scrollWheelZoom={true}
-          >
+        <MapContainer
+          center={center}
+          zoom={initialZoom}
+          style={{ height: '100%', width: '100%' }}
+          scrollWheelZoom={true}
+          whenCreated={(mapInstance) => {
+            // Force map to invalidate size when created
+            setTimeout(() => {
+              mapInstance.invalidateSize();
+            }, 100);
+          }}
+        >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -430,7 +406,6 @@ const MapComponent: React.FC<MapWidgetProps> = ({
             </>
           )}
         </MapContainer>
-        </div>
       </div>
       
       <div style={{ 
