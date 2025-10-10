@@ -69,7 +69,7 @@ const config: Config = {
       items: [
         {
           href: 'https://dimo.org',
-          label: 'Dimo.org',
+          label: 'DIMO.org',
           position: 'right',
         },
         {
