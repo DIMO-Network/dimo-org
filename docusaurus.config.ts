@@ -68,18 +68,18 @@ const config: Config = {
       },
       items: [
         {
-          href: 'https://dimo.org',
+          to: 'https://dimo.org',
           label: 'DIMO.org',
           position: 'right',
         },
         {
-          href: 'https://github.com/DIMO-Network',
+          to: 'https://github.com/DIMO-Network',
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub',
         },
         {
-          href: 'https://console.dimo.org/sign-in',
+          to: 'https://console.dimo.org/sign-in',
           label: 'Log In',
           position: 'right',
           className: 'header-login-button',
