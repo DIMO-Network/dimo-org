@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   telemetrySignals,
   TelemetrySignal,
@@ -6,14 +6,8 @@ import {
   getDefaultAggregation,
   intervalOptions,
 } from './signals';
+import TwoColumnLayout from '../TwoColumnLayout';
 import styles from './styles.module.css';
-
-interface AuthData {
-  clientId: string;
-  redirectUri: string;
-  apiKey: string;
-  vehicleTokenId: string;
-}
 
 interface SelectedSignals {
   [signalName: string]: boolean;
@@ -26,19 +20,8 @@ interface SignalAggregations {
 type QueryType = 'signals' | 'signalsLatest';
 
 const TelemetryQueryBuilder: React.FC = () => {
-  // Authentication state
-  const [authData, setAuthData] = useState<AuthData>({
-    clientId: '',
-    redirectUri: '',
-    apiKey: '',
-    vehicleTokenId: '',
-  });
-  const [vehicleJWT, setVehicleJWT] = useState('');
-  const [jwtTimer, setJwtTimer] = useState<number | null>(null);
-  const [authLoading, setAuthLoading] = useState(false);
-  const [authError, setAuthError] = useState('');
-
   // Query configuration state
+  const [vehicleTokenId, setVehicleTokenId] = useState('');
   const [queryType, setQueryType] = useState<QueryType>('signalsLatest');
   const [selectedSignals, setSelectedSignals] = useState<SelectedSignals>({});
   const [signalAggregations, setSignalAggregations] =
@@ -49,40 +32,8 @@ const TelemetryQueryBuilder: React.FC = () => {
     interval: '1h',
   });
 
-  // Query execution state
-  const [queryResult, setQueryResult] = useState<any>(null);
-  const [queryLoading, setQueryLoading] = useState(false);
-  const [queryError, setQueryError] = useState('');
+  // Copy to clipboard state
   const [copiedToClipboard, setCopiedToClipboard] = useState(false);
-
-  // JWT Timer countdown
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    if (jwtTimer !== null && jwtTimer > 0) {
-      interval = setInterval(() => {
-        setJwtTimer(prevTimer => {
-          if (prevTimer === null || prevTimer <= 1) {
-            return 0;
-          }
-          return prevTimer - 1;
-        });
-      }, 1000);
-    } else if (jwtTimer === 0) {
-      if (interval) clearInterval(interval);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [jwtTimer]);
-
-  // Format timer display (mm:ss)
-  const formatTimer = (seconds: number | null): string | null => {
-    if (seconds === null || seconds < 0) return null;
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs.toString().padStart(2, '0')}`;
-  };
 
   // Generate GraphQL query
   const generatedQuery = useMemo(() => {
@@ -103,7 +54,7 @@ const TelemetryQueryBuilder: React.FC = () => {
         .join('\n');
 
       return `query {
-  signalsLatest(tokenId: ${authData.vehicleTokenId || '<vehicle_token_id>'}) {
+  signalsLatest(tokenId: ${vehicleTokenId || '<vehicle_token_id>'}) {
     lastSeen
 ${signalQueries}
   }
@@ -119,7 +70,7 @@ ${signalQueries}
 
       return `query {
   signals(
-    tokenId: ${authData.vehicleTokenId || '<vehicle_token_id>'},
+    tokenId: ${vehicleTokenId || '<vehicle_token_id>'},
     interval: "${dateRange.interval}",
     from: "${dateRange.from}:00Z",
     to: "${dateRange.to}:00Z"
@@ -134,34 +85,8 @@ ${signalQueries}
     selectedSignals,
     signalAggregations,
     dateRange,
-    authData.vehicleTokenId,
+    vehicleTokenId,
   ]);
-
-  const handleAuthInputChange = (field: keyof AuthData, value: string) => {
-    setAuthData(prev => ({ ...prev, [field]: value }));
-  };
-
-  const getVehicleJWT = async () => {
-    if (
-      !authData.clientId ||
-      !authData.redirectUri ||
-      !authData.apiKey ||
-      !authData.vehicleTokenId
-    ) {
-      setAuthError('Please fill in all authentication fields');
-      return;
-    }
-
-    setAuthLoading(true);
-    setAuthError('');
-
-    // Note: This is a placeholder. In production, you would need a backend
-    // service to generate the JWT due to CORS and security concerns.
-    setAuthError(
-      '⚠️ JWT generation requires a backend service. For now, please manually paste a valid Vehicle JWT below. See the Authentication docs for details on generating JWTs.'
-    );
-    setAuthLoading(false);
-  };
 
   const toggleSignal = (signalName: string, signal: TelemetrySignal) => {
     setSelectedSignals(prev => {
@@ -196,151 +121,27 @@ ${signalQueries}
     }
   };
 
-  const executeQuery = async () => {
-    if (!vehicleJWT) {
-      setQueryError('Please provide a valid Vehicle JWT');
-      return;
-    }
-
-    if (Object.values(selectedSignals).every(v => !v)) {
-      setQueryError('Please select at least one signal');
-      return;
-    }
-
-    setQueryLoading(true);
-    setQueryError('');
-    setQueryResult(null);
-
-    try {
-      const response = await fetch('https://telemetry-api.dimo.zone/query', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${vehicleJWT.trim()}`,
-        },
-        body: JSON.stringify({
-          query: generatedQuery,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok || data.errors) {
-        throw new Error(
-          data.errors?.[0]?.message ||
-            data.message ||
-            `Query failed with status ${response.status}`
-        );
-      }
-
-      setQueryResult(data);
-    } catch (err: any) {
-      setQueryError(err.message || 'Failed to execute query');
-    } finally {
-      setQueryLoading(false);
-    }
-  };
-
-  return (
-    <div className={styles.telemetryBuilder}>
-      {/* Section 1: Authentication */}
+  // Left Column: Query Configuration
+  const leftColumn = (
+    <div>
+      {/* Section 1: Vehicle Token ID */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>1. Authentication</h3>
+        <h3 className={styles.sectionTitle}>1. Vehicle Token ID</h3>
         <p className={styles.sectionDescription}>
-          Enter your developer credentials to generate a Vehicle JWT. The JWT is
-          required to query telemetry data and expires after 10 minutes.
+          Enter the Vehicle Token ID to use in your query. This will be included
+          in the generated GraphQL query.
         </p>
 
-        <div className={styles.authGrid}>
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>
-              Client ID<span className={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="0x..."
-              value={authData.clientId}
-              onChange={e => handleAuthInputChange('clientId', e.target.value)}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>
-              Redirect URI<span className={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="https://your-app.com/callback"
-              value={authData.redirectUri}
-              onChange={e =>
-                handleAuthInputChange('redirectUri', e.target.value)
-              }
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>
-              API Key<span className={styles.required}>*</span>
-            </label>
-            <input
-              type="password"
-              className={styles.input}
-              placeholder="Your API key"
-              value={authData.apiKey}
-              onChange={e => handleAuthInputChange('apiKey', e.target.value)}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>
-              Vehicle Token ID<span className={styles.required}>*</span>
-            </label>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="12345"
-              value={authData.vehicleTokenId}
-              onChange={e =>
-                handleAuthInputChange('vehicleTokenId', e.target.value)
-              }
-            />
-          </div>
-        </div>
-
-        <button
-          className={styles.authButton}
-          onClick={getVehicleJWT}
-          disabled={authLoading}
-        >
-          {authLoading ? '⏳ Generating...' : '🔑 Get Vehicle JWT'}
-        </button>
-
-        <div className={styles.jwtSection}>
-          <label className={styles.label}>
-            Vehicle JWT
-            {jwtTimer !== null && jwtTimer > 0 && (
-              <span className={styles.jwtTimer}>
-                Expires in: {formatTimer(jwtTimer)}
-              </span>
-            )}
-          </label>
-          <textarea
-            className={styles.textarea}
-            placeholder="Paste your Vehicle JWT here or generate one above"
-            rows={4}
-            value={vehicleJWT}
-            onChange={e => {
-              setVehicleJWT(e.target.value);
-              if (e.target.value && jwtTimer === null) {
-                setJwtTimer(599); // Start 10-minute timer
-              }
-            }}
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>Vehicle Token ID</label>
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="12345"
+            value={vehicleTokenId}
+            onChange={e => setVehicleTokenId(e.target.value)}
           />
         </div>
-
-        {authError && <div className={styles.warning}>{authError}</div>}
       </div>
 
       {/* Section 2: Query Type Selection */}
@@ -493,10 +294,15 @@ ${signalQueries}
           ))}
         </div>
       </div>
+    </div>
+  );
 
-      {/* Section 4: Generated Query & Results */}
-      {Object.values(selectedSignals).some(v => v) && (
+  // Right Column: Generated Query & Results (Sticky)
+  const rightColumn = (
+    <div>
+      {Object.values(selectedSignals).some(v => v) ? (
         <>
+          {/* Generated Query */}
           <div className={styles.section}>
             <div className={styles.queryOutputHeader}>
               <h3 className={styles.sectionTitle}>Generated Query</h3>
@@ -508,41 +314,41 @@ ${signalQueries}
                 >
                   {copiedToClipboard ? '✓ Copied!' : '📋 Copy'}
                 </button>
-                <button
-                  className={styles.executeButton}
-                  onClick={executeQuery}
-                  disabled={queryLoading || !vehicleJWT}
-                >
-                  {queryLoading ? '⏳ Running...' : '▶ Execute Query'}
-                </button>
               </div>
             </div>
             <pre className={styles.queryCode}>
               <code>{generatedQuery}</code>
             </pre>
+            <p className={styles.copyHint}>
+              Copy this query and paste it into the GraphQL Playground below to
+              execute it.
+            </p>
           </div>
-
-          {/* Results */}
-          {(queryResult || queryError) && (
-            <div className={styles.section}>
-              <h3 className={styles.sectionTitle}>Query Results</h3>
-              {queryError && (
-                <div className={styles.error}>
-                  <strong>Error:</strong> {queryError}
-                </div>
-              )}
-              {queryResult && (
-                <pre className={styles.resultsCode}>
-                  <code>{JSON.stringify(queryResult, null, 2)}</code>
-                </pre>
-              )}
-            </div>
-          )}
         </>
+      ) : (
+        <div className={styles.section}>
+          <div className={styles.placeholderMessage}>
+            <p>
+              👈 Select signals from the left to see your generated GraphQL
+              query here
+            </p>
+          </div>
+        </div>
       )}
+    </div>
+  );
+
+  return (
+    <div className={styles.telemetryBuilder}>
+      <TwoColumnLayout
+        leftColumn={leftColumn}
+        rightColumn={rightColumn}
+        ratio="1:1"
+        stickyRight={true}
+        gap={3}
+      />
     </div>
   );
 };
 
 export default TelemetryQueryBuilder;
-

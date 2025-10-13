@@ -80,58 +80,58 @@ export const telemetrySignals: SignalCategory[] = [
     category: 'Vehicle Status',
     signals: [
       {
-        name: 'isIgnitionOn',
-        description: 'Ignition status',
-        aggregationType: 'string',
-      },
-      {
         name: 'speed',
         description: 'Vehicle speed (km/hr)',
         aggregationType: 'float',
       },
       {
-        name: 'powertrainTransmissionTravelledDistance',
-        description: 'Odometer reading',
+        name: 'isIgnitionOn',
+        description: 'Ignition status (0 = off, 1 = on)',
         aggregationType: 'float',
+      },
+      {
+        name: 'powertrainTransmissionTravelledDistance',
+        description: 'Odometer reading (km)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'vinVC',
+        description: 'Vehicle VIN number',
+        aggregationType: 'string',
+      },
+      {
+        name: 'availableSignals',
+        description: 'List of available signal names',
+        aggregationType: 'string',
       },
       {
         name: 'powertrainType',
         description: 'Powertrain type',
         aggregationType: 'string',
       },
+      {
+        name: 'powertrainRange',
+        description: 'Remaining range (km)',
+        aggregationType: 'float',
+      },
     ],
   },
   {
-    category: 'Battery & Fuel',
+    category: 'Battery & EV',
     signals: [
       {
-        name: 'powertrainFuelSystemRelativeLevel',
-        description: 'Fuel level (%)',
-        aggregationType: 'float',
-      },
-      {
-        name: 'powertrainFuelSystemSupportedFuelTypes',
-        description: 'Supported fuel types',
-        aggregationType: 'string',
-      },
-      {
-        name: 'powertrainRange',
-        description: 'Remaining range (meters)',
-        aggregationType: 'float',
-      },
-      {
-        name: 'lowVoltageBatteryCurrentVoltage',
-        description: 'Battery voltage',
-        aggregationType: 'float',
-      },
-      {
         name: 'powertrainTractionBatteryStateOfChargeCurrent',
-        description: 'EV battery charge (%)',
+        description: 'Current charge level (%)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'powertrainTractionBatteryStateOfChargeCurrentEnergy',
+        description: 'Remaining energy (kWh)',
         aggregationType: 'float',
       },
       {
         name: 'powertrainTractionBatteryChargingIsCharging',
-        description: 'Is charging',
+        description: 'Charging status (0 = not charging, 1 = charging)',
         aggregationType: 'string',
       },
       {
@@ -141,13 +141,48 @@ export const telemetrySignals: SignalCategory[] = [
       },
       {
         name: 'powertrainTractionBatteryCurrentPower',
-        description: 'Battery power flow',
+        description: 'Battery power (W, + = charging, - = discharging)',
         aggregationType: 'float',
       },
       {
         name: 'powertrainTractionBatteryGrossCapacity',
-        description: 'Battery capacity',
+        description: 'Total battery capacity (kWh)',
         aggregationType: 'float',
+      },
+      {
+        name: 'powertrainTractionBatteryChargingAddedEnergy',
+        description: 'Session energy added (kWh)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'powertrainTractionBatteryChargingChargeVoltageUnknownType',
+        description: 'Charging voltage (V)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'lowVoltageBatteryCurrentVoltage',
+        description: 'Low voltage battery (V)',
+        aggregationType: 'float',
+      },
+    ],
+  },
+  {
+    category: 'Fuel',
+    signals: [
+      {
+        name: 'powertrainFuelSystemRelativeLevel',
+        description: 'Fuel percentage (%)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'powertrainFuelSystemAbsoluteLevel',
+        description: 'Fuel level (liters)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'powertrainFuelSystemSupportedFuelTypes',
+        description: 'Supported fuel types',
+        aggregationType: 'string',
       },
     ],
   },
@@ -161,22 +196,27 @@ export const telemetrySignals: SignalCategory[] = [
       },
       {
         name: 'powertrainCombustionEngineECT',
-        description: 'Engine coolant temp',
+        description: 'Coolant temperature (°C)',
         aggregationType: 'float',
       },
       {
         name: 'powertrainCombustionEngineEngineOilLevel',
-        description: 'Engine oil level',
+        description: 'Oil level (liters)',
         aggregationType: 'string',
+      },
+      {
+        name: 'powertrainCombustionEngineTPS',
+        description: 'Throttle position (%)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'powertrainCombustionEngineMAF',
+        description: 'Air intake (g/s)',
+        aggregationType: 'float',
       },
       {
         name: 'obdEngineLoad',
         description: 'Engine load (%)',
-        aggregationType: 'float',
-      },
-      {
-        name: 'powertrainCombustionEngineTPS',
-        description: 'Throttle position',
         aggregationType: 'float',
       },
     ],
@@ -211,12 +251,62 @@ export const telemetrySignals: SignalCategory[] = [
     signals: [
       {
         name: 'exteriorAirTemperature',
-        description: 'Outside temperature',
+        description: 'Air temperature (°C)',
         aggregationType: 'float',
       },
       {
         name: 'obdBarometricPressure',
-        description: 'Barometric pressure',
+        description: 'Barometric pressure (kPa)',
+        aggregationType: 'float',
+      },
+    ],
+  },
+  {
+    category: 'Doors',
+    signals: [
+      {
+        name: 'cabinDoorRow1DriverSideIsOpen',
+        description: 'Front driver door (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'cabinDoorRow1PassengerSideIsOpen',
+        description: 'Front passenger door (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'cabinDoorRow2DriverSideIsOpen',
+        description: 'Back driver door (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'cabinDoorRow2PassengerSideIsOpen',
+        description: 'Back passenger door (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+    ],
+  },
+  {
+    category: 'Windows',
+    signals: [
+      {
+        name: 'cabinDoorRow1DriverSideWindowIsOpen',
+        description: 'Front driver window (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'cabinDoorRow1PassengerSideWindowIsOpen',
+        description: 'Front passenger window (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'cabinDoorRow2DriverSideWindowIsOpen',
+        description: 'Back driver window (0 = closed, 1 = open)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'cabinDoorRow2PassengerSideWindowIsOpen',
+        description: 'Back passenger window (0 = closed, 1 = open)',
         aggregationType: 'float',
       },
     ],
@@ -226,13 +316,23 @@ export const telemetrySignals: SignalCategory[] = [
     signals: [
       {
         name: 'dimoAftermarketSSID',
-        description: 'WiFi network name',
+        description: 'WiFi SSID',
         aggregationType: 'string',
       },
       {
         name: 'dimoAftermarketWPAState',
-        description: 'WiFi connection state',
+        description: 'WiFi WPA state',
         aggregationType: 'string',
+      },
+      {
+        name: 'dimoAftermarketNSAT',
+        description: 'Number of GPS satellites',
+        aggregationType: 'float',
+      },
+      {
+        name: 'dimoAftermarketHDOP',
+        description: 'GPS horizontal dilution of precision',
+        aggregationType: 'float',
       },
     ],
   },
@@ -241,12 +341,17 @@ export const telemetrySignals: SignalCategory[] = [
     signals: [
       {
         name: 'obdDTCList',
-        description: 'Active diagnostic codes',
+        description: 'Diagnostic trouble codes',
         aggregationType: 'string',
       },
       {
         name: 'obdRunTime',
-        description: 'Engine run time',
+        description: 'Engine runtime (seconds)',
+        aggregationType: 'float',
+      },
+      {
+        name: 'obdIntakeTemp',
+        description: 'Intake temperature (°C)',
         aggregationType: 'float',
       },
     ],
@@ -266,4 +371,3 @@ export function getAggregationOptions(
 export function getDefaultAggregation(signal: TelemetrySignal): string {
   return signal.aggregationType === 'string' ? 'RAND' : 'AVG';
 }
-

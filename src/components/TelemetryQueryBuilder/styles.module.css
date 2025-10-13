@@ -414,6 +414,14 @@
   overflow-y: auto;
 }
 
+.copyHint {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-content-secondary);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
 /* Error Display */
 .error {
   padding: 1rem;
@@ -426,6 +434,26 @@
 
 .error strong {
   color: #e74c3c;
+}
+
+/* Placeholder Message */
+.placeholderMessage {
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  border: 2px dashed var(--ifm-color-emphasis-300);
+}
+
+.placeholderMessage p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .placeholderMessage {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* Responsive Design */
@@ -522,4 +550,3 @@
 [data-theme='dark'] .dateRangeSection {
   background: rgba(255, 255, 255, 0.03);
 }
-
