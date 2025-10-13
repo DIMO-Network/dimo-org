@@ -28,24 +28,24 @@ const IdentityQueryBuilder: React.FC = () => {
   const buildQuery = (
     fields: SelectableField[],
     selections: SelectedFields,
-    indent: number = 2
+    indent: number = 2,
+    prefix: string = ''
   ): string => {
     const indentStr = ' '.repeat(indent);
     let result = '';
 
     fields.forEach(field => {
-      const fieldId = field.id;
+      const fieldId = prefix ? `${prefix}.${field.id}` : field.id;
       if (selections[fieldId]) {
         if (field.type === 'field') {
           result += `${indentStr}${field.name}\n`;
         } else if (field.type === 'object' && field.fields) {
-          const nestedSelections: SelectedFields = {};
           let hasSelectedNested = false;
 
+          // Check if any nested fields are selected
           field.fields.forEach(nestedField => {
             const nestedId = `${fieldId}.${nestedField.id}`;
             if (selections[nestedId]) {
-              nestedSelections[nestedField.id] = true;
               hasSelectedNested = true;
             }
           });
@@ -55,35 +55,43 @@ const IdentityQueryBuilder: React.FC = () => {
             const paginationArgs =
               field.name === 'redirectURIs' ||
               field.name === 'history' ||
-              field.name === 'sacds' ||
-              field.name === 'nodes'
+              field.name === 'sacds'
                 ? '(first: 10) '
                 : '';
 
             result += `${indentStr}${field.name}${paginationArgs}{\n`;
-            if (field.name === 'nodes' || field.name === 'history') {
-              // These need edges/nodes structure
-              if (field.name === 'history') {
-                result += `${indentStr}  edges {\n`;
-                result += `${indentStr}    node {\n`;
-                result += buildQuery(
-                  field.fields,
-                  nestedSelections,
-                  indent + 6
-                );
-                result += `${indentStr}    }\n`;
-                result += `${indentStr}  }\n`;
-              } else {
-                result += buildQuery(
-                  field.fields,
-                  nestedSelections,
-                  indent + 2
-                );
-              }
-            } else {
-              result += `${indentStr}  nodes {\n`;
-              result += buildQuery(field.fields, nestedSelections, indent + 4);
+
+            // Handle special field structures
+            if (field.name === 'history') {
+              // history uses edges { node { } } structure
+              result += `${indentStr}  edges {\n`;
+              result += `${indentStr}    node {\n`;
+              result += buildQuery(
+                field.fields,
+                selections,
+                indent + 6,
+                fieldId
+              );
+              result += `${indentStr}    }\n`;
               result += `${indentStr}  }\n`;
+            } else if (field.usesNodesWrapper) {
+              // These fields use nodes { } wrapper (sacds, redirectURIs)
+              result += `${indentStr}  nodes {\n`;
+              result += buildQuery(
+                field.fields,
+                selections,
+                indent + 4,
+                fieldId
+              );
+              result += `${indentStr}  }\n`;
+            } else {
+              // Most fields (including 'nodes' itself) render children directly
+              result += buildQuery(
+                field.fields,
+                selections,
+                indent + 2,
+                fieldId
+              );
             }
             result += `${indentStr}}\n`;
           }
@@ -194,6 +202,7 @@ ${fieldsQuery}  }
     setQueryResult(null);
 
     try {
+      // eslint-disable-next-line no-undef
       const response = await fetch('https://identity-api.dimo.zone/query', {
         method: 'POST',
         headers: {

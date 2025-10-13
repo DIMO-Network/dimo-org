@@ -20,6 +20,8 @@ export interface SelectableField {
   fields?: SelectableField[];
   // If this field requires parent context (e.g., only available under vehicle)
   parentContext?: string;
+  // Whether this field uses the GraphQL nodes wrapper pattern
+  usesNodesWrapper?: boolean;
 }
 
 export interface QueryRoot {
@@ -114,6 +116,7 @@ export const identityQueryRoots: QueryRoot[] = [
         name: 'sacds',
         description: 'Shared Access Control Data (permissions)',
         type: 'object',
+        usesNodesWrapper: true,
         fields: [
           {
             id: 'permissions',
@@ -363,6 +366,7 @@ export const identityQueryRoots: QueryRoot[] = [
         name: 'redirectURIs',
         description: 'Registered redirect URIs',
         type: 'object',
+        usesNodesWrapper: true,
         fields: [
           {
             id: 'uri',
@@ -420,7 +424,6 @@ export const identityQueryRoots: QueryRoot[] = [
       },
     ],
     availableFields: [
-      { id: 'make', name: 'make', description: 'Vehicle make', type: 'field' },
       {
         id: 'model',
         name: 'model',
