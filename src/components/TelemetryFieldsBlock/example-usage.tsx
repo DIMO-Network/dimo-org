@@ -15,10 +15,10 @@ const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'availableSignals',
     commonName: 'Available Vehicle Signals',
-    aggregationType: 'FloatAggregation!',
+    aggregationType: '[String!]!',
     units: 'N/A',
     description:
-      'Returns a list of queryable signal names that have stored data for a given <code>tokenId</code>.',
+      'Returns a list of queryable signal names that have stored data for a given <code>tokenId</code>. <strong>Note:</strong> This is a standalone query field, not a sub-field of <code>signals</code> or <code>signalsLatest</code>. Query example: <code>query { availableSignals(tokenId: 12345) }</code>',
   },
   {
     signal: 'powertrainTransmissionTravelledDistance',
@@ -31,9 +31,10 @@ const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'vinVC',
     commonName: 'VIN #',
-    aggregationType: 'FloatAggregation!',
+    aggregationType: 'VinVC',
     units: 'N/A',
-    description: 'Returns the latest VINVC data for a given token',
+    description:
+      'Returns the latest VINVC data for a given token. <strong>Note:</strong> This is a standalone query field, not a sub-field of <code>signals</code> or <code>signalsLatest</code>. Query example: <code>query { vinVCLatest(tokenId: 12345) { vin } }</code>',
   },
   {
     signal: 'isIgnitionOn',

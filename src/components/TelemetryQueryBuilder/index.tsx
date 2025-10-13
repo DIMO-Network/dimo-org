@@ -17,7 +17,11 @@ interface SignalAggregations {
   [signalName: string]: string;
 }
 
-type QueryType = 'signals' | 'signalsLatest';
+type QueryType =
+  | 'signals'
+  | 'signalsLatest'
+  | 'availableSignals'
+  | 'vinVCLatest';
 
 const TelemetryQueryBuilder: React.FC = () => {
   // Query configuration state
@@ -37,6 +41,22 @@ const TelemetryQueryBuilder: React.FC = () => {
 
   // Generate GraphQL query
   const generatedQuery = useMemo(() => {
+    // For availableSignals and vinVCLatest, no signal selection needed
+    if (queryType === 'availableSignals') {
+      return `query {
+  availableSignals(tokenId: ${vehicleTokenId || '<vehicle_token_id>'})
+}`;
+    }
+
+    if (queryType === 'vinVCLatest') {
+      return `query {
+  vinVCLatest(tokenId: ${vehicleTokenId || '<vehicle_token_id>'}) {
+    vin
+  }
+}`;
+    }
+
+    // For signals and signalsLatest, check if signals are selected
     const selectedSignalNames = Object.keys(selectedSignals).filter(
       name => selectedSignals[name]
     );
@@ -148,8 +168,7 @@ ${signalQueries}
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>2. Select Query Type</h3>
         <p className={styles.sectionDescription}>
-          Choose between current values (signalsLatest) or historical time
-          series data (signals)
+          Choose the type of query you want to build
         </p>
 
         <div className={styles.queryTypeSelector}>
@@ -169,6 +188,24 @@ ${signalQueries}
             <div className={styles.queryTypeName}>signals</div>
             <div className={styles.queryTypeDescription}>
               Historical time series data
+            </div>
+          </button>
+          <button
+            className={`${styles.queryTypeButton} ${queryType === 'availableSignals' ? styles.queryTypeButtonActive : ''}`}
+            onClick={() => setQueryType('availableSignals')}
+          >
+            <div className={styles.queryTypeName}>availableSignals</div>
+            <div className={styles.queryTypeDescription}>
+              List of available signals
+            </div>
+          </button>
+          <button
+            className={`${styles.queryTypeButton} ${queryType === 'vinVCLatest' ? styles.queryTypeButtonActive : ''}`}
+            onClick={() => setQueryType('vinVCLatest')}
+          >
+            <div className={styles.queryTypeName}>vinVCLatest</div>
+            <div className={styles.queryTypeDescription}>
+              Vehicle VIN number
             </div>
           </button>
         </div>
@@ -224,83 +261,87 @@ ${signalQueries}
         )}
       </div>
 
-      {/* Section 3: Signal Selection */}
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>3. Select Signals</h3>
-        <p className={styles.sectionDescription}>
-          Choose which telemetry signals to include in your query
-          {queryType === 'signals' &&
-            ' and select aggregation methods for each signal'}
-        </p>
+      {/* Section 3: Signal Selection - Only show for signals and signalsLatest */}
+      {(queryType === 'signals' || queryType === 'signalsLatest') && (
+        <div className={styles.section}>
+          <h3 className={styles.sectionTitle}>3. Select Signals</h3>
+          <p className={styles.sectionDescription}>
+            Choose which telemetry signals to include in your query
+            {queryType === 'signals' &&
+              ' and select aggregation methods for each signal'}
+          </p>
 
-        <div className={styles.signalCategories}>
-          {telemetrySignals.map(category => (
-            <div key={category.category} className={styles.category}>
-              <h4 className={styles.categoryTitle}>{category.category}</h4>
-              <div className={styles.signalList}>
-                {category.signals.map(signal => {
-                  const isSelected = selectedSignals[signal.name];
-                  return (
-                    <div key={signal.name} className={styles.signalItem}>
-                      <button
-                        className={`${styles.signalButton} ${isSelected ? styles.signalButtonSelected : ''}`}
-                        onClick={() => toggleSignal(signal.name, signal)}
-                      >
-                        <div className={styles.signalButtonContent}>
-                          <div className={styles.signalButtonName}>
-                            {signal.name}
+          <div className={styles.signalCategories}>
+            {telemetrySignals.map(category => (
+              <div key={category.category} className={styles.category}>
+                <h4 className={styles.categoryTitle}>{category.category}</h4>
+                <div className={styles.signalList}>
+                  {category.signals.map(signal => {
+                    const isSelected = selectedSignals[signal.name];
+                    return (
+                      <div key={signal.name} className={styles.signalItem}>
+                        <button
+                          className={`${styles.signalButton} ${isSelected ? styles.signalButtonSelected : ''}`}
+                          onClick={() => toggleSignal(signal.name, signal)}
+                        >
+                          <div className={styles.signalButtonContent}>
+                            <div className={styles.signalButtonName}>
+                              {signal.name}
+                            </div>
+                            <div className={styles.signalButtonDescription}>
+                              {signal.description}
+                            </div>
                           </div>
-                          <div className={styles.signalButtonDescription}>
-                            {signal.description}
+                          {isSelected && (
+                            <span className={styles.signalCheckmark}>✓</span>
+                          )}
+                        </button>
+
+                        {/* Aggregation selector for signals mode */}
+                        {isSelected && queryType === 'signals' && (
+                          <div className={styles.aggregationSelector}>
+                            <label className={styles.aggregationLabel}>
+                              Aggregation:
+                            </label>
+                            <select
+                              className={styles.aggregationSelect}
+                              value={
+                                signalAggregations[signal.name] ||
+                                getDefaultAggregation(signal)
+                              }
+                              onChange={e =>
+                                updateSignalAggregation(
+                                  signal.name,
+                                  e.target.value
+                                )
+                              }
+                            >
+                              {getAggregationOptions(signal).map(option => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
                           </div>
-                        </div>
-                        {isSelected && (
-                          <span className={styles.signalCheckmark}>✓</span>
                         )}
-                      </button>
-
-                      {/* Aggregation selector for signals mode */}
-                      {isSelected && queryType === 'signals' && (
-                        <div className={styles.aggregationSelector}>
-                          <label className={styles.aggregationLabel}>
-                            Aggregation:
-                          </label>
-                          <select
-                            className={styles.aggregationSelect}
-                            value={
-                              signalAggregations[signal.name] ||
-                              getDefaultAggregation(signal)
-                            }
-                            onChange={e =>
-                              updateSignalAggregation(
-                                signal.name,
-                                e.target.value
-                              )
-                            }
-                          >
-                            {getAggregationOptions(signal).map(option => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 
   // Right Column: Generated Query & Results (Sticky)
   const rightColumn = (
     <div>
-      {Object.values(selectedSignals).some(v => v) ? (
+      {queryType === 'availableSignals' ||
+      queryType === 'vinVCLatest' ||
+      Object.values(selectedSignals).some(v => v) ? (
         <>
           {/* Generated Query */}
           <div className={styles.section}>

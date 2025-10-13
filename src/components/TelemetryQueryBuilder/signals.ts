@@ -95,16 +95,6 @@ export const telemetrySignals: SignalCategory[] = [
         aggregationType: 'float',
       },
       {
-        name: 'vinVC',
-        description: 'Vehicle VIN number',
-        aggregationType: 'string',
-      },
-      {
-        name: 'availableSignals',
-        description: 'List of available signal names',
-        aggregationType: 'string',
-      },
-      {
         name: 'powertrainType',
         description: 'Powertrain type',
         aggregationType: 'string',
