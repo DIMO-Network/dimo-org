@@ -96,6 +96,13 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    algolia: {
+      appId: '1UPBW4N7NX',
+      apiKey: '19eb8461516e41ddb1580e426cd5f92a',
+      indexName: 'DIMO Docs Crawler',
+      contextualSearch: true,
+      searchPagePath: 'search',
+    },
   } satisfies Preset.ThemeConfig,
 
   clientModules: [require.resolve('./src/clientModules/analytics.ts')],
