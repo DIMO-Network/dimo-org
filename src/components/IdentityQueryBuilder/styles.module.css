@@ -1,0 +1,397 @@
+/* ===================================
+   Identity Query Builder - Integrated Style
+   No container box, blends with page
+   =================================== */
+
+.queryBuilder {
+  margin: 2rem 0;
+}
+
+/* Section Styling */
+.section {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: 525;
+  color: var(--ifm-color-content);
+  margin: 0 0 0.5rem 0;
+}
+
+.sectionDescription {
+  font-size: 0.95rem;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 1.25rem 0;
+  line-height: 1.6;
+}
+
+/* Query Root Selector */
+.rootSelector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.rootButton {
+  padding: 1.25rem;
+  background: var(--ifm-background-surface-color);
+  border: 2px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: var(--ifm-font-family-base);
+}
+
+.rootButton:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.rootButtonSelected {
+  border-color: var(--ifm-color-primary);
+  background: rgba(18, 75, 219, 0.08);
+  box-shadow: 0 0 0 1px var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .rootButtonSelected {
+  background: rgba(232, 3, 3, 0.12);
+}
+
+.rootButtonName {
+  font-size: 1.05rem;
+  font-weight: 525;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.5rem;
+}
+
+.rootButtonDescription {
+  font-size: 0.9rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.5;
+}
+
+/* Variables Grid */
+.variablesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.variableInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.variableLabel {
+  font-size: 0.95rem;
+  font-weight: 525;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.variableDescription {
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.input {
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: var(--ifm-font-family-monospace);
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(18, 75, 219, 0.1);
+}
+
+.input::placeholder {
+  color: var(--ifm-color-content-secondary);
+  opacity: 0.6;
+}
+
+/* Field Selector */
+.fieldSelector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fieldButton {
+  width: 100%;
+  padding: 1rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--ifm-font-family-base);
+}
+
+.fieldButton:hover {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-primary);
+}
+
+.fieldButtonSelected {
+  border-color: var(--ifm-color-primary);
+  background: rgba(18, 75, 219, 0.06);
+}
+
+[data-theme='dark'] .fieldButtonSelected {
+  background: rgba(232, 3, 3, 0.1);
+}
+
+.fieldButtonContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.fieldButtonName {
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: var(--ifm-font-family-monospace);
+  color: var(--ifm-color-content);
+  margin-bottom: 0.25rem;
+}
+
+.fieldButtonDescription {
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.4;
+}
+
+.fieldCheckmark {
+  color: var(--ifm-color-primary);
+  font-size: 1.2rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.nestedFields {
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--ifm-color-emphasis-300);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nestedFields .fieldButton {
+  font-size: 0.9rem;
+  padding: 0.75rem;
+}
+
+/* Query Output */
+.queryOutputHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.queryActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.copyButton,
+.executeButton {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--ifm-font-family-base);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copyButton {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-content);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.copyButton:hover:not(:disabled) {
+  background: var(--ifm-color-emphasis-300);
+}
+
+.copyButton:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.executeButton {
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+.executeButton:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.executeButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.queryCode,
+.resultsCode {
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.queryCode code,
+.resultsCode code {
+  font-family: var(--ifm-font-family-monospace);
+  color: var(--ifm-color-content);
+}
+
+.resultsCode {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Error Display */
+.error {
+  padding: 1rem;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 6px;
+  color: var(--ifm-color-content);
+  margin-bottom: 1rem;
+}
+
+.error strong {
+  color: #e74c3c;
+}
+
+/* Responsive Design */
+@media (max-width: 996px) {
+  .rootSelector {
+    grid-template-columns: 1fr;
+  }
+
+  .variablesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldSelector {
+    grid-template-columns: 1fr;
+  }
+
+  .queryOutputHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .queryActions {
+    width: 100%;
+  }
+
+  .copyButton,
+  .executeButton {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .rootButton {
+    padding: 1rem;
+  }
+
+  .fieldButton {
+    padding: 0.875rem;
+  }
+
+  .nestedFields {
+    margin-left: 1rem;
+    padding-left: 0.75rem;
+  }
+}
+
+/* Scrollbar Styling */
+.resultsCode::-webkit-scrollbar,
+.queryCode::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.resultsCode::-webkit-scrollbar-track,
+.queryCode::-webkit-scrollbar-track {
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 3px;
+}
+
+.resultsCode::-webkit-scrollbar-thumb,
+.queryCode::-webkit-scrollbar-thumb {
+  background: var(--ifm-color-emphasis-400);
+  border-radius: 3px;
+}
+
+.resultsCode::-webkit-scrollbar-thumb:hover,
+.queryCode::-webkit-scrollbar-thumb:hover {
+  background: var(--ifm-color-emphasis-500);
+}
+
+/* Dark mode specific adjustments */
+[data-theme='dark'] .queryCode,
+[data-theme='dark'] .resultsCode {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .input {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .fieldButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+}

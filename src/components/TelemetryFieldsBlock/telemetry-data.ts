@@ -14,7 +14,7 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'availableSignals',
     commonName: 'Available Vehicle Signals',
-    aggregationType: 'FloatAggregation!',
+    aggregationType: '[String!]!',
     units: 'N/A',
     description:
       'Returns a list of queryable signal names that have stored data for a given <code>tokenId</code>.',
@@ -30,9 +30,10 @@ export const vehicleInfoFields: TelemetryField[] = [
   {
     signal: 'vinVC',
     commonName: 'VIN #',
-    aggregationType: 'FloatAggregation!',
+    aggregationType: 'VinVC',
     units: 'N/A',
-    description: 'Returns the latest VINVC data for a given token',
+    description:
+      'Returns the latest VINVC data for a given token. <strong>Note:</strong> This is a standalone query field, not a sub-field of <code>signals</code> or <code>signalsLatest</code>. Query example: <code>query { vinVCLatest(tokenId: 12345) { vin } }</code>',
   },
   {
     signal: 'isIgnitionOn',
@@ -230,7 +231,7 @@ export const diagnosticsFields: TelemetryField[] = [
   {
     signal: 'obdDTCList',
     commonName: 'Diagnostic Trouble Codes',
-    aggregationType: 'FloatAggregation!',
+    aggregationType: 'StringAggregation!',
     units: 'OBD II Standard',
     description:
       'List of currently active DTCs formatted according OBD II (SAE-J2012DA_201812) standard ([P|C|B|U]XXXXX )',

@@ -1,0 +1,113 @@
+.playgroundContainer {
+  margin: 2rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  overflow: hidden;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.playgroundHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.playgroundTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ifm-color-content);
+}
+
+.openButton {
+  padding: 0.5rem 1rem;
+  background: var(--ifm-color-primary);
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.openButton:hover {
+  background: var(--ifm-color-primary-dark);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.iframeWrapper {
+  position: relative;
+  width: 100%;
+  background: white;
+}
+
+.iframe {
+  width: 100%;
+  border: none;
+  display: block;
+}
+
+.playgroundFooter {
+  padding: 1rem 1.5rem;
+  background: var(--ifm-color-emphasis-100);
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.footerText {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+.footerText a {
+  color: var(--ifm-color-primary);
+  text-decoration: underline;
+}
+
+.footerText a:hover {
+  color: var(--ifm-color-primary-dark);
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .playgroundContainer {
+  border-color: var(--ifm-color-emphasis-300);
+  background: var(--ifm-background-color);
+}
+
+[data-theme='dark'] .playgroundHeader,
+[data-theme='dark'] .playgroundFooter {
+  background: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .iframeWrapper {
+  background: #1e1e1e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .playgroundHeader {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .openButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .playgroundFooter {
+    padding: 0.75rem 1rem;
+  }
+
+  .footerText {
+    font-size: 0.8rem;
+  }
+}
