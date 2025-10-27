@@ -132,6 +132,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             code: `all_webhooks = dimo.vehicle_triggers.list_all_webhooks(
       developer_jwt = "eyJhbGc...ILlujqw"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -295,6 +301,24 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       developer_jwt = "eyJhbGc...ILlujqw",
       request = webhook_config
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "service": "telemetry.signals",
+    "metricName": "speed",
+    "condition": "valueNumber > 95",
+    "coolDownPeriod": 30,
+    "description": "Fires whenever a subscribed vehicle travels over 95kph",
+    "displayName": "Speeding check",
+    "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "abc123"
+  }'`
           }
         ]}
         defaultLanguage="typescript"
@@ -338,6 +362,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             code: `webhook_signals = dimo.vehicle_triggers.webhook_signals(
       developer_jwt = "eyJhbGc...ILlujqw"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://vehicle-triggers-api.dimo.zone/v1/webhooks/signals" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -429,6 +459,24 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906",
       request = webhook_config
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X PUT "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "service": "telemetry.signals",
+    "metricName": "speed",
+    "condition": "valueNumber > 99",
+    "coolDownPeriod": 30,
+    "description": "Fires whenever a subscribed vehicle travels over 99kph",
+    "displayName": "Speeding check",
+    "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "abc123"
+  }'`
           }
         ]}
         defaultLanguage="typescript"
@@ -485,6 +533,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       developer_jwt = "eyJhbGc...ILlujqw",
       webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X DELETE "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -539,6 +593,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       developer_jwt = "eyJhbGc...ILlujqw",
       webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -593,6 +653,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       developer_jwt = "eyJhbGc...ILlujqw",
       token_did = "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://vehicle-triggers-api.dimo.zone/v1/webhooks/vehicles/did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -658,6 +724,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       webhook_id = "1d2bef3c-4d56-7890-b12c-dc345ee67906",
       token_did = "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906/subscribe/did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json"`
           }
         ]}
         defaultLanguage="typescript"
@@ -712,6 +785,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       developer_jwt = "eyJhbGc...ILlujqw",
       webhook_id = ""1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906/subscribe/all" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json"`
           }
         ]}
         defaultLanguage="typescript"
@@ -774,6 +854,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       webhookId = "1d2bef3c-4d56-7890-b12c-dc345ee67906",
       tokenDid = "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X DELETE "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906/unsubscribe/did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -828,6 +914,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       developer_jwt = "eyJhbGc...ILlujqw",
       webhookId = "1d2bef3c-4d56-7890-b12c-dc345ee67906"
   )`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X DELETE "https://vehicle-triggers-api.dimo.zone/v1/webhooks/1d2bef3c-4d56-7890-b12c-dc345ee67906/unsubscribe/all" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
         defaultLanguage="typescript"

@@ -52,6 +52,7 @@ Generate verifiable proof about a vehicle's data.
 />
 
 <TwoColumnLayout
+  id="vin-vc"
   leftColumn={
     <div>
       <h2>Create a vehicle VIN attestation</h2>
@@ -106,6 +107,13 @@ Generate verifiable proof about a vehicle's data.
     VehicleJwt = "eyJhbGc...ILlujqw",
     TokenId = 123456
   );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://attestation-api.dimo.zone/v2/attestation/vin/123456" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Content-Type: application/json"`
           }
         ]}
         defaultLanguage="typescript"
@@ -123,6 +131,7 @@ Generate verifiable proof about a vehicle's data.
 />
 
 <TwoColumnLayout
+  id="odometer-vc"
   leftColumn={
     <div>
       <h2>Create a vehicle odometer statement VC</h2>
@@ -178,6 +187,16 @@ Generate verifiable proof about a vehicle's data.
             label: ".NET",
             language: "csharp",
             code: `coming soon`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://attestation-api.dimo.zone/v2/attestation/odometer-statement/123456" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "timestamp": "2023-01-01T00:00:00Z"
+  }'`
           }
         ]}
         defaultLanguage="typescript"
@@ -193,6 +212,7 @@ Generate verifiable proof about a vehicle's data.
 />
 
 <TwoColumnLayout
+  id="health-vc"
   leftColumn={
     <div>
       <h2>Create a vehicle health attestation</h2>
@@ -255,6 +275,17 @@ Generate verifiable proof about a vehicle's data.
             label: ".NET",
             language: "csharp",
             code: `coming soon`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://attestation-api.dimo.zone/v2/attestation/vehicle-health/123456" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "startTime": "2023-01-01T00:00:00Z",
+    "endTime": "2023-01-15T00:00:00Z"
+  }'`
           }
         ]}
         defaultLanguage="typescript"
@@ -270,6 +301,7 @@ Generate verifiable proof about a vehicle's data.
 />
 
 <TwoColumnLayout
+  id="position-vc"
   leftColumn={
     <div>
       <h2>Create a vehicle position attestation</h2>
@@ -325,6 +357,16 @@ Generate verifiable proof about a vehicle's data.
             label: ".NET",
             language: "csharp",
             code: `coming soon`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://attestation-api.dimo.zone/v2/attestation/vehicle-position/123456" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "timestamp": "2023-01-01T00:00:00Z"
+  }'`
           }
         ]}
         defaultLanguage="typescript"

@@ -106,6 +106,18 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
     privileges = [1,3,4,5],
     tokenId = 123456
   );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://token-exchange-api.dimo.zone/v1/tokens/exchange" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "nftContractAddress": "0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF",
+    "privileges": [1, 3, 4, 5],
+    "tokenId": 123456
+  }'`
           }
         ]}
         defaultLanguage="typescript"
