@@ -95,6 +95,12 @@ Get instant offers and valuations for vehicles.
     accessToken = "eyJhbGc...ILlujqw",
     tokenId = 123456
   );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://valuations-api.dimo.zone/v2/vehicles/123456/valuations" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>"`
           }
         ]}
         defaultLanguage="typescript"
@@ -174,6 +180,13 @@ Get instant offers and valuations for vehicles.
     accessToken = "eyJhbGc...ILlujqw",
     tokenId = 123456
   );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://valuations-api.dimo.zone/v2/vehicles/123456/instant-offer" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Content-Type: application/json"`
           }
         ]}
         defaultLanguage="typescript"
@@ -236,6 +249,12 @@ Get instant offers and valuations for vehicles.
     accessToken = "eyJhbGc...ILlujqw",
     tokenId = 123456
   );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://valuations-api.dimo.zone/v2/vehicles/123456/offers" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>"`
           }
         ]}
         defaultLanguage="typescript"

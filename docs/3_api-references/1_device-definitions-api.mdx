@@ -105,6 +105,17 @@ Utility endpoints for Device Definitions.
     access_token = "eyJhbGc...ILlujqw",
     vin ="1HGCM66886A015965"
   );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://device-definitions-api.dimo.zone/device-definitions/decode-vin" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "countryCode": "USA",
+    "vin": "1HGCM66886A015965"
+  }'`
           }
         ]}
         defaultLanguage="typescript"
@@ -213,6 +224,21 @@ Utility endpoints for Device Definitions.
     page,
     pageSize
 );`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://device-definitions-api.dimo.zone/device-definitions/search" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "query": "Lexus gx 2023",
+    "makeSlug": "lexus",
+    "modelSlug": "gx",
+    "year": 2023,
+    "page": 1,
+    "pageSize": 20
+  }'`
           }
         ]}
         defaultLanguage="typescript"
