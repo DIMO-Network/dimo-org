@@ -104,6 +104,17 @@ const config: Config = {
       indexName: 'DIMO Docs Crawler',
       contextualSearch: true,
       searchPagePath: 'search',
+
+      // DocSearch v4 features
+      insights: true, // Enable search insights
+
+      // AskAI configuration (optional - requires Algolia AskAI assistant)
+      // Uncomment and configure when you have an AskAI assistant set up
+      // See: https://www.algolia.com/doc/guides/ai-search/
+      // askAi: {
+      //   assistantId: 'YOUR_ASSISTANT_ID',
+      //   enabled: true,
+      // },
     },
   } satisfies Preset.ThemeConfig,
 

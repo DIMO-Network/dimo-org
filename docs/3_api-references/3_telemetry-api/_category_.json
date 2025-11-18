@@ -1,8 +1,4 @@
 {
   "label": "Telemetry API",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "The Telemetry API is the entrypoint for getting realtime and historical vehicle data for DIMO-connected vehicles."
-  }
+  "position": 4
 }

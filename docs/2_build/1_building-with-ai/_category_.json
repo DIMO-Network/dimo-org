@@ -1,8 +1,4 @@
 {
   "label": "Building with AI",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Building AI-powered apps and services to integrate with DIMO"
-  }
+  "position": 2
 }
