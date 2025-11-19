@@ -77,11 +77,14 @@
 }
 
 .content.contentOpen {
-  max-height: 2000px; /* Large enough to accommodate content */
+  max-height: none; /* Allow full height */
+  overflow: visible; /* Allow scrolling if needed */
 }
 
 .contentInner {
   padding: 0 1.5rem 1.5rem;
+  max-height: 600px; /* Limit height for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 /* Hint/Warning styles */
@@ -180,81 +183,172 @@
   border-color: rgba(244, 67, 54, 0.4);
 }
 
-/* Table container */
-.tableContainer {
+/* Cards container */
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Individual signal card */
+.signalCard {
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 8px;
-  overflow: hidden;
+  padding: 1.25rem;
   background: var(--ifm-background-color);
+  transition: all 0.2s ease;
 }
 
-.tableWrapper {
-  overflow-x: auto;
+.signalCard:hover {
+  border-color: var(--ifm-color-emphasis-300);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  line-height: 1.4;
+[data-theme='dark'] .signalCard {
+  border-color: var(--ifm-color-emphasis-300);
 }
 
-/* Table header */
-.headerRow {
-  background: var(--ifm-color-emphasis-100);
+[data-theme='dark'] .signalCard:hover {
+  border-color: var(--ifm-color-emphasis-400);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
-.headerCell {
-  padding: 0.875rem 1rem;
-  text-align: left;
-  font-weight: 525;
-  color: var(--ifm-color-content);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
-  font-size: 0.8125rem;
+/* Section labels (Signal Name, Common Name) */
+.sectionLabel {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 0.375rem;
+}
+
+/* Signal section */
+.signalSection {
+  margin-bottom: 1rem;
+}
+
+/* Signal header section */
+.signalHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Common name section */
+.commonNameSection {
+  margin-bottom: 0.875rem;
+}
+
+/* Metadata row (Agg Type and Units) */
+.metadataRow {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.metadataItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metadataLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.025em;
-}
-
-/* Table rows */
-.row {
-  transition: background-color 0.2s ease;
-}
-
-.row:hover {
-  background: var(--ifm-color-emphasis-50);
-}
-
-.row:not(:last-child) {
-  border-bottom: 1px solid var(--ifm-color-emphasis-100);
-}
-
-.cell {
-  padding: 1rem;
-  vertical-align: top;
-  color: var(--ifm-color-content);
+  color: var(--ifm-color-content-secondary);
 }
 
 /* Signal code styling */
 .signalCode {
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   background: var(--ifm-color-emphasis-100);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
   color: var(--ifm-color-content);
-  font-weight: 500;
+  font-weight: 600;
+  display: inline-block;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: none;
+  line-height: 1.4;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  flex: 1;
 }
+
+[data-theme='dark'] .signalCode {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+/* Copy button */
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.copyButton:hover {
+  background: var(--ifm-color-primary-lightest);
+  border-color: var(--ifm-color-primary-lighter);
+}
+
+.copyButton:active {
+  transform: scale(0.95);
+}
+
+[data-theme='dark'] .copyButton {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .copyButton:hover {
+  background: var(--ifm-color-emphasis-300);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+.copyIcon {
+  color: var(--ifm-color-content-secondary);
+  transition: color 0.2s ease;
+}
+
+.copyButton:hover .copyIcon {
+  color: var(--ifm-color-primary);
+}
+
+.checkIcon {
+  color: var(--ifm-color-success);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 
 /* Common name styling */
 .commonName {
-  font-weight: 525;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: var(--ifm-color-content);
+  line-height: 1.4;
 }
 
 /* Aggregation type styling */
 .aggType {
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--ifm-color-primary);
   font-weight: 525;
 }
@@ -262,15 +356,16 @@
 /* Units styling */
 .units {
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--ifm-color-content-secondary);
   font-weight: 500;
 }
 
 /* Description styling */
 .description {
-  color: var(--ifm-color-content);
-  line-height: 1.5;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  font-size: 0.9375rem;
 }
 
 .description p {
@@ -283,31 +378,6 @@
 
 .description br {
   line-height: 2;
-}
-
-/* Dark theme table adjustments */
-[data-theme='dark'] .tableContainer {
-  border-color: var(--ifm-color-emphasis-300);
-}
-
-[data-theme='dark'] .headerRow {
-  background: var(--ifm-color-emphasis-200);
-}
-
-[data-theme='dark'] .headerCell {
-  border-bottom-color: var(--ifm-color-emphasis-300);
-}
-
-[data-theme='dark'] .row:hover {
-  background: var(--ifm-color-emphasis-100);
-}
-
-[data-theme='dark'] .row:not(:last-child) {
-  border-bottom-color: var(--ifm-color-emphasis-200);
-}
-
-[data-theme='dark'] .signalCode {
-  background: var(--ifm-color-emphasis-200);
 }
 
 /* Responsive design */
@@ -323,6 +393,7 @@
 
   .contentInner {
     padding: 0 1.25rem 1.25rem;
+    max-height: 500px;
   }
 
   .title {
@@ -334,41 +405,96 @@
     padding: 0.875rem;
   }
 
-  .table {
+  .signalCard {
+    padding: 1rem;
+  }
+
+  .sectionLabel {
+    font-size: 0.625rem;
+  }
+
+  .commonName {
+    font-size: 1rem;
+  }
+
+  .signalCode {
     font-size: 0.8125rem;
+    padding: 0.4rem 0.6rem;
   }
 
-  .headerCell {
-    padding: 0.75rem 0.875rem;
-    font-size: 0.75rem;
+  .copyButton {
+    width: 28px;
+    height: 28px;
   }
 
-  .cell {
+  .copyIcon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .cardsContainer {
+    gap: 0.75rem;
+  }
+
+  .signalCard {
     padding: 0.875rem;
+  }
+
+  .contentInner {
+    max-height: 450px;
+  }
+
+  .signalSection {
+    margin-bottom: 0.875rem;
+  }
+
+  .sectionLabel {
+    font-size: 0.625rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .signalHeader {
+    gap: 0.375rem;
+  }
+
+  .commonNameSection {
+    margin-bottom: 0.75rem;
+  }
+
+  .commonName {
+    font-size: 0.9375rem;
+  }
+
+  .metadataRow {
+    gap: 1.5rem;
+    margin-bottom: 0.875rem;
   }
 
   .signalCode {
     font-size: 0.75rem;
-    padding: 0.2rem 0.4rem;
+    padding: 0.375rem 0.5rem;
   }
 
-  .aggType {
-    font-size: 0.75rem;
+  .copyButton {
+    width: 26px;
+    height: 26px;
   }
 
+  .copyIcon {
+    width: 13px;
+    height: 13px;
+  }
+
+  .aggType,
   .units {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
   }
 
-  /* Stack table on small screens for better readability */
-  @media (max-width: 640px) {
-    .tableWrapper {
-      overflow-x: scroll;
-    }
-
-    .table {
-      min-width: 600px;
-    }
+  .description {
+    font-size: 0.875rem;
   }
 }
 
@@ -379,7 +505,9 @@
   .toggleIcon,
   .chevron,
   .content,
-  .row {
+  .signalCard,
+  .copyButton,
+  .copyIcon {
     transition: none;
   }
 }
