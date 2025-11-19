@@ -22,6 +22,8 @@
   align-items: center;
   gap: 0.75rem;
   font-family: var(--ifm-font-family-monospace);
+  flex: 1;
+  min-width: 0;
 }
 
 /* HTTP Method badges */
@@ -101,6 +103,8 @@
   font-size: 0.875rem;
   color: var(--ifm-color-content);
   font-weight: 500;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 /* Language selector dropdown */
@@ -157,7 +161,7 @@
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.375rem 0.625rem;
   background: transparent;
   border: 1px solid #404040;
   color: #a0a0a0;
@@ -165,6 +169,8 @@
   cursor: pointer;
   font-size: 0.75rem;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .copyButton:hover {
