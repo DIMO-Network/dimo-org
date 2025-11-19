@@ -70,6 +70,10 @@ const config: Config = {
       },
       items: [
         {
+          type: 'search',
+          position: 'right',
+        },
+        {
           to: 'https://console.dimo.org/sign-in',
           label: 'Log In',
           position: 'right',

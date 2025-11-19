@@ -273,6 +273,49 @@ html[data-theme='dark'] .header-github-link:before {
   transform: translateX(3px);
 }
 
+/* Mobile navbar adjustments */
+@media (max-width: 996px) {
+  /* Hide login button and GitHub icon from top navbar on mobile (they appear in slide-out menu) */
+  .navbar__items--right .header-login-button,
+  .navbar__items--right .header-github-link {
+    display: none !important;
+  }
+
+  /* Make GitHub link show text label in mobile menu */
+  .navbar-sidebar .header-github-link::after {
+    content: 'GitHub';
+    margin-left: 0.5rem;
+  }
+
+  /* Fix mobile slide-out menu header layout to prevent overlap */
+  .navbar-sidebar__brand {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 1rem !important;
+    min-height: 60px !important;
+  }
+
+  /* Ensure logo has proper space */
+  .navbar-sidebar__brand .navbar__brand {
+    flex-shrink: 0 !important;
+    margin-right: 1rem !important;
+  }
+
+  /* Position color mode toggle properly */
+  .navbar-sidebar__brand .navbar__items {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin-left: auto !important;
+  }
+
+  /* Ensure close button has space */
+  .navbar-sidebar__close {
+    margin-left: 0.5rem !important;
+  }
+}
+
 /* ================================
    Sidebar Styling - Clean & Modern
    ================================ */
