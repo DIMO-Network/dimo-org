@@ -12,11 +12,11 @@ import CustomDetails from '@site/src/components/CustomDetails';
 import GitHubButton from "react-github-btn";
 
 
-# Client SDK - DIMO Connect
+# Client SDK: DIMO Connect
 
 ## Get Data Permissions From Vehicle Owners
 
-DIMO Connect is a user interface built on our **robust privacy engine** that allows app developers to specify and request data from vehicle owners. 
+DIMO Connect is a user interface built on our **robust privacy engine** that allows app developers to specify and request data from vehicle owners.
 Developers can get started using either the [React Component SDK (aka Login with DIMO)](https://www.npmjs.com/package/@dimo-network/login-with-dimo) or by simply creating a DIMO Connect URL.
 
 ## How It Works
@@ -173,8 +173,8 @@ Developers can get started using either the [React Component SDK (aka Login with
         requireAuth={false}
         defaultQuery={
 `query GetVehicleByDevLicense($clientId: Address!) {
-    vehicles(filterBy: { 
-      privileged: $clientId } 
+    vehicles(filterBy: {
+      privileged: $clientId }
       first: 3
     ) {
       nodes {

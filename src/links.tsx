@@ -5,7 +5,7 @@
 // Internal documentation links (relative paths)
 export const DOCS_LINKS = {
   base: '/docs',
-	developerSdk: '/docs/category/building-with-tools',
+	developerSdk: '/docs/build/building-with-tools/client-sdk-dimo-connect',
   aiAppBuilder: '/docs/build/building-with-ai/developer-kit',
 	dimoMcpServer: '/docs/build/building-with-ai/dimo-mcp-server',
 	lowCodeIntegrations: '/docs/build/building-with-tools/low-code-integrations',

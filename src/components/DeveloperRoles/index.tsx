@@ -129,17 +129,17 @@ const DeveloperRoles: React.FC<DeveloperRolesProps> = () => {
           Explore our comprehensive documentation and get started with Building on DIMO today.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a 
+          <a
             className="button button--primary button--lg"
-            href="/docs/category/getting-started"
+            href="/docs/getting-started/create-your-account"
           >
-            Get Started
+            Getting Started
           </a>
-          <a 
+          <a
             className="button button--outline button--primary button--lg"
-            href="/docs/category/api-references"
+            href="/docs/api-references/attestation-api"
           >
-            API Reference
+            API References
           </a>
         </div>
       </div>
