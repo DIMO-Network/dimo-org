@@ -1,8 +1,4 @@
 {
   "label": "Introduction",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Quick start guide for developers. Learn how to create a developer account and get started with the API"
-  }
+  "position": 2
 }
