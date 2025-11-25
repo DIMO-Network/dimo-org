@@ -1,218 +1,322 @@
+import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
-import type { ReactNode } from 'react';
-import { LINKS } from '../links';
-
 import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
+import { LINKS } from '../links';
 
-// Asset imports - descriptive names
-const imgHeroHighway = '/img/hero-highway-image.png';
-const imgDimoIconBlue = '/img/dimo-build-logo-round.png';
-const imgDimoIcon = '/img/dimo-logo-red.png';
+// Asset imports
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
-const imgIconRealTimeData = '/img/icon-real-time-data.svg';
 const imgIconPrivacyPreserving = '/img/icon-privacy-preserving.svg';
 const imgOpenSource = '/img/icon-open-source.svg';
 const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
-const imgIconStarsAI = '/img/icon-ai.svg';
-const imgIconConsentManagement = '/img/icon-consent-management.svg';
+const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
+
+// Trusted Logos
+const LogoPolygon = '/img/logo-polygon.svg';
+const LogoCoinbase = '/img/logo-coinbase.svg';
+const LogoStreamr = '/img/logo-streamr.svg';
+const LogoStaex = '/img/logo-staex.svg';
 
 function HeroSection() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.heroBackground}>
-        <div className={styles.heroBackgroundImage}>
-          <img alt="" src={imgHeroHighway} />
+    <header className={styles.hero}>
+      <div className={styles.heroGrid} />
+      <div className={styles.heroGlow} />
+
+      <div className={styles.heroContent}>
+        <div className={styles.pill}>
+          <span className={styles.pillNew}>New</span>
+          <span>Vehicle webhooks are live now →</span>
         </div>
-      </div>
-      <div className="container">
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            The vehicle data platform that puts privacy first
-          </h1>
-          <div className={styles.heroButtons}>
-            <Link
-              className={styles.signInButton}
-              to={LINKS.external.console}
-            >
-              Console
-            </Link>
-            <Link className={styles.docsButton} to="/docs">
-              Read The Docs
-            </Link>
-          </div>
-          
-          {/* Badges Container */}
-          <div className={styles.badgesContainer}>
-            {/* DIMO Mobile Badge */}
-            <div className={styles.dimoMobileBadge}>
-              <a href={LINKS.external.dimoMobile} target="_blank" className={styles.dimoMobileLink}>
-                <div className={styles.dimoMobileContent}>
-                  <div className={styles.dimoMobileIcon}>
-                    <img src={imgDimoIcon} alt="DIMO Mobile" />
-                  </div>
-                  <div className={styles.dimoMobileTextContainer}>
-                    <div className={styles.dimoMobileSubText}>SIGN UP AS A CONSUMER</div>
-                    <div className={styles.dimoMobileMainText}>DIMO Mobile</div>
-                  </div>
-                </div>
-              </a>
-            </div>
 
-            {/* Product Hunt Badge */}
-            <div className={styles.productHuntBadge}>
-              <a href="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo" target="_blank">
-                <img 
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1019734&theme=light&t=1758908398048" 
-                  alt="DIMO - The&#0032;vehicle&#0032;data&#0032;platform&#0032;that&#0032;puts&#0032;privacy&#0032;first | Product Hunt" 
-                  style={{width: '250px', height: '54px'}}
-                />
-              </a>
-            </div>
+        <h1 className={styles.heroTitle}>
+          The only vehicle intelligence platform that <br />
+          <span className={styles.heroTitleSpan}>puts privacy first.</span>
+        </h1>
 
-            {/* DIMO Japan Badge */}
-            <div className={styles.dimoJapanBadge}>
-              <a href={LINKS.external.dimoJapan} target="_blank" className={styles.dimoJapanLink}>
-                <div className={styles.dimoJapanContent}>
-                  <div className={styles.dimoJapanIcon}>
-                    <img src={imgDimoIconBlue} alt="DIMO Japan" />
-                  </div>
-                  <div className={styles.dimoJapanTextContainer}>
-                    <div className={styles.dimoJapanSubText}>EXPLORE OUR AFFILIATES</div>
-                    <div className={styles.dimoJapanMainText}>DIMO Japan</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyDimoSection() {
-  return (
-    <section className={styles.whyDimo}>
-      <div className="container">
-        <h2 className={styles.whyDimoTitle}>Why DIMO?</h2>
-        <p className={styles.whyDimoSubtitle}>
-          DIMO lets you tap into $100B+ with real-time telemetry and connected
-          services
+        <p className={styles.heroSubtitle}>
+          Connect to thousands of vehicle models with a single open API. Build
+          AI-powered applications, verify real-world identity, and access
+          telemetry data without the hardware headache.
         </p>
 
-        <div className={styles.featuresGrid}>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>
-              <img alt="" src={imgIconPlugPlay} />
-            </div>
-            <h3 className={styles.featureTitle}>Plug & Play</h3>
-            <p className={styles.featureDescription}>
-              Built to scale, AI-ready API and developer infrastructure
-            </p>
-          </div>
+        <div className={styles.heroButtons}>
+          <Link className={styles.primaryBtn} to={LINKS.external.console}>
+            Start Building
+          </Link>
+          <Link className={styles.secondaryBtn} to="/docs">
+            Read the Docs
+          </Link>
+        </div>
 
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>
-              <img
-                alt=""
-                src={imgIconPrivacyPreserving}
-                className={styles.largerIcon}
-              />
+        {/* Visual / Code Editor */}
+        <div className={styles.heroVisual}>
+          <div className={styles.codeWindow}>
+            <div className={styles.codeHeader}>
+              <div className={styles.codeTab}>
+                <span className={styles.tsIcon}>TS</span>
+                index.ts
+              </div>
             </div>
-            <h3 className={styles.featureTitle}>Privacy Preserving</h3>
-            <p className={styles.featureDescription}>
-              Connect to vehicles while maintaining user privacy and onboard app
-              developers while honoring OEM agreements
-            </p>
+            <div className={styles.codeBody}>
+              <div className={styles.lineNumbers}>
+                1<br />
+                2<br />
+                3<br />
+                4<br />
+                5<br />
+                6<br />
+                7<br />
+                8<br />
+                9<br />
+                10
+                <br />
+                11
+                <br />
+                12
+                <br />
+                13
+                <br />
+                14
+                <br />
+                15
+                <br />
+                16
+                <br />
+                17
+                <br />
+                18
+              </div>
+              <div className={styles.codeContent}>
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenKeyword}>import</span>{' '}
+                  <span className={styles.tokenOperator}>{`{`}</span>{' '}
+                  <span className={styles.tokenType}>DIMO</span>{' '}
+                  <span className={styles.tokenOperator}>{`}`}</span>{' '}
+                  <span className={styles.tokenKeyword}>from</span>{' '}
+                  <span className={styles.tokenString}>
+                    '@dimo-network/data-sdk'
+                  </span>
+                  ;
+                </div>
+                <br />
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenComment}>
+                    // 1. Initialize the SDK
+                  </span>
+                </div>
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenKeyword}>const</span>{' '}
+                  <span className={styles.tokenVariable}>dimo</span>{' '}
+                  <span className={styles.tokenOperator}>=</span>{' '}
+                  <span className={styles.tokenKeyword}>new</span>{' '}
+                  <span className={styles.tokenType}>DIMO</span>(
+                  <span className={styles.tokenString}>'Production'</span>);
+                </div>
+                <br />
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenComment}>
+                    // 2. Auth with your Developer License
+                  </span>
+                </div>
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenKeyword}>await</span>{' '}
+                  <span className={styles.tokenVariable}>dimo</span>.
+                  <span className={styles.tokenVariable}>auth</span>.
+                  <span className={styles.tokenFunction}>getDeveloperJwt</span>(
+                  <span className={styles.tokenOperator}>{`{`}</span>
+                </div>
+                <div className={styles.codeLine}>
+                  &nbsp;&nbsp;
+                  <span className={styles.tokenVariable}>clientId</span>:{' '}
+                  <span className={styles.tokenVariable}>process</span>.
+                  <span className={styles.tokenVariable}>env</span>.
+                  <span className={styles.tokenVariable}>DIMO_CLIENT_ID</span>,
+                </div>
+                <div className={styles.codeLine}>
+                  &nbsp;&nbsp;
+                  <span className={styles.tokenVariable}>apiKey</span>:{' '}
+                  <span className={styles.tokenVariable}>process</span>.
+                  <span className={styles.tokenVariable}>env</span>.
+                  <span className={styles.tokenVariable}>DIMO_API_KEY</span>,
+                </div>
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenOperator}>{`}`}</span>);
+                </div>
+                <br />
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenComment}>
+                    // 3. Query real-time vehicle data
+                  </span>
+                </div>
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenKeyword}>const</span>{' '}
+                  <span className={styles.tokenVariable}>data</span>{' '}
+                  <span className={styles.tokenOperator}>=</span>{' '}
+                  <span className={styles.tokenKeyword}>await</span>{' '}
+                  <span className={styles.tokenVariable}>dimo</span>.
+                  <span className={styles.tokenVariable}>telemetry</span>.
+                  <span className={styles.tokenFunction}>query</span>(
+                  <span className={styles.tokenOperator}>{`{`}</span>
+                </div>
+                <div className={styles.codeLine}>
+                  &nbsp;&nbsp;
+                  <span className={styles.tokenVariable}>tokenId</span>:{' '}
+                  <span className={styles.tokenNumber}>12345</span>,
+                </div>
+                <div className={styles.codeLine}>
+                  &nbsp;&nbsp;
+                  <span className={styles.tokenVariable}>signals</span>: [
+                  <span className={styles.tokenString}>'speed'</span>,{' '}
+                  <span className={styles.tokenString}>'powertrainRange'</span>,{' '}
+                  <span className={styles.tokenString}>'currentLocation'</span>]
+                </div>
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenOperator}>{`}`}</span>);
+                </div>
+                <br />
+                <div className={styles.codeLine}>
+                  <span className={styles.tokenVariable}>console</span>.
+                  <span className={styles.tokenFunction}>log</span>(
+                  <span className={styles.tokenVariable}>data</span>);
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </header>
+  );
+}
 
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>
-              <img
-                alt=""
-                src={imgIconRealTimeData}
-                className={styles.largerIcon}
-              />
-            </div>
-            <h3 className={styles.featureTitle}>Real-time Data</h3>
-            <p className={styles.featureDescription}>
-              Be a data source, host, and/or consumer of real-time vehicle data
-            </p>
-          </div>
+function TrustedBySection() {
+  return (
+    <section className={styles.trustedBy}>
+      <div className="container">
+        <div className={styles.trustedByText}>Trusted by Innovators</div>
+        <div className={styles.logoMarquee}>
+          <img src={LogoPolygon} alt="Polygon" />
+          <img src={LogoStreamr} alt="Streamr" />
+          <img src={LogoCoinbase} alt="Coinbase" />
+          <img src={LogoStaex} alt="Staex" />
         </div>
       </div>
     </section>
   );
 }
 
-function BottomFeaturesSection() {
+function FeaturesGrid() {
   const features = [
     {
-      title: 'Open Source',
-      icon: imgOpenSource,
-      description:
-        'DIMO is built on open-source, either MIT License or Apache License 2.0',
-    },
-    {
-      title: 'Secure + Compliant',
-      icon: imgIconSecureCompliant,
-      description:
-        'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GPDR and the EU Data Act',
-    },
-    {
       title: 'Universal Compatibility',
+      desc: 'One API for Tesla, Ford, BMW, and 50+ other OEMs. Forget proprietary dongles and fragmented standards.',
       icon: imgIconUniversalCompatibility,
-      description:
-        'DIMO works with any data providers, whether you are an OEM, a data service provider, or manufacturers of an aftermarket device',
     },
     {
-      title: 'Off-the-shelf Features',
-      icon: imgIconConsentManagement,
-      description:
-        'Consent management, programmable rewards, and universal API are all built-in, off-the-shelf features',
+      title: 'Privacy by Design',
+      desc: 'User-owned data architecture. Grant and revoke access with granular permissions built on verifiable credentials.',
+      icon: imgIconPrivacyPreserving,
     },
     {
-      title: 'Gen-AI & MCP-Ready',
+      title: 'AI-Ready Context',
+      desc: 'Clean, normalized data streams ready for LLMs and predictive models. Train on real-world driving behavior.',
       icon: imgIconStarsAI,
-      description:
-        'Proven to work with generative AI and MCP servers, DIMO provides the data foundation to build your AI solutions',
-      special: true,
+    },
+    {
+      title: 'Plug & Play Hardware',
+      desc: 'Onboard older vehicles instantly with the DIMO Macaron or AutoPi. Zero-config installation for users.',
+      icon: imgIconPlugPlay,
+    },
+    {
+      title: 'Open Source Core',
+      desc: 'Built on open protocols. Audit the code, contribute to the network, and own your infrastructure.',
+      icon: imgOpenSource,
+    },
+    {
+      title: 'Secure & Compliant',
+      desc: 'Enterprise-grade security with GDPR and SOC2 compliance. Your data is safe, your users are protected.',
+      icon: imgIconSecureCompliant,
     },
   ];
 
   return (
-    <section className={styles.bottomFeatures}>
-      <div className="container">
-        <div className={styles.featureCards}>
-          {features.map((feature, index) => (
-            <div key={index} className={styles.featureCardContainer}>
-              <div className={styles.featureCard}>
-                {/* Front side */}
-                <div className={styles.featureCardFront}>
-                  {feature.icon && (
-                    <div className={styles.featureCardIcon}>
-                      <img alt="" src={feature.icon} />
-                    </div>
-                  )}
-                  <h4 className={styles.featureCardTitle}>{feature.title}</h4>
-                  <div className={styles.featureCardArrow}>→</div>
-                </div>
-                {/* Back side */}
-                <div className={styles.featureCardBack}>
-                  <h4 className={styles.featureCardTitleBack}>
-                    {feature.title}
-                  </h4>
-                  <p className={styles.featureCardDescription}>
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
+    <section className={styles.features}>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>Everything you need to build</h2>
+        <p className={styles.sectionSubtitle}>
+          Stop wrestling with OBD-II codes and flaky Bluetooth connections. DIMO
+          handles the hard stuff so you can ship features.
+        </p>
+      </div>
+
+      <div className={styles.bentoGrid}>
+        {features.map((f, i) => (
+          <div key={i} className={styles.card}>
+            <div className={styles.cardGlow} />
+            <div className={styles.cardIcon}>
+              <img src={f.icon} alt="" />
             </div>
-          ))}
+            <h3 className={styles.cardTitle}>{f.title}</h3>
+            <p className={styles.cardDesc}>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function BigFeatureSection() {
+  return (
+    <section className={styles.bigFeature}>
+      <div className={styles.featureContainer}>
+        <div className={styles.featureText}>
+          <h3>Real-time Telemetry at Scale</h3>
+          <p>
+            Access high-frequency sensor data including GPS, speed, fuel levels,
+            battery health, and tire pressure. Stream it directly to your
+            application via WebSockets or query via GraphQL.
+          </p>
+          <ul className={styles.featureList}>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Sub-second latency
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Normalized across
+              makes & models
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Historical replay
+              capability
+            </li>
+          </ul>
+        </div>
+        <div className={styles.featureVisual}>
+          <div
+            style={{
+              background:
+                'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))',
+              height: '300px',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'rgba(255,255,255,0.5)',
+            }}
+          >
+            <img
+              src="/img/TelemetrySample.png"
+              alt="Telematics Architecture"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                opacity: 0.9,
+                borderRadius: '8px',
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -221,10 +325,12 @@ function BottomFeaturesSection() {
 
 function WatchHowItWorksSection() {
   return (
-    <section className={styles.whyDimo}>
+    <section className={styles.videoSection}>
       <div className="container">
-        <h2 className={styles.whyDimoTitle}>Watch How It Works</h2>
-        <div className={styles.videoContainer}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>How It Works</h2>
+        </div>
+        <div className={styles.videoWrapper}>
           <iframe
             src="https://www.youtube.com/embed/swdRxufYB3A"
             title="DIMO - How It Works"
@@ -239,12 +345,48 @@ function WatchHowItWorksSection() {
 
 function WallOfLoveSection() {
   return (
-    <section>
-      <div className={styles.wallOfLove}>
-        <h2 className={styles.wallOfLoveTitle}>Hear What Devs Say</h2>
+    <section className={styles.wallOfLove}>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>What devs are saying</h2>
       </div>
-      <div className="feedspace-embed" data-id="217207bd-2013-4903-8545-d7f149fda8a2"></div>
-      <script src="https://js.feedspace.io/v1/embed/embed.min.js" type="text/javascript" async></script>
+      <div
+        className="feedspace-embed"
+        data-id="217207bd-2013-4903-8545-d7f149fda8a2"
+        style={{ maxWidth: '1200px', margin: '0 auto' }}
+      ></div>
+      <script
+        src="https://js.feedspace.io/v1/embed/embed.min.js"
+        type="text/javascript"
+        async
+      ></script>
+    </section>
+  );
+}
+
+function CTASection() {
+  return (
+    <section className={styles.ctaSection}>
+      <div className={styles.ctaContent}>
+        <h2 className={styles.ctaTitle}>Ready to launch?</h2>
+        <p className={styles.ctaText}>
+          Join thousands of developers building the next generation of mobility
+          apps. Get your API keys today.
+        </p>
+        <div
+          className={styles.heroButtons}
+          style={{ justifyContent: 'center' }}
+        >
+          <Link className={styles.primaryBtn} to={LINKS.external.console}>
+            Get API Keys
+          </Link>
+          <Link
+            className={styles.secondaryBtn}
+            to="https://discord.gg/dimonetwork"
+          >
+            Join Discord
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }
@@ -252,19 +394,18 @@ function WallOfLoveSection() {
 export default function Home(): ReactNode {
   return (
     <div className={styles.homePage}>
-      {/* Custom Navigation */}
-      <CustomNavbar />
+      <CustomNavbar dark={true} />
 
-      {/* Page Content */}
-      <HeroSection />
       <main>
-        <WhyDimoSection />
-        <BottomFeaturesSection />
+        <HeroSection />
+        <TrustedBySection />
+        <FeaturesGrid />
+        <BigFeatureSection />
         <WatchHowItWorksSection />
         <WallOfLoveSection />
+        <CTASection />
       </main>
 
-      {/* Footer */}
       <FooterTheme />
     </div>
   );

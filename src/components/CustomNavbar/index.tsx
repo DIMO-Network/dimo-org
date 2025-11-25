@@ -5,14 +5,21 @@ import { LINKS } from '../../links';
 import styles from './styles.module.css';
 
 // Asset imports - descriptive names
-const imgLogoDimo = '/img/dimo-build-logo.svg';
+const imgLogoDimoLight = '/img/dimo-build-logo.svg';
+const imgLogoDimoDark = '/img/dimo-build-logo-dark.svg';
 const imgGithub = '/img/icon-github.svg';
 const imgDune = '/img/icon-dune.svg';
 const imgDropdownArrow = '/img/icon-dropdown-arrow.svg';
 
-export default function CustomNavbar() {
+interface CustomNavbarProps {
+  dark?: boolean;
+}
+
+export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const imgLogoDimo = dark ? imgLogoDimoDark : imgLogoDimoLight;
 
   const handleDropdownEnter = (dropdown: string) => {
     setActiveDropdown(dropdown);
@@ -31,7 +38,7 @@ export default function CustomNavbar() {
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${dark ? styles.navbarDark : ''}`}>
       <div className={styles.navContent}>
         {/* Logo */}
         <div className={styles.navLogo}>
@@ -222,7 +229,7 @@ export default function CustomNavbar() {
             <div className={styles.mobileMenuContent}>
               <div className={styles.mobileMenuHeader}>
                 <div className={styles.mobileMenuLogo}>
-                  <img alt="DIMO" src={imgLogoDimo} />
+                  <img alt="DIMO" src={imgLogoDimoLight} />
                 </div>
               </div>
 

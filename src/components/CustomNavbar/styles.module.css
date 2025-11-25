@@ -5,6 +5,7 @@
   position: relative;
   z-index: 100;
   width: 100%;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .navContent {
@@ -336,6 +337,58 @@
   color: #ffffff;
   text-decoration: none;
   transform: translateY(-1px);
+}
+
+/* --- Dark Mode Overrides --- */
+.navbarDark {
+  background-color: rgba(3, 3, 3, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbarDark .navItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.navbarDark .navItem:hover {
+  color: #3b82f6;
+}
+
+.navbarDark .dropdownIcon {
+  filter: invert(1);
+}
+
+.navbarDark .navIcon img {
+  filter: invert(1);
+}
+
+.navbarDark .signInButtonNav {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.navbarDark .signInButtonNav:hover {
+  background-color: #e2e8f0;
+  color: #000000;
+}
+
+.navbarDark .dropdownMenu {
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.navbarDark .dropdownItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.navbarDark .dropdownItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.navbarDark .hamburgerLine {
+  background-color: #ffffff;
 }
 
 /* Responsive Design */
