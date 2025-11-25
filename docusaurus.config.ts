@@ -66,6 +66,7 @@ const config: Config = {
       logo: {
         alt: 'DIMO',
         src: 'img/dimo-build-logo.svg',
+        srcDark: 'img/dimo-build-logo-dark.svg',
         href: '/',
       },
       items: [

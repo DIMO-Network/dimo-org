@@ -4,54 +4,10 @@
  * work well for content-centric websites.
  */
 
-/* Universal Sans Display Font Family */
-@font-face {
-  font-family: 'Universal Sans Display';
-  src: url('/fonts/Universal-Sans-Display-425.ttf') format('truetype');
-  font-weight: 425;
-  font-style: normal;
-  font-display: swap;
-}
+/* Universal Sans Display Font Family - Removed in favor of Inter */
+/* @font-face rules removed */
 
-@font-face {
-  font-family: 'Universal Sans Display';
-  src: url('/fonts/Universal-Sans-Display-425Italic.ttf') format('truetype');
-  font-weight: 425;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Universal Sans Display';
-  src: url('/fonts/Universal-Sans-Display-525.ttf') format('truetype');
-  font-weight: 525;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Universal Sans Display';
-  src: url('/fonts/Universal-Sans-Display-525Italic.ttf') format('truetype');
-  font-weight: 525;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Universal Sans Display';
-  src: url('/fonts/Universal-Sans-Display-900.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Universal Sans Display';
-  src: url('/fonts/Universal-Sans-Display-900Italic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -66,20 +22,18 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   /* Custom font variables */
-  --ifm-font-family-base:
-    'Universal Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
-  --ifm-font-family-monospace:
-    'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Oxygen Mono',
-    'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono',
-    'Courier New', monospace;
+  --ifm-font-family-monospace: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono',
+    'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono',
+    'Droid Sans Mono', 'Courier New', monospace;
 
-  /* Font weight mappings for Universal Sans Display */
-  --ifm-font-weight-light: 425;
-  --ifm-font-weight-normal: 425;
-  --ifm-font-weight-semibold: 525;
-  --ifm-font-weight-bold: 525;
+  /* Font weight mappings for Inter */
+  --ifm-font-weight-light: 400;
+  --ifm-font-weight-normal: 400;
+  --ifm-font-weight-semibold: 600;
+  --ifm-font-weight-bold: 700;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -92,6 +46,12 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* True Black Dark Mode */
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0a0a0a; /* Slightly lighter for contrast */
+  --ifm-navbar-background-color: #000000;
+  --ifm-footer-background-color: #000000;
 }
 
 /* Custom utility classes for inline styling */
@@ -118,7 +78,7 @@
 /* Universal Sans Display utility classes */
 .font-universal {
   font-family:
-    'Universal Sans Display',
+    'Inter',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -126,34 +86,34 @@
 }
 
 .font-weight-regular {
-  font-weight: 425;
+  font-weight: 400;
 }
 
 .font-weight-medium {
-  font-weight: 525;
+  font-weight: 600;
 }
 
 .font-weight-black {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 /* Heading overrides to use different weights */
 h1 {
-  font-weight: 900 !important;
+  font-weight: 700 !important;
 }
 
 h2 {
-  font-weight: 525 !important;
+  font-weight: 600 !important;
 }
 
 h3 {
-  font-weight: 525 !important;
+  font-weight: 600 !important;
 }
 
 h4,
 h5,
 h6 {
-  font-weight: 525 !important;
+  font-weight: 600 !important;
   font-size: 1.4rem;
 }
 
@@ -196,7 +156,7 @@ h6 {
 }
 
 .navbar__item {
-  font-weight: 425;
+  font-weight: 500;
   font-size: 0.9rem;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
@@ -205,7 +165,7 @@ h6 {
 
 .navbar__link {
   text-decoration: none;
-  font-weight: 425;
+  font-weight: 500;
 }
 
 .navbar__link:hover {
@@ -249,7 +209,7 @@ html[data-theme='dark'] .header-github-link:before {
   color: #ffffff !important;
   border-radius: 6px !important;
   padding: 0.5rem 1rem !important;
-  font-weight: 525 !important;
+  font-weight: 600 !important;
   text-decoration: none !important;
   transition: all 0.2s ease !important;
   display: inline-flex !important;
@@ -367,7 +327,7 @@ html[data-theme='dark'] .header-github-link:before {
   padding: 0.5rem 0.75rem !important;
   border-radius: 6px !important;
   transition: all 0.15s ease !important;
-  font-weight: 425 !important;
+  font-weight: 500 !important;
   line-height: 1.5 !important;
   display: flex !important;
   align-items: center !important;
@@ -389,7 +349,7 @@ html[data-theme='dark'] .menu__link:hover {
 .menu__link--active {
   background-color: rgba(18, 75, 219, 0.1) !important;
   color: var(--ifm-color-primary) !important;
-  font-weight: 525 !important;
+  font-weight: 600 !important;
 }
 
 html[data-theme='dark'] .menu__link--active {
@@ -416,7 +376,7 @@ html[data-theme='dark'] .menu__link--active:hover {
 
 /* Category label link - make it distinct */
 .menu__list-item-collapsible > .menu__link {
-  font-weight: 525 !important;
+  font-weight: 600 !important;
   font-size: 0.875rem !important;
   padding: 0.5rem 0.75rem !important;
   color: var(--ifm-menu-color) !important;
@@ -491,7 +451,7 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 
 /* Top-level link items (non-collapsible) */
 .theme-doc-sidebar-item-link-level-1 {
-  font-weight: 525 !important;
+  font-weight: 600 !important;
   margin-top: 0.5rem !important;
 }
 
@@ -548,7 +508,7 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 }
 
 .table-of-contents__link {
-  font-weight: 425;
+  font-weight: 400;
   padding: 0.25rem 0;
   transition: all 0.2s ease;
 }
@@ -560,7 +520,7 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 
 .table-of-contents__link--active {
   color: var(--ifm-color-primary);
-  font-weight: 525;
+  font-weight: 600;
   border-left: 2px solid var(--ifm-color-primary);
   padding-left: 0.5rem;
   margin-left: -0.5rem;
@@ -598,6 +558,76 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 .theme-code-block {
   border-radius: 8px;
   margin: 1rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Tabs Styling */
+.tabs {
+  border-bottom: none !important;
+  background-color: #f3f4f6; /* Light gray for light mode */
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  gap: 0.25rem;
+}
+
+html[data-theme='dark'] .tabs {
+  background-color: #09090b; /* Match code block background */
+  border: 1px solid #2e2e2e;
+  border-bottom: none;
+}
+
+.tabs__item {
+  border-radius: 6px 6px 0 0 !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500 !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--ifm-font-color-base) !important;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  margin-bottom: 0 !important; /* Sit flush */
+}
+
+.tabs__item:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  opacity: 1;
+}
+
+html[data-theme='dark'] .tabs__item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.tabs__item--active {
+  background-color: var(--ifm-background-color) !important; /* Tab becomes content color */
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600 !important;
+  opacity: 1;
+  box-shadow: 0 -2px 0 0 var(--ifm-color-primary) inset; /* Top border indicator */
+}
+
+html[data-theme='dark'] .tabs__item--active {
+  background-color: #09090b !important; /* Match code block background */
+  color: #fff !important;
+  box-shadow: none;
+  border-bottom: 2px solid var(--ifm-color-primary) !important;
+}
+
+/* Make code blocks flush with tabs */
+.theme-code-block pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 0;
+}
+
+/* Force code block background to match "black" theme in dark mode */
+[data-theme='dark'] .theme-code-block .prism-code {
+  background-color: #09090b !important;
+}
+
+/* Container adjustment if needed */
+.tabs-container {
+  margin-bottom: 0;
 }
 
 /* Admonitions (info boxes) */

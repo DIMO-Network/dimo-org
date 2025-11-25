@@ -11,31 +11,47 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0.75rem 1rem;
-  background: var(--ifm-background-surface-color);
-  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem 0 0.5rem; /* Top tabs padding */
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.title {
-  margin: 0;
-  font-size: 1rem;
+[data-theme='dark'] .header {
+  background: #09090b; /* True black match */
+  border-color: #27272a;
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.tab {
+  background-color: #ffffff;
+  color: var(--ifm-color-primary);
+  border-radius: 6px 6px 0 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: var(--ifm-color-content);
+  box-shadow: 0 -2px 0 0 var(--ifm-color-primary) inset;
+}
+
+[data-theme='dark'] .tab {
+  background-color: #09090b;
+  color: #fff;
+  border-bottom: 2px solid var(--ifm-color-primary);
+  box-shadow: none;
 }
 
 /* Code container */
 .codeContainer {
   position: relative;
-  background: #1e1e1e;
+  background: #ffffff;
 }
 
-.codeHeader {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.5rem 0.75rem;
-  background: #2d2d2d;
-  border-bottom: 1px solid #404040;
+[data-theme='dark'] .codeContainer {
+  background: #09090b;
 }
 
 .copyButton {
@@ -44,39 +60,44 @@
   gap: 0.375rem;
   padding: 0.375rem 0.625rem;
   background: transparent;
-  border: 1px solid #404040;
-  color: #a0a0a0;
+  border: none;
+  color: var(--ifm-color-content-secondary);
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.75rem;
   transition: all 0.2s ease;
   white-space: nowrap;
-  flex-shrink: 0;
+  opacity: 0.7;
+  margin-bottom: 0.25rem; /* Align with tabs */
 }
 
 .copyButton:hover {
-  background: #404040;
-  border-color: #606060;
-  color: #ffffff;
+  color: var(--ifm-color-primary);
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 1;
 }
 
-.copyButton:active {
-  background: #505050;
+[data-theme='dark'] .copyButton:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Code block */
 .codeBlock {
   margin: 0;
   padding: 1rem;
-  background: #1e1e1e !important;
+  background: #f8f9fa !important; /* Light mode code bg */
   font-family: var(--ifm-font-family-monospace);
-  font-size: 0.875rem;
+  font-size: var(--ifm-code-font-size);
   line-height: 1.5;
   overflow-x: auto;
   overflow-y: auto;
   border-radius: 0;
   max-height: 400px;
   word-break: break-word;
+}
+
+[data-theme='dark'] .codeBlock {
+  background: #09090b !important; /* Dark mode code bg - True Black */
 }
 
 /* Scrollbar styling for code block */
@@ -86,25 +107,21 @@
 }
 
 .codeBlock::-webkit-scrollbar-track {
-  background: #2d2d2d;
+  background: transparent;
 }
 
 .codeBlock::-webkit-scrollbar-thumb {
-  background: #404040;
+  background: var(--ifm-color-emphasis-300);
   border-radius: 4px;
 }
 
 .codeBlock::-webkit-scrollbar-thumb:hover {
-  background: #505050;
+  background: var(--ifm-color-emphasis-400);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .header {
-    padding: 0.5rem 0.75rem;
-  }
-
-  .title {
-    font-size: 0.875rem;
+    padding: 0.5rem;
   }
 }
