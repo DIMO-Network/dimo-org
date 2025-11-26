@@ -97,6 +97,14 @@
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
   animation: fadeInDown 0.8s ease-out;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .pillNew {

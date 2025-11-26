@@ -30,10 +30,13 @@ function HeroSection() {
       <div className={styles.heroGlow} />
 
       <div className={styles.heroContent}>
-        <div className={styles.pill}>
+        <Link
+          className={styles.pill}
+          to="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo"
+        >
           <span className={styles.pillNew}>New</span>
-          <span>Vehicle webhooks are live now →</span>
-        </div>
+          <span>Check us out on ProductHunt →</span>
+        </Link>
 
         <h1 className={styles.heroTitle}>
           The vehicle intelligence platform that <br />
@@ -89,7 +92,7 @@ function FeaturesGrid() {
   const features = [
     {
       title: 'Universal Compatibility',
-      desc: 'One API for Tesla, Ford, BMW, and 50+ other OEMs. Forget proprietary dongles and fragmented standards.',
+      desc: 'A centralized API for Tesla, Ford, BMW, and 50+ other OEMs, with new vehicle signals decoded almost daily.',
       icon: imgIconUniversalCompatibility,
     },
     {
@@ -104,7 +107,7 @@ function FeaturesGrid() {
     },
     {
       title: 'Plug & Play Hardware',
-      desc: 'Onboard older vehicles instantly with the DIMO Macaron or AutoPi. Zero-config installation for users.',
+      desc: 'Onboard vehicles instantly with the DIMO LTE R1. Zero-config installation for users.',
       icon: imgIconPlugPlay,
     },
     {
