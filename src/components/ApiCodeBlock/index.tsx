@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Highlight, themes } from 'prism-react-renderer';
-import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 export interface CodeExample {
@@ -33,7 +32,6 @@ function ApiCodeBlock({
   defaultLanguage,
   className,
 }: ApiCodeBlockProps) {
-  const { colorMode } = useColorMode();
   const [selectedLanguage, setSelectedLanguage] = useState(
     defaultLanguage || codeExamples[0]?.label || ''
   );
@@ -136,7 +134,7 @@ function ApiCodeBlock({
       <div className={styles.codeContainer}>
         {selectedExample && (
           <Highlight
-            theme={colorMode === 'dark' ? themes.dracula : themes.github}
+            theme={themes.dracula}
             code={selectedExample.code}
             language={selectedExample.language}
           >
@@ -153,6 +151,7 @@ function ApiCodeBlock({
               >
                 {tokens.map((line, i) => (
                   <div key={i} {...getLineProps({ line })}>
+                    {/* Line numbers could be added here if desired */}
                     {line.map((token, key) => (
                       <span key={key} {...getTokenProps({ token })} />
                     ))}

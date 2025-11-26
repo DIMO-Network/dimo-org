@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Highlight, themes } from 'prism-react-renderer';
-import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 export interface ApiResponseBlockProps {
@@ -10,7 +9,6 @@ export interface ApiResponseBlockProps {
 }
 
 function ApiResponseBlock({ code, className }: ApiResponseBlockProps) {
-  const { colorMode } = useColorMode();
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
@@ -78,11 +76,7 @@ function ApiResponseBlock({ code, className }: ApiResponseBlockProps) {
 
       {/* Code block with syntax highlighting */}
       <div className={styles.codeContainer}>
-        <Highlight
-          theme={colorMode === 'dark' ? themes.dracula : themes.github}
-          code={code}
-          language="json"
-        >
+        <Highlight theme={themes.dracula} code={code} language="json">
           {({
             className: highlightClassName,
             style,

@@ -1,11 +1,17 @@
-/* Two Column Layout Component */
+/* Two Column Layout Component - Updated for "Stripe-like" feel */
 .twoColumnContainer {
   display: grid;
-  gap: var(--column-gap, 2rem);
+  gap: 4rem; /* Much larger gap for breathability */
   width: 100%;
-  margin: 1rem 0;
+  margin: 0;
   align-items: start;
-  padding: 1.5rem 0rem;
+  padding: 4rem 0; /* Vertical breathing room */
+  border-bottom: 1px solid var(--ifm-color-emphasis-200); /* Separator line */
+}
+
+/* Remove border from the last container if adjacent */
+.twoColumnContainer:last-child {
+  border-bottom: none;
 }
 
 /* Column ratio variants */
@@ -14,51 +20,73 @@
 }
 
 .ratio21 {
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.5fr 1fr; /* Slightly adjusted for better text width */
 }
 
 .ratio12 {
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1.5fr;
 }
 
 /* Column styling */
 .leftColumn {
-  min-width: 0; /* Prevents content from overflowing */
+  min-width: 0;
+  font-size: 1.05rem; /* Slightly larger text for readability */
+  line-height: 1.7;
+  color: var(--ifm-font-color-base);
+}
+
+.leftColumn h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.leftColumn h3 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .rightColumn {
-  min-width: 0; /* Prevents content from overflowing */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-/* Sticky left column - 5rem default accounts for typical Docusaurus navigation */
+/* Sticky behavior - Refined */
 .stickyLeft {
   position: sticky;
   top: var(--sticky-top, 5rem);
   align-self: start;
   max-height: calc(100vh - var(--sticky-top, 5rem) - 2rem);
   overflow-y: auto;
+  padding-right: 1rem; /* Avoid scrollbar overlap */
 }
 
-/* Sticky right column - 5rem default accounts for typical Docusaurus navigation */
 .stickyRight {
   position: sticky;
   top: var(--sticky-top, 5rem);
   align-self: start;
   max-height: calc(100vh - var(--sticky-top, 5rem) - 2rem);
   overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
 /* Responsive behavior */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 996px) { /* Break earlier for tablet */
   .twoColumnContainer,
   .ratio11,
   .ratio21,
   .ratio12 {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    padding: 3rem 0;
   }
 
-  /* On mobile, ensure proper stacking order */
+  /* On mobile, text on top, code on bottom usually */
   .leftColumn {
     order: 1;
   }
@@ -67,52 +95,29 @@
     order: 2;
   }
 
-  /* Disable sticky behavior on mobile/stacked layouts */
   .stickyLeft,
   .stickyRight {
     position: static;
     max-height: none;
     overflow-y: visible;
+    padding-right: 0;
   }
 }
 
-/* Support for custom breakpoint via CSS variables */
-@media screen and (max-width: var(--stack-breakpoint, 768px)) {
-  .twoColumnContainer,
-  .ratio11,
-  .ratio21,
-  .ratio12 {
-    grid-template-columns: 1fr;
-  }
-
-  /* Disable sticky behavior at custom breakpoint */
-  .stickyLeft,
-  .stickyRight {
-    position: static;
-    max-height: none;
-    overflow-y: visible;
-  }
-}
-
-/* Optional: Add some visual separation for code/example columns */
-.rightColumn pre,
-.rightColumn code {
-  background-color: var(--ifm-code-background, #f6f8fa);
-  border-radius: 8px;
-}
-
-/* Ensure responsive tables and images */
+/* Images and Tables */
 .leftColumn img,
 .rightColumn img {
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .leftColumn table,
 .rightColumn table {
   width: 100%;
-  overflow-x: auto;
   display: block;
+  overflow-x: auto;
   white-space: nowrap;
 }
 
@@ -121,22 +126,5 @@
   .rightColumn table {
     display: table;
     white-space: normal;
-  }
-}
-
-/* Dark mode support */
-[data-theme='dark'] .rightColumn pre,
-[data-theme='dark'] .rightColumn code {
-  background-color: var(--ifm-code-background, #1e1e1e);
-}
-
-/* Print styles */
-@media print {
-  .twoColumnContainer,
-  .ratio11,
-  .ratio21,
-  .ratio12 {
-    grid-template-columns: 1fr;
-    gap: 1rem;
   }
 }

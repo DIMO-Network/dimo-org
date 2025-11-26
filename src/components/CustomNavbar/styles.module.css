@@ -1,11 +1,24 @@
 /* Custom Navbar */
 .navbar {
   background-color: #ffffff;
-  padding: 2rem 0 1rem 0;
-  position: relative;
+  padding: 1.25rem 0; /* More balanced top/bottom padding */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   width: 100%;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, padding 0.3s ease;
+  height: 80px; /* Fixed height to ensure consistency */
+  display: flex;
+  align-items: center; /* Vertically center content */
+}
+
+/* Add a class for when scrolled if we want to shrink it later */
+.navbarScrolled {
+  padding: 0.75rem 0;
+  height: 64px; /* Smaller height on scroll */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .navContent {
@@ -15,10 +28,20 @@
   width: 100%;
   margin: 0 auto;
   padding: 0 2.5rem;
+  height: 100%; /* Take full height of parent */
 }
 
 .navLogo {
   display: flex;
+  align-items: center;
+  height: 100%; /* Ensure logo container is centered */
+}
+
+.navLogo img {
+  display: block;
+  /* Ensure logo doesn't get too big but respects aspect ratio */
+  height: 32px;
+  width: auto;
 }
 
 .navLinks {
@@ -26,6 +49,7 @@
   align-items: center;
   gap: 2.5rem;
   margin-left: auto;
+  height: 100%;
 }
 
 .navItem {
@@ -34,10 +58,11 @@
   gap: 0.5rem;
   font-family: 'Universal Sans Display', sans-serif;
   font-weight: 525;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Slightly smaller font for better fit */
   color: #000000;
   cursor: pointer;
   transition: color 0.2s ease;
+  height: 100%;
 }
 
 .navItem:hover {
@@ -67,7 +92,7 @@
   width: 22px;
   height: 22px;
   transition: opacity 0.2s ease;
-  margin: 0 20px;
+  margin: 0 15px; /* Reduced margin */
 }
 
 .githubnavIcon:hover {
@@ -82,16 +107,20 @@
 .signInButtonNav {
   background-color: #000000;
   color: #ffffff;
-  padding: 0.3rem 1.1rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 24px;
   text-decoration: none;
   font-family: 'Universal Sans Display', sans-serif;
-  font-weight: 900;
-  font-size: 0.875rem;
+  font-weight: 700;
+  font-size: 0.9rem;
   letter-spacing: -0.01em;
   transition: all 0.2s ease;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .signInButtonNav:hover {
@@ -104,6 +133,7 @@
 /* Dropdown Functionality */
 .dropdownContainer {
   position: relative;
+  height: 100%; /* Match nav height */
 }
 
 .dropdownTrigger {
@@ -111,6 +141,7 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  height: 100%; /* Center vertically */
 }
 
 .dropdownIcon.rotated {
@@ -119,15 +150,14 @@
 
 .dropdownMenu {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% - 10px); /* Slight offset overlap */
+  left: 50%;
+  transform: translateX(-50%); /* Center align dropdown */
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   padding: 0.75rem 0;
-  padding-top: 1.25rem;
-  margin-top: 0;
-  min-width: 180px;
+  min-width: 200px;
   z-index: 1000;
   border: 1px solid rgba(0, 0, 0, 0.08);
   animation: dropdownFadeIn 0.2s ease-out;
@@ -136,17 +166,17 @@
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translate(-50%, -8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 
 .dropdownItem {
   display: block;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   color: #000000;
   text-decoration: none;
   font-family: 'Universal Sans Display', sans-serif;
@@ -182,8 +212,8 @@
 }
 
 .hamburgerLine {
-  width: 25px;
-  height: 3px;
+  width: 24px;
+  height: 2px;
   background-color: #000000;
   margin: 3px 0;
   transition: all 0.3s ease;
@@ -191,7 +221,7 @@
 }
 
 .hamburgerLine.hamburgerLineActive:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburgerLine.hamburgerLineActive:nth-child(2) {
@@ -199,7 +229,7 @@
 }
 
 .hamburgerLine.hamburgerLineActive:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Mobile Menu Overlay */
@@ -234,14 +264,21 @@
 
 .mobileMenuHeader {
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Align logo left, close button right (if added) */
   align-items: center;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   border-bottom: 1px solid #eee;
+  height: 80px; /* Match nav height */
 }
 
 .mobileMenuLogo {
   display: flex;
+  align-items: center;
+}
+
+.mobileMenuLogo img {
+  height: 32px;
+  width: auto;
 }
 
 .mobileMenuLinks {
@@ -341,9 +378,9 @@
 
 /* --- Dark Mode Overrides --- */
 .navbarDark {
-  background-color: rgba(3, 3, 3, 0.8);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(3, 3, 3, 0.85); /* Slightly increased opacity */
+  backdrop-filter: blur(16px); /* Increased blur */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbarDark .navItem {
@@ -351,7 +388,8 @@
 }
 
 .navbarDark .navItem:hover {
-  color: #3b82f6;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .navbarDark .dropdownIcon {
@@ -370,6 +408,7 @@
 .navbarDark .signInButtonNav:hover {
   background-color: #e2e8f0;
   color: #000000;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .navbarDark .dropdownMenu {
@@ -391,6 +430,33 @@
   background-color: #ffffff;
 }
 
+.navbarDark .mobileMenuContent {
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.navbarDark .mobileMenuHeader {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbarDark .mobileMenuSectionTitle {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+.navbarDark .mobileMenuItem {
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbarDark .mobileMenuItem:hover {
+  color: #ffffff;
+}
+
+.navbarDark .mobileMenuActions {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* Responsive Design */
 @media screen and (max-width: 996px) {
   .navLinks {
@@ -408,17 +474,20 @@
 }
 
 @media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0; /* Let height control vertical size */
+    height: 70px; /* Slightly smaller on mobile */
+  }
+
   .navContent {
-    padding: 0 1rem;
-    justify-content: center;
-    position: relative;
+    padding: 0 1.5rem; /* Adjust padding */
+    justify-content: space-between; /* Ensure Logo left, Hamburger right */
   }
 
   .navLogo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    /* Removed absolute positioning to restore flex flow */
+    display: flex;
+    align-items: center;
   }
 
   .navLinks {
@@ -427,7 +496,7 @@
 
   .hamburger {
     display: flex;
-    margin-left: auto;
+    margin-left: auto; /* Push to right */
   }
 
   .navRight {
@@ -436,8 +505,17 @@
 }
 
 @media screen and (max-width: 480px) {
+  .navbar {
+    height: 64px;
+  }
+
+  .navContent {
+    padding: 0 1.25rem;
+  }
+
   .mobileMenuHeader {
     padding: 1.5rem;
+    height: 64px;
   }
 
   .mobileMenuLinks {
