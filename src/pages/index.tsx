@@ -15,6 +15,7 @@ const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
 const imgHeroHighway = '/img/hero-highway-image.png';
 const imgDimoAi = '/img/dimo_ai.jpg';
+const imgDimoAiPlaceholder = '/img/dimo-ai-placeholder.png';
 
 // Trusted Logos
 const LogoPolygon = '/img/logo-polygon.svg';
@@ -35,14 +36,13 @@ function HeroSection() {
         </div>
 
         <h1 className={styles.heroTitle}>
-          The only vehicle intelligence platform that <br />
+          The vehicle intelligence platform that <br />
           <span className={styles.heroTitleSpan}>puts privacy first.</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Connect to thousands of vehicle models with a single open API. Build
-          AI-powered applications, verify real-world identity, and access
-          telemetry data without the hardware headache.
+          Connect to thousands of vehicle models and build secure,
+          next-generation applications powered by DIMO AI.
         </p>
 
         <div className={styles.heroButtons}>
@@ -57,136 +57,11 @@ function HeroSection() {
         {/* Visual / Code Editor */}
         <div className={styles.heroVisual}>
           <div className={styles.codeWindow}>
-            <div className={styles.codeHeader}>
-              <div className={styles.codeTab}>
-                <span className={styles.tsIcon}>TS</span>
-                index.ts
-              </div>
-            </div>
-            <div className={styles.codeBody}>
-              <div className={styles.lineNumbers}>
-                1<br />
-                2<br />
-                3<br />
-                4<br />
-                5<br />
-                6<br />
-                7<br />
-                8<br />
-                9<br />
-                10
-                <br />
-                11
-                <br />
-                12
-                <br />
-                13
-                <br />
-                14
-                <br />
-                15
-                <br />
-                16
-                <br />
-                17
-                <br />
-                18
-              </div>
-              <div className={styles.codeContent}>
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenKeyword}>import</span>{' '}
-                  <span className={styles.tokenOperator}>{`{`}</span>{' '}
-                  <span className={styles.tokenType}>DIMO</span>{' '}
-                  <span className={styles.tokenOperator}>{`}`}</span>{' '}
-                  <span className={styles.tokenKeyword}>from</span>{' '}
-                  <span className={styles.tokenString}>
-                    '@dimo-network/data-sdk'
-                  </span>
-                  ;
-                </div>
-                <br />
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenComment}>
-                    // 1. Initialize the SDK
-                  </span>
-                </div>
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenKeyword}>const</span>{' '}
-                  <span className={styles.tokenVariable}>dimo</span>{' '}
-                  <span className={styles.tokenOperator}>=</span>{' '}
-                  <span className={styles.tokenKeyword}>new</span>{' '}
-                  <span className={styles.tokenType}>DIMO</span>(
-                  <span className={styles.tokenString}>'Production'</span>);
-                </div>
-                <br />
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenComment}>
-                    // 2. Auth with your Developer License
-                  </span>
-                </div>
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenKeyword}>await</span>{' '}
-                  <span className={styles.tokenVariable}>dimo</span>.
-                  <span className={styles.tokenVariable}>auth</span>.
-                  <span className={styles.tokenFunction}>getDeveloperJwt</span>(
-                  <span className={styles.tokenOperator}>{`{`}</span>
-                </div>
-                <div className={styles.codeLine}>
-                  &nbsp;&nbsp;
-                  <span className={styles.tokenVariable}>clientId</span>:{' '}
-                  <span className={styles.tokenVariable}>process</span>.
-                  <span className={styles.tokenVariable}>env</span>.
-                  <span className={styles.tokenVariable}>DIMO_CLIENT_ID</span>,
-                </div>
-                <div className={styles.codeLine}>
-                  &nbsp;&nbsp;
-                  <span className={styles.tokenVariable}>apiKey</span>:{' '}
-                  <span className={styles.tokenVariable}>process</span>.
-                  <span className={styles.tokenVariable}>env</span>.
-                  <span className={styles.tokenVariable}>DIMO_API_KEY</span>,
-                </div>
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenOperator}>{`}`}</span>);
-                </div>
-                <br />
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenComment}>
-                    // 3. Query real-time vehicle data
-                  </span>
-                </div>
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenKeyword}>const</span>{' '}
-                  <span className={styles.tokenVariable}>data</span>{' '}
-                  <span className={styles.tokenOperator}>=</span>{' '}
-                  <span className={styles.tokenKeyword}>await</span>{' '}
-                  <span className={styles.tokenVariable}>dimo</span>.
-                  <span className={styles.tokenVariable}>telemetry</span>.
-                  <span className={styles.tokenFunction}>query</span>(
-                  <span className={styles.tokenOperator}>{`{`}</span>
-                </div>
-                <div className={styles.codeLine}>
-                  &nbsp;&nbsp;
-                  <span className={styles.tokenVariable}>tokenId</span>:{' '}
-                  <span className={styles.tokenNumber}>12345</span>,
-                </div>
-                <div className={styles.codeLine}>
-                  &nbsp;&nbsp;
-                  <span className={styles.tokenVariable}>signals</span>: [
-                  <span className={styles.tokenString}>'speed'</span>,{' '}
-                  <span className={styles.tokenString}>'powertrainRange'</span>,{' '}
-                  <span className={styles.tokenString}>'currentLocation'</span>]
-                </div>
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenOperator}>{`}`}</span>);
-                </div>
-                <br />
-                <div className={styles.codeLine}>
-                  <span className={styles.tokenVariable}>console</span>.
-                  <span className={styles.tokenFunction}>log</span>(
-                  <span className={styles.tokenVariable}>data</span>);
-                </div>
-              </div>
-            </div>
+            <img
+              src={imgDimoAiPlaceholder}
+              alt="DIMO AI Placeholder"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
           </div>
         </div>
       </div>
@@ -280,7 +155,7 @@ function AutomateOperationsSection() {
         <div className={styles.featureText}>
           <h3>Automate your operations like never before</h3>
           <p>
-            Build vehicle agents into your businesses existing workflows for a
+            Build vehicle agents into your businesses' existing workflows for a
             more tailored, customer-focused experience – all while increasing
             efficiency and revenue. DIMO is the agentic vehicle platform that
             allows you to automate:
