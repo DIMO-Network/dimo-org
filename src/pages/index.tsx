@@ -12,6 +12,9 @@ const imgOpenSource = '/img/icon-open-source.svg';
 const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
 const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
+const imgHardware = '/img/dimo_hardware.webp';
+const imgHeroHighway = '/img/hero-highway-image.png';
+const imgDimoAi = '/img/dimo_ai.jpg';
 
 // Trusted Logos
 const LogoPolygon = '/img/logo-polygon.svg';
@@ -267,6 +270,41 @@ function FeaturesGrid() {
   );
 }
 
+function AutomateOperationsSection() {
+  return (
+    <section className={styles.bigFeature}>
+      <div className={styles.featureContainer}>
+        <div className={styles.featureVisual}>
+          <img src={imgDimoAi} alt="Automate Operations" />
+        </div>
+        <div className={styles.featureText}>
+          <h3>Automate your operations like never before</h3>
+          <p>
+            Build vehicle agents into your businesses existing workflows for a
+            more tailored, customer-focused experience – all while increasing
+            efficiency and revenue. DIMO is the agentic vehicle platform that
+            allows you to automate:
+          </p>
+          <ul className={styles.featureList}>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Maintenance
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Rentals & Returns
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Repairs
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Booking and Scheduling
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function BigFeatureSection() {
   return (
     <section className={styles.bigFeature}>
@@ -293,30 +331,7 @@ function BigFeatureSection() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))',
-              height: '300px',
-              borderRadius: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'rgba(255,255,255,0.5)',
-            }}
-          >
-            <img
-              src="/img/TelemetrySample.png"
-              alt="Telematics Architecture"
-              style={{
-                maxWidth: '100%',
-                maxHeight: '100%',
-                objectFit: 'contain',
-                opacity: 0.9,
-                borderRadius: '8px',
-              }}
-            />
-          </div>
+          <img src={imgHeroHighway} alt="Telematics Architecture" />
         </div>
       </div>
     </section>
@@ -363,6 +378,46 @@ function WallOfLoveSection() {
   );
 }
 
+function HardwareSection() {
+  return (
+    <section className={styles.hardwareSection}>
+      <div className={styles.hardwareContainer}>
+        <div className={styles.hardwareContent}>
+          <span className={styles.hardwareSubBanner}>DIMO LTE R1</span>
+          <h2 className={styles.hardwareTitle}>Compatible Hardware</h2>
+          <p className={styles.hardwareDescription}>
+            Access high-frequency vehicle data with the DIMO LTE R1. It installs
+            in seconds, works with almost any car, and streams data directly to
+            the network.
+          </p>
+          <div className={styles.hardwareButtons}>
+            <Link
+              className={styles.primaryBtn}
+              to="https://dimo.co/products/dimo-lte-r1"
+            >
+              Buy DIMO LTE R1
+            </Link>
+            <div className={styles.hardwareCustomIntegration}>
+              <span className={styles.hardwareCustomText}>
+                Need a custom hardware integration?
+              </span>
+              <Link
+                className={styles.secondaryBtn}
+                to="mailto:developers@dimo.org"
+              >
+                Let's Chat
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className={styles.hardwareVisual}>
+          <img src={imgHardware} alt="DIMO LTE R1" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -399,10 +454,12 @@ export default function Home(): ReactNode {
       <main>
         <HeroSection />
         <TrustedBySection />
-        <FeaturesGrid />
+        <AutomateOperationsSection />
         <BigFeatureSection />
+        <FeaturesGrid />
         <WatchHowItWorksSection />
         <WallOfLoveSection />
+        <HardwareSection />
         <CTASection />
       </main>
 
