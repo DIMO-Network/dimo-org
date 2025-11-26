@@ -1,6 +1,6 @@
 /* Footer Styles */
 .footer {
-  background: #124bdb;
+  background: #000000;
   color: #ffffff;
   padding: 4rem 0 2rem;
   margin-top: 4rem;
@@ -57,7 +57,7 @@
 }
 
 .footerLinks a:hover {
-  color: #ffffff;
+  color: #124bdb;
   text-decoration: none;
 }
 
