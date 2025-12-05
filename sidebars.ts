@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
     },
     'index', // docs/index.mdx
     'quickstart',
+    'core-concepts',
     {
       type: 'category',
       label: 'Introduction',
