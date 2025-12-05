@@ -9,6 +9,55 @@ import Stepper, { Step } from '@site/src/components/Stepper';
 
 # Core Concepts
 
-This guide will dive deeper into the core concepts for DIMO, which will help
-developers better understand the entire DIMO tech stack, from DIMO Connect
-through the Data SDKs to the Agent SDKs.
+This guide will dive deeper into the core concepts of DIMO, which will help
+developers better understand the entire DIMO tech stack, such as permissions management
+flows, getting telemetry data, and building stateful AI agents for your business.
+
+## Developer Console
+
+The DIMO Developer Console is your main entrypoint into the DIMO Developer
+ecosystem. This is where developers can manage their API keys, DIMO connect
+configurations, AI agents, webhooks, and more. To get started, just [create an
+account](https://console.dimo.org/sign-in) and create a Developer License.
+
+## Developer License
+
+A DIMO Developer License is what enables developers to build on and integrate
+with the platform. Each license has a unique name on the DIMO network, and more
+importantly, a unique `clientId` that starts with `0x`. The details of your
+license are publicly viewable to anyone on the DIMO network, aside from private
+information like your email address or API keys.
+
+## Permissions Contract: SACD
+
+On DIMO, the Service Access Contract Definition (SACD) is the novel permissions contract that enables users to publicly
+declare which data they elect to share with a given developers. In the same way,
+it is how developers _request_ data from a user. This is one of the main
+features of DIMO that sets it apart from all other vehicle telemetry or agentic
+platforms – there's a robust privacy layer built-in, and **SACD is that privacy
+layer.**
+Most simply, SACD enables this:
+
+- Developer asks: _"Can I have your vehicles current location, past location,
+  and all of its telemetry data?"_
+
+- User responds: _"Yes, you can have all of that data."_
+
+If a user elects to not share their vehicle data with a developer, then that
+developer cannot access their data. Here, DIMO enables developers to create
+compelling applications and vehicular agents that users will want to share their
+data with.
+
+
+## DIMO Connect
+
+Also known as: Login with DIMO (LIWD)
+
+Available as both an open source Client SDK, or as a simple redirect URL, DIMO
+Connect is the frontend component that enables developers to implement the SACD
+permissions contract for requesting user data. Your users sign in with an email
+address and a passkey or one-time-passcode, and grant you permissions to their
+data.
+
+Now that you understand some of the core concepts on DIMO, you can start
+learning more about what types of applicatons or intelligent agents you can build.
