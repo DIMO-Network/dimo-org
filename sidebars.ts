@@ -62,6 +62,7 @@ const sidebars: SidebarsConfig = {
       className: 'sidebar-section-title',
     },
     'api-references/attestation-api',
+    'api-references/conversations-api',
     'api-references/device-definitions-api',
     {
       type: 'category',
