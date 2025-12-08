@@ -44,8 +44,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Connect to thousands of vehicle models and build secure,
-          next-generation applications powered by DIMO AI.
+          Build intelligent vehicle apps that work with any car & any tech stack.
+          Ship faster with DIMO AI—no rewrites, no migrations, just results.
         </p>
 
         <div className={styles.heroButtons}>
@@ -188,23 +188,19 @@ function BigFeatureSection() {
     <section className={styles.bigFeature}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h3>Real-time Telemetry at Scale</h3>
+          <h3>Got Data? Bring It.</h3>
           <p>
-            Access high-frequency sensor data including GPS, speed, fuel levels,
-            battery health, and tire pressure. Stream it directly to your
-            application via WebSockets or query via GraphQL.
+            DIMO's intelligent vehicle agents work with your existing data and tech stack—no migration, no rewrites. We've built the agents that understand your data format, so you can focus on building what matters: features that delight your users and drive your business forward.
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Sub-second latency
+              <span className={styles.checkIcon}>✓</span> Works with your existing infrastructure
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Normalized across
-              makes & models
+              <span className={styles.checkIcon}>✓</span> Seamless integration, zero disruption
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Historical replay
-              capability
+              <span className={styles.checkIcon}>✓</span> Focus on your product, not data plumbing
             </li>
           </ul>
         </div>
