@@ -15,7 +15,7 @@ const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
 const imgHeroHighway = '/img/hero-highway-image.png';
 const imgDimoAi = '/img/dimo_ai.jpg';
-const imgDimoAiPlaceholder = '/img/dimo-ai-placeholder.png';
+const imgDimoAiPlaceholder = '/img/dimo-a-hero-wip.png';
 
 // Trusted Logos
 const LogoPolygon = '/img/logo-polygon.svg';

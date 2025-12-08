@@ -210,7 +210,6 @@
 
 .codeWindow {
   background: #1e1e1e; /* VS Code dark bg */
-  border: 1px solid #333;
   border-radius: 12px;
   box-shadow:
     0 20px 50px -10px rgba(0, 0, 0, 0.5),
