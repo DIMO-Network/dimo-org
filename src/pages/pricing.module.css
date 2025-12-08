@@ -1,0 +1,265 @@
+/**
+ * Pricing Page Styles
+ * Matching the "Sleek, dark, premium" look of the homepage
+ */
+
+.pricingPage {
+  background-color: #030303;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  padding-top: 80px;
+
+  /* Local variables matching homepage */
+  --hp-accent: #3b82f6;
+  --hp-accent-glow: rgba(59, 130, 246, 0.5);
+  --hp-purple: #8b5cf6;
+  --hp-bg-card: #0a0a0a;
+  --hp-border: rgba(255, 255, 255, 0.1);
+  --hp-text-muted: #a1a1aa;
+}
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  padding: 4rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #030303 60%);
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to bottom right, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroTitleSpan {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--hp-text-muted);
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  font-weight: 400;
+}
+
+/* --- Pricing Grid --- */
+.pricingSection {
+  padding: 2rem 1.5rem 8rem;
+  position: relative;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Special case for 4 items to look balanced */
+@media (min-width: 1200px) {
+  .pricingGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pricingCard {
+  background: linear-gradient(145deg, #0a0a0a, #050505);
+  border: 1px solid var(--hp-border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pricingCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.featuredCard {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.tierName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.tierPrice {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.tierPeriod {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--hp-text-muted);
+}
+
+.tierDesc {
+  color: var(--hp-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  min-height: 40px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--hp-border);
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  flex-grow: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: #22c55e;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* --- Buttons --- */
+.cardBtn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.cardBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.primaryCardBtn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.primaryCardBtn:hover {
+  background: #e2e2e2;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* --- Enterprise Card Special Styles --- */
+.enterpriseCard {
+  background: linear-gradient(145deg, #0f172a, #050505);
+}
+
+.enterpriseCard .cardGlow {
+  background: radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.15), transparent 70%);
+}
+
+.mostPopularBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 5;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- Responsive --- */
+@media (max-width: 996px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+}
