@@ -43,7 +43,6 @@ const sidebars: SidebarsConfig = {
       value: 'Tools',
       className: 'sidebar-section-title',
     },
-    'build/building-blocks',
     'build/building-with-tools/client-sdk-dimo-connect',
     'build/building-with-tools/server-sdk',
     'build/building-with-tools/agent-sdk',
