@@ -4,6 +4,7 @@ import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
 import { LINKS } from '../links';
+import { Star } from 'lucide-react';
 
 // Asset imports
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
@@ -44,8 +45,9 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Build intelligent vehicle apps that work with any car & any tech stack.
-          Ship faster with DIMO AI—no rewrites, no migrations, just results.
+          Build intelligent vehicle apps that work with any car & any tech
+          stack. Ship faster with DIMO AI—no rewrites, no migrations, just
+          results.
         </p>
 
         <div className={styles.heroButtons}>
@@ -190,17 +192,24 @@ function BigFeatureSection() {
         <div className={styles.featureText}>
           <h3>Got Data? Bring It.</h3>
           <p>
-            DIMO's intelligent vehicle agents work with your existing data and tech stack—no migration, no rewrites. We've built the agents that understand your data format, so you can focus on building what matters: features that delight your users and drive your business forward.
+            DIMO's intelligent vehicle agents work with your existing data and
+            tech stack—no migration, no rewrites. We've built the agents that
+            understand your data format, so you can focus on building what
+            matters: features that delight your users and drive your business
+            forward.
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Works with your existing infrastructure
+              <span className={styles.checkIcon}>✓</span> Works with your
+              existing infrastructure
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Seamless integration, zero disruption
+              <span className={styles.checkIcon}>✓</span> Seamless integration,
+              zero disruption
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Focus on your product, not data plumbing
+              <span className={styles.checkIcon}>✓</span> Focus on your product,
+              not data plumbing
             </li>
           </ul>
         </div>
@@ -232,13 +241,61 @@ function WatchHowItWorksSection() {
   );
 }
 
-function WallOfLoveSection() {
+const testimonials = [
+  {
+    name: 'Maximiliano Ipinza',
+    text: 'Just love it. we are starting building with this kit and its get easier and easier. actually we are using DIMO in LATAM and we get all the data via API into our own telematic solution. another thing that really make integrations easier is the level of support with James team and the delivery.',
+  },
+  {
+    name: 'Collin McCloskey',
+    text: "The DIMO team has done a phenomenal job making it easy to build on their platform. When I have questions I use their GPT. When I'm writing code with CC or cursor, I copy the docs in one click. Their team is quick to support and they ship faster than I can keep up. It's honestly a really pleasant experience!",
+  },
+  {
+    name: 'Daniel Wedding',
+    text: 'As an avid EV consumer and software engineer, DIMO provided a platform that not only allowed personal insight into the vehicle metrics I was looking for, but also integrated an easy-to-use developer API so I could integrate everything flawlessly into my tech stack.',
+  },
+  {
+    name: 'Rob Solomon',
+    text: "I've built several apps on DIMO. Incredibly easy. As a non-dev, I've been able to launch things that really truly work with Replit, n8n, and Bubble. The documentation is clear and the platform works as advertised. Way easier to get started than others! Perhaps I'm bit biased... but who cares! It's great.",
+  },
+];
+
+function TestimonialsSection() {
   return (
     <section className={styles.wallOfLove}>
       <div className={styles.sectionHeader}>
         <h2 className={styles.sectionTitle}>What devs are saying</h2>
       </div>
-      <div
+
+      <div className={styles.testimonialMarqueeContainer}>
+        <div className={styles.testimonialMarquee}>
+          {/* Duplicate list twice for smoother infinite scroll on wide screens */}
+          {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
+            <div key={i} className={styles.testimonialCard}>
+              <div className={styles.testimonialHeader}>
+                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
+                <div className={styles.testimonialInfo}>
+                  <div className={styles.testimonialName}>{t.name}</div>
+                  <div className={styles.testimonialStars}>
+                    {[1, 2, 3, 4, 5].map(s => (
+                      <Star
+                        key={s}
+                        size={16}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p className={styles.testimonialText}>{t.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Old module commented out as requested */}
+      {/* <div
         className="feedspace-embed"
         data-id="217207bd-2013-4903-8545-d7f149fda8a2"
         style={{ maxWidth: '1200px', margin: '0 auto' }}
@@ -247,7 +304,7 @@ function WallOfLoveSection() {
         src="https://js.feedspace.io/v1/embed/embed.min.js"
         type="text/javascript"
         async
-      ></script>
+      ></script> */}
     </section>
   );
 }
@@ -332,7 +389,7 @@ export default function Home(): ReactNode {
         <BigFeatureSection />
         <FeaturesGrid />
         <WatchHowItWorksSection />
-        <WallOfLoveSection />
+        <TestimonialsSection />
         <HardwareSection />
         <CTASection />
       </main>

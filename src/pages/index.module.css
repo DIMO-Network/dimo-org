@@ -597,6 +597,7 @@
   background: linear-gradient(180deg, #030303 0%, #0a0a0a 100%);
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 /* Add some decorative elements around reviews */
@@ -617,6 +618,101 @@
 
 .wallOfLove .sectionHeader {
   margin-bottom: 4rem;
+}
+
+/* New Testimonials Styles */
+.testimonialMarqueeContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.testimonialMarquee {
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+  animation: marquee 60s linear infinite;
+  padding: 1rem 0;
+}
+
+.testimonialCard {
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 400px;
+  flex-shrink: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
+}
+
+.testimonialCard:hover {
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.testimonialHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.testimonialAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.testimonialInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonialName {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.testimonialStars {
+  display: flex;
+  gap: 2px;
+  color: #fbbf24; /* Amber 400 */
+}
+
+.testimonialText {
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* --- Hardware Section --- */
