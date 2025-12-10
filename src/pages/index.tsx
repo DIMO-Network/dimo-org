@@ -16,7 +16,7 @@ const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
 const imgHeroHighway = '/img/hero-highway-image.png';
 const imgDimoAi = '/img/dimo_ai.jpg';
-const imgDimoAiPlaceholder = '/img/dimo-a-hero-wip.png';
+const imgDimoAiPlaceholder = '/img/DIMO-Docs.png';
 
 function HeroSection() {
   return (
@@ -58,7 +58,7 @@ function HeroSection() {
           <div className={styles.codeWindow}>
             <img
               src={imgDimoAiPlaceholder}
-              alt="DIMO AI Placeholder"
+              alt="DIMO Docs"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>

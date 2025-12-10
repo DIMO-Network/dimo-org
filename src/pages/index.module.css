@@ -35,9 +35,12 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #030303 60%);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/img/DIMO-desert.jpg') no-repeat center center;
+  background-size: cover;
   overflow: hidden;
-  min-height: 85vh; /* Full viewport height feel */
+  min-height: 100vh; /* Full viewport height */
 }
 
 /* Background Effects */
@@ -209,11 +212,9 @@
 }
 
 .codeWindow {
-  background: #1e1e1e; /* VS Code dark bg */
+  background: transparent;
   border-radius: 12px;
-  box-shadow:
-    0 20px 50px -10px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: none;
   overflow: hidden;
   transform: rotateX(5deg);
   transition: transform 0.5s ease;
