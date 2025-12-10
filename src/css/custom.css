@@ -567,6 +567,7 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 
 /* Tabs Styling */
 .tabs {
+  margin-bottom: 0 !important;
   border-bottom: none !important;
   background-color: #f3f4f6; /* Light gray for light mode */
   padding: 0.5rem 0.5rem 0 0.5rem;
@@ -624,6 +625,20 @@ html[data-theme='dark'] .tabs__item--active {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-top: 0;
+}
+
+/* Remove default margin from tab content wrapper */
+.tabs + div,
+.tabs + .margin-top--md {
+  margin-top: 0 !important;
+}
+
+/* Specific handling for code blocks as first child in tabs */
+.tabs + div > .theme-code-block:first-child,
+div[role='tabpanel'] > .theme-code-block:first-child {
+  margin-top: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }
 
 /* Force code block background to match "black" theme in dark mode */

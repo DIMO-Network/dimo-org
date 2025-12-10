@@ -8,11 +8,10 @@ import TabItem from '@theme/TabItem';
 import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
 import ImageTooltips from '@site/src/components/ImageTooltips';
 import ApiTester from '@site/src/components/ApiTester';
-import CustomDetails from '@site/src/components/CustomDetails';
 import GitHubButton from "react-github-btn";
 
 
-# Client SDK: DIMO Connect
+# Client SDK
 
 ## Get Data Permissions From Vehicle Owners
 
@@ -45,7 +44,6 @@ Developers can get started using either the [React Component SDK (aka Login with
       ]}
     />
     Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
-    <CustomDetails summary="Try it out">
       <Tabs>
         <TabItem value="URL Method" label="URL Method">
           <DimoUrlBuilder />
@@ -107,7 +105,6 @@ Developers can get started using either the [React Component SDK (aka Login with
       ```
         </TabItem>
       </Tabs>
-    </CustomDetails>
   </Step>
 
   <Step title="Share with Users">
@@ -164,7 +161,6 @@ Developers can get started using either the [React Component SDK (aka Login with
       ]}
     />
     Use the [DIMO Developer Console](https://console.dimo.org) or the [Identity API](https://identity-api.dimo.zone/) to track which vehicles have shared permissions with you.
-    <CustomDetails summary="Try it out">
       <ApiTester
         title="Identity API"
         isGraphQL={true}
@@ -199,11 +195,9 @@ Developers can get started using either the [React Component SDK (aka Login with
           { name: "clientId", type: "Address!", description: "Client ID of your Developer License" }
         ]}
       />
-    </CustomDetails>
   </Step>
 
   <Step title="Get Vehicle JWT">
-    <CustomDetails summary="Try it out">
       <ApiTester
         title="Exchange Developer JWT for a Vehicle JWT"
         method="POST"
@@ -233,12 +227,10 @@ Developers can get started using either the [React Component SDK (aka Login with
           }
         ]}
       />
-    </CustomDetails>
   </Step>
 
   <Step title="Start Getting Data" image="/img/TelemetrySample.png">
     Begin polling the DIMO APIs or setting up DIMO Webhooks using one of the available Data SDKs.
-    <CustomDetails summary="Try it out">
       <ApiTester
         title="Telemetry API"
         isGraphQL={true}
@@ -254,7 +246,6 @@ Developers can get started using either the [React Component SDK (aka Login with
           { name: "tokenId", type: "Int!", description: "Vehicle Token ID of a shared vehicle" }
         ]}
       />
-    </CustomDetails>
   </Step>
 </Stepper>
 

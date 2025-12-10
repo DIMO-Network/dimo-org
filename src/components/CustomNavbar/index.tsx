@@ -59,9 +59,10 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             Documentation
           </Link>
 
-          <Link to="/docs/build/building-with-tools/agent-sdk" className={styles.navItem}>
+          {/* Temporarily hidden until Agent SDK is ready */}
+          {/* <Link to="/docs/build/building-with-tools/agent-sdk" className={styles.navItem}>
             Build an Agent
-          </Link>
+          </Link> */}
 
           <Link to="/pricing" className={styles.navItem}>
             Pricing
@@ -126,13 +127,14 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   Documentation
                 </Link>
 
-                <Link
+                {/* Temporarily hidden until Agent SDK is ready */}
+                {/* <Link
                   to="/docs/build/building-with-tools/agent-sdk"
                   className={styles.mobileMenuItem}
                   onClick={closeMobileMenu}
                 >
                   Build an Agent
-                </Link>
+                </Link> */}
 
                 <Link
                   to="/pricing"

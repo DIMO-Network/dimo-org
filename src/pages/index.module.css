@@ -18,8 +18,8 @@
   overflow-x: hidden;
   padding-top: 80px; /* Add padding to account for sticky navbar */
   /* Force dark mode variables locally if needed, but we'll use direct colors for control */
-  --hp-accent: #3b82f6;
-  --hp-accent-glow: rgba(59, 130, 246, 0.5);
+  --hp-accent: #124bdb;
+  --hp-accent-glow: rgba(18, 75, 219, 0.5);
   --hp-purple: #8b5cf6;
   --hp-bg-card: #0a0a0a;
   --hp-border: rgba(255, 255, 255, 0.1);
@@ -108,7 +108,7 @@
 }
 
 .pillNew {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #124bdb, #8b5cf6);
   color: white;
   font-size: 0.7rem;
   font-weight: 700;
@@ -131,7 +131,7 @@
 }
 
 .heroTitleSpan {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #124bdb, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
