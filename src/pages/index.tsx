@@ -94,7 +94,7 @@ function FeaturesGrid() {
   const features = [
     {
       title: 'Universal Compatibility',
-      desc: 'A centralized API for Tesla, Ford, BMW, and 50+ other OEMs, with new vehicle signals decoded almost daily.',
+      desc: 'Open APIs for Tesla, Ford, BMW, and 50+ other OEMs, with new vehicle signals decoded almost daily.',
       icon: imgIconUniversalCompatibility,
     },
     {
@@ -104,12 +104,12 @@ function FeaturesGrid() {
     },
     {
       title: 'AI-Ready Context',
-      desc: 'Clean, normalized data streams ready for LLMs and predictive models. Train on real-world driving behavior.',
+      desc: 'Clean, normalized data streams ready for developing agentic workflows. ',
       icon: imgIconStarsAI,
     },
     {
       title: 'Plug & Play Hardware',
-      desc: 'Onboard vehicles instantly with the DIMO LTE R1. Zero-config installation for users.',
+      desc: 'Onboard vehicles instantly with optional hardware like the DIMO LTE R1. Zero-config installation for users.',
       icon: imgIconPlugPlay,
     },
     {
@@ -119,7 +119,7 @@ function FeaturesGrid() {
     },
     {
       title: 'Secure & Compliant',
-      desc: 'Enterprise-grade security with GDPR and SOC2 compliance. Your data is safe, your users are protected.',
+      desc: 'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GPDR and the EU Data Act.',
       icon: imgIconSecureCompliant,
     },
   ];
@@ -129,8 +129,10 @@ function FeaturesGrid() {
       <div className={styles.sectionHeader}>
         <h2 className={styles.sectionTitle}>Everything you need to build</h2>
         <p className={styles.sectionSubtitle}>
-          Stop wrestling with OBD-II codes and flaky Bluetooth connections. DIMO
-          handles the hard stuff so you can ship features.
+          DIMO can be used with pre-built, templated agents that work with your
+          existing data, or can be used alongside custom-built agents. Our
+          flexible infrasture provides you with everything you need to build
+          agentic applications for vehicle services.
         </p>
       </div>
 
@@ -160,10 +162,11 @@ function AutomateOperationsSection() {
         <div className={styles.featureText}>
           <h3>Automate your operations like never before</h3>
           <p>
-            Build vehicle agents into your businesses' existing workflows for a
-            more tailored, customer-focused experience – all while increasing
-            efficiency and revenue. DIMO is the agentic vehicle platform that
-            allows you to automate:
+            DIMO's platform lets you transform your operations by automating
+            your existing workflows with vehicle agents with memory built
+            in—delivering polished, personalized customer experiences while
+            maximizing efficiency. DIMO is perfect for strealining operations
+            in:
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -177,6 +180,9 @@ function AutomateOperationsSection() {
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span> Booking and Scheduling
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> And more!
             </li>
           </ul>
         </div>
@@ -193,10 +199,10 @@ function BigFeatureSection() {
           <h3>Got Data? Bring It.</h3>
           <p>
             DIMO's intelligent vehicle agents work with your existing data and
-            tech stack—no migration, no rewrites. We've built the agents that
-            understand your data format, so you can focus on building what
-            matters: features that delight your users and drive your business
-            forward.
+            tech stack — just feed your data into our DIMO Ingest Service. We've
+            built the agents that understand your data so that you can focus on
+            building what matters: features that delight your users and drive
+            your business forward.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -261,6 +267,13 @@ const testimonials = [
 ];
 
 function TestimonialsSection() {
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+  const handleTouchStart = () => setIsPaused(true);
+  const handleTouchEnd = () => setIsPaused(false);
+
   return (
     <section className={styles.wallOfLove}>
       <div className={styles.sectionHeader}>
@@ -268,10 +281,19 @@ function TestimonialsSection() {
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
-        <div className={styles.testimonialMarquee}>
+        <div
+          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
+        >
           {/* Duplicate list twice for smoother infinite scroll on wide screens */}
           {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
-            <div key={i} className={styles.testimonialCard}>
+            <div
+              key={i}
+              className={styles.testimonialCard}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div className={styles.testimonialHeader}>
                 <div className={styles.testimonialAvatar}>{t.name[0]}</div>
                 <div className={styles.testimonialInfo}>

@@ -642,6 +642,10 @@
   padding: 1rem 0;
 }
 
+.testimonialMarquee.paused {
+  animation-play-state: paused;
+}
+
 .testimonialCard {
   background: #0f0f0f;
   border: 1px solid #222;

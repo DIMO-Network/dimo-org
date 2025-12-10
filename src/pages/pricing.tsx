@@ -12,31 +12,46 @@ export default function Pricing(): ReactNode {
       <main className={styles.comingSoonContainer}>
         {/* Animated ticker lines in the background */}
         <div className={styles.tickerWrapper}>
-          <div className={styles.tickerLine} style={{ animationDuration: '20s' }}>
+          <div
+            className={styles.tickerLine}
+            style={{ animationDuration: '20s' }}
+          >
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
           </div>
-          <div className={styles.tickerLine} style={{ animationDuration: '25s' }}>
+          <div
+            className={styles.tickerLine}
+            style={{ animationDuration: '25s' }}
+          >
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
           </div>
-          <div className={styles.tickerLine} style={{ animationDuration: '18s' }}>
+          <div
+            className={styles.tickerLine}
+            style={{ animationDuration: '18s' }}
+          >
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
           </div>
-          <div className={styles.tickerLine} style={{ animationDuration: '30s' }}>
+          <div
+            className={styles.tickerLine}
+            style={{ animationDuration: '30s' }}
+          >
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
           </div>
-          <div className={styles.tickerLine} style={{ animationDuration: '22s' }}>
+          <div
+            className={styles.tickerLine}
+            style={{ animationDuration: '22s' }}
+          >
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
             <span className={styles.tickerText}>Coming Soon</span>
@@ -47,10 +62,7 @@ export default function Pricing(): ReactNode {
         {/* Centered box module with higher z-index */}
         <div className={styles.ctaBox}>
           <p className={styles.ctaQuestion}>Have questions?</p>
-          <Link
-            className={styles.ctaButton}
-            to="mailto:developers@dimo.org"
-          >
+          <Link className={styles.ctaButton} to="mailto:developers@dimo.org">
             Get in Touch →
           </Link>
         </div>
