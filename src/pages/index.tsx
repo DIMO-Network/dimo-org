@@ -177,10 +177,11 @@ function BigFeatureSection() {
           <h3>Got Data? Bring It.</h3>
           <p>
             DIMO's intelligent vehicle agents work with your existing data and
-            tech stack — just feed your data into our DIMO Ingest Service. We've
-            built the agents that understand your data so that you can focus on
-            building what matters: features that delight your users and drive
-            your business forward.
+            tech stack — just feed your data into our{' '}
+            <a href="https://github.com/DIMO-Network/dis">DIMO Ingest Server</a>
+            . We've built the agents that understand your data so that you can
+            focus on building what matters: features that delight your users and
+            drive your business forward.
           </p>
           <ul className={styles.featureList}>
             <li>
