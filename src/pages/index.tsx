@@ -18,12 +18,6 @@ const imgHeroHighway = '/img/hero-highway-image.png';
 const imgDimoAi = '/img/dimo_ai.jpg';
 const imgDimoAiPlaceholder = '/img/dimo-a-hero-wip.png';
 
-// Trusted Logos
-const LogoPolygon = '/img/logo-polygon.svg';
-const LogoCoinbase = '/img/logo-coinbase.svg';
-const LogoStreamr = '/img/logo-streamr.svg';
-const LogoStaex = '/img/logo-staex.svg';
-
 function HeroSection() {
   return (
     <header className={styles.hero}>
@@ -71,22 +65,6 @@ function HeroSection() {
         </div>
       </div>
     </header>
-  );
-}
-
-function TrustedBySection() {
-  return (
-    <section className={styles.trustedBy}>
-      <div className="container">
-        <div className={styles.trustedByText}>Trusted by Innovators</div>
-        <div className={styles.logoMarquee}>
-          <img src={LogoPolygon} alt="Polygon" />
-          <img src={LogoStreamr} alt="Streamr" />
-          <img src={LogoCoinbase} alt="Coinbase" />
-          <img src={LogoStaex} alt="Staex" />
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -406,7 +384,6 @@ export default function Home(): ReactNode {
 
       <main>
         <HeroSection />
-        <TrustedBySection />
         <AutomateOperationsSection />
         <BigFeatureSection />
         <FeaturesGrid />
