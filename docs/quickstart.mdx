@@ -1,0 +1,203 @@
+---
+title: Quickstart
+description: Get started quickly with DIMO
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Stepper, { Step } from '@site/src/components/Stepper';
+
+# Developer Quickstart
+
+This guide will show you how to configure your developer credentials so that you
+can begin building with vehicle data right away.
+
+<Stepper>
+
+  <Step title="DIMO Developer Console">
+    First, create an account on the [DIMO Developer Console](https://console.dimo.org) if you haven't done
+    so already. Here, you will need to create a Developer License, which acts like
+    an access card toward obtaining an API Key and configuring your custom DIMO
+    Connect login link.
+
+    You will need the following from the console:
+    - `Client ID`
+    - `Redirect URI` (Domain)
+    - `API Key` (Private Key)
+  </Step>
+
+  <Step title="Install the DIMO Data SDK">
+    The DIMO Data SDK is available for TypeScript/Node.js, Python, and .NET. Choose your preferred language below.
+
+    <Tabs>
+      <TabItem value="JS/TS" label="TypeScript / Node.js">
+        ```bash
+        npm install @dimo-network/data-sdk
+        ```
+        Or with Yarn:
+        ```bash
+        yarn add @dimo-network/data-sdk
+        ```
+      </TabItem>
+      <TabItem value="Python" label="Python">
+        ```bash
+        pip install dimo-python-sdk
+        ```
+      </TabItem>
+      <TabItem value="C#" label=".NET / C#">
+        Windows Users:
+        ```bash
+        Install-Package Dimo.Client
+        ```
+        Mac Users:
+        ```bash
+        dotnet add package Dimo.Client
+        ```
+      </TabItem>
+    </Tabs>
+  </Step>
+
+  <Step title="Authenticate (Get Developer JWT)">
+    Authenticate using your credentials to obtain a **Developer JWT**. This token identifies your application.
+
+    <Tabs>
+      <TabItem value="JS/TS" label="TypeScript">
+        ```ts
+        import { DIMO } from '@dimo-network/data-sdk';
+
+        const dimo = new DIMO('Production');
+
+        const developerJwt = await dimo.auth.getDeveloperJwt({
+          client_id: '<client_id>',
+          domain: '<redirect_uri>',
+          private_key: '<api_key>',
+        });
+        ```
+      </TabItem>
+      <TabItem value="Python" label="Python">
+        ```python
+        from dimo import DIMO
+
+        dimo = DIMO("Production")
+
+        auth_header = dimo.auth.get_dev_jwt(
+          client_id = '<client_id>',
+          domain = '<redirect_uri>',
+          private_key = '<api_key>'
+        )
+
+        dev_jwt = auth_header["access_token"]
+        ```
+      </TabItem>
+      <TabItem value="C#" label=".NET / C#">
+        ```cs
+        using Dimo.Client;
+
+        var dimoClient = new DimoClientBuilder().AddAllServices().Build();
+
+        var auth = await dimoClient.AuthenticationService.GetTokenAsync(
+          clientId: "<client_id>",
+          domain: "<redirect_uri>",
+          privateKey: "<api_key>"
+        );
+
+        var devJwt = auth.AccessToken;
+        ```
+      </TabItem>
+    </Tabs>
+  </Step>
+
+  <Step title="Generate Your DIMO Connect URL">
+    To access real vehicle data, users must grant permission to your application. **DIMO Connect** is the user-facing flow where this happens.
+
+    When a user connects their vehicle to your app via DIMO Connect, you receive a `tokenId` for that vehicle. This ID, combined with your Developer JWT, allows you to request a **Vehicle JWT**, which grants access to specific data points (telemetry, location, etc.) based on the permissions the user approved.
+
+    You can read more on how this flow works, and how to configure DIMO Connect via the Developer Console by [checking out the docs page here](http://dimo.org/docs/build/building-with-tools/client-sdk-dimo-connect).
+  </Step>
+
+  <Step title="Get Vehicle Data">
+    Once you have a `tokenId` (from a user logging in via DIMO Connect), you can exchange your Developer JWT for a Vehicle JWT and query the API.
+
+    <Tabs>
+      <TabItem value="JS/TS" label="TypeScript">
+        ```ts
+        // 1. Get Vehicle JWT
+        const vehicleJwt = await dimo.tokenexchange.getVehicleJwt({
+          ...developerJwt,
+          tokenId: <token_id> // Obtained from DIMO Connect
+        });
+
+        // 2. Query Telemetry API
+        const data = await dimo.telemetry.query({
+          ...vehicleJwt,
+          query: `
+            query {
+              signalsLatest(tokenId: <token_id>) {
+                powertrainTransmissionTemperature {
+                  value
+                  timestamp
+                }
+                speed {
+                  value
+                  timestamp
+                }
+              }
+            }`
+        });
+        ```
+      </TabItem>
+      <TabItem value="Python" label="Python">
+        ```python
+        # 1. Get Vehicle JWT
+        get_vehicle_jwt = dimo.token_exchange.exchange(
+          developer_jwt = dev_jwt,
+          token_id = "<token_id>" # Obtained from DIMO Connect
+        )
+        vehicle_jwt = get_vehicle_jwt['token']
+
+        # 2. Query Telemetry API
+        telemetry_data = dimo.telemetry.query(
+          vehicle_jwt = vehicle_jwt,
+          query = """
+            query {
+              signalsLatest(tokenId: <token_id>) {
+                speed {
+                  value
+                  timestamp
+                }
+              }
+            }
+          """
+        )
+        ```
+      </TabItem>
+      <TabItem value="C#" label=".NET / C#">
+        ```cs
+        // 1. Get Vehicle JWT
+        var vehicleJwt = await dimoClient.TokenExchangeService.GetPrivilegeTokenAsync(
+          accessToken: devJwt,
+          tokenId: <tokenId>, // Obtained from DIMO Connect
+          privileges: [
+            PrivilegeSharing.AllTimeNoLocationData,
+            PrivilegeSharing.CurrentLocation
+          ]
+        );
+
+        // 2. Query Telemetry API
+        var query = @"
+        query {
+          signalsLatest(tokenId: <token_id>) {
+            speed {
+              value
+              timestamp
+            }
+          }
+        }";
+
+        var result = await dimoClient.TelemetryService.ExecuteQueryAsync<dynamic>(query, new {}, vehicleJwt.Token);
+        ```
+      </TabItem>
+    </Tabs>
+  </Step>
+
+</Stepper>

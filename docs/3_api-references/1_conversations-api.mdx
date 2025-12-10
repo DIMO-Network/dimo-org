@@ -1,0 +1,584 @@
+---
+sidebar_position: 2
+title: Conversations API
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import Badge from '@site/src/components/Badge';
+
+# Conversations API <Badge variant="pre-alpha">⚠️ Pre-Alpha</Badge>
+
+:::danger IMPORTANT
+Be aware, the Conversations API is in active development and **has not yet been
+released for development**. We recommend developers use this page as a general
+guide to understanding the general concepts of the API, which will be publicly
+available in beta soon.
+
+**Please build at your own risk.**
+:::
+
+Create and message AI vehicle agents.
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      <h2>Overview</h2>
+
+      The DIMO Conversations API enables developers to create intelligent AI agents that can interact with vehicle data through natural language. These agents can query vehicle information, real-time telemetry, perform web searches to answer questions about vehicles and nearby services, and more.
+
+      <h3>Key Features</h3>
+      <ul>
+        <li>Create AI agents with vehicle-specific access</li>
+        <li>Query vehicle identity data (make, model, year, owner)</li>
+        <li>Access real-time telemetry data (speed, fuel, location, battery)</li>
+        <li>Perform location-based web searches ("Find replacement parts near me")</li>
+        <li>Stream responses in real-time using Server-Sent Events</li>
+        <li>Maintain conversation history and context</li>
+      </ul>
+
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://conversations-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/agents',
+            id: 'create-agent'
+          },
+          {
+            method: 'POST',
+            path: '/agents/:agentId/message',
+            id: 'send-message'
+          },
+          {
+            method: 'POST',
+            path: '/agents/:agentId/stream',
+            id: 'stream-message'
+          },
+          {
+            method: 'GET',
+            path: '/agents/:agentId/history',
+            id: 'get-history'
+          },
+          {
+            method: 'DELETE',
+            path: '/agents/:agentId',
+            id: 'delete-agent'
+          }
+        ]}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="create-agent"
+  leftColumn={
+    <div>
+      <h2>Create an agent</h2>
+      Creates a new conversational AI agent for a user with optional vehicle access control. Agents are idempotent per user - calling this endpoint multiple times with the same user will return the existing agent.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "user",
+            type: "string",
+            required: true,
+            description: "Ethereum wallet address (0x...) for DIMO users, or any identifier (email, name) for admin mode."
+          },
+          {
+            name: "vehicleIds",
+            type: "array",
+            required: false,
+            description: "Array of vehicle token IDs the agent can access. Use null for unrestricted access (requires ownership validation), or [] for no vehicle access."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/agents"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const agent = await dimo.conversations.createAgent({
+  user: "0x1234567890abcdef1234567890abcdef12345678",
+  vehicleIds: [872, 1234]
+})`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `agent = dimo.conversations.create_agent(
+  user="0x1234567890abcdef1234567890abcdef12345678",
+  vehicle_ids=[872, 1234]
+)`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var agent = await dimoClient.ConversationsService.CreateAgentAsync(
+  User = "0x1234567890abcdef1234567890abcdef12345678",
+  VehicleIds = new[] { 872, 1234 }
+);`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://conversations-api.dev.dimo.zone/agents" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "user": "0x1234567890abcdef1234567890abcdef12345678",
+    "vehicleIds": [872, 1234]
+  }'`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "agentId": "agent-abc123def456",
+    "mode": "dimo_user",
+    "user": "0x1234567890abcdef1234567890abcdef12345678",
+    "vehicleIds": [872, 1234],
+    "createdAt": "2025-12-06T10:30:00Z"
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="send-message"
+  leftColumn={
+    <div>
+      <h2>Send a message</h2>
+      Sends a message to an agent and receives the complete response synchronously. The agent will automatically delegate to specialized subagents to query vehicle identity, telemetry, or perform web searches as needed.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "agentId",
+            type: "string",
+            required: true,
+            description: "The unique identifier of the agent. This is provided in the URL path."
+          },
+          {
+            name: "message",
+            type: "string",
+            required: true,
+            description: "The message or question to send to the agent."
+          },
+          {
+            name: "vehicleIds",
+            type: "array",
+            required: false,
+            description: "Optional override to limit vehicle access for this specific message."
+          },
+          {
+            name: "user",
+            type: "string",
+            required: false,
+            description: "Optional override for the user context of this message."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/agents/:agentId/message"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const response = await dimo.conversations.sendMessage({
+  agentId: "agent-abc123def456",
+  message: "What's the make and model of my vehicle?"
+})`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `response = dimo.conversations.send_message(
+  agent_id="agent-abc123def456",
+  message="What's the make and model of my vehicle?"
+)`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var response = await dimoClient.ConversationsService.SendMessageAsync(
+  AgentId = "agent-abc123def456",
+  Message = "What's the make and model of my vehicle?"
+);`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456/message" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "message": "What's the make and model of my vehicle?"
+  }'`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "agentId": "agent-abc123def456",
+    "message": "What's the make and model of my vehicle?",
+    "response": "Your vehicle is a 2020 Tesla Model 3.",
+    "vehiclesQueried": [872],
+    "timestamp": "2025-12-06T10:35:00Z"
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="stream-message"
+  leftColumn={
+    <div>
+      <h2>Stream a message</h2>
+      Sends a message and receives a real-time token-by-token streaming response using Server-Sent Events (SSE). This provides a better user experience with immediate feedback as the agent generates its response.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "agentId",
+            type: "string",
+            required: true,
+            description: "The unique identifier of the agent. This is provided in the URL path."
+          },
+          {
+            name: "message",
+            type: "string",
+            required: true,
+            description: "The message or question to send to the agent."
+          },
+          {
+            name: "vehicleIds",
+            type: "array",
+            required: false,
+            description: "Optional override to limit vehicle access for this specific message."
+          },
+          {
+            name: "user",
+            type: "string",
+            required: false,
+            description: "Optional override for the user context of this message."
+          }
+        ]}
+      />
+
+      <h3>Response Headers</h3>
+      <ul>
+        <li><code>Content-Type: text/event-stream</code></li>
+        <li><code>Cache-Control: no-cache</code></li>
+        <li><code>Connection: keep-alive</code></li>
+      </ul>
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="POST"
+        path="/agents/:agentId/stream"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const stream = dimo.conversations.streamMessage({
+  agentId: "agent-abc123def456",
+  message: "What's my current speed?"
+});
+
+stream.on('token', (chunk) => {
+  console.log(chunk.content);
+});
+
+stream.on('done', (metadata) => {
+  console.log('Vehicles queried:', metadata.vehiclesQueried);
+});
+
+stream.on('error', (error) => {
+  console.error('Stream error:', error);
+});`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `stream = dimo.conversations.stream_message(
+  agent_id="agent-abc123def456",
+  message="What's my current speed?"
+)
+
+for chunk in stream:
+  if chunk.get('content'):
+    print(chunk['content'], end='')
+  elif chunk.get('done'):
+    print('\\nDone!')`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `await foreach (var chunk in dimoClient.ConversationsService.StreamMessageAsync(
+  AgentId = "agent-abc123def456",
+  Message = "What's my current speed?"
+))
+{
+  if (chunk.Content != null)
+    Console.Write(chunk.Content);
+  else if (chunk.Done)
+    Console.WriteLine("\\nDone!");
+}`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X POST "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456/stream" \\
+  -H "Authorization: Bearer <DEV_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -H "Accept: text/event-stream" \\
+  -d '{
+    "message": "What's my current speed?"
+  }'`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`data: {"content": "Your"}
+data: {"content": " vehicle"}
+data: {"content": " is"}
+data: {"content": " currently"}
+data: {"content": " traveling"}
+data: {"content": " at"}
+data: {"content": " 65"}
+data: {"content": " mph"}
+data: {"content": "."}
+data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="get-history"
+  leftColumn={
+    <div>
+      <h2>Get conversation history</h2>
+      Retrieves the complete conversation history for an agent, including all messages exchanged between the user and the agent.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "agentId",
+            type: "string",
+            required: true,
+            description: "The unique identifier of the agent. This is provided in the URL path."
+          },
+          {
+            name: "limit",
+            type: "integer",
+            required: false,
+            description: "Maximum number of messages to return. Default: 100."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/agents/:agentId/history?limit=50"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const history = await dimo.conversations.getHistory({
+  agentId: "agent-abc123def456",
+  limit: 50
+})`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `history = dimo.conversations.get_history(
+  agent_id="agent-abc123def456",
+  limit=50
+)`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `var history = await dimoClient.ConversationsService.GetHistoryAsync(
+  AgentId = "agent-abc123def456",
+  Limit = 50
+);`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456/history?limit=50" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "agentId": "agent-abc123def456",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What's the make and model?",
+        "timestamp": "2025-12-06T10:35:00Z"
+      },
+      {
+        "role": "agent",
+        "content": "Your vehicle is a 2020 Tesla Model 3.",
+        "timestamp": "2025-12-06T10:35:05Z"
+      },
+      {
+        "role": "user",
+        "content": "What's my current speed?",
+        "timestamp": "2025-12-06T10:36:00Z"
+      },
+      {
+        "role": "agent",
+        "content": "Your vehicle is currently traveling at 65 mph.",
+        "timestamp": "2025-12-06T10:36:03Z"
+      }
+    ],
+    "total": 4
+}`}
+      />
+    </div>
+  }
+/>
+
+<TwoColumnLayout
+  id="delete-agent"
+  leftColumn={
+    <div>
+      <h2>Delete an agent</h2>
+      Permanently deletes an agent and all associated resources, including conversation history and subagents.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "agentId",
+            type: "string",
+            required: true,
+            description: "The unique identifier of the agent to delete. This is provided in the URL path."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="DELETE"
+        path="/agents/:agentId"
+        codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `await dimo.conversations.deleteAgent({
+  agentId: "agent-abc123def456"
+})`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `dimo.conversations.delete_agent(
+  agent_id="agent-abc123def456"
+)`
+          },
+          {
+            label: ".NET",
+            language: "csharp",
+            code: `await dimoClient.ConversationsService.DeleteAgentAsync(
+  AgentId = "agent-abc123def456"
+);`
+          },
+          {
+            label: "cURL",
+            language: "shell",
+            code: `curl -X DELETE "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456" \\
+  -H "Authorization: Bearer <DEV_JWT>"`
+          }
+        ]}
+        defaultLanguage="typescript"
+      />
+
+      <ApiResponseBlock
+        code={`{
+    "message": "Agent deleted successfully"
+}`}
+      />
+    </div>
+  }
+/>
+
+{/* ## Use Cases
+
+### Customer Support Chatbots
+Create intelligent chatbots that can answer customer questions about their vehicles, including identity information, current status, and nearby services.
+
+### Fleet Management Dashboards
+Build admin agents with unrestricted access to monitor and query multiple vehicles in a fleet simultaneously.
+
+### Mobile Apps
+Integrate streaming responses into mobile applications for real-time conversational experiences with vehicle data.
+
+### Voice Assistants
+Use the Conversations API as a backend for voice-enabled vehicle assistants that can understand natural language queries.
+
+### Location-Based Services
+Enable agents to find nearby mechanics, tire shops, charging stations, and other services relevant to the vehicle's current location. */}
+
+{/* ## Best Practices
+
+### Authentication
+Always include your developer JWT in the `Authorization: Bearer <token>` header for all API requests. Keep your JWT secure and never expose it in client-side code.
+
+### Vehicle Access Control
+- Use explicit `vehicleIds` arrays for production applications to maintain clear access boundaries
+- Use `vehicleIds: null` for development when you want automatic ownership validation
+- Use admin mode sparingly and only for internal tools
+
+### Streaming vs Synchronous
+- Use streaming endpoints for user-facing interfaces to provide immediate feedback
+- Use synchronous endpoints for backend integrations or when you need the complete response at once
+
+### Error Handling
+Handle common error cases:
+- **403 Forbidden**: Missing or invalid developer JWT
+- **404 Not Found**: Agent doesn't exist
+- **409 Conflict**: Trying to create an agent with conflicting configuration
+- **422 Unprocessable Entity**: Invalid request parameters
+
+### Rate Limiting
+Be mindful of API rate limits and implement appropriate backoff strategies for high-volume applications. */}

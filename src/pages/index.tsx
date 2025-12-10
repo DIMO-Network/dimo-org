@@ -1,218 +1,204 @@
+import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
-import type { ReactNode } from 'react';
-import { LINKS } from '../links';
-
 import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
+import { LINKS } from '../links';
+import { Star } from 'lucide-react';
 
-// Asset imports - descriptive names
-const imgHeroHighway = '/img/hero-highway-image.png';
-const imgDimoIconBlue = '/img/dimo-build-logo-round.png';
-const imgDimoIcon = '/img/dimo-logo-red.png';
+// Asset imports
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
-const imgIconRealTimeData = '/img/icon-real-time-data.svg';
 const imgIconPrivacyPreserving = '/img/icon-privacy-preserving.svg';
 const imgOpenSource = '/img/icon-open-source.svg';
 const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
-const imgIconStarsAI = '/img/icon-ai.svg';
-const imgIconConsentManagement = '/img/icon-consent-management.svg';
+const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
+const imgHardware = '/img/dimo_hardware.webp';
+const imgHeroHighway = '/img/hero-highway-image.png';
+const imgDimoAi = '/img/dimo_ai.jpg';
+const imgDimoAiPlaceholder = '/img/dimo-a-hero-wip.png';
 
 function HeroSection() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.heroBackground}>
-        <div className={styles.heroBackgroundImage}>
-          <img alt="" src={imgHeroHighway} />
-        </div>
-      </div>
-      <div className="container">
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            The vehicle data platform that puts privacy first
-          </h1>
-          <div className={styles.heroButtons}>
-            <Link
-              className={styles.signInButton}
-              to={LINKS.external.console}
-            >
-              Console
-            </Link>
-            <Link className={styles.docsButton} to="/docs">
-              Read The Docs
-            </Link>
-          </div>
-          
-          {/* Badges Container */}
-          <div className={styles.badgesContainer}>
-            {/* DIMO Mobile Badge */}
-            <div className={styles.dimoMobileBadge}>
-              <a href={LINKS.external.dimoMobile} target="_blank" className={styles.dimoMobileLink}>
-                <div className={styles.dimoMobileContent}>
-                  <div className={styles.dimoMobileIcon}>
-                    <img src={imgDimoIcon} alt="DIMO Mobile" />
-                  </div>
-                  <div className={styles.dimoMobileTextContainer}>
-                    <div className={styles.dimoMobileSubText}>SIGN UP AS A CONSUMER</div>
-                    <div className={styles.dimoMobileMainText}>DIMO Mobile</div>
-                  </div>
-                </div>
-              </a>
-            </div>
+    <header className={styles.hero}>
+      <div className={styles.heroGrid} />
+      <div className={styles.heroGlow} />
 
-            {/* Product Hunt Badge */}
-            <div className={styles.productHuntBadge}>
-              <a href="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo" target="_blank">
-                <img 
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1019734&theme=light&t=1758908398048" 
-                  alt="DIMO - The&#0032;vehicle&#0032;data&#0032;platform&#0032;that&#0032;puts&#0032;privacy&#0032;first | Product Hunt" 
-                  style={{width: '250px', height: '54px'}}
-                />
-              </a>
-            </div>
+      <div className={styles.heroContent}>
+        <Link
+          className={styles.pill}
+          to="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo"
+        >
+          <span className={styles.pillNew}>New</span>
+          <span>Check us out on ProductHunt →</span>
+        </Link>
 
-            {/* DIMO Japan Badge */}
-            <div className={styles.dimoJapanBadge}>
-              <a href={LINKS.external.dimoJapan} target="_blank" className={styles.dimoJapanLink}>
-                <div className={styles.dimoJapanContent}>
-                  <div className={styles.dimoJapanIcon}>
-                    <img src={imgDimoIconBlue} alt="DIMO Japan" />
-                  </div>
-                  <div className={styles.dimoJapanTextContainer}>
-                    <div className={styles.dimoJapanSubText}>EXPLORE OUR AFFILIATES</div>
-                    <div className={styles.dimoJapanMainText}>DIMO Japan</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
+        <h1 className={styles.heroTitle}>
+          The vehicle intelligence platform that <br />
+          <span className={styles.heroTitleSpan}>puts privacy first.</span>
+        </h1>
 
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyDimoSection() {
-  return (
-    <section className={styles.whyDimo}>
-      <div className="container">
-        <h2 className={styles.whyDimoTitle}>Why DIMO?</h2>
-        <p className={styles.whyDimoSubtitle}>
-          DIMO lets you tap into $100B+ with real-time telemetry and connected
-          services
+        <p className={styles.heroSubtitle}>
+          Build intelligent vehicle apps that work with any car & any tech
+          stack. Ship faster with DIMO AI—no rewrites, no migrations, just
+          results.
         </p>
 
-        <div className={styles.featuresGrid}>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>
-              <img alt="" src={imgIconPlugPlay} />
-            </div>
-            <h3 className={styles.featureTitle}>Plug & Play</h3>
-            <p className={styles.featureDescription}>
-              Built to scale, AI-ready API and developer infrastructure
-            </p>
-          </div>
+        <div className={styles.heroButtons}>
+          <Link className={styles.primaryBtn} to={LINKS.external.console}>
+            Start Building
+          </Link>
+          <Link className={styles.secondaryBtn} to="/docs">
+            Read the Docs
+          </Link>
+        </div>
 
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>
-              <img
-                alt=""
-                src={imgIconPrivacyPreserving}
-                className={styles.largerIcon}
-              />
-            </div>
-            <h3 className={styles.featureTitle}>Privacy Preserving</h3>
-            <p className={styles.featureDescription}>
-              Connect to vehicles while maintaining user privacy and onboard app
-              developers while honoring OEM agreements
-            </p>
-          </div>
-
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>
-              <img
-                alt=""
-                src={imgIconRealTimeData}
-                className={styles.largerIcon}
-              />
-            </div>
-            <h3 className={styles.featureTitle}>Real-time Data</h3>
-            <p className={styles.featureDescription}>
-              Be a data source, host, and/or consumer of real-time vehicle data
-            </p>
+        {/* Visual / Code Editor */}
+        <div className={styles.heroVisual}>
+          <div className={styles.codeWindow}>
+            <img
+              src={imgDimoAiPlaceholder}
+              alt="DIMO AI Placeholder"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
 
-function BottomFeaturesSection() {
+function FeaturesGrid() {
   const features = [
     {
-      title: 'Open Source',
-      icon: imgOpenSource,
-      description:
-        'DIMO is built on open-source, either MIT License or Apache License 2.0',
-    },
-    {
-      title: 'Secure + Compliant',
-      icon: imgIconSecureCompliant,
-      description:
-        'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GPDR and the EU Data Act',
-    },
-    {
       title: 'Universal Compatibility',
+      desc: 'Open APIs for Tesla, Ford, BMW, and 50+ other OEMs, with new vehicle signals decoded almost daily.',
       icon: imgIconUniversalCompatibility,
-      description:
-        'DIMO works with any data providers, whether you are an OEM, a data service provider, or manufacturers of an aftermarket device',
     },
     {
-      title: 'Off-the-shelf Features',
-      icon: imgIconConsentManagement,
-      description:
-        'Consent management, programmable rewards, and universal API are all built-in, off-the-shelf features',
+      title: 'Privacy by Design',
+      desc: 'User-owned data architecture. Grant and revoke access with granular permissions built on verifiable credentials.',
+      icon: imgIconPrivacyPreserving,
     },
     {
-      title: 'Gen-AI & MCP-Ready',
+      title: 'AI-Ready Context',
+      desc: 'Clean, normalized data streams ready for developing agentic workflows. ',
       icon: imgIconStarsAI,
-      description:
-        'Proven to work with generative AI and MCP servers, DIMO provides the data foundation to build your AI solutions',
-      special: true,
+    },
+    {
+      title: 'Plug & Play Hardware',
+      desc: 'Onboard vehicles instantly with optional hardware like the DIMO LTE R1. Zero-config installation for users.',
+      icon: imgIconPlugPlay,
+    },
+    {
+      title: 'Open Source Core',
+      desc: 'Built on open protocols. Audit the code, contribute to the network, and own your infrastructure.',
+      icon: imgOpenSource,
+    },
+    {
+      title: 'Secure & Compliant',
+      desc: 'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GPDR and the EU Data Act.',
+      icon: imgIconSecureCompliant,
     },
   ];
 
   return (
-    <section className={styles.bottomFeatures}>
-      <div className="container">
-        <div className={styles.featureCards}>
-          {features.map((feature, index) => (
-            <div key={index} className={styles.featureCardContainer}>
-              <div className={styles.featureCard}>
-                {/* Front side */}
-                <div className={styles.featureCardFront}>
-                  {feature.icon && (
-                    <div className={styles.featureCardIcon}>
-                      <img alt="" src={feature.icon} />
-                    </div>
-                  )}
-                  <h4 className={styles.featureCardTitle}>{feature.title}</h4>
-                  <div className={styles.featureCardArrow}>→</div>
-                </div>
-                {/* Back side */}
-                <div className={styles.featureCardBack}>
-                  <h4 className={styles.featureCardTitleBack}>
-                    {feature.title}
-                  </h4>
-                  <p className={styles.featureCardDescription}>
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
+    <section className={styles.features}>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>Everything you need to build</h2>
+        <p className={styles.sectionSubtitle}>
+          DIMO can be used with pre-built, templated agents that work with your
+          existing data, or can be used alongside custom-built agents. Our
+          flexible infrasture provides you with everything you need to build
+          agentic applications for vehicle services.
+        </p>
+      </div>
+
+      <div className={styles.bentoGrid}>
+        {features.map((f, i) => (
+          <div key={i} className={styles.card}>
+            <div className={styles.cardGlow} />
+            <div className={styles.cardIcon}>
+              <img src={f.icon} alt="" />
             </div>
-          ))}
+            <h3 className={styles.cardTitle}>{f.title}</h3>
+            <p className={styles.cardDesc}>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AutomateOperationsSection() {
+  return (
+    <section className={styles.bigFeature}>
+      <div className={styles.featureContainer}>
+        <div className={styles.featureVisual}>
+          <img src={imgDimoAi} alt="Automate Operations" />
+        </div>
+        <div className={styles.featureText}>
+          <h3>Automate your operations like never before</h3>
+          <p>
+            DIMO's platform lets you transform your operations by automating
+            your existing workflows with vehicle agents with memory built
+            in—delivering polished, personalized customer experiences while
+            maximizing efficiency. DIMO is perfect for strealining operations
+            in:
+          </p>
+          <ul className={styles.featureList}>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Maintenance
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Rentals & Returns
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Repairs
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Booking and Scheduling
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> And more!
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BigFeatureSection() {
+  return (
+    <section className={styles.bigFeature}>
+      <div className={styles.featureContainer}>
+        <div className={styles.featureText}>
+          <h3>Got Data? Bring It.</h3>
+          <p>
+            DIMO's intelligent vehicle agents work with your existing data and
+            tech stack — just feed your data into our DIMO Ingest Service. We've
+            built the agents that understand your data so that you can focus on
+            building what matters: features that delight your users and drive
+            your business forward.
+          </p>
+          <ul className={styles.featureList}>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Works with your
+              existing infrastructure
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Seamless integration,
+              zero disruption
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span> Focus on your product,
+              not data plumbing
+            </li>
+          </ul>
+        </div>
+        <div className={styles.featureVisual}>
+          <img src={imgHeroHighway} alt="Telematics Architecture" />
         </div>
       </div>
     </section>
@@ -221,10 +207,12 @@ function BottomFeaturesSection() {
 
 function WatchHowItWorksSection() {
   return (
-    <section className={styles.whyDimo}>
+    <section className={styles.videoSection}>
       <div className="container">
-        <h2 className={styles.whyDimoTitle}>Watch How It Works</h2>
-        <div className={styles.videoContainer}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>How It Works</h2>
+        </div>
+        <div className={styles.videoWrapper}>
           <iframe
             src="https://www.youtube.com/embed/swdRxufYB3A"
             title="DIMO - How It Works"
@@ -237,14 +225,154 @@ function WatchHowItWorksSection() {
   );
 }
 
-function WallOfLoveSection() {
+const testimonials = [
+  {
+    name: 'Maximiliano Ipinza',
+    text: 'Just love it. we are starting building with this kit and its get easier and easier. actually we are using DIMO in LATAM and we get all the data via API into our own telematic solution. another thing that really make integrations easier is the level of support with James team and the delivery.',
+  },
+  {
+    name: 'Collin McCloskey',
+    text: "The DIMO team has done a phenomenal job making it easy to build on their platform. When I have questions I use their GPT. When I'm writing code with CC or cursor, I copy the docs in one click. Their team is quick to support and they ship faster than I can keep up. It's honestly a really pleasant experience!",
+  },
+  {
+    name: 'Daniel Wedding',
+    text: 'As an avid EV consumer and software engineer, DIMO provided a platform that not only allowed personal insight into the vehicle metrics I was looking for, but also integrated an easy-to-use developer API so I could integrate everything flawlessly into my tech stack.',
+  },
+  {
+    name: 'Rob Solomon',
+    text: "I've built several apps on DIMO. Incredibly easy. As a non-dev, I've been able to launch things that really truly work with Replit, n8n, and Bubble. The documentation is clear and the platform works as advertised. Way easier to get started than others! Perhaps I'm bit biased... but who cares! It's great.",
+  },
+];
+
+function TestimonialsSection() {
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
+  const handleTouchStart = () => setIsPaused(true);
+  const handleTouchEnd = () => setIsPaused(false);
+
   return (
-    <section>
-      <div className={styles.wallOfLove}>
-        <h2 className={styles.wallOfLoveTitle}>Hear What Devs Say</h2>
+    <section className={styles.wallOfLove}>
+      <div className={styles.sectionHeader}>
+        <h2 className={styles.sectionTitle}>What devs are saying</h2>
       </div>
-      <div className="feedspace-embed" data-id="217207bd-2013-4903-8545-d7f149fda8a2"></div>
-      <script src="https://js.feedspace.io/v1/embed/embed.min.js" type="text/javascript" async></script>
+
+      <div className={styles.testimonialMarqueeContainer}>
+        <div
+          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
+        >
+          {/* Duplicate list twice for smoother infinite scroll on wide screens */}
+          {[...testimonials, ...testimonials, ...testimonials].map((t, i) => (
+            <div
+              key={i}
+              className={styles.testimonialCard}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div className={styles.testimonialHeader}>
+                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
+                <div className={styles.testimonialInfo}>
+                  <div className={styles.testimonialName}>{t.name}</div>
+                  <div className={styles.testimonialStars}>
+                    {[1, 2, 3, 4, 5].map(s => (
+                      <Star
+                        key={s}
+                        size={16}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p className={styles.testimonialText}>{t.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Old module commented out as requested */}
+      {/* <div
+        className="feedspace-embed"
+        data-id="217207bd-2013-4903-8545-d7f149fda8a2"
+        style={{ maxWidth: '1200px', margin: '0 auto' }}
+      ></div>
+      <script
+        src="https://js.feedspace.io/v1/embed/embed.min.js"
+        type="text/javascript"
+        async
+      ></script> */}
+    </section>
+  );
+}
+
+function HardwareSection() {
+  return (
+    <section className={styles.hardwareSection}>
+      <div className={styles.hardwareContainer}>
+        <div className={styles.hardwareContent}>
+          <span className={styles.hardwareSubBanner}>DIMO LTE R1</span>
+          <h2 className={styles.hardwareTitle}>Compatible Hardware</h2>
+          <p className={styles.hardwareDescription}>
+            Access high-frequency vehicle data with the DIMO LTE R1. It installs
+            in seconds, works with almost any car, and streams data directly to
+            the network.
+          </p>
+          <div className={styles.hardwareButtons}>
+            <Link
+              className={styles.primaryBtn}
+              to="https://dimo.co/products/dimo-lte-r1"
+            >
+              Buy DIMO LTE R1
+            </Link>
+            <div className={styles.hardwareCustomIntegration}>
+              <span className={styles.hardwareCustomText}>
+                Need a custom hardware integration?
+              </span>
+              <Link
+                className={styles.secondaryBtn}
+                to="mailto:developers@dimo.org"
+              >
+                Let's Chat
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className={styles.hardwareVisual}>
+          <img src={imgHardware} alt="DIMO LTE R1" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CTASection() {
+  return (
+    <section className={styles.ctaSection}>
+      <div className={styles.ctaContent}>
+        <h2 className={styles.ctaTitle}>Ready to launch?</h2>
+        <p className={styles.ctaText}>
+          Join thousands of developers building the next generation of mobility
+          apps. Get your API keys today.
+        </p>
+        <div
+          className={styles.heroButtons}
+          style={{ justifyContent: 'center' }}
+        >
+          <Link className={styles.primaryBtn} to={LINKS.external.console}>
+            Get API Keys
+          </Link>
+          <Link
+            className={styles.secondaryBtn}
+            to="https://discord.gg/dimonetwork"
+          >
+            Join Discord
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }
@@ -252,19 +380,19 @@ function WallOfLoveSection() {
 export default function Home(): ReactNode {
   return (
     <div className={styles.homePage}>
-      {/* Custom Navigation */}
-      <CustomNavbar />
+      <CustomNavbar dark={true} />
 
-      {/* Page Content */}
-      <HeroSection />
       <main>
-        <WhyDimoSection />
-        <BottomFeaturesSection />
+        <HeroSection />
+        <AutomateOperationsSection />
+        <BigFeatureSection />
+        <FeaturesGrid />
         <WatchHowItWorksSection />
-        <WallOfLoveSection />
+        <TestimonialsSection />
+        <HardwareSection />
+        <CTASection />
       </main>
 
-      {/* Footer */}
       <FooterTheme />
     </div>
   );

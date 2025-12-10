@@ -1,0 +1,114 @@
+---
+sidebar_position: 5
+---
+
+import TelemetryQueryBuilder from '@site/src/components/TelemetryQueryBuilder';
+import GraphQLPlayground from '@site/src/components/GraphQLPlayground';
+
+# Telemetry Playground
+
+Build custom telemetry queries using the interactive query builder below. Select signals, configure aggregations, and generate GraphQL queries to use with the DIMO Telemetry API.
+
+:::info Authentication Required
+The Telemetry API requires authentication with a Vehicle JWT token. You'll need:
+- A Developer License (get one at the [Developer Console](https://console.dimo.org))
+- Vehicle permissions granted to your license
+
+Learn more about authentication in our [Authentication Guide](/docs/getting-started/authentication).
+:::
+
+## Interactive Query Builder
+
+Use the builder below to compose telemetry queries. The builder supports both current values (`signalsLatest`) and historical time series data (`signals`) with customizable aggregations. Copy the generated query and paste it into the playground below to execute it.
+
+<TelemetryQueryBuilder />
+
+## Query Types
+
+### signalsLatest
+Returns the most recent value for each selected signal. Perfect for dashboards and real-time monitoring.
+
+**Example Use Cases:**
+- Current vehicle speed and location
+- Latest battery charge level
+- Current ignition status
+
+### signals
+Returns time series data with configurable aggregation over a date range. Ideal for analytics and historical analysis.
+
+**Example Use Cases:**
+- Average speed over the past week
+- Maximum battery charge during a road trip
+- Fuel consumption trends over time
+
+## Signal Categories
+
+The Telemetry API provides signals across 11 categories:
+
+- **Location**: GPS coordinates, altitude (precise and approximate)
+- **Vehicle Status**: Speed, ignition, odometer, VIN, powertrain type, range
+- **Battery & EV**: State of charge, charging status, power flow, capacity, session energy
+- **Fuel**: Fuel level (percentage and liters), supported fuel types
+- **Engine**: RPM, coolant temperature, oil level, throttle position, air intake, load
+- **Tire Pressure**: All four wheel pressures (front left/right, rear left/right)
+- **Environment**: Outside temperature, barometric pressure
+- **Doors**: Status of all four doors (front/rear driver/passenger)
+- **Windows**: Status of all four windows (front/rear driver/passenger)
+- **Device/Network**: WiFi status, GPS satellite count and precision
+- **Diagnostics**: Diagnostic trouble codes, runtime, intake temperature
+
+## Aggregation Types
+
+When querying historical data (`signals`), you can choose different aggregation methods:
+
+**For Numeric Signals:**
+- **AVG**: Average value over the interval
+- **MAX**: Maximum value
+- **MIN**: Minimum value
+- **MED**: Median value
+- **FIRST**: First recorded value
+- **LAST**: Last recorded value
+- **RAND**: Random sample
+
+**For String Signals:**
+- **RAND**: Random sample
+- **TOP**: Most frequently occurring value
+- **UNIQUE**: List of unique values
+
+## GraphQL Playground
+
+Use the GraphQL playground below to execute queries against the live Telemetry API. You can paste queries generated from the builder above, or write your own custom queries. You'll need a valid Vehicle JWT token to authenticate your requests.
+
+<GraphQLPlayground
+  title="DIMO Telemetry API Playground"
+  endpoint="https://telemetry-api.dimo.zone/"
+  query={`query {
+  signalsLatest(tokenId: <vehicle_token_id>) {
+    lastSeen
+    speed {
+      timestamp
+      value
+    }
+    latitude {
+      timestamp
+      value
+    }
+    longitude {
+      timestamp
+      value
+    }
+  }
+}`}
+  variables={{}}
+  height="700px"
+/>
+
+## Tips
+
+💡 **JWT Authentication**: Vehicle JWTs expire after 10 minutes. You'll need to generate a new one if it expires. Add your JWT token in the HTTP Headers section of the playground as: `{"Authorization": "Bearer YOUR_JWT_TOKEN"}`
+
+💡 **Date Ranges**: For historical queries, keep date ranges reasonable (days to weeks) to ensure fast response times.
+
+💡 **Multiple Signals**: You can select as many signals as needed - they'll all be included in a single query.
+
+💡 **Copy Queries**: Use the copy button in the query builder to easily transfer queries to the playground below.
