@@ -36,7 +36,10 @@
   justify-content: center;
   text-align: center;
   background-color: #000000;
-  background-image: url('/img/DIMO-desert.jpg');
+  /* Re-added overlay for text readability */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/img/DIMO-desert.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
