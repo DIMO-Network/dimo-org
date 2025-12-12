@@ -37,7 +37,7 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           The vehicle intelligence platform that <br />
-          <span className={styles.heroTitleSpan}>puts privacy first.</span>
+          puts privacy first.
         </h1>
 
         <p className={styles.heroSubtitle}>
