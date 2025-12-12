@@ -30,15 +30,19 @@ const getPricingTiers = (
     {
       id: 'hobbyist',
       name: 'DIMO Hobbyist',
-      price: planType === 'ai' ? 'FREE' : '$1.25',
-      period: planType === 'ai' ? '' : 'per vehicle/month',
-      subPrice: planType === 'ai' ? '$1.25 per vehicle/mo' : undefined,
+      price: 'FREE',
+      period: '',
+      subPrice: '+ $1.25 per vehicle/mo',
       description: 'Perfect for enthusiasts building for their own vehicles.',
       features: [
-        'Access your own vehicle data',
-        'Create a developer license',
-        ...(planType === 'ai' ? ['Pay as you go AI'] : []),
-        'Use third party apps like Home Assistant',
+        'Access vehicle data securely',
+        ...(planType === 'ai'
+          ? [
+              'Limited to 1 AI agent',
+              'Pay as you go AI',
+              'Access to built-in MCPs',
+            ]
+          : []),
       ],
       buttonText: 'Get Started',
       buttonLink: 'https://console.dimo.xyz',
@@ -50,15 +54,16 @@ const getPricingTiers = (
     tiers.push({
       id: 'core',
       name: 'DIMO Core',
-      price: billingCycle === 'annual' ? '$99' : '$119',
+      price: billingCycle === 'annual' ? '$349' : '$399',
       period: '/mo',
-      subPrice: '$1.25 per vehicle/mo',
+      subPrice: '+ $1.25 per vehicle/mo',
       description: 'For developers building apps for a fleet or user base.',
       features: [
         'Everything in DIMO Hobbyist',
-        'More usage for the AI',
-        'Scalable vehicle data access',
+        '100 vehicles included',
+        'More request limits',
         'Bring your own data',
+        'Includes data storage',
       ],
       buttonText: 'Start Building',
       buttonLink: 'https://console.dimo.xyz',
@@ -71,15 +76,17 @@ const getPricingTiers = (
     id: 'enterprise',
     name: 'DIMO Enterprise',
     price: 'Custom',
-    subPrice: '$1.25 per vehicle/mo',
+    subPrice: planType === 'data' ? undefined : '+ $1.25 per vehicle/mo',
     description: 'Tailored solutions for large-scale deployments.',
     features: [
       `Everything in ${planType === 'ai' ? 'DIMO Core' : 'DIMO Hobbyist'}`,
-      'Unlimited requests',
+      'Custom request limits',
+      ...(planType === 'ai'
+        ? ['More AI agents included', 'Bring your own AI keys']
+        : []),
       'Dedicated support channel',
       'Custom SLA & contracts',
       'On-premise deployment options',
-      'Contact us for custom pricing',
     ],
     buttonText: 'Contact Us',
     buttonLink: 'mailto:sales@dimo.org',
@@ -161,18 +168,7 @@ function PricingGrid({
 
   return (
     <section className={styles.pricingSection}>
-      <div
-        className={styles.pricingGrid}
-        data-count={tiers.length}
-        style={
-          tiers.length === 2
-            ? {
-                gridTemplateColumns: 'repeat(2, minmax(300px, 400px))',
-                justifyContent: 'center',
-              }
-            : {}
-        }
-      >
+      <div className={styles.pricingGrid} data-count={tiers.length}>
         {tiers.map(tier => (
           <div
             key={tier.id}

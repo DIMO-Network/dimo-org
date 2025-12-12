@@ -133,10 +133,11 @@
   justify-content: center;
 }
 
-/* Ensure grid centers items when there are fewer items */
+/* Ensure grid centers items when there are fewer items on desktop */
 .pricingGrid[data-count='2'] {
+  grid-template-columns: repeat(2, minmax(300px, 400px));
   max-width: 900px;
-  /* Or use flex centering if grid support for centering is tricky with auto-fit */
+  justify-content: center;
 }
 
 .pricingCard {
@@ -321,7 +322,13 @@
     font-size: 2.5rem;
   }
   .pricingGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    max-width: 500px;
+  }
+
+  /* Override 2-card layout on mobile */
+  .pricingGrid[data-count='2'] {
+    grid-template-columns: 1fr !important;
     max-width: 500px;
   }
 }
