@@ -111,6 +111,7 @@ function HeroSection({
   return (
     <header className={styles.hero}>
       <div className={styles.heroContent}>
+        <div className={styles.earlyBirdBadge}>🎉 Early Bird Pricing</div>
         <h1 className={styles.heroTitle}>Choose Your Plan</h1>
         <p className={styles.heroSubtitle}>
           Select the perfect plan for your needs. Scale from hobbyist to
@@ -229,6 +230,18 @@ function PricingGrid({
         <Link to="/docs" style={{ color: '#fff', textDecoration: 'underline' }}>
           View detailed comparison
         </Link>
+      </div>
+      <div
+        style={{
+          textAlign: 'center',
+          marginTop: '2rem',
+          color: 'var(--hp-text-muted)',
+          fontSize: '0.85rem',
+          fontStyle: 'italic',
+        }}
+      >
+        * Early bird pricing is available for a limited time. Pricing and
+        features are subject to change.
       </div>
     </section>
   );

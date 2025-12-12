@@ -46,6 +46,31 @@
   margin: 0 auto;
 }
 
+.earlyBirdBadge {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6, #124bdb);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.5);
+  }
+}
+
 .heroTitle {
   font-size: 3rem;
   line-height: 1.1;
@@ -321,6 +346,12 @@
   .heroTitle {
     font-size: 2.5rem;
   }
+
+  .earlyBirdBadge {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+  }
+
   .pricingGrid {
     grid-template-columns: 1fr !important;
     max-width: 500px;
