@@ -45,7 +45,7 @@ const getPricingTiers = (
           : []),
       ],
       buttonText: 'Get Started',
-      buttonLink: 'https://console.dimo.xyz',
+      buttonLink: 'mailto:developer-support@dimo.org',
       highlight: false,
     },
   ];
@@ -66,7 +66,7 @@ const getPricingTiers = (
         'Includes data storage',
       ],
       buttonText: 'Start Building',
-      buttonLink: 'https://console.dimo.xyz',
+      buttonLink: 'mailto:developer-support@dimo.org',
       highlight: true,
       badge: 'MOST POPULAR',
     });
@@ -89,7 +89,7 @@ const getPricingTiers = (
       'On-premise deployment options',
     ],
     buttonText: 'Contact Us',
-    buttonLink: 'mailto:sales@dimo.org',
+    buttonLink: 'mailto:developer-support@dimo.org',
     highlight: false,
     isEnterprise: true,
   });

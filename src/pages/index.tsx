@@ -335,7 +335,7 @@ function HardwareSection() {
               </span>
               <Link
                 className={styles.secondaryBtn}
-                to="mailto:developers@dimo.org"
+                to="mailto:developer-support@dimo.org"
               >
                 Let's Chat
               </Link>
