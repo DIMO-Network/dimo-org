@@ -7,7 +7,7 @@
 /* Universal Sans Display Font Family - Removed in favor of Inter */
 /* @font-face rules removed */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -23,7 +23,7 @@
 
   /* Custom font variables */
   --ifm-font-family-base:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   --ifm-font-family-monospace:
@@ -80,7 +80,7 @@
 /* Universal Sans Display utility classes */
 .font-universal {
   font-family:
-    'Inter',
+    'Geist',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',

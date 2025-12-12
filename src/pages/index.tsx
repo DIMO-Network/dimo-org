@@ -30,7 +30,9 @@ function HeroSection() {
           to="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo"
         >
           <span className={styles.pillNew}>New</span>
-          <span>Check us out on ProductHunt →</span>
+          <span>
+            Check us out on ProductHunt <span className={styles.arrow}>→</span>
+          </span>
         </Link>
 
         <h1 className={styles.heroTitle}>
@@ -46,10 +48,10 @@ function HeroSection() {
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Start Building
+            Sign Up <span className={styles.arrow}>→</span>
           </Link>
           <Link className={styles.secondaryBtn} to="/docs">
-            Read the Docs
+            Read the Docs <span className={styles.arrow}>→</span>
           </Link>
         </div>
 

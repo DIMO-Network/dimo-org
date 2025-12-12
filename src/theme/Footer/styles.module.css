@@ -25,7 +25,7 @@
 }
 
 .footerColumnTitle {
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 900;
   font-size: 1.25rem;
   color: #ffffff;
@@ -47,7 +47,7 @@
 }
 
 .footerLinks a {
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 525;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
@@ -108,7 +108,7 @@
 }
 
 .footerCopyright p {
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 525;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
