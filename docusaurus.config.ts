@@ -95,8 +95,8 @@ const config: Config = {
       },
     },
     colorMode: {
-      defaultMode: 'light',
-      disableSwitch: false,
+      defaultMode: 'dark',
+      disableSwitch: true,
       respectPrefersColorScheme: false,
     },
     prism: {

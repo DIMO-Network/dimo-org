@@ -50,10 +50,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
   /* True Black Dark Mode */
-  --ifm-background-color: #000000;
-  --ifm-background-surface-color: #0a0a0a; /* Slightly lighter for contrast */
-  --ifm-navbar-background-color: #000000;
-  --ifm-footer-background-color: #000000;
+  --ifm-background-color: #0b0b0e;
+  --ifm-background-surface-color: #161619; /* Slightly lighter for contrast */
+  --ifm-navbar-background-color: #0b0b0e;
+  --ifm-footer-background-color: #0b0b0e;
 }
 
 /* Custom utility classes for inline styling */

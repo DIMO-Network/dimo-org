@@ -14,8 +14,8 @@ const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
 const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
-const imgHeroHighway = '/img/hero-highway-image.png';
-const imgDimoAi = '/img/dimo_ai.jpg';
+const imgHeroHighway = '/img/dimo-pixel-car.png';
+const imgDimoAi = '/img/dimo-pathways.png';
 const imgDimoAiPlaceholder = '/img/DIMO-Docs.png';
 
 function HeroSection() {
