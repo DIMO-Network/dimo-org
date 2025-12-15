@@ -23,7 +23,7 @@ const sidebars: SidebarsConfig = {
     },
     'index',
     'quickstart',
-    'core-concepts',
+    'key-concepts',
     'introduction/what-can-you-build',
     'introduction/where-can-you-start',
 

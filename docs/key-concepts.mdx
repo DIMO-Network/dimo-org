@@ -25,53 +25,64 @@ all while upholding enterprise-grade user privacy and compliance standards.
 ### Developer Console
 
 The DIMO Developer Console is your main entrypoint into the DIMO Developer
-ecosystem. This is where developers can manage their API keys, DIMO connect
-configurations, AI agents, webhooks, and more. To get started, just [create an
-account](https://console.dimo.org/sign-in) and create a Developer License.
+ecosystem. This is where developers can manage their API keys, **[DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect)**
+configurations, create and test AI agents, set up webhooks, and more.
+
+To get started, just **[create an
+account](https://console.dimo.org/sign-in)** and create a Developer License.
 
 ### Developer License
 
 A DIMO Developer License is what enables developers to build on and integrate
-with the platform. Each license has a unique name on the DIMO network, and more
-importantly, a unique `clientId` that starts with `0x`. The details of your
-license are publicly viewable to anyone on the DIMO network, aside from private
+with the platform. Each license has a unique name on the DIMO Network, and more
+importantly, a unique `clientId` that starts with `0x`.
+
+The details of your
+license are publicly viewable to anyone via our open **[Identity
+API](/docs/api-references/identity-api/introduction)**, but this does **NOT**
+include private
 information like your email address or API keys.
 
 ## Identity & Permissions
 
-### Permissions & Consent Management
+### Permissions & Consent Management: SACD
 
-DIMO Connect offers a robust user interface seamlessly integrated with a consent management and privacy engine.
-Enterprise customers and developers gain frictionless, secure pathways to request and manage data access directly from vehicle owners,
-ensuring all interactions are fully auditable and aligned with evolving global data protection and privacy regulations.
-The consent framework is purpose-built to provide both transparency and control,
-critical for organizations operating at scale in highly regulated environments.
-
-### Permissions Contract: SACD
-
-On DIMO, the Service Access Contract Definition (SACD) is the novel permissions contract that enables users to publicly
-declare which data they elect to share with a given developers. In the same way,
+On DIMO, the **Service Access Contract Definition (SACD)** is the novel permissions contract that enables users to publicly
+declare which data they elect to share with a given developer. In the same way,
 it is how developers _request_ data from a user. This is one of the main
 features of DIMO that sets it apart from all other vehicle telemetry or agentic
 platforms – there's a robust privacy layer built-in, and **SACD is that privacy
 layer.**
+
+Enterprise customers and developers gain frictionless, secure pathways to request and manage data access directly from vehicle owners,
+ensuring all interactions are fully auditable and aligned with evolving global
+data protection and privacy regulations. The consent framework is purpose-built to provide both transparency and control,
+critical for organizations operating at scale in highly regulated environments.
+
+
 Most simply, SACD enables this:
 
-- Developer asks: _"Can I have your vehicles current location, past location,
+- **Developer proposes:** _"Can I have your vehicle's current location, past location,
   and all of its telemetry data?"_
 
-- User responds: _"Yes, you can have all of that data."_
+- **User responds:** _"Yes, you can have all of that data."_
 
-If a user elects to not share their vehicle data with a developer, then that
+- **Anyone can audit and verify:** _Did this user share all of this data with this developer?_
+
+If a user elects not to share their vehicle data with a developer, then that
 developer cannot access their data. Here, DIMO enables developers to create
-compelling applications and vehicular agents that users will want to share their
+compelling applications and autonomous vehicle agents that users will want to share their
 data with.
 
 ### DIMO Connect
 
-Also known as: Login with DIMO (LIWD)
+<sup>Also known as: Login with DIMO (LIWD)</sup>
 
-Available as both an open source Client SDK, or as a simple redirect URL, DIMO
+DIMO Connect offers a robust user interface that is tightly integrated with our consent
+management and privacy engine (SACD).
+
+Available as either an open source Client SDK or
+as a simple redirect URL, DIMO
 Connect is the frontend component that enables developers to implement the SACD
 permissions contract for requesting user data. Your users sign in with an email
 address and a passkey or one-time-passcode, and grant you permissions to their
@@ -98,6 +109,15 @@ and service requirements—empowering organizations to build responsive, event-d
 
 Learn more about getting vehicle events using [Telemetry API](/docs/api-references/telemetry-api/events).
 
+### Segments
+
+Segments represent trip data from DIMO-connected vehicles, serving as the "trips" component of the Telemetry API.
+Developers can retrieve segmented trip information with precise start and end times, duration, and ongoing status.
+Segments are detected using multiple mechanisms—including ignition-based detection, frequency analysis, and change point detection—ensuring reliable trip identification across diverse vehicle types and data availability scenarios.
+This enables applications to analyze driving patterns, calculate trip metrics, and build comprehensive mobility insights from vehicle activity data.
+
+Learn more about getting vehicle segments using [Telemetry API](/docs/api-references/telemetry-api/segments).
+
 ### Attestations
 
 DIMO’s credentialing infrastructure enables trusted data providers to issue tamper-evident,
@@ -114,4 +134,4 @@ API](/docs/api-references/attestation-api).
 <hr/>
 
 Now that you understand some of the core concepts on DIMO, you can start
-learning more about what types of applicatons or intelligent agents you can build.
+learning more about what types of applications or intelligent agents you can build.
