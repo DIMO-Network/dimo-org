@@ -39,7 +39,7 @@
   /* Re-added overlay for text readability */
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('/img/DIMO-desert.jpg');
+    url('/img/dimo-hero.gif');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
