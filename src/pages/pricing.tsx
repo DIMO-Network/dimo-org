@@ -45,7 +45,7 @@ const getPricingTiers = (
           : []),
       ],
       buttonText: 'Get Started',
-      buttonLink: 'mailto:developer-support@dimo.org',
+      buttonLink: 'https://console.dimo.org/sign-in',
       highlight: false,
     },
   ];
@@ -66,7 +66,7 @@ const getPricingTiers = (
         'Includes data storage',
       ],
       buttonText: 'Start Building',
-      buttonLink: 'mailto:developer-support@dimo.org',
+      buttonLink: 'https://console.dimo.org/sign-in',
       highlight: true,
       badge: 'MOST POPULAR',
     });
