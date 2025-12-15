@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
     // Get Started
     {
       type: 'html',
-      value: 'Get Started',
+      value: 'Getting Started',
       className: 'sidebar-section-title',
     },
     'index',
@@ -57,7 +57,7 @@ const sidebars: SidebarsConfig = {
     // API Reference
     {
       type: 'html',
-      value: 'API Reference',
+      value: 'API References',
       className: 'sidebar-section-title',
     },
     'api-references/attestation-api',
