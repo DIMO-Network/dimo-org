@@ -208,26 +208,6 @@ function BigFeatureSection() {
   );
 }
 
-function WatchHowItWorksSection() {
-  return (
-    <section className={styles.videoSection}>
-      <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>How It Works</h2>
-        </div>
-        <div className={styles.videoWrapper}>
-          <iframe
-            src="https://www.youtube.com/embed/swdRxufYB3A"
-            title="DIMO - How It Works"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 const testimonials = [
   {
     name: 'Maximiliano Ipinza',
@@ -390,7 +370,6 @@ export default function Home(): ReactNode {
         <AutomateOperationsSection />
         <BigFeatureSection />
         <FeaturesGrid />
-        <WatchHowItWorksSection />
         <TestimonialsSection />
         <HardwareSection />
         <CTASection />
