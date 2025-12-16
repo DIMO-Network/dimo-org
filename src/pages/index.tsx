@@ -99,7 +99,7 @@ function FeaturesGrid() {
     },
     {
       title: 'Secure & Compliant',
-      desc: 'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GPDR and the EU Data Act.',
+      desc: 'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GDPR and the EU Data Act.',
       icon: imgIconSecureCompliant,
     },
   ];
@@ -111,7 +111,7 @@ function FeaturesGrid() {
         <p className={styles.sectionSubtitle}>
           DIMO can be used with pre-built, templated agents that work with your
           existing data, or can be used alongside custom-built agents. Our
-          flexible infrasture provides you with everything you need to build
+          flexible infrastructure provides you with everything you need to build
           agentic applications for vehicle services.
         </p>
       </div>
@@ -145,7 +145,7 @@ function AutomateOperationsSection() {
             DIMO's platform lets you transform your operations by automating
             your existing workflows with vehicle agents with memory built
             in—delivering polished, personalized customer experiences while
-            maximizing efficiency. DIMO is perfect for strealining operations
+            maximizing efficiency. DIMO is perfect for streamlining operations
             in:
           </p>
           <ul className={styles.featureList}>
@@ -211,7 +211,7 @@ function BigFeatureSection() {
 const testimonials = [
   {
     name: 'Maximiliano Ipinza',
-    text: 'Just love it. we are starting building with this kit and its get easier and easier. actually we are using DIMO in LATAM and we get all the data via API into our own telematic solution. another thing that really make integrations easier is the level of support with James team and the delivery.',
+    text: "Just love it. we are starting building with this kit and it's getting easier and easier. actually we are using DIMO in LATAM and we get all the data via API into our own telematics solution. another thing that really makes integrations easier is the level of support with James team and the delivery.",
   },
   {
     name: 'Collin McCloskey',
@@ -223,7 +223,7 @@ const testimonials = [
   },
   {
     name: 'Rob Solomon',
-    text: "I've built several apps on DIMO. Incredibly easy. As a non-dev, I've been able to launch things that really truly work with Replit, n8n, and Bubble. The documentation is clear and the platform works as advertised. Way easier to get started than others! Perhaps I'm bit biased... but who cares! It's great.",
+    text: "I've built several apps on DIMO. Incredibly easy. As a non-dev, I've been able to launch things that really truly work with Replit, n8n, and Bubble. The documentation is clear and the platform works as advertised. Way easier to get started than others! Perhaps I'm a bit biased... but who cares! It's great.",
   },
 ];
 
