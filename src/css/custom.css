@@ -7,7 +7,7 @@
 /* Universal Sans Display Font Family - Removed in favor of Inter */
 /* @font-face rules removed */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -23,7 +23,7 @@
 
   /* Custom font variables */
   --ifm-font-family-base:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   --ifm-font-family-monospace:
@@ -50,10 +50,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
   /* True Black Dark Mode */
-  --ifm-background-color: #000000;
-  --ifm-background-surface-color: #0a0a0a; /* Slightly lighter for contrast */
-  --ifm-navbar-background-color: #000000;
-  --ifm-footer-background-color: #000000;
+  --ifm-background-color: #0b0b0e;
+  --ifm-background-surface-color: #161619; /* Slightly lighter for contrast */
+  --ifm-navbar-background-color: #0b0b0e;
+  --ifm-footer-background-color: #0b0b0e;
 }
 
 /* Custom utility classes for inline styling */
@@ -80,7 +80,7 @@
 /* Universal Sans Display utility classes */
 .font-universal {
   font-family:
-    'Inter',
+    'Geist',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -280,6 +280,7 @@ html[data-theme='dark'] .header-github-link:before {
 
 /* ================================
    Sidebar Styling - Clean & Modern
+   Inspired by Browser Use & Letta
    ================================ */
 
 /* Sidebar container */
@@ -290,7 +291,7 @@ html[data-theme='dark'] .header-github-link:before {
 
 /* Custom scrollbar for sidebar */
 .thin-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-track {
@@ -306,9 +307,9 @@ html[data-theme='dark'] .header-github-link:before {
   background: var(--ifm-color-emphasis-400);
 }
 
-/* Sidebar menu container */
+/* Sidebar menu container - tighter padding */
 .theme-doc-sidebar-menu {
-  padding: 1.5rem 0.875rem !important;
+  padding: 1rem 0.75rem !important;
 }
 
 /* Reset default list styles */
@@ -318,53 +319,55 @@ html[data-theme='dark'] .header-github-link:before {
   list-style: none;
 }
 
-/* Standard menu list items - tighter spacing */
+/* Standard menu list items - minimal spacing */
 .menu__list-item {
-  margin: 0.125rem 0 !important;
+  margin: 1px 0 !important;
 }
 
-/* All menu links - base styling */
+/* All menu links - compact styling */
 .menu__link {
   font-size: 0.875rem !important;
-  padding: 0.5rem 0.75rem !important;
+  padding: 0.375rem 0.625rem !important;
   border-radius: 6px !important;
   transition: all 0.15s ease !important;
-  font-weight: 500 !important;
-  line-height: 1.5 !important;
+  font-weight: 450 !important;
+  line-height: 1.4 !important;
   display: flex !important;
   align-items: center !important;
   color: var(--ifm-menu-color) !important;
 }
 
-/* Hover state for all links - matches active state */
+/* Hover state for all links */
 .menu__link:hover {
-  background-color: rgba(18, 75, 219, 0.1) !important;
+  background-color: rgba(18, 75, 219, 0.08) !important;
   text-decoration: none !important;
   color: var(--ifm-color-primary) !important;
 }
 
 html[data-theme='dark'] .menu__link:hover {
-  background-color: rgba(18, 75, 219, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #5b8af5 !important;
 }
 
 /* Active link styling */
 .menu__link--active {
   background-color: rgba(18, 75, 219, 0.1) !important;
   color: var(--ifm-color-primary) !important;
-  font-weight: 600 !important;
+  font-weight: 550 !important;
 }
 
 html[data-theme='dark'] .menu__link--active {
-  background-color: rgba(18, 75, 219, 0.15) !important;
+  background-color: rgba(18, 75, 219, 0.18) !important;
+  color: #5b8af5 !important;
 }
 
-/* Active link hover - keep the styling */
+/* Active link hover */
 .menu__link--active:hover {
-  background-color: rgba(18, 75, 219, 0.14) !important;
+  background-color: rgba(18, 75, 219, 0.12) !important;
 }
 
 html[data-theme='dark'] .menu__link--active:hover {
-  background-color: rgba(18, 75, 219, 0.2) !important;
+  background-color: rgba(18, 75, 219, 0.22) !important;
 }
 
 /* ================================
@@ -373,43 +376,43 @@ html[data-theme='dark'] .menu__link--active:hover {
 
 /* Top-level category spacing */
 .menu__list-item-collapsible {
-  margin: 0.375rem 0 !important;
+  margin: 1px 0 !important;
 }
 
-/* Category label link - make it distinct */
+/* Category label link */
 .menu__list-item-collapsible > .menu__link {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 0.875rem !important;
-  padding: 0.5rem 0.75rem !important;
+  padding: 0.375rem 0.625rem !important;
   color: var(--ifm-menu-color) !important;
-  letter-spacing: 0.01em;
 }
 
-/* Category hover state - matches active state */
+/* Category hover state */
 .menu__list-item-collapsible > .menu__link:hover {
-  background-color: rgba(18, 75, 219, 0.1) !important;
+  background-color: rgba(18, 75, 219, 0.08) !important;
   color: var(--ifm-color-primary) !important;
 }
 
 html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
-  background-color: rgba(18, 75, 219, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #5b8af5 !important;
 }
 
 /* Caret/chevron icon for collapsible items */
 .menu__caret {
-  opacity: 0.5;
+  opacity: 0.4;
   transition: all 0.2s ease;
   margin-left: auto;
 }
 
 .menu__list-item-collapsible > .menu__link:hover .menu__caret {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /* Rotate caret when expanded */
 .menu__list-item-collapsible--active > .menu__link .menu__caret {
   transform: rotate(90deg);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ================================
@@ -419,31 +422,35 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 /* Nested list styling - cleaner indentation */
 .menu__list .menu__list {
   margin-left: 0 !important;
-  padding-left: 0.875rem !important;
-  border-left: 2px solid var(--ifm-color-emphasis-200);
-  margin-top: 0.25rem !important;
-  margin-bottom: 0.375rem !important;
+  padding-left: 0.75rem !important;
+  border-left: 1px solid var(--ifm-color-emphasis-200);
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+html[data-theme='dark'] .menu__list .menu__list {
+  border-left-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Nested menu items - slightly smaller */
 .menu__list .menu__list .menu__link {
-  font-size: 0.85rem !important;
-  padding: 0.4rem 0.625rem !important;
+  font-size: 0.825rem !important;
+  padding: 0.3rem 0.5rem !important;
 }
 
-/* Third level nesting - even more subtle */
+/* Third level nesting */
 .menu__list .menu__list .menu__list {
-  padding-left: 0.75rem !important;
-  border-left: 1px solid var(--ifm-color-emphasis-200);
+  padding-left: 0.625rem !important;
+  border-left: 1px solid var(--ifm-color-emphasis-100);
 }
 
 /* ================================
    Top-Level Categories
    ================================ */
 
-/* First-level category items - tighter spacing */
+/* First-level category items */
 .theme-doc-sidebar-item-category-level-1 {
-  margin-top: 0.5rem !important;
+  margin-top: 2px !important;
 }
 
 /* First category shouldn't have top margin */
@@ -453,8 +460,7 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 
 /* Top-level link items (non-collapsible) */
 .theme-doc-sidebar-item-link-level-1 {
-  font-weight: 600 !important;
-  margin-top: 0.5rem !important;
+  margin-top: 2px !important;
 }
 
 .theme-doc-sidebar-item-link-level-1:first-child {
@@ -467,16 +473,16 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
 
 @media (max-width: 996px) {
   .navbar-sidebar__item {
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .navbar-sidebar .menu__link {
-    font-size: 0.95rem !important;
-    padding: 0.625rem 0.875rem !important;
+    font-size: 0.9rem !important;
+    padding: 0.5rem 0.75rem !important;
   }
 
   .theme-doc-sidebar-menu {
-    padding: 1rem 0.75rem !important;
+    padding: 0.75rem 0.625rem !important;
   }
 
   /* Adjust content padding on mobile */
@@ -484,9 +490,9 @@ html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
     padding: 1rem;
   }
 
-  /* Slightly larger touch targets on mobile */
+  /* Touch targets on mobile */
   .menu__list-item {
-    margin: 0.25rem 0 !important;
+    margin: 2px 0 !important;
   }
 }
 
@@ -714,24 +720,63 @@ div[role='tabpanel'] > .theme-code-block:first-child {
   }
 } */
 
-/* Custom Sidebar Section Title */
+/* ================================
+   Custom Sidebar Section Title
+   ================================ */
+
 .sidebar-section-title {
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: var(--ifm-color-content-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-top: 2.5rem !important; /* Force override of .menu__list-item */
-  margin-bottom: 0.5rem !important;
-  padding-left: 0.75rem;
-  display: block; /* Ensure it takes width */
+  letter-spacing: 0.08em;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.375rem !important;
+  padding-left: 0.625rem;
+  padding-top: 0.75rem;
+  display: block;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
-/* Remove top margin for the first section title to avoid gap at top */
+/* First section title - no border, just spacing from top */
 .sidebar-section-title:first-child {
   margin-top: 0 !important;
+  padding-top: 0;
+  border-top: none;
 }
 
 html[data-theme='dark'] .sidebar-section-title {
   color: var(--ifm-color-emphasis-500);
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ================================
+   Sidebar Top Area & Branding
+   ================================ */
+
+/* Ensure proper padding at top of sidebar content */
+.theme-doc-sidebar-container nav.menu {
+  padding-top: 0.5rem;
+}
+
+/* Sidebar logo/brand area (if displayed in sidebar) */
+.sidebar-brand {
+  padding: 1rem 0.75rem 0.75rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  margin-bottom: 0.5rem;
+}
+
+html[data-theme='dark'] .sidebar-brand {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Hide button styling when sidebar is used */
+.theme-doc-sidebar-container [class*='sidebarViewport'] {
+  top: 0;
+}
+
+/* Ensure the sidebar hide button doesn't add unwanted space */
+button.button--secondary.button--sm[aria-label='Collapse sidebar'] {
+  margin: 0;
+  padding: 0.25rem;
 }

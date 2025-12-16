@@ -14,9 +14,9 @@ const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
 const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
-const imgHeroHighway = '/img/hero-highway-image.png';
-const imgDimoAi = '/img/dimo_ai.jpg';
-const imgDimoAiPlaceholder = '/img/dimo-a-hero-wip.png';
+const imgHeroHighway = '/img/dimo-pixel-car.gif';
+const imgDimoAi = '/img/dimo-pathways.gif';
+const imgDimoAiPlaceholder = '/img/DIMO-Docs.png';
 
 function HeroSection() {
   return (
@@ -30,12 +30,14 @@ function HeroSection() {
           to="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo"
         >
           <span className={styles.pillNew}>New</span>
-          <span>Check us out on ProductHunt →</span>
+          <span>
+            Check us out on ProductHunt <span className={styles.arrow}>→</span>
+          </span>
         </Link>
 
         <h1 className={styles.heroTitle}>
           The vehicle intelligence platform that <br />
-          <span className={styles.heroTitleSpan}>puts privacy first.</span>
+          puts privacy first.
         </h1>
 
         <p className={styles.heroSubtitle}>
@@ -46,10 +48,10 @@ function HeroSection() {
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Start Building
+            Sign Up <span className={styles.arrow}>→</span>
           </Link>
           <Link className={styles.secondaryBtn} to="/docs">
-            Read the Docs
+            Read the Docs <span className={styles.arrow}>→</span>
           </Link>
         </div>
 
@@ -58,7 +60,7 @@ function HeroSection() {
           <div className={styles.codeWindow}>
             <img
               src={imgDimoAiPlaceholder}
-              alt="DIMO AI Placeholder"
+              alt="DIMO Docs"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
@@ -177,10 +179,11 @@ function BigFeatureSection() {
           <h3>Got Data? Bring It.</h3>
           <p>
             DIMO's intelligent vehicle agents work with your existing data and
-            tech stack — just feed your data into our DIMO Ingest Service. We've
-            built the agents that understand your data so that you can focus on
-            building what matters: features that delight your users and drive
-            your business forward.
+            tech stack — just feed your data into our{' '}
+            <a href="https://github.com/DIMO-Network/dis">DIMO Ingest Server</a>
+            . We've built the agents that understand your data so that you can
+            focus on building what matters: features that delight your users and
+            drive your business forward.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -199,26 +202,6 @@ function BigFeatureSection() {
         </div>
         <div className={styles.featureVisual}>
           <img src={imgHeroHighway} alt="Telematics Architecture" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WatchHowItWorksSection() {
-  return (
-    <section className={styles.videoSection}>
-      <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>How It Works</h2>
-        </div>
-        <div className={styles.videoWrapper}>
-          <iframe
-            src="https://www.youtube.com/embed/swdRxufYB3A"
-            title="DIMO - How It Works"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
         </div>
       </div>
     </section>
@@ -334,7 +317,7 @@ function HardwareSection() {
               </span>
               <Link
                 className={styles.secondaryBtn}
-                to="mailto:developers@dimo.org"
+                to="mailto:developer-support@dimo.org"
               >
                 Let's Chat
               </Link>
@@ -387,7 +370,6 @@ export default function Home(): ReactNode {
         <AutomateOperationsSection />
         <BigFeatureSection />
         <FeaturesGrid />
-        <WatchHowItWorksSection />
         <TestimonialsSection />
         <HardwareSection />
         <CTASection />

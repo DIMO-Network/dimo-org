@@ -9,37 +9,45 @@ import Stepper, { Step } from '@site/src/components/Stepper';
 
 # Developer Quickstart
 
-This guide will show you how to configure your developer credentials so that you
+This guide will show you how to configure your DIMO developer credentials so that you
 can begin building with vehicle data right away.
 
 <Stepper>
 
-  <Step title="DIMO Developer Console">
-    First, create an account on the [DIMO Developer Console](https://console.dimo.org) if you haven't done
-    so already. Here, you will need to create a Developer License, which acts like
-    an access card toward obtaining an API Key and configuring your custom DIMO
-    Connect login link.
+  <Step title="Sign Up: DIMO Developer Console">
+    Start by creating an account on the **[DIMO Developer Console](https://console.dimo.org)** if you haven't done
+    so already. Here, you will need to create a **[Developer License](/docs/key-concepts#developer-license)**, which acts like
+    an access card toward obtaining an API Key and configuring your custom **[DIMO
+    Connect](/docs/key-concepts#dimo-connect)** login link.
 
-    You will need the following from the console:
-    - `Client ID`
-    - `Redirect URI` (Domain)
-    - `API Key` (Private Key)
+    Once you've created that Developer License, you will need the following from the console:
+
+    ✅ Your Developer License `Client ID`
+
+    ✅ At least one `Redirect URI`
+
+    ✅  An `API Key`
   </Step>
 
   <Step title="Install the DIMO Data SDK">
-    The DIMO Data SDK is available for TypeScript/Node.js, Python, and .NET. Choose your preferred language below.
+    The DIMO Data SDK is available for TypeScript/Node.js, Python, and .NET. It
+    provides an easy, programmatic way for fetching vehicle data and creating AI
+    vehicle agents.
 
+    Choose your preferred language below.
     <Tabs>
       <TabItem value="JS/TS" label="TypeScript / Node.js">
+      Using npm:
         ```bash
         npm install @dimo-network/data-sdk
         ```
-        Or with Yarn:
+        Or with yarn:
         ```bash
         yarn add @dimo-network/data-sdk
         ```
       </TabItem>
       <TabItem value="Python" label="Python">
+      Run:
         ```bash
         pip install dimo-python-sdk
         ```
@@ -58,7 +66,10 @@ can begin building with vehicle data right away.
   </Step>
 
   <Step title="Authenticate (Get Developer JWT)">
-    Authenticate using your credentials to obtain a **Developer JWT**. This token identifies your application.
+    Developers use their credentials from Step 1 to obtain a **Developer JWT**.
+    This token identifies your application.
+
+    For more information on the auth process, check out **[Authentication](/docs/getting-started/authentication)**.
 
     <Tabs>
       <TabItem value="JS/TS" label="TypeScript">
@@ -108,15 +119,19 @@ can begin building with vehicle data right away.
   </Step>
 
   <Step title="Generate Your DIMO Connect URL">
-    To access real vehicle data, users must grant permission to your application. **DIMO Connect** is the user-facing flow where this happens.
+    To access real vehicle data, users must grant approval to your application.
+
+    **[DIMO Connect](/docs/key-concepts#dimo-connect)** is the user-facing flow where developers request data from
+    users, and where users elect to share that data with developers.
 
     When a user connects their vehicle to your app via DIMO Connect, you receive a `tokenId` for that vehicle. This ID, combined with your Developer JWT, allows you to request a **Vehicle JWT**, which grants access to specific data points (telemetry, location, etc.) based on the permissions the user approved.
 
-    You can read more on how this flow works, and how to configure DIMO Connect via the Developer Console by [checking out the docs page here](http://dimo.org/docs/build/building-with-tools/client-sdk-dimo-connect).
+    As a reminder, you can check out the docs for **[Authentication](/docs/getting-started/authentication)** and for **[DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect)** for more information.
   </Step>
 
   <Step title="Get Vehicle Data">
-    Once you have a `tokenId` (from a user logging in via DIMO Connect), you can exchange your Developer JWT for a Vehicle JWT and query the API.
+    Once you have a **Vehicle JWT** for a user's `tokenId`, you can begin querying the
+    Telemetry API and integrating DIMO data into your application!
 
     <Tabs>
       <TabItem value="JS/TS" label="TypeScript">
@@ -201,3 +216,7 @@ can begin building with vehicle data right away.
   </Step>
 
 </Stepper>
+
+Now that you have a solid foundation of how to get up and running quickly, check
+out some of the key concepts on the next page or explore using the sidebar for
+more detailed information.

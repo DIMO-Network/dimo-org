@@ -1,0 +1,137 @@
+---
+title: Key Concepts
+sidebar_label: Key Concepts
+description: Learn more about DIMO
+slug: /key-concepts
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Stepper, { Step } from '@site/src/components/Stepper';
+
+# Key Concepts
+
+This guide will dive deeper into the core concepts of DIMO, which will help
+developers better understand the entire DIMO tech stack, such as the permissions management
+flows, getting telemetry data, and building stateful AI agents.
+
+DIMO acts as an extensible, multi-faceted platform for secure access to vehicle and mobility data,
+empowering organizations to turn real-time vehicle signals and on-the-road events into actionable intelligence.
+Its flexible architecture supports a comprehensive data ecosystem where verifiable credentials establish authoritative truth,
+all while upholding enterprise-grade user privacy and compliance standards.
+
+## Developer Ecosystem
+
+### Developer Console
+
+The DIMO Developer Console is your main entrypoint into the DIMO Developer
+ecosystem. This is where developers can manage their API keys, **[DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect)**
+configurations, create and test AI agents, set up webhooks, and more.
+
+To get started, just **[create an
+account](https://console.dimo.org/sign-in)** and create a Developer License.
+
+### Developer License
+
+A DIMO Developer License is what enables developers to build on and integrate
+with the platform. Each license has a unique name on the DIMO Network, and more
+importantly, a unique `clientId` that starts with `0x`.
+
+The details of your
+license are publicly viewable to anyone via our open **[Identity
+API](/docs/api-references/identity-api/introduction)**, but this does **NOT**
+include private
+information like your email address or API keys.
+
+## Identity & Permissions
+
+### Permissions & Consent Management: SACD
+
+On DIMO, the **Service Access Contract Definition (SACD)** is the novel permissions contract that enables users to publicly
+declare which data they elect to share with a given developer. In the same way,
+it is how developers _request_ data from a user. This is one of the main
+features of DIMO that sets it apart from all other vehicle telemetry or agentic
+platforms – there's a robust privacy layer built-in, and **SACD is that privacy
+layer.**
+
+Enterprise customers and developers gain frictionless, secure pathways to request and manage data access directly from vehicle owners,
+ensuring all interactions are fully auditable and aligned with evolving global
+data protection and privacy regulations. The consent framework is purpose-built to provide both transparency and control,
+critical for organizations operating at scale in highly regulated environments.
+
+
+Most simply, SACD enables this:
+
+- **Developer proposes:** _"Can I have your vehicle's current location, past location,
+  and all of its telemetry data?"_
+
+- **User responds:** _"Yes, you can have all of that data."_
+
+- **Anyone can audit and verify:** _Did this user share all of this data with this developer?_
+
+If a user elects not to share their vehicle data with a developer, then that
+developer cannot access their data. Here, DIMO enables developers to create
+compelling applications and autonomous vehicle agents that users will want to share their
+data with.
+
+### DIMO Connect
+
+<sup>Also known as: Login with DIMO (LIWD)</sup>
+
+DIMO Connect offers a robust user interface that is tightly integrated with our consent
+management and privacy engine (SACD).
+
+Available as either an open source Client SDK or
+as a simple redirect URL, DIMO
+Connect is the frontend component that enables developers to implement the SACD
+permissions contract for requesting user data. Your users sign in with an email
+address and a passkey or one-time-passcode, and grant you permissions to their
+data.
+
+Learn more about getting vehicle permissions using [DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect).
+
+## Vehicle Data
+
+### Signals
+
+Real-time, granular signals from diverse and federated vehicle data sources are consistently normalized
+and persisted across highly-available, encrypted DIMO storage nodes.
+This architecture guarantees data integrity, promotes interoperability, and ensures operational reliability for mission-critical mobility applications.
+
+Learn more about getting vehicle signals using [Telemetry API](/docs/api-references/telemetry-api/signals).
+
+### Events
+
+Raw signal data is enhanced and contextualized into high-fidelity events by certified data providers,
+enabling enterprises to rapidly detect and respond to significant on-road occurrences.
+This event pipeline accelerates insights—such as accident detection, geofence violations,
+and service requirements—empowering organizations to build responsive, event-driven services with ease.
+
+Learn more about getting vehicle events using [Telemetry API](/docs/api-references/telemetry-api/events).
+
+### Segments
+
+Segments represent trip data from DIMO-connected vehicles, serving as the "trips" component of the Telemetry API.
+Developers can retrieve segmented trip information with precise start and end times, duration, and ongoing status.
+Segments are detected using multiple mechanisms—including ignition-based detection, frequency analysis, and change point detection—ensuring reliable trip identification across diverse vehicle types and data availability scenarios.
+This enables applications to analyze driving patterns, calculate trip metrics, and build comprehensive mobility insights from vehicle activity data.
+
+Learn more about getting vehicle segments using [Telemetry API](/docs/api-references/telemetry-api/segments).
+
+### Attestations
+
+DIMO’s credentialing infrastructure enables trusted data providers to issue tamper-evident,
+cryptographically-verifiable attestations on critical vehicle attributes and lifecycle records—including the following:
+- Vehicle Identification Number (VIN)
+- Odometer readings
+- Vehicle health status
+- Proof of position
+
+This approach delivers a foundational trust layer, facilitating compliance and secure data exchange across complex automotive and mobility ecosystems.
+Learn more about getting proof of data using [Attestation
+API](/docs/api-references/attestation-api).
+
+<hr/>
+
+Now that you understand some of the core concepts on DIMO, you can start
+learning more about what types of applications or intelligent agents you can build.

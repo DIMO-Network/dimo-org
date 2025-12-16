@@ -114,7 +114,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             <div className={styles.mobileMenuContent}>
               <div className={styles.mobileMenuHeader}>
                 <div className={styles.mobileMenuLogo}>
-                  <img alt="DIMO" src={imgLogoDimoLight} />
+                  <img alt="DIMO" src={imgLogoDimo} />
                 </div>
               </div>
 

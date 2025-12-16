@@ -8,7 +8,10 @@
   right: 0;
   z-index: 100;
   width: 100%;
-  transition: background-color 0.3s, border-color 0.3s, padding 0.3s ease;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    padding 0.3s ease;
   height: 80px; /* Fixed height to ensure consistency */
   display: flex;
   align-items: center; /* Vertically center content */
@@ -18,7 +21,7 @@
 .navbarScrolled {
   padding: 0.75rem 0;
   height: 64px; /* Smaller height on scroll */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .navContent {
@@ -56,7 +59,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 525;
   font-size: 1rem; /* Slightly smaller font for better fit */
   color: #000000;
@@ -110,7 +113,7 @@
   padding: 0.5rem 1.25rem;
   border-radius: 24px;
   text-decoration: none;
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: -0.01em;
@@ -179,7 +182,7 @@
   padding: 0.75rem 1.5rem;
   color: #000000;
   text-decoration: none;
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 525;
   font-size: 0.95rem;
   transition: all 0.2s ease;
@@ -297,7 +300,7 @@
 }
 
 .mobileMenuSectionTitle {
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 900;
   font-size: 1.3rem;
   color: #000000;
@@ -307,7 +310,7 @@
 }
 
 .mobileMenuItem {
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 525;
   font-size: 1.1rem;
   color: #4d4d4d;
@@ -335,7 +338,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 525;
   font-size: 1.1rem;
   color: #000000;
@@ -360,7 +363,7 @@
   padding: 1rem 2rem;
   border-radius: 50px;
   text-decoration: none;
-  font-family: 'Universal Sans Display', sans-serif;
+  font-family: 'Geist', sans-serif;
   font-weight: 900;
   font-size: 1.1rem;
   text-align: center;

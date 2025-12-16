@@ -9,7 +9,7 @@
   color: #ffffff;
   min-height: 100vh;
   font-family:
-    'Inter',
+    'Geist',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -35,9 +35,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #030303 60%);
+  background-color: #000000;
+  /* Re-added overlay for text readability */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/img/dimo-hero.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   overflow: hidden;
-  min-height: 85vh; /* Full viewport height feel */
+  min-height: 100vh; /* Full viewport height */
 }
 
 /* Background Effects */
@@ -47,13 +54,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  /* Gradient grid removed */
   background-size: 50px 50px;
-  mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
   pointer-events: none;
   z-index: 0;
+  display: none; /* Hide grid */
 }
 
 .heroGlow {
@@ -63,14 +68,10 @@
   transform: translateX(-50%);
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.15) 0%,
-    transparent 70%
-  );
-  filter: blur(60px);
+  /* Glow gradient removed */
   z-index: 0;
   pointer-events: none;
+  display: none; /* Hide glow */
 }
 
 .heroContent {
@@ -107,8 +108,18 @@
   color: #ffffff;
 }
 
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+  margin-left: 0.25rem;
+}
+
+.pill:hover .arrow {
+  transform: translateX(4px);
+}
+
 .pillNew {
-  background: linear-gradient(135deg, #124bdb, #8b5cf6);
+  background: #124bdb;
   color: white;
   font-size: 0.7rem;
   font-weight: 700;
@@ -123,18 +134,12 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
   animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
 .heroTitleSpan {
-  background: linear-gradient(135deg, #124bdb, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #124bdb;
 }
 
 .heroSubtitle {
@@ -177,6 +182,10 @@
   text-decoration: none;
 }
 
+.primaryBtn:hover .arrow {
+  transform: translateX(4px);
+}
+
 .secondaryBtn {
   background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
@@ -199,6 +208,10 @@
   text-decoration: none;
 }
 
+.secondaryBtn:hover .arrow {
+  transform: translateX(4px);
+}
+
 /* --- Visual Element (Code Editor) --- */
 .heroVisual {
   margin-top: 4rem;
@@ -209,11 +222,9 @@
 }
 
 .codeWindow {
-  background: #1e1e1e; /* VS Code dark bg */
+  background: transparent;
   border-radius: 12px;
-  box-shadow:
-    0 20px 50px -10px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: none;
   overflow: hidden;
   transform: rotateX(5deg);
   transition: transform 0.5s ease;
@@ -376,7 +387,7 @@
 }
 
 .card {
-  background: linear-gradient(145deg, #0a0a0a, #050505);
+  background: #0a0a0a;
   border: 1px solid var(--hp-border);
   border-radius: 16px;
   padding: 2.5rem;
@@ -428,11 +439,8 @@
   right: 0;
   width: 200px;
   height: 200px;
-  background: radial-gradient(
-    circle at 100% 0%,
-    rgba(59, 130, 246, 0.1),
-    transparent 70%
-  );
+  /* Glow gradient removed */
+  display: none;
   pointer-events: none;
 }
 
@@ -463,10 +471,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to right, #fff, #aaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
 }
 
 .featureText p {
@@ -510,12 +515,8 @@
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.15) 0%,
-    transparent 70%
-  );
-  filter: blur(40px);
+  /* Glow removed */
+  display: none;
   z-index: 0;
 }
 
@@ -550,11 +551,8 @@
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(59, 130, 246, 0.05) 0%,
-    transparent 60%
-  );
+  /* Gradient removed */
+  display: none;
   pointer-events: none;
   z-index: 0;
 }
@@ -594,7 +592,7 @@
 /* --- Wall of Love (Reviews) --- */
 .wallOfLove {
   padding: 8rem 1.5rem;
-  background: linear-gradient(180deg, #030303 0%, #0a0a0a 100%);
+  background: #030303;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -608,12 +606,8 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    #333 50%,
-    transparent 100%
-  );
+  /* Gradient removed */
+  background: #333;
 }
 
 .wallOfLove .sectionHeader {
@@ -625,13 +619,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
+  /* Mask gradient removed */
 }
 
 .testimonialMarquee {
@@ -763,10 +751,6 @@
   color: #ffffff;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to right, #fff, #94a3b8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .hardwareDescription {
@@ -813,12 +797,8 @@
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.15) 0%,
-    transparent 70%
-  );
-  filter: blur(40px);
+  /* Glow removed */
+  display: none;
   z-index: 0;
 }
 
@@ -871,7 +851,7 @@
 .ctaSection {
   padding: 8rem 1.5rem;
   text-align: center;
-  background: linear-gradient(180deg, #0a0a0a 0%, #0f172a 100%);
+  background: #0a0a0a;
   position: relative;
   overflow: hidden;
 }
@@ -940,6 +920,8 @@
   .hero {
     padding-top: 6rem;
     min-height: auto;
+    background-size: 180% auto;
+    background-position: center 20%;
   }
   .heroTitle {
     font-size: 2.75rem;
