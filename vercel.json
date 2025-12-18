@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/docs/api-references/conversations-api",
+      "destination": "/docs/api-references/agents-api",
+      "permanent": true
+    }
+  ]
+}

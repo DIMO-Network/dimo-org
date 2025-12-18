@@ -50,6 +50,20 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/docs/api-references/conversations-api',
+            to: '/docs/api-references/agents-api',
+          },
+        ],
+      },
+    ],
+  ],
+
   themes: ['@docusaurus/theme-mermaid'],
 
   markdown: {
