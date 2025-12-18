@@ -60,8 +60,8 @@ const sidebars: SidebarsConfig = {
       value: 'API References',
       className: 'sidebar-section-title',
     },
+    'api-references/agents-api',
     'api-references/attestation-api',
-    'api-references/conversations-api',
     'api-references/device-definitions-api',
     {
       type: 'category',

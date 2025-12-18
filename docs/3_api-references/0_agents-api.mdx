@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Conversations API
+sidebar_position: 0
+title: Agents API
 ---
 
 import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
@@ -11,10 +11,10 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 import Badge from '@site/src/components/Badge';
 
-# Conversations API <Badge variant="pre-alpha">⚠️ Pre-Alpha</Badge>
+# Agents API <Badge variant="pre-alpha">⚠️Alpha Software</Badge>
 
 :::danger IMPORTANT
-Be aware, the Conversations API is in active development and **has not yet been
+Be aware, the Agents API is in active development and **has not yet been
 released for development**. We recommend developers use this page as a general
 guide to understanding the general concepts of the API, which will be publicly
 available in beta soon.
@@ -29,7 +29,7 @@ Create and message AI vehicle agents.
     <div>
       <h2>Overview</h2>
 
-      The DIMO Conversations API enables developers to create intelligent AI agents that can interact with vehicle data through natural language. These agents can query vehicle information, real-time telemetry, perform web searches to answer questions about vehicles and nearby services, and more.
+      The DIMO Agents API enables developers to create intelligent AI agents that can interact with vehicle data through natural language. These agents can query vehicle information, real-time telemetry, perform web searches to answer questions about vehicles and nearby services, and more.
 
       <h3>Key Features</h3>
       <ul>
@@ -45,7 +45,7 @@ Create and message AI vehicle agents.
   }
   rightColumn={
     <div>
-      <BaseUrlBlock url="https://conversations-api.dimo.zone"/>
+      <BaseUrlBlock url="https://agents.dimo.zone"/>
       <ApiEndpointsBlock
         endpoints={[
           {
@@ -124,7 +124,7 @@ Create and message AI vehicle agents.
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const agent = await dimo.conversations.createAgent({
+            code: `const agent = await dimo.agents.createAgent({
       type: "driver_agent_v1",
       personality: "uncle_mechanic",
       secrets: {
@@ -139,7 +139,7 @@ Create and message AI vehicle agents.
           {
             label: "Python",
             language: "python",
-            code: `agent = dimo.conversations.create_agent(
+            code: `agent = dimo.agents.create_agent(
     developer_jwt=dev_jwt,
     api_key="<YOUR_API_KEY>",
     user_wallet="0x1234567890abcdef1234567890abcdef12345678",
@@ -151,7 +151,7 @@ Create and message AI vehicle agents.
           {
             label: ".NET",
             language: "csharp",
-            code: `var agent = await dimoClient.ConversationsService.CreateAgentAsync(
+            code: `var agent = await dimoClient.AgentsService.CreateAgentAsync(
       type: "driver_agent_v1",
       personality: "uncle_mechanic",
       secrets: new { DIMO_API_KEY = "<YOUR_API_KEY>" },
@@ -164,7 +164,7 @@ Create and message AI vehicle agents.
           {
             label: "cURL",
             language: "shell",
-            code: `curl -X POST "https://conversations-api.dev.dimo.zone/agents" \\
+            code: `curl -X POST "https://agents.dimo.zone/agents" \\
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -244,7 +244,7 @@ Create and message AI vehicle agents.
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const response = await dimo.conversations.sendMessage({
+            code: `const response = await dimo.agents.sendMessage({
   agentId: "agent-abc123def456",
   message: "What's the make and model of my vehicle?"
 })`
@@ -252,7 +252,7 @@ Create and message AI vehicle agents.
           {
             label: "Python",
             language: "python",
-            code: `response = dimo.conversations.send_message(
+            code: `response = dimo.agents.send_message(
   agent_id="agent-abc123def456",
   message="What's the make and model of my vehicle?"
 )`
@@ -260,7 +260,7 @@ Create and message AI vehicle agents.
           {
             label: ".NET",
             language: "csharp",
-            code: `var response = await dimoClient.ConversationsService.SendMessageAsync(
+            code: `var response = await dimoClient.AgentsService.SendMessageAsync(
   AgentId = "agent-abc123def456",
   Message = "What's the make and model of my vehicle?"
 );`
@@ -268,7 +268,7 @@ Create and message AI vehicle agents.
           {
             label: "cURL",
             language: "shell",
-            code: `curl -X POST "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456/message" \\
+            code: `curl -X POST "https://agents.dimo.zone/agents/agent-abc123def456/message" \\
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -344,7 +344,7 @@ Create and message AI vehicle agents.
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const stream = dimo.conversations.streamMessage({
+            code: `const stream = dimo.agents.streamMessage({
   agentId: "agent-abc123def456",
   message: "What's my current speed?"
 });
@@ -364,7 +364,7 @@ stream.on('error', (error) => {
           {
             label: "Python",
             language: "python",
-            code: `stream = dimo.conversations.stream_message(
+            code: `stream = dimo.agents.stream_message(
   agent_id="agent-abc123def456",
   message="What's my current speed?"
 )
@@ -378,7 +378,7 @@ for chunk in stream:
           {
             label: ".NET",
             language: "csharp",
-            code: `await foreach (var chunk in dimoClient.ConversationsService.StreamMessageAsync(
+            code: `await foreach (var chunk in dimoClient.AgentsService.StreamMessageAsync(
   AgentId = "agent-abc123def456",
   Message = "What's my current speed?"
 ))
@@ -392,7 +392,7 @@ for chunk in stream:
           {
             label: "cURL",
             language: "shell",
-            code: `curl -X POST "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456/stream" \\
+            code: `curl -X POST "https://agents.dimo.zone/agents/agent-abc123def456/stream" \\
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -H "Accept: text/event-stream" \\
@@ -453,7 +453,7 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `const history = await dimo.conversations.getHistory({
+            code: `const history = await dimo.agents.getHistory({
   agentId: "agent-abc123def456",
   limit: 50
 })`
@@ -461,7 +461,7 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
           {
             label: "Python",
             language: "python",
-            code: `history = dimo.conversations.get_history(
+            code: `history = dimo.agents.get_history(
   agent_id="agent-abc123def456",
   limit=50
 )`
@@ -469,7 +469,7 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
           {
             label: ".NET",
             language: "csharp",
-            code: `var history = await dimoClient.ConversationsService.GetHistoryAsync(
+            code: `var history = await dimoClient.AgentsService.GetHistoryAsync(
   AgentId = "agent-abc123def456",
   Limit = 50
 );`
@@ -477,7 +477,7 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
           {
             label: "cURL",
             language: "shell",
-            code: `curl -X GET "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456/history?limit=50" \\
+            code: `curl -X GET "https://agents.dimo.zone/agents/agent-abc123def456/history?limit=50" \\
   -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
@@ -543,28 +543,28 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
         codeExamples={[{
             label: "TypeScript",
             language: "typescript",
-            code: `await dimo.conversations.deleteAgent({
+            code: `await dimo.agents.deleteAgent({
   agentId: "agent-abc123def456"
 })`
           },
           {
             label: "Python",
             language: "python",
-            code: `dimo.conversations.delete_agent(
+            code: `dimo.agents.delete_agent(
   agent_id="agent-abc123def456"
 )`
           },
           {
             label: ".NET",
             language: "csharp",
-            code: `await dimoClient.ConversationsService.DeleteAgentAsync(
+            code: `await dimoClient.AgentsService.DeleteAgentAsync(
   AgentId = "agent-abc123def456"
 );`
           },
           {
             label: "cURL",
             language: "shell",
-            code: `curl -X DELETE "https://conversations-api.dev.dimo.zone/agents/agent-abc123def456" \\
+            code: `curl -X DELETE "https://agents.dimo.zone/agents/agent-abc123def456" \\
   -H "Authorization: Bearer <DEV_JWT>"`
           }
         ]}
