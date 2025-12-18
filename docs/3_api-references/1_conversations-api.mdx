@@ -125,39 +125,39 @@ Create and message AI vehicle agents.
             label: "TypeScript",
             language: "typescript",
             code: `const agent = await dimo.conversations.createAgent({
-  type: "driver_agent_v1",
-  personality: "uncle_mechanic",
-  secrets: {
-    DIMO_API_KEY: "<YOUR_API_KEY>"
-  },
-  variables: {
-    USER_WALLET: "0x1234567890abcdef1234567890abcdef12345678",
-    VEHICLE_IDS: "[872, 1234]"
-  }
+      type: "driver_agent_v1",
+      personality: "uncle_mechanic",
+      secrets: {
+        DIMO_API_KEY: "<YOUR_API_KEY>"
+      },
+      variables: {
+        USER_WALLET: "0x1234567890abcdef1234567890abcdef12345678",
+        VEHICLE_IDS: "[872, 1234]"
+      }
 })`
           },
           {
             label: "Python",
             language: "python",
             code: `agent = dimo.conversations.create_agent(
-  developer_jwt=dev_jwt,
-  api_key="<YOUR_API_KEY>",
-  user_wallet="0x1234567890abcdef1234567890abcdef12345678",
-  agent_type="driver_agent_v1",
-  vehicle_ids="[872, 1234]",
-  personality="uncle_mechanic"
+    developer_jwt=dev_jwt,
+    api_key="<YOUR_API_KEY>",
+    user_wallet="0x1234567890abcdef1234567890abcdef12345678",
+    agent_type="driver_agent_v1",
+    vehicle_ids="[872, 1234]",
+    personality="uncle_mechanic"
 )`
           },
           {
             label: ".NET",
             language: "csharp",
             code: `var agent = await dimoClient.ConversationsService.CreateAgentAsync(
-  type: "driver_agent_v1",
-  personality: "uncle_mechanic",
-  secrets: new { DIMO_API_KEY = "<YOUR_API_KEY>" },
-  variables: new {
-    USER_WALLET = "0x1234567890abcdef1234567890abcdef12345678",
-    VEHICLE_IDS = "[872, 1234]"
+      type: "driver_agent_v1",
+      personality: "uncle_mechanic",
+      secrets: new { DIMO_API_KEY = "<YOUR_API_KEY>" },
+      variables: new {
+        USER_WALLET = "0x1234567890abcdef1234567890abcdef12345678",
+        VEHICLE_IDS = "[872, 1234]"
   }
 );`
           },
