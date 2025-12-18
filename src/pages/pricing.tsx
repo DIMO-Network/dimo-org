@@ -89,7 +89,7 @@ const getPricingTiers = (
       'On-premise deployment options',
     ],
     buttonText: 'Contact Us',
-    buttonLink: 'mailto:developer-support@dimo.org',
+    buttonLink: 'https://app.formcrafts.com/7c869c6f',
     highlight: false,
     isEnterprise: true,
   });
