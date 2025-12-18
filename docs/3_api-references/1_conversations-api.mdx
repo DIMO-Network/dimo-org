@@ -84,21 +84,33 @@ Create and message AI vehicle agents.
   leftColumn={
     <div>
       <h2>Create an agent</h2>
-      Creates a new conversational AI agent for a user with optional vehicle access control. Agents are idempotent per user - calling this endpoint multiple times with the same user will return the existing agent.
+      Creates a new conversational AI agent with the specified configuration. The agent can access vehicle data through the DIMO API and interact with users via natural language.
 
       <ParametersBlock
         parameters={[
           {
-            name: "user",
+            name: "type",
             type: "string",
             required: true,
-            description: "Ethereum wallet address (0x...) for DIMO users, or any identifier (email, name) for admin mode."
+            description: "The type of agent to create (e.g., \"driver_agent_v1\")."
           },
           {
-            name: "vehicleIds",
-            type: "array",
+            name: "personality",
+            type: "string",
             required: false,
-            description: "Array of vehicle token IDs the agent can access. Use null for unrestricted access (requires ownership validation), or [] for no vehicle access."
+            description: "Personality preset for the agent. Defaults to \"uncle_mechanic\"."
+          },
+          {
+            name: "secrets",
+            type: "object",
+            required: true,
+            description: "Secret credentials for the agent. Must include DIMO_API_KEY for vehicle data access."
+          },
+          {
+            name: "variables",
+            type: "object",
+            required: true,
+            description: "Configuration variables including USER_WALLET (required) and optionally VEHICLE_IDS (JSON array string of vehicle token IDs)."
           },
         ]}
       />
@@ -113,24 +125,40 @@ Create and message AI vehicle agents.
             label: "TypeScript",
             language: "typescript",
             code: `const agent = await dimo.conversations.createAgent({
-  user: "0x1234567890abcdef1234567890abcdef12345678",
-  vehicleIds: [872, 1234]
+      type: "driver_agent_v1",
+      personality: "uncle_mechanic",
+      secrets: {
+        DIMO_API_KEY: "<YOUR_API_KEY>"
+      },
+      variables: {
+        USER_WALLET: "0x1234567890abcdef1234567890abcdef12345678",
+        VEHICLE_IDS: "[872, 1234]"
+      }
 })`
           },
           {
             label: "Python",
             language: "python",
             code: `agent = dimo.conversations.create_agent(
-  user="0x1234567890abcdef1234567890abcdef12345678",
-  vehicle_ids=[872, 1234]
+    developer_jwt=dev_jwt,
+    api_key="<YOUR_API_KEY>",
+    user_wallet="0x1234567890abcdef1234567890abcdef12345678",
+    agent_type="driver_agent_v1",
+    vehicle_ids="[872, 1234]",
+    personality="uncle_mechanic"
 )`
           },
           {
             label: ".NET",
             language: "csharp",
             code: `var agent = await dimoClient.ConversationsService.CreateAgentAsync(
-  User = "0x1234567890abcdef1234567890abcdef12345678",
-  VehicleIds = new[] { 872, 1234 }
+      type: "driver_agent_v1",
+      personality: "uncle_mechanic",
+      secrets: new { DIMO_API_KEY = "<YOUR_API_KEY>" },
+      variables: new {
+        USER_WALLET = "0x1234567890abcdef1234567890abcdef12345678",
+        VEHICLE_IDS = "[872, 1234]"
+  }
 );`
           },
           {
@@ -140,8 +168,15 @@ Create and message AI vehicle agents.
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "user": "0x1234567890abcdef1234567890abcdef12345678",
-    "vehicleIds": [872, 1234]
+    "type": "driver_agent_v1",
+    "personality": "uncle_mechanic",
+    "secrets": {
+      "DIMO_API_KEY": "<YOUR_API_KEY>"
+    },
+    "variables": {
+      "USER_WALLET": "0x1234567890abcdef1234567890abcdef12345678",
+      "VEHICLE_IDS": "[872, 1234]"
+    }
   }'`
           }
         ]}
@@ -151,9 +186,12 @@ Create and message AI vehicle agents.
       <ApiResponseBlock
         code={`{
     "agentId": "agent-abc123def456",
-    "mode": "dimo_user",
-    "user": "0x1234567890abcdef1234567890abcdef12345678",
-    "vehicleIds": [872, 1234],
+    "type": "driver_agent_v1",
+    "personality": "uncle_mechanic",
+    "variables": {
+      "USER_WALLET": "0x1234567890abcdef1234567890abcdef12345678",
+      "VEHICLE_IDS": "[872, 1234]"
+    },
     "createdAt": "2025-12-06T10:30:00Z"
 }`}
       />
