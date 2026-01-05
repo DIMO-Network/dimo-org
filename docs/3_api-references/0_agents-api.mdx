@@ -3,6 +3,7 @@ sidebar_position: 0
 title: Agents API
 ---
 
+import Link from '@docusaurus/Link';
 import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
 import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
 import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
@@ -98,19 +99,19 @@ Create, chat with, and stream messages from intelligent vehicle agents.
             name: "personality",
             type: "string",
             required: false,
-            description: "Personality preset for the agent. Defaults to \"uncle_mechanic\". See the \"Personalities\" section at the bottom of this page for more information. "
+            description: "Personality preset for the agent. Defaults to \"uncle_mechanic\" if not explicitly set. See the \"Personalities\" section at the bottom of this page for more information. "
           },
           {
             name: "secrets",
             type: "object",
             required: true,
-            description: "Secret credentials for the agent. Must include DIMO_API_KEY for vehicle data access."
+            description: <>Secret credentials for the agent. Must include your DIMO_API_KEY (obtained via the <Link to="/docs/getting-started/register-a-license">DIMO Developer Console</Link>) for vehicle data access.</>
           },
           {
             name: "variables",
             type: "object",
             required: true,
-            description: "Configuration variables including USER_WALLET (required) and optionally VEHICLE_IDS (JSON array string of vehicle token IDs)."
+            description: "Configuration variables including USER_WALLET (a users' 0x address,required) and optionally, VEHICLE_IDS (JSON array string of vehicle token IDs)."
           },
         ]}
       />
