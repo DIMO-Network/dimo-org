@@ -18,11 +18,11 @@ New to authentication on DIMO? Check out the Authentication Explainer here, or
 check out our video on how the different JSON Web Tokens (JWTs) work.
 :::
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     This is a private API endpoint for developers on the DIMO Network. It handles the exchange to obtain a Vehicle JWT. When users shared permissions with an app, the app can now request for vehicle data on behalf of the users.
     </div>
   }
@@ -45,12 +45,13 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
   }
 />
 
+### Create a token exchange
+
 <TwoColumnLayout
   id="exchange"
   stickyRight={true}
   leftColumn={
     <div>
-      <h2>Create a token exchange</h2>
       Creates a token exchange to obtain a Vehicle JWT. The response will provide a short-lived token that last you 10 minutes to access additional vehicle information such as Trips and Telemetry data.
 
       <ParametersBlock

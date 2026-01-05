@@ -119,6 +119,18 @@ h6 {
   font-size: 1.4rem;
 }
 
+/* Tighter spacing for API reference section headers */
+.markdown h2,
+.markdown h3 {
+  margin-bottom: 0.75rem;
+}
+
+/* API section headers - tighter coupling with content */
+.theme-doc-markdown h2,
+.theme-doc-markdown h3 {
+  margin-bottom: 0.5rem;
+}
+
 .special-links {
   border-style: solid;
   border-color: #124bdb;

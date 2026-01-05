@@ -12,8 +12,8 @@ import Link from '@docusaurus/Link';
 
 # Vehicle Triggers API
 ## Commonly known as webhooks
-Vehicle Triggers is a way for DIMO to automatically send real-time data to your systems when an event occurs. 
-Think of it like a "push notification" for servers — instead of you constantly checking the API (polling) for updates, 
+Vehicle Triggers is a way for DIMO to automatically send real-time data to your systems when an event occurs.
+Think of it like a "push notification" for servers — instead of you constantly checking the API (polling) for updates,
 your app now gets notified instantly when something happens.
 
 {/* TODO: Add links */}
@@ -23,12 +23,12 @@ Webhooks that you configure are tied to a specific Developer License.
 If you have multiple Developer Licenses under a single account in the DIMO Developer Console, please make sure to authenticate using the Developer JWT associated with the specific license.
 :::
 
+## Overview
+
 <TwoColumnLayout
   stickyLeft={true}
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     Webhooks can also be setup directly via the DIMO Developer Console, but the options below provide a programmatic way of configuring vehicle triggers and subscribing vehicles to triggers you have configured.
     Webhooks are currently available in public beta. If you have feedback to
     share, please reach out to <a href="mailto:developersupport@dimo.org">developer-support@dimo.org</a>.
@@ -104,12 +104,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### List all webhooks
+
 <TwoColumnLayout
   stickyLeft={true}
   id="list-webhooks"
   leftColumn={
     <div>
-      <h2>List all webhooks</h2>
       Retrieves a list of all the webhooks that have been created under your Developer License.
     </div>
   }
@@ -179,12 +180,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Create a webhook
+
 <TwoColumnLayout
   stickyRight={true}
   id="create-webhook"
   leftColumn={
     <div>
-      <h2>Create a webhook</h2>
       Registers a new webhook with the specified configurations and conditions.
 
       {/* TODO: Inline linking, code, fomatting, etc */}
@@ -334,12 +336,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Get webhook signals
+
 <TwoColumnLayout
   stickyLeft={true}
   id="get-webhook-signals"
   leftColumn={
     <div>
-      <h2>Get webhook signals</h2>
       Retrieves a list of signal names available for the data field.
     </div>
   }
@@ -391,12 +394,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Update a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="update-webhook"
   leftColumn={
     <div>
-      <h2>Update a webhook</h2>
       Updates the parameters or configurations of an existing webhook via the
       webhooks webhookId.
       <ParametersBlock
@@ -491,12 +495,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Delete a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="delete-webhook"
   leftColumn={
     <div>
-      <h2>Delete a webhook</h2>
       Deletes an existing webhook that was configured under your Developer
       License. In order to successfully delete a webhook, you must have first
       unsubscribed all vehicles from the webhook. Otherwise, the deletion will fail.
@@ -553,12 +558,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Get vehicles subscribed to a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="vehicles-subbed-to-webhook"
   leftColumn={
     <div>
-      <h2>Get vehicles susbcribed to a webhook</h2>
       Lists all of the vehicles that are subscribed to a specific webhook that you've created.
       <ParametersBlock
         parameters={[
@@ -613,12 +619,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Get a list of webhooks a vehicle is subscribed to
+
 <TwoColumnLayout
   stickyLeft={true}
   id="webhook-subs-per-vehicle"
   leftColumn={
     <div>
-      <h2>Get a list of webhooks a vehicle is subscribed to</h2>
       Lists all the webhooks that a provided vehicle tokenDID is subscribed to.
       <ParametersBlock
         parameters={[
@@ -676,12 +683,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Subscribe a vehicle to a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="subscribe-vehicle"
   leftColumn={
     <div>
-      <h2>Subscribe a vehicle to a webhook</h2>
       Subscribes a vehicle tokenDID to a specified webhook.
       <ParametersBlock
         parameters={[
@@ -745,12 +753,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Subscribe all vehicles to a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="subscribe-all"
   leftColumn={
     <div>
-      <h2>Subscribe all vehicles to a webhook</h2>
       Subscribes all vehicles that have previously shared permissions with your Developer License to a specific webhook.
       <ParametersBlock
         parameters={[
@@ -806,12 +815,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Unsubscribe a vehicle from a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="unsubscribe-vehicle"
   leftColumn={
     <div>
-      <h2>Unsubscribe a vehicle from a webhook</h2>
       Unsubscribes a vehicle tokenDID from a specified webhook.
       <ParametersBlock
         parameters={[
@@ -874,12 +884,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Unsubscribe all vehicles from a webhook
+
 <TwoColumnLayout
   stickyLeft={true}
   id="unsubscribe-all"
   leftColumn={
     <div>
-      <h2>Unsubscribe all vehicles from a webhook</h2>
       Unsubscribes all previously subscribed vehicles from a webhook you've created.
       <ParametersBlock
         parameters={[
@@ -934,11 +945,12 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   }
 />
 
+### Event Responses
+
 <TwoColumnLayout
   stickyRight={true}
   leftColumn={
     <div>
-      <h2>Event Responses</h2>
       When a vehicle that you have subscribed to an event meets the criteria you've configured in your webhook trigger, it will send a <code>POST</code> request to your specified <code>targetURL</code>. The response body will contain the information that you need to handle the event as required by your application.
       <ParametersBlock
         title = "Data"

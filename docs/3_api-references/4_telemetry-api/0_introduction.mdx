@@ -13,11 +13,11 @@ import GraphQLBlock from '@site/src/components/GraphQLBlock';
 # Introduction
 Access private data from the DIMO-connected vehicles.
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     The Telemetry API is the entrypoint for getting realtime and historical vehicle data for DIMO-connected vehicles. The DIMO Telemetry API is written in GraphQL, and there is only a single endpoint, <code>/query</code>, which is used for executing queries.
 
     </div>
@@ -43,11 +43,12 @@ is required to obtain a Vehicle JWT with permissions to access a given vehicle.
 Please review our section on [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for more information.
 :::
 
+### Schema & Types
+
 <TwoColumnLayout
   stickyRight={true}
   leftColumn={
     <div>
-      <h3>Schema & Types</h3>
       The Telemetry API displays data in two aggregation types, FloatAggregation & StringAggregation. To specify for each aggregation type, you will need to provide an interval.<br/><br/>
       <h4>Interval String</h4>
       Interval is the time span that is used for aggregating the data with. A
@@ -200,11 +201,12 @@ query {
   }
 />
 
+### Scalars
+
 <TwoColumnLayout
   stickyRight={true}
   leftColumn={
     <div>
-      <h3> Scalars</h3>
       Scalars are the value types that every field in a GraphQL document eventually resolves to. It can be viewed as the primitive data type that stores a single value. There are 5 built-in scalars: <code>int</code>, <code>float</code>, <code>string</code>, <code>Boolean</code>, and <code>id</code> - we have also defined custom scalars to help define the data we return.
 
      <ParametersBlock

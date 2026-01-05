@@ -13,11 +13,11 @@ import GraphQLBlock from '@site/src/components/GraphQLBlock';
 # Introduction
 Open catalog of DIMO-connected vehicles, and other entities.
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     The Identity API serves as an open registry for vehicles and developers on the DIMO Network. All data in the Identity API is public, can be read by anyone, and does not require any authentication. The DIMO Identity API is written in GraphQL, and there is only a single endpoint, <code>/query</code>, which is used for executing queries.
 
     </div>
@@ -37,11 +37,12 @@ Open catalog of DIMO-connected vehicles, and other entities.
   }
 />
 
+### Schema and Types
+
 <TwoColumnLayout
   stickyRight={true}
   leftColumn={
     <div>
-      <h3> Schema and Types</h3>
       The basic unit of components of a GraphQL schema are object types - it represents an object you can fetch for and the definitions of what fields will be included in the response. A representation of GraphQL schema language may look like this in Identity API:
 
      <ParametersBlock
@@ -77,11 +78,12 @@ Open catalog of DIMO-connected vehicles, and other entities.
   }
 />
 
+### Scalars
+
 <TwoColumnLayout
   stickyRight={true}
   leftColumn={
     <div>
-      <h3> Scalars</h3>
       Scalars are the value types that every field in a GraphQL document eventually resolves to. It can be viewed as the primitive data type that stores a single value. There are 5 built-in scalars: int, float, string, Boolean, and id - we have also defined custom scalars to help define the data we return.
 
      <ParametersBlock

@@ -12,11 +12,11 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 # Attestation API
 Generate verifiable proof about a vehicle's data.
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     The DIMO Attestation API provides cryptographic, on-chain attestations for vehicle data and identity verification. This API enables developers to generate verifiable attestations.
     </div>
   }
@@ -51,11 +51,12 @@ Generate verifiable proof about a vehicle's data.
   }
 />
 
+### Create a vehicle VIN attestation
+
 <TwoColumnLayout
   id="vin-vc"
   leftColumn={
     <div>
-      <h2>Create a vehicle VIN attestation</h2>
       Generates the VIN attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -130,11 +131,12 @@ Generate verifiable proof about a vehicle's data.
   }
 />
 
+### Create a vehicle odometer statement VC
+
 <TwoColumnLayout
   id="odometer-vc"
   leftColumn={
     <div>
-      <h2>Create a vehicle odometer statement VC</h2>
       Generates the odometer statement attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -211,11 +213,12 @@ Generate verifiable proof about a vehicle's data.
   }
 />
 
+### Create a vehicle health attestation
+
 <TwoColumnLayout
   id="health-vc"
   leftColumn={
     <div>
-      <h2>Create a vehicle health attestation</h2>
       Generates the vehicle health attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -300,11 +303,12 @@ Generate verifiable proof about a vehicle's data.
   }
 />
 
+### Create a vehicle position attestation
+
 <TwoColumnLayout
   id="position-vc"
   leftColumn={
     <div>
-      <h2>Create a vehicle position attestation</h2>
       Generates the vehicle position attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform

@@ -12,11 +12,11 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 # Device Definitions API
 Utility endpoints for Device Definitions.
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     The Device Definitions API provides helper functions for accessing vehicle device definitions that are now stored in Tableland, a decentralized cloud database. The API enables developers to decode Vehicle Identification Numbers (VINs) to retrieve corresponding device definition IDs and search for vehicle definitions by make, model, year, and other filters.
 
     </div>
@@ -48,11 +48,12 @@ Utility endpoints for Device Definitions.
 
 {/* VIN DECODING REQUESTS */}
 
+### Submit a VIN decoding request
+
 <TwoColumnLayout
   id="decode-vin"
   leftColumn={
     <div>
-      <h2>Submit a VIN decoding request</h2>
       Submits a decoding request for vehicle identification number, returns the device definition ID corresponding to the VIN.
       Use <code>application/json</code> for raw body parameters.
 
@@ -131,12 +132,13 @@ Utility endpoints for Device Definitions.
   }
 />
 
+### Get device definitions by search
+
 <TwoColumnLayout
   id="search"
   stickyRight={true}
   leftColumn={
     <div>
-      <h2>Get device definitions by search</h2>
       Retrieves a list of device definitions by search filters.
 
       <ParametersBlock
