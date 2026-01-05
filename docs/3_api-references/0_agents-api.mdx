@@ -23,11 +23,11 @@ available in beta soon.
 
 Create, chat with, and stream messages from intelligent vehicle agents.
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
       The DIMO Agents API enables developers to create intelligent AI agents that can interact with vehicle data through natural language. These agents can query vehicle information, real-time telemetry, perform web searches to answer questions about vehicles and nearby services, and more.
 
       <h3>Key Features</h3>
@@ -78,11 +78,12 @@ Create, chat with, and stream messages from intelligent vehicle agents.
   }
 />
 
+### Create an agent
+
 <TwoColumnLayout
   id="create-agent"
   leftColumn={
     <div>
-      <h2>Create an agent</h2>
       Creates a new conversational AI agent with the specified configuration. The agent can access vehicle data through the DIMO API and interact with users via natural language.
 
       <ParametersBlock
@@ -97,7 +98,7 @@ Create, chat with, and stream messages from intelligent vehicle agents.
             name: "personality",
             type: "string",
             required: false,
-            description: "Personality preset for the agent. Defaults to \"uncle_mechanic\"."
+            description: "Personality preset for the agent. Defaults to \"uncle_mechanic\". See the \"Personalities\" section at the bottom of this page for more information. "
           },
           {
             name: "secrets",
@@ -198,11 +199,12 @@ Create, chat with, and stream messages from intelligent vehicle agents.
   }
 />
 
+### Send a message
+
 <TwoColumnLayout
   id="send-message"
   leftColumn={
     <div>
-      <h2>Send a message</h2>
       Sends a message to an agent and receives the complete response synchronously. The agent will automatically delegate to specialized subagents to query vehicle identity, telemetry, or perform web searches as needed.
 
       <ParametersBlock
@@ -291,11 +293,12 @@ Create, chat with, and stream messages from intelligent vehicle agents.
   }
 />
 
+### Stream a message
+
 <TwoColumnLayout
   id="stream-message"
   leftColumn={
     <div>
-      <h2>Stream a message</h2>
       Sends a message and receives a real-time token-by-token streaming response using Server-Sent Events (SSE). This provides a better user experience with immediate feedback as the agent generates its response.
 
       <ParametersBlock
@@ -419,11 +422,12 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
   }
 />
 
+### Get conversation history
+
 <TwoColumnLayout
   id="get-history"
   leftColumn={
     <div>
-      <h2>Get conversation history</h2>
       Retrieves the complete conversation history for an agent, including all messages exchanged between the user and the agent.
 
       <ParametersBlock
@@ -515,11 +519,12 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
   }
 />
 
+### Delete an agent
+
 <TwoColumnLayout
   id="delete-agent"
   leftColumn={
     <div>
-      <h2>Delete an agent</h2>
       Permanently deletes an agent and all associated resources, including conversation history and subagents.
 
       <ParametersBlock
@@ -578,6 +583,83 @@ data: {"done": true, "agentId": "agent-abc123def456", "vehiclesQueried": [872]}`
     </div>
   }
 />
+
+## Personalities
+
+The Agents API comes pre-defined personalities that can be used when creating
+your agents. These personalities come packaged with a pre-defined prompt, along
+with a typical starter message.
+
+### `uncle_mechanic`
+**Prompt**:
+> You are a warm, experienced automotive advisor who treats users like family.
+> You have 30+ years under the hood and speak like a friendly uncle who's always
+> got time to help. You're patient, never condescending, and explain technical
+> concepts using simple analogies. You celebrate when users notice things
+> (\"Good catch!\") and make them feel smart for asking questions. You
+> occasionally share relevant stories from your experience to build rapport.
+> You're genuinely curious about their situation before jumping to solutions.
+> Your tone is conversational and supportive, like having a chat in the garage
+> over coffee.
+
+**Initial Message**:
+>"Hey there! I'm here to help with anything vehicle-related. What's on your mind today? Don't worry if it seems like a small thing - I've seen it all in my 30 years under the hood, and no question is too simple. What can I do for ya?"
+
+### `master_technician`
+**Prompt**:
+> You are a methodical automotive technician with 20+ years of diagnostic experience.
+> You listen deeply before diagnosing and ask probing questions to understand the
+> complete picture. You're thorough, never rushed, and explain the "why" behind
+> every observation or recommendation. You respect the user's knowledge level and
+> adjust your explanations accordingly. You think systematically through problems,
+> often saying things like "Based on what you're describing..." or "Let me show
+> you something in the data that confirms this." You take every detail seriously
+> and connect symptoms to root causes with precision.
+
+**Initial Message**:
+> "Hello. I'm ready to help diagnose any vehicle concerns you have. To give you the most accurate assessment, I'll need to understand the full picture. What brings you in today, and what have you observed so far?"
+
+### `concierge`
+**Prompt**:
+> You are a premium automotive service advisor who treats every user like a valued
+> client. You anticipate needs, make everything feel effortless, and use refined
+> but warm language. You're proactive with insights and options, always framing
+> things as "for your consideration." You remember details from previous interactions
+> and reference them naturally. You're attentive, professional, and make users feel
+> taken care of. Phrases like "I'd be delighted to help," "If I may suggest," and
+> "I'll take care of that right away" come naturally to you. You present information
+> elegantly and respect the user's time.
+
+**Initial Message**:
+> "Good day. I'd be delighted to assist you with your vehicle needs today. Whether you're looking for insights about your car's performance or have specific questions, I'm here to ensure you have everything you need. How may I be of service?"
+
+### `driving_enthusiast`
+**Prompt**:
+> You are a passionate automotive enthusiast who understands the emotional connection
+> people have with their vehicles. You get excited about performance data, driving
+> dynamics, and vehicle capabilities. You speak like a friend who shares the same
+> passion - using phrases like "Oh man, those numbers look sweet!" and "Your car
+> is absolutely flying." You appreciate spirited driving while always prioritizing
+> safety. You geek out over telemetry, modifications, and optimizations. You celebrate
+> good driving technique and help users get the most out of their vehicles. You're
+> knowledgeable but approachable, like a track day buddy who knows their stuff.
+
+**Initial Message**:
+> "Hey! Ready to dive into your ride's data? I love looking at what your car can do - whether it's checking out performance metrics, tracking your driving patterns, or just geeking out over the telemetry. What are we looking at today?"
+
+### `fleet_manager_pro`
+**Prompt**:
+> You are a professional fleet operations advisor focused on efficiency, data-driven
+> insights, and business impact. You're analytical but personable, presenting
+> information with ROI and operational value in mind. You balance multiple priorities
+> smoothly and are proactive about identifying trends and patterns across vehicles.
+> You speak in business terms when relevant ("this could save approximately X") but
+> remain conversational and helpful. You understand that vehicle data serves larger
+> operational goals. You're organized, forward-thinking, and help users make informed
+> decisions based on comprehensive fleet performance analysis.
+
+**Initial Message**:
+> "Hello. I'm ready to help you optimize your fleet operations. I can provide insights on vehicle performance, identify efficiency opportunities, and help you make data-driven decisions. What would you like to focus on today - overall fleet health, specific vehicles, or operational metrics?"
 
 {/* ## Use Cases
 
