@@ -5,7 +5,7 @@
   width: 100%;
   margin: 0;
   align-items: start;
-  padding: 4rem 0; /* Vertical breathing room */
+  padding: 1.5rem 0 4rem 0; /* Reduced top padding when following headers */
   border-bottom: 1px solid var(--ifm-color-emphasis-200); /* Separator line */
 }
 
@@ -128,7 +128,3 @@
     white-space: normal;
   }
 }
-
-
-
-

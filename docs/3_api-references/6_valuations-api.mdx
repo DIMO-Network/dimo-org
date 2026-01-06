@@ -11,11 +11,11 @@ import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 # Valuations API
 Get instant offers and valuations for vehicles.
 
+## Overview
+
 <TwoColumnLayout
   leftColumn={
     <div>
-      <h2>Overview</h2>
-
     The Valuations API provides real-time vehicle valuation data and purchase offers from third-party services using vehicle token IDs. The API delivers comprehensive vehicle valuations including trade-in and retail values from providers like Drivly, as well as instant purchase offers from services such as Carvana, CarMax, and Vroom. Valuations and offers are calculated based on the vehicle's make, model, year, and odometer readings. If for some reason the valuation cannot be determined based on the odometer reading of a vehicle, DIMO defaults to the valuation from 12,000 annual mileage.
 
     </div>
@@ -47,12 +47,13 @@ Get instant offers and valuations for vehicles.
   }
 />
 
+### Get a vehicle valuation
+
 <TwoColumnLayout
   id="valuations"
   stickyLeft={true}
   leftColumn={
     <div>
-      <h2>Get a vehicle valuation</h2>
       Retrieves current valuation of a vehicle.
 
       <ParametersBlock
@@ -132,12 +133,13 @@ Get instant offers and valuations for vehicles.
   }
 />
 
+### Submit a vehicle offers request
+
 <TwoColumnLayout
   id="instant-offer"
   stickyLeft={true}
   leftColumn={
     <div>
-      <h2>Submit a vehicle offers request</h2>
       Submits an offer request to 3rd party services such as Carvana, Carmax, and Vroom. Note that this endpoint will refresh the existing unexpired offers (if any).
 
       <ParametersBlock
@@ -199,12 +201,13 @@ Get instant offers and valuations for vehicles.
   }
 />
 
+### List vehicle offers
+
 <TwoColumnLayout
   id="offers"
   stickyLeft={true}
   leftColumn={
     <div>
-      <h2>List vehicle offers</h2>
       Lists existing unexpired offers for a given vehicle that was retrieved in
       a prior submission of the Valuations API. If offers expired, this endpoint
       will not return any results.
