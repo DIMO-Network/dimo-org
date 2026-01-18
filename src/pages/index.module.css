@@ -142,6 +142,24 @@
   color: #124bdb;
 }
 
+/* Typewriter cursor animation */
+.typewriterCursor {
+  display: inline-block;
+  margin-left: 0.05em;
+  animation: blink 1s step-end infinite;
+  color: #124bdb;
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.1%, 100% {
+    opacity: 0;
+  }
+}
+
 .heroSubtitle {
   font-size: 1.25rem;
   line-height: 1.6;

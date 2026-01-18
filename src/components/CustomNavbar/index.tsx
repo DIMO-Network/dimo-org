@@ -17,6 +17,7 @@ interface CustomNavbarProps {
 
 export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
 
   const imgLogoDimo = dark ? imgLogoDimoDark : imgLogoDimoLight;
 
@@ -26,6 +27,14 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleProductMouseEnter = () => {
+    setIsProductDropdownOpen(true);
+  };
+
+  const handleProductMouseLeave = () => {
+    setIsProductDropdownOpen(false);
   };
 
   return (
@@ -55,6 +64,59 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
 
         {/* Navigation Links (Desktop) */}
         <div className={styles.navLinks}>
+          {/* Product Dropdown */}
+          <div
+            className={styles.dropdownContainer}
+            onMouseEnter={handleProductMouseEnter}
+            onMouseLeave={handleProductMouseLeave}
+          >
+            <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
+              Solutions
+              <img
+                src={imgDropdownArrow}
+                alt=""
+                className={`${styles.dropdownIcon} ${isProductDropdownOpen ? styles.rotated : ''}`}
+              />
+            </div>
+            {isProductDropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                <div className={styles.dropdownSection}>
+                  <div className={styles.dropdownSectionTitle}>By Experience</div>
+                  <Link to="/solutions/agentic-experiences" className={styles.dropdownItem}>
+                    Agentic Experiences
+                  </Link>
+                  <Link to="/solutions/consumer-applications" className={styles.dropdownItem}>
+                    Consumer Applications
+                  </Link>
+                  <Link to="/solutions/fleet-intelligence" className={styles.dropdownItem}>
+                    Fleet Intelligence
+                  </Link>
+                  <Link to="/solutions/vehicle-commerce" className={styles.dropdownItem}>
+                    Vehicle Commerce
+                  </Link>
+                </div>
+                <div className={styles.dropdownSection}>
+                  <div className={styles.dropdownSectionTitle}>By Industry</div>
+                  <Link to="/industries/oem" className={styles.dropdownItem}>
+                    Auto OEMs
+                  </Link>
+                  <Link to="/industries/maintenance" className={styles.dropdownItem}>
+                    Auto Maintenance
+                  </Link>
+                  <Link to="/industries/dealerships" className={styles.dropdownItem}>
+                    Dealerships
+                  </Link>
+                  <Link to="/industries/dsp" className={styles.dropdownItem}>
+                    Delivery Service Providers
+                  </Link>
+                  <Link to="/industries/rentals" className={styles.dropdownItem}>
+                    Rentals
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
           <Link to="/docs" className={styles.navItem}>
             Documentation
           </Link>
@@ -119,6 +181,78 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               </div>
 
               <div className={styles.mobileMenuLinks}>
+                {/* Product Section */}
+                <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>Solutions</div>
+                  <Link
+                    to="/solutions/agentic-experiences"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Agentic Experiences
+                  </Link>
+                  <Link
+                    to="/solutions/consumer-applications"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Consumer Applications
+                  </Link>
+                  <Link
+                    to="/solutions/fleet-intelligence"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Fleet Intelligence
+                  </Link>
+                  <Link
+                    to="/solutions/vehicle-commerce"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Vehicle Commerce
+                  </Link>
+                </div>
+
+                <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>Industries</div>
+                  <Link
+                    to="/industries/auto-oems"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Auto OEMs
+                  </Link>
+                  <Link
+                    to="/industries/auto-maintenance"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Auto Maintenance
+                  </Link>
+                  <Link
+                    to="/industries/dealerships"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Dealerships
+                  </Link>
+                  <Link
+                    to="/industries/delivery-service-providers"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Delivery Service Providers
+                  </Link>
+                  <Link
+                    to="/industries/rentals"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Rentals
+                  </Link>
+                </div>
+
                 <Link
                   to="/docs"
                   className={styles.mobileMenuItem}
