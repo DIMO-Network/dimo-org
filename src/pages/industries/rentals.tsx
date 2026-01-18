@@ -2,103 +2,104 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import styles from './industry.module.css';
-import FooterTheme from '../theme/Footer';
-import CustomNavbar from '../components/CustomNavbar';
-import { LINKS } from '../links';
+import FooterTheme from '../../theme/Footer';
+import CustomNavbar from '../../components/CustomNavbar';
+import { LINKS } from '../../links';
 import {
   Star,
-  Gauge,
-  Wrench,
-  Users,
-  Route,
-  AlertOctagon,
-  LayoutDashboard,
-  Truck,
+  Headphones,
+  Shield,
+  ClipboardCheck,
+  MapPin,
+  Fuel,
+  AlertTriangle,
   ChevronDown,
 } from 'lucide-react';
 
-const INDUSTRY_NAME = 'Delivery Service Providers';
-const HERO_BACKGROUND = '/img/industry/delivery-hero.jpg'; // Placeholder
+const INDUSTRY_NAME = 'Rentals';
+const HERO_BACKGROUND = '/img/industry/rentals-hero.jpg'; // Placeholder
+const imgFleet = '/img/tesla-fleet.png';
+const imgCustomers = '/img/customers.png';
 
 const USE_CASES = [
   {
-    icon: <LayoutDashboard size={28} />,
-    type: 'Fleets',
-    title: 'Fleet Operations Command Center',
+    icon: <Headphones size={28} />,
+    type: 'Hybrid',
+    title: 'AI Concierge for Every Rental',
     description:
-      'Get real-time visibility into your entire fleet with a comprehensive dashboard showing availability, conditions, maintenance needs, and driver status at a glance.',
+      'Spin up a personalized AI concierge for each rental customer. Friendly agents help customers find gas stations, charging stations, local recommendations, and answer questions about their rental vehicle.',
     example:
-      '"Show me all vehicles currently available and their last maintenance date."',
+      '"Where\'s the nearest EV charging station?" or "How do I connect my phone to Bluetooth?"',
   },
   {
-    icon: <Wrench size={28} />,
-    type: 'Fleets',
-    title: 'Predictive Maintenance Copilot',
+    icon: <Fuel size={28} />,
+    type: 'Hybrid',
+    title: 'Smart Upsell Opportunities',
     description:
-      'AI-powered maintenance predictions that analyze vehicle data to identify issues before they cause breakdowns, reducing downtime and repair costs.',
+      'Intelligent agents detect when gas is low or the customer is near partner locations, automatically surfacing relevant offers and discounts.',
     example:
-      '"Vehicle F-2847 shows early signs of brake wear. Schedule service within the next 500 miles."',
+      '"Your fuel is low! We partner with Shell — use code RENT20 for 20¢ off per gallon at the station ahead."',
   },
   {
-    icon: <Users size={28} />,
+    icon: <AlertTriangle size={28} />,
     type: 'Fleets',
-    title: 'Driver Behavior Coaching',
+    title: 'Real-time Issue Monitoring',
     description:
-      'Monitor driving patterns and automatically provide coaching and corrective actions for aggressive driving, harsh braking, and other risky behaviors.',
+      'Monitor your entire fleet for aggressive driving, speeding, geofence violations, and detected crashes. Get instant alerts when issues arise.',
     example:
-      'Agent sends coaching message: "3 harsh braking events detected today. Smooth braking extends tire life and fuel economy."',
+      '"Show me all aggressive driving events for vehicle XYZ-1234 this week."',
   },
   {
-    icon: <Route size={28} />,
+    icon: <Shield size={28} />,
     type: 'Fleets',
-    title: 'Route Performance Analysis',
+    title: 'Geofence & Safety Alerts',
     description:
-      'Analyze historical route data to identify the fastest, safest, and most efficient delivery routes. Flag routes with high incident rates.',
+      'Set up custom geofences and get notified instantly when vehicles leave approved areas. Track crash detection and safety incidents in real-time.',
     example:
-      '"Route 7A has 40% faster completion times than Route 7B, with fewer aggressive driving events."',
+      'Automatic alert: "Vehicle #A2847 has exited the approved rental zone at 3:42 PM."',
   },
   {
-    icon: <AlertOctagon size={28} />,
+    icon: <ClipboardCheck size={28} />,
     type: 'Fleets',
-    title: 'Damage Detection & Incident Response',
+    title: 'Automated Return Inspections',
     description:
-      'Automatically detect vehicle damage, crashes, and incidents. Generate reports, trigger notifications, and coordinate response workflows.',
+      'Streamline vehicle returns with AI-powered inspection workflows. Document vehicle condition, flag issues, and generate reports automatically.',
     example:
-      'Instant alert: "Collision detected on Vehicle D-1923 at 2:34 PM. Location: 5th & Main. Driver status: OK."',
+      'Agent guides staff through inspection checklist and auto-documents any damage or concerns.',
   },
   {
-    icon: <Gauge size={28} />,
-    type: 'Fleets',
-    title: 'Real-Time Fleet Health Dashboard',
+    icon: <MapPin size={28} />,
+    type: 'Hybrid',
+    title: 'Rental Due Reminders',
     description:
-      'Monitor fuel levels, tire pressure, engine diagnostics, and overall vehicle health across your entire fleet in one unified view.',
+      'Proactive agents remind customers when their rental is due back, suggest extensions, and help coordinate smooth returns.',
     example:
-      '"5 vehicles need attention: 2 low fuel, 2 tire pressure alerts, 1 check engine light."',
+      '"Your rental is due back in 2 hours. Need to extend? Reply YES to add another day at $45."',
   },
 ];
 
 const STATS = [
-  { number: '25%', label: 'Reduction in Downtime' },
-  { number: '18%', label: 'Fuel Cost Savings' },
+  { number: '35%', label: 'Reduction in Late Returns' },
   { number: '50+', label: 'OEM Integrations' },
+  { number: '24/7', label: 'Customer Support' },
   { number: '2M+', label: 'Connected Vehicles' },
 ];
 
 const TESTIMONIALS = [
   {
-    name: 'Marcus Johnson',
-    role: 'Fleet Director, FedEx Ground',
-    text: "Predictive maintenance alone has saved us hundreds of thousands in emergency repairs. We catch issues before they become roadside breakdowns.",
+    name: 'Jennifer Walsh',
+    role: 'VP Operations, National Car Rental',
+    text: "The AI concierge has dramatically improved our customer experience scores. Renters love having instant help without waiting on hold.",
   },
   {
-    name: 'Lisa Rodriguez',
-    role: 'Operations VP, Amazon Logistics',
-    text: "The route analysis feature revealed inefficiencies we'd never noticed. Our on-time delivery rate improved by 15% after optimizing based on DIMO data.",
+    name: 'David Park',
+    role: 'Fleet Director, Avis Budget Group',
+    text: "Real-time geofence monitoring has reduced our out-of-territory incidents by 60%. The ROI was immediate and substantial.",
   },
   {
-    name: 'Robert Kim',
-    role: 'Safety Manager, UPS',
-    text: 'Driver coaching through DIMO has reduced aggressive driving incidents by 40%. Our drivers appreciate the real-time feedback.',
+    name: 'Amanda Foster',
+    role: 'Regional Manager, Enterprise Holdings',
+    text: 'Automated return inspections have cut our turnaround time in half. Staff can process more vehicles with better documentation.',
   },
 ];
 
@@ -124,20 +125,20 @@ function HeroSection() {
 
       <div className={styles.heroContent}>
         <span className={styles.industryBadge}>
-          <Truck size={16} /> {INDUSTRY_NAME}
+          <MapPin size={16} /> {INDUSTRY_NAME}
         </span>
 
         <h1 className={styles.heroTitle}>
-          Command Your Fleet with{' '}
+          Elevate Every Rental with{' '}
           <span className={styles.heroTitleGradient}>
-            Intelligent Operations
+            AI-Powered Fleet Intelligence
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From predictive maintenance to driver coaching and route optimization,
-          DIMO gives delivery service providers the real-time intelligence they
-          need to maximize uptime, reduce costs, and deliver on every promise.
+          From personalized AI concierges to real-time fleet monitoring, DIMO
+          helps rental companies deliver premium customer experiences while
+          reducing costs and operational complexity.
         </p>
 
         <div className={styles.heroButtons}>
@@ -178,12 +179,12 @@ function UseCasesSection() {
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Use Cases</span>
         <h2 className={styles.sectionTitle}>
-          Built for High-Performance Delivery Operations
+          Smart Solutions for Modern Rentals
         </h2>
         <p className={styles.sectionSubtitle}>
-          DIMO's fleet intelligence platform helps delivery service providers
-          optimize every aspect of their operations—from vehicle health to driver
-          performance to route efficiency.
+          DIMO's intelligent agents work around the clock to enhance customer
+          experiences, protect your fleet, and streamline operations from pickup
+          to return.
         </p>
       </div>
 
@@ -207,36 +208,35 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Predict Problems Before They Happen</h2>
+          <h2>A Personal Concierge for Every Customer</h2>
           <p>
-            DIMO's predictive maintenance copilot continuously analyzes vehicle
-            data—engine diagnostics, usage patterns, environmental conditions,
-            and historical maintenance records—to identify issues before they
-            cause expensive breakdowns or missed deliveries.
+            The moment a customer picks up their rental, DIMO spins up a
+            dedicated AI concierge just for them. This intelligent agent knows
+            the vehicle, understands the local area, and is ready to help with
+            anything—from finding the nearest gas station to troubleshooting the
+            infotainment system.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              AI-powered failure prediction based on real vehicle data
+              Instant answers to vehicle-specific questions
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Automatic maintenance scheduling when issues are detected
+              Local recommendations and navigation help
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Integration with your existing maintenance systems
+              Partner offers and upsell opportunities
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Reduce emergency repairs and roadside breakdowns
+              Seamless extension and return coordination
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Predictive Maintenance Dashboard Image</span>
-          </div>
+          <img src={imgCustomers} alt="AI Concierge Chat" />
         </div>
       </div>
     </section>
@@ -248,36 +248,34 @@ function FeatureSection2() {
     <section className={styles.featureSection}>
       <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
         <div className={styles.featureText}>
-          <h2>Optimize Routes, Maximize Deliveries</h2>
+          <h2>Protect Your Fleet in Real-Time</h2>
           <p>
-            Go beyond basic GPS tracking. DIMO's route analysis intelligence
-            examines historical performance data to identify which routes are
-            fastest, where problems occur, and how to optimize your delivery
-            network for maximum efficiency.
+            Know exactly what's happening with every vehicle in your fleet, every
+            second of the day. DIMO monitors for aggressive driving, speeding,
+            geofence violations, and potential incidents—alerting you instantly
+            when something needs attention.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Identify high-performing vs. problem routes
+              Real-time speed and driving behavior monitoring
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Correlate routes with driver behavior and incidents
+              Custom geofence zones with instant alerts
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Suggest optimized alternatives based on real data
+              Crash detection and automatic incident reporting
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Track improvements over time with analytics
+              Historical data for dispute resolution
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Route Analysis Map Image</span>
-          </div>
+          <img src={imgFleet} alt="Fleet Monitoring Dashboard" />
         </div>
       </div>
     </section>
@@ -289,22 +287,22 @@ function HowItWorksSection() {
     {
       title: 'Connect Your Fleet',
       description:
-        'Onboard your delivery vehicles using DIMO hardware or native OEM connections. Integration is seamless with your existing fleet management tools.',
+        'Integrate DIMO with your fleet management system and onboard vehicles using our hardware or native OEM connections.',
     },
     {
-      title: 'Configure Your Command Center',
+      title: 'Configure Intelligent Agents',
       description:
-        'Set up real-time monitoring, maintenance thresholds, driver coaching parameters, and custom alerts tailored to your operations.',
+        'Set up AI concierges, monitoring rules, geofences, and automated workflows tailored to your operations.',
     },
     {
-      title: 'Deploy Intelligent Agents',
+      title: 'Delight Every Customer',
       description:
-        'Activate AI-powered copilots for maintenance prediction, route analysis, driver coaching, and incident response.',
+        'Each rental automatically gets a personalized AI concierge that helps throughout their journey.',
     },
     {
-      title: 'Optimize Continuously',
+      title: 'Monitor and Optimize',
       description:
-        'Use real-time data and analytics to continuously improve fleet performance, reduce costs, and maximize on-time deliveries.',
+        'Track fleet health, customer satisfaction, and operational metrics in real-time through your dashboard.',
     },
   ];
 
@@ -312,10 +310,10 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>From Setup to Optimization in Days</h2>
+        <h2 className={styles.sectionTitle}>Seamless Integration, Instant Value</h2>
         <p className={styles.sectionSubtitle}>
-          DIMO integrates with your existing systems and starts delivering
-          actionable intelligence immediately.
+          DIMO works with your existing fleet management infrastructure and starts
+          delivering value from day one.
         </p>
       </div>
 
@@ -342,7 +340,7 @@ function TestimonialsSection() {
     <section className={styles.testimonialsSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Industry Leaders</h2>
+        <h2 className={styles.sectionTitle}>Trusted by Leading Rental Companies</h2>
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
@@ -382,11 +380,11 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Delivery Operations?
+          Ready to Modernize Your Rental Operations?
         </h2>
         <p className={styles.ctaText}>
-          Join leading delivery service providers using DIMO to reduce costs,
-          improve reliability, and deliver on every promise.
+          Join innovative rental companies using DIMO to deliver exceptional
+          experiences and protect their fleets.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
@@ -404,36 +402,36 @@ function CTASection() {
   );
 }
 
-export default function DeliveryPage(): ReactNode {
+export default function RentalsPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Delivery | Fleet Intelligence for Delivery Service Providers</title>
+        <title>DIMO for Rentals | AI-Powered Fleet Intelligence for Car Rental Companies</title>
         <meta
           name="description"
-          content="Optimize delivery operations with DIMO's intelligent fleet platform. Predictive maintenance, driver coaching, route analysis, and real-time fleet monitoring."
+          content="Transform your rental operations with DIMO's intelligent vehicle agents. AI concierges, real-time fleet monitoring, geofencing, and automated inspections."
         />
         <meta
           name="keywords"
-          content="delivery fleet management, predictive maintenance, driver coaching, route optimization, fleet monitoring, logistics technology, delivery operations"
+          content="car rental software, fleet management, AI concierge, rental fleet monitoring, geofencing, vehicle tracking, rental technology"
         />
-        <meta property="og:title" content="DIMO for Delivery | Fleet Intelligence Platform" />
+        <meta property="og:title" content="DIMO for Rentals | AI-Powered Fleet Intelligence" />
         <meta
           property="og:description"
-          content="Command your delivery fleet with AI-powered predictive maintenance, driver coaching, route analysis, and real-time monitoring."
+          content="Deploy AI concierges for every rental, monitor your fleet in real-time, and streamline operations with intelligent automation."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://docs.dimo.org/delivery" />
+        <link rel="canonical" href="https://docs.dimo.org/rentals" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Product',
-            name: 'DIMO for Delivery',
+            name: 'DIMO for Rentals',
             description:
-              'Fleet intelligence platform for delivery service providers. Predictive maintenance, driver coaching, and route optimization.',
+              'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',
             brand: {
               '@type': 'Brand',
               name: 'DIMO',
@@ -441,7 +439,7 @@ export default function DeliveryPage(): ReactNode {
             category: 'Fleet Management Software',
             audience: {
               '@type': 'Audience',
-              audienceType: 'Delivery Service Providers',
+              audienceType: 'Car Rental Companies',
             },
           })}
         </script>
@@ -457,7 +455,7 @@ export default function DeliveryPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

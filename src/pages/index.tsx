@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, useState, useEffect } from 'react';
 import Link from '@docusaurus/Link';
 import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
@@ -18,7 +18,52 @@ const imgHeroHighway = '/img/dimo-pixel-car.gif';
 const imgDimoAi = '/img/dimo-pathways.gif';
 const imgDimoAiPlaceholder = '/img/DIMO-Docs.png';
 
+// Typewriter hook for rotating words
+function useTypewriter(words: string[], typingSpeed = 100, deletingSpeed = 50, pauseTime = 3000) {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+
+    if (isPaused) {
+      const pauseTimeout = setTimeout(() => {
+        setIsPaused(false);
+        setIsDeleting(true);
+      }, pauseTime);
+      return () => clearTimeout(pauseTimeout);
+    }
+
+    if (isDeleting) {
+      if (currentText === '') {
+        setIsDeleting(false);
+        setCurrentWordIndex((prev) => (prev + 1) % words.length);
+      } else {
+        const timeout = setTimeout(() => {
+          setCurrentText(currentWord.substring(0, currentText.length - 1));
+        }, deletingSpeed);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      if (currentText === currentWord) {
+        setIsPaused(true);
+      } else {
+        const timeout = setTimeout(() => {
+          setCurrentText(currentWord.substring(0, currentText.length + 1));
+        }, typingSpeed);
+        return () => clearTimeout(timeout);
+      }
+    }
+  }, [currentText, currentWordIndex, isDeleting, isPaused, words, typingSpeed, deletingSpeed, pauseTime]);
+
+  return currentText;
+}
+
 function HeroSection() {
+  const rotatingWord = useTypewriter(['commerce', 'privacy', 'engagement'], 100, 50, 3000);
+
   return (
     <header className={styles.hero}>
       <div className={styles.heroGrid} />
@@ -37,7 +82,7 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           The vehicle intelligence platform that <br />
-          puts privacy first.
+          puts {rotatingWord}<span className={styles.typewriterCursor}>|</span>first.
         </h1>
 
         <p className={styles.heroSubtitle}>

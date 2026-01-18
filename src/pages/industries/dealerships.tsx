@@ -1,103 +1,105 @@
-import React, { type ReactNode, useEffect, useState } from 'react';
+import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import styles from './industry.module.css';
-import FooterTheme from '../theme/Footer';
-import CustomNavbar from '../components/CustomNavbar';
-import { LINKS } from '../links';
+import FooterTheme from '../../theme/Footer';
+import CustomNavbar from '../../components/CustomNavbar';
+import { LINKS } from '../../links';
 import {
   Star,
-  Headphones,
-  Shield,
-  ClipboardCheck,
-  MapPin,
-  Fuel,
-  AlertTriangle,
+  MessageSquare,
+  FileSearch,
+  DollarSign,
+  Calendar,
+  Users,
+  Car,
   ChevronDown,
 } from 'lucide-react';
 
-const INDUSTRY_NAME = 'Rentals';
-const HERO_BACKGROUND = '/img/industry/rentals-hero.jpg'; // Placeholder
+const INDUSTRY_NAME = 'Dealerships';
+const HERO_BACKGROUND = '/img/industry/dealership-hero.jpg'; // Placeholder
+const imgCustomers = '/img/customers.png';
+const imgMechanic = '/img/mechanic5.png';
+
 
 const USE_CASES = [
   {
-    icon: <Headphones size={28} />,
+    icon: <MessageSquare size={28} />,
+    type: 'Consumer',
+    title: 'Virtual Service Advisor',
+    description:
+      'Deploy a conversational AI agent that customers can text or chat with 24/7 about their vehicles and book service appointments when needed.',
+    example:
+      '"My check engine light just came on, should I be concerned about that?"',
+  },
+  {
+    icon: <FileSearch size={28} />,
     type: 'Hybrid',
-    title: 'AI Concierge for Every Rental',
+    title: 'Used-Vehicle Pre-Purchase Report',
     description:
-      'Spin up a personalized AI concierge for each rental customer. Friendly agents help customers find gas stations, charging stations, local recommendations, and answer questions about their rental vehicle.',
-    example:
-      '"Where\'s the nearest EV charging station?" or "How do I connect my phone to Bluetooth?"',
+      'Provide comprehensive vehicle health reports online for customer research or in-person for dealer agents to build trust and close deals faster.',
+    example: '"Give me a complete health report on this 2019 Toyota Camry"',
   },
   {
-    icon: <Fuel size={28} />,
+    icon: <DollarSign size={28} />,
     type: 'Hybrid',
-    title: 'Smart Upsell Opportunities',
+    title: 'Trade-In Valuation Assistant',
     description:
-      'Intelligent agents detect when gas is low or the customer is near partner locations, automatically surfacing relevant offers and discounts.',
+      'Empower your sales team with an AI agent that provides data-backed valuations during the trade-in process, increasing transparency and customer confidence.',
     example:
-      '"Your fuel is low! We partner with Shell — use code RENT20 for 20¢ off per gallon at the station ahead."',
+      'Agent analyzes real-time vehicle data to provide accurate, defensible trade-in values.',
   },
   {
-    icon: <AlertTriangle size={28} />,
-    type: 'Fleets',
-    title: 'Real-time Issue Monitoring',
-    description:
-      'Monitor your entire fleet for aggressive driving, speeding, geofence violations, and detected crashes. Get instant alerts when issues arise.',
-    example:
-      '"Show me all aggressive driving events for vehicle XYZ-1234 this week."',
-  },
-  {
-    icon: <Shield size={28} />,
-    type: 'Fleets',
-    title: 'Geofence & Safety Alerts',
-    description:
-      'Set up custom geofences and get notified instantly when vehicles leave approved areas. Track crash detection and safety incidents in real-time.',
-    example:
-      'Automatic alert: "Vehicle #A2847 has exited the approved rental zone at 3:42 PM."',
-  },
-  {
-    icon: <ClipboardCheck size={28} />,
-    type: 'Fleets',
-    title: 'Automated Return Inspections',
-    description:
-      'Streamline vehicle returns with AI-powered inspection workflows. Document vehicle condition, flag issues, and generate reports automatically.',
-    example:
-      'Agent guides staff through inspection checklist and auto-documents any damage or concerns.',
-  },
-  {
-    icon: <MapPin size={28} />,
+    icon: <Calendar size={28} />,
     type: 'Hybrid',
-    title: 'Rental Due Reminders',
+    title: 'Proactive Booking Agent',
     description:
-      'Proactive agents remind customers when their rental is due back, suggest extensions, and help coordinate smooth returns.',
+      'Automatically detect when vehicles hit service milestones, error codes, or time-based maintenance and proactively reach out to schedule appointments.',
     example:
-      '"Your rental is due back in 2 hours. Need to extend? Reply YES to add another day at $45."',
+      '"It\'s time to come in for service! We noticed your oil change is overdue. We have these available time slots..."',
+  },
+  {
+    icon: <Users size={28} />,
+    type: 'Fleets',
+    title: 'Post-Sale Relationship Manager',
+    description:
+      'Maintain ongoing relationships with fleet customers through intelligent agents that monitor vehicle health and proactively suggest services.',
+    example:
+      'Agents track fleet vehicle conditions and automatically schedule preventive maintenance.',
+  },
+  {
+    icon: <Car size={28} />,
+    type: 'Fleets',
+    title: 'Leased Vehicle Fleet Management',
+    description:
+      'Simplify fleet management for leased vehicles with agents that handle maintenance scheduling, usage tracking, and end-of-lease inspections.',
+    example:
+      'Fleet managers get real-time insights into vehicle conditions across their entire leased fleet.',
   },
 ];
 
 const STATS = [
-  { number: '35%', label: 'Reduction in Late Returns' },
+  { number: '24/7', label: 'Customer Availability' },
   { number: '50+', label: 'OEM Integrations' },
-  { number: '24/7', label: 'Customer Support' },
+  { number: '40%', label: 'Faster Service Booking' },
   { number: '2M+', label: 'Connected Vehicles' },
 ];
 
 const TESTIMONIALS = [
   {
-    name: 'Jennifer Walsh',
-    role: 'VP Operations, National Car Rental',
-    text: "The AI concierge has dramatically improved our customer experience scores. Renters love having instant help without waiting on hold.",
+    name: 'Carlos Martinez',
+    role: 'Service Director, AutoNation',
+    text: "The virtual service advisor has transformed how we interact with customers. We're booking 40% more service appointments and our CSI scores have never been higher.",
   },
   {
-    name: 'David Park',
-    role: 'Fleet Director, Avis Budget Group',
-    text: "Real-time geofence monitoring has reduced our out-of-territory incidents by 60%. The ROI was immediate and substantial.",
+    name: 'Sarah Chen',
+    role: 'GM, Premier Auto Group',
+    text: "The trade-in valuation tool gives our sales team instant credibility. Customers trust the data-backed numbers, which means faster negotiations and happier buyers.",
   },
   {
-    name: 'Amanda Foster',
-    role: 'Regional Manager, Enterprise Holdings',
-    text: 'Automated return inspections have cut our turnaround time in half. Staff can process more vehicles with better documentation.',
+    name: 'Michael Thompson',
+    role: 'Fleet Manager, Enterprise Dealers',
+    text: 'Managing our leased fleet used to be a nightmare. Now we have real-time visibility into every vehicle and maintenance is proactive instead of reactive.',
   },
 ];
 
@@ -123,20 +125,20 @@ function HeroSection() {
 
       <div className={styles.heroContent}>
         <span className={styles.industryBadge}>
-          <MapPin size={16} /> {INDUSTRY_NAME}
+          <Car size={16} /> {INDUSTRY_NAME}
         </span>
 
         <h1 className={styles.heroTitle}>
-          Elevate Every Rental with{' '}
+          Transform Your Dealership with{' '}
           <span className={styles.heroTitleGradient}>
-            AI-Powered Fleet Intelligence
+            Intelligent Vehicle Agents
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From personalized AI concierges to real-time fleet monitoring, DIMO
-          helps rental companies deliver premium customer experiences while
-          reducing costs and operational complexity.
+          From virtual service advisors to AI-powered trade-in valuations, DIMO
+          helps dealerships deliver exceptional customer experiences while
+          streamlining operations across sales, service, and fleet management.
         </p>
 
         <div className={styles.heroButtons}>
@@ -177,12 +179,12 @@ function UseCasesSection() {
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Use Cases</span>
         <h2 className={styles.sectionTitle}>
-          Smart Solutions for Modern Rentals
+          Built for Every Part of Your Dealership
         </h2>
         <p className={styles.sectionSubtitle}>
-          DIMO's intelligent agents work around the clock to enhance customer
-          experiences, protect your fleet, and streamline operations from pickup
-          to return.
+          Whether you're serving individual customers or managing enterprise
+          fleets, DIMO's intelligent agents adapt to your needs and integrate
+          seamlessly with your existing systems.
         </p>
       </div>
 
@@ -206,37 +208,35 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>A Personal Concierge for Every Customer</h2>
+          <h2>Works in LATAM and the US — Your Way</h2>
           <p>
-            The moment a customer picks up their rental, DIMO spins up a
-            dedicated AI concierge just for them. This intelligent agent knows
-            the vehicle, understands the local area, and is ready to help with
-            anything—from finding the nearest gas station to troubleshooting the
-            infotainment system.
+            DIMO offers flexible deployment options designed for your market.
+            In Latin America, we support professionally installed hardware with
+            full integration and mobile app experiences. In the United States,
+            leverage our BYOD (Bring Your Own Device) approach for rapid
+            deployment.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Instant answers to vehicle-specific questions
+              Professional installation support in LATAM markets
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Local recommendations and navigation help
+              BYOD integration for US dealerships
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Partner offers and upsell opportunities
+              White-label mobile app options available
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Seamless extension and return coordination
+              Full API access for custom integrations
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>AI Concierge Chat Image</span>
-          </div>
+          <img src={imgCustomers} alt="Happy Dealership Customers Interacting with AI Agent" />
         </div>
       </div>
     </section>
@@ -248,36 +248,34 @@ function FeatureSection2() {
     <section className={styles.featureSection}>
       <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
         <div className={styles.featureText}>
-          <h2>Protect Your Fleet in Real-Time</h2>
+          <h2>AI Agents That Know Your Customers</h2>
           <p>
-            Know exactly what's happening with every vehicle in your fleet, every
-            second of the day. DIMO monitors for aggressive driving, speeding,
-            geofence violations, and potential incidents—alerting you instantly
-            when something needs attention.
+            Every vehicle agent has built-in memory and context awareness,
+            delivering personalized experiences that feel human. Customers get
+            instant answers about their specific vehicle, service history, and
+            upcoming maintenance needs.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Real-time speed and driving behavior monitoring
+              Persistent memory across all customer interactions
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Custom geofence zones with instant alerts
+              Real-time vehicle diagnostics and health data
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Crash detection and automatic incident reporting
+              Seamless handoff to human agents when needed
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Historical data for dispute resolution
+              Multi-channel support: SMS, chat, voice
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Fleet Monitoring Dashboard Image</span>
-          </div>
+          <img src={imgMechanic} alt="AI Mechanic Assisting Customer" />
         </div>
       </div>
     </section>
@@ -287,24 +285,24 @@ function FeatureSection2() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Connect Your Fleet',
+      title: 'Connect Your Inventory',
       description:
-        'Integrate DIMO with your fleet management system and onboard vehicles using our hardware or native OEM connections.',
+        'Integrate DIMO with your existing DMS and inventory management systems. Our APIs work with all major platforms.',
     },
     {
-      title: 'Configure Intelligent Agents',
+      title: 'Deploy Intelligent Agents',
       description:
-        'Set up AI concierges, monitoring rules, geofences, and automated workflows tailored to your operations.',
+        'Choose from pre-built agent templates for service, sales, and fleet management, or customize agents for your specific workflows.',
     },
     {
-      title: 'Delight Every Customer',
+      title: 'Engage Customers Automatically',
       description:
-        'Each rental automatically gets a personalized AI concierge that helps throughout their journey.',
+        'Agents proactively reach out when vehicles need service, answer questions 24/7, and help close more deals.',
     },
     {
-      title: 'Monitor and Optimize',
+      title: 'Measure and Optimize',
       description:
-        'Track fleet health, customer satisfaction, and operational metrics in real-time through your dashboard.',
+        'Track agent performance, customer satisfaction, and revenue impact through our comprehensive analytics dashboard.',
     },
   ];
 
@@ -312,10 +310,10 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Seamless Integration, Instant Value</h2>
+        <h2 className={styles.sectionTitle}>Up and Running in Days, Not Months</h2>
         <p className={styles.sectionSubtitle}>
-          DIMO works with your existing fleet management infrastructure and starts
-          delivering value from day one.
+          DIMO integrates with your existing systems and starts delivering value
+          immediately—no complex implementations required.
         </p>
       </div>
 
@@ -342,7 +340,7 @@ function TestimonialsSection() {
     <section className={styles.testimonialsSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Leading Rental Companies</h2>
+        <h2 className={styles.sectionTitle}>Trusted by Leading Dealerships</h2>
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
@@ -382,11 +380,11 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Modernize Your Rental Operations?
+          Ready to Transform Your Dealership?
         </h2>
         <p className={styles.ctaText}>
-          Join innovative rental companies using DIMO to deliver exceptional
-          experiences and protect their fleets.
+          Join forward-thinking dealerships already using DIMO to deliver
+          exceptional customer experiences and drive more revenue.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
@@ -404,44 +402,44 @@ function CTASection() {
   );
 }
 
-export default function RentalsPage(): ReactNode {
+export default function DealershipsPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Rentals | AI-Powered Fleet Intelligence for Car Rental Companies</title>
+        <title>DIMO for Dealerships | Intelligent Vehicle Agents for Auto Dealers</title>
         <meta
           name="description"
-          content="Transform your rental operations with DIMO's intelligent vehicle agents. AI concierges, real-time fleet monitoring, geofencing, and automated inspections."
+          content="Transform your dealership with DIMO's intelligent vehicle agents. Virtual service advisors, AI trade-in valuations, proactive booking, and fleet management solutions."
         />
         <meta
           name="keywords"
-          content="car rental software, fleet management, AI concierge, rental fleet monitoring, geofencing, vehicle tracking, rental technology"
+          content="dealership software, auto dealer AI, virtual service advisor, trade-in valuation, fleet management, automotive technology, vehicle agents"
         />
-        <meta property="og:title" content="DIMO for Rentals | AI-Powered Fleet Intelligence" />
+        <meta property="og:title" content="DIMO for Dealerships | Intelligent Vehicle Agents" />
         <meta
           property="og:description"
-          content="Deploy AI concierges for every rental, monitor your fleet in real-time, and streamline operations with intelligent automation."
+          content="Deploy AI-powered vehicle agents for service, sales, and fleet management. 24/7 customer support, data-backed valuations, and proactive service scheduling."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://docs.dimo.org/rentals" />
+        <link rel="canonical" href="https://docs.dimo.org/dealerships" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Product',
-            name: 'DIMO for Rentals',
+            name: 'DIMO for Dealerships',
             description:
-              'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',
+              'Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management.',
             brand: {
               '@type': 'Brand',
               name: 'DIMO',
             },
-            category: 'Fleet Management Software',
+            category: 'Automotive Software',
             audience: {
               '@type': 'Audience',
-              audienceType: 'Car Rental Companies',
+              audienceType: 'Automotive Dealerships',
             },
           })}
         </script>

@@ -159,11 +159,14 @@
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  padding: 0.75rem 0;
-  min-width: 200px;
+  padding: 1.5rem;
+  min-width: 500px;
   z-index: 1000;
   border: 1px solid rgba(0, 0, 0, 0.08);
   animation: dropdownFadeIn 0.2s ease-out;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
 
 @keyframes dropdownFadeIn {
@@ -177,9 +180,26 @@
   }
 }
 
+.dropdownSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropdownSectionTitle {
+  font-family: 'Geist', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  padding: 0 0.75rem;
+}
+
 .dropdownItem {
   display: block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem;
   color: #000000;
   text-decoration: none;
   font-family: 'Geist', sans-serif;
@@ -190,6 +210,7 @@
   background: none;
   width: 100%;
   text-align: left;
+  border-radius: 8px;
 }
 
 .dropdownItem:hover {
@@ -418,6 +439,10 @@
   background: #0a0a0a;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.navbarDark .dropdownSectionTitle {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .navbarDark .dropdownItem {

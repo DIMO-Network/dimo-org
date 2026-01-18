@@ -1,102 +1,105 @@
-import React, { type ReactNode, useEffect, useRef, useState } from 'react';
+import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import styles from './industry.module.css';
-import FooterTheme from '../theme/Footer';
-import CustomNavbar from '../components/CustomNavbar';
-import { LINKS } from '../links';
+import FooterTheme from '../../theme/Footer';
+import CustomNavbar from '../../components/CustomNavbar';
+import { LINKS } from '../../links';
 import {
   Star,
-  MessageSquare,
-  FileSearch,
-  DollarSign,
-  Calendar,
-  Users,
-  Car,
+  Code,
+  Zap,
+  Lock,
+  Globe,
+  Layers,
   ChevronDown,
+  Cpu,
 } from 'lucide-react';
 
-const INDUSTRY_NAME = 'Dealerships';
-const HERO_BACKGROUND = '/img/industry/dealership-hero.jpg'; // Placeholder
+const INDUSTRY_NAME = 'Auto OEMs';
+const HERO_BACKGROUND = '/img/industry/oem-hero.jpg'; // Placeholder
+const imgSdk = '/img/sdks.webp';
+const imgRentals = '/img/rentals.png';
 
 const USE_CASES = [
   {
-    icon: <MessageSquare size={28} />,
-    type: 'Consumer',
-    title: 'Virtual Service Advisor',
+    icon: <Code size={28} />,
+    type: 'Developer Platform',
+    title: 'Unified API Access',
     description:
-      'Deploy a conversational AI agent that customers can text or chat with 24/7 about their vehicles and book service appointments when needed.',
+      'One thoughtfully-designed GraphQL API to access vehicle data. Eliminate the complexity of managing multiple integrations and focus on building great features.',
     example:
-      '"My check engine light just came on, should I be concerned about that?"',
+      'Access real-time diagnostics, location, battery status, and more with a streamlined, standardized interface.',
   },
   {
-    icon: <FileSearch size={28} />,
-    type: 'Hybrid',
-    title: 'Used-Vehicle Pre-Purchase Report',
+    icon: <Zap size={28} />,
+    type: 'Developer Platform',
+    title: 'Easy-to-Use SDK',
     description:
-      'Provide comprehensive vehicle health reports online for customer research or in-person for dealer agents to build trust and close deals faster.',
-    example: '"Give me a complete health report on this 2019 Toyota Camry"',
+      'Ship faster with our developer-friendly SDKs for JavaScript, Python, C#, Go, and more. Production-ready code examples and comprehensive documentation included.',
+    example:
+      'Get your developers started in minutes with npm install or pip install and have the first integration running in minutes.',
   },
   {
-    icon: <DollarSign size={28} />,
-    type: 'Hybrid',
-    title: 'Trade-In Valuation Assistant',
+    icon: <Lock size={28} />,
+    type: 'Security & Privacy',
+    title: 'Privacy-First Architecture',
     description:
-      'Empower your sales team with an AI agent that provides data-backed valuations during the trade-in process, increasing transparency and customer confidence.',
+      'Built with user consent and data ownership at the core. GDPR and EU Data Act compliant, with granular permission controls and verifiable credentials.',
     example:
-      'Agent analyzes real-time vehicle data to provide accurate, defensible trade-in values.',
+      'Vehicle owners control what data is shared, when, and with whom, building trust between you and your customers.',
   },
   {
-    icon: <Calendar size={28} />,
-    type: 'Hybrid',
-    title: 'Proactive Booking Agent',
+    icon: <Globe size={28} />,
+    type: 'Platform',
+    title: 'Multi-OEM Compatibility',
     description:
-      'Automatically detect when vehicles hit service milestones, error codes, or time-based maintenance and proactively reach out to schedule appointments.',
+      'Support vehicles from all major manufacturers through a single integration. Any OEM can easily be added.',
     example:
-      '"It\'s time to come in for service! We noticed your oil change is overdue. We have these available time slots..."',
+      'Build once, deploy everywhere -- any OEM can be integrated with the same great experience.',
   },
   {
-    icon: <Users size={28} />,
-    type: 'Fleets',
-    title: 'Post-Sale Relationship Manager',
+    icon: <Layers size={28} />,
+    type: 'Platform',
+    title: 'Scalable Infrastructure',
     description:
-      'Maintain ongoing relationships with fleet customers through intelligent agents that monitor vehicle health and proactively suggest services.',
+      'Enterprise-grade reliability with 99.9% uptime. Handle millions of requests with low latency and real-time data streaming capabilities.',
     example:
-      'Agents track fleet vehicle conditions and automatically schedule preventive maintenance.',
+      'From prototype to production, DIMO scales with your business without infrastructure headaches.',
   },
   {
-    icon: <Car size={28} />,
-    type: 'Fleets',
-    title: 'Leased Vehicle Fleet Management',
+    icon: <Cpu size={28} />,
+    type: 'AI & Analytics',
+    title: 'AI-Ready Data Streams',
     description:
-      'Simplify fleet management for leased vehicles with agents that handle maintenance scheduling, usage tracking, and end-of-lease inspections.',
+      "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences on top of DIMO's intelligence layer.",
     example:
-      'Fleet managers get real-time insights into vehicle conditions across their entire leased fleet.',
+      'Monetize clean data without the hassle -- power predictive maintenance, fleet optimization, and more.',
   },
 ];
 
 const STATS = [
-  { number: '24/7', label: 'Customer Availability' },
-  { number: '50+', label: 'OEM Integrations' },
-  { number: '40%', label: 'Faster Service Booking' },
-  { number: '2M+', label: 'Connected Vehicles' },
+  { number: '100%', label: 'COVESA Standards' },
+  { number: '>95%', label: 'Developer Satisfaction' },
+  { number: '99.9%', label: 'API Uptime' },
+  { number: '<100ms', label: 'Average Latency' },
 ];
 
 const TESTIMONIALS = [
   {
-    name: 'Carlos Martinez',
-    role: 'Service Director, AutoNation',
-    text: "The virtual service advisor has transformed how we interact with customers. We're booking 40% more service appointments and our CSI scores have never been higher.",
+    name: 'Alex Rodriguez',
+    role: 'CTO, Mobility Startup',
+    text: "DIMO's unified API saved us months of development time. Instead of integrating with each OEM separately, we had access to all major brands in a week. The SDK is phenomenal.",
   },
   {
-    name: 'Sarah Chen',
-    role: 'GM, Premier Auto Group',
-    text: "The trade-in valuation tool gives our sales team instant credibility. Customers trust the data-backed numbers, which means faster negotiations and happier buyers.",
+    name: 'Emma Chen',
+    role: 'Lead Engineer, Fleet Platform',
+    text: 'The documentation and developer experience are top-notch. We went from proof-of-concept to production in under a month. The real-time data streaming is incredibly reliable.',
   },
   {
-    name: 'Michael Thompson',
-    role: 'Fleet Manager, Enterprise Dealers',
-    text: 'Managing our leased fleet used to be a nightmare. Now we have real-time visibility into every vehicle and maintenance is proactive instead of reactive.',
+    name: 'Michael Foster',
+    role: 'Founder, Automotive AI',
+    text: "As a small team, we couldn't afford to build and maintain OEM integrations ourselves. DIMO gave us enterprise-level capabilities without the enterprise-level cost.",
   },
 ];
 
@@ -122,25 +125,25 @@ function HeroSection() {
 
       <div className={styles.heroContent}>
         <span className={styles.industryBadge}>
-          <Car size={16} /> {INDUSTRY_NAME}
+          <Cpu size={16} /> {INDUSTRY_NAME}
         </span>
 
         <h1 className={styles.heroTitle}>
-          Transform Your Dealership with{' '}
+          Build the Future of Mobility with{' '}
           <span className={styles.heroTitleGradient}>
-            Intelligent Vehicle Agents
+            One Unified Platform
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From virtual service advisors to AI-powered trade-in valuations, DIMO
-          helps dealerships deliver exceptional customer experiences while
-          streamlining operations across sales, service, and fleet management.
+          Access vehicle data from 50+ OEMs through a single, privacy-first API.
+          Ship faster with developer-friendly SDKs, comprehensive documentation,
+          and enterprise-grade infrastructure built for scale.
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            Get API Keys <span className={styles.arrow}>→</span>
           </Link>
           <Link className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
@@ -174,14 +177,14 @@ function UseCasesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Use Cases</span>
+        <span className={styles.sectionEyebrow}>Platform Features</span>
         <h2 className={styles.sectionTitle}>
-          Built for Every Part of Your Dealership
+          Everything You Need to Build Vehicle Applications
         </h2>
         <p className={styles.sectionSubtitle}>
-          Whether you're serving individual customers or managing enterprise
-          fleets, DIMO's intelligent agents adapt to your needs and integrate
-          seamlessly with your existing systems.
+          From unified API access to AI-ready data streams, DIMO provides the
+          complete developer platform for building the next generation of mobility
+          applications.
         </p>
       </div>
 
@@ -205,37 +208,34 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Works in LATAM and the US — Your Way</h2>
+          <h2>Developer-First, Privacy-First</h2>
           <p>
-            DIMO offers flexible deployment options designed for your market.
-            In Latin America, we support professionally installed hardware with
-            full integration and mobile app experiences. In the United States,
-            leverage our BYOD (Bring Your Own Device) approach for rapid
-            deployment.
+            DIMO is built from the ground up with developers and users in mind.
+            Our privacy-first architecture ensures user consent and data ownership,
+            while our developer-friendly tools make integration seamless and
+            straightforward.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Professional installation support in LATAM markets
+              RESTful and GraphQL APIs with OpenAPI specs
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              BYOD integration for US dealerships
+              SDKs for JavaScript, TypeScript, Python, C#, and more
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              White-label mobile app options available
+              Simple developer sign up process with secured API key management
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Full API access for custom integrations
+              Comprehensive docs with interactive examples
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Regional Deployment Image</span>
-          </div>
+            <img src={imgSdk} alt="DIMO SDK Code Example" />
         </div>
       </div>
     </section>
@@ -247,36 +247,34 @@ function FeatureSection2() {
     <section className={styles.featureSection}>
       <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
         <div className={styles.featureText}>
-          <h2>AI Agents That Know Your Customers</h2>
+          <h2>One API, Every Major OEM</h2>
           <p>
-            Every vehicle agent has built-in memory and context awareness,
-            delivering personalized experiences that feel human. Customers get
-            instant answers about their specific vehicle, service history, and
-            upcoming maintenance needs.
+            Stop managing dozens of OEM integrations. DIMO provides a unified
+            interface to access vehicle data from Tesla, Ford, BMW, GM, and any major
+            vehicle manufacturers. We handle the complexity so you can focus on
+            building great products.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Persistent memory across all customer interactions
+              Standardized data models across all OEMs
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Real-time vehicle diagnostics and health data
+              Supports real-time diagnostics, location, commands, and telemetry
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Seamless handoff to human agents when needed
+              Cleanse your data for AI/ML applications with contextualized streams
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Multi-channel support: SMS, chat, voice
+              Works with connected vehicles and aftermarket devices
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>AI Agent Conversation Image</span>
-          </div>
+            <img src={imgRentals} alt="Car Rental Fleet Management" />
         </div>
       </div>
     </section>
@@ -286,24 +284,19 @@ function FeatureSection2() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Connect Your Inventory',
+      title: 'Sign Up & Get API Keys',
       description:
-        'Integrate DIMO with your existing DMS and inventory management systems. Our APIs work with all major platforms.',
+        'Create your DIMO developer account and get instant access to your API credentials. No waiting, no approval process.',
     },
     {
-      title: 'Deploy Intelligent Agents',
+      title: 'Bring Your Own Data',
       description:
-        'Choose from pre-built agent templates for service, sales, and fleet management, or customize agents for your specific workflows.',
+        'Implement DIMO Ingest by setting up a Kafka stream or equivalent, sending data to our managed ingest service or a self-hosted DIMO instance.',
     },
     {
-      title: 'Engage Customers Automatically',
+      title: 'Build & Scale',
       description:
-        'Agents proactively reach out when vehicles need service, answer questions 24/7, and help close more deals.',
-    },
-    {
-      title: 'Measure and Optimize',
-      description:
-        'Track agent performance, customer satisfaction, and revenue impact through our comprehensive analytics dashboard.',
+        'Once the data flow is established, the Developer Platform, API, and SDK are ready-to-use. Scale to millions of developers with confidence on the DIMO infrastructure.',
     },
   ];
 
@@ -311,10 +304,9 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Up and Running in Days, Not Months</h2>
+        <h2 className={styles.sectionTitle}>Get Started in Minutes</h2>
         <p className={styles.sectionSubtitle}>
-          DIMO integrates with your existing systems and starts delivering value
-          immediately—no complex implementations required.
+          Simply bring your own data into DIMO's plug-and-play infrastructure, we make it easy to build and scale.
         </p>
       </div>
 
@@ -341,7 +333,7 @@ function TestimonialsSection() {
     <section className={styles.testimonialsSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Leading Dealerships</h2>
+        <h2 className={styles.sectionTitle}>Loved by Developers</h2>
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
@@ -381,21 +373,21 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Dealership?
+          Ready to Start Building?
         </h2>
         <p className={styles.ctaText}>
-          Join forward-thinking dealerships already using DIMO to deliver
-          exceptional customer experiences and drive more revenue.
+          Join thousands of developers building the future of mobility on DIMO.
+          Get your API keys and start shipping today.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Start Building Today <span className={styles.arrow}>→</span>
+            Get API Keys <span className={styles.arrow}>→</span>
           </Link>
           <Link
             className={styles.secondaryBtn}
-            to="mailto:sales@dimo.org"
+            to="/docs"
           >
-            Contact Sales <span className={styles.arrow}>→</span>
+            Read the Docs <span className={styles.arrow}>→</span>
           </Link>
         </div>
       </div>
@@ -403,44 +395,47 @@ function CTASection() {
   );
 }
 
-export default function DealershipsPage(): ReactNode {
+export default function OEMPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Dealerships | Intelligent Vehicle Agents for Auto Dealers</title>
+        <title>DIMO for Auto OEMs | Unified Vehicle Data Platform for Developers</title>
         <meta
           name="description"
-          content="Transform your dealership with DIMO's intelligent vehicle agents. Virtual service advisors, AI trade-in valuations, proactive booking, and fleet management solutions."
+          content="Build vehicle applications faster with DIMO's unified API. Access data from 50+ OEMs through one developer-friendly platform. Privacy-first, enterprise-grade, production-ready."
         />
         <meta
           name="keywords"
-          content="dealership software, auto dealer AI, virtual service advisor, trade-in valuation, fleet management, automotive technology, vehicle agents"
+          content="vehicle API, OEM integrations, automotive developers, vehicle data platform, Tesla API, Ford API, BMW API, connected car platform, telematics API"
         />
-        <meta property="og:title" content="DIMO for Dealerships | Intelligent Vehicle Agents" />
+        <meta property="og:title" content="DIMO for Auto OEMs | Unified Vehicle Data Platform" />
         <meta
           property="og:description"
-          content="Deploy AI-powered vehicle agents for service, sales, and fleet management. 24/7 customer support, data-backed valuations, and proactive service scheduling."
+          content="One API to access vehicle data from 50+ OEMs. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://docs.dimo.org/dealerships" />
+        <link rel="canonical" href="https://docs.dimo.org/industries/oem" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: 'DIMO for Dealerships',
+            '@type': 'SoftwareApplication',
+            name: 'DIMO Developer Platform',
             description:
-              'Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management.',
-            brand: {
-              '@type': 'Brand',
-              name: 'DIMO',
+              'Unified API platform for accessing vehicle data from 50+ OEMs. Developer-friendly SDKs, privacy-first architecture, and enterprise infrastructure.',
+            applicationCategory: 'DeveloperApplication',
+            operatingSystem: 'Web, iOS, Android',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
             },
-            category: 'Automotive Software',
-            audience: {
-              '@type': 'Audience',
-              audienceType: 'Automotive Dealerships',
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.8',
+              ratingCount: '150',
             },
           })}
         </script>
@@ -456,7 +451,7 @@ export default function DealershipsPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

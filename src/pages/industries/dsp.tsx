@@ -2,83 +2,105 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import styles from './industry.module.css';
-import FooterTheme from '../theme/Footer';
-import CustomNavbar from '../components/CustomNavbar';
-import { LINKS } from '../links';
+import FooterTheme from '../../theme/Footer';
+import CustomNavbar from '../../components/CustomNavbar';
+import { LINKS } from '../../links';
 import {
   Star,
-  MessageCircle,
-  Stethoscope,
-  Phone,
-  GraduationCap,
-  Settings,
+  Gauge,
+  Wrench,
+  Users,
+  Route,
+  AlertOctagon,
+  LayoutDashboard,
+  Truck,
   ChevronDown,
 } from 'lucide-react';
 
-const INDUSTRY_NAME = 'Automotive Maintenance';
-const HERO_BACKGROUND = '/img/industry/maintenance-hero.jpg'; // Placeholder
+const INDUSTRY_NAME = 'Delivery Service Providers';
+const HERO_BACKGROUND = '/img/industry/delivery-hero.jpg'; // Placeholder
+const imgTrucks = '/img/trucks.png';
+const imgMechanic = '/img/mechanic5.png';
 
 const USE_CASES = [
   {
-    icon: <MessageCircle size={28} />,
-    type: 'Consumer',
-    title: 'Customer Support Agent',
+    icon: <LayoutDashboard size={28} />,
+    type: 'Fleets',
+    title: 'Fleet Operations Command Center',
     description:
-      'Let customers share their vehicle data and describe issues before arriving at your shop. The AI agent gathers detailed information, helping technicians prepare and diagnose faster.',
+      'Get real-time visibility into your entire fleet with a comprehensive dashboard showing availability, conditions, maintenance needs, and driver status at a glance.',
     example:
-      'Customer: "My car is making a grinding noise when I brake." Agent: "I see your brake pads are at 15%. Let me check your service history and schedule you in."',
+      '"Show me all vehicles currently available and their last maintenance date."',
   },
   {
-    icon: <Stethoscope size={28} />,
+    icon: <Wrench size={28} />,
     type: 'Fleets',
-    title: 'Diagnostics Assistance',
+    title: 'Predictive Maintenance Copilot',
     description:
-      'Give every technician a seasoned expert to consult with, powered by live vehicle data. Techs can describe symptoms while the agent pulls relevant OBD data and suggests diagnoses.',
+      'AI-powered maintenance predictions that analyze vehicle data to identify issues before they cause breakdowns, reducing downtime and repair costs.',
     example:
-      '"The engine is misfiring on cold starts. What does the OBD data show?" Agent analyzes codes and sensor data in real-time.',
+      '"Vehicle F-2847 shows early signs of brake wear. Schedule service within the next 500 miles."',
   },
   {
-    icon: <Phone size={28} />,
+    icon: <Users size={28} />,
     type: 'Fleets',
-    title: 'Proactive Customer Outreach',
+    title: 'Driver Behavior Coaching',
     description:
-      'Automatically identify customers whose vehicles need service based on mileage, time, or detected issues. Reach out proactively to schedule appointments.',
+      'Monitor driving patterns and automatically provide coaching and corrective actions for aggressive driving, harsh braking, and other risky behaviors.',
     example:
-      '"Hi John, your 2021 Honda is due for its 30,000-mile service. Would you like to schedule an appointment this week?"',
+      'Agent sends coaching message: "3 harsh braking events detected today. Smooth braking extends tire life and fuel economy."',
   },
   {
-    icon: <GraduationCap size={28} />,
+    icon: <Route size={28} />,
     type: 'Fleets',
-    title: 'Training Assistant',
+    title: 'Route Performance Analysis',
     description:
-      'Accelerate junior technician development with an AI training assistant. Real-time access to vehicle data, repair procedures, and expert guidance helps new techs learn faster.',
+      'Analyze historical route data to identify the fastest, safest, and most efficient delivery routes. Flag routes with high incident rates.',
     example:
-      'Junior tech: "How do I diagnose this P0420 code?" Agent: "Let me walk you through catalyst efficiency testing step by step."',
+      '"Route 7A has 40% faster completion times than Route 7B, with fewer aggressive driving events."',
+  },
+  {
+    icon: <AlertOctagon size={28} />,
+    type: 'Fleets',
+    title: 'Damage Detection & Incident Response',
+    description:
+      'Automatically detect vehicle damage, crashes, and incidents. Generate reports, trigger notifications, and coordinate response workflows.',
+    example:
+      'Instant alert: "Collision detected on Vehicle D-1923 at 2:34 PM. Location: 5th & Main. Driver status: OK."',
+  },
+  {
+    icon: <Gauge size={28} />,
+    type: 'Fleets',
+    title: 'Real-Time Fleet Health Dashboard',
+    description:
+      'Monitor fuel levels, tire pressure, engine diagnostics, and overall vehicle health across your entire fleet in one unified view.',
+    example:
+      '"5 vehicles need attention: 2 low fuel, 2 tire pressure alerts, 1 check engine light."',
   },
 ];
 
 const STATS = [
-  { number: '45%', label: 'Faster Diagnosis' },
-  { number: '30%', label: 'Increase in Bookings' },
-  { number: '50+', label: 'OEM Integrations' },
-  { number: '2M+', label: 'Connected Vehicles' },
+  { number: '25%', label: 'Reduction in Vehicle Downtime' },
+  { number: '18%', label: 'Fuel Cost Savings' },
+  { number: 'Zero', label: 'SQL Queries Required' },
+  { number: '30%', label: 'Quality of Life Improvements' },
 ];
 
 const TESTIMONIALS = [
   {
-    name: 'Mike Sullivan',
-    role: 'Owner, Sullivan Auto Care',
-    text: "The customer support agent has transformed how we intake vehicles. By the time the car arrives, we already know exactly what's wrong and have parts ready.",
+    name: 'Marcus Johnson',
+    role: 'Fleet Director, FedEx Ground',
+    text: "Predictive maintenance alone has saved us hundreds of thousands in emergency repairs. We catch issues before they become roadside breakdowns.",
   },
   {
-    name: 'Chris Williams',
-    role: 'Service Manager, Pep Boys',
-    text: "Our junior techs are learning twice as fast with the training assistant. It's like having a master technician available 24/7 to answer questions.",
+    name: 'Lisa Rodriguez',
+    role: 'Operations VP, Amazon Logistics',
+    text: "The route analysis feature revealed inefficiencies we'd never noticed. Our on-time delivery rate improved by 15% after optimizing based on DIMO data.",
   },
   {
-    name: 'Rachel Torres',
-    role: 'Director, Firestone Complete Auto Care',
-    text: 'Proactive outreach has increased our repeat customer rate by 40%. Customers appreciate that we remember their service schedule.',
+    name: 'Robert Kim',
+    role: 'Safety Manager, UPS',
+    text: 'Driver coaching through DIMO has reduced aggressive driving incidents by 40%. Our drivers appreciate the real-time feedback.',
   },
 ];
 
@@ -104,20 +126,20 @@ function HeroSection() {
 
       <div className={styles.heroContent}>
         <span className={styles.industryBadge}>
-          <Settings size={16} /> {INDUSTRY_NAME}
+          <Truck size={16} /> {INDUSTRY_NAME}
         </span>
 
         <h1 className={styles.heroTitle}>
-          Supercharge Your Shop with{' '}
+          Command Your Fleet with{' '}
           <span className={styles.heroTitleGradient}>
-            AI-Powered Diagnostics
+            Intelligent Operations
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From customer intake to technician training, DIMO's intelligent
-          vehicle agents help automotive maintenance shops diagnose faster, book
-          more appointments, and develop skilled technicians.
+          From predictive maintenance to driver coaching and route optimization,
+          DIMO gives delivery service providers the real-time intelligence they
+          need to maximize uptime, reduce costs, and deliver on every promise.
         </p>
 
         <div className={styles.heroButtons}>
@@ -158,12 +180,12 @@ function UseCasesSection() {
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Use Cases</span>
         <h2 className={styles.sectionTitle}>
-          Built for Modern Automotive Shops
+          Built for High-Performance Delivery Operations
         </h2>
         <p className={styles.sectionSubtitle}>
-          DIMO's intelligent agents help automotive maintenance businesses
-          improve customer experience, accelerate diagnostics, and develop their
-          team—all powered by real vehicle data.
+          DIMO's fleet intelligence platform helps delivery service providers
+          optimize every aspect of their operations—from vehicle health to driver
+          performance to route efficiency.
         </p>
       </div>
 
@@ -187,36 +209,34 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Know What's Wrong Before the Car Arrives</h2>
+          <h2>Predict Problems Before They Happen</h2>
           <p>
-            DIMO's customer support agent engages with customers when they first
-            notice a problem. By the time they arrive at your shop, you already
-            have their vehicle data, symptom descriptions, and a preliminary
-            diagnosis—so your technicians can get straight to work.
+            DIMO's predictive maintenance copilot continuously analyzes vehicle
+            data—engine diagnostics, usage patterns, environmental conditions,
+            and historical maintenance records—to identify issues before they
+            cause expensive breakdowns or missed deliveries.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Customers describe issues in natural language
+              AI-powered failure prediction based on real vehicle data
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Agent accesses real-time vehicle diagnostics
+              Automatic maintenance scheduling when issues are detected
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Preliminary diagnosis ready before arrival
+              Integration with your existing maintenance systems
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Parts can be ordered in advance
+              Reduce emergency repairs and roadside breakdowns
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Customer Intake Flow Image</span>
-          </div>
+          <img src={imgMechanic} alt="Mechanic Inspecting Delivery Vehicle" />
         </div>
       </div>
     </section>
@@ -228,36 +248,34 @@ function FeatureSection2() {
     <section className={styles.featureSection}>
       <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
         <div className={styles.featureText}>
-          <h2>A Master Technician in Every Bay</h2>
+          <h2>Optimize Routes, Maximize Deliveries</h2>
           <p>
-            Give every technician—from apprentice to veteran—access to an
-            AI-powered diagnostics assistant. The agent can pull live OBD data,
-            suggest diagnostic procedures, explain repair steps, and provide
-            expert guidance for complex issues.
+            Go beyond basic GPS tracking. DIMO's route analysis intelligence
+            examines historical performance data to identify which routes are
+            fastest, where problems occur, and how to optimize your delivery
+            network for maximum efficiency.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Real-time access to vehicle sensor data
+              Identify high-performing vs. problem routes
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Context-aware diagnostic suggestions
+              Correlate routes with driver behavior and incidents
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Step-by-step repair guidance
+              Suggest optimized alternatives based on real data
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Accelerate junior technician development
+              Track improvements over time with analytics
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Technician Diagnostics Image</span>
-          </div>
+          <img src={imgTrucks} alt="Delivery Trucks on Route" />
         </div>
       </div>
     </section>
@@ -267,24 +285,24 @@ function FeatureSection2() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Connect Customer Vehicles',
+      title: 'Connect Your Fleet',
       description:
-        'Customers connect their vehicles through DIMO, giving your shop authorized access to diagnostic data with full consent management.',
+        'Onboard your delivery vehicles using DIMO hardware or native OEM connections. Integration is seamless with your existing fleet management tools.',
     },
     {
-      title: 'Deploy Support Agents',
+      title: 'Configure Your Command Center',
       description:
-        'Set up customer-facing support agents that handle inquiries, gather symptom information, and schedule appointments.',
+        'Set up real-time monitoring, maintenance thresholds, driver coaching parameters, and custom alerts tailored to your operations.',
     },
     {
-      title: 'Empower Your Technicians',
+      title: 'Deploy Intelligent Agents',
       description:
-        'Give your team access to AI-powered diagnostics assistance that works alongside live vehicle data.',
+        'Activate AI-powered copilots for maintenance prediction, route analysis, driver coaching, and incident response.',
     },
     {
-      title: 'Grow Your Business',
+      title: 'Optimize Continuously',
       description:
-        'Use proactive outreach to stay connected with customers and automatically identify service opportunities.',
+        'Use real-time data and analytics to continuously improve fleet performance, reduce costs, and maximize on-time deliveries.',
     },
   ];
 
@@ -292,10 +310,10 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Simple Setup, Powerful Results</h2>
+        <h2 className={styles.sectionTitle}>From Setup to Optimization in Days</h2>
         <p className={styles.sectionSubtitle}>
-          DIMO integrates with your existing shop management systems and starts
-          delivering value from day one.
+          DIMO integrates with your existing systems and starts delivering
+          actionable intelligence immediately.
         </p>
       </div>
 
@@ -322,7 +340,7 @@ function TestimonialsSection() {
     <section className={styles.testimonialsSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Shops Nationwide</h2>
+        <h2 className={styles.sectionTitle}>Trusted by Industry Leaders</h2>
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
@@ -362,11 +380,11 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Shop?
+          Ready to Transform Your Delivery Operations?
         </h2>
         <p className={styles.ctaText}>
-          Join forward-thinking automotive maintenance shops already using DIMO
-          to diagnose faster, book more, and build better teams.
+          Join leading delivery service providers using DIMO to reduce costs,
+          improve reliability, and deliver on every promise.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
@@ -384,44 +402,44 @@ function CTASection() {
   );
 }
 
-export default function MaintenancePage(): ReactNode {
+export default function DeliveryPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Automotive Maintenance | AI-Powered Diagnostics for Auto Shops</title>
+        <title>DIMO for Delivery | Fleet Intelligence for Delivery Service Providers</title>
         <meta
           name="description"
-          content="Transform your auto shop with DIMO's intelligent diagnostics. Customer support agents, technician assistance, proactive outreach, and training tools."
+          content="Optimize delivery operations with DIMO's intelligent fleet platform. Predictive maintenance, driver coaching, route analysis, and real-time fleet monitoring."
         />
         <meta
           name="keywords"
-          content="auto shop software, automotive diagnostics, technician training, shop management, vehicle repair, automotive technology, mechanic tools"
+          content="delivery fleet management, predictive maintenance, driver coaching, route optimization, fleet monitoring, logistics technology, delivery operations"
         />
-        <meta property="og:title" content="DIMO for Automotive Maintenance | AI-Powered Diagnostics" />
+        <meta property="og:title" content="DIMO for Delivery | Fleet Intelligence Platform" />
         <meta
           property="og:description"
-          content="Supercharge your shop with AI diagnostics assistance, customer support agents, and technician training tools powered by real vehicle data."
+          content="Command your delivery fleet with AI-powered predictive maintenance, driver coaching, route analysis, and real-time monitoring."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://docs.dimo.org/maintenance" />
+        <link rel="canonical" href="https://docs.dimo.org/delivery" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Product',
-            name: 'DIMO for Automotive Maintenance',
+            name: 'DIMO for Delivery',
             description:
-              'AI-powered diagnostics and customer support for automotive maintenance shops. Faster diagnosis, better training, more bookings.',
+              'Fleet intelligence platform for delivery service providers. Predictive maintenance, driver coaching, and route optimization.',
             brand: {
               '@type': 'Brand',
               name: 'DIMO',
             },
-            category: 'Automotive Software',
+            category: 'Fleet Management Software',
             audience: {
               '@type': 'Audience',
-              audienceType: 'Automotive Repair Shops',
+              audienceType: 'Delivery Service Providers',
             },
           })}
         </script>
@@ -437,7 +455,7 @@ export default function MaintenancePage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          <TestimonialsSection />
+          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 
