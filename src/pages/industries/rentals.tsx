@@ -82,7 +82,7 @@ const STATS = [
   { number: '35%', label: 'Reduction in Late Returns' },
   { number: '50+', label: 'OEM Integrations' },
   { number: '24/7', label: 'Customer Support' },
-  { number: '2M+', label: 'Connected Vehicles' },
+  { number: '200k+', label: 'Connected Vehicles' },
 ];
 
 const TESTIMONIALS = [

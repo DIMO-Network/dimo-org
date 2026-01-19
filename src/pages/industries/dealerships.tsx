@@ -80,9 +80,9 @@ const USE_CASES = [
 
 const STATS = [
   { number: '24/7', label: 'Customer Availability' },
-  { number: '50+', label: 'OEM Integrations' },
+  { number: '25%', label: 'Improved Customer Engagement' },
   { number: '40%', label: 'Faster Service Booking' },
-  { number: '2M+', label: 'Connected Vehicles' },
+  { number: '200k+', label: 'Connected Vehicles' },
 ];
 
 const TESTIMONIALS = [

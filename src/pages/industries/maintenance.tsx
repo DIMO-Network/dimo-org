@@ -62,8 +62,8 @@ const USE_CASES = [
 const STATS = [
   { number: '45%', label: 'Faster Diagnosis' },
   { number: '30%', label: 'Increase in Bookings' },
-  { number: '50+', label: 'OEM Integrations' },
-  { number: '2M+', label: 'Connected Vehicles' },
+  { number: '25 %', label: 'More Accurate Estimates' },
+  { number: '200k+', label: 'Connected Vehicles' },
 ];
 
 const TESTIMONIALS = [
