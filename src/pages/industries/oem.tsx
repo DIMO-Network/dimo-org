@@ -137,9 +137,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Turnkey vehicle data infrastructure, production-ready, no more infrastructure woes.
-          Ship faster with developer-friendly SDKs, comprehensive documentation, AI-ready functionalities,
-          and enterprise-grade infrastructure built for scale.
+          Turnkey data infrastructure hosted on your terms. Let partners ship faster with developer-friendly SDKs, documentation, AI integration, and tools.
+          Stop wondering if you have the technology.
         </p>
 
         <div className={styles.heroButtons}>
