@@ -1,5 +1,6 @@
 import React, { useState, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import Head from '@docusaurus/Head';
 import styles from './pricing.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
@@ -252,20 +253,140 @@ export default function Pricing(): ReactNode {
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('annual');
 
   return (
-    <div className={styles.pricingPage}>
-      <CustomNavbar dark={true} />
-
-      <main>
-        <HeroSection
-          planType={planType}
-          setPlanType={setPlanType}
-          billingCycle={billingCycle}
-          setBillingCycle={setBillingCycle}
+    <>
+      <Head>
+        {/* Primary Meta Tags */}
+        <title>DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free</title>
+        <meta name="title" content="DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free" />
+        <meta
+          name="description"
+          content="Flexible pricing for vehicle data APIs and AI agents. Free hobbyist tier, $349/mo for developers, custom enterprise plans. Connect 50+ OEMs with one platform. Start building today."
         />
-        <PricingGrid planType={planType} billingCycle={billingCycle} />
-      </main>
+        <meta
+          name="keywords"
+          content="vehicle API pricing, DIMO pricing, automotive data costs, car API plans, vehicle intelligence pricing, fleet management pricing, telematics API cost"
+        />
 
-      <FooterTheme />
-    </div>
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://www.dimo.org/pricing" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.dimo.org/pricing" />
+        <meta property="og:title" content="DIMO Pricing | Vehicle Data API & AI Agent Plans" />
+        <meta
+          property="og:description"
+          content="Transparent pricing for connected car development. Free to start, scale as you grow. Vehicle data APIs, AI agents, and enterprise solutions."
+        />
+        <meta property="og:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+        <meta property="og:site_name" content="DIMO" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.dimo.org/pricing" />
+        <meta name="twitter:title" content="DIMO Pricing | Start Free" />
+        <meta
+          name="twitter:description"
+          content="Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ OEMs."
+        />
+        <meta name="twitter:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+
+        {/* Additional SEO */}
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+
+        {/* Structured Data - Product with Offers */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "DIMO Platform",
+            "description": "Vehicle intelligence platform with AI agents and data APIs for connected car development",
+            "brand": {
+              "@type": "Brand",
+              "name": "DIMO"
+            },
+            "offers": [
+              {
+                "@type": "Offer",
+                "name": "DIMO Hobbyist",
+                "price": "0",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "0",
+                  "priceCurrency": "USD",
+                  "referenceQuantity": {
+                    "@type": "QuantitativeValue",
+                    "value": "1",
+                    "unitText": "account"
+                  }
+                },
+                "description": "Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.",
+                "url": "https://www.dimo.org/pricing",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "DIMO Core",
+                "price": "349",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "349",
+                  "priceCurrency": "USD",
+                  "billingDuration": "P1M",
+                  "referenceQuantity": {
+                    "@type": "QuantitativeValue",
+                    "value": "1",
+                    "unitText": "month"
+                  }
+                },
+                "description": "For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.",
+                "url": "https://www.dimo.org/pricing",
+                "availability": "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                "name": "DIMO Enterprise",
+                "price": "0",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                  "@type": "PriceSpecification",
+                  "priceCurrency": "USD",
+                  "price": "Contact for pricing"
+                },
+                "description": "Custom solutions for large-scale deployments with dedicated support, custom SLAs, and on-premise options.",
+                "url": "https://www.dimo.org/pricing",
+                "availability": "https://schema.org/InStock"
+              }
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "ratingCount": "4",
+              "reviewCount": "4"
+            }
+          })}
+        </script>
+      </Head>
+
+      <div className={styles.pricingPage}>
+        <CustomNavbar dark={true} />
+
+        <main>
+          <HeroSection
+            planType={planType}
+            setPlanType={setPlanType}
+            billingCycle={billingCycle}
+            setBillingCycle={setBillingCycle}
+          />
+          <PricingGrid planType={planType} billingCycle={billingCycle} />
+        </main>
+
+        <FooterTheme />
+      </div>
+    </>
   );
 }

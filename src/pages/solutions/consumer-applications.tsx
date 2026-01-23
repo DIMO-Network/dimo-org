@@ -4,6 +4,7 @@ import Head from '@docusaurus/Head';
 import styles from './solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
   Star,
@@ -423,7 +424,7 @@ export default function ConsumerApplicationsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://docs.dimo.org/solutions/consumer-applications" />
+        <link rel="canonical" href="https://www.dimo.org/solutions/consumer-applications" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -441,6 +442,14 @@ export default function ConsumerApplicationsPage(): ReactNode {
 
       <div className={styles.industryPage}>
         <CustomNavbar dark={true} />
+
+        <Breadcrumbs
+          items={[
+            { name: 'Home', url: 'https://www.dimo.org/' },
+            { name: 'Solutions', url: 'https://www.dimo.org/#solutions' },
+            { name: 'Consumer Applications' },
+          ]}
+        />
 
         <main>
           <HeroSection />

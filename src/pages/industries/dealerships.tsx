@@ -4,6 +4,7 @@ import Head from '@docusaurus/Head';
 import styles from './industry.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
   Star,
@@ -422,7 +423,7 @@ export default function DealershipsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://docs.dimo.org/dealerships" />
+        <link rel="canonical" href="https://www.dimo.org/industries/dealerships" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -447,6 +448,14 @@ export default function DealershipsPage(): ReactNode {
 
       <div className={styles.industryPage}>
         <CustomNavbar dark={true} />
+
+        <Breadcrumbs
+          items={[
+            { name: 'Home', url: 'https://www.dimo.org/' },
+            { name: 'Industries', url: 'https://www.dimo.org/#industries' },
+            { name: 'Dealerships' },
+          ]}
+        />
 
         <main>
           <HeroSection />

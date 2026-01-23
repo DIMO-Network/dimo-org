@@ -1,5 +1,6 @@
 import React, { type ReactNode, useState, useEffect } from 'react';
 import Link from '@docusaurus/Link';
+import Head from '@docusaurus/Head';
 import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
@@ -407,20 +408,126 @@ function CTASection() {
 
 export default function Home(): ReactNode {
   return (
-    <div className={styles.homePage}>
-      <CustomNavbar dark={true} />
+    <>
+      <Head>
+        {/* Primary Meta Tags */}
+        <title>DIMO | Vehicle Intelligence Platform for Connected Car Development</title>
+        <meta name="title" content="DIMO | Vehicle Intelligence Platform for Connected Car Development" />
+        <meta
+          name="description"
+          content="Build intelligent vehicle apps with DIMO's connected car platform. Access real-time data from 50+ OEMs including Tesla, Ford, BMW. AI-ready APIs, privacy-first architecture, and plug-and-play hardware. Start free."
+        />
+        <meta
+          name="keywords"
+          content="vehicle data API, connected car platform, automotive developer platform, vehicle intelligence, car API, telematics API, OEM API, vehicle data, automotive AI, DIMO, vehicle SDK"
+        />
 
-      <main>
-        <HeroSection />
-        <AutomateOperationsSection />
-        <BigFeatureSection />
-        <FeaturesGrid />
-        <TestimonialsSection />
-        <HardwareSection />
-        <CTASection />
-      </main>
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://www.dimo.org/" />
 
-      <FooterTheme />
-    </div>
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.dimo.org/" />
+        <meta property="og:title" content="DIMO | Vehicle Intelligence Platform for Connected Car Development" />
+        <meta
+          property="og:description"
+          content="Build intelligent vehicle apps with DIMO's connected car platform. Access real-time data from 50+ OEMs including Tesla, Ford, BMW. AI-ready APIs, privacy-first architecture, and plug-and-play hardware."
+        />
+        <meta property="og:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+        <meta property="og:site_name" content="DIMO" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.dimo.org/" />
+        <meta name="twitter:title" content="DIMO | Vehicle Intelligence Platform for Connected Car Development" />
+        <meta
+          name="twitter:description"
+          content="Build intelligent vehicle apps with DIMO's connected car platform. Access real-time data from 50+ OEMs. Start free."
+        />
+        <meta name="twitter:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+
+        {/* Additional SEO */}
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="author" content="DIMO" />
+
+        {/* Structured Data - Organization */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DIMO",
+            "url": "https://www.dimo.org",
+            "logo": "https://www.dimo.org/img/dimo-build-logo-dark.svg",
+            "description": "Developer platform for connected vehicle data and intelligent vehicle applications",
+            "foundingDate": "2021",
+            "sameAs": [
+              "https://github.com/DIMO-Network",
+              "https://twitter.com/dimo_network",
+              "https://discord.gg/dimonetwork"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Developer Support",
+              "email": "developer-support@dimo.org"
+            }
+          })}
+        </script>
+
+        {/* Structured Data - SoftwareApplication */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "DIMO Platform",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "description": "Free tier available with paid plans for advanced features"
+            },
+            "description": "Vehicle intelligence platform that enables developers to build apps with real-time data from 50+ automotive OEMs",
+            "url": "https://www.dimo.org",
+            "screenshot": "https://www.dimo.org/img/dimo-social-card.png",
+            "softwareVersion": "3.0",
+            "applicationSubCategory": "API Platform",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "ratingCount": "4",
+              "reviewCount": "4"
+            },
+            "featureList": [
+              "Universal OEM compatibility (50+ manufacturers)",
+              "AI-ready data streams",
+              "Privacy-preserving architecture",
+              "Plug-and-play hardware support",
+              "Open source core",
+              "Real-time vehicle telemetry",
+              "Agentic workflow development"
+            ]
+          })}
+        </script>
+      </Head>
+
+      <div className={styles.homePage}>
+        <CustomNavbar dark={true} />
+
+        <main>
+          <HeroSection />
+          <AutomateOperationsSection />
+          <BigFeatureSection />
+          <FeaturesGrid />
+          <TestimonialsSection />
+          <HardwareSection />
+          <CTASection />
+        </main>
+
+        <FooterTheme />
+      </div>
+    </>
   );
 }

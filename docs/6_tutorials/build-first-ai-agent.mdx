@@ -1,0 +1,746 @@
+---
+title: Chat with Your Vehicle Using AI
+description: Learn how to create conversational AI agents that can interact with vehicle data through natural language.
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Head from '@docusaurus/Head';
+
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Build a Conversational Vehicle AI Agent with DIMO",
+      "description": "Step-by-step guide to create AI agents that chat about vehicle data using the DIMO Agents API",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "DIMO Data SDK"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "DIMO Agents API"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Set Up Authentication",
+          "text": "Configure DIMO SDK with Developer credentials and API key"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Create an AI Agent",
+          "text": "Use the Agents API to create a conversational agent with vehicle access"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Send Messages",
+          "text": "Chat with your vehicle using natural language queries"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Stream Responses",
+          "text": "Implement real-time streaming for better user experience"
+        }
+      ]
+    })}
+  </script>
+</Head>
+
+# Chat with Your Vehicle Using AI
+
+Learn how to create conversational AI agents that understand and respond to natural language questions about your vehicle.
+
+:::info Quick Info
+**⏱️ Time to complete:** 15 minutes
+**💰 Cost:** Free (Hobbyist tier)
+**📚 Prerequisites:** Completed [Connect Your First Vehicle](/docs/tutorials/connect-first-vehicle), basic TypeScript/JavaScript knowledge
+**🎯 Difficulty:** Intermediate
+:::
+
+:::danger Alpha Software
+The Agents API is in active development and **is highly subject to change**. Build at your own risk.
+:::
+
+## What You'll Build
+
+By the end of this tutorial, you'll have:
+- ✅ A conversational AI agent connected to your vehicle
+- ✅ Natural language queries for vehicle data ("What's my battery level?")
+- ✅ Real-time streaming responses
+- ✅ Conversation history and context
+- ✅ Multiple personality options for different use cases
+
+---
+
+## How It Works
+
+The DIMO Agents API enables AI agents that can:
+- **Query vehicle identity** (make, model, year, owner)
+- **Access real-time telemetry** (speed, fuel, location, battery)
+- **Perform web searches** ("Find charging stations near me")
+- **Maintain conversation context** (remember previous questions)
+- **Stream responses** in real-time for better UX
+
+---
+
+## Step 1: Set Up Your Environment
+
+**Time:** 2 minutes
+
+Make sure you have the DIMO Data SDK installed and your credentials configured:
+
+```bash title=".env"
+DIMO_CLIENT_ID="your_client_id"
+DIMO_REDIRECT_URI="http://localhost:3000/callback"
+DIMO_API_KEY="your_api_key"
+USER_WALLET="0x1234567890abcdef1234567890abcdef12345678"
+VEHICLE_IDS="[872, 1234]"  # JSON array of vehicle token IDs
+```
+
+:::tip Getting Vehicle IDs
+After users share their vehicles via DIMO Connect, you can find the vehicle token IDs in the [Developer Console](https://console.dimo.org) or by querying the [Identity API](/docs/api-references/identity-api).
+:::
+
+---
+
+## Step 2: Create Your First AI Agent
+
+**Time:** 3 minutes
+
+Create an AI agent with access to your vehicle data:
+
+<Tabs>
+<TabItem value="typescript" label="TypeScript">
+
+```typescript title="src/create-agent.ts"
+import { DIMO } from '@dimo-network/data-sdk';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const dimo = new DIMO('Production');
+
+async function createVehicleAgent() {
+  try {
+    // 1. Get Developer JWT
+    const auth = await dimo.auth.getDeveloperJwt({
+      client_id: process.env.DIMO_CLIENT_ID!,
+      domain: process.env.DIMO_REDIRECT_URI!,
+      private_key: process.env.DIMO_API_KEY!,
+    });
+
+    // 2. Create AI Agent
+    const agent = await dimo.agents.createAgent({
+      type: "driver_agent_v1",
+      personality: "uncle_mechanic", // Warm, friendly automotive advisor
+      secrets: {
+        DIMO_API_KEY: process.env.DIMO_API_KEY!
+      },
+      variables: {
+        USER_WALLET: process.env.USER_WALLET!,
+        VEHICLE_IDS: process.env.VEHICLE_IDS! // e.g., "[872, 1234]"
+      }
+    });
+
+    console.log('✅ Agent created successfully!');
+    console.log('Agent ID:', agent.agentId);
+    console.log('Personality:', agent.personality);
+
+    return agent;
+
+  } catch (error) {
+    console.error('❌ Failed to create agent:', error);
+    throw error;
+  }
+}
+
+// Export for use in other files
+export { dimo, createVehicleAgent };
+
+// Run if called directly
+if (require.main === module) {
+  createVehicleAgent();
+}
+```
+
+</TabItem>
+<TabItem value="javascript" label="JavaScript">
+
+```javascript title="src/create-agent.js"
+const { DIMO } = require('@dimo-network/data-sdk');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const dimo = new DIMO('Production');
+
+async function createVehicleAgent() {
+  try {
+    // 1. Get Developer JWT
+    const auth = await dimo.auth.getDeveloperJwt({
+      client_id: process.env.DIMO_CLIENT_ID,
+      domain: process.env.DIMO_REDIRECT_URI,
+      private_key: process.env.DIMO_API_KEY,
+    });
+
+    // 2. Create AI Agent
+    const agent = await dimo.agents.createAgent({
+      type: "driver_agent_v1",
+      personality: "uncle_mechanic", // Warm, friendly automotive advisor
+      secrets: {
+        DIMO_API_KEY: process.env.DIMO_API_KEY
+      },
+      variables: {
+        USER_WALLET: process.env.USER_WALLET,
+        VEHICLE_IDS: process.env.VEHICLE_IDS // e.g., "[872, 1234]"
+      }
+    });
+
+    console.log('✅ Agent created successfully!');
+    console.log('Agent ID:', agent.agentId);
+    console.log('Personality:', agent.personality);
+
+    return agent;
+
+  } catch (error) {
+    console.error('❌ Failed to create agent:', error);
+    throw error;
+  }
+}
+
+// Export for use in other files
+module.exports = { dimo, createVehicleAgent };
+
+// Run if called directly
+if (require.main === module) {
+  createVehicleAgent();
+}
+```
+
+</TabItem>
+</Tabs>
+
+**Test it:**
+
+```bash
+node src/create-agent.js
+```
+
+**Expected Output:**
+```
+✅ Agent created successfully!
+Agent ID: agent-abc123def456
+Personality: uncle_mechanic
+```
+
+---
+
+## Step 3: Send Messages to Your Agent
+
+**Time:** 3 minutes
+
+Now let's chat with the agent using natural language:
+
+```typescript title="src/chat-with-agent.ts"
+import { dimo } from './create-agent';
+
+async function chatWithVehicle(agentId: string, message: string) {
+  try {
+    const response = await dimo.agents.sendMessage({
+      agentId,
+      message
+    });
+
+    console.log('\n🤖 Agent Response:');
+    console.log(response.response);
+
+    if (response.vehiclesQueried && response.vehiclesQueried.length > 0) {
+      console.log('\n📊 Vehicles queried:', response.vehiclesQueried);
+    }
+
+    return response;
+
+  } catch (error) {
+    console.error('❌ Error sending message:', error);
+    throw error;
+  }
+}
+
+// Example usage
+async function main() {
+  const agentId = process.argv[2] || 'agent-abc123def456';
+
+  // Example conversations
+  const questions = [
+    "What's the make and model of my vehicle?",
+    "What's my current battery level?",
+    "How many miles are on the odometer?",
+    "Where is my car right now?",
+    "What's my vehicle's current speed?"
+  ];
+
+  for (const question of questions) {
+    console.log(`\n💬 You: ${question}`);
+    await chatWithVehicle(agentId, question);
+
+    // Small delay between requests
+    await new Promise(r => setTimeout(r, 500));
+  }
+}
+
+if (require.main === module) {
+  main();
+}
+
+export { chatWithVehicle };
+```
+
+**Run it:**
+
+```bash
+node src/chat-with-agent.js agent-abc123def456
+```
+
+**Expected Output:**
+
+```
+💬 You: What's the make and model of my vehicle?
+🤖 Agent Response:
+Hey there! Your vehicle is a 2020 Tesla Model 3. Great car! What else can I help you with?
+
+📊 Vehicles queried: [872]
+
+💬 You: What's my current battery level?
+🤖 Agent Response:
+Looking good! Your battery is sitting at 82% right now. You've got about 245 miles of range left. Perfect for your daily driving!
+
+📊 Vehicles queried: [872]
+```
+
+---
+
+## Step 4: Stream Responses in Real-Time
+
+**Time:** 4 minutes
+
+For a better user experience, stream responses token-by-token as the agent generates them:
+
+```typescript title="src/stream-chat.ts"
+import { dimo } from './create-agent';
+
+async function streamChatWithVehicle(agentId: string, message: string) {
+  try {
+    console.log(`\n💬 You: ${message}`);
+    console.log('🤖 Agent: ');
+
+    const stream = dimo.agents.streamMessage({
+      agentId,
+      message
+    });
+
+    // Handle streaming tokens
+    stream.on('token', (chunk) => {
+      // Print each token as it arrives (no newline)
+      process.stdout.write(chunk.content);
+    });
+
+    // Handle completion
+    stream.on('done', (metadata) => {
+      console.log('\n'); // Add newline after response completes
+
+      if (metadata.vehiclesQueried && metadata.vehiclesQueried.length > 0) {
+        console.log(`📊 Vehicles queried: ${metadata.vehiclesQueried.join(', ')}`);
+      }
+    });
+
+    // Handle errors
+    stream.on('error', (error) => {
+      console.error('\n❌ Stream error:', error);
+    });
+
+  } catch (error) {
+    console.error('❌ Error streaming message:', error);
+    throw error;
+  }
+}
+
+// Example: Interactive chat loop
+async function interactiveChat(agentId: string) {
+  const readline = require('readline');
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  console.log('🚗 Vehicle Chat Agent - Type "exit" to quit\n');
+
+  const askQuestion = () => {
+    rl.question('💬 You: ', async (message: string) => {
+      if (message.toLowerCase() === 'exit') {
+        console.log('👋 Goodbye!');
+        rl.close();
+        return;
+      }
+
+      await streamChatWithVehicle(agentId, message);
+      askQuestion(); // Continue the loop
+    });
+  };
+
+  askQuestion();
+}
+
+// Usage
+if (require.main === module) {
+  const agentId = process.argv[2];
+
+  if (!agentId) {
+    console.error('Usage: node stream-chat.js <agentId>');
+    process.exit(1);
+  }
+
+  interactiveChat(agentId);
+}
+
+export { streamChatWithVehicle, interactiveChat };
+```
+
+**Run it:**
+
+```bash
+node src/stream-chat.js agent-abc123def456
+```
+
+**Interactive Experience:**
+
+```
+🚗 Vehicle Chat Agent - Type "exit" to quit
+
+💬 You: How's my car doing today?
+🤖 Agent: Hey there! Your Tesla Model 3 is looking great today. Battery's at 82%, odometer shows 12,543 miles, and everything's running smoothly. No warning lights or trouble codes - you're all set! Anything specific you'd like me to check?
+
+📊 Vehicles queried: 872
+
+💬 You: Find charging stations near me
+🤖 Agent: Good question! Based on your current location at 37.7749°N, 122.4194°W (San Francisco area), here are some nearby charging stations:
+
+1. **Supercharger - Market St** - 0.3 miles away
+2. **ChargePoint - Civic Center** - 0.5 miles away
+3. **EVgo - Mission District** - 1.2 miles away
+
+Would you like directions to any of these?
+
+💬 You: exit
+👋 Goodbye!
+```
+
+---
+
+## Step 5: Retrieve Conversation History
+
+**Time:** 2 minutes
+
+Access the full conversation history for context or analytics:
+
+```typescript title="src/get-history.ts"
+import { dimo } from './create-agent';
+
+async function getConversationHistory(agentId: string, limit: number = 50) {
+  try {
+    const history = await dimo.agents.getHistory({
+      agentId,
+      limit
+    });
+
+    console.log(`\n📜 Conversation History (${history.messages.length} messages):\n`);
+
+    history.messages.forEach((msg, index) => {
+      const speaker = msg.role === 'user' ? '💬 You' : '🤖 Agent';
+      console.log(`${speaker}: ${msg.content}`);
+      console.log(`   ⏰ ${new Date(msg.timestamp).toLocaleString()}\n`);
+    });
+
+    return history;
+
+  } catch (error) {
+    console.error('❌ Error retrieving history:', error);
+    throw error;
+  }
+}
+
+// Usage
+if (require.main === module) {
+  const agentId = process.argv[2];
+
+  if (!agentId) {
+    console.error('Usage: node get-history.js <agentId>');
+    process.exit(1);
+  }
+
+  getConversationHistory(agentId);
+}
+
+export { getConversationHistory };
+```
+
+---
+
+## Agent Personalities
+
+Choose the right personality for your use case:
+
+### `uncle_mechanic` (Default)
+Warm, friendly automotive advisor with 30+ years of experience. Perfect for consumer apps.
+
+**Example:**
+> "Hey there! Your battery's looking great at 82%. That's plenty for your daily driving. Don't worry about charging until you hit around 20% - keeps the battery healthy long-term!"
+
+### `master_technician`
+Methodical diagnostic expert who thinks systematically. Great for troubleshooting.
+
+**Example:**
+> "Based on the telemetry, I'm seeing your battery state of charge at 82% with a range of 245 miles. The charging system is operating within normal parameters. Let me know if you've noticed any irregular behavior."
+
+### `concierge`
+Premium service advisor with refined, proactive communication. Ideal for luxury brands.
+
+**Example:**
+> "Good day. I'd be delighted to inform you that your vehicle is performing beautifully. Battery charge is at 82%, well within optimal range. If I may suggest, this would be an excellent time to plan any upcoming journeys."
+
+### `driving_enthusiast`
+Passionate car enthusiast who celebrates performance. Perfect for sports car apps.
+
+**Example:**
+> "Oh man, those numbers look sweet! 82% charge and 245 miles of range - you're ready to rock! Your Model 3 is sitting pretty. Ready to dive into some performance metrics?"
+
+### `fleet_manager_pro`
+Data-driven fleet operations advisor. Best for business/commercial applications.
+
+**Example:**
+> "Vehicle 872 is currently at 82% SOC with 245 miles of range available. This represents approximately 90 kWh of usable capacity. The vehicle is operating within expected efficiency parameters for urban driving conditions."
+
+**Change personality:**
+
+```typescript
+const agent = await dimo.agents.createAgent({
+  type: "driver_agent_v1",
+  personality: "driving_enthusiast", // Choose your personality
+  secrets: { DIMO_API_KEY: process.env.DIMO_API_KEY! },
+  variables: {
+    USER_WALLET: process.env.USER_WALLET!,
+    VEHICLE_IDS: process.env.VEHICLE_IDS!
+  }
+});
+```
+
+---
+
+## Complete Example: CLI Chat Application
+
+Here's a production-ready CLI chat application:
+
+```typescript title="examples/vehicle-chat-cli.ts"
+import { DIMO } from '@dimo-network/data-sdk';
+import * as dotenv from 'dotenv';
+import * as readline from 'readline';
+
+dotenv.config();
+
+const dimo = new DIMO('Production');
+
+class VehicleChatCLI {
+  private agentId: string | null = null;
+
+  async initialize() {
+    try {
+      // Authenticate
+      const auth = await dimo.auth.getDeveloperJwt({
+        client_id: process.env.DIMO_CLIENT_ID!,
+        domain: process.env.DIMO_REDIRECT_URI!,
+        private_key: process.env.DIMO_API_KEY!,
+      });
+
+      // Create agent
+      const agent = await dimo.agents.createAgent({
+        type: "driver_agent_v1",
+        personality: process.env.AGENT_PERSONALITY || "uncle_mechanic",
+        secrets: {
+          DIMO_API_KEY: process.env.DIMO_API_KEY!
+        },
+        variables: {
+          USER_WALLET: process.env.USER_WALLET!,
+          VEHICLE_IDS: process.env.VEHICLE_IDS!
+        }
+      });
+
+      this.agentId = agent.agentId;
+
+      console.log('\n✅ Connected to your vehicle!');
+      console.log(`🤖 Agent: ${agent.personality}\n`);
+
+    } catch (error) {
+      console.error('❌ Initialization failed:', error);
+      throw error;
+    }
+  }
+
+  async chat(message: string): Promise<void> {
+    if (!this.agentId) {
+      throw new Error('Agent not initialized');
+    }
+
+    return new Promise((resolve, reject) => {
+      const stream = dimo.agents.streamMessage({
+        agentId: this.agentId!,
+        message
+      });
+
+      process.stdout.write('🤖 Agent: ');
+
+      stream.on('token', (chunk) => {
+        process.stdout.write(chunk.content);
+      });
+
+      stream.on('done', () => {
+        console.log('\n');
+        resolve();
+      });
+
+      stream.on('error', (error) => {
+        console.error('\n❌ Error:', error);
+        reject(error);
+      });
+    });
+  }
+
+  async start() {
+    await this.initialize();
+
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    console.log('Type your questions below (or "exit" to quit):\n');
+
+    const askQuestion = () => {
+      rl.question('💬 You: ', async (message: string) => {
+        if (message.toLowerCase() === 'exit') {
+          console.log('👋 Goodbye!');
+          rl.close();
+          return;
+        }
+
+        if (!message.trim()) {
+          askQuestion();
+          return;
+        }
+
+        await this.chat(message);
+        askQuestion();
+      });
+    };
+
+    askQuestion();
+  }
+}
+
+// Run the CLI
+if (require.main === module) {
+  const cli = new VehicleChatCLI();
+  cli.start().catch(error => {
+    console.error('Fatal error:', error);
+    process.exit(1);
+  });
+}
+
+export { VehicleChatCLI };
+```
+
+**Run it:**
+
+```bash
+node examples/vehicle-chat-cli.js
+```
+
+---
+
+## Troubleshooting
+
+### Issue: "Agent creation failed"
+
+**Cause:** Invalid credentials or missing vehicle access.
+
+**Solution:**
+- Verify your API key in `.env`
+- Ensure `USER_WALLET` matches the vehicle owner's wallet address
+- Check that `VEHICLE_IDS` contains valid token IDs you have access to
+
+### Issue: "Agent can't access vehicle data"
+
+**Cause:** Insufficient permissions or incorrect vehicle IDs.
+
+**Solution:**
+- Verify vehicles are shared with your Developer License
+- Check vehicle IDs in the [Developer Console](https://console.dimo.org)
+- Ensure the owner granted data permissions via DIMO Connect
+
+### Issue: "Stream not working"
+
+**Cause:** Event listener setup issue.
+
+**Solution:**
+```typescript
+// Make sure to set up all three listeners:
+stream.on('token', (chunk) => { /* ... */ });
+stream.on('done', (metadata) => { /* ... */ });
+stream.on('error', (error) => { /* ... */ });
+```
+
+---
+
+## Next Steps
+
+🎉 **Congratulations!** You've built a conversational AI agent for vehicle data.
+
+**Continue learning:**
+
+1. **[Explore Agents API](/docs/api-references/agents-api)**
+   Deep dive into all available agent capabilities
+
+2. **[Build a Web Interface](/docs/build/building-with-tools/client-sdk-dimo-connect)**
+   Create a web app with React and the Login with DIMO SDK
+
+3. **[Add Voice Integration](/docs/tutorials/voice-assistant)**
+   Connect your agent to voice assistants (coming soon)
+
+4. **[Deploy to Production](/docs/build/deployment)**
+   Best practices for production deployments
+
+---
+
+## Additional Resources
+
+- 📚 [Agents API Reference](/docs/api-references/agents-api)
+- 📚 [DIMO Data SDK Documentation](/docs/build/building-with-tools/server-sdk)
+- 🎮 [Telemetry API](/docs/api-references/telemetry-api)
+- 💬 [Discord Community](https://discord.gg/dimonetwork)
+- 📧 [developer-support@dimo.org](mailto:developer-support@dimo.org)
+
+**Questions?** Join our [Discord](https://discord.gg/dimonetwork) and ask in the `#developers` channel!

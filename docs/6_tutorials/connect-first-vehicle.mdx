@@ -1,0 +1,600 @@
+---
+title: Connect Your First Vehicle
+description: Step-by-step tutorial to connect your first vehicle to DIMO and access real-time vehicle data.
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Head from '@docusaurus/Head';
+
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Connect Your First Vehicle to DIMO",
+      "description": "Step-by-step guide to connect a vehicle to DIMO and access real-time vehicle data using the DIMO Data SDK",
+      "totalTime": "PT10M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "DIMO Data SDK"
+        },
+        {
+          "@type": "HowToTool",
+          "name": "Node.js"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Create DIMO Developer Account",
+          "text": "Sign up for a DIMO Developer License at console.dimo.org"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Get Developer Credentials",
+          "text": "Obtain your Client ID, Redirect URI, and API Key"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Install DIMO Data SDK",
+          "text": "Install the SDK using npm or your preferred package manager"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Authenticate and Get Vehicle Data",
+          "text": "Use the SDK to authenticate and fetch telemetry data"
+        }
+      ]
+    })}
+  </script>
+</Head>
+
+# Connect Your First Vehicle
+
+Learn how to connect your first vehicle to DIMO and access real-time vehicle data.
+
+:::info Quick Info
+**⏱️ Time to complete:** 10 minutes
+**💰 Cost:** Free (Hobbyist tier)
+**📚 Prerequisites:** Basic JavaScript/TypeScript knowledge, Node.js installed
+**🎯 Difficulty:** Beginner
+:::
+
+## What You'll Build
+
+By the end of this tutorial, you'll have:
+- ✅ A DIMO Developer License with credentials
+- ✅ The DIMO Data SDK installed and configured
+- ✅ Authentication working (Developer JWT)
+- ✅ A vehicle connected via DIMO Connect
+- ✅ Real-time telemetry data flowing to your application
+
+---
+
+## Step 1: Create Your Developer License
+
+**Time:** 2 minutes
+
+1. Visit [console.dimo.org](https://console.dimo.org)
+2. Sign up for a free account (or sign in if you already have one)
+3. Create a **Developer License** - this acts like an access card for the DIMO platform
+4. Give your license a descriptive name (e.g., "My First DIMO App")
+
+:::tip What is a Developer License?
+A Developer License is your application's identity on the DIMO platform. It allows you to request data from vehicle owners and access DIMO APIs.
+:::
+
+**Expected Result:** You should see your new Developer License in the console.
+
+---
+
+## Step 2: Get Your Credentials
+
+**Time:** 1 minute
+
+From your Developer License in the console, you'll need three things:
+
+1. **Client ID** - Your application's public identifier
+2. **Redirect URI** - Where users return after granting permissions (e.g., `http://localhost:3000/callback`)
+3. **API Key** - Your private key for authentication
+
+:::warning Security Notice
+Keep your API Key secure! Never commit it to Git or share it publicly. Store it in environment variables.
+:::
+
+**Store credentials safely:**
+
+Create a `.env` file in your project:
+
+```bash title=".env"
+DIMO_CLIENT_ID="your_client_id_here"
+DIMO_REDIRECT_URI="http://localhost:3000/callback"
+DIMO_API_KEY="your_api_key_here"
+```
+
+Add `.env` to your `.gitignore`:
+```bash title=".gitignore"
+.env
+```
+
+---
+
+## Step 3: Install the DIMO Data SDK
+
+**Time:** 30 seconds
+
+The DIMO Data SDK provides methods for authentication and querying vehicle data.
+
+<Tabs>
+<TabItem value="npm" label="npm">
+
+```bash
+npm install @dimo-network/data-sdk
+```
+
+</TabItem>
+<TabItem value="yarn" label="Yarn">
+
+```bash
+yarn add @dimo-network/data-sdk
+```
+
+</TabItem>
+<TabItem value="pnpm" label="pnpm">
+
+```bash
+pnpm add @dimo-network/data-sdk
+```
+
+</TabItem>
+</Tabs>
+
+**Verify installation:**
+
+```bash
+npm list @dimo-network/data-sdk
+```
+
+---
+
+## Step 4: Authenticate (Get Developer JWT)
+
+**Time:** 2 minutes
+
+Create a file to initialize the DIMO SDK and get your Developer JWT:
+
+<Tabs>
+<TabItem value="typescript" label="TypeScript">
+
+```typescript title="src/dimo-auth.ts"
+import { DIMO } from '@dimo-network/data-sdk';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
+// Initialize DIMO SDK
+const dimo = new DIMO('Production'); // or 'Staging' for testing
+
+async function authenticateWithDIMO() {
+  try {
+    // Get Developer JWT
+    const auth = await dimo.auth.getDeveloperJwt({
+      client_id: process.env.DIMO_CLIENT_ID!,
+      domain: process.env.DIMO_REDIRECT_URI!,
+      private_key: process.env.DIMO_API_KEY!,
+    });
+
+    console.log('✅ Authentication successful!');
+    console.log('Developer JWT:', auth.access_token.substring(0, 20) + '...');
+
+    return auth;
+  } catch (error) {
+    console.error('❌ Authentication failed:', error);
+    throw error;
+  }
+}
+
+// Export for use in other files
+export { dimo, authenticateWithDIMO };
+
+// Run if called directly
+if (require.main === module) {
+  authenticateWithDIMO();
+}
+```
+
+</TabItem>
+<TabItem value="javascript" label="JavaScript">
+
+```javascript title="src/dimo-auth.js"
+const { DIMO } = require('@dimo-network/data-sdk');
+const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config();
+
+// Initialize DIMO SDK
+const dimo = new DIMO('Production'); // or 'Staging' for testing
+
+async function authenticateWithDIMO() {
+  try {
+    // Get Developer JWT
+    const auth = await dimo.auth.getDeveloperJwt({
+      client_id: process.env.DIMO_CLIENT_ID,
+      domain: process.env.DIMO_REDIRECT_URI,
+      private_key: process.env.DIMO_API_KEY,
+    });
+
+    console.log('✅ Authentication successful!');
+    console.log('Developer JWT:', auth.access_token.substring(0, 20) + '...');
+
+    return auth;
+  } catch (error) {
+    console.error('❌ Authentication failed:', error);
+    throw error;
+  }
+}
+
+// Export for use in other files
+module.exports = { dimo, authenticateWithDIMO };
+
+// Run if called directly
+if (require.main === module) {
+  authenticateWithDIMO();
+}
+```
+
+</TabItem>
+</Tabs>
+
+**Test your authentication:**
+
+```bash
+node src/dimo-auth.js
+```
+
+**Expected Output:**
+```
+✅ Authentication successful!
+Developer JWT: eyJhbGciOiJSUzI1NiIs...
+```
+
+---
+
+## Step 5: Connect a Vehicle with DIMO Connect
+
+**Time:** 3 minutes
+
+To access vehicle data, users must grant your application permission. DIMO Connect is the flow where users authenticate and share their vehicles with your app.
+
+### Create Your DIMO Connect URL
+
+Build a URL that users will visit to grant permissions:
+
+```typescript title="src/connect-url.ts"
+const clientId = process.env.DIMO_CLIENT_ID;
+const redirectUri = encodeURIComponent(process.env.DIMO_REDIRECT_URI!);
+
+// Build DIMO Connect URL
+const dimoConnectUrl = `https://login.dimo.org?client_id=${clientId}&redirect_uri=${redirectUri}`;
+
+console.log('Share this URL with users to connect their vehicles:');
+console.log(dimoConnectUrl);
+```
+
+### What Happens Next
+
+1. **User visits your DIMO Connect URL**
+2. **User logs in** with their DIMO account (or creates one)
+3. **User selects which vehicle(s)** to share with your app
+4. **User is redirected** back to your `redirect_uri` with authorization
+5. **You receive a `tokenId`** for each vehicle they shared
+
+:::tip Using the Mobile App
+Users can also connect vehicles through the DIMO Mobile app and then grant permissions to your app through the "Connected Apps" settings.
+:::
+
+---
+
+## Step 6: Get Vehicle JWT and Fetch Data
+
+**Time:** 2 minutes
+
+Once a user has shared a vehicle with you, you'll receive a `tokenId`. Use this to get a Vehicle JWT and query telemetry data:
+
+```typescript title="src/get-vehicle-data.ts"
+import { dimo, authenticateWithDIMO } from './dimo-auth';
+
+async function getVehicleData(vehicleTokenId: number) {
+  try {
+    // 1. Get Developer JWT
+    const developerAuth = await authenticateWithDIMO();
+
+    // 2. Exchange for Vehicle JWT
+    const vehicleAuth = await dimo.tokenexchange.getVehicleJwt({
+      ...developerAuth,
+      tokenId: vehicleTokenId,
+      privileges: [1, 3], // Request: all-time non-location data + current location
+    });
+
+    console.log('✅ Vehicle JWT obtained!\n');
+
+    // 3. Query Telemetry API for real-time data
+    const telemetryData = await dimo.telemetry.query({
+      ...vehicleAuth,
+      query: `
+        query GetLatestSignals($tokenId: Int!) {
+          signalsLatest(tokenId: $tokenId) {
+            speed {
+              value
+              timestamp
+            }
+            powertrainRange {
+              value
+              timestamp
+            }
+            chargeLevel: batterySoc {
+              value
+              timestamp
+            }
+            latitude {
+              value
+              timestamp
+            }
+            longitude {
+              value
+              timestamp
+            }
+          }
+        }
+      `,
+      variables: {
+        tokenId: vehicleTokenId
+      }
+    });
+
+    console.log('📊 Latest Vehicle Data:');
+    console.log(JSON.stringify(telemetryData, null, 2));
+
+    return telemetryData;
+
+  } catch (error) {
+    console.error('❌ Error fetching vehicle data:', error);
+    throw error;
+  }
+}
+
+// Example usage (replace with actual tokenId from DIMO Connect)
+// getVehicleData(12345);
+
+export { getVehicleData };
+```
+
+**Run your code (replace `12345` with your actual vehicle tokenId):**
+
+```bash
+node -r dotenv/config src/get-vehicle-data.js
+```
+
+**Expected Output:**
+
+```json
+✅ Vehicle JWT obtained!
+
+📊 Latest Vehicle Data:
+{
+  "data": {
+    "signalsLatest": {
+      "speed": {
+        "value": 45.5,
+        "timestamp": "2025-01-22T15:30:00Z"
+      },
+      "powertrainRange": {
+        "value": 245,
+        "timestamp": "2025-01-22T15:30:00Z"
+      },
+      "chargeLevel": {
+        "value": 82,
+        "timestamp": "2025-01-22T15:30:00Z"
+      },
+      "latitude": {
+        "value": 37.7749,
+        "timestamp": "2025-01-22T15:30:00Z"
+      },
+      "longitude": {
+        "value": -122.4194,
+        "timestamp": "2025-01-22T15:30:00Z"
+      }
+    }
+  }
+}
+```
+
+---
+
+## Troubleshooting
+
+### Issue: "Invalid credentials"
+
+**Cause:** Client ID, Redirect URI, or API Key is incorrect.
+
+**Solution:**
+1. Verify credentials in the DIMO Console
+2. Check environment variables are loading:
+   ```typescript
+   console.log('Client ID:', process.env.DIMO_CLIENT_ID);
+   console.log('Has API Key:', !!process.env.DIMO_API_KEY);
+   ```
+3. Regenerate API Key if needed
+
+### Issue: "No vehicles found" / "Missing tokenId"
+
+**Cause:** No vehicles have been shared with your Developer License yet.
+
+**Solution:**
+1. Share the DIMO Connect URL with a user (or use it yourself)
+2. Complete the vehicle sharing flow
+3. Check shared vehicles in the [Developer Console](https://console.dimo.org) under "Vehicles"
+
+### Issue: "Token exchange failed"
+
+**Cause:** Invalid tokenId or insufficient permissions.
+
+**Solution:**
+- Verify the tokenId is correct
+- Check that the vehicle owner granted the specific permissions you're requesting (privileges array)
+
+### Issue: "Rate limit exceeded"
+
+**Cause:** Too many API requests in a short time.
+
+**Solution:**
+- **Hobbyist tier:** 10 requests/second limit
+- Add delays between requests: `await new Promise(r => setTimeout(r, 100));`
+- Upgrade to Core plan for higher limits
+
+---
+
+## Next Steps
+
+🎉 **Congratulations!** You've successfully connected your first vehicle to DIMO.
+
+**Continue learning:**
+
+1. **[Explore Telemetry API](/docs/api-references/telemetry-api)**
+   Discover all available vehicle signals and data points
+
+2. **[Chat with Your Vehicle Using AI](/docs/tutorials/build-first-ai-agent)**
+   Build conversational AI agents powered by vehicle data
+
+3. **[Set Up Webhooks](/docs/api-references/webhooks)**
+   Get real-time notifications when vehicle events occur
+
+4. **[Build with React SDK](/docs/build/building-with-tools/client-sdk-dimo-connect)**
+   Use `@dimo-network/login-with-dimo` for seamless user authentication
+
+5. **[Deploy to Production](/docs/build/deployment)**
+   Best practices for production deployments
+
+---
+
+## Complete Working Example
+
+Here's a complete example that ties everything together:
+
+```typescript title="examples/vehicle-dashboard.ts"
+import { DIMO } from '@dimo-network/data-sdk';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const dimo = new DIMO('Production');
+
+interface VehicleSnapshot {
+  tokenId: number;
+  speed: number | null;
+  range: number | null;
+  battery: number | null;
+  location: { lat: number; lng: number } | null;
+  timestamp: string;
+}
+
+async function getVehicleDashboard(vehicleTokenId: number): Promise<VehicleSnapshot> {
+  // 1. Authenticate
+  const devAuth = await dimo.auth.getDeveloperJwt({
+    client_id: process.env.DIMO_CLIENT_ID!,
+    domain: process.env.DIMO_REDIRECT_URI!,
+    private_key: process.env.DIMO_API_KEY!,
+  });
+
+  // 2. Get Vehicle JWT
+  const vehicleAuth = await dimo.tokenexchange.getVehicleJwt({
+    ...devAuth,
+    tokenId: vehicleTokenId,
+    privileges: [1, 3], // Non-location data + current location
+  });
+
+  // 3. Query latest telemetry
+  const result = await dimo.telemetry.query({
+    ...vehicleAuth,
+    query: `
+      query GetVehicleSnapshot($tokenId: Int!) {
+        signalsLatest(tokenId: $tokenId) {
+          speed { value timestamp }
+          powertrainRange { value }
+          batterySoc { value }
+          latitude { value }
+          longitude { value }
+        }
+      }
+    `,
+    variables: { tokenId: vehicleTokenId }
+  });
+
+  const signals = result.data.signalsLatest;
+
+  return {
+    tokenId: vehicleTokenId,
+    speed: signals.speed?.value || null,
+    range: signals.powertrainRange?.value || null,
+    battery: signals.batterySoc?.value || null,
+    location: signals.latitude && signals.longitude
+      ? { lat: signals.latitude.value, lng: signals.longitude.value }
+      : null,
+    timestamp: signals.speed?.timestamp || new Date().toISOString()
+  };
+}
+
+// Usage
+if (require.main === module) {
+  const tokenId = parseInt(process.argv[2] || '0');
+
+  if (!tokenId) {
+    console.error('Usage: node vehicle-dashboard.js <tokenId>');
+    process.exit(1);
+  }
+
+  getVehicleDashboard(tokenId)
+    .then(dashboard => {
+      console.log('\n🚗 Vehicle Dashboard:\n');
+      console.log(JSON.stringify(dashboard, null, 2));
+    })
+    .catch(error => {
+      console.error('Error:', error.message);
+      process.exit(1);
+    });
+}
+
+export { getVehicleDashboard };
+```
+
+**Run it:**
+```bash
+node -r dotenv/config examples/vehicle-dashboard.js 12345
+```
+
+---
+
+## Additional Resources
+
+- 📚 [DIMO Data SDK Documentation](/docs/build/building-with-tools/server-sdk)
+- 📚 [Authentication Guide](/docs/getting-started/authentication)
+- 🔌 [DIMO Connect (Client SDK)](/docs/build/building-with-tools/client-sdk-dimo-connect)
+- 🎮 [API References](/docs/api-references)
+- 💬 [Discord Community](https://discord.gg/dimonetwork) - Get help from developers
+- 📧 [developer-support@dimo.org](mailto:developer-support@dimo.org)
+
+**Questions?** Join our [Discord](https://discord.gg/dimonetwork) and ask in the `#developers` channel!

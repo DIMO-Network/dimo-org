@@ -1,0 +1,36 @@
+# robots.txt for dimo.org
+# Optimized for search engine crawling
+
+# Global rules
+User-agent: *
+Allow: /
+Disallow: /search
+
+# Sitemap location
+Sitemap: https://www.dimo.org/sitemap.xml
+
+# Specific bot configurations
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Allow social media bots for better preview cards
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block common bad bots (optional - can be expanded)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

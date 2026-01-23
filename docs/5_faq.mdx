@@ -1,5 +1,7 @@
 ---
 sidebar_position: 6
+title: Frequently Asked Questions
+description: Common questions about DIMO's vehicle intelligence platform, pricing, compatibility, and getting started with vehicle data APIs.
 ---
 
 import Stepper, { Step } from '@site/src/components/Stepper';
@@ -7,36 +9,497 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import DimoUrlBuilder from '@site/src/components/DimoUrlBuilder';
 import CustomDetails from '@site/src/components/CustomDetails';
+import Head from '@docusaurus/Head';
 
-# FAQs
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is DIMO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DIMO is a vehicle intelligence platform that allows developers to bring their own telematics, provides developers with a unified data API, privacy-preserving consent management infrastructure, and stablecoin payment rails."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does DIMO cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DIMO offers three pricing tiers: 1) Hobbyist (Free) - Perfect for individual developers, includes 1 AI agent plus $1.25 per vehicle/month. 2) Core ($349/month when billed annually) - For production apps, includes 100 vehicles, higher rate limits, and data storage. 3) Enterprise (Custom pricing) - Tailored solutions with dedicated support and on-premise options."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What vehicles does DIMO support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DIMO supports 50+ automotive OEMs with near-universal compatibility including: Tesla (all models), Ford, BMW, GM, Toyota, Honda, Volkswagen, Hyundai, Kia, Mercedes-Benz, Audi, Porsche, and more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get started with DIMO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quick start in 4 steps: 1) Create free account at console.dimo.org, 2) Get your API keys from the console, 3) Install SDKs, 4) Make your first API call within 5 minutes. Full tutorial available at docs.dimo.org/docs/quickstart"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is DIMO compliant with data regulations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, DIMO is GDPR compliant, EU Data Act compliant, uses privacy-by-design architecture, provides user-owned data with granular permissions, and uses blockchain-backed immutability for security."
+          }
+        }
+      ]
+    })}
+  </script>
+</Head>
 
-Here are our answers to some frequently asked questions:
+# Frequently Asked Questions
+
+Common questions about DIMO's vehicle intelligence platform, pricing, vehicle compatibility, and getting started with vehicle data APIs.
+
+---
+
+## 🚀 Getting Started
+
+### What is DIMO?
+
+DIMO is a vehicle intelligence platform that allows developers to bring their own telematics, provides developers with a unified data API, privacy-preserving consent management infrastructure, and stablecoin payment rails.
+
+**Key features:**
+- 🚗 **Universal compatibility** - Connect to any car brand with one API
+- 💾 **Bring your own data (BYOD)** - Works with your existing telematic devices
+- ☁️ **Run on cloud or on-premise** - Open-source flexibility, use our hosted cloud or deploy on-premise
+- 🤖 **Built-in AI agents** - Pre-built agents with memory for vehicle services
+- 🔒 **Privacy-first** - User-owned data with granular permissions, compliant with worldwide data regulations
+- 🌍 **Global coverage** - Works in LATAM, US, and expanding worldwide
+- 💰 **Free to start** - Hobbyist tier available at no cost
+
+DIMO enables building intelligent vehicle applications without managing 50+ separate OEM integrations.
+
+### How do I get started with DIMO?
+
+**Quick start (5 minutes):**
+
+1. **Create account:** Visit [console.dimo.org/sign-in](https://console.dimo.org/sign-in)
+2. **Create a license & generate API keys**
+3. **Remix our Replit Developer Kit:** Checkout our [boilerplate](/docs/build/building-with-ai/developer-kit)
+
+**Full tutorial:** For a full tutorial on using our SDKs, visit our [Getting Started Guide](/docs/quickstart)
+
+### What programming languages does DIMO support?
+
+DIMO provides official SDKs for:
+- ✅ **JavaScript/TypeScript** - Full API coverage
+- ✅ **Python** - Full API coverage
+- ✅ **C#** - Full API coverage
+- ✅ **React** - Client-side SDK to implement login & vehicle sharing
+
+All SDKs are open source and available on [GitHub](https://github.com/DIMO-Network).
+
+### How long does it take to integrate DIMO?
+
+**Timeline:**
+- ⚡ **5 minutes:** First API call working
+- 🏗️ **30 minutes:** Basic vehicle data integration
+- 🤖 **1-2 hours:** AI agent deployment
+- 🚀 **1-2 days:** Production-ready implementation
+
+Compare this to **3-6 months** for direct OEM integrations per brand.
+
+---
+
+## 💰 Pricing & Plans
+
+### How much does DIMO cost?
+
+DIMO offers three pricing tiers:
+
+**1. Hobbyist (FREE)**
+- Perfect for individual developers and testing
+- Includes 1 AI agent
+- $1.25 per vehicle/month
+- Access to all APIs
+- Community support
+
+**2. Core ($349/month)**
+- Billed annually ($399/month if billed monthly)
+- Includes 100 vehicles
+- Higher request rate limits
+- Bring your own data (BYOD)
+- Includes data storage
+- Email support
+
+**3. Enterprise (Custom pricing)**
+- Tailored solutions for large deployments
+- Custom request limits
+- Additional AI agents included
+- Dedicated support channel
+- Custom SLA & contracts
+- On-premise deployment options
+
+[View detailed pricing →](/pricing)
+
+### Is there a free trial?
+
+Yes! The **Hobbyist tier is permanently free** with no credit card required. You can:
+- ✅ Access all APIs
+- ✅ Connect unlimited vehicles ($1.25/vehicle/month)
+- ✅ Use 1 AI agent
+- ✅ Build and test applications
+- ✅ Deploy to production
+
+Upgrade to Core when you need more vehicles or higher rate limits.
+
+### What payment methods do you accept?
+
+We use Stripe to collect payments, your payments are charged up-front for the equivalent amount of credits in your account.
+- 💳 Credit cards (Visa, Mastercard, Amex)
+- 🏦 ACH bank transfers (Enterprise only)
+- 📄 Invoicing (Enterprise only)
+- 💵 Cryptocurrency (Contact sales)
+
+### Can I change plans later?
+
+Yes! You can:
+- ⬆️ **Upgrade** anytime - Takes effect immediately
+- ⬇️ **Downgrade** - Takes effect at next billing cycle
+- ❌ **Cancel** - No long-term contracts required
+
+No data interruptions when changing plans (circumstances may apply).
+
+---
+
+## 🚗 Vehicle Compatibility
+
+### What vehicles does DIMO support?
+
+DIMO supports **50+ automotive OEMs** with near-universal compatibility:
+
+### Does DIMO work with my Tesla?
+
+**Yes!** DIMO supports all Tesla models:
+- ✅ Model 3 (2017-2025)
+- ✅ Model Y (2020-2025)
+- ✅ Model S (2012-2025)
+- ✅ Model X (2015-2025)
+- ✅ Cybertruck (2024+)
+
+**Connection methods:**
+1. **Tesla API** - Direct cloud connection (most common)
+2. **DIMO Hardware** - OBD-II adapter for offline data
+
+### Can DIMO work with my existing telematics hardware?
+
+**Yes!** DIMO supports **BYOD (Bring Your Own Device)**:
+
+**Benefits:**
+- ✅ No data migration required
+- ✅ Keep existing hardware investments
+- ✅ Access DIMO's AI agents and features without losing existing services
+- ✅ Unified data platform
+
+**Popular integrations:**
+- Geotab
+- Samsara
+- Verizon Connect
+- Custom hardware solutions
+
+[Learn about BYOD →](https://github.com/DIMO-Network/oracle-example)
+
+### What data can I access from vehicles?
+
+**Real-time telemetry:**
+- 📍 Location (GPS coordinates)
+- ⚡ Speed & acceleration
+- 🔋 Battery/fuel level
+- ⏱️ Odometer readings
+- 🌡️ Engine temperature
+- 💨 Tire pressure
+- 🚪 Door lock states
+- 🔧 Diagnostic trouble codes (DTCs)
+
+**Historical data:**
+- 📊 Trip history
+- ⛽ Fuel/charge efficiency
+- 🗺️ Route patterns
+- 📈 Usage analytics
+
+**AI-enhanced insights:**
+- 🤖 Predictive maintenance
+- 🎯 Driver behavior scoring
+- 🔮 Range predictions
+- 📊 Fleet analytics
+
+**Data frequency:** 30 seconds to real-time depending on vehicle and connection method.
+
+---
+
+## 🔒 Security & Privacy
+
+### Is DIMO compliant with data regulations?
+
+**Yes!** DIMO is fully compliant:
+
+✅ **GDPR (General Data Protection Regulation)**
+- User right to access, deletion, and portability
+- Data processing transparency
+- Consent management built-in
+
+✅ **EU Data Act**
+- User ownership of vehicle data
+- Freedom to share data with third parties
+- No vendor lock-in
+
+✅ **CCPA (California Consumer Privacy Act)**
+- Resident privacy rights
+- Data disclosure requirements
+- Opt-out mechanisms
+
+**Privacy architecture:**
+- 🔐 End-to-end encryption
+- 👤 User-owned data (not DIMO-owned)
+- 🎛️ Granular permission controls
+- ⛓️ Blockchain-backed audit trail
+- 🚫 No data selling - ever
+
+### Who owns the vehicle data?
+
+**The vehicle owner owns their data** - not DIMO, not your application.
+
+**How it works:**
+1. Vehicle owner grants permissions to a 3rd party app
+2. The app can access data while permission is active
+3. Owner can revoke access at any time, works just like your Google account
+4. DIMO acts as secure intermediary, not data owner
+
+**Benefits for developers and OEMs:**
+- ✅ Clear data ownership model
+- ✅ Regulatory compliance by default
+- ✅ User trust and transparency
+- ✅ No liability for data storage
+
+---
+
+## 🔧 Technical Details
 
 <CustomDetails summary="API">
 	<CustomDetails summary="What are the API rate limits?">
-		<p>Our universal API rate limit is enforced at 10 requests per second per API service per client host. 
-		DIMO does not send the number of remaining requests back in the HTTP headers.</p>
+		<p>Rate limits vary by plan:</p>
+		<ul>
+			<li><strong>Hobbyist:</strong> 10 requests/second per API service</li>
+			<li><strong>Core:</strong> 25 requests/second per API service</li>
+			<li><strong>Enterprise:</strong> Custom limits (up to 1000+ req/sec)</li>
+		</ul>
+		<p>Rate limits are enforced per client host. DIMO does not send the number of remaining requests in HTTP headers.</p>
+		<p>Need higher limits? <a href="https://app.formcrafts.com/7c869c6f">Contact sales</a>.</p>
 	</CustomDetails>
 	<CustomDetails summary="What are the API response types?">
-		| Status Code | Status | Description |
-		|-------------|--------|-------------|
-		| `200` | OK | The request was successfully processed by DIMO. |
-		| `201` | Created | The request has been fulfilled and a new resource has been created. |
-		| `204` | No Content | The request has been accepted, but no content will be returned. |
-		| `400` | Bad Request | The request was not understood by the server. |
-		| `401` | Unauthorized | The request has not been completed because it lacks valid authentication credentials for the requested resource. |
-		| `403` | Forbidden | The server understands the request but refuses to authorize it. |
-		| `404` | Not Found | The requested resource was not found at the moment of the request. |
-		| `405` | Method Not Allowed | The requested method is not allowed by DIMO. |
-		| `409` | Resource Conflict | The requested resource could not be processed because of a conflict in the request. |
-		| `424` | Failed Dependency | The requested operation can not be performed because it depends on another action that had failed. |
-		| `500` | Internal Server Error | An internal error occurred in DIMO. |
+		<p>DIMO APIs return standard HTTP status codes:</p>
+
+| Status Code | Status | Description |
+|-------------|--------|-------------|
+| `200` | OK | The request was successfully processed by DIMO. |
+| `201` | Created | The request has been fulfilled and a new resource has been created. |
+| `204` | No Content | The request has been accepted, but no content will be returned. |
+| `400` | Bad Request | The request was not understood by the server. |
+| `401` | Unauthorized | The request has not been completed because it lacks valid authentication credentials for the requested resource. |
+| `403` | Forbidden | The server understands the request but refuses to authorize it. |
+| `404` | Not Found | The requested resource was not found at the moment of the request. |
+| `405` | Method Not Allowed | The requested method is not allowed by DIMO. |
+| `409` | Resource Conflict | The requested resource could not be processed because of a conflict in the request. |
+| `424` | Failed Dependency | The requested operation can not be performed because it depends on another action that had failed. |
+| `500` | Internal Server Error | An internal error occurred in DIMO. |
+	</CustomDetails>
+
+	<CustomDetails summary="What is the API uptime?">
+		<p><strong>99.9% uptime</strong> for production APIs:</p>
+		<ul>
+			<li>⚡ <strong>Average response time:</strong> &lt;200ms</li>
+			<li>📊 <strong>Availability:</strong> 99.9% (Enterprise SLA)</li>
+			<li>🔄 <strong>Redundancy:</strong> Multi-region deployment</li>
+			<li>📈 <strong>Status:</strong> <a href="https://status.dimo.co" target="_blank">status.dimo.co</a></li>
+		</ul>
+	</CustomDetails>
+
+	<CustomDetails summary="Does DIMO support GraphQL?">
+		<p><strong>Yes!</strong> DIMO provides both REST and GraphQL APIs:</p>
+		<ul>
+			<li>✅ <strong>REST API:</strong> Traditional endpoints for simple requests</li>
+			<li>✅ <strong>GraphQL:</strong> Flexible queries for complex data needs</li>
+		</ul>
+		<p><a href="/docs/api-references/identity-api">Try GraphQL Playground →</a></p>
 	</CustomDetails>
 </CustomDetails>
 
 <CustomDetails summary="Security">
 	<CustomDetails summary="Where can I find the public keys of DIMO?">
-		<p>We host our public keys [here](https://auth.dimo.zone/keys). 
-		Developers use this to validate that returned responses are indeed coming from DIMO.</p>
+		<p>We host our public keys at <a href="https://auth.dimo.zone/keys" target="_blank">auth.dimo.zone/keys</a>.</p>
+		<p>Developers use this to validate that returned responses are indeed coming from DIMO (JWT verification).</p>
+		<p>Keys are rotated regularly for security. Always fetch keys dynamically rather than hardcoding.</p>
+	</CustomDetails>
+
+	<CustomDetails summary="How do I authenticate API requests?">
+		<p>DIMO uses <strong>OAuth 2.0</strong> for authentication:</p>
+
+**1. Get credentials:**
+```bash
+# From console.dimo.org
+CLIENT_ID="your_client_id"
+API_SECRET="your_api_secret"
+```
+
+**2. Exchange for access token:**
+```javascript
+const token = await dimo.auth.getToken({
+  client_id: CLIENT_ID,
+  client_secret: API_SECRET
+});
+```
+
+**3. Use token in requests:**
+```javascript
+const vehicles = await dimo.vehicles.list({
+  headers: {
+    'Authorization': `Bearer ${token.access_token}`
+  }
+});
+```
+
+**Token lifetime:** 1 hour (refresh before expiration)
+
+[Full authentication guide →](/docs/getting-started/authentication)
 	</CustomDetails>
 </CustomDetails>
+
+<CustomDetails summary="AI Agents">
+	<CustomDetails summary="What are DIMO AI agents?">
+		<p><strong>AI agents are intelligent assistants</strong> that interact with vehicle data to automate tasks:</p>
+		<ul>
+			<li>🤖 <strong>Built-in memory:</strong> Remember user context and preferences</li>
+			<li>💬 <strong>Conversational:</strong> Natural language interactions</li>
+			<li>🔧 <strong>Agentic workflows:</strong> Multi-step task automation</li>
+			<li>🎯 <strong>Pre-trained:</strong> Understand vehicle terminology</li>
+		</ul>
+		<p><strong>Use cases:</strong></p>
+		<ul>
+			<li>Virtual service advisors</li>
+			<li>Predictive maintenance alerts</li>
+			<li>Customer support automation</li>
+			<li>Fleet management assistants</li>
+		</ul>
+		<p><a href="/docs/api-references/agents-api">Learn about Agents API →</a></p>
+	</CustomDetails>
+
+	<CustomDetails summary="How many AI agents can I create?">
+		<p>Depends on your plan:</p>
+		<ul>
+			<li><strong>Hobbyist:</strong> 1 AI agent included</li>
+			<li><strong>Core:</strong> Unlimited agents (pay-as-you-go usage)</li>
+			<li><strong>Enterprise:</strong> Custom agent allocation</li>
+		</ul>
+		<p>Each agent can serve multiple users/vehicles.</p>
+	</CustomDetails>
+
+	<CustomDetails summary="Can I bring my own AI model?">
+		<p><strong>No, we currently don't support bringing your own LLM API key.</strong> As of January 2026, DIMO utilizes:</p>
+		<ul>
+			<li>✅ <strong>Anthropic:</strong> Claude Sonnet 4.5 & Haiku 4.5</li>
+		</ul>
+	</CustomDetails>
+</CustomDetails>
+
+---
+
+## 🌍 Regional Support
+
+### Does DIMO work in Latin America (LATAM)?
+
+**Yes!** DIMO has strong LATAM support:
+
+✅ **Professional installation** - Partner network in Mexico, Chile, Colombia, Brazil, Argentina
+✅ **Local hardware** - DIMO devices available in LATAM
+✅ **Regional pricing** - Competitive rates for LATAM markets
+
+**Popular LATAM use cases:**
+- 🚗 Dealership service automation
+- 🚚 Fleet tracking and management (including engine kill switch)
+- 🏢 Corporate vehicle programs
+- 📱 Consumer mobility apps
+
+### What countries does DIMO support?
+
+Vehicle compatibility may vary by region, but DIMO supports most countries that utilizes the universal Vehicle Identification Number (VIN).
+
+---
+
+## 🛠️ Support & Resources
+
+### How do I get help?
+
+**Community Support (Free):**
+- 💬 [Discord Community](https://discord.gg/dimonetwork) - 5,000+ developers
+- 📚 [Documentation](https://www.dimo.org/docs) - Comprehensive guides
+- 🐙 [GitHub Discussions](https://github.com/DIMO-Network) - Technical Q&A
+
+**Email Support (Core & Enterprise):**
+- 📧 Dedicated support email
+- ⏱️ Response time: 24-48 hours (Core), 4-8 hours (Enterprise)
+- 🎯 Technical account manager (Enterprise only)
+
+**Slack Channel (Enterprise):**
+- Direct line to engineering team
+- Custom integrations support
+- SLA-backed response times
+
+### Where can I find code examples?
+
+**Official Resources:**
+- 📄 [Server SDK Documentation](/docs/build/building-with-tools/server-sdk) - Multi-language support
+- 🖥️ [Client SDK Documentation](/docs/build/building-with-tools/client-sdk-dimo-connect) - Share vehicles in your app
+- 🎮 [Developer Kit](/docs/build/building-with-ai/developer-kit) - Boilerplate using both SDKs
+- 📚 [Tutorials](/docs/quickstart) - Step-by-step guides
+
+### Can I contribute to DIMO?
+
+**Yes!** DIMO is open source:
+
+🐙 **GitHub Organization:** [github.com/DIMO-Network](https://github.com/DIMO-Network)
+
+**Ways to contribute:**
+- 💻 Code contributions
+- 🐛 Bug reports
+- 📝 Documentation improvements
+- 💡 Feature suggestions
+- 🌍 Translations
+
+---
+
+## 📚 Additional Resources
+
+**📖 Documentation**
+- [Getting Started Guide](/docs/quickstart)
+- [API References](/docs/api-references)
+- [SDK Documentation](/docs/build/client-sdk)
+
+**🎓 Tutorials**
+- [Connect Your First Vehicle](/docs/quickstart)
+- [Build AI Agents](/docs/api-references/agents-api)
+- [Access Telemetry Data](/docs/api-references/telemetry-api)
+
+**💬 Community**
+- [Discord Server](https://discord.gg/dimonetwork)
+- [Twitter/X](https://x.com/dimo_network)
+- [GitHub](https://github.com/DIMO-Network)
+
+---
+
+**Still have questions?** Join our [Discord community](https://discord.gg/dimonetwork) or email [developer-support@dimo.org](mailto:developer-support@dimo.org).
