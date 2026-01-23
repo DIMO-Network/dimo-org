@@ -25,57 +25,57 @@ const imgRentals = '/img/rentals.png';
 const USE_CASES = [
   {
     icon: <Code size={28} />,
-    type: 'Developer Platform',
-    title: 'Unified API Access',
+    type: 'Vehicle Data Platform',
+    title: 'Unified Data Infrastructure',
     description:
-      'One thoughtfully-designed GraphQL API to access vehicle data. Eliminate the complexity of managing multiple integrations and focus on building great features.',
+      'Real-time telemetry ingest, processing, storage, and query interfaces. Stop worrying about data structure, API designs, infrastructure, or support.',
     example:
-      'Access real-time diagnostics, location, battery status, and more with a streamlined, standardized interface.',
+      'Allow 3rd-party developers to access your real-time diagnostics, location, battery status, and more with a streamlined, standardized interface.',
   },
   {
     icon: <Zap size={28} />,
-    type: 'Developer Platform',
-    title: 'Easy-to-Use SDK',
+    type: 'E2E Developer Platform',
+    title: 'Easy-to-Use SDK & Tools',
     description:
-      'Ship faster with our developer-friendly SDKs for JavaScript, Python, C#, Go, and more. Production-ready code examples and comprehensive documentation included.',
+      'Industry-leading, developer-friendly SDKs in modern languages. Production-ready code examples, developer console, and comprehensive documentation included.',
     example:
-      'Get your developers started in minutes with npm install or pip install and have the first integration running in minutes.',
+      'Empower 3rd-party developers with delightful tools and SDK - so they see value in your vehicle data in minutes, not months.',
   },
   {
     icon: <Lock size={28} />,
     type: 'Security & Privacy',
     title: 'Privacy-First Architecture',
     description:
-      'Built with user consent and data ownership at the core. GDPR and EU Data Act compliant, with granular permission controls and verifiable credentials.',
+      'User consent and data ownership at the core, open-sourced. Out-of-the-box GDPR and EU Data Act compliant, with granular permission controls and verifiable credentials.',
     example:
-      'Vehicle owners control what data is shared, when, and with whom, building trust between you and your customers.',
+      'Low liability: Vehicle owners control what data is shared, when, and with whom, building trust between you and your customers. No vendor lock-in.',
   },
   {
     icon: <Globe size={28} />,
-    type: 'Platform',
+    type: 'Universal Platform Coverage',
     title: 'Multi-OEM Compatibility',
     description:
-      'Support vehicles from all major manufacturers through a single integration. Any OEM can easily be added.',
+      'Already works with 50+ major OEMs, proven architecture and pattern so your brand can easily be supported.',
     example:
       'Build once, deploy everywhere -- any OEM can be integrated with the same great experience.',
   },
   {
     icon: <Layers size={28} />,
-    type: 'Platform',
-    title: 'Scalable Infrastructure',
+    type: 'Rewards, Payments & Monetization',
+    title: 'Scalable Monetary Systems',
     description:
-      'Enterprise-grade reliability with 99.9% uptime. Handle millions of requests with low latency and real-time data streaming capabilities.',
+      'Stablecoin payment & rewards infrastructure built for the next generation of vehicle commerce applications. Enterprise-grade architecture designed for scale.',
     example:
-      'From prototype to production, DIMO scales with your business without infrastructure headaches.',
+      'Payment rails are built-in, so you can focus on building great experiences that drive revenue, loyalty, and engagement.',
   },
   {
     icon: <Cpu size={28} />,
-    type: 'AI & Analytics',
-    title: 'AI-Ready Data Streams',
+    type: 'AI & ML',
+    title: 'AI-Ready',
     description:
-      "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences on top of DIMO's intelligence layer.",
+      "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences using DIMO's pre-build Agents API.",
     example:
-      'Monetize clean data without the hassle -- power predictive maintenance, fleet optimization, and more.',
+      'AI/ML developers can now access clean data without you juggling. Monetize your data for the AI revolution.',
   },
 ];
 
@@ -137,8 +137,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Access vehicle data from 50+ OEMs through a single, privacy-first API.
-          Ship faster with developer-friendly SDKs, comprehensive documentation,
+          Turnkey vehicle data infrastructure, production-ready, no more infrastructure woes.
+          Ship faster with developer-friendly SDKs, comprehensive documentation, AI-ready functionalities,
           and enterprise-grade infrastructure built for scale.
         </p>
 
@@ -180,12 +180,12 @@ function UseCasesSection() {
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Platform Features</span>
         <h2 className={styles.sectionTitle}>
-          Everything You Need to Build Vehicle Applications
+          Everything You Need For Vehicle Commerce
         </h2>
         <p className={styles.sectionSubtitle}>
           From unified API access to AI-ready data streams, DIMO provides the
           complete developer platform for building the next generation of mobility
-          applications.
+          applications for vehicle commerce. Super charge your vehicle data strategy with DIMO.
         </p>
       </div>
 
@@ -214,24 +214,20 @@ function FeatureSection1() {
             DIMO is built from the ground up with developers and users in mind.
             Our privacy-first architecture ensures user consent and data ownership,
             while our developer-friendly tools make integration seamless and
-            straightforward.
+            straightforward - so you can focus on building relationships that drives revenue, loyalty, and engagement.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              RESTful and GraphQL APIs with OpenAPI specs
+              Open APIs, SDKs, and comprehensive developer tools
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              SDKs for JavaScript, TypeScript, Python, C#, and more
+              Interactive developer docs with code examples and boilerplates
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Simple developer sign up process with secured API key management
-            </li>
-            <li>
-              <span className={styles.checkIcon}>✓</span>
-              Comprehensive docs with interactive examples
+              Consent management in a box, users control their data sharing experience
             </li>
           </ul>
         </div>
@@ -248,29 +244,24 @@ function FeatureSection2() {
     <section className={styles.featureSection}>
       <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
         <div className={styles.featureText}>
-          <h2>One API, Every Major OEM</h2>
+          <h2>Vertically Integrated Experience</h2>
           <p>
-            Stop managing dozens of OEM integrations. DIMO provides a unified
-            interface to access vehicle data from Tesla, Ford, BMW, GM, and any major
-            vehicle manufacturers. We handle the complexity so you can focus on
-            building great products.
+            You understand auto, but we understand developers. DIMO handles the complexity so you can focus on
+            building great cars. Our vertically integrated data stack allows you to offer a seamless experience
+            to app developers, so they can offer innovative services to your customers.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Standardized data models across all OEMs
+              Standardized data models across all OEMs, stop worrying about designing vehicle data strategies
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Supports real-time diagnostics, location, commands, and telemetry
+              Clean data for AI/ML applications with contextualized streams, build AI experiences not AI infra
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Cleanse your data for AI/ML applications with contextualized streams
-            </li>
-            <li>
-              <span className={styles.checkIcon}>✓</span>
-              Works with connected vehicles and aftermarket devices
+              Auto stablecoin payments for EV charging, parking, tolls, and more. Next generation vehicle commerce made easy
             </li>
           </ul>
         </div>
@@ -292,12 +283,12 @@ function HowItWorksSection() {
     {
       title: 'Bring Your Own Data',
       description:
-        'Implement DIMO Ingest by setting up a Kafka stream or equivalent, sending data to our managed ingest service or a self-hosted DIMO instance.',
+        'Implement DIMO Ingest by setting up a Kafka stream or equivalent. No more data re-designs, complex ETL, or data warehouse infrastructure.',
     },
     {
       title: 'Build & Scale',
       description:
-        'Once the data flow is established, the Developer Platform, API, and SDK are ready-to-use. Scale to millions of developers with confidence on the DIMO infrastructure.',
+        'Once the data flow is established, the Developer Platform, API, and SDK are ready-to-use. Scale to millions of developers with confidence on DIMO.',
     },
   ];
 
@@ -374,11 +365,11 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Start Building?
+          Ready to Start Monetizing?
         </h2>
         <p className={styles.ctaText}>
-          Join thousands of developers building the future of mobility on DIMO.
-          Get your API keys and start shipping today.
+          Access developers building the future of mobility for your vehicles today.
+          Get your API keys today and start strategizing for tomorrow.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
