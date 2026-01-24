@@ -854,6 +854,13 @@
   }
 }
 
+/* Hide scroll indicator when viewport height is too small to prevent overlap with buttons */
+@media (max-height: 700px) {
+  .scrollIndicator {
+    display: none;
+  }
+}
+
 /* --- Parallax Effect (JS-controlled) --- */
 .parallaxElement {
   will-change: transform;
