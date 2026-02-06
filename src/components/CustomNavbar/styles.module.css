@@ -50,7 +50,7 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
   margin-left: auto;
   height: 100%;
 }
@@ -169,6 +169,18 @@
   gap: 2rem;
 }
 
+.dropdownMenuSingle {
+  min-width: 200px;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.dropdownMenuProducts {
+  min-width: 380px;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
@@ -217,6 +229,70 @@
   background-color: #f8f9fa;
   color: #4a90e2;
   text-decoration: none;
+}
+
+.dropdownItemWithIcon {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  color: #000000;
+  text-decoration: none;
+  font-family: 'Geist', sans-serif;
+  font-weight: 525;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.dropdownItemWithIcon:hover {
+  background-color: #f8f9fa;
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.dropdownItemIcon {
+  color: #666666;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+  margin-top: 0.125rem;
+}
+
+.dropdownItemWithIcon:hover .dropdownItemIcon {
+  color: #4a90e2;
+}
+
+.dropdownItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.dropdownItemTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #000000;
+  transition: color 0.2s ease;
+}
+
+.dropdownItemDesc {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #666666;
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.dropdownItemWithIcon:hover .dropdownItemTitle {
+  color: #4a90e2;
+}
+
+.dropdownItemWithIcon:hover .dropdownItemDesc {
+  color: #888888;
 }
 
 /* Hamburger Menu Styles */
@@ -452,6 +528,39 @@
 .navbarDark .dropdownItem:hover {
   background-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
+}
+
+.navbarDark .dropdownItemWithIcon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.navbarDark .dropdownItemWithIcon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.navbarDark .dropdownItemIcon {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.navbarDark .dropdownItemWithIcon:hover .dropdownItemIcon {
+  color: #ffffff;
+}
+
+.navbarDark .dropdownItemTitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.navbarDark .dropdownItemDesc {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.navbarDark .dropdownItemWithIcon:hover .dropdownItemTitle {
+  color: #ffffff;
+}
+
+.navbarDark .dropdownItemWithIcon:hover .dropdownItemDesc {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .navbarDark .hamburgerLine {

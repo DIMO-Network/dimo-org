@@ -1,6 +1,13 @@
 import Link from '@docusaurus/Link';
 import { useState } from 'react';
 import { LINKS } from '../../links';
+import {
+  Download,
+  Database,
+  ShieldCheck,
+  Key,
+  CreditCard,
+} from 'lucide-react';
 
 import styles from './styles.module.css';
 
@@ -17,7 +24,9 @@ interface CustomNavbarProps {
 
 export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const [isSolutionsDropdownOpen, setIsSolutionsDropdownOpen] = useState(false);
+  const [isResourcesDropdownOpen, setIsResourcesDropdownOpen] = useState(false);
 
   const imgLogoDimo = dark ? imgLogoDimoDark : imgLogoDimoLight;
 
@@ -29,12 +38,28 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
     setIsMobileMenuOpen(false);
   };
 
-  const handleProductMouseEnter = () => {
-    setIsProductDropdownOpen(true);
+  const handleProductsMouseEnter = () => {
+    setIsProductsDropdownOpen(true);
   };
 
-  const handleProductMouseLeave = () => {
-    setIsProductDropdownOpen(false);
+  const handleProductsMouseLeave = () => {
+    setIsProductsDropdownOpen(false);
+  };
+
+  const handleSolutionsMouseEnter = () => {
+    setIsSolutionsDropdownOpen(true);
+  };
+
+  const handleSolutionsMouseLeave = () => {
+    setIsSolutionsDropdownOpen(false);
+  };
+
+  const handleResourcesMouseEnter = () => {
+    setIsResourcesDropdownOpen(true);
+  };
+
+  const handleResourcesMouseLeave = () => {
+    setIsResourcesDropdownOpen(false);
   };
 
   return (
@@ -64,21 +89,79 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
 
         {/* Navigation Links (Desktop) */}
         <div className={styles.navLinks}>
-          {/* Product Dropdown */}
+          {/* Products Dropdown */}
           <div
             className={styles.dropdownContainer}
-            onMouseEnter={handleProductMouseEnter}
-            onMouseLeave={handleProductMouseLeave}
+            onMouseEnter={handleProductsMouseEnter}
+            onMouseLeave={handleProductsMouseLeave}
+          >
+            <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
+              Products
+              <img
+                src={imgDropdownArrow}
+                alt=""
+                className={`${styles.dropdownIcon} ${isProductsDropdownOpen ? styles.rotated : ''}`}
+              />
+            </div>
+            {isProductsDropdownOpen && (
+              <div className={`${styles.dropdownMenu} ${styles.dropdownMenuProducts}`}>
+                <div className={styles.dropdownSection}>
+                  <div className={styles.dropdownSectionTitle}>Platform</div>
+                  <Link to="/products/ingest" className={styles.dropdownItemWithIcon}>
+                    <Download size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Ingest</span>
+                      <span className={styles.dropdownItemDesc}>Bring your own data (BYOD) or integrate with telematics partners</span>
+                    </div>
+                  </Link>
+                  <Link to="/products/storage" className={styles.dropdownItemWithIcon}>
+                    <Database size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Storage</span>
+                      <span className={styles.dropdownItemDesc}>Normalized, clean, AI-ready data - managed or on-premise</span>
+                    </div>
+                  </Link>
+                  <Link to="/products/consent" className={styles.dropdownItemWithIcon}>
+                    <ShieldCheck size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Consent</span>
+                      <span className={styles.dropdownItemDesc}>Off-the-shelf data privacy and permissions management</span>
+                    </div>
+                  </Link>
+                  <Link to="/products/access" className={styles.dropdownItemWithIcon}>
+                    <Key size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Access</span>
+                      <span className={styles.dropdownItemDesc}>Consume governed data via API, SDK, and AI Agents</span>
+                    </div>
+                  </Link>
+                  <Link to="/products/pay" className={styles.dropdownItemWithIcon}>
+                    <CreditCard size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Pay</span>
+                      <span className={styles.dropdownItemDesc}>Payment & reward rails for vehicle-centric commerce</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Solutions Dropdown */}
+          <div
+            className={styles.dropdownContainer}
+            onMouseEnter={handleSolutionsMouseEnter}
+            onMouseLeave={handleSolutionsMouseLeave}
           >
             <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
               Solutions
               <img
                 src={imgDropdownArrow}
                 alt=""
-                className={`${styles.dropdownIcon} ${isProductDropdownOpen ? styles.rotated : ''}`}
+                className={`${styles.dropdownIcon} ${isSolutionsDropdownOpen ? styles.rotated : ''}`}
               />
             </div>
-            {isProductDropdownOpen && (
+            {isSolutionsDropdownOpen && (
               <div className={styles.dropdownMenu}>
                 <div className={styles.dropdownSection}>
                   <div className={styles.dropdownSectionTitle}>By Experience</div>
@@ -117,26 +200,49 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             )}
           </div>
 
-          <Link to="/docs" className={styles.navItem}>
-            Documentation
-          </Link>
-
-          {/* Temporarily hidden until Agent SDK is ready */}
-          {/* <Link to="/docs/build/building-with-tools/agent-sdk" className={styles.navItem}>
-            Build an Agent
-          </Link> */}
+          {/* Resources Dropdown */}
+          <div
+            className={styles.dropdownContainer}
+            onMouseEnter={handleResourcesMouseEnter}
+            onMouseLeave={handleResourcesMouseLeave}
+          >
+            <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
+              Resources
+              <img
+                src={imgDropdownArrow}
+                alt=""
+                className={`${styles.dropdownIcon} ${isResourcesDropdownOpen ? styles.rotated : ''}`}
+              />
+            </div>
+            {isResourcesDropdownOpen && (
+              <div className={styles.dropdownMenu}>
+                <div className={styles.dropdownSection}>
+                  <div className={styles.dropdownSectionTitle}>Learn</div>
+                  <Link to="/docs" className={styles.dropdownItem}>
+                    Documentation
+                  </Link>
+                  <Link to={LINKS.external.blogs} className={styles.dropdownItem} target="_blank">
+                    Developer Blog
+                  </Link>
+                  <Link to={LINKS.external.dimoUniversity} className={styles.dropdownItem} target="_blank">
+                    DIMO University
+                  </Link>
+                </div>
+                <div className={styles.dropdownSection}>
+                  <div className={styles.dropdownSectionTitle}>Customer Stories</div>
+                  <Link to="/customer-stories/emobi" className={styles.dropdownItem}>
+                    Emobi
+                  </Link>
+                  <Link to="/customer-stories/grupo-kaufmann" className={styles.dropdownItem}>
+                    Grupo Kaufmann
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
 
           <Link to="/pricing" className={styles.navItem}>
             Pricing
-          </Link>
-
-          <Link
-            to={LINKS.external.status}
-            className={styles.navItem}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Status
           </Link>
 
           <div className={styles.navItem}>
@@ -181,7 +287,47 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               </div>
 
               <div className={styles.mobileMenuLinks}>
-                {/* Product Section */}
+                {/* Products Section */}
+                <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>Products</div>
+                  <Link
+                    to="/products/ingest"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Ingest
+                  </Link>
+                  <Link
+                    to="/products/storage"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Storage
+                  </Link>
+                  <Link
+                    to="/products/consent"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Consent
+                  </Link>
+                  <Link
+                    to="/products/access"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Access
+                  </Link>
+                  <Link
+                    to="/products/pay"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Pay
+                  </Link>
+                </div>
+
+                {/* Solutions Section */}
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Solutions</div>
                   <Link
@@ -253,22 +399,47 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   </Link>
                 </div>
 
-                <Link
-                  to="/docs"
-                  className={styles.mobileMenuItem}
-                  onClick={closeMobileMenu}
-                >
-                  Documentation
-                </Link>
-
-                {/* Temporarily hidden until Agent SDK is ready */}
-                {/* <Link
-                  to="/docs/build/building-with-tools/agent-sdk"
-                  className={styles.mobileMenuItem}
-                  onClick={closeMobileMenu}
-                >
-                  Build an Agent
-                </Link> */}
+                {/* Resources Section */}
+                <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>Resources</div>
+                  <Link
+                    to="/docs"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Documentation
+                  </Link>
+                  <Link
+                    to={LINKS.external.blogs}
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                    target="_blank"
+                  >
+                    Developer Blog
+                  </Link>
+                  <Link
+                    to={LINKS.external.dimoUniversity}
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                    target="_blank"
+                  >
+                    DIMO University
+                  </Link>
+                  <Link
+                    to="/customer-stories/emobi"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Emobi
+                  </Link>
+                  <Link
+                    to="/customer-stories/grupo-kaufmann"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Grupo Kaufmann
+                  </Link>
+                </div>
 
                 <Link
                   to="/pricing"
@@ -276,16 +447,6 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   onClick={closeMobileMenu}
                 >
                   Pricing
-                </Link>
-
-                <Link
-                  to={LINKS.external.status}
-                  className={styles.mobileMenuItem}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMobileMenu}
-                >
-                  Status
                 </Link>
 
                  {/* Icons in Mobile Menu */}

@@ -1,0 +1,293 @@
+/* Section Container */
+.dataIngestSection {
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Title Block */
+.titleBlock {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  color: #5b8def;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.heading {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Diagram Layout */
+.diagram {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+
+.sources {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Source Cards */
+.sourceCard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(91, 141, 239, 0.25);
+  border-radius: 12px;
+  padding: 20px 24px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.sourceCard.mounted {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sourceCard:hover {
+  border-color: rgba(91, 141, 239, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.iconBox {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+}
+
+.iconBox svg {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.sourceTitle {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sourceDesc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.examples {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* Flow Container & Animation */
+.flowContainer {
+  position: relative;
+  flex: 0.8;
+  min-height: 280px;
+}
+
+.dataPacket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #3b82f6, 0 0 40px rgba(59, 130, 246, 0.5);
+  animation: flow 3s ease-in-out infinite;
+}
+
+@keyframes flow {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* Server */
+.serverContainer {
+  flex: 0 0 240px;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s ease 0.8s;
+}
+
+.serverContainer.mounted {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.serverBox {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(37, 99, 235, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.serverBox::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.serverBox svg {
+  width: 52px;
+  height: 52px;
+  color: #ffffff;
+}
+
+.serverTitle {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.serverSubtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .diagram {
+    flex-direction: column;
+  }
+
+  .sources {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sourceCard {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 280px;
+  }
+
+  .serverContainer {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .dataPacket {
+    display: none;
+  }
+
+  .flowContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .dataIngestSection {
+    padding: 48px 16px;
+  }
+
+  .titleBlock {
+    margin-bottom: 32px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .sources {
+    gap: 12px;
+  }
+
+  .sourceCard {
+    flex: 1 1 100%;
+    padding: 18px;
+  }
+
+  .sourceTitle {
+    font-size: 16px;
+  }
+
+  .sourceDesc {
+    font-size: 14px;
+  }
+
+  .serverBox {
+    padding: 28px 20px;
+  }
+
+  .serverTitle {
+    font-size: 20px;
+  }
+}

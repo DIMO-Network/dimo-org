@@ -1,0 +1,658 @@
+/* Section Container */
+.consentSection {
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title Block */
+.titleBlock {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  color: #5b8def;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.heading {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Main Two-Column Layout */
+.mainLayout {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* Flow Diagram - Left Side */
+.flowDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: 50px;
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+/* Right Panel - Permissions & JSON */
+.rightPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.6s ease 0.5s;
+}
+
+.rightPanel.mounted {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Vertical Connector */
+.verticalConnector {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 70px;
+}
+
+/* Flow Steps */
+.flowStep {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.flowStep.mounted {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stepCard {
+  background: rgba(255, 255, 255, 0.217);
+  border: 1px solid rgba(91, 141, 239, 0.25);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+.stepCard:hover {
+  border-color: rgba(91, 141, 239, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.stepCard.dimoCard {
+  min-width: 180px;
+  background: rgba(16, 185, 129, 0.359);
+  border-color: rgba(15, 181, 125, 0.497);
+}
+
+.stepIcon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  color: #ffffff;
+}
+
+.stepIcon.dimoIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.stepIcon.storageIcon {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.stepTitle {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stepDesc {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+/* Horizontal Flow Arrows */
+.flowArrowHorizontal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.flowArrowHorizontal.mounted {
+  opacity: 1;
+}
+
+.arrowLine {
+  width: 110px;
+  height: 4px;
+  background: rgba(91, 141, 239, 0.3);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.arrowPacket {
+  position: absolute;
+  width: 16px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  border-radius: 2px;
+  left: -16px;
+  opacity: 0;
+}
+
+.arrowPacket.active {
+  animation: flowRight 2s ease-in-out infinite;
+}
+
+.arrowPacket.apiPacket.active {
+  animation: flowRight 2s ease-in-out infinite 0.3s;
+  background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+}
+
+@keyframes flowRight {
+  0% {
+    left: -16px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.arrowLabel {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Vertical Flow Arrow */
+.flowArrowVertical {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.flowArrowVertical.mounted {
+  opacity: 1;
+}
+
+.arrowLineVertical {
+  width: 4px;
+  height: 40px;
+  background: rgba(91, 141, 239, 0.3);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.arrowPacketUp {
+  position: absolute;
+  width: 4px;
+  height: 16px;
+  background: linear-gradient(180deg, transparent, #3b82f6, transparent);
+  border-radius: 2px;
+  bottom: -16px;
+  opacity: 0;
+}
+
+.arrowPacketUp.active {
+  animation: flowUp 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes flowUp {
+  0% {
+    bottom: -16px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 100%;
+    opacity: 0;
+  }
+}
+
+.arrowLabelVertical {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  writing-mode: horizontal-tb;
+}
+
+/* Permissions Panel */
+.permissionsPanel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.permissionsLabel {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+/* Permissions Grid */
+.permissionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.permissionItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  opacity: 0.5;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.permissionItem.granted {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.permissionItem.selected {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+.permissionItem:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.permissionIcon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.permissionItem.granted .permissionIcon {
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+}
+
+.permissionItem.selected .permissionIcon {
+  background: rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+.permissionInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.permissionName {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.permissionDesc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.permissionCheck {
+  display: none;
+}
+
+/* JSON Preview */
+.jsonPreview {
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 1.5s;
+  text-align: left;
+}
+
+.jsonPreview.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.jsonHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.jsonDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.jsonDot:nth-child(1) {
+  background: #ff5f56;
+}
+
+.jsonDot:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.jsonDot:nth-child(3) {
+  background: #27ca40;
+}
+
+.jsonTitle {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.jsonCode {
+  padding: 12px;
+  margin: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #e6edf3;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.jsonCode::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+/* Mobile Flow - Hidden on Desktop */
+.mobileFlow {
+  display: none;
+}
+
+/* Mobile JSON Preview */
+.mobileJsonPreview {
+  margin-top: 16px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.mobileJsonPreview.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1100px) {
+  .mainLayout {
+    display: none;
+  }
+
+  .mobileFlow {
+    display: block;
+  }
+
+  .mobileSection {
+    margin-bottom: 24px;
+  }
+
+  .mobileSectionTitle {
+    color: #5b8def;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .mobileStep {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(91, 141, 239, 0.25);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+  }
+
+  .mobileStep.mounted {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mobileStepNumber {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .mobileStepContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .mobileStepContent svg {
+    color: #5b8def;
+    flex-shrink: 0;
+  }
+
+  .mobileArrow {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .mobilePermissions {
+    margin-top: 24px;
+    padding: 20px;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 12px;
+  }
+
+  .mobilePermissionsTitle {
+    color: #a78bfa;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .mobilePermissionsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .mobilePermItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .mobilePermItem:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .mobilePermItem.selected {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+  }
+
+  .mobilePermItem svg {
+    color: #a78bfa;
+  }
+
+  .mobilePermItem.selected svg {
+    color: #60a5fa;
+  }
+}
+
+@media (max-width: 768px) {
+  .consentSection {
+    padding: 48px 16px;
+  }
+
+  .titleBlock {
+    margin-bottom: 32px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .mobilePermissionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .jsonCode {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobilePermissionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mobileStepContent {
+    font-size: 14px;
+  }
+}

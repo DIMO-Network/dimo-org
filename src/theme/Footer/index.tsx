@@ -51,6 +51,14 @@ function Footer(): ReactNode {
               </li>
               <li>
                 <Link
+                  to={LINKS.external.status}
+                  target="_blank"
+                >
+                  API Status
+                </Link>
+              </li>
+              <li>
+                <Link
                   to={LINKS.external.chatgpt}
                   target="_blank"
                 >
