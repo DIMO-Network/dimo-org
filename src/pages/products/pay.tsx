@@ -73,12 +73,12 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           Vehicle-Native{' '}
-          <span className={styles.heroTitleGradient}>Payments</span>
+          <span className={styles.heroTitleGradient}>Commerce</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Enable payments from inside the vehicle. Usage-based billing, multi-party
-          settlements, and real-time revenue analytics.
+          Incentivize your fleet with rewards for safe driving, or
+          encourage your customers to take their vehicle to a dealership
         </p>
 
         <div className={styles.heroButtons}>
@@ -132,10 +132,10 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Monetize Vehicle Data?
+          Ready to Incentivize Drivers?
         </h2>
         <p className={styles.ctaText}>
-          Enable vehicle-native payments and usage-based billing.
+          Enable vehicle-native payments and rewards.
           Start processing payments in minutes.
         </p>
         <div className={styles.heroButtons}>
