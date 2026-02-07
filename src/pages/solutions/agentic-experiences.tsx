@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 const SOLUTION_NAME = 'Agentic Experiences';
-const HERO_BACKGROUND = '/img/solutions/agentic-hero.jpg'; // Placeholder
+const HERO_BACKGROUND = '/img/mp4/agents.mp4';
 const imgLogin = '/img/ShareWithUsers.png';
 const imgFleets = '/img/tesla-fleet2.png';
 
@@ -115,12 +115,14 @@ function HeroSection() {
 
   return (
     <header className={styles.hero}>
-      <div
+      <video
         className={styles.heroBackground}
-        style={{
-          backgroundImage: `url(${HERO_BACKGROUND})`,
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        src={HERO_BACKGROUND}
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       <div className={styles.heroOverlay} />
 

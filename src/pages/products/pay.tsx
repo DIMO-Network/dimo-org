@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 const PRODUCT_NAME = 'Pay';
-const HERO_BACKGROUND = '/img/solutions/agentic-hero.jpg';
+const HERO_BACKGROUND = '/img/mp4/payments.mp4';
 
 const FEATURES = [
   {
@@ -57,12 +57,14 @@ function HeroSection() {
 
   return (
     <header className={styles.hero}>
-      <div
+      <video
         className={styles.heroBackground}
-        style={{
-          backgroundImage: `url(${HERO_BACKGROUND})`,
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        src={HERO_BACKGROUND}
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       <div className={styles.heroOverlay} />
 
@@ -158,16 +160,16 @@ export default function PayPage(): ReactNode {
         <title>Pay | DIMO Vehicle Payments</title>
         <meta
           name="description"
-          content="Vehicle-native payments with usage-based billing, multi-party settlements, and real-time analytics. 150+ payment methods in 40+ countries."
+          content="Vehicle-native payments for fuel, parking, tolling, EV charging -- with customizable rewards based on driving data."
         />
         <meta
           name="keywords"
-          content="vehicle payments, in-car payments, usage-based billing, mobility payments, EV charging payments"
+          content="vehicle payments, in-car payments, mobility payments, EV charging payments"
         />
         <meta property="og:title" content="Pay | DIMO Platform" />
         <meta
           property="og:description"
-          content="Enable payments from inside the vehicle with usage-based billing and multi-party settlements."
+          content="Enable payments from inside the vehicle with customizable rewards."
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.dimo.org/products/pay" />

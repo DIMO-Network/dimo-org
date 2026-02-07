@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 const PRODUCT_NAME = 'Consent';
-const HERO_BACKGROUND = '/img/solutions/agentic-hero.jpg';
+const HERO_BACKGROUND = '/img/mp4/consent.mp4';
 
 const FEATURES = [
   {
@@ -60,12 +60,14 @@ function HeroSection() {
 
   return (
     <header className={styles.hero}>
-      <div
+      <video
         className={styles.heroBackground}
-        style={{
-          backgroundImage: `url(${HERO_BACKGROUND})`,
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        src={HERO_BACKGROUND}
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       <div className={styles.heroOverlay} />
 

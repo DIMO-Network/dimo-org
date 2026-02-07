@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 const INDUSTRY_NAME = 'Delivery Service Providers';
-const HERO_BACKGROUND = '/img/industry/delivery-hero.jpg'; // Placeholder
+const HERO_BACKGROUND = '/img/mp4/dsp.mp4';
 const imgTrucks = '/img/trucks.png';
 const imgMechanic = '/img/mechanic5.png';
 
@@ -116,12 +116,14 @@ function HeroSection() {
 
   return (
     <header className={styles.hero}>
-      <div
+      <video
         className={styles.heroBackground}
-        style={{
-          backgroundImage: `url(${HERO_BACKGROUND})`,
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        src={HERO_BACKGROUND}
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       <div className={styles.heroOverlay} />
 

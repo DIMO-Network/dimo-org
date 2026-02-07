@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 const SOLUTION_NAME = 'Fleet Intelligence';
-const HERO_BACKGROUND = '/img/solutions/fleet-hero.jpg'; // Placeholder
+const HERO_BACKGROUND = '/img/mp4/fleets.mp4';
 const imgFleet = '/img/trucks2.png';
 const imgSdk = '/img/sdks.webp';
 const imgDelivery = '/img/delivery.png';
@@ -116,12 +116,14 @@ function HeroSection() {
 
   return (
     <header className={styles.hero}>
-      <div
+      <video
         className={styles.heroBackground}
-        style={{
-          backgroundImage: `url(${HERO_BACKGROUND})`,
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        src={HERO_BACKGROUND}
+        autoPlay
+        loop
+        muted
+        playsInline
       />
       <div className={styles.heroOverlay} />
 
