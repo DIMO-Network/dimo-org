@@ -21,10 +21,10 @@ const HERO_BACKGROUND = '/img/emobi.png';
 
 // Key metrics showcasing results
 const RESULTS = [
-  { number: 'First', label: 'Fleet-Ready Plug & Charge Device' },
-  { number: 'ISO 15118', label: 'Standards Compliant' },
+  { number: '30+', label: 'Charging Networks' },
+  { number: 'ISO 15118', label: 'Plug & Charge' },
   { number: '140K+', label: 'Chargers Accessible' },
-  { number: 'Any', label: 'Vehicle Compatible' },
+  { number: 'All', label: 'Tesla Vehicles Supported' },
 ];
 
 // Problems they faced
