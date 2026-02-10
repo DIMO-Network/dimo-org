@@ -302,7 +302,7 @@ function HowItWorksSection() {
 function KeyTakeawaysSection() {
   const takeaways = [
     'First fleet-ready device to enable secure ISO 15118 Plug & Charge without automaker involvement',
-    'Works with any vehicle—including legacy EVs—through DIMO\'s OBD-II device or virtual onboarding',
+    'Works with any Teslas — more EVs available through DIMO\'s OBD-II device',
     'No firmware updates, hardware upgrades, or charging infrastructure changes required',
     'Access to 140,000+ chargers across the U.S. and Canada through Emobi\'s roaming network',
     'Fleet-level certificate management puts control where it belongs—with the fleet operator',
