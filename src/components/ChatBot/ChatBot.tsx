@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { MessageCircle, X, Send } from 'lucide-react';
 import styles from './ChatBot.module.css';
-
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
 const PRODUCT_OPTIONS = [
   { value: 'Ingest', label: 'Ingest – send telematics data to DIMO' },
@@ -22,6 +19,11 @@ interface Message {
 }
 
 export default function ChatBot() {
+  const { siteConfig } = useDocusaurusContext();
+  const EMAILJS_SERVICE_ID = siteConfig.customFields.emailjsServiceId as string;
+  const EMAILJS_TEMPLATE_ID = siteConfig.customFields.emailjsTemplateId as string;
+  const EMAILJS_PUBLIC_KEY = siteConfig.customFields.emailjsPublicKey as string;
+
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');

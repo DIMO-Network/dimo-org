@@ -5,6 +5,11 @@ import { themes as prismThemes } from 'prism-react-renderer';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
+  customFields: {
+    emailjsServiceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+    emailjsTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+    emailjsPublicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+  },
   title: 'DIMO Build',
   tagline: 'The vehicle data platform that puts privacy first',
   favicon: 'img/favicon.ico',
