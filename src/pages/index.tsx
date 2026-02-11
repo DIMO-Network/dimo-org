@@ -6,6 +6,7 @@ import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
 import { LINKS } from '../links';
 import { Star } from 'lucide-react';
+import ChatBot from '../components/ChatBot/ChatBot';
 
 // Asset imports
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
@@ -515,7 +516,6 @@ export default function Home(): ReactNode {
 
       <div className={styles.homePage}>
         <CustomNavbar dark={true} />
-
         <main>
           <HeroSection />
           <AutomateOperationsSection />
@@ -527,6 +527,7 @@ export default function Home(): ReactNode {
         </main>
 
         <FooterTheme />
+        <ChatBot />
       </div>
     </>
   );
