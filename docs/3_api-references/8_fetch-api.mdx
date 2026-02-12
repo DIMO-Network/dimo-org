@@ -1,0 +1,450 @@
+---
+sidebar_position: 9
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ApiCodeBlock from '@site/src/components/ApiCodeBlock';
+import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+
+# Fetch API
+Retrieve raw vehicle data objects and index keys from cloud storage.
+
+## Overview
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+    The Fetch API provides access to raw vehicle data stored in the cloud. It allows developers to retrieve CloudEvent-formatted data objects and their corresponding index keys for a given vehicle. You can search by various criteria including time range, producer, source, and data type. This API requires a Vehicle JWT obtained via the Token Exchange API.
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://fetch-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'GET',
+            path: '/v1/vehicle/index-keys/:tokenId',
+            id: 'index-keys'
+          },
+          {
+            method: 'GET',
+            path: '/v1/vehicle/latest-index-key/:tokenId',
+            id: 'latest-index-key'
+          },
+          {
+            method: 'GET',
+            path: '/v1/vehicle/latest-object/:tokenId',
+            id: 'latest-object'
+          },
+          {
+            method: 'GET',
+            path: '/v1/vehicle/objects/:tokenId',
+            id: 'objects'
+          },
+        ]}
+      />
+    </div>
+  }
+/>
+
+### Get multiple index keys
+
+<TwoColumnLayout
+  id="index-keys"
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Retrieves a list of index keys that match the provided search options. Index keys reference stored data objects and can be filtered by time range, producer, source, and type.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "string",
+            required: true,
+            description: "The Vehicle Token ID to retrieve index keys for."
+          },
+          {
+            name: "type",
+            type: "string",
+            required: false,
+            description: "Filter by event type (e.g. reverse-DNS format)."
+          },
+          {
+            name: "source",
+            type: "string",
+            required: false,
+            description: "Filter by the source context where the event occurred."
+          },
+          {
+            name: "producer",
+            type: "string",
+            required: false,
+            description: "Filter by the instance, process, or device that created the event."
+          },
+          {
+            name: "id",
+            type: "string",
+            required: false,
+            description: "Filter by event identifier."
+          },
+          {
+            name: "after",
+            type: "string",
+            required: false,
+            description: "Return results after this timestamp."
+          },
+          {
+            name: "before",
+            type: "string",
+            required: false,
+            description: "Return results before this timestamp."
+          },
+          {
+            name: "limit",
+            type: "integer",
+            required: false,
+            description: "Maximum number of results to return."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/vehicle/index-keys/:tokenId"
+        codeExamples={[{
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/index-keys/123456?type=dimo.status&limit=10" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>"`
+          }
+        ]}
+        defaultLanguage="shell"
+      />
+
+      <ApiResponseBlock
+        code={`[
+  {
+    "id": "2rFsUBSVMeMbhuto7EST0ISqPMX",
+    "source": "dimo/integration/2lcaMFuCO2MroGjBYuFqLhwPn9v",
+    "producer": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+    "specversion": "1.0",
+    "subject": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+    "time": "2024-06-01T12:00:00Z",
+    "type": "dimo.status",
+    "datacontenttype": "application/json",
+    "dataversion": "fleet/2.0",
+    "data": {
+      "key": "some/object/key"
+    }
+  }
+]`}
+      />
+    </div>
+  }
+/>
+
+### Get latest index key
+
+<TwoColumnLayout
+  id="latest-index-key"
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Retrieves the most recent index key that matches the provided search options. Useful for quickly finding the latest data point without fetching the full object.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "string",
+            required: true,
+            description: "The Vehicle Token ID to retrieve the latest index key for."
+          },
+          {
+            name: "type",
+            type: "string",
+            required: false,
+            description: "Filter by event type (e.g. reverse-DNS format)."
+          },
+          {
+            name: "source",
+            type: "string",
+            required: false,
+            description: "Filter by the source context where the event occurred."
+          },
+          {
+            name: "producer",
+            type: "string",
+            required: false,
+            description: "Filter by the instance, process, or device that created the event."
+          },
+          {
+            name: "id",
+            type: "string",
+            required: false,
+            description: "Filter by event identifier."
+          },
+          {
+            name: "after",
+            type: "string",
+            required: false,
+            description: "Return results after this timestamp."
+          },
+          {
+            name: "before",
+            type: "string",
+            required: false,
+            description: "Return results before this timestamp."
+          },
+          {
+            name: "limit",
+            type: "integer",
+            required: false,
+            description: "Maximum number of results to return."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/vehicle/latest-index-key/:tokenId"
+        codeExamples={[{
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/latest-index-key/123456?type=dimo.status" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>"`
+          }
+        ]}
+        defaultLanguage="shell"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  "id": "2rFsUBSVMeMbhuto7EST0ISqPMX",
+  "source": "dimo/integration/2lcaMFuCO2MroGjBYuFqLhwPn9v",
+  "producer": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+  "specversion": "1.0",
+  "subject": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+  "time": "2024-06-01T12:00:00Z",
+  "type": "dimo.status",
+  "datacontenttype": "application/json",
+  "dataversion": "fleet/2.0",
+  "data": {
+    "key": "some/object/key"
+  }
+}`}
+      />
+    </div>
+  }
+/>
+
+### Get latest object
+
+<TwoColumnLayout
+  id="latest-object"
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Retrieves the content of the most recent data object that matches the provided search options. Returns the full CloudEvent with the raw data payload.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "string",
+            required: true,
+            description: "The Vehicle Token ID to retrieve the latest object for."
+          },
+          {
+            name: "type",
+            type: "string",
+            required: false,
+            description: "Filter by event type (e.g. reverse-DNS format)."
+          },
+          {
+            name: "source",
+            type: "string",
+            required: false,
+            description: "Filter by the source context where the event occurred."
+          },
+          {
+            name: "producer",
+            type: "string",
+            required: false,
+            description: "Filter by the instance, process, or device that created the event."
+          },
+          {
+            name: "id",
+            type: "string",
+            required: false,
+            description: "Filter by event identifier."
+          },
+          {
+            name: "after",
+            type: "string",
+            required: false,
+            description: "Return results after this timestamp."
+          },
+          {
+            name: "before",
+            type: "string",
+            required: false,
+            description: "Return results before this timestamp."
+          },
+          {
+            name: "limit",
+            type: "integer",
+            required: false,
+            description: "Maximum number of results to return."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/vehicle/latest-object/:tokenId"
+        codeExamples={[{
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/latest-object/123456?type=dimo.status" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>"`
+          }
+        ]}
+        defaultLanguage="shell"
+      />
+
+      <ApiResponseBlock
+        code={`{
+  "id": "2rFsUBSVMeMbhuto7EST0ISqPMX",
+  "source": "dimo/integration/2lcaMFuCO2MroGjBYuFqLhwPn9v",
+  "producer": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+  "specversion": "1.0",
+  "subject": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+  "time": "2024-06-01T12:00:00Z",
+  "type": "dimo.status",
+  "datacontenttype": "application/json",
+  "dataschema": "",
+  "dataversion": "fleet/2.0",
+  "signature": "0x...",
+  "tags": ["status"],
+  "data": { ... }
+}`}
+      />
+    </div>
+  }
+/>
+
+### Get multiple objects
+
+<TwoColumnLayout
+  id="objects"
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Retrieves the content of multiple data objects that match the provided search options. Returns an array of full CloudEvents with raw data payloads.
+
+      <ParametersBlock
+        parameters={[
+          {
+            name: "tokenId",
+            type: "string",
+            required: true,
+            description: "The Vehicle Token ID to retrieve objects for."
+          },
+          {
+            name: "type",
+            type: "string",
+            required: false,
+            description: "Filter by event type (e.g. reverse-DNS format)."
+          },
+          {
+            name: "source",
+            type: "string",
+            required: false,
+            description: "Filter by the source context where the event occurred."
+          },
+          {
+            name: "producer",
+            type: "string",
+            required: false,
+            description: "Filter by the instance, process, or device that created the event."
+          },
+          {
+            name: "id",
+            type: "string",
+            required: false,
+            description: "Filter by event identifier."
+          },
+          {
+            name: "after",
+            type: "string",
+            required: false,
+            description: "Return results after this timestamp."
+          },
+          {
+            name: "before",
+            type: "string",
+            required: false,
+            description: "Return results before this timestamp."
+          },
+          {
+            name: "limit",
+            type: "integer",
+            required: false,
+            description: "Maximum number of results to return."
+          },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <ApiCodeBlock
+        requestType="GET"
+        path="/v1/vehicle/objects/:tokenId"
+        codeExamples={[{
+            label: "cURL",
+            language: "shell",
+            code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/objects/123456?type=dimo.status&limit=10" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>"`
+          }
+        ]}
+        defaultLanguage="shell"
+      />
+
+      <ApiResponseBlock
+        code={`[
+  {
+    "id": "2rFsUBSVMeMbhuto7EST0ISqPMX",
+    "source": "dimo/integration/2lcaMFuCO2MroGjBYuFqLhwPn9v",
+    "producer": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+    "specversion": "1.0",
+    "subject": "did:nft:1:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF_123456",
+    "time": "2024-06-01T12:00:00Z",
+    "type": "dimo.status",
+    "datacontenttype": "application/json",
+    "dataschema": "",
+    "dataversion": "fleet/2.0",
+    "signature": "0x...",
+    "tags": ["status"],
+    "data": { ... }
+  }
+]`}
+      />
+    </div>
+  }
+/>
