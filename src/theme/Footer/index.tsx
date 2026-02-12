@@ -1,14 +1,85 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, useState } from 'react';
 import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import emailjs from '@emailjs/browser';
+import { ArrowRight, Check } from 'lucide-react';
 import styles from './styles.module.css';
 import { LINKS } from '../../links';
 
 const imgGithub = '/img/icon-github.svg';
 
+function NewsletterSignup() {
+  const { siteConfig } = useDocusaurusContext();
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim() || status === 'loading') return;
+
+    setStatus('loading');
+    try {
+      await emailjs.send(
+        siteConfig.customFields.emailjsServiceId as string,
+        siteConfig.customFields.emailjsTemplateId as string,
+        { name: 'Newsletter Subscriber', email, products: 'Newsletter', details: 'Footer newsletter signup' },
+        siteConfig.customFields.emailjsPublicKey as string,
+      );
+      setStatus('success');
+      setEmail('');
+    } catch {
+      setStatus('error');
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className={styles.newsletterSuccess}>
+        <Check size={18} />
+        <span>You're subscribed! We'll be in touch.</span>
+      </div>
+    );
+  }
+
+  return (
+    <form className={styles.newsletterForm} onSubmit={handleSubmit}>
+      <div className={styles.newsletterInputRow}>
+        <input
+          type="email"
+          className={styles.newsletterInput}
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
+          required
+        />
+        <button
+          type="submit"
+          className={styles.newsletterButton}
+          disabled={status === 'loading'}
+        >
+          {status === 'loading' ? 'Sending...' : <ArrowRight size={18} />}
+        </button>
+      </div>
+      {status === 'error' && (
+        <p className={styles.newsletterError}>Something went wrong. Please try again.</p>
+      )}
+    </form>
+  );
+}
+
 function Footer(): ReactNode {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
+        {/* Newsletter Section */}
+        <div className={styles.newsletterSection}>
+          <h4 className={styles.newsletterTitle}>Stay up to date</h4>
+          <p className={styles.newsletterDescription}>
+            Get the latest on DIMO developer tools, API updates, and vehicle data insights.
+          </p>
+          <NewsletterSignup />
+        </div>
+
         <div className={styles.footerColumns}>
           {/* Column 1 - Learn More */}
           <div className={styles.footerColumn}>
@@ -20,13 +91,13 @@ function Footer(): ReactNode {
                 </Link>
               </li>
               <li>
-                <Link to={LINKS.external.blogs} target="_blank">
-                  Developer Blog
+                <Link to="/blog">
+                  Blogs
                 </Link>
               </li>
               <li>
                 <Link to={LINKS.docs.developerSdk}>
-                  Developer SDKs
+                  SDKs
                 </Link>
               </li>
             </ul>

@@ -1,3 +1,104 @@
+/* Newsletter Section */
+.newsletterSection {
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+}
+
+.newsletterTitle {
+  font-family: 'Geist', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.newsletterDescription {
+  font-family: 'Geist', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 1.25rem 0;
+  line-height: 1.5;
+}
+
+.newsletterForm {
+  width: 100%;
+}
+
+.newsletterInputRow {
+  display: flex;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.2s ease;
+}
+
+.newsletterInputRow:focus-within {
+  border-color: #124bdb;
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #ffffff;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.newsletterInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.newsletterButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  background: #124bdb;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.newsletterButton:hover {
+  background: #0f3fb8;
+}
+
+.newsletterButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletterSuccess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  color: #22c55e;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.newsletterError {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0;
+  font-family: 'Geist', sans-serif;
+}
+
 /* Footer Styles */
 .footer {
   background: #000000;
@@ -118,6 +219,14 @@
 
 /* Footer Responsive Design */
 @media screen and (max-width: 768px) {
+  .newsletterSection {
+    margin-bottom: 2.5rem;
+  }
+
+  .newsletterTitle {
+    font-size: 1.3rem;
+  }
+
   .footer {
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;

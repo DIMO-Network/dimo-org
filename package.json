@@ -37,6 +37,7 @@
     "@vercel/analytics": "^1.5.0",
     "clsx": "^2.0.0",
     "codemirror": "^6.0.2",
+    "dotenv": "^17.2.4",
     "graphql": "^16.11.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.543.0",

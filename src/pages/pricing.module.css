@@ -362,4 +362,173 @@
     grid-template-columns: 1fr !important;
     max-width: 500px;
   }
+
+  .modalRow {
+    flex-direction: column !important;
+  }
+}
+
+/* --- Enterprise Button --- */
+.enterpriseBtn {
+  background: transparent;
+  font-family: inherit;
+}
+
+/* --- Enterprise Modal --- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal {
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  color: #ffffff;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  transition: color 0.2s;
+}
+
+.modalClose:hover {
+  color: #ffffff;
+}
+
+.modalTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.modalSubtitle {
+  font-size: 0.9rem;
+  color: var(--hp-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modalRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.modalInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modalInput:focus {
+  border-color: var(--hp-accent);
+}
+
+.modalInput::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.modalInput option {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+.modalTextarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.modalTextarea:focus {
+  border-color: var(--hp-accent);
+}
+
+.modalTextarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.modalBtn {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--hp-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.25rem;
+}
+
+.modalBtn:hover {
+  background: #0f3fb8;
+}
+
+.modalBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.modalError {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.modalSuccess {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.modalSuccess h3 {
+  font-size: 1.3rem;
+  margin: 0 0 0.75rem;
+}
+
+.modalSuccess p {
+  color: var(--hp-text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
 }

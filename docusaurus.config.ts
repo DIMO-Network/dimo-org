@@ -1,8 +1,10 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
+import * as dotenv from 'dotenv';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// Load .env.local for local development
+dotenv.config({ path: '.env.local' });
 
 const config: Config = {
   customFields: {
@@ -47,7 +49,11 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
         },
-        blog: false,
+        blog: {
+          showReadingTime: true,
+          blogSidebarTitle: 'Recent Posts',
+          blogSidebarCount: 10,
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -81,6 +87,16 @@ const config: Config = {
       onBrokenMarkdownLinks: 'warn',
     },
   },
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;`,
+    },
+  ],
 
   themeConfig: {
     // Replace with your project's social card

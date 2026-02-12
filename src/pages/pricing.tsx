@@ -1,6 +1,9 @@
 import React, { useState, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import emailjs from '@emailjs/browser';
+import { X } from 'lucide-react';
 import styles from './pricing.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
@@ -162,9 +165,11 @@ function HeroSection({
 function PricingGrid({
   planType,
   billingCycle,
+  onEnterprise,
 }: {
   planType: PlanType;
   billingCycle: BillingCycle;
+  onEnterprise: () => void;
 }) {
   const tiers = getPricingTiers(planType, billingCycle);
 
@@ -210,12 +215,21 @@ function PricingGrid({
               ))}
             </ul>
 
-            <Link
-              to={tier.buttonLink}
-              className={`${styles.cardBtn} ${tier.highlight ? styles.primaryCardBtn : ''}`}
-            >
-              {tier.buttonText}
-            </Link>
+            {tier.isEnterprise ? (
+              <button
+                className={`${styles.cardBtn} ${styles.enterpriseBtn}`}
+                onClick={onEnterprise}
+              >
+                {tier.buttonText}
+              </button>
+            ) : (
+              <Link
+                to={tier.buttonLink}
+                className={`${styles.cardBtn} ${tier.highlight ? styles.primaryCardBtn : ''}`}
+              >
+                {tier.buttonText}
+              </Link>
+            )}
           </div>
         ))}
       </div>
@@ -248,9 +262,135 @@ function PricingGrid({
   );
 }
 
+function EnterpriseModal({
+  planType,
+  onClose,
+}: {
+  planType: PlanType;
+  onClose: () => void;
+}) {
+  const { siteConfig } = useDocusaurusContext();
+  const [form, setForm] = useState({ name: '', email: '', company: '', fleetSize: '', details: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  function update(field: string, value: string) {
+    setForm(prev => ({ ...prev, [field]: value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (status === 'loading') return;
+    setStatus('loading');
+
+    try {
+      await emailjs.send(
+        siteConfig.customFields.emailjsServiceId as string,
+        siteConfig.customFields.emailjsTemplateId as string,
+        {
+          name: form.name,
+          email: form.email,
+          products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
+          details: [
+            `Company: ${form.company}`,
+            `Fleet Size: ${form.fleetSize}`,
+            `Details: ${form.details}`,
+          ].join('\n'),
+        },
+        siteConfig.customFields.emailjsPublicKey as string,
+      );
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
+  }
+
+  return (
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()}>
+        <button className={styles.modalClose} onClick={onClose} aria-label="Close">
+          <X size={20} />
+        </button>
+
+        {status === 'success' ? (
+          <div className={styles.modalSuccess}>
+            <h3>Thanks, {form.name}!</h3>
+            <p>We'll reach out to <strong>{form.email}</strong> shortly to discuss your enterprise needs.</p>
+            <button className={styles.modalBtn} onClick={onClose}>Close</button>
+          </div>
+        ) : (
+          <>
+            <h3 className={styles.modalTitle}>Contact Us for Enterprise</h3>
+            <p className={styles.modalSubtitle}>
+              Tell us about your project and we'll put together a custom plan.
+            </p>
+            <form className={styles.modalForm} onSubmit={handleSubmit}>
+              <div className={styles.modalRow}>
+                <input
+                  className={styles.modalInput}
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={e => update('name', e.target.value)}
+                  required
+                />
+                <input
+                  className={styles.modalInput}
+                  type="email"
+                  placeholder="Work email"
+                  value={form.email}
+                  onChange={e => update('email', e.target.value)}
+                  required
+                />
+              </div>
+              <div className={styles.modalRow}>
+                <input
+                  className={styles.modalInput}
+                  placeholder="Company name"
+                  value={form.company}
+                  onChange={e => update('company', e.target.value)}
+                  required
+                />
+                <select
+                  className={styles.modalInput}
+                  value={form.fleetSize}
+                  onChange={e => update('fleetSize', e.target.value)}
+                  required
+                >
+                  <option value="" disabled>Fleet size</option>
+                  <option value="100-500">100 – 500 vehicles</option>
+                  <option value="500-5000">500 – 5,000 vehicles</option>
+                  <option value="5000-50000">5,000 – 50,000 vehicles</option>
+                  <option value="50000+">50,000+ vehicles</option>
+                </select>
+              </div>
+              <textarea
+                className={styles.modalTextarea}
+                placeholder="Tell us about your use case and requirements..."
+                value={form.details}
+                onChange={e => update('details', e.target.value)}
+                rows={4}
+              />
+              {status === 'error' && (
+                <p className={styles.modalError}>Something went wrong. Please try again.</p>
+              )}
+              <button
+                type="submit"
+                className={styles.modalBtn}
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' ? 'Sending...' : 'Get in Touch'}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Pricing(): ReactNode {
   const [planType, setPlanType] = useState<PlanType>('ai');
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('annual');
+  const [showEnterprise, setShowEnterprise] = useState(false);
 
   return (
     <>
@@ -382,8 +522,19 @@ export default function Pricing(): ReactNode {
             billingCycle={billingCycle}
             setBillingCycle={setBillingCycle}
           />
-          <PricingGrid planType={planType} billingCycle={billingCycle} />
+          <PricingGrid
+            planType={planType}
+            billingCycle={billingCycle}
+            onEnterprise={() => setShowEnterprise(true)}
+          />
         </main>
+
+        {showEnterprise && (
+          <EnterpriseModal
+            planType={planType}
+            onClose={() => setShowEnterprise(false)}
+          />
+        )}
 
         <FooterTheme />
       </div>
