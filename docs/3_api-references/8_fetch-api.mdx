@@ -120,13 +120,23 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
         requestType="GET"
         path="/v1/vehicle/index-keys/:tokenId"
         codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const indexKeys = await dimo.fetch.getIndexKeys({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    type: "dimo.status",
+    limit: 10
+  })`
+          },
+          {
             label: "cURL",
             language: "shell",
             code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/index-keys/123456?type=dimo.status&limit=10" \\
   -H "Authorization: Bearer <VEHICLE_JWT>"`
           }
         ]}
-        defaultLanguage="shell"
+        defaultLanguage="typescript"
       />
 
       <ApiResponseBlock
@@ -220,13 +230,22 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
         requestType="GET"
         path="/v1/vehicle/latest-index-key/:tokenId"
         codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const latestIndexKey = await dimo.fetch.getLatestIndexKey({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    type: "dimo.status"
+  })`
+          },
+          {
             label: "cURL",
             language: "shell",
             code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/latest-index-key/123456?type=dimo.status" \\
   -H "Authorization: Bearer <VEHICLE_JWT>"`
           }
         ]}
-        defaultLanguage="shell"
+        defaultLanguage="typescript"
       />
 
       <ApiResponseBlock
@@ -318,13 +337,22 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
         requestType="GET"
         path="/v1/vehicle/latest-object/:tokenId"
         codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const latestObject = await dimo.fetch.getLatestObject({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    type: "dimo.status"
+  })`
+          },
+          {
             label: "cURL",
             language: "shell",
             code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/latest-object/123456?type=dimo.status" \\
   -H "Authorization: Bearer <VEHICLE_JWT>"`
           }
         ]}
-        defaultLanguage="shell"
+        defaultLanguage="typescript"
       />
 
       <ApiResponseBlock
@@ -417,13 +445,23 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
         requestType="GET"
         path="/v1/vehicle/objects/:tokenId"
         codeExamples={[{
+            label: "TypeScript",
+            language: "typescript",
+            code: `const objects = await dimo.fetch.getObjects({
+    vehicleJwt: "eyJhbGc...ILlujqw",
+    tokenId: 123456,
+    type: "dimo.status",
+    limit: 10
+  })`
+          },
+          {
             label: "cURL",
             language: "shell",
             code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/objects/123456?type=dimo.status&limit=10" \\
   -H "Authorization: Bearer <VEHICLE_JWT>"`
           }
         ]}
-        defaultLanguage="shell"
+        defaultLanguage="typescript"
       />
 
       <ApiResponseBlock
