@@ -130,6 +130,16 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
   })`
           },
           {
+            label: "Python",
+            language: "python",
+            code: `index_keys = dimo.fetch.get_index_keys(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456,
+    type="dimo.status",
+    limit=10
+  )`
+          },
+          {
             label: "cURL",
             language: "shell",
             code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/index-keys/123456?type=dimo.status&limit=10" \\
@@ -239,6 +249,15 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
   })`
           },
           {
+            label: "Python",
+            language: "python",
+            code: `latest_index_key = dimo.fetch.get_latest_index_key(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456,
+    type="dimo.status"
+  )`
+          },
+          {
             label: "cURL",
             language: "shell",
             code: `curl -X GET "https://fetch-api.dimo.zone/v1/vehicle/latest-index-key/123456?type=dimo.status" \\
@@ -344,6 +363,15 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
     tokenId: 123456,
     type: "dimo.status"
   })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `latest_object = dimo.fetch.get_latest_object(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456,
+    type="dimo.status"
+  )`
           },
           {
             label: "cURL",
@@ -453,6 +481,16 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
     type: "dimo.status",
     limit: 10
   })`
+          },
+          {
+            label: "Python",
+            language: "python",
+            code: `objects = dimo.fetch.get_objects(
+    vehicle_jwt="eyJhbGc...ILlujqw",
+    token_id=123456,
+    type="dimo.status",
+    limit=10
+  )`
           },
           {
             label: "cURL",
