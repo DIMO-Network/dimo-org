@@ -1,0 +1,155 @@
+---
+sidebar_position: 2
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+
+# Queries
+Root query operations for cloud event indexes and full cloud events.
+
+## Overview
+
+The Fetch API exposes four root queries:
+
+- **latestIndex** – The most recent cloud event index matching optional filters.
+- **indexes** – A list of cloud event indexes (header + indexKey) matching optional filters.
+- **latestCloudEvent** – The most recent full cloud event (header + optional data).
+- **cloudEvents** – A list of full cloud events matching optional filters.
+
+All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
+
+### latestIndex
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns the latest cloud event index (header + indexKey) that matches the given filter. Use this when you only need the index entry, not the full payload.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle (e.g. did:eth:1:0x...:tokenId)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`query GetLatestIndex {
+  latestIndex(
+    did: "did:eth:1:0x...:123456",
+    filter: { type: "dimo.status" }
+  ) {
+    header { id type time source producer }
+    indexKey
+  }
+}`}</code></pre>
+  }
+/>
+
+### indexes
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns a list of cloud event indexes matching the filter. Each item includes <code>header</code> and <code>indexKey</code>.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle." },
+          { name: "limit", type: "Int", required: false, description: "Maximum number of results (default: 10)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`query ListIndexes {
+  indexes(
+    did: "did:eth:1:0x...:123456",
+    limit: 10,
+    filter: { type: "dimo.status", after: "2024-06-01T00:00:00Z" }
+  ) {
+    header { id type time }
+    indexKey
+  }
+}`}</code></pre>
+  }
+/>
+
+### latestCloudEvent
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns the most recent full cloud event (header and optionally <code>data</code> / <code>dataBase64</code>) that matches the filter.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`query GetLatestCloudEvent {
+  latestCloudEvent(
+    did: "did:eth:1:0x...:123456",
+    filter: { type: "dimo.status" }
+  ) {
+    header { id type time source producer }
+    data
+  }
+}`}</code></pre>
+  }
+/>
+
+### cloudEvents
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns a list of full cloud events matching the filter. Request only the fields you need (<code>header</code>, <code>data</code>, <code>dataBase64</code>).
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle." },
+          { name: "limit", type: "Int", required: false, description: "Maximum number of results (default: 10)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`query ListCloudEvents {
+  cloudEvents(
+    did: "did:eth:1:0x...:123456",
+    limit: 5,
+    filter: { type: "dimo.status" }
+  ) {
+    header { id type time }
+    data
+  }
+}`}</code></pre>
+  }
+/>
+
+## Example: cURL
+
+Send a POST request with your query and Vehicle JWT:
+
+```bash
+curl -X POST "https://fetch-api.dimo.zone/query" \\
+  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{"query":"query { latestCloudEvent(did: \"did:eth:1:0x...:123456\", filter: { type: \"dimo.status\" }) { header { id type time } data } }"}'
+```

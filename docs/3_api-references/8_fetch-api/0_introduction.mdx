@@ -1,0 +1,122 @@
+---
+sidebar_position: 1
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
+import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+
+# Introduction
+Retrieve raw vehicle data objects and index keys from cloud storage.
+
+## Overview
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+    The Fetch API provides access to raw vehicle data stored in the cloud. Like the [Telemetry API](/docs/api-references/telemetry-api/introduction), it is written in GraphQL and exposes a single endpoint, <code>/query</code>, for executing queries. You can retrieve CloudEvent-formatted data and index keys for a vehicle by <code>did</code> (ERC721 DID), and request only the fields you need—for example, <code>header</code> and/or <code>data</code>.
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://fetch-api.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/query',
+          },
+        ]}
+      />
+    </div>
+  }
+/>
+
+:::info Developer Notes
+To access vehicle data via the Fetch API, a token exchange is required to obtain a Vehicle JWT. The vehicle must have been shared with your app with **raw data** permission. When requesting the token (e.g. via the [Token Exchange API](/docs/api-references/token-exchange-api)), include the privilege that grants raw data access. See [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for details.
+:::
+
+### Schema & Types
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      <h4>CloudEvent</h4>
+      Full CloudEvent: selectable <code>header</code>, <code>data</code> (JSON), and optional <code>dataBase64</code>. Request only the fields you need.
+
+      <h4>CloudEventHeader</h4>
+      CloudEvents v1.0 header fields: <code>id</code>, <code>source</code>, <code>producer</code>, <code>specversion</code>, <code>subject</code>, <code>time</code>, <code>type</code>, and optional <code>datacontenttype</code>, <code>dataschema</code>, <code>dataversion</code>, <code>signature</code>, <code>tags</code>.
+
+      <h4>CloudEventIndex</h4>
+      Index entry: <code>header</code> (CloudEventHeader) and <code>indexKey</code> (storage key).
+
+      <h4>CloudEventFilter</h4>
+      Optional filter for queries. All fields are optional.
+
+      <ParametersBlock
+        title="CloudEventFilter fields"
+        parameters={[
+          { name: "id", description: "Filter by event identifier." },
+          { name: "type", description: "Filter by event type (e.g. reverse-DNS format)." },
+          { name: "source", description: "Filter by source context." },
+          { name: "producer", description: "Filter by producer (instance/process/device)." },
+          { name: "before", description: "Return results before this time (RFC-3339)." },
+          { name: "after", description: "Return results after this time (RFC-3339)." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`# Sample Fetch API Query
+
+query {
+  latestCloudEvent(
+    did: "did:eth:1:0x...:123456",
+    filter: { type: "dimo.status" }
+  ) {
+    header {
+      id
+      type
+      time
+      source
+    }
+    data
+  }
+}`}</code></pre>
+  }
+/>
+
+### Scalars
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      The Fetch API uses two custom scalars in addition to GraphQL built-ins:
+
+      <ParametersBlock
+        title=""
+        parameters={[
+          { name: "Time", description: "A point in time, encoded per RFC-3339. Typically in UTC (e.g. 2024-06-01T12:00:00Z)." },
+          { name: "JSON", description: "Arbitrary JSON value; serialized as raw JSON (object/array), not an escaped string." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`# Query with header and data
+
+query {
+  cloudEvents(
+    did: "did:eth:1:0x...:123456",
+    limit: 5,
+    filter: { type: "dimo.status" }
+  ) {
+    header { id type time }
+    data
+  }
+}`}</code></pre>
+  }
+/>
