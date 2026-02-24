@@ -47,9 +47,10 @@ function Step({ stepNumber, title, children, image, imageAlt }: StepProps) {
 function Stepper({ children, className }: StepperProps) {
   // Add step numbers to children automatically
   const stepsWithNumbers = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child) && child.type === Step) {
-      return React.cloneElement(child as React.ReactElement<StepProps>, {
-        stepNumber: child.props.stepNumber || index + 1,
+    if (React.isValidElement<StepProps>(child) && child.type === Step) {
+      const stepChild = child as React.ReactElement<StepProps>;
+      return React.cloneElement(stepChild, {
+        stepNumber: stepChild.props.stepNumber ?? index + 1,
       });
     }
     return child;

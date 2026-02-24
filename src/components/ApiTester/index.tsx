@@ -76,7 +76,7 @@ function parseInputValue(raw: string, type: InputType): any {
       try {
         const parsed = JSON.parse(val);
         return Array.isArray(parsed) ? parsed : [parsed];
-      } catch (e) {
+      } catch {
         // fall through to CSV parsing
       }
     }
@@ -175,7 +175,7 @@ const ApiTester: React.FC<ApiTesterProps> = ({
 						localStorage.removeItem(JWT_CACHE_EXPIRY_KEY);
 				}
 			}
-		} catch (e) {}
+		} catch { /* ignore */ }
 	}, []);	
 
 	// Persist JWT with expiry
@@ -185,7 +185,7 @@ const ApiTester: React.FC<ApiTesterProps> = ({
 				localStorage.setItem(JWT_CACHE_KEY, jwt);
 				localStorage.setItem(JWT_CACHE_EXPIRY_KEY, String(Date.now() + JWT_CACHE_DURATION_MS));
 			}
-		} catch (e) {}
+		} catch { /* ignore */ }
 	}, [jwt]);
 
 // helpers
@@ -386,7 +386,7 @@ useEffect(() => {
     if (requestBody && String(requestBody).trim()) {
       try {
         base = JSON.parse(String(requestBody));
-      } catch (e) {
+      } catch {
         base = undefined;
       }
     }
@@ -509,7 +509,7 @@ useEffect(() => {
   const formatJson = function (obj: any): string {
     try {
       return JSON.stringify(obj, null, 2);
-    } catch (e) {
+    } catch {
       return String(obj);
     }
   };
@@ -522,6 +522,7 @@ useEffect(() => {
     const merged: Record<string, string> = Object.assign({}, base, additionalHeaders || {});
     return merged;
   }, [jwt, additionalHeaders]);
+  void effectiveHeaders; // reserved for request headers display
 
   // Render GraphQL variable input
   const renderGraphQLVariableInput = function (variable: GraphQLVariable) {

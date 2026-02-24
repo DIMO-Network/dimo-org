@@ -22,7 +22,7 @@ interface BreadcrumbsProps {
  *   { name: 'Dealerships' }
  * ]} />
  */
-export default function Breadcrumbs({ items }: BreadcrumbsProps): JSX.Element {
+export default function Breadcrumbs({ items }: BreadcrumbsProps): React.JSX.Element {
   // Generate JSON-LD structured data
   const structuredData = {
     '@context': 'https://schema.org',
