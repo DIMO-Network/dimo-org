@@ -183,9 +183,6 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   <Link to="/industries/oem" className={styles.dropdownItem}>
                     Auto OEMs
                   </Link>
-                  <Link to="/industries/maintenance" className={styles.dropdownItem}>
-                    Auto Maintenance
-                  </Link>
                   <Link to="/industries/dealerships" className={styles.dropdownItem}>
                     Dealerships
                   </Link>
@@ -193,7 +190,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     Delivery Service Providers
                   </Link>
                   <Link to="/industries/rentals" className={styles.dropdownItem}>
-                    Rentals
+                    Rentals & P2P Car Sharing
                   </Link>
                 </div>
               </div>
@@ -370,13 +367,6 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     Auto OEMs
                   </Link>
                   <Link
-                    to="/industries/auto-maintenance"
-                    className={styles.mobileMenuItem}
-                    onClick={closeMobileMenu}
-                  >
-                    Auto Maintenance
-                  </Link>
-                  <Link
                     to="/industries/dealerships"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
@@ -395,7 +385,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Rentals
+                    Rentals & P2P Car Sharing
                   </Link>
                 </div>
 
