@@ -85,7 +85,6 @@ const sidebars: SidebarsConfig = {
       ],
     },
     'api-references/token-exchange-api',
-    'api-references/valuations-api',
     'api-references/vehicle-triggers-api',
 
     // Examples
