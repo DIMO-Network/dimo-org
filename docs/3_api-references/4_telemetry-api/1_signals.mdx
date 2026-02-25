@@ -173,6 +173,11 @@ query GetLatestSignals{
 />
 
 <TelemetryFieldsBlock
+  title="Transmission"
+  fields={allTelemetryData.transmission.fields}
+/>
+
+<TelemetryFieldsBlock
   title="Environment"
   fields={allTelemetryData.environment.fields}
 />
@@ -183,8 +188,18 @@ query GetLatestSignals{
 />
 
 <TelemetryFieldsBlock
-  title="Tire Pressure"
+  title="Tires & Wheels"
   fields={allTelemetryData.tirePressure.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Brakes"
+  fields={allTelemetryData.brakes.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Seatbelts"
+  fields={allTelemetryData.seats.fields}
 />
 
 <TelemetryFieldsBlock
@@ -195,6 +210,11 @@ query GetLatestSignals{
 <TelemetryFieldsBlock
   title="Windows"
   fields={allTelemetryData.windows.fields}
+/>
+
+<TelemetryFieldsBlock
+  title="Service"
+  fields={allTelemetryData.service.fields}
 />
 
 ## Advanced Filtering
