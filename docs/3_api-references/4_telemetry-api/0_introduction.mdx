@@ -190,8 +190,11 @@ query {
       from: "2025-09-01T17:00:00Z",
       to: "2025-09-30T17:00:00Z"
     ) {
-      currentLocationLatitude(agg: AVG)
-      currentLocationLongitude(agg: AVG)
+      currentLocationCoordinates(agg: AVG) {
+        latitude
+        longitude
+        hdop
+      }
       speed(agg: MAX)
       powertrainFuelSystemRelativeLevel(agg: AVG)
       powertrainRange(agg: MIN)
@@ -250,8 +253,11 @@ query {
       from: "2025-09-01T17:00:00Z",
       to: "2025-09-30T17:00:00Z"
     ) {
-      currentLocationLatitude(agg: AVG)
-      currentLocationLongitude(agg: AVG)
+      currentLocationCoordinates(agg: AVG) {
+        latitude
+        longitude
+        hdop
+      }
       speed(agg: MAX)
       powertrainFuelSystemRelativeLevel(agg: AVG)
       powertrainRange(agg: MIN)

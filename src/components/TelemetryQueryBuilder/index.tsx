@@ -63,14 +63,33 @@ const TelemetryQueryBuilder: React.FC = () => {
 
     if (selectedSignalNames.length === 0) return '';
 
+    const getSignalMeta = (name: string): TelemetrySignal | undefined => {
+      for (const cat of telemetrySignals) {
+        const s = cat.signals.find(sig => sig.name === name);
+        if (s) return s;
+      }
+      return undefined;
+    };
+
     if (queryType === 'signalsLatest') {
       const signalQueries = selectedSignalNames
-        .map(
-          signal => `    ${signal} {
+        .map(signal => {
+          const meta = getSignalMeta(signal);
+          if (meta?.aggregationType === 'location') {
+            return `    ${signal} {
+      timestamp
+      value {
+        latitude
+        longitude
+        hdop
+      }
+    }`;
+          }
+          return `    ${signal} {
       timestamp
       value
-    }`
-        )
+    }`;
+        })
         .join('\n');
 
       return `query {
@@ -84,6 +103,14 @@ ${signalQueries}
       const signalQueries = selectedSignalNames
         .map(signal => {
           const agg = signalAggregations[signal] || 'AVG';
+          const meta = getSignalMeta(signal);
+          if (meta?.aggregationType === 'location') {
+            return `    ${signal}(agg: ${agg}) {
+      latitude
+      longitude
+      hdop
+    }`;
+          }
           return `    ${signal}(agg: ${agg})`;
         })
         .join('\n');
@@ -272,7 +299,9 @@ ${signalQueries}
           </p>
 
           <div className={styles.signalCategories}>
-            {telemetrySignals.map(category => (
+            {telemetrySignals
+              .filter(category => category.signals.length > 0)
+              .map(category => (
               <div key={category.category} className={styles.category}>
                 <h4 className={styles.categoryTitle}>{category.category}</h4>
                 <div className={styles.signalList}>

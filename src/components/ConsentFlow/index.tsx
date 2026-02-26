@@ -21,16 +21,15 @@ const DATA_PERMISSIONS = [
     description: 'GPS coordinates, engine status, battery level',
     json: `{
   "currentLocationAltitude": 983.8,
-  "currentLocationLatitude": 36.1805983,
-  "currentLocationLongitude": -115.3463983,
+  "currentLocationCoordinates": { "latitude": 36.1805983, "longitude": -115.3463983, "hdop": 1.2 },
   "powertrainCombustionEngineECT": 61,
   "isIgnitionOn": 1,
-  "powertrainCombustionEngineSpeed": 788.25
+  "powertrainCombustionEngineSpeed": 788.25,
   "lowVoltageBatteryCurrentVoltage": 13.848,
   "powertrainFuelSystemAbsoluteLevel": 28,
   "powertrainFuelSystemRelativeLevel": 47.450980392156865,
   "timestamp": "2025-11-01T21:09:00Z",
-  "odometer": 78838,
+  "odometer": 78838
 }`,
   },
   {

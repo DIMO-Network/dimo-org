@@ -96,25 +96,17 @@ export const locationFields: TelemetryField[] = [
     signal: 'currentLocationCoordinates',
     commonName: 'Coordinates',
     aggregationType: 'LocationAggregation!',
-    units: 'WGS 84 coordinates',
+    units: 'WGS 84 coordinates (latitude, longitude, hdop)',
     description:
-      'Current location of the vehicle in WGS 84 coordinates, as measured at the position of GNSS receiver antenna.',
+      'Current location of the vehicle in WGS 84 coordinates, as measured at the position of GNSS receiver antenna. Returns latitude, longitude, and HDOP.',
   },
   {
-    signal: 'currentLocationLatitude',
-    commonName: 'Latitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
+    signal: 'currentLocationApproximateCoordinates',
+    commonName: 'Approximate Coordinates',
+    aggregationType: 'LocationAggregation!',
+    units: 'WGS 84 coordinates (latitude, longitude, hdop)',
     description:
-      'Current latitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
-  },
-  {
-    signal: 'currentLocationLongitude',
-    commonName: 'Longitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
-    description:
-      'Current longitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
+      'Approximation of current location in WGS 84 coordinates (latitude, longitude, hdop).',
   },
   {
     signal: 'currentLocationAltitude',
@@ -131,30 +123,6 @@ export const locationFields: TelemetryField[] = [
     units: 'degrees',
     description:
       'Current heading of the vehicle in degrees (0–360), measured clockwise from true north.',
-  },
-  {
-    signal: 'currentLocationApproximateLatitude',
-    commonName: 'Approximate Latitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
-    description:
-      'Approximation of current latitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
-  },
-  {
-    signal: 'currentLocationApproximateLongitude',
-    commonName: 'Approximate Longitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
-    description:
-      'Approximation of current longitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
-  },
-  {
-    signal: 'currentLocationIsRedacted',
-    commonName: 'Location Privacy Zones',
-    aggregationType: 'FloatAggregation!',
-    units: '0 or 1',
-    description:
-      'Indicates if the latitude and longitude signals at the current timestamp have been redacted using a privacy zone.<br>True (1) = Current Location Redacted<br>False (0) = Current Location not Redacted',
   },
 ];
 
@@ -287,36 +255,8 @@ export const batteryFields: TelemetryField[] = [
   },
 ];
 
-export const devicesFields: TelemetryField[] = [
-  {
-    signal: 'dimoAftermarketWPAState',
-    commonName: 'Wifi Protected Access (WPA)',
-    aggregationType: 'StringAggregation!',
-    units: 'N/A',
-    description: 'Indicate the current WPA state for the devices Wi-Fi.',
-  },
-  {
-    signal: 'dimoAftermarketSSID',
-    commonName: 'Service Set Identifier (SSID)',
-    aggregationType: 'StringAggregation!',
-    units: 'N/A',
-    description: 'Service Set Identifier for the Wi-Fi.',
-  },
-  {
-    signal: 'dimoAftermarketNSAT',
-    commonName: 'Number of Satellites (NSAT)',
-    aggregationType: 'FloatAggregation!',
-    units: 'N/A',
-    description: 'Number of sync satellites for GPS.',
-  },
-  {
-    signal: 'dimoAftermarketHDOP',
-    commonName: 'Horizontal Dilution of Precision (HDOP)',
-    aggregationType: 'FloatAggregation!',
-    units: 'N/A',
-    description: 'Horizontal dilution of precision of GPS.',
-  },
-];
+// Device/Network signals (dimoAftermarketSSID, dimoAftermarketWPAState, dimoAftermarketNSAT, dimoAftermarketHDOP) were removed from the telemetry API.
+export const devicesFields: TelemetryField[] = [];
 
 export const diagnosticsFields: TelemetryField[] = [
   {

@@ -1,5 +1,5 @@
 // Telemetry Signal Types
-export type AggregationType = 'float' | 'string';
+export type AggregationType = 'float' | 'string' | 'location';
 
 export interface AggregationOption {
   value: string;
@@ -50,14 +50,14 @@ export const telemetrySignals: SignalCategory[] = [
     category: 'Location',
     signals: [
       {
-        name: 'currentLocationLatitude',
-        description: 'Current latitude',
-        aggregationType: 'float',
+        name: 'currentLocationCoordinates',
+        description: 'Current location (latitude, longitude, hdop)',
+        aggregationType: 'location',
       },
       {
-        name: 'currentLocationLongitude',
-        description: 'Current longitude',
-        aggregationType: 'float',
+        name: 'currentLocationApproximateCoordinates',
+        description: 'Approximate location (latitude, longitude, hdop)',
+        aggregationType: 'location',
       },
       {
         name: 'currentLocationAltitude',
@@ -65,13 +65,8 @@ export const telemetrySignals: SignalCategory[] = [
         aggregationType: 'float',
       },
       {
-        name: 'currentLocationApproximateLatitude',
-        description: 'Approximate latitude',
-        aggregationType: 'float',
-      },
-      {
-        name: 'currentLocationApproximateLongitude',
-        description: 'Approximate longitude',
+        name: 'currentLocationHeading',
+        description: 'Current heading (degrees)',
         aggregationType: 'float',
       },
     ],
@@ -302,31 +297,6 @@ export const telemetrySignals: SignalCategory[] = [
     ],
   },
   {
-    category: 'Device/Network',
-    signals: [
-      {
-        name: 'dimoAftermarketSSID',
-        description: 'WiFi SSID',
-        aggregationType: 'string',
-      },
-      {
-        name: 'dimoAftermarketWPAState',
-        description: 'WiFi WPA state',
-        aggregationType: 'string',
-      },
-      {
-        name: 'dimoAftermarketNSAT',
-        description: 'Number of GPS satellites',
-        aggregationType: 'float',
-      },
-      {
-        name: 'dimoAftermarketHDOP',
-        description: 'GPS horizontal dilution of precision',
-        aggregationType: 'float',
-      },
-    ],
-  },
-  {
     category: 'Diagnostics',
     signals: [
       {
@@ -348,16 +318,20 @@ export const telemetrySignals: SignalCategory[] = [
   },
 ];
 
+// Location uses same aggregation options as float
+export const locationAggregationOptions = floatAggregationOptions;
+
 // Helper function to get aggregation options for a signal
 export function getAggregationOptions(
   signal: TelemetrySignal
 ): AggregationOption[] {
-  return signal.aggregationType === 'string'
-    ? stringAggregationOptions
-    : floatAggregationOptions;
+  if (signal.aggregationType === 'string') return stringAggregationOptions;
+  if (signal.aggregationType === 'location') return locationAggregationOptions;
+  return floatAggregationOptions;
 }
 
 // Helper function to get default aggregation for a signal
 export function getDefaultAggregation(signal: TelemetrySignal): string {
-  return signal.aggregationType === 'string' ? 'RAND' : 'AVG';
+  if (signal.aggregationType === 'string') return 'RAND';
+  return 'AVG';
 }

@@ -56,52 +56,35 @@ const vehicleInfoFields: TelemetryField[] = [
 // Location data with warning hint
 const locationFields: TelemetryField[] = [
   {
-    signal: 'currentLocationLatitude',
-    commonName: 'Latitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
+    signal: 'currentLocationCoordinates',
+    commonName: 'Coordinates',
+    aggregationType: 'LocationAggregation!',
+    units: 'WGS 84 coordinates (latitude, longitude, hdop)',
     description:
-      'Current latitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
+      'Current location of the vehicle in WGS 84 coordinates, as measured at the position of GNSS receiver antenna. Returns latitude, longitude, and HDOP.',
   },
   {
-    signal: 'currentLocationLongitude',
-    commonName: 'Longitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
-    description:
-      'Current longitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
+    signal: 'currentLocationApproximateCoordinates',
+    commonName: 'Approximate Coordinates',
+    aggregationType: 'LocationAggregation!',
+    units: 'WGS 84 coordinates (latitude, longitude, hdop)',
+    description: 'Approximation of current location in WGS 84 coordinates (latitude, longitude, hdop).',
   },
   {
     signal: 'currentLocationAltitude',
     commonName: 'Altitude Level',
     aggregationType: 'FloatAggregation!',
-    units: 'degrees',
+    units: 'm',
     description:
       'Current altitude relative to WGS 84 reference ellipsoid, as measured at the position of GNSS receiver antenna.',
   },
   {
-    signal: 'currentLocationApproximateLatitude',
-    commonName: 'Approximate Latitude Location',
+    signal: 'currentLocationHeading',
+    commonName: 'Heading',
     aggregationType: 'FloatAggregation!',
     units: 'degrees',
     description:
-      'Approximation of current latitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
-  },
-  {
-    signal: 'currentLocationApproximateLongitude',
-    commonName: 'Approximate Longitude Location',
-    aggregationType: 'FloatAggregation!',
-    units: 'degrees',
-    description:
-      'Approximation of current longitude of vehicle in WGS 84 geodetic coordinates, as measured at the position of GNSS receiver antenna.',
-  },
-  {
-    signal: 'currentLocationIsRedacted',
-    commonName: 'Location Privacy Zones',
-    aggregationType: 'FloatAggregation!',
-    units: '0 or 1',
-    description:
-      'Indicates if the latitude and longitude signals at the current timestamp have been redacted using a privacy zone.<br>True (1) = Current Location Redacted<br>False (0) = Current Location not Redacted',
+      'Current heading of the vehicle in degrees (0–360), measured clockwise from true north.',
   },
 ];
 

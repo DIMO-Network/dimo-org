@@ -58,9 +58,9 @@ export const telemetrySignals: SignalCategory[] = [
     category: 'Location',
     signals: [
       {
-        name: 'currentLocationLatitude',
-        description: 'Current latitude',
-        aggregationType: 'float',
+        name: 'currentLocationCoordinates',
+        description: 'Current location (latitude, longitude, hdop)',
+        aggregationType: 'location',
       },
       // ...more signals
     ],
@@ -113,9 +113,9 @@ query {
       timestamp
       value
     }
-    currentLocationLatitude {
+    currentLocationCoordinates {
       timestamp
-      value
+      value { latitude longitude hdop }
     }
   }
 }
@@ -132,7 +132,7 @@ query {
     to: "2025-01-02T00:00:00Z"
   ) {
     speed(agg: MAX)
-    currentLocationLatitude(agg: AVG)
+    currentLocationCoordinates(agg: AVG) { latitude longitude hdop }
     timestamp
   }
 }
@@ -164,9 +164,9 @@ import TelemetryQueryBuilder from '@site/src/components/TelemetryQueryBuilder';
 
 ## Signal Categories
 
-### 1. Location (5 signals)
+### 1. Location (4 signals)
 
-GPS coordinates, altitude, approximate location
+Coordinates (latitude, longitude, hdop), approximate coordinates, altitude, heading
 
 ### 2. Vehicle Status (4 signals)
 
