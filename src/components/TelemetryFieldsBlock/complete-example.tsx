@@ -38,12 +38,6 @@ function CompleteTelemetryDocumentation() {
         fields={allTelemetryData.battery.fields}
       />
 
-      {/* Devices */}
-      <TelemetryFieldsBlock
-        title={allTelemetryData.devices.title}
-        fields={allTelemetryData.devices.fields}
-      />
-
       {/* Diagnostics */}
       <TelemetryFieldsBlock
         title={allTelemetryData.diagnostics.title}

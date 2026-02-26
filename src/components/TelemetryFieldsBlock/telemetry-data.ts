@@ -255,9 +255,6 @@ export const batteryFields: TelemetryField[] = [
   },
 ];
 
-// Device/Network signals (dimoAftermarketSSID, dimoAftermarketWPAState, dimoAftermarketNSAT, dimoAftermarketHDOP) were removed from the telemetry API.
-export const devicesFields: TelemetryField[] = [];
-
 export const diagnosticsFields: TelemetryField[] = [
   {
     signal: 'obdDTCList',
@@ -877,10 +874,6 @@ export const allTelemetryData = {
   battery: {
     title: 'Battery & Charging',
     fields: batteryFields,
-  },
-  devices: {
-    title: 'Devices',
-    fields: devicesFields,
   },
   diagnostics: {
     title: 'Diagnostics',

@@ -73,11 +73,6 @@ Here are all the available telemetry signals organized by category:
 />
 
 <TelemetryFieldsBlock
-  title="Devices"
-  fields={allTelemetryData.devices.fields}
-/>
-
-<TelemetryFieldsBlock
   title="Diagnostics"
   fields={allTelemetryData.diagnostics.fields}
 />
@@ -137,11 +132,6 @@ our GraphQL API.
 <TelemetryFieldsBlock
   title="Battery & Charging"
   fields={allTelemetryData.battery.fields}
-/>
-
-<TelemetryFieldsBlock
-  title="Devices"
-  fields={allTelemetryData.devices.fields}
 />
 
 <TelemetryFieldsBlock

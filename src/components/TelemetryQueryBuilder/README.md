@@ -188,11 +188,7 @@ All four wheel tire pressures in kPa
 
 Outside temperature, barometric pressure
 
-### 7. Device/Network (2 signals)
-
-WiFi SSID and connection state
-
-### 8. Diagnostics (2 signals)
+### 7. Diagnostics (2 signals)
 
 Diagnostic trouble codes (DTCs), engine runtime
 
