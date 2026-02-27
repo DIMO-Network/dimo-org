@@ -1,0 +1,15 @@
+---
+description: DIMO org website – Docusaurus, React/TS, conventions
+globs: "**/*.{tsx,ts,mdx,css}"
+alwaysApply: true
+---
+
+# dimo-org
+
+- **Stack**: Docusaurus, React, TypeScript. CSS modules (e.g. `*.module.css`).
+- **Commands**: `yarn` (install), `yarn start` (dev), `yarn build` (production).
+- **Pages**: `src/pages/**/*.tsx` – file-based routes (e.g. `grupo-kaufmann.tsx` → `/customer-stories/grupo-kaufmann`).
+- **Docs**: `docs/**/*.mdx`; sidebar from `sidebars.ts`.
+- **Links**: Use `LINKS` from `src/links.tsx` for docs and external URLs.
+- **Customer stories**: Use `src/pages/customer-stories/customer-stories.module.css` and existing layout (Hero, sections, CTA). Add new story to `CustomNavbar` (desktop dropdown + mobile under Resources/Customer Stories).
+- **Style**: Dark theme, `--hp-accent: #124bdb`, `--hp-purple: #8b5cf6`. Prefer existing components (TwoColumnLayout, ApiEndpointsBlock, etc.) and Lucide icons.

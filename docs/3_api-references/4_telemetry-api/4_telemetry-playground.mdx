@@ -88,13 +88,13 @@ Use the GraphQL playground below to execute queries against the live Telemetry A
       timestamp
       value
     }
-    latitude {
+    currentLocationCoordinates {
       timestamp
-      value
-    }
-    longitude {
-      timestamp
-      value
+      value {
+        latitude
+        longitude
+        hdop
+      }
     }
   }
 }`}
