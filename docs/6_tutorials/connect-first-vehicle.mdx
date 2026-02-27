@@ -346,17 +346,17 @@ async function getVehicleData(vehicleTokenId: number) {
               value
               timestamp
             }
-            chargeLevel: batterySoc {
+            powertrainTractionBatteryStateOfChargeCurrent {
               value
               timestamp
             }
-            latitude {
-              value
+            currentLocationCoordinates {
               timestamp
-            }
-            longitude {
-              value
-              timestamp
+              value {
+                latitude
+                longitude
+                hdop
+              }
             }
           }
         }
@@ -406,16 +406,16 @@ node -r dotenv/config src/get-vehicle-data.js
         "value": 245,
         "timestamp": "2025-01-22T15:30:00Z"
       },
-      "chargeLevel": {
+      "powertrainTractionBatteryStateOfChargeCurrent": {
         "value": 82,
         "timestamp": "2025-01-22T15:30:00Z"
       },
-      "latitude": {
-        "value": 37.7749,
-        "timestamp": "2025-01-22T15:30:00Z"
-      },
-      "longitude": {
-        "value": -122.4194,
+      "currentLocationCoordinates": {
+        "value": {
+          "latitude": 37.7749,
+          "longitude": -122.4194,
+          "hdop": null
+        },
         "timestamp": "2025-01-22T15:30:00Z"
       }
     }
@@ -530,14 +530,16 @@ async function getVehicleDashboard(vehicleTokenId: number): Promise<VehicleSnaps
   // 3. Query latest telemetry
   const result = await dimo.telemetry.query({
     ...vehicleAuth,
-    query: `
+      query: `
       query GetVehicleSnapshot($tokenId: Int!) {
         signalsLatest(tokenId: $tokenId) {
           speed { value timestamp }
           powertrainRange { value }
-          batterySoc { value }
-          latitude { value }
-          longitude { value }
+          powertrainTractionBatteryStateOfChargeCurrent { value }
+          currentLocationCoordinates {
+            value { latitude longitude hdop }
+            timestamp
+          }
         }
       }
     `,
@@ -545,15 +547,14 @@ async function getVehicleDashboard(vehicleTokenId: number): Promise<VehicleSnaps
   });
 
   const signals = result.data.signalsLatest;
+  const loc = signals.currentLocationCoordinates?.value;
 
   return {
     tokenId: vehicleTokenId,
     speed: signals.speed?.value || null,
     range: signals.powertrainRange?.value || null,
-    battery: signals.batterySoc?.value || null,
-    location: signals.latitude && signals.longitude
-      ? { lat: signals.latitude.value, lng: signals.longitude.value }
-      : null,
+    battery: signals.powertrainTractionBatteryStateOfChargeCurrent?.value ?? null,
+    location: loc ? { lat: loc.latitude, lng: loc.longitude } : null,
     timestamp: signals.speed?.timestamp || new Date().toISOString()
   };
 }

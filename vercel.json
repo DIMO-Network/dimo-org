@@ -5,5 +5,16 @@
       "destination": "/docs/api-references/agents-api",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/docs/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600, stale-while-revalidate"
+        }
+      ]
+    }
   ]
 }
