@@ -9,16 +9,16 @@ import GraphQLPlayground from '@site/src/components/GraphQLPlayground';
 Run GraphQL queries against the Fetch API using the playground below.
 
 :::info Authentication Required
-The Fetch API requires a Vehicle JWT with **raw data** permission. You need:
+The Fetch API requires a JWT with **raw data** permission. You need:
 - A [Developer License](https://console.dimo.org)
-- The vehicle shared with your app with raw data permission
+- The entity shared with your app with raw data permission
 
 See the [Authentication Guide](/docs/getting-started/authentication) and [Token Exchange API](/docs/api-references/token-exchange-api) for how to request a token with the correct privileges.
 :::
 
 ## GraphQL Playground
 
-Use the playground to try the four root queries: <code>latestIndex</code>, <code>indexes</code>, <code>latestCloudEvent</code>, and <code>cloudEvents</code>. Replace the <code>did</code> placeholder with a valid ERC721 DID for a vehicle you have access to.
+Use the playground to try the four root queries: <code>latestIndex</code>, <code>indexes</code>, <code>latestCloudEvent</code>, and <code>cloudEvents</code>. Replace the <code>did</code> placeholder with a valid DID you have access to.
 
 <GraphQLPlayground
   title="DIMO Fetch API Playground"
@@ -44,8 +44,8 @@ Use the playground to try the four root queries: <code>latestIndex</code>, <code
 
 ## Tips
 
-**JWT in headers**: Add your Vehicle JWT in the HTTP Headers section of the playground as: `{"Authorization": "Bearer YOUR_JWT_TOKEN"}`
+**JWT in headers**: Add your JWT in the HTTP Headers section of the playground as: `{"Authorization": "Bearer YOUR_JWT_TOKEN"}`
 
-**Vehicle DID**: The <code>did</code> argument is the ERC721 DID (e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). You can resolve it from the Identity API or your token exchange flow.
+**DID**: The <code>did</code> argument accepts any DID in the DIMO system (e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). You can resolve it from the Identity API or your token exchange flow.
 
 **Select fields**: Request only the fields you need (e.g. `header` with subfields like `id`, `type`, `time`, and `data`) to keep responses small.

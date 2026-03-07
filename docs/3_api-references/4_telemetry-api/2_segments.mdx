@@ -10,7 +10,9 @@ Get segmented trip data from DIMO-connected vehicles.
 
 ## Overview
 
-The `segments` resource serves as the "trips" part of the Telemetry API, allowing developers to gather trip data for vehicles.
+The `segments` resource serves as the "trips" part of the Telemetry API, allowing developers to gather trip data for vehicles. Maximum date range: 31 days.
+
+Each segment includes summary signals, start/end location, and (when requested) event counts. A default set of signal requests is always applied (e.g. speed, odometer; for refuel/recharge also the level signal at start and end). When `signalRequests` is provided, those requests are added on top of the default set; duplicates (same name and agg) are omitted.
 
 ## Detection Mechanism
 
@@ -30,6 +32,18 @@ Segments can be detected using different mechanisms. This is a crucial part of q
     {
       name: "changePointDetection",
       description: "Change point detection: Uses CUSUM algorithm to detect statistical regime changes.\n\nMonitors cumulative deviation in signal frequency via materialized view.\n\nExcellent noise resistance with 100% accuracy match to ignition baseline.\n\nBest alternative when ignition signal is unavailable - same accuracy, same speed as frequency analysis."
+    },
+    {
+      name: "idling",
+      description: "Idling: Segments are contiguous periods where engine RPM remains in idle range."
+    },
+    {
+      name: "refuel",
+      description: "Refuel: Detects where fuel level rises significantly."
+    },
+    {
+      name: "recharge",
+      description: "Recharge: Hybrid detection. Uses charging signals and state of charge for detection."
     }
   ]}
 />
@@ -67,46 +81,139 @@ The `segments` query allows you to retrieve trip segments.
           {
             name: "mechanism",
             type: "DetectionMechanism!",
-            required: false,
-            description: "The method used to detect segments (default: frequencyAnalysis)."
+            required: true,
+            description: "The method used to detect segments."
           },
           {
             name: "config",
             type: "SegmentConfig",
             required: false,
             description: "Configuration for segment detection parameters."
+          },
+          {
+            name: "signalRequests",
+            type: "[SegmentSignalRequest!]",
+            required: false,
+            description: "Request specific signal aggregations per segment. Each request specifies a signal name and aggregation type."
+          },
+          {
+            name: "eventRequests",
+            type: "[SegmentEventRequest!]",
+            required: false,
+            description: "Request specific event counts per segment. Each request specifies an event name."
+          },
+          {
+            name: "limit",
+            type: "Int",
+            required: false,
+            description: "Maximum number of segments to return. Default 100, max 200."
+          },
+          {
+            name: "after",
+            type: "Time",
+            required: false,
+            description: "Cursor for pagination: return only segments with startTime > after (exclusive). Pass the start timestamp of the last segment from the previous page."
           }
         ]}
       />
 
-      <h3>Response Fields</h3>
+      <h3>Response Fields (Segment)</h3>
        <ParametersBlock
         title="Fields"
         parameters={[
           {
-            name: "startTime",
-            type: "Time!",
-            description: "Segment start timestamp (actual activity start transition)."
+            name: "start",
+            type: "SignalLocation!",
+            description: "Segment start with timestamp and location. Contains `timestamp` (Time!) and `value` (Location! with latitude, longitude, hdop)."
           },
           {
-            name: "endTime",
-            type: "Time",
-            description: "Segment end timestamp (activity end after debounce period).\n\nNull if segment is ongoing (extends beyond query range)."
+            name: "end",
+            type: "SignalLocation",
+            description: "Segment end with timestamp and location. Null if segment is ongoing (extends beyond query range)."
           },
           {
-            name: "durationSeconds",
+            name: "duration",
             type: "Int!",
-            description: "Duration in seconds.\n\nIf ongoing: from start to query 'to' time.\n\nIf complete: from start to end."
+            description: "Duration in seconds. If ongoing: from start to query 'to' time. If complete: from start to end."
           },
           {
             name: "isOngoing",
             type: "Boolean!",
-            description: "True if segment extends beyond query time range (last activity is ongoing)."
+            description: "True if segment extends beyond query time range (last activity is ongoing). When true, `end` is not included."
           },
           {
             name: "startedBeforeRange",
             type: "Boolean!",
-            description: "True if segment started before query time range.\n\nIndicates startTime may be approximate."
+            description: "True if segment started before query time range. Indicates start may be approximate."
+          },
+          {
+            name: "signals",
+            type: "[SignalAggregationValue!]",
+            description: "Per-segment signal aggregates. Each entry has `name` (String!), `agg` (String!), and `value` (Float!)."
+          },
+          {
+            name: "eventCounts",
+            type: "[EventCount!]",
+            description: "Per-segment event counts. Each entry has `name` (String!) and `count` (Int!)."
+          }
+        ]}
+      />
+
+      <h3>SegmentConfig</h3>
+      <ParametersBlock
+        title="Configuration"
+        parameters={[
+          {
+            name: "maxGapSeconds",
+            type: "Int",
+            description: "Maximum gap (seconds) between data points before a segment is split. For ignitionDetection: filters noise from brief ignition OFF events. For frequencyAnalysis: maximum gap between active windows to merge. Default: 300 (5 min), Min: 60, Max: 3600."
+          },
+          {
+            name: "minSegmentDurationSeconds",
+            type: "Int",
+            description: "Minimum segment duration (seconds) to include in results. Filters very short segments (testing, engine cycling). Default: 240 (4 min), Min: 60, Max: 3600."
+          },
+          {
+            name: "signalCountThreshold",
+            type: "Int",
+            description: "[frequencyAnalysis/idling] Minimum signal count per window for activity detection. Higher values = more conservative, lower = more sensitive. Default: 10, Min: 1, Max: 3600."
+          },
+          {
+            name: "maxIdleRpm",
+            type: "Int",
+            description: "[idling only] Upper bound for idle RPM. Windows with max(RPM) <= this are considered idle. Default: 1000, Min: 300, Max: 3000."
+          },
+          {
+            name: "minIncreasePercent",
+            type: "Int",
+            description: "[refuel/recharge only] Minimum percent increase within a window to consider it a level-increase window. Default: 15."
+          }
+        ]}
+      />
+
+      <h3>Input Types</h3>
+      <ParametersBlock
+        title="SegmentSignalRequest"
+        parameters={[
+          {
+            name: "name",
+            type: "String!",
+            description: "The signal name to aggregate (e.g. \"speed\", \"powertrainFuelSystemRelativeLevel\")."
+          },
+          {
+            name: "agg",
+            type: "FloatAggregation!",
+            description: "The aggregation type (AVG, MAX, MED, MIN, RAND, FIRST, LAST)."
+          }
+        ]}
+      />
+      <ParametersBlock
+        title="SegmentEventRequest"
+        parameters={[
+          {
+            name: "name",
+            type: "String!",
+            description: "The event name to count per segment."
           }
         ]}
       />
@@ -114,23 +221,33 @@ The `segments` query allows you to retrieve trip segments.
   }
   rightColumn={
     <div>
-      <pre><code className="language-graphql">{`query getSegment {
+      <pre><code className="language-graphql">{`query GetSegments {
   segments(
-    tokenId: 117315,
-    from: "2025-11-01T09:21:19Z",
-    to: "2025-11-07T09:21:19Z",
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
     mechanism: frequencyAnalysis
-    config: {
-      signalCountThreshold: 10
-      minIdleSeconds: 60
-      minSegmentDurationSeconds: 120
-    }
+    signalRequests: [
+      { name: "speed", agg: MAX }
+    ]
+    eventRequests: [
+      { name: "HarshBraking" }
+    ]
+    limit: 50
   ) {
-    startTime
-    endTime
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
     isOngoing
-    durationSeconds
     startedBeforeRange
+    signals { name agg value }
+    eventCounts { name count }
   }
 }`}</code></pre>
 
@@ -139,18 +256,23 @@ The `segments` query allows you to retrieve trip segments.
   "data": {
     "segments": [
       {
-        "startTime": "2025-11-01T21:07:00Z",
-        "endTime": "2025-11-01T22:02:00Z",
+        "start": {
+          "timestamp": "2025-11-01T21:07:00Z",
+          "value": { "latitude": 40.7128, "longitude": -74.006 }
+        },
+        "end": {
+          "timestamp": "2025-11-01T22:02:00Z",
+          "value": { "latitude": 40.758, "longitude": -73.9855 }
+        },
+        "duration": 3300,
         "isOngoing": false,
-        "durationSeconds": 3300,
-        "startedBeforeRange": false
-      },
-      {
-        "startTime": "2025-11-01T22:15:00Z",
-        "endTime": "2025-11-01T22:40:00Z",
-        "isOngoing": false,
-        "durationSeconds": 1500,
-        "startedBeforeRange": false
+        "startedBeforeRange": false,
+        "signals": [
+          { "name": "speed", "agg": "MAX", "value": 88.5 }
+        ],
+        "eventCounts": [
+          { "name": "HarshBraking", "count": 2 }
+        ]
       }
     ]
   }

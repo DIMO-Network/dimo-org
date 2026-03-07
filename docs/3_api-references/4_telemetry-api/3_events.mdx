@@ -40,6 +40,11 @@ The `events` resource is a collection of vehicle events.
       name: "source",
       type: "StringValueFilter",
       description: "Filter events by source"
+    },
+    {
+      name: "tags",
+      type: "StringArrayFilter",
+      description: "Filter events by tags. Available tags: `behavior.harshAcceleration`, `behavior.harshBraking`, `behavior.harshCornering`, `safety.collision`. Operators: `containsAny`, `containsAll`, `notContainsAny`, `notContainsAll`."
     }
   ]}
 />

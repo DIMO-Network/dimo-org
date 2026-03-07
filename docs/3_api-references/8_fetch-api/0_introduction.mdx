@@ -8,14 +8,16 @@ import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
 
 # Introduction
-Retrieve raw vehicle data objects and index keys from cloud storage.
+Retrieve raw data objects and index keys from cloud storage.
 
 ## Overview
 
 <TwoColumnLayout
   leftColumn={
     <div>
-    The Fetch API provides access to raw vehicle data stored in the cloud. Like the [Telemetry API](/docs/api-references/telemetry-api/introduction), it is written in GraphQL and exposes a single endpoint, <code>/query</code>, for executing queries. You can retrieve CloudEvent-formatted data and index keys for a vehicle by <code>did</code> (ERC721 DID), and request only the fields you need—for example, <code>header</code> and/or <code>data</code>.
+    The Fetch API provides access to raw data stored in the cloud, formatted as <a href="https://cloudevents.io/">CloudEvents</a>. It is written in GraphQL and exposes a single endpoint, <code>/query</code>, for executing queries. You can retrieve CloudEvent-formatted data and index keys by <code>did</code> (Decentralized Identifier), and request only the fields you need—for example, <code>header</code> and/or <code>data</code>.
+
+    The <code>did</code> parameter accepts any DID in the DIMO system (e.g. a vehicle DID like <code>did:eth:1:0xContractAddress:tokenId</code>).
     </div>
   }
   rightColumn={
@@ -34,7 +36,7 @@ Retrieve raw vehicle data objects and index keys from cloud storage.
 />
 
 :::info Developer Notes
-To access vehicle data via the Fetch API, a token exchange is required to obtain a Vehicle JWT. The vehicle must have been shared with your app with **raw data** permission. When requesting the token (e.g. via the [Token Exchange API](/docs/api-references/token-exchange-api)), include the privilege that grants raw data access. See [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for details.
+To access data via the Fetch API, a token exchange is required to obtain a JWT with the appropriate permissions. The entity must have been shared with your app with **raw data** permission. When requesting the token (e.g. via the [Token Exchange API](/docs/api-references/token-exchange-api)), include the privilege that grants raw data access. See [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for details.
 :::
 
 ### Schema & Types
@@ -44,32 +46,75 @@ To access vehicle data via the Fetch API, a token exchange is required to obtain
   leftColumn={
     <div>
       <h4>CloudEvent</h4>
-      Full CloudEvent: selectable <code>header</code>, <code>data</code> (JSON), and optional <code>dataBase64</code>. Request only the fields you need.
+      A full CloudEvent object. Select only the fields you need to keep responses small.
+
+      <ParametersBlock
+        title="CloudEvent fields"
+        parameters={[
+          { name: "header", type: "CloudEventHeader!", description: "CloudEvents v1.0 header metadata. Select individual sub-fields (see below)." },
+          { name: "data", type: "JSON", description: "The event payload as parsed JSON (object or array). Omitted from the response if not requested." },
+          { name: "dataBase64", type: "String", description: "The event payload as a base64-encoded string. Use this when the payload is binary or you need the raw bytes." },
+        ]}
+      />
 
       <h4>CloudEventHeader</h4>
-      CloudEvents v1.0 header fields: <code>id</code>, <code>source</code>, <code>producer</code>, <code>specversion</code>, <code>subject</code>, <code>time</code>, <code>type</code>, and optional <code>datacontenttype</code>, <code>dataschema</code>, <code>dataversion</code>, <code>signature</code>, <code>tags</code>.
+      CloudEvents v1.0 metadata fields. Required fields are always present; optional fields may be null.
+
+      <ParametersBlock
+        title="Required header fields"
+        parameters={[
+          { name: "id", type: "String!", description: "Unique event identifier." },
+          { name: "specversion", type: "String!", description: "CloudEvents spec version (e.g. \"1.0\")." },
+          { name: "type", type: "String!", description: "Event type in reverse-DNS format (e.g. \"dimo.status\")." },
+          { name: "source", type: "String!", description: "Source context that produced the event." },
+          { name: "subject", type: "String!", description: "Subject of the event (typically the DID)." },
+          { name: "time", type: "Time!", description: "Timestamp of the event (RFC-3339, UTC)." },
+          { name: "producer", type: "String!", description: "Instance, process, or device that produced the event." },
+          { name: "tags", type: "[String!]!", description: "Tags associated with the event." },
+        ]}
+      />
+
+      <ParametersBlock
+        title="Optional header fields"
+        parameters={[
+          { name: "datacontenttype", type: "String", description: "Content type of the data payload (e.g. \"application/json\")." },
+          { name: "dataschema", type: "String", description: "URI of the schema the data payload conforms to." },
+          { name: "dataversion", type: "String", description: "Version of the data schema." },
+          { name: "signature", type: "String", description: "Cryptographic signature of the event." },
+        ]}
+      />
 
       <h4>CloudEventIndex</h4>
-      Index entry: <code>header</code> (CloudEventHeader) and <code>indexKey</code> (storage key).
+      A lightweight index entry referencing a stored CloudEvent. Contains the event header and a storage key for retrieval.
+
+      <ParametersBlock
+        title="CloudEventIndex fields"
+        parameters={[
+          { name: "header", type: "CloudEventHeader!", description: "CloudEvents header metadata (same fields as above)." },
+          { name: "indexKey", type: "String!", description: "Storage key that uniquely identifies this event in cloud storage." },
+        ]}
+      />
 
       <h4>CloudEventFilter</h4>
-      Optional filter for queries. All fields are optional.
+      Optional filter for queries. All fields are optional—combine them to narrow results.
 
       <ParametersBlock
         title="CloudEventFilter fields"
         parameters={[
           { name: "id", description: "Filter by event identifier." },
-          { name: "type", description: "Filter by event type (e.g. reverse-DNS format)." },
+          { name: "type", description: "Filter by event type (e.g. \"dimo.status\")." },
+          { name: "dataversion", description: "Filter by data version string." },
           { name: "source", description: "Filter by source context." },
           { name: "producer", description: "Filter by producer (instance/process/device)." },
-          { name: "before", description: "Return results before this time (RFC-3339)." },
-          { name: "after", description: "Return results after this time (RFC-3339)." },
+          { name: "before", type: "Time", description: "Return results before this time (RFC-3339)." },
+          { name: "after", type: "Time", description: "Return results after this time (RFC-3339)." },
         ]}
       />
     </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`# Sample Fetch API Query
+    <div>
+    <pre><code className="language-graphql">{`# Full CloudEvent with all header fields
 
 query {
   latestCloudEvent(
@@ -78,13 +123,23 @@ query {
   ) {
     header {
       id
+      specversion
       type
-      time
       source
+      subject
+      time
+      producer
+      tags
+      datacontenttype
+      dataschema
+      dataversion
+      signature
     }
     data
+    dataBase64
   }
 }`}</code></pre>
+    </div>
   }
 />
 
@@ -100,13 +155,13 @@ query {
         title=""
         parameters={[
           { name: "Time", description: "A point in time, encoded per RFC-3339. Typically in UTC (e.g. 2024-06-01T12:00:00Z)." },
-          { name: "JSON", description: "Arbitrary JSON value; serialized as raw JSON (object/array), not an escaped string." },
+          { name: "JSON", description: "Arbitrary JSON value; serialized as raw JSON (object/array), not an escaped string. The structure depends on the event type." },
         ]}
       />
     </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`# Query with header and data
+    <pre><code className="language-graphql">{`# Minimal query — just header + data
 
 query {
   cloudEvents(

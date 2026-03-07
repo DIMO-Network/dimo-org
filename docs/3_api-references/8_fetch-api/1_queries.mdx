@@ -17,7 +17,7 @@ The Fetch API exposes four root queries:
 - **latestCloudEvent** – The most recent full cloud event (header + optional data).
 - **cloudEvents** – A list of full cloud events matching optional filters.
 
-All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
+All queries require a <code>did</code> (Decentralized Identifier). The <code>did</code> parameter accepts any DID in the DIMO system (e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
 
 ### latestIndex
 
@@ -30,8 +30,8 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle (e.g. did:eth:1:0x...:tokenId)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -39,7 +39,7 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
   rightColumn={
     <pre><code className="language-graphql">{`query GetLatestIndex {
   latestIndex(
-    did: "did:eth:1:0x...:123456",
+    did: "did:eth:1:0x...:tokenId",
     filter: { type: "dimo.status" }
   ) {
     header { id type time source producer }
@@ -60,9 +60,9 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
           { name: "limit", type: "Int", required: false, description: "Maximum number of results (default: 10)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -70,7 +70,7 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
   rightColumn={
     <pre><code className="language-graphql">{`query ListIndexes {
   indexes(
-    did: "did:eth:1:0x...:123456",
+    did: "did:eth:1:0x...:tokenId",
     limit: 10,
     filter: { type: "dimo.status", after: "2024-06-01T00:00:00Z" }
   ) {
@@ -92,8 +92,8 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -101,7 +101,7 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
   rightColumn={
     <pre><code className="language-graphql">{`query GetLatestCloudEvent {
   latestCloudEvent(
-    did: "did:eth:1:0x...:123456",
+    did: "did:eth:1:0x...:tokenId",
     filter: { type: "dimo.status" }
   ) {
     header { id type time source producer }
@@ -122,9 +122,9 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "ERC721 DID of the vehicle." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
           { name: "limit", type: "Int", required: false, description: "Maximum number of results (default: 10)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, source, producer, before, after." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -132,7 +132,7 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
   rightColumn={
     <pre><code className="language-graphql">{`query ListCloudEvents {
   cloudEvents(
-    did: "did:eth:1:0x...:123456",
+    did: "did:eth:1:0x...:tokenId",
     limit: 5,
     filter: { type: "dimo.status" }
   ) {
@@ -145,11 +145,11 @@ All queries require a vehicle identifier as <code>did</code> (ERC721 DID, e.g. <
 
 ## Example: cURL
 
-Send a POST request with your query and Vehicle JWT:
+Send a POST request with your query and JWT:
 
 ```bash
 curl -X POST "https://fetch-api.dimo.zone/query" \\
-  -H "Authorization: Bearer <VEHICLE_JWT>" \\
+  -H "Authorization: Bearer <JWT>" \\
   -H "Content-Type: application/json" \\
-  -d '{"query":"query { latestCloudEvent(did: \"did:eth:1:0x...:123456\", filter: { type: \"dimo.status\" }) { header { id type time } data } }"}'
+  -d '{"query":"query { latestCloudEvent(did: \"did:eth:1:0x...:tokenId\", filter: { type: \"dimo.status\" }) { header { id type time } data } }"}'
 ```

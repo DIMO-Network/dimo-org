@@ -172,16 +172,17 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           <h3>{title}</h3>
           <p>Loading map...</p>
         </div>
-        <div style={{ 
-          height: '400px', 
-          width: '100%', 
-          marginBottom: '20px', 
-          border: '1px solid #ccc', 
+        <div style={{
+          height: '400px',
+          width: '100%',
+          marginBottom: '20px',
+          border: '1px solid var(--ifm-color-emphasis-300)',
           borderRadius: '4px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#f5f5f5'
+          backgroundColor: 'var(--ifm-color-emphasis-100)',
+          color: 'var(--ifm-font-color-base)',
         }}>
           <div>Loading interactive map...</div>
         </div>
@@ -191,6 +192,15 @@ const MapComponent: React.FC<MapWidgetProps> = ({
 
   const { MapContainer, TileLayer, Circle, Marker, Polygon, MapClickHandler } = mapComponents;
 
+  const btnStyle = (active: boolean): React.CSSProperties => ({
+    padding: '8px 16px',
+    backgroundColor: active ? 'var(--ifm-color-primary)' : 'var(--ifm-color-emphasis-200)',
+    color: active ? '#fff' : 'var(--ifm-font-color-base)',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '4px',
+    cursor: 'pointer',
+  });
+
   return (
     <div style={{ margin: '20px 0' }}>
       <div style={{ marginBottom: '20px' }}>
@@ -199,30 +209,10 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           {/* Filter Mode Selection */}
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '15px' }}>
             <strong>Filter Type:</strong>
-            <button
-              onClick={() => handleFilterModeChange('circle')}
-              style={{
-                padding: '8px 16px',
-                backgroundColor: filterMode === 'circle' ? '#007cba' : '#f0f0f0',
-                color: filterMode === 'circle' ? 'white' : '#333',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
+            <button onClick={() => handleFilterModeChange('circle')} style={btnStyle(filterMode === 'circle')}>
               Circle
             </button>
-            <button
-              onClick={() => handleFilterModeChange('polygon')}
-              style={{
-                padding: '8px 16px',
-                backgroundColor: filterMode === 'polygon' ? '#007cba' : '#f0f0f0',
-                color: filterMode === 'polygon' ? 'white' : '#333',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
+            <button onClick={() => handleFilterModeChange('polygon')} style={btnStyle(filterMode === 'polygon')}>
               Polygon
             </button>
           </div>
@@ -230,30 +220,10 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           {/* Circle Mode Controls */}
           {filterMode === 'circle' && (
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <button
-                onClick={() => setInteractionMode('center')}
-                style={{
-                  padding: '8px 16px',
-                  backgroundColor: interactionMode === 'center' ? '#007cba' : '#f0f0f0',
-                  color: interactionMode === 'center' ? 'white' : '#333',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  cursor: 'pointer'
-                }}
-              >
+              <button onClick={() => setInteractionMode('center')} style={btnStyle(interactionMode === 'center')}>
                 Set Center
               </button>
-              <button
-                onClick={() => setInteractionMode('radius')}
-                style={{
-                  padding: '8px 16px',
-                  backgroundColor: interactionMode === 'radius' ? '#007cba' : '#f0f0f0',
-                  color: interactionMode === 'radius' ? 'white' : '#333',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  cursor: 'pointer'
-                }}
-              >
+              <button onClick={() => setInteractionMode('radius')} style={btnStyle(interactionMode === 'radius')}>
                 Set Radius
               </button>
               <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
@@ -267,8 +237,10 @@ const MapComponent: React.FC<MapWidgetProps> = ({
                   style={{
                     width: '80px',
                     padding: '4px 8px',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px'
+                    border: '1px solid var(--ifm-color-emphasis-300)',
+                    borderRadius: '4px',
+                    backgroundColor: 'var(--ifm-background-surface-color)',
+                    color: 'var(--ifm-font-color-base)',
                   }}
                 />
               </label>
@@ -296,27 +268,27 @@ const MapComponent: React.FC<MapWidgetProps> = ({
                 disabled={polygonCoordinates.length === 0}
                 style={{
                   padding: '8px 16px',
-                  backgroundColor: polygonCoordinates.length === 0 ? '#f0f0f0' : '#ffc107',
-                  color: polygonCoordinates.length === 0 ? '#999' : '#000',
-                  border: '1px solid #ccc',
+                  backgroundColor: polygonCoordinates.length === 0 ? 'var(--ifm-color-emphasis-200)' : '#ffc107',
+                  color: polygonCoordinates.length === 0 ? 'var(--ifm-color-emphasis-500)' : '#000',
+                  border: '1px solid var(--ifm-color-emphasis-300)',
                   borderRadius: '4px',
                   cursor: polygonCoordinates.length === 0 ? 'not-allowed' : 'pointer'
                 }}
               >
                 Remove Last Point
               </button>
-              <span style={{ fontSize: '14px', color: '#666' }}>
+              <span style={{ fontSize: '14px', color: 'var(--ifm-color-emphasis-600)' }}>
                 Points: {polygonCoordinates.length}
               </span>
             </div>
           )}
 
-          <p style={{ margin: '0', fontSize: '14px', color: '#666' }}>
+          <p style={{ margin: '0', fontSize: '14px', color: 'var(--ifm-color-emphasis-600)' }}>
             {filterMode === 'circle' ? (
               <>
                 <strong>Mode: {interactionMode === 'center' ? 'Set Center' : 'Set Radius'}</strong>
                 <br />
-                {interactionMode === 'radius' 
+                {interactionMode === 'radius'
                   ? 'Click anywhere on the map to set radius (distance from center to click point)'
                   : 'Click anywhere on the map to set the center point'
                 }
@@ -336,11 +308,11 @@ const MapComponent: React.FC<MapWidgetProps> = ({
         </div>
       </div>
       
-      <div style={{ 
-        height: '400px', 
-        width: '100%', 
-        marginBottom: '20px', 
-        border: '1px solid #ccc', 
+      <div style={{
+        height: '400px',
+        width: '100%',
+        marginBottom: '20px',
+        border: '1px solid var(--ifm-color-emphasis-300)',
         borderRadius: '4px',
         position: 'relative',
         overflow: 'hidden'
@@ -408,13 +380,14 @@ const MapComponent: React.FC<MapWidgetProps> = ({
         </MapContainer>
       </div>
       
-      <div style={{ 
-        backgroundColor: '#f5f5f5', 
-        padding: '15px', 
-        borderRadius: '4px', 
+      <div style={{
+        backgroundColor: 'var(--ifm-color-emphasis-100)',
+        padding: '15px',
+        borderRadius: '4px',
         fontFamily: 'monospace',
         fontSize: '14px',
-        border: '1px solid #ddd'
+        border: '1px solid var(--ifm-color-emphasis-300)',
+        color: 'var(--ifm-font-color-base)',
       }}>
         <strong>Output:</strong>
         <pre style={{ margin: '10px 0 0 0', whiteSpace: 'pre-wrap' }}>
@@ -441,7 +414,7 @@ const MapComponent: React.FC<MapWidgetProps> = ({
         </pre>
       </div>
       
-      <div style={{ marginTop: '15px', fontSize: '14px', color: '#666' }}>
+      <div style={{ marginTop: '15px', fontSize: '14px', color: 'var(--ifm-color-emphasis-600)' }}>
         <p><strong>Current Settings:</strong></p>
         <ul>
           <li>Filter Type: {filterMode === 'circle' ? 'Circle' : 'Polygon'}</li>
@@ -474,16 +447,17 @@ const MapWidget: React.FC<MapWidgetProps> = (props) => {
           <h3>{props.title || "Interactive Map Widget"}</h3>
           <p>Loading map components...</p>
         </div>
-        <div style={{ 
-          height: '400px', 
-          width: '100%', 
-          marginBottom: '20px', 
-          border: '1px solid #ccc', 
+        <div style={{
+          height: '400px',
+          width: '100%',
+          marginBottom: '20px',
+          border: '1px solid var(--ifm-color-emphasis-300)',
           borderRadius: '4px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#f5f5f5'
+          backgroundColor: 'var(--ifm-color-emphasis-100)',
+          color: 'var(--ifm-font-color-base)',
         }}>
           <div>Map will load on client-side...</div>
         </div>

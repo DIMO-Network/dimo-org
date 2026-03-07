@@ -58,6 +58,14 @@ export const vehicleInfoFields: TelemetryField[] = [
     description: 'Vehicle rotation rate along the vertical (Z) axis.',
   },
   {
+    signal: 'connectivityCellularIsJammingDetected',
+    commonName: 'Cellular Jamming Detection',
+    aggregationType: 'FloatAggregation!',
+    units: '0 or 1',
+    description:
+      '<p>Indicates whether cellular jamming has been detected.</p><p>True (1) = Jamming detected<br>False (0) = No jamming detected</p>',
+  },
+  {
     signal: 'bodyLightsIsAirbagWarningOn',
     commonName: 'Airbag Warning',
     aggregationType: 'FloatAggregation!',
@@ -655,6 +663,27 @@ export const tirePressureFields: TelemetryField[] = [
     aggregationType: 'FloatAggregation!',
     units: 'km/h',
     description: 'Rotational speed of the front right wheel.',
+  },
+  {
+    signal: 'chassisAxleRow3Weight',
+    commonName: 'Axle Row 3 Weight',
+    aggregationType: 'FloatAggregation!',
+    units: 'kg',
+    description: 'Weight measured at axle row 3 (commercial/heavy vehicles).',
+  },
+  {
+    signal: 'chassisAxleRow4Weight',
+    commonName: 'Axle Row 4 Weight',
+    aggregationType: 'FloatAggregation!',
+    units: 'kg',
+    description: 'Weight measured at axle row 4 (commercial/heavy vehicles).',
+  },
+  {
+    signal: 'chassisAxleRow5Weight',
+    commonName: 'Axle Row 5 Weight',
+    aggregationType: 'FloatAggregation!',
+    units: 'kg',
+    description: 'Weight measured at axle row 5 (commercial/heavy vehicles).',
   },
   {
     signal: 'chassisTireSystemIsWarningOn',

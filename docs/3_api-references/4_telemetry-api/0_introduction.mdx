@@ -105,6 +105,14 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
             name: "RAND",
             description: "Returns a **randomly-selected** value from the dataset."
           },
+          {
+            name: "FIRST",
+            description: "Returns the **first** (earliest) value from the dataset."
+          },
+          {
+            name: "LAST",
+            description: "Returns the **last** (most recent) value from the dataset."
+          },
         ]}
       />
 
@@ -125,6 +133,14 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
           {
             name: "UNIQUE",
             description: "Return **a list of unique values** in the dataset."
+          },
+          {
+            name: "FIRST",
+            description: "Returns the **first** (earliest) value from the dataset."
+          },
+          {
+            name: "LAST",
+            description: "Returns the **last** (most recent) value from the dataset."
           },
         ]}
       />
@@ -150,6 +166,51 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
           {
             name: "in",
             description: "[String!] - In the provided array of strings."
+          },
+        ]}
+      />
+
+      <h4>SignalFloatFilter</h4>
+      Per-signal value filter available on individual float signal fields. Use as the `filter` argument on any float signal in the query.
+
+      <ParametersBlock
+        title=""
+        parameters={[
+          {
+            name: "eq",
+            description: "Float - Exact value match."
+          },
+          {
+            name: "neq",
+            description: "Float - Not equal."
+          },
+          {
+            name: "gt",
+            description: "Float - Greater than."
+          },
+          {
+            name: "lt",
+            description: "Float - Less than."
+          },
+          {
+            name: "gte",
+            description: "Float - Greater than or equal."
+          },
+          {
+            name: "lte",
+            description: "Float - Less than or equal."
+          },
+          {
+            name: "in",
+            description: "[Float!] - In the provided array of values."
+          },
+          {
+            name: "notIn",
+            description: "[Float!] - Not in the provided array of values."
+          },
+          {
+            name: "or",
+            description: "[SignalFloatFilter!] - Logical OR of multiple filters."
           },
         ]}
       />
@@ -238,6 +299,18 @@ query {
         {
           name: "Time",
           description: "A point in time, encoded per RFC-3999. This is in second precision and in UTC, an example would be 2023-12-04T18:32:12Z."
+        },
+        {
+          name: "Address",
+          description: "A 20-byte Ethereum address, encoded as a checksummed hex string with 0x prefix."
+        },
+        {
+          name: "Uint64",
+          description: "An unsigned 64-bit integer."
+        },
+        {
+          name: "Map",
+          description: "A custom map scalar representing key-value pairs."
         },
       ]}
     />

@@ -1,0 +1,511 @@
+---
+sidebar_position: 6
+---
+
+import TwoColumnLayout from '@site/src/components/TwoColumnLayout';
+import ParametersBlock from '@site/src/components/ParametersBlock';
+
+# Additional Queries
+Supplementary queries for vehicle data summaries, attestations, and daily activity.
+
+## dataSummary
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns a summary of all signal and event data for a given vehicle, including total signal count, available signal names, and per-signal/per-event breakdowns with first/last seen timestamps.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            required: true,
+            description: "The vehicle token ID."
+          },
+          {
+            name: "filter",
+            type: "SignalFilter",
+            required: false,
+            description: "Optional filter by source."
+          }
+        ]}
+      />
+
+      <h4>DataSummary</h4>
+      <ParametersBlock
+        title="Fields"
+        parameters={[
+          {
+            name: "numberOfSignals",
+            type: "Uint64!",
+            description: "Total number of signals collected for this vehicle."
+          },
+          {
+            name: "availableSignals",
+            type: "[String!]!",
+            description: "List of signal names that have stored data."
+          },
+          {
+            name: "firstSeen",
+            type: "Time!",
+            description: "Timestamp of the earliest signal received."
+          },
+          {
+            name: "lastSeen",
+            type: "Time!",
+            description: "Timestamp of the most recent signal received."
+          },
+          {
+            name: "signalDataSummary",
+            type: "[signalDataSummary!]!",
+            description: "Per-signal breakdown. Each entry has: `name` (String!), `numberOfSignals` (Uint64!), `firstSeen` (Time!), `lastSeen` (Time!)."
+          },
+          {
+            name: "eventDataSummary",
+            type: "[eventDataSummary!]!",
+            description: "Per-event breakdown. Each entry has: `name` (String!), `numberOfEvents` (Uint64!), `firstSeen` (Time!), `lastSeen` (Time!)."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <pre><code className="language-graphql">{`query GetDataSummary {
+  dataSummary(tokenId: 12345) {
+    numberOfSignals
+    availableSignals
+    firstSeen
+    lastSeen
+    signalDataSummary {
+      name
+      numberOfSignals
+      firstSeen
+      lastSeen
+    }
+    eventDataSummary {
+      name
+      numberOfEvents
+      firstSeen
+      lastSeen
+    }
+  }
+}`}</code></pre>
+    </div>
+  }
+/>
+
+## attestations
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns attestations for a given vehicle. Attestations are signed records that certify vehicle data.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int",
+            required: false,
+            description: "The vehicle token ID."
+          },
+          {
+            name: "subject",
+            type: "String",
+            required: false,
+            description: "The subject of the attestation."
+          },
+          {
+            name: "filter",
+            type: "AttestationFilter",
+            required: false,
+            description: "Filter attestations by metadata fields."
+          }
+        ]}
+      />
+
+      <h4>AttestationFilter</h4>
+      <ParametersBlock
+        title="Filter Fields"
+        parameters={[
+          {
+            name: "id",
+            description: "Filter by attestation ID."
+          },
+          {
+            name: "source",
+            type: "Address",
+            description: "Filter by the attesting party address."
+          },
+          {
+            name: "dataVersion",
+            description: "Filter by data version."
+          },
+          {
+            name: "producer",
+            description: "Filter by producer."
+          },
+          {
+            name: "before",
+            type: "Time",
+            description: "Filter attestations made before this timestamp."
+          },
+          {
+            name: "after",
+            type: "Time",
+            description: "Filter attestations made after this timestamp."
+          },
+          {
+            name: "limit",
+            type: "Int",
+            description: "Limit results returned. Default: 10."
+          },
+          {
+            name: "cursor",
+            type: "Time",
+            description: "Cursor for pagination (exclusive)."
+          },
+          {
+            name: "tags",
+            type: "StringArrayFilter",
+            description: "Filter attestations by tags."
+          }
+        ]}
+      />
+
+      <h4>Attestation</h4>
+      <ParametersBlock
+        title="Fields"
+        parameters={[
+          {
+            name: "id",
+            type: "String!",
+            description: "Unique attestation identifier."
+          },
+          {
+            name: "vehicleTokenId",
+            type: "Int!",
+            description: "The token ID of the vehicle."
+          },
+          {
+            name: "time",
+            type: "Time!",
+            description: "Timestamp when the attestation was made."
+          },
+          {
+            name: "attestation",
+            type: "String!",
+            description: "JSON-encoded attestation data."
+          },
+          {
+            name: "type",
+            type: "String!",
+            description: "Type of the attestation."
+          },
+          {
+            name: "source",
+            type: "Address!",
+            description: "Address that created and signed the attestation."
+          },
+          {
+            name: "dataVersion",
+            type: "String!",
+            description: "Data version of the attestation."
+          },
+          {
+            name: "producer",
+            type: "String",
+            description: "Producer of the attestation data."
+          },
+          {
+            name: "signature",
+            type: "String!",
+            description: "Signature of the attestation data."
+          },
+          {
+            name: "tags",
+            type: "[String!]",
+            description: "Tags associated with the attestation."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <pre><code className="language-graphql">{`query GetAttestations {
+  attestations(
+    tokenId: 12345
+    filter: {
+      after: "2025-01-01T00:00:00Z"
+      limit: 5
+    }
+  ) {
+    id
+    vehicleTokenId
+    time
+    type
+    source
+    dataVersion
+    producer
+    signature
+    tags
+  }
+}`}</code></pre>
+    </div>
+  }
+/>
+
+## dailyActivity
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns one record per calendar day in the date range, summarizing vehicle activity. Maximum date range: 31 days.
+
+      <strong>Note:</strong> The <code>mechanism</code> must be <code>ignitionDetection</code>, <code>frequencyAnalysis</code>, or <code>changePointDetection</code>. The <code>idling</code>, <code>refuel</code>, and <code>recharge</code> mechanisms are not supported for daily activity.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            required: true,
+            description: "The vehicle token ID."
+          },
+          {
+            name: "from",
+            type: "Time!",
+            required: true,
+            description: "Start time of the range."
+          },
+          {
+            name: "to",
+            type: "Time!",
+            required: true,
+            description: "End time of the range."
+          },
+          {
+            name: "mechanism",
+            type: "DetectionMechanism!",
+            required: true,
+            description: "The method used to detect activity segments. Only ignitionDetection, frequencyAnalysis, and changePointDetection are allowed."
+          },
+          {
+            name: "config",
+            type: "SegmentConfig",
+            required: false,
+            description: "Configuration for segment detection parameters."
+          },
+          {
+            name: "signalRequests",
+            type: "[SegmentSignalRequest!]",
+            required: false,
+            description: "Request specific signal aggregations per day."
+          },
+          {
+            name: "eventRequests",
+            type: "[SegmentEventRequest!]",
+            required: false,
+            description: "Request specific event counts per day."
+          },
+          {
+            name: "timezone",
+            type: "String",
+            required: false,
+            description: "Timezone for day boundaries (e.g. \"America/New_York\")."
+          }
+        ]}
+      />
+
+      <h4>DailyActivity</h4>
+      <ParametersBlock
+        title="Fields"
+        parameters={[
+          {
+            name: "start",
+            type: "SignalLocation",
+            description: "Start of day (timestamp and location). Null if not available."
+          },
+          {
+            name: "end",
+            type: "SignalLocation",
+            description: "End of day (timestamp and location). Null if not available."
+          },
+          {
+            name: "segmentCount",
+            type: "Int!",
+            description: "Number of activity segments that started or fell within that day."
+          },
+          {
+            name: "duration",
+            type: "Int!",
+            description: "Sum of segment durations (total active time that day) in seconds."
+          },
+          {
+            name: "signals",
+            type: "[SignalAggregationValue!]!",
+            description: "Per-day signal aggregates. Each entry has `name` (String!), `agg` (String!), and `value` (Float!)."
+          },
+          {
+            name: "eventCounts",
+            type: "[EventCount!]!",
+            description: "Per-day event counts. Each entry has `name` (String!) and `count` (Int!)."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <pre><code className="language-graphql">{`query GetDailyActivity {
+  dailyActivity(
+    tokenId: 12345
+    from: "2025-11-01T00:00:00Z"
+    to: "2025-11-07T00:00:00Z"
+    mechanism: frequencyAnalysis
+    signalRequests: [
+      { name: "speed", agg: MAX }
+    ]
+    timezone: "America/New_York"
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    segmentCount
+    duration
+    signals { name agg value }
+    eventCounts { name count }
+  }
+}`}</code></pre>
+
+      <h4>Response Example</h4>
+      <pre><code className="language-json">{`{
+  "data": {
+    "dailyActivity": [
+      {
+        "start": {
+          "timestamp": "2025-11-01T08:30:00Z",
+          "value": { "latitude": 40.7128, "longitude": -74.006 }
+        },
+        "end": {
+          "timestamp": "2025-11-01T22:15:00Z",
+          "value": { "latitude": 40.758, "longitude": -73.9855 }
+        },
+        "segmentCount": 3,
+        "duration": 7200,
+        "signals": [
+          { "name": "speed", "agg": "MAX", "value": 95.2 }
+        ],
+        "eventCounts": []
+      }
+    ]
+  }
+}`}</code></pre>
+    </div>
+  }
+/>
+
+## vinVCLatest
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns the latest VIN Verifiable Credential (VC) for a given vehicle token.
+
+      <strong>Note:</strong> Requires the <code>VEHICLE_VIN_CREDENTIAL</code> privilege.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          {
+            name: "tokenId",
+            type: "Int!",
+            required: true,
+            description: "The vehicle token ID."
+          }
+        ]}
+      />
+
+      <h4>VINVC</h4>
+      <ParametersBlock
+        title="Fields"
+        parameters={[
+          {
+            name: "vehicleTokenId",
+            type: "Int",
+            description: "The token ID of the vehicle."
+          },
+          {
+            name: "vin",
+            type: "String",
+            description: "The vehicle identification number."
+          },
+          {
+            name: "recordedBy",
+            type: "String",
+            description: "The entity that recorded the VIN."
+          },
+          {
+            name: "recordedAt",
+            type: "Time",
+            description: "The time the VIN was recorded."
+          },
+          {
+            name: "countryCode",
+            type: "String",
+            description: "The country code that the VIN belongs to."
+          },
+          {
+            name: "vehicleContractAddress",
+            type: "String",
+            description: "The address of the vehicle contract."
+          },
+          {
+            name: "validFrom",
+            type: "Time",
+            description: "The time the VC is valid from."
+          },
+          {
+            name: "validTo",
+            type: "Time",
+            description: "The time the VC is valid to."
+          },
+          {
+            name: "rawVC",
+            type: "String!",
+            description: "The raw VC JSON."
+          }
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <pre><code className="language-graphql">{`query GetVINVC {
+  vinVCLatest(tokenId: 12345) {
+    vin
+    recordedBy
+    recordedAt
+    countryCode
+    validFrom
+    validTo
+  }
+}`}</code></pre>
+    </div>
+  }
+/>
