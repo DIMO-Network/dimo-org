@@ -64,7 +64,7 @@ function useTypewriter(words: string[], typingSpeed = 100, deletingSpeed = 50, p
 }
 
 function HeroSection() {
-  const rotatingWord = useTypewriter(['commerce', 'privacy', 'engagement'], 100, 50, 3000);
+  const rotatingWord = useTypewriter(['session-based economy', 'mobility', 'vehicle data'], 100, 50, 3000);
 
   return (
     <header className={styles.hero}>
@@ -83,14 +83,14 @@ function HeroSection() {
         </Link>
 
         <h1 className={styles.heroTitle}>
-          The vehicle intelligence platform that <br />
-          puts {rotatingWord}<span className={styles.typewriterCursor}>|</span>first.
+          The infrastructure built for <br />
+          {rotatingWord}<span className={styles.typewriterCursor}>|</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Build intelligent vehicle apps that work with any car & any tech
-          stack. Ship faster with DIMO AI—no rewrites, no migrations, just
-          results.
+          DIMO is building the infrastructure for the session-based economy—where
+          vehicles, drivers, and services connect on-demand. Build apps that unlock
+          value across every trip, rental, and interaction.
         </p>
 
         <div className={styles.heroButtons}>
@@ -154,12 +154,12 @@ function FeaturesGrid() {
   return (
     <section className={styles.features}>
       <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>Everything you need to build</h2>
+        <h2 className={styles.sectionTitle}>Built for the session-based economy</h2>
         <p className={styles.sectionSubtitle}>
-          DIMO can be used with pre-built, templated agents that work with your
-          existing data, or can be used alongside custom-built agents. Our
-          flexible infrastructure provides you with everything you need to build
-          agentic applications for vehicle services.
+          The future of mobility is sessions—not ownership. DIMO gives you the
+          primitives to build services that activate at the start of a trip and
+          settle when it ends: data consent, real-time telemetry, payments, and
+          AI-driven automation—all in one platform.
         </p>
       </div>
 
@@ -187,29 +187,28 @@ function AutomateOperationsSection() {
           <img src={imgDimoAi} alt="Automate Operations" />
         </div>
         <div className={styles.featureText}>
-          <h3>Automate your operations like never before</h3>
+          <h3>Power every session, end to end</h3>
           <p>
-            DIMO's platform lets you transform your operations by automating
-            your existing workflows with vehicle agents with memory built
-            in—delivering polished, personalized customer experiences while
-            maximizing efficiency. DIMO is perfect for streamlining operations
-            in:
+            From the moment a driver unlocks a vehicle to the instant they hand
+            it back, DIMO orchestrates the entire session lifecycle. Automate
+            workflows with AI agents that carry context across every interaction—
+            so your team focuses on growth, not ops. Perfect for:
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Maintenance
+              <span className={styles.checkIcon}>✓</span> Rentals & Fleet Turnover
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Rentals & Returns
+              <span className={styles.checkIcon}>✓</span> Pay-Per-Use & Subscription Services
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Repairs
+              <span className={styles.checkIcon}>✓</span> Session-Based Insurance & Risk
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Booking and Scheduling
+              <span className={styles.checkIcon}>✓</span> Booking, Check-in & Returns
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> And more!
+              <span className={styles.checkIcon}>✓</span> Maintenance Triggered by Usage
             </li>
           </ul>
         </div>
@@ -223,27 +222,27 @@ function BigFeatureSection() {
     <section className={styles.bigFeature}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h3>Got Data? Bring It.</h3>
+          <h3>Connect any vehicle. Start any session.</h3>
           <p>
-            DIMO's intelligent vehicle agents work with your existing data and
-            tech stack — just feed your data into our{' '}
+            The session-based economy runs on real-time vehicle data. DIMO
+            connects to 50+ OEMs out of the box—or ingest your own data via the{' '}
             <a href="https://github.com/DIMO-Network/dis">DIMO Ingest Server</a>
-            . We've built the agents that understand your data so that you can
-            focus on building what matters: features that delight your users and
-            drive your business forward.
+            . Every session gets a verified identity, live telemetry, and
+            user-controlled consent so you can charge, insure, and serve drivers
+            with confidence.
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Works with your
-              existing infrastructure
+              <span className={styles.checkIcon}>✓</span> Verified vehicle &
+              driver identity per session
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Seamless integration,
-              zero disruption
+              <span className={styles.checkIcon}>✓</span> Real-time telemetry
+              from ignition to park
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Focus on your product,
-              not data plumbing
+              <span className={styles.checkIcon}>✓</span> Granular consent that
+              activates and expires with each session
             </li>
           </ul>
         </div>
@@ -383,10 +382,10 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>Ready to launch?</h2>
+        <h2 className={styles.ctaTitle}>Ready to build for sessions?</h2>
         <p className={styles.ctaText}>
-          Join thousands of developers building the next generation of mobility
-          apps. Get your API keys today.
+          Join developers building the next generation of session-based mobility
+          services. Get your API keys and ship your first session today.
         </p>
         <div
           className={styles.heroButtons}
@@ -412,15 +411,15 @@ export default function Home(): ReactNode {
     <>
       <Head>
         {/* Primary Meta Tags */}
-        <title>DIMO | Vehicle Intelligence Platform for Connected Car Development</title>
-        <meta name="title" content="DIMO | Vehicle Intelligence Platform for Connected Car Development" />
+        <title>DIMO | Vehicle Platform for the Session-Based Economy</title>
+        <meta name="title" content="DIMO | Vehicle Platform for the Session-Based Economy" />
         <meta
           name="description"
-          content="Build intelligent vehicle apps with DIMO's connected car platform. Access real-time data from 50+ OEMs including Tesla, Ford, BMW. AI-ready APIs, privacy-first architecture, and plug-and-play hardware. Start free."
+          content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ OEMs."
         />
         <meta
           name="keywords"
-          content="vehicle data API, connected car platform, automotive developer platform, vehicle intelligence, car API, telematics API, OEM API, vehicle data, automotive AI, DIMO, vehicle SDK"
+          content="session-based economy, vehicle data API, connected car platform, automotive developer platform, vehicle intelligence, car API, telematics API, OEM API, mobility as a service, vehicle SDK, DIMO"
         />
 
         {/* Canonical URL */}
@@ -429,10 +428,10 @@ export default function Home(): ReactNode {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.dimo.org/" />
-        <meta property="og:title" content="DIMO | Vehicle Intelligence Platform for Connected Car Development" />
+        <meta property="og:title" content="DIMO | Vehicle Platform for the Session-Based Economy" />
         <meta
           property="og:description"
-          content="Build intelligent vehicle apps with DIMO's connected car platform. Access real-time data from 50+ OEMs including Tesla, Ford, BMW. AI-ready APIs, privacy-first architecture, and plug-and-play hardware."
+          content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ OEMs."
         />
         <meta property="og:image" content="https://www.dimo.org/img/dimo-social-card.png" />
         <meta property="og:site_name" content="DIMO" />
@@ -441,10 +440,10 @@ export default function Home(): ReactNode {
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.dimo.org/" />
-        <meta name="twitter:title" content="DIMO | Vehicle Intelligence Platform for Connected Car Development" />
+        <meta name="twitter:title" content="DIMO | Vehicle Platform for the Session-Based Economy" />
         <meta
           name="twitter:description"
-          content="Build intelligent vehicle apps with DIMO's connected car platform. Access real-time data from 50+ OEMs. Start free."
+          content="DIMO powers the session-based economy—rentals, pay-per-use, and mobility services built on real-time vehicle data. Start free."
         />
         <meta name="twitter:image" content="https://www.dimo.org/img/dimo-social-card.png" />
 
