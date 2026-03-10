@@ -148,7 +148,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         code={`[
       {
         "id": "2r8653ab-721c-4356-ac1d-f2a620b345bc",
-        "service": "telemetry.signals",
+        "service": "signals.vss",
         "metricName": "speed",
         "condition": "valueNumber > 95",
         "targetURL": "https://api.igottafastcar.com/webhook-receiver",
@@ -162,7 +162,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       },
       {
         "id": "9d5fd26c-7d21-4425-b43c-dc279bb76036",
-        "service": "telemetry.signals",
+        "service": "signals.vss",
         "metricName": "powertrainTractionBatteryChargingIsCharging",
         "condition": "valueNumber == 1",
         "targetURL": "https://api.igottafastcar.com/webhook-receiver",
@@ -197,13 +197,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             name: "service",
             type: "string",
             required: true,
-            description: "The subsystem producing the metric. For example, telemetry.signals or telemetry.events"
+            description: "The subsystem producing the metric. Must be one of: signals.vss (VSS vehicle signals), events.behavior (driving behavior events), or events.safety (safety events)"
           },
           {
             name: "metricName",
             type: "string",
             required: true,
-            description: "The fully qualified signal or event name to monitor. Examples: Signals: speed, powertrainTransmissionTravelledDistance, powertrainTractionBatteryChargingIsCharging, etc. Events: ExtremeBraking, HarshAcceleration, HarshBraking, HarshCornering"
+            description: "The fully qualified signal or event name to monitor. For signals.vss: speed, powertrainTransmissionTravelledDistance, powertrainTractionBatteryChargingIsCharging, etc. For events.behavior: HarshBraking, HarshAcceleration. For events.safety: collision events."
           },
           {
             name: "condition",
@@ -273,7 +273,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             language: "typescript",
             code: `const newWebhook = await dimo.VehicleTriggers.createWebhook({
       developerJwt: "eyJhbGc...ILlujqw",
-      service: "telemetry.signals",
+      service: "signals.vss",
       metricName: "speed",
       condition: "valueNumber > 95",
       coolDownPeriod: 30,
@@ -288,7 +288,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             label: "Python",
             language: "python",
             code: `webhook_config = {
-      "service": "telemetry.signals",
+      "service": "signals.vss",
       "metricName": "speed",
       "condition": "valueNumber > 95",
       "coolDownPeriod": 30,
@@ -311,7 +311,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "service": "telemetry.signals",
+    "service": "signals.vss",
     "metricName": "speed",
     "condition": "valueNumber > 95",
     "coolDownPeriod": 30,
@@ -432,7 +432,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             code: `const updateWebhook = await dimo.VehicleTriggers.updateWebhook({
       developerJwt: "eyJhbGc...ILlujqw",
       webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906",
-      service: "telemetry.signals",
+      service: "signals.vss",
       metricName: "speed",
       condition: "valueNumber > 99",
       coolDownPeriod: 30,
@@ -447,7 +447,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             label: "Python",
             language: "python",
             code: `webhook_config = {
-      "service": "telemetry.signals",
+      "service": "signals.vss",
       "metricName": "speed",
       "condition": "valueNumber > 95",
       "coolDownPeriod": 30,
@@ -471,7 +471,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "service": "telemetry.signals",
+    "service": "signals.vss",
     "metricName": "speed",
     "condition": "valueNumber > 99",
     "coolDownPeriod": 30,
@@ -1051,9 +1051,9 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "time": "2025-08-14T11:04:29.685302958Z",
     "type": "dimo.trigger",
     "datacontenttype": "application/json",
-    "dataversion": "telemetry.signals/v1.0",
+    "dataversion": "signals.vss/v1.0",
     "data": {
-      "service": "telemetry.signals",
+      "service": "signals.vss",
       "metricName": "speed",
       "webhookId": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
       "webhookName": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
