@@ -148,8 +148,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         code={`[
       {
         "id": "2r8653ab-721c-4356-ac1d-f2a620b345bc",
-        "service": "signals.vss",
-        "metricName": "speed",
+        "service": "signals",
+        "metricName": "vss.speed",
         "condition": "valueNumber > 95",
         "targetURL": "https://api.igottafastcar.com/webhook-receiver",
         "coolDownPeriod": 30,
@@ -162,8 +162,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       },
       {
         "id": "9d5fd26c-7d21-4425-b43c-dc279bb76036",
-        "service": "signals.vss",
-        "metricName": "powertrainTractionBatteryChargingIsCharging",
+        "service": "signals",
+        "metricName": "vss.powertrainTractionBatteryChargingIsCharging",
         "condition": "valueNumber == 1",
         "targetURL": "https://api.igottafastcar.com/webhook-receiver",
         "coolDownPeriod": 0,
@@ -197,13 +197,13 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             name: "service",
             type: "string",
             required: true,
-            description: "The subsystem producing the metric. Must be one of: signals.vss (VSS vehicle signals), events.behavior (driving behavior events), or events.safety (safety events)"
+            description: "The subsystem producing the metric. Must be one of: signals (VSS vehicle signals) or events (behavior and safety events)"
           },
           {
             name: "metricName",
             type: "string",
             required: true,
-            description: "The fully qualified signal or event name to monitor. For signals.vss: speed, powertrainTransmissionTravelledDistance, powertrainTractionBatteryChargingIsCharging, etc. For events.behavior: HarshBraking, HarshAcceleration. For events.safety: collision events."
+            description: "The fully qualified signal or event name to monitor. For signals: use VSS-prefixed names like vss.speed, vss.powertrainTransmissionTravelledDistance, vss.powertrainTractionBatteryChargingIsCharging, etc. For events: use category-prefixed names like behavior.harshBraking, behavior.harshAcceleration, safety.collision, etc."
           },
           {
             name: "condition",
@@ -273,8 +273,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             language: "typescript",
             code: `const newWebhook = await dimo.VehicleTriggers.createWebhook({
       developerJwt: "eyJhbGc...ILlujqw",
-      service: "signals.vss",
-      metricName: "speed",
+      service: "signals",
+      metricName: "vss.speed",
       condition: "valueNumber > 95",
       coolDownPeriod: 30,
       description: "Fires whenever a subscribed vehicle travels over 95kph",
@@ -288,8 +288,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             label: "Python",
             language: "python",
             code: `webhook_config = {
-      "service": "signals.vss",
-      "metricName": "speed",
+      "service": "signals",
+      "metricName": "vss.speed",
       "condition": "valueNumber > 95",
       "coolDownPeriod": 30,
       "description": "Fires whenever a subscribed vehicle travels over 95kph",
@@ -311,8 +311,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "service": "signals.vss",
-    "metricName": "speed",
+    "service": "signals",
+    "metricName": "vss.speed",
     "condition": "valueNumber > 95",
     "coolDownPeriod": 30,
     "description": "Fires whenever a subscribed vehicle travels over 95kph",
@@ -432,8 +432,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             code: `const updateWebhook = await dimo.VehicleTriggers.updateWebhook({
       developerJwt: "eyJhbGc...ILlujqw",
       webhookId: "1d2bef3c-4d56-7890-b12c-dc345ee67906",
-      service: "signals.vss",
-      metricName: "speed",
+      service: "signals",
+      metricName: "vss.speed",
       condition: "valueNumber > 99",
       coolDownPeriod: 30,
       description: "Fires whenever a subscribed vehicle travels over 99kph",
@@ -447,8 +447,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             label: "Python",
             language: "python",
             code: `webhook_config = {
-      "service": "signals.vss",
-      "metricName": "speed",
+      "service": "signals",
+      "metricName": "vss.speed",
       "condition": "valueNumber > 95",
       "coolDownPeriod": 30,
       "description": "Fires whenever a subscribed vehicle travels over 95kph",
@@ -471,8 +471,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   -H "Authorization: Bearer <DEV_JWT>" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "service": "signals.vss",
-    "metricName": "speed",
+    "service": "signals",
+    "metricName": "vss.speed",
     "condition": "valueNumber > 99",
     "coolDownPeriod": 30,
     "description": "Fires whenever a subscribed vehicle travels over 99kph",
@@ -1051,10 +1051,10 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "time": "2025-08-14T11:04:29.685302958Z",
     "type": "dimo.trigger",
     "datacontenttype": "application/json",
-    "dataversion": "signals.vss/v1.0",
+    "dataversion": "signals/v1.0",
     "data": {
-      "service": "signals.vss",
-      "metricName": "speed",
+      "service": "signals",
+      "metricName": "vss.speed",
       "webhookId": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
       "webhookName": "3dfc572a-ea31-4e8e-8685-29fb4a24d0c2",
       "assetDID": "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345",
