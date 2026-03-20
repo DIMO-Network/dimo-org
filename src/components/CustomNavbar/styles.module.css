@@ -176,9 +176,9 @@
 }
 
 .dropdownMenuProducts {
-  min-width: 380px;
-  grid-template-columns: 1fr;
-  gap: 0;
+  min-width: 680px;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
 }
 
 @keyframes dropdownFadeIn {

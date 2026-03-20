@@ -7,6 +7,12 @@ import {
   ShieldCheck,
   Key,
   CreditCard,
+  Wallet,
+  Cpu,
+  Smartphone,
+  Fingerprint,
+  Terminal,
+  Bot,
 } from 'lucide-react';
 
 import styles from './styles.module.css';
@@ -104,42 +110,159 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               />
             </div>
             {isProductsDropdownOpen && (
-              <div className={`${styles.dropdownMenu} ${styles.dropdownMenuProducts}`}>
+              <div
+                className={`${styles.dropdownMenu} ${styles.dropdownMenuProducts}`}
+              >
+                <div className={styles.dropdownSection}>
+                  <div className={styles.dropdownSectionTitle}>Components</div>
+                  <Link
+                    to="/products/components#wallet"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Wallet size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Wallet</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Self-custodied vehicle identity and asset management
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/products/components#telematic-devices"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Cpu size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>
+                        Telematic Devices
+                      </span>
+                      <span className={styles.dropdownItemDesc}>
+                        Hardware connectivity for any vehicle
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/products/components#digital-key"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Smartphone size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>
+                        Digital Key
+                      </span>
+                      <span className={styles.dropdownItemDesc}>
+                        Phone-as-key vehicle access via NFC and BLE
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/products/components#on-chain-identity"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Fingerprint
+                      size={20}
+                      className={styles.dropdownItemIcon}
+                    />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>
+                        On-chain Identity
+                      </span>
+                      <span className={styles.dropdownItemDesc}>
+                        Verifiable vehicle ownership as an NFT
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/products/components#agents"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Bot size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>Agents</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Autonomous vehicle intelligence and workflow automation
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/products/components#developer-tools"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Terminal size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>
+                        Developer Tools
+                      </span>
+                      <span className={styles.dropdownItemDesc}>
+                        SDKs, APIs, console, and AI-native integrations
+                      </span>
+                    </div>
+                  </Link>
+                </div>
                 <div className={styles.dropdownSection}>
                   <div className={styles.dropdownSectionTitle}>Platform</div>
-                  <Link to="/products/ingest" className={styles.dropdownItemWithIcon}>
+                  <Link
+                    to="/products/ingest"
+                    className={styles.dropdownItemWithIcon}
+                  >
                     <Download size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>Ingest</span>
-                      <span className={styles.dropdownItemDesc}>Bring your own data (BYOD) or integrate with telematics partners</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Bring your own data (BYOD) or integrate with telematics
+                        partners
+                      </span>
                     </div>
                   </Link>
-                  <Link to="/products/storage" className={styles.dropdownItemWithIcon}>
+                  <Link
+                    to="/products/storage"
+                    className={styles.dropdownItemWithIcon}
+                  >
                     <Database size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>Storage</span>
-                      <span className={styles.dropdownItemDesc}>Normalized, clean, AI-ready data - managed or on-premise</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Normalized, clean, AI-ready data - managed or on-premise
+                      </span>
                     </div>
                   </Link>
-                  <Link to="/products/consent" className={styles.dropdownItemWithIcon}>
-                    <ShieldCheck size={20} className={styles.dropdownItemIcon} />
+                  <Link
+                    to="/products/consent"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <ShieldCheck
+                      size={20}
+                      className={styles.dropdownItemIcon}
+                    />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>Consent</span>
-                      <span className={styles.dropdownItemDesc}>Off-the-shelf data privacy and permissions management</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Off-the-shelf data privacy and permissions management
+                      </span>
                     </div>
                   </Link>
-                  <Link to="/products/access" className={styles.dropdownItemWithIcon}>
+                  <Link
+                    to="/products/access"
+                    className={styles.dropdownItemWithIcon}
+                  >
                     <Key size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>Access</span>
-                      <span className={styles.dropdownItemDesc}>Consume governed data via API, SDK, and AI Agents</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Consume governed data via API, SDK, and AI Agents
+                      </span>
                     </div>
                   </Link>
-                  <Link to="/products/pay" className={styles.dropdownItemWithIcon}>
+                  <Link
+                    to="/products/pay"
+                    className={styles.dropdownItemWithIcon}
+                  >
                     <CreditCard size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>Pay</span>
-                      <span className={styles.dropdownItemDesc}>Payment & reward rails for vehicle-centric commerce</span>
+                      <span className={styles.dropdownItemDesc}>
+                        Payment & reward rails for vehicle-centric commerce
+                      </span>
                     </div>
                   </Link>
                 </div>
@@ -164,17 +287,31 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             {isSolutionsDropdownOpen && (
               <div className={styles.dropdownMenu}>
                 <div className={styles.dropdownSection}>
-                  <div className={styles.dropdownSectionTitle}>By Experience</div>
-                  <Link to="/solutions/agentic-experiences" className={styles.dropdownItem}>
+                  <div className={styles.dropdownSectionTitle}>
+                    By Experience
+                  </div>
+                  <Link
+                    to="/solutions/agentic-experiences"
+                    className={styles.dropdownItem}
+                  >
                     Agentic Experiences
                   </Link>
-                  <Link to="/solutions/consumer-applications" className={styles.dropdownItem}>
+                  <Link
+                    to="/solutions/consumer-applications"
+                    className={styles.dropdownItem}
+                  >
                     Consumer Applications
                   </Link>
-                  <Link to="/solutions/fleet-intelligence" className={styles.dropdownItem}>
+                  <Link
+                    to="/solutions/fleet-intelligence"
+                    className={styles.dropdownItem}
+                  >
                     Fleet Intelligence
                   </Link>
-                  <Link to="/solutions/vehicle-commerce" className={styles.dropdownItem}>
+                  <Link
+                    to="/solutions/vehicle-commerce"
+                    className={styles.dropdownItem}
+                  >
                     Vehicle Commerce
                   </Link>
                 </div>
@@ -183,13 +320,19 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   <Link to="/industries/oem" className={styles.dropdownItem}>
                     Auto OEMs
                   </Link>
-                  <Link to="/industries/dealerships" className={styles.dropdownItem}>
+                  <Link
+                    to="/industries/dealerships"
+                    className={styles.dropdownItem}
+                  >
                     Dealerships
                   </Link>
                   <Link to="/industries/dsp" className={styles.dropdownItem}>
                     Delivery Service Providers
                   </Link>
-                  <Link to="/industries/rentals" className={styles.dropdownItem}>
+                  <Link
+                    to="/industries/rentals"
+                    className={styles.dropdownItem}
+                  >
                     Rentals & P2P Car Sharing
                   </Link>
                 </div>
@@ -218,19 +361,35 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   <Link to="/docs" className={styles.dropdownItem}>
                     Documentation
                   </Link>
-                  <Link to={LINKS.external.blogs} className={styles.dropdownItem} target="_blank">
+                  <Link
+                    to={LINKS.external.blogs}
+                    className={styles.dropdownItem}
+                    target="_blank"
+                  >
                     Developer Blog
                   </Link>
-                  <Link to={LINKS.external.dimoUniversity} className={styles.dropdownItem} target="_blank">
+                  <Link
+                    to={LINKS.external.dimoUniversity}
+                    className={styles.dropdownItem}
+                    target="_blank"
+                  >
                     DIMO University
                   </Link>
                 </div>
                 <div className={styles.dropdownSection}>
-                  <div className={styles.dropdownSectionTitle}>Customer Stories</div>
-                  <Link to="/customer-stories/emobi" className={styles.dropdownItem}>
+                  <div className={styles.dropdownSectionTitle}>
+                    Customer Stories
+                  </div>
+                  <Link
+                    to="/customer-stories/emobi"
+                    className={styles.dropdownItem}
+                  >
                     Emobi
                   </Link>
-                  <Link to="/customer-stories/grupo-kaufmann" className={styles.dropdownItem}>
+                  <Link
+                    to="/customer-stories/grupo-kaufmann"
+                    className={styles.dropdownItem}
+                  >
                     Grupo Kaufmann
                   </Link>
                 </div>
@@ -287,6 +446,48 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 {/* Products Section */}
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Products</div>
+                  <Link
+                    to="/products/components#wallet"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Wallet
+                  </Link>
+                  <Link
+                    to="/products/components#telematic-devices"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Bring your own data
+                  </Link>
+                  <Link
+                    to="/products/components#digital-key"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Digital Key
+                  </Link>
+                  <Link
+                    to="/products/components#on-chain-identity"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Digital Identity
+                  </Link>
+                  <Link
+                    to="/products/components#agents"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Agents
+                  </Link>
+                  <Link
+                    to="/products/components#developer-tools"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Developer Tools
+                  </Link>
                   <Link
                     to="/products/ingest"
                     className={styles.mobileMenuItem}
@@ -358,7 +559,9 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 </div>
 
                 <div className={styles.mobileMenuSection}>
-                  <div className={styles.mobileMenuSectionTitle}>Industries</div>
+                  <div className={styles.mobileMenuSectionTitle}>
+                    Industries
+                  </div>
                   <Link
                     to="/industries/auto-oems"
                     className={styles.mobileMenuItem}
@@ -439,26 +642,26 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   Pricing
                 </Link>
 
-                 {/* Icons in Mobile Menu */}
-                 <div style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
-                    <a
-                      href={LINKS.external.github}
-                      className={styles.navIcon}
-                      aria-label="GitHub"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img alt="GitHub" src={imgGithub} />
-                    </a>
-                    <a
-                      href={LINKS.external.dune}
-                      className={styles.navIcon}
-                      aria-label="Dune"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img alt="Dune" src={imgDune} />
-                    </a>
+                {/* Icons in Mobile Menu */}
+                <div style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
+                  <a
+                    href={LINKS.external.github}
+                    className={styles.navIcon}
+                    aria-label="GitHub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img alt="GitHub" src={imgGithub} />
+                  </a>
+                  <a
+                    href={LINKS.external.dune}
+                    className={styles.navIcon}
+                    aria-label="Dune"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img alt="Dune" src={imgDune} />
+                  </a>
                 </div>
 
                 <div className={styles.mobileMenuActions}>
