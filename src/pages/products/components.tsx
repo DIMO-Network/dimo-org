@@ -8,9 +8,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
   Wallet,
-  Cpu,
   Smartphone,
-  Fingerprint,
   Terminal,
   Bot,
   ChevronDown,
@@ -31,34 +29,14 @@ const COMPONENTS = [
       'Passkey-based authentication — no seed phrases. Sign SACD permission grants and hold vehicle NFTs and on-chain assets.',
   },
   {
-    id: 'telematic-devices',
-    icon: <Cpu size={28} />,
-    type: 'Bring Your Own Data',
-    title: 'Hardware Connectivity for Any Vehicle',
-    description:
-      'Telematic devices connect vehicles to the DIMO Network, capturing and transmitting real-time signals including speed, location, and diagnostics.',
-    example:
-      'Aftermarket OBD-II dongles and OEM integrations. All data normalized to the DIMO signal standard before storage.',
-  },
-  {
     id: 'digital-key',
     icon: <Smartphone size={28} />,
-    type: 'Digital Key',
+    type: 'Digital Key (CCC)',
     title: 'Phone-as-Key Vehicle Access',
     description:
       "Digital Key enables a smartphone to lock, unlock, and start a vehicle without a physical key fob — integrated into DIMO's identity and permissions layer.",
     example:
       "NFC and BLE-based access. Time-bound or permission-scoped key sharing tied to the vehicle's on-chain identity for auditability.",
-  },
-  {
-    id: 'on-chain-identity',
-    icon: <Fingerprint size={28} />,
-    type: 'Digital Identity',
-    title: 'Verifiable Vehicle Ownership',
-    description:
-      'Every vehicle on DIMO is represented as an NFT, creating a persistent, verifiable, and portable identity record that anchors all data and permissions.',
-    example:
-      'Ownership transfers recorded on-chain. Linked to all attestations, permissions, and telemetry for that vehicle. Queryable via the Identity API.',
   },
   {
     id: 'agents',
@@ -112,8 +90,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Wallet, telematic devices, digital key, and on-chain identity — the
-          core components that power the DIMO Network.
+          Wallets, digital key, agents, and developer tools — the core
+          components that power the DIMO Network.
         </p>
 
         <div className={styles.heroButtons}>
@@ -189,11 +167,11 @@ export default function ComponentsPage(): ReactNode {
         <title>Components | DIMO Platform</title>
         <meta
           name="description"
-          content="The core components of the DIMO Network — Wallet, Telematic Devices, Digital Key, and On-chain Identity."
+          content="The core components of the DIMO Network — Wallets, Digital Key, Agents, and Developer Tools."
         />
         <meta
           name="keywords"
-          content="DIMO wallet, telematic devices, digital key, on-chain identity, vehicle NFT, vehicle connectivity"
+          content="DIMO wallet, developer tools, telematic devices, digital key, on-chain identity, AI agents, vehicle NFT, vehicle connectivity"
         />
         <meta property="og:title" content="Components | DIMO Platform" />
         <meta

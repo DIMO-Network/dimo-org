@@ -8,9 +8,7 @@ import {
   Key,
   CreditCard,
   Wallet,
-  Cpu,
   Smartphone,
-  Fingerprint,
   Terminal,
   Bot,
 } from 'lucide-react';
@@ -128,20 +126,6 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     </div>
                   </Link>
                   <Link
-                    to="/products/components#telematic-devices"
-                    className={styles.dropdownItemWithIcon}
-                  >
-                    <Cpu size={20} className={styles.dropdownItemIcon} />
-                    <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>
-                        Bring Your Own Data
-                      </span>
-                      <span className={styles.dropdownItemDesc}>
-                        Hardware connectivity for any vehicle
-                      </span>
-                    </div>
-                  </Link>
-                  <Link
                     to="/products/components#digital-key"
                     className={styles.dropdownItemWithIcon}
                   >
@@ -152,23 +136,6 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                       </span>
                       <span className={styles.dropdownItemDesc}>
                         Phone-as-key vehicle access via NFC and BLE
-                      </span>
-                    </div>
-                  </Link>
-                  <Link
-                    to="/products/components#on-chain-identity"
-                    className={styles.dropdownItemWithIcon}
-                  >
-                    <Fingerprint
-                      size={20}
-                      className={styles.dropdownItemIcon}
-                    />
-                    <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>
-                        Digital Identity
-                      </span>
-                      <span className={styles.dropdownItemDesc}>
-                        Verifiable vehicle ownership as an NFT
                       </span>
                     </div>
                   </Link>
@@ -447,46 +414,11 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Products</div>
                   <Link
-                    to="/products/components#wallet"
+                    to="/products/components"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Wallet
-                  </Link>
-                  <Link
-                    to="/products/components#telematic-devices"
-                    className={styles.mobileMenuItem}
-                    onClick={closeMobileMenu}
-                  >
-                    Bring your own data
-                  </Link>
-                  <Link
-                    to="/products/components#digital-key"
-                    className={styles.mobileMenuItem}
-                    onClick={closeMobileMenu}
-                  >
-                    Digital Key
-                  </Link>
-                  <Link
-                    to="/products/components#on-chain-identity"
-                    className={styles.mobileMenuItem}
-                    onClick={closeMobileMenu}
-                  >
-                    Digital Identity
-                  </Link>
-                  <Link
-                    to="/products/components#agents"
-                    className={styles.mobileMenuItem}
-                    onClick={closeMobileMenu}
-                  >
-                    Agents
-                  </Link>
-                  <Link
-                    to="/products/components#developer-tools"
-                    className={styles.mobileMenuItem}
-                    onClick={closeMobileMenu}
-                  >
-                    Developer Tools
+                    Components
                   </Link>
                   <Link
                     to="/products/ingest"
