@@ -134,7 +134,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     <Cpu size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>
-                        Telematic Devices
+                        Bring Your Own Data
                       </span>
                       <span className={styles.dropdownItemDesc}>
                         Hardware connectivity for any vehicle
@@ -165,7 +165,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>
-                        On-chain Identity
+                        Digital Identity
                       </span>
                       <span className={styles.dropdownItemDesc}>
                         Verifiable vehicle ownership as an NFT

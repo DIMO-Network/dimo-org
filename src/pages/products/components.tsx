@@ -33,12 +33,12 @@ const COMPONENTS = [
   {
     id: 'telematic-devices',
     icon: <Cpu size={28} />,
-    type: 'Telematic Devices',
+    type: 'Bring Your Own Data',
     title: 'Hardware Connectivity for Any Vehicle',
     description:
       'Telematic devices connect vehicles to the DIMO Network, capturing and transmitting real-time signals including speed, location, and diagnostics.',
     example:
-      'Aftermarket OBD-II dongles (AutoPi, Macaron) and OEM integrations. All data normalized to the DIMO signal standard before storage.',
+      'Aftermarket OBD-II dongles and OEM integrations. All data normalized to the DIMO signal standard before storage.',
   },
   {
     id: 'digital-key',
@@ -46,14 +46,14 @@ const COMPONENTS = [
     type: 'Digital Key',
     title: 'Phone-as-Key Vehicle Access',
     description:
-      'Digital Key enables a smartphone to lock, unlock, and start a vehicle without a physical key fob — integrated into DIMO\'s identity and permissions layer.',
+      "Digital Key enables a smartphone to lock, unlock, and start a vehicle without a physical key fob — integrated into DIMO's identity and permissions layer.",
     example:
-      'NFC and BLE-based access. Time-bound or permission-scoped key sharing tied to the vehicle\'s on-chain identity for auditability.',
+      "NFC and BLE-based access. Time-bound or permission-scoped key sharing tied to the vehicle's on-chain identity for auditability.",
   },
   {
     id: 'on-chain-identity',
     icon: <Fingerprint size={28} />,
-    type: 'On-chain Identity',
+    type: 'Digital Identity',
     title: 'Verifiable Vehicle Ownership',
     description:
       'Every vehicle on DIMO is represented as an NFT, creating a persistent, verifiable, and portable identity record that anchors all data and permissions.',
@@ -68,7 +68,7 @@ const COMPONENTS = [
     description:
       'Build AI agents that can reason about vehicle data, take actions, and automate workflows — from scheduling maintenance to monitoring fleet health.',
     example:
-      'Create agents that respond to vehicle events, book service appointments, alert drivers, and integrate with your existing business systems.',
+      'Create agents that respond to vehicle events, book appointments, pay for services, alert drivers, and integrate with your existing business systems. Start creating agentic sessions for autonomous vehicles today.',
   },
   {
     id: 'developer-tools',
@@ -95,7 +95,10 @@ function HeroSection() {
     <header className={styles.hero}>
       <div
         className={styles.heroOverlay}
-        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(3,3,3,1) 100%)' }}
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(3,3,3,1) 100%)',
+        }}
       />
 
       <div className={styles.heroContent}>
@@ -109,7 +112,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Wallet, telematic devices, digital key, and on-chain identity — the core components that power the DIMO Network.
+          Wallet, telematic devices, digital key, and on-chain identity — the
+          core components that power the DIMO Network.
         </p>
 
         <div className={styles.heroButtons}>
@@ -134,11 +138,10 @@ function ComponentsSection() {
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Core Components</span>
-        <h2 className={styles.sectionTitle}>
-          Everything That Makes DIMO Work
-        </h2>
+        <h2 className={styles.sectionTitle}>Everything That Makes DIMO Work</h2>
         <p className={styles.sectionSubtitle}>
-          Four foundational components that together enable secure vehicle connectivity, ownership, and data access.
+          Four foundational components that together enable secure vehicle
+          connectivity, ownership, and data access.
         </p>
       </div>
 
@@ -161,11 +164,10 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Build on DIMO?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Build on DIMO?</h2>
         <p className={styles.ctaText}>
-          Integrate vehicle connectivity, identity, and data access into your application using DIMO's open platform.
+          Integrate vehicle connectivity, identity, and data access into your
+          application using DIMO's open platform.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
