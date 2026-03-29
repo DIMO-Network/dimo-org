@@ -132,7 +132,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     <Smartphone size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>
-                        Digital Key
+                        Digital Key (CCC)
                       </span>
                       <span className={styles.dropdownItemDesc}>
                         Phone-as-key vehicle access via NFC and BLE

@@ -123,7 +123,7 @@ function ComponentsSection() {
         </p>
       </div>
 
-      <div className={styles.useCasesGrid}>
+      <div className={styles.useCasesGrid} style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
         {COMPONENTS.map((component, i) => (
           <div key={i} id={component.id} className={styles.useCaseCard}>
             <div className={styles.useCaseIcon}>{component.icon}</div>
