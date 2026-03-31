@@ -11,7 +11,7 @@ import ApiTester from '@site/src/components/ApiTester';
 import GitHubButton from "react-github-btn";
 
 
-# Client SDK
+# Client SDK (DIMO Connect)
 
 ## Get Data Permissions From Vehicle Owners
 
@@ -44,65 +44,68 @@ Developers can get started using either the [React Component SDK (aka Login with
       ]}
     />
     Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
+
+    :::tip Use a Configuration ID (recommended)
+    The [DIMO Developer Console](https://console.dimo.org) includes a **Login With DIMO Configurator** — a widget where you set your component type (`LoginWithDimo` or `ShareVehiclesWithDimo`), redirect URI, UTM, expiration date, and permissions (template or custom). It generates a **Configuration ID** and lets you copy the ready-to-use `login.dimo.org` link directly. Pass the `configurationId` in your integration instead of individual query parameters.
+    :::
+
       <Tabs>
-        <TabItem value="URL Method" label="URL Method">
-          <DimoUrlBuilder />
+        <TabItem value="Configuration ID" label="Configuration ID">
+        In the [Developer Console](https://console.dimo.org), navigate to **Home** > **License Details** > **Configure Vehicle Sharing** under the Vehicles section.
+
+        Open the **Login With DIMO Configurator**. Configure your component, redirect URI, permissions, and expiration date, then copy the generated Configuration ID.
+
+        ![Login With DIMO Configurator](/img/loginwithdimoconfigurator.png)
+
+          <Tabs>
+            <TabItem value="URL Sharing" label="URL Sharing">
+              **URL Method** — use the "Copy Link" button in the Configurator, or build the URL manually:
+              ```
+              https://login.dimo.org/?configurationId=YOUR_CONFIGURATION_ID
+              ```
+            </TabItem>
+            <TabItem value="SDK" label="SDK">
+              ```jsx
+              import {
+                LoginWithDimo,
+                ShareVehiclesWithDimo,
+                initializeDimoSDK,
+                useDimoAuthState,
+              } from "@dimo-network/login-with-dimo";
+
+              initializeDimoSDK({ configurationId: process.env.REACT_APP_DIMO_CONFIGURATION_ID! });
+
+              const { isAuthenticated, getValidJWT, walletAddress } = useDimoAuthState();
+
+              useEffect(() => {
+                if (isAuthenticated) {
+                  console.log(walletAddress);
+                }
+              }, [isAuthenticated]);
+
+              // ...
+
+              {isAuthenticated ? (
+                <ShareVehiclesWithDimo
+                  mode="popup"
+                  onSuccess={authData => console.log('Success:', authData)}
+                  onError={error => console.error('Error:', error)}
+                />
+              ) : (
+                <LoginWithDimo
+                  mode="popup"
+                  onSuccess={(authData) => console.log("Success:", authData)}
+                  onError={(error) => console.error("Error:", error)}
+                />
+              )}
+              ```
+            </TabItem>
+          </Tabs>
+
+
         </TabItem>
-        <TabItem value="SDK Method" label="SDK Method">
-        ```jsx
-        import {
-          LoginWithDimo,
-          ShareVehiclesWithDimo,
-          ExecuteAdvancedTransactionWithDimo,
-          initializeDimoSDK,
-          useDimoAuthState,
-      } from "@dimo-network/login-with-dimo";
-
-      const { isAuthenticated, getValidJWT, email, walletAddress, getEmail } =
-      useDimoAuthState();
-
-      useEffect(()=>{ if ( isAuthenticated ) {
-      //makeAuthenticatedRequest(getValidJWT()) console.log(email);
-      console.log(walletAddress); } },[isAuthenticated])
-
-      initializeDimoSDK({ clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
-      redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!, });
-
-      ...
-
-      {isAuthenticated ? (
-
-      <ShareVehiclesWithDimo
-        mode="popup"
-        onSuccess={authData => console.log('Success:', authData)}
-        onError={error => console.error('Error:', error)}
-        permissionTemplateId={'1'}
-        // expirationDate={} // Optional ISO string
-      />
-
-        <ExecuteAdvancedTransactionWithDimo
-          mode="popup"
-          onSuccess={(transactionData: any) =>
-            console.log("Transaction Hash:", transactionData.transactionHash)
-          }
-          onError={(error: any) => console.error("Error:", error)}
-          address="0x21cFE003997fB7c2B3cfe5cf71e7833B7B2eCe10"
-          value="0"
-          abi={sampleAbi}
-          functionName="transfer"
-          args={["0x62b98e019e0d3e4A1Ad8C786202e09017Bd995e1", "0"]}
-        />
-      ) : (
-        <LoginWithDimo
-          mode="popup"
-          onSuccess={(authData) => console.log("Success:", authData)}
-          onError={(error) => console.error("Error:", error)}
-          permissionTemplateId={permissionsEnabled ? "1" : undefined}
-          // expirationDate={} // Optional ISO string
-          // vehicles={["585","586"]}
-        />
-      )}
-      ```
+        <TabItem value="URL Method" label="Manual URL Params">
+          <DimoUrlBuilder />
         </TabItem>
       </Tabs>
   </Step>
@@ -268,6 +271,7 @@ The SDK is guaranteed to have more functionalities as the DIMO Connect URL is bo
 
 |                               | React SDK    | Connect URL      | Details                                            |
 |-------------------------------|--------------|------------------|----------------------------------------------------|
+| Configuration ID              |   ✅         |   ✅              | Use a `configurationId` generated from the Developer Console widget instead of manually specifying query parameters. Encodes client ID, redirect URI, permissions, and other settings in a single identifier. |
 | Account Creation/Login        |   ✅         |   ✅              | Login with DIMO allow developers to onboard users to DIMO, enabling logins across all DIMO platforms with the use of a passkey or email OTP.  |
 | Permissions                   |   ✅         |   ✅              | This is an optional entry state where users are asked to share their vehicles with your application, login is required before entering the vehicle permissions state.   |
 | Entry States                  |   ✅         |   ✅              | Multiple entry states to customize user flow       |
