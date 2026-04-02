@@ -24,7 +24,7 @@ export const EXTERNAL_LINKS = {
   dimoJapan: 'https://dimojapan.com/',
   dune: 'https://dune.com/dimo_network/dimo-protocol',
   twitter: 'https://twitter.com/dimo_network',
-  status: 'https://stats.uptimerobot.com/snU0rkEEah'
+  status: 'https://status.dimo.org/'
 } as const;
 
 
