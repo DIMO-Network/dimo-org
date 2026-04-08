@@ -11,6 +11,7 @@ import {
   Smartphone,
   Terminal,
   Bot,
+  Car,
   ChevronDown,
   Layers,
 } from 'lucide-react';
@@ -138,6 +139,58 @@ function ComponentsSection() {
   );
 }
 
+function VehicleSimulatorSection() {
+  return (
+    <section id="vehicle-simulator" className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
+      <div className={styles.featureContainer}>
+        <div className={styles.featureText}>
+          <span className={styles.sectionEyebrow}>
+            <Car size={14} style={{ display: 'inline', marginRight: '0.4rem', verticalAlign: 'middle' }} />
+            Developer Tools
+          </span>
+          <h2>
+            Vehicle Simulator
+          </h2>
+          <p>
+            Build and test vehicle-connected applications without needing a physical car.
+            The DIMO Vehicle Simulator lets you generate realistic vehicle telemetry, trigger
+            events, and validate your integration end-to-end in a fully controlled environment.
+          </p>
+          <ul className={styles.featureList}>
+            <li>
+              <span className={styles.checkIcon}>✓</span>
+              Simulate real-time telemetry signals — speed, location, battery, engine data, and more
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span>
+              Trigger vehicle events to test webhooks, alerts, and agentic workflows
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span>
+              Works with all DIMO APIs and SDKs — no hardware required
+            </li>
+            <li>
+              <span className={styles.checkIcon}>✓</span>
+              Accelerate development cycles and QA across your team
+            </li>
+          </ul>
+          <div className={styles.heroButtons} style={{ justifyContent: 'flex-start', marginTop: '2rem' }}>
+            <Link className={styles.primaryBtn} to={LINKS.external.console}>
+              Open Console <span className={styles.arrow}>→</span>
+            </Link>
+            <Link className={styles.secondaryBtn} to="/docs">
+              Read the Docs <span className={styles.arrow}>→</span>
+            </Link>
+          </div>
+        </div>
+        <div className={styles.featureVisual}>
+          <img src="/img/vehicle_simulator.png" alt="DIMO Vehicle Simulator" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -196,6 +249,7 @@ export default function ComponentsPage(): ReactNode {
         <main>
           <HeroSection />
           <ComponentsSection />
+          <VehicleSimulatorSection />
           <CTASection />
         </main>
 

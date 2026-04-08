@@ -11,6 +11,7 @@ import {
   Smartphone,
   Terminal,
   Bot,
+  Car,
 } from 'lucide-react';
 
 import styles from './styles.module.css';
@@ -162,6 +163,20 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                       </span>
                       <span className={styles.dropdownItemDesc}>
                         SDKs, APIs, console, and AI-native integrations
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/products/components#vehicle-simulator"
+                    className={styles.dropdownItemWithIcon}
+                  >
+                    <Car size={20} className={styles.dropdownItemIcon} />
+                    <div className={styles.dropdownItemContent}>
+                      <span className={styles.dropdownItemTitle}>
+                        Vehicle Simulator
+                      </span>
+                      <span className={styles.dropdownItemDesc}>
+                        Simulate vehicle data for development and testing
                       </span>
                     </div>
                   </Link>
@@ -419,6 +434,13 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     onClick={closeMobileMenu}
                   >
                     Components
+                  </Link>
+                  <Link
+                    to="/products/components#vehicle-simulator"
+                    className={styles.mobileMenuItem}
+                    onClick={closeMobileMenu}
+                  >
+                    Vehicle Simulator
                   </Link>
                   <Link
                     to="/products/ingest"
