@@ -124,7 +124,10 @@ function ComponentsSection() {
         </p>
       </div>
 
-      <div className={styles.useCasesGrid} style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+      <div
+        className={styles.useCasesGrid}
+        style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}
+      >
         {COMPONENTS.map((component, i) => (
           <div key={i} id={component.id} className={styles.useCaseCard}>
             <div className={styles.useCaseIcon}>{component.icon}</div>
@@ -141,29 +144,40 @@ function ComponentsSection() {
 
 function VehicleSimulatorSection() {
   return (
-    <section id="vehicle-simulator" className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
+    <section
+      id="vehicle-simulator"
+      className={`${styles.featureSection} ${styles.featureSectionAlt}`}
+    >
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
           <span className={styles.sectionEyebrow}>
-            <Car size={14} style={{ display: 'inline', marginRight: '0.4rem', verticalAlign: 'middle' }} />
-            Developer Tools
+            <Car
+              size={14}
+              style={{
+                display: 'inline',
+                marginRight: '0.4rem',
+                verticalAlign: 'middle',
+              }}
+            />
+            Start your engines
           </span>
-          <h2>
-            Vehicle Simulator
-          </h2>
+          <h2>Vehicle Simulator</h2>
           <p>
-            Build and test vehicle-connected applications without needing a physical car.
-            The DIMO Vehicle Simulator lets you generate realistic vehicle telemetry, trigger
-            events, and validate your integration end-to-end in a fully controlled environment.
+            Build and test vehicle-connected applications without needing a
+            physical car. The DIMO Vehicle Simulator lets you generate realistic
+            vehicle telemetry, trigger events, and validate your integration
+            end-to-end in a fully controlled environment.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Simulate real-time telemetry signals — speed, location, battery, engine data, and more
+              Simulate real-time telemetry signals — speed, location, battery,
+              engine data, and more
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Trigger vehicle events to test webhooks, alerts, and agentic workflows
+              Trigger vehicle events to test webhooks, alerts, and agentic
+              workflows
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
@@ -174,7 +188,10 @@ function VehicleSimulatorSection() {
               Accelerate development cycles and QA across your team
             </li>
           </ul>
-          <div className={styles.heroButtons} style={{ justifyContent: 'flex-start', marginTop: '2rem' }}>
+          <div
+            className={styles.heroButtons}
+            style={{ justifyContent: 'flex-start', marginTop: '2rem' }}
+          >
             <Link className={styles.primaryBtn} to={LINKS.external.console}>
               Open Console <span className={styles.arrow}>→</span>
             </Link>
