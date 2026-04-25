@@ -36,6 +36,10 @@ const sidebars: SidebarsConfig = {
     'getting-started/create-your-account',
     'getting-started/register-a-license',
     'getting-started/authentication',
+    'getting-started/vehicle-simulator',
+    'getting-started/login-with-dimo-configurator',
+    'getting-started/rentalos-registration',
+    'getting-started/data-explorer',
 
     // Tools
     {
