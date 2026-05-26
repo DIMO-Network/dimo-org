@@ -456,9 +456,13 @@ Insurance cards, registrations, service invoices, titles, inspections, driver li
     "signature": "0x...",
     "data": {
       "policyNumber": "SF-12345678",
-      "provider": "State Farm",
-      "coverageStartDate": 1744751357,
-      "expirationDate": 1807822654
+      "insurerName": "State Farm",
+      "insuredAddress": "123 Main St, Denver, CO 80202",
+      "vin": "1GGCM82633A123456",
+      "state": "CO",
+      "coverageType": "full coverage",
+      "effectiveDate": "2025-01-01",
+      "expirationDate": "2025-07-01"
     }
   }'`
         }]}
@@ -557,8 +561,9 @@ The Extract API is the parser. You hand it a vehicle document; it tells you what
   "data": {
     "fields": {
       "vin": "1GGCM82633A123456",
-      "plate": "ABC-1234",
-      "state": "CA",
+      "plateNumber": "ABC-1234",
+      "registrationLocation": "California",
+      "issuingAuthority": "California DMV",
       "expirationDate": "2027-04-30",
       "ownerName": "Jane Doe"
     }
@@ -577,3 +582,231 @@ Extract only parses. If you want the whole document round-trip — store the fil
 3. POST a second CloudEvent to `https://attest.dimo.zone` using the `type` Extract returned (e.g. `dimo.document.vehicle.insurance`). Put the extracted fields in `data` and the raw event id from step 1 in `raweventid`.
 4. Query both events back through the Fetch API. The raw file comes back as a presigned `dataUrl`.
 :::
+
+## Document field schemas
+
+Every `dimo.document.*` type carries a defined set of fields under `data.fields`. The Extract API returns this shape, and you post the same shape when you store a `dimo.document.*` event. Fields are best-effort: anything the source document does not contain comes back `null`, so a real response often has fewer keys than shown here. Each example below lists the representative fields for one type.
+
+#### dimo.document.vehicle.insurance
+
+```json
+{
+  "type": "dimo.document.vehicle.insurance",
+  "data": {
+    "fields": {
+      "policyNumber": "SF-12345678",
+      "insurerName": "State Farm",
+      "naicNumber": "25178",
+      "insuredAddress": "123 Main St, Denver, CO 80202",
+      "ownerName": "Jane Doe",
+      "vin": "1GGCM82633A123456",
+      "plateNumber": "ABC-1234",
+      "state": "CO",
+      "coverageType": "full coverage",
+      "effectiveDate": "2025-01-01",
+      "expirationDate": "2025-07-01",
+      "premium": 842.5,
+      "currency": "USD",
+      "additionalDrivers": "John Doe",
+      "additionalVehicles": [
+        {
+          "vin": "2HGED36426H123789",
+          "plateNumber": "XYZ-9988",
+          "description": "2019 GMC Yukon"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### dimo.document.vehicle.registration
+
+```json
+{
+  "type": "dimo.document.vehicle.registration",
+  "data": {
+    "fields": {
+      "vin": "1GGCM82633A123456",
+      "ownerName": "Jane Doe",
+      "ownerAddress": "123 Main St, Denver, CO 80202",
+      "plateNumber": "ABC-1234",
+      "registrationLocation": "California",
+      "issuingAuthority": "California DMV",
+      "issueDate": "2026-04-30",
+      "expirationDate": "2027-04-30",
+      "titleNumber": "T1234567",
+      "color": "Blue",
+      "bodyStyle": "SUV",
+      "fuelType": "Gas",
+      "vehicleType": "Passenger"
+    }
+  }
+}
+```
+
+#### dimo.document.vehicle.title
+
+```json
+{
+  "type": "dimo.document.vehicle.title",
+  "data": {
+    "fields": {
+      "titleNumber": "T1234567",
+      "issueDate": "2026-04-30",
+      "issuingAuthority": "California DMV",
+      "ownerName": "Jane Doe",
+      "ownerAddress": "123 Main St, Denver, CO 80202",
+      "vin": "1GGCM82633A123456",
+      "color": "Blue",
+      "bodyStyle": "SUV",
+      "odometer": 48210,
+      "odometerStatus": "ACTUAL MILEAGE",
+      "fuelType": "Gas",
+      "previousTitleNumber": "T0099887",
+      "liens": "ABC Credit Union"
+    }
+  }
+}
+```
+
+#### dimo.document.vehicle.service.invoice
+
+```json
+{
+  "type": "dimo.document.vehicle.service.invoice",
+  "data": {
+    "fields": {
+      "vin": "1GGCM82633A123456",
+      "plateNumber": "ABC-1234",
+      "serviceDate": "2026-03-15",
+      "odometerReading": 48210,
+      "summary": "Oil and filter change, four tire replacement, air filter replacement.",
+      "lineItems": [
+        {
+          "code": "LOF",
+          "description": "Synthetic blend oil and filter change",
+          "total": 79.99
+        },
+        {
+          "code": "RT1234",
+          "description": "Tire replacement (4), mount and balance",
+          "total": 612.0
+        },
+        {
+          "code": "AF-22",
+          "description": "Engine air filter replacement",
+          "total": 34.5
+        }
+      ],
+      "customerName": "Jane Doe",
+      "recommendations": "Replace front brake pads within 10,000 miles.",
+      "providerName": "Joe's Auto Service",
+      "providerLocation": "Denver, CO",
+      "providerPhone": "(303) 555-0142",
+      "invoiceNumber": "WO-293543",
+      "subtotal": 726.49,
+      "tax": 59.93,
+      "totalCost": 786.42,
+      "paymentMethod": "Visa ending in 4532",
+      "currency": "USD"
+    }
+  }
+}
+```
+
+#### dimo.document.vehicle.inspection
+
+```json
+{
+  "type": "dimo.document.vehicle.inspection",
+  "data": {
+    "fields": {
+      "inspectionDate": "2026-02-10",
+      "inspectionStation": "Denver Emissions Center, Denver, CO",
+      "result": "pass",
+      "emissionsResult": "pass",
+      "nextInspectionDue": "2028-02-10",
+      "odometer": 48210,
+      "vin": "1GGCM82633A123456",
+      "plateNumber": "ABC-1234",
+      "issuingAuthority": "Colorado Air Care",
+      "fuelType": "Gas",
+      "certificateNumber": "CO-EM-7781234",
+      "cost": 25.0,
+      "currency": "USD",
+      "notes": "All tires at 5/32 or better; battery tested good."
+    }
+  }
+}
+```
+
+#### dimo.document.vehicle.finance
+
+```json
+{
+  "type": "dimo.document.vehicle.finance",
+  "data": {
+    "fields": {
+      "lender": "ABC Credit Union",
+      "accountNumber": "100023455",
+      "balance": 18450.75,
+      "monthlyPayment": 412.3,
+      "dueDate": "2026-06-01",
+      "vin": "1GGCM82633A123456",
+      "borrowerName": "Jane Doe",
+      "documentKind": "statement"
+    }
+  }
+}
+```
+
+#### dimo.document.vehicle.regulatory.other
+
+```json
+{
+  "type": "dimo.document.vehicle.regulatory.other",
+  "data": {
+    "fields": {
+      "documentKind": "traffic violation",
+      "issueDate": "2026-05-02",
+      "amountDue": 125.0,
+      "currency": "USD",
+      "vendor": "City of Denver Parking Enforcement",
+      "ownerName": "Jane Doe",
+      "ownerAddress": "123 Main St, Denver, CO 80202",
+      "vin": "1GGCM82633A123456",
+      "plateNumber": "ABC-1234",
+      "referenceNumber": "CITN-2026-558210",
+      "description": "Parking citation for an expired meter at 16th & Larimer."
+    }
+  }
+}
+```
+
+#### dimo.document.driver.license
+
+```json
+{
+  "type": "dimo.document.driver.license",
+  "data": {
+    "fields": {
+      "licenseNumber": "D1234567",
+      "issuingAuthority": "California DMV",
+      "issueDate": "2022-08-15",
+      "expirationDate": "2030-08-15",
+      "class": "C",
+      "firstName": "Jane",
+      "middleName": "A",
+      "lastName": "Doe",
+      "dateOfBirth": "1990-08-15",
+      "sex": "F",
+      "eyeColor": "BRO",
+      "height": "5'6\"",
+      "address": "123 Main St, Denver, CO 80202"
+    }
+  }
+}
+```
+
+`dimo.document.unknown` has no defined fields. The Extract API returns it when a document matches no spec; treat it as an unclassified placeholder rather than a schema.
