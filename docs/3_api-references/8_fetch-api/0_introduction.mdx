@@ -17,7 +17,7 @@ Retrieve raw data objects and index keys from cloud storage.
     <div>
     The Fetch API provides access to raw data stored in the cloud, formatted as <a href="https://cloudevents.io/">CloudEvents</a>. It is written in GraphQL and exposes a single endpoint, <code>/query</code>, for executing queries. You can retrieve CloudEvent-formatted data and index keys by <code>did</code> (Decentralized Identifier), and request only the fields you need—for example, <code>header</code> and/or <code>data</code>.
 
-    The <code>did</code> parameter accepts any DID in the DIMO system (e.g. a vehicle DID like <code>did:eth:1:0xContractAddress:tokenId</code>).
+    The <code>did</code> parameter accepts any DID in the DIMO system (e.g. a vehicle DID like <code>did:erc721:1:0xContractAddress:tokenId</code>).
     </div>
   }
   rightColumn={
@@ -54,6 +54,7 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
           { name: "header", type: "CloudEventHeader!", description: "CloudEvents v1.0 header metadata. Select individual sub-fields (see below)." },
           { name: "data", type: "JSON", description: "The event payload as parsed JSON (object or array). Omitted from the response if not requested." },
           { name: "dataBase64", type: "String", description: "The event payload as a base64-encoded string. Use this when the payload is binary or you need the raw bytes." },
+          { name: "dataUrl", type: "String", description: "Presigned S3 URL. The Fetch API returns this in place of inlined data when the payload is too large or binary to embed (for example, uploaded documents). When dataUrl is set, download the bytes from this URL instead of reading data or dataBase64." },
         ]}
       />
 
@@ -81,6 +82,7 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
           { name: "dataschema", type: "String", description: "URI of the schema the data payload conforms to." },
           { name: "dataversion", type: "String", description: "Version of the data schema." },
           { name: "signature", type: "String", description: "Cryptographic signature of the event." },
+          { name: "raweventid", type: "String", description: "Identifier of the raw source event this CloudEvent was derived from. Use it to link a parsed event, such as an extracted document, back to the raw upload it came from." },
         ]}
       />
 
@@ -102,12 +104,26 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
         title="CloudEventFilter fields"
         parameters={[
           { name: "id", description: "Filter by event identifier." },
-          { name: "type", description: "Filter by event type (e.g. \"dimo.status\")." },
+          { name: "type", description: "Filter by a single event type (e.g. \"dimo.status\" or \"dimo.document.vehicle.insurance\")." },
+          { name: "types", type: "[String!]", description: "Filter by a list of event types with OR semantics. Combined with type when both are set. Handy when you want every dimo.document.* variant in one query." },
           { name: "dataversion", description: "Filter by data version string." },
           { name: "source", description: "Filter by source context." },
           { name: "producer", description: "Filter by producer (instance/process/device)." },
           { name: "before", type: "Time", description: "Return results before this time (RFC-3339)." },
           { name: "after", type: "Time", description: "Return results after this time (RFC-3339)." },
+        ]}
+      />
+
+      <h4>CloudEventTypeSummary</h4>
+      Returned by <code>availableCloudEventTypes</code>. Use it to discover which CloudEvent types exist for a subject before you commit to a full query.
+
+      <ParametersBlock
+        title="CloudEventTypeSummary fields"
+        parameters={[
+          { name: "type", type: "String!", description: "Cloud event type string (e.g. \"dimo.status\", \"dimo.document.vehicle.insurance\")." },
+          { name: "count", type: "Int!", description: "Number of events of this type stored for the subject." },
+          { name: "firstSeen", type: "Time!", description: "Timestamp of the earliest event of this type." },
+          { name: "lastSeen", type: "Time!", description: "Timestamp of the most recent event of this type." },
         ]}
       />
     </div>
@@ -118,7 +134,7 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
 
 query {
   latestCloudEvent(
-    did: "did:eth:1:0x...:123456",
+    did: "did:erc721:1:0x...:123456",
     filter: { type: "dimo.status" }
   ) {
     header {
@@ -134,9 +150,11 @@ query {
       dataschema
       dataversion
       signature
+      raweventid
     }
     data
     dataBase64
+    dataUrl
   }
 }`}</code></pre>
     </div>
@@ -165,7 +183,7 @@ query {
 
 query {
   cloudEvents(
-    did: "did:eth:1:0x...:123456",
+    did: "did:erc721:1:0x...:123456",
     limit: 5,
     filter: { type: "dimo.status" }
   ) {

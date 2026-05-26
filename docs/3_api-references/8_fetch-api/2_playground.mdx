@@ -25,7 +25,7 @@ Use the playground to try the four root queries: <code>latestIndex</code>, <code
   endpoint="https://fetch-api.dimo.zone/"
   query={`query {
   latestCloudEvent(
-    did: "did:eth:1:0x...:YOUR_TOKEN_ID",
+    did: "did:erc721:1:0x...:YOUR_TOKEN_ID",
     filter: { type: "dimo.status" }
   ) {
     header {
@@ -46,6 +46,6 @@ Use the playground to try the four root queries: <code>latestIndex</code>, <code
 
 **JWT in headers**: Add your JWT in the HTTP Headers section of the playground as: `{"Authorization": "Bearer YOUR_JWT_TOKEN"}`
 
-**DID**: The <code>did</code> argument accepts any DID in the DIMO system (e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). You can resolve it from the Identity API or your token exchange flow.
+**DID**: The <code>did</code> argument accepts any DID in the DIMO system (e.g. <code>did:erc721:1:0xContractAddress:tokenId</code>). You can resolve it from the Identity API or your token exchange flow.
 
 **Select fields**: Request only the fields you need (e.g. `header` with subfields like `id`, `type`, `time`, and `data`) to keep responses small.

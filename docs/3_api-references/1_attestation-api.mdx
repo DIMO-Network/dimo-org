@@ -384,3 +384,196 @@ Generate verifiable proof about a vehicle's data.
     </div>
   }
 />
+
+## Document Insertion
+
+Insurance cards, registrations, service invoices, titles, inspections, driver licenses, and other vehicle paperwork live on DIMO as signed CloudEvents. You post them to the DIMO Ingest Server (DIS) attestation endpoint, and you pull them back out through the [Fetch API](/docs/api-references/fetch-api). For large files, the Fetch API returns a presigned S3 URL on `dataUrl` instead of inlining the bytes.
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      DIS accepts two CloudEvent type families on the attestation endpoint in addition to `dimo.attestation`:
+
+      <ParametersBlock
+        title="CloudEvent types"
+        parameters={[
+          { name: "dimo.raw.*", description: "Unparsed source artifact. Typically the raw bytes of an uploaded file (PDF, JPEG, PNG). The data payload is the file content, usually base64-encoded with an explicit datacontenttype." },
+          { name: "dimo.document.*", description: "Parsed/structured form of a document. The data payload is JSON with the extracted fields. Use raweventid in the header to link back to the dimo.raw.* event the parse came from." },
+        ]}
+      />
+
+      Sign each event with `source`. That can be an EOA private key, or an ERC-1271 contract like a developer license. Headers follow the same conventions as `dimo.attestation`; see the [DIS attestation header reference](https://github.com/DIMO-Network/dis#attestation-cloud-event-header-descriptions) for the full field list.
+
+      Large documents land in S3 as individual objects rather than getting inlined into the index. When you query them back, the Fetch API hands you a presigned `dataUrl` rather than `data` or `dataBase64`.
+
+      <ParametersBlock
+        title="Supported dimo.document.* subtypes"
+        parameters={[
+          { name: "dimo.document.vehicle.insurance", description: "Insurance policies and ID cards." },
+          { name: "dimo.document.vehicle.registration", description: "Government vehicle registrations." },
+          { name: "dimo.document.vehicle.title", description: "Vehicle titles." },
+          { name: "dimo.document.vehicle.service.invoice", description: "Service / maintenance receipts." },
+          { name: "dimo.document.vehicle.inspection", description: "Safety / emissions inspection reports." },
+          { name: "dimo.document.vehicle.finance", description: "Loan statements, lien releases, payment notices." },
+          { name: "dimo.document.vehicle.regulatory.other", description: "Catchall for tax receipts, traffic violations, fees." },
+          { name: "dimo.document.driver.license", description: "Driver licenses." },
+          { name: "dimo.document.unknown", description: "Returned by the Extract API when classification fails. Useful as a placeholder; not normally posted directly." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://attest.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/',
+            id: 'document-insertion',
+          },
+        ]}
+      />
+      <ApiCodeBlock
+        requestType="POST"
+        path="/"
+        codeExamples={[{
+          label: "cURL",
+          language: "shell",
+          code: `curl -X POST "https://attest.dimo.zone/" \\
+  -H "Authorization: Bearer <DEVELOPER_JWT>" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "id": "unique-identifier",
+    "source": "0xConnectionLicenseAddress",
+    "producer": "did:ethr:137:0xSignerAddress",
+    "specversion": "1.0",
+    "subject": "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:42",
+    "time": "2026-05-22T12:00:00Z",
+    "type": "dimo.document.vehicle.insurance",
+    "datacontenttype": "application/json",
+    "raweventid": "ksuid-of-the-dimo.raw.insurance-event",
+    "signature": "0x...",
+    "data": {
+      "policyNumber": "SF-12345678",
+      "provider": "State Farm",
+      "coverageStartDate": 1744751357,
+      "expirationDate": 1807822654
+    }
+  }'`
+        }]}
+        defaultLanguage="shell"
+      />
+    </div>
+  }
+/>
+
+### Retrieving stored documents
+
+Documents come back through the [Fetch API](/docs/api-references/fetch-api/queries) like any other CloudEvent. The one thing to remember: ask for `dataUrl`. The raw file is served as a presigned S3 link, not inlined into the response, so if you skip `dataUrl` you will not get the bytes.
+
+```graphql
+query LatestInsurance {
+  latestCloudEvent(
+    did: "did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:42",
+    filter: { type: "dimo.document.vehicle.insurance" }
+  ) {
+    header { id type time raweventid }
+    data       # parsed fields, when present
+    dataUrl    # presigned S3 link to the raw file
+  }
+}
+```
+
+To see which document types exist for a vehicle before querying, hit [`availableCloudEventTypes`](/docs/api-references/fetch-api/queries#availablecloudeventtypes). To pull several subtypes in one round-trip, filter `cloudEvents` by `types: ["dimo.document.vehicle.insurance", "dimo.document.vehicle.registration", ...]`.
+
+## Extract API
+
+The Extract API is the parser. You hand it a vehicle document; it tells you what the document is and what fields it contains. That is the whole job. It does not store the file, it does not sign a CloudEvent, and it does not post anything to DIS. If you already have your own storage and lifecycle pipeline and just need classification plus field extraction, this is the right service to call. If you want the full upload + storage + attestation flow handled for you, go through the orchestration layer in the DIMO mobile backend instead.
+
+<TwoColumnLayout
+  leftColumn={
+    <div>
+      Upload a PDF or image (JPEG, PNG, GIF, WebP, TIFF, BMP, up to 20 MB). You get back the inferred CloudEvent `type` and the extracted fields. Auth is a developer-license JWT in the standard `Authorization: Bearer` header.
+
+      <ParametersBlock
+        title="Request (multipart/form-data)"
+        parameters={[
+          { name: "file", type: "file", required: true, description: "The document to extract. PDF or image. Max 20 MB." },
+          { name: "category_hint", type: "string", required: false, description: "Narrows the spec set Claude considers. Accepted values: service, insurance, regulatory, ownership, driver. Unknown values are ignored." },
+        ]}
+      />
+
+      <ParametersBlock
+        title="Response"
+        parameters={[
+          { name: "type", type: "String", description: "The classified CloudEvent type. One of the dimo.document.* subtypes listed above, or dimo.document.unknown when the document does not match any spec." },
+          { name: "data.fields", type: "object", description: "Key/value map of extracted fields. Shape depends on the document type." },
+        ]}
+      />
+
+      <ParametersBlock
+        title="category_hint values"
+        parameters={[
+          { name: "service", description: "Considers only vehicle.service.invoice." },
+          { name: "insurance", description: "Considers only vehicle.insurance." },
+          { name: "regulatory", description: "Considers vehicle.registration, vehicle.inspection, vehicle.regulatory.other, driver.license." },
+          { name: "ownership", description: "Considers vehicle.title, vehicle.finance, vehicle.registration." },
+          { name: "driver", description: "Considers only driver.license." },
+        ]}
+      />
+
+      If you pass an unknown value or skip the field entirely, the service quietly falls back to the full spec set. There is a small efficiency reason to do this on purpose: the un-hinted path keeps the prompt cache warm, so requests run a little faster. When in doubt, leave `category_hint` off.
+    </div>
+  }
+  rightColumn={
+    <div>
+      <BaseUrlBlock url="https://extract.dimo.zone"/>
+      <ApiEndpointsBlock
+        endpoints={[
+          {
+            method: 'POST',
+            path: '/extract',
+            id: 'extract-document',
+          },
+        ]}
+      />
+      <ApiCodeBlock
+        requestType="POST"
+        path="/extract"
+        codeExamples={[{
+          label: "cURL",
+          language: "shell",
+          code: `curl -X POST "https://extract.dimo.zone/extract" \\
+  -H "Authorization: Bearer <DEVELOPER_JWT>" \\
+  -F file=@registration.pdf \\
+  -F category_hint=regulatory`
+        }]}
+        defaultLanguage="shell"
+      />
+      <ApiResponseBlock
+        code={`{
+  "type": "dimo.document.vehicle.registration",
+  "data": {
+    "fields": {
+      "vin": "1GGCM82633A123456",
+      "plate": "ABC-1234",
+      "state": "CA",
+      "expirationDate": "2027-04-30",
+      "ownerName": "Jane Doe"
+    }
+  }
+}`}
+      />
+    </div>
+  }
+/>
+
+:::tip Full document lifecycle
+Extract only parses. If you want the whole document round-trip — store the file, parse it, link the parse back to the raw upload, query both later — it looks like this:
+
+1. POST a `dimo.raw.<subtype>` CloudEvent to `https://attest.dimo.zone` with the file as the signed `data` payload. Save the event id; it becomes the `raweventid` for the parse.
+2. POST the same file to `https://extract.dimo.zone/extract`. You get back a `type` and `data.fields`.
+3. POST a second CloudEvent to `https://attest.dimo.zone` using the `type` Extract returned (e.g. `dimo.document.vehicle.insurance`). Put the extracted fields in `data` and the raw event id from step 1 in `raweventid`.
+4. Query both events back through the Fetch API. The raw file comes back as a presigned `dataUrl`.
+:::

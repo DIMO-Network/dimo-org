@@ -10,14 +10,19 @@ Root query operations for cloud event indexes and full cloud events.
 
 ## Overview
 
-The Fetch API exposes four root queries:
+The Fetch API exposes five root queries:
 
 - **latestIndex** – The most recent cloud event index matching optional filters.
 - **indexes** – A list of cloud event indexes (header + indexKey) matching optional filters.
 - **latestCloudEvent** – The most recent full cloud event (header + optional data).
 - **cloudEvents** – A list of full cloud events matching optional filters.
+- **availableCloudEventTypes** – A summary of which cloud event types exist for a subject, with counts and time ranges. Useful for discovery before running a full query.
 
-All queries require a <code>did</code> (Decentralized Identifier). The <code>did</code> parameter accepts any DID in the DIMO system (e.g. <code>did:eth:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
+All queries require a <code>did</code> (Decentralized Identifier). The <code>did</code> parameter accepts any DID in the DIMO system (e.g. <code>did:erc721:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
+
+:::tip Large or binary payloads
+Some event types are too big to inline as JSON. Uploaded documents (`dimo.document.*`) and raw blobs are the common ones. When you select <code>data</code> or <code>dataBase64</code> on these events, the Fetch API gives you a presigned S3 URL on <code>dataUrl</code> instead. Always request <code>dataUrl</code> alongside <code>data</code> if there is any chance you are querying a document or raw-blob type, otherwise you will get back a response with no payload.
+:::
 
 ### latestIndex
 
@@ -30,8 +35,8 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:erc721:1:0x...:tokenId)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -39,7 +44,7 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
   rightColumn={
     <pre><code className="language-graphql">{`query GetLatestIndex {
   latestIndex(
-    did: "did:eth:1:0x...:tokenId",
+    did: "did:erc721:1:0x...:tokenId",
     filter: { type: "dimo.status" }
   ) {
     header { id type time source producer }
@@ -60,9 +65,9 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:erc721:1:0x...:tokenId)." },
           { name: "limit", type: "Int", required: false, description: "Maximum number of results (default: 10)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -70,7 +75,7 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
   rightColumn={
     <pre><code className="language-graphql">{`query ListIndexes {
   indexes(
-    did: "did:eth:1:0x...:tokenId",
+    did: "did:erc721:1:0x...:tokenId",
     limit: 10,
     filter: { type: "dimo.status", after: "2024-06-01T00:00:00Z" }
   ) {
@@ -92,8 +97,8 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:erc721:1:0x...:tokenId)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -101,11 +106,12 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
   rightColumn={
     <pre><code className="language-graphql">{`query GetLatestCloudEvent {
   latestCloudEvent(
-    did: "did:eth:1:0x...:tokenId",
+    did: "did:erc721:1:0x...:tokenId",
     filter: { type: "dimo.status" }
   ) {
     header { id type time source producer }
     data
+    dataUrl
   }
 }`}</code></pre>
   }
@@ -122,9 +128,9 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
       <ParametersBlock
         title="Arguments"
         parameters={[
-          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:eth:1:0x...:tokenId)." },
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:erc721:1:0x...:tokenId)." },
           { name: "limit", type: "Int", required: false, description: "Maximum number of results (default: 10)." },
-          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, dataversion, source, producer, before, after." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
     </div>
@@ -132,12 +138,44 @@ All queries require a <code>did</code> (Decentralized Identifier). The <code>did
   rightColumn={
     <pre><code className="language-graphql">{`query ListCloudEvents {
   cloudEvents(
-    did: "did:eth:1:0x...:tokenId",
+    did: "did:erc721:1:0x...:tokenId",
     limit: 5,
-    filter: { type: "dimo.status" }
+    filter: { types: ["dimo.document.vehicle.insurance", "dimo.document.vehicle.registration"] }
   ) {
-    header { id type time }
+    header { id type time raweventid }
     data
+    dataUrl
+  }
+}`}</code></pre>
+  }
+/>
+
+### availableCloudEventTypes
+
+<TwoColumnLayout
+  stickyRight={true}
+  leftColumn={
+    <div>
+      Returns a list of <code>CloudEventTypeSummary</code> entries describing every cloud event type stored for the subject, along with counts and first/last-seen timestamps. Useful as a discovery query. For example, run it against a vehicle DID to see which <code>dimo.document.*</code> types have been uploaded before you commit to a full <code>cloudEvents</code> call.
+
+      <ParametersBlock
+        title="Arguments"
+        parameters={[
+          { name: "did", type: "String!", required: true, description: "DID identifier (e.g. did:erc721:1:0x...:tokenId)." },
+          { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types, dataversion, source, producer, before, after. Applied before aggregating counts." },
+        ]}
+      />
+    </div>
+  }
+  rightColumn={
+    <pre><code className="language-graphql">{`query AvailableTypes {
+  availableCloudEventTypes(
+    did: "did:erc721:1:0x...:tokenId"
+  ) {
+    type
+    count
+    firstSeen
+    lastSeen
   }
 }`}</code></pre>
   }
@@ -151,5 +189,5 @@ Send a POST request with your query and JWT:
 curl -X POST "https://fetch-api.dimo.zone/query" \\
   -H "Authorization: Bearer <JWT>" \\
   -H "Content-Type: application/json" \\
-  -d '{"query":"query { latestCloudEvent(did: \"did:eth:1:0x...:tokenId\", filter: { type: \"dimo.status\" }) { header { id type time } data } }"}'
+  -d '{"query":"query { latestCloudEvent(did: \"did:erc721:1:0x...:tokenId\", filter: { type: \"dimo.status\" }) { header { id type time } data } }"}'
 ```
