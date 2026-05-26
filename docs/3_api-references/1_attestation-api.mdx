@@ -8,6 +8,8 @@ import ApiResponseBlock from '@site/src/components/ApiResponseBlock';
 import ParametersBlock from '@site/src/components/ParametersBlock';
 import ApiEndpointsBlock from '@site/src/components/ApiEndpointsBlock';
 import BaseUrlBlock from '@site/src/components/BaseUrlBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Attestation API
 Generate verifiable proof about a vehicle's data.
@@ -585,9 +587,10 @@ Extract only parses. If you want the whole document round-trip — store the fil
 
 ## Document field schemas
 
-Every `dimo.document.*` type carries a defined set of fields under `data.fields`. The Extract API returns this shape, and you post the same shape when you store a `dimo.document.*` event. Fields are best-effort: anything the source document does not contain comes back `null`, so a real response often has fewer keys than shown here. Each example below lists the representative fields for one type.
+Every `dimo.document.*` type carries a defined set of fields under `data.fields`. The Extract API returns this shape, and you post the same shape when you store a `dimo.document.*` event. Fields are best-effort: anything the source document does not contain comes back `null`, so a real document often has fewer keys than shown. Pick a type to see its fields.
 
-#### dimo.document.vehicle.insurance
+<Tabs groupId="document-type">
+  <TabItem value="dimo.document.vehicle.insurance" label="Insurance">
 
 ```json
 {
@@ -620,7 +623,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.vehicle.registration
+  </TabItem>
+  <TabItem value="dimo.document.vehicle.registration" label="Registration">
 
 ```json
 {
@@ -645,7 +649,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.vehicle.title
+  </TabItem>
+  <TabItem value="dimo.document.vehicle.title" label="Title">
 
 ```json
 {
@@ -670,7 +675,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.vehicle.service.invoice
+  </TabItem>
+  <TabItem value="dimo.document.vehicle.service.invoice" label="Service invoice">
 
 ```json
 {
@@ -715,7 +721,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.vehicle.inspection
+  </TabItem>
+  <TabItem value="dimo.document.vehicle.inspection" label="Inspection">
 
 ```json
 {
@@ -741,7 +748,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.vehicle.finance
+  </TabItem>
+  <TabItem value="dimo.document.vehicle.finance" label="Finance">
 
 ```json
 {
@@ -761,7 +769,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.vehicle.regulatory.other
+  </TabItem>
+  <TabItem value="dimo.document.vehicle.regulatory.other" label="Regulatory">
 
 ```json
 {
@@ -784,7 +793,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 }
 ```
 
-#### dimo.document.driver.license
+  </TabItem>
+  <TabItem value="dimo.document.driver.license" label="Driver license">
 
 ```json
 {
@@ -808,5 +818,8 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
   }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 `dimo.document.unknown` has no defined fields. The Extract API returns it when a document matches no spec; treat it as an unclassified placeholder rather than a schema.
