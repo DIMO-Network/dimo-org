@@ -49,7 +49,6 @@ const sidebars: SidebarsConfig = {
     },
     'build/building-with-tools/client-sdk-dimo-connect',
     'build/building-with-tools/server-sdk',
-    'build/building-with-tools/agent-sdk',
     'build/building-with-tools/low-code-integrations',
     'build/building-with-ai/dimo-mcp-server',
     {
@@ -64,7 +63,7 @@ const sidebars: SidebarsConfig = {
       value: 'API References',
       className: 'sidebar-section-title',
     },
-    'api-references/agents-api',
+    // 'api-references/agents-api',
     'api-references/attestation-api',
     'api-references/device-definitions-api',
     {
