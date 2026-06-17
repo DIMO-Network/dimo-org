@@ -517,7 +517,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     Industries
                   </div>
                   <Link
-                    to="/industries/auto-oems"
+                    to="/industries/oem"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
