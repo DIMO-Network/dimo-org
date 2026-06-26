@@ -11,7 +11,9 @@ const imgGithub = '/img/icon-github.svg';
 function NewsletterSignup() {
   const { siteConfig } = useDocusaurusContext();
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -22,8 +24,13 @@ function NewsletterSignup() {
       await emailjs.send(
         siteConfig.customFields.emailjsServiceId as string,
         siteConfig.customFields.emailjsTemplateId as string,
-        { name: 'Newsletter Subscriber', email, products: 'Newsletter', details: 'Footer newsletter signup' },
-        siteConfig.customFields.emailjsPublicKey as string,
+        {
+          name: 'Newsletter Subscriber',
+          email,
+          products: 'Newsletter',
+          details: 'Footer newsletter signup',
+        },
+        siteConfig.customFields.emailjsPublicKey as string
       );
       setStatus('success');
       setEmail('');
@@ -49,7 +56,10 @@ function NewsletterSignup() {
           className={styles.newsletterInput}
           placeholder="Enter your email"
           value={email}
-          onChange={(e) => { setEmail(e.target.value); setStatus('idle'); }}
+          onChange={e => {
+            setEmail(e.target.value);
+            setStatus('idle');
+          }}
           required
         />
         <button
@@ -61,7 +71,9 @@ function NewsletterSignup() {
         </button>
       </div>
       {status === 'error' && (
-        <p className={styles.newsletterError}>Something went wrong. Please try again.</p>
+        <p className={styles.newsletterError}>
+          Something went wrong. Please try again.
+        </p>
       )}
     </form>
   );
@@ -75,7 +87,8 @@ function Footer(): ReactNode {
         <div className={styles.newsletterSection}>
           <h4 className={styles.newsletterTitle}>Stay up to date</h4>
           <p className={styles.newsletterDescription}>
-            Get the latest on DIMO developer tools, API updates, and vehicle data insights.
+            Get the latest on DIMO developer tools, API updates, and vehicle
+            data insights.
           </p>
           <NewsletterSignup />
         </div>
@@ -86,19 +99,13 @@ function Footer(): ReactNode {
             <h4 className={styles.footerColumnTitle}>Learn More</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link to={LINKS.docs.base}>
-                  Developer Docs
-                </Link>
+                <Link to={LINKS.docs.base}>Developer Docs</Link>
               </li>
               <li>
-                <Link to="/blog">
-                  Blogs
-                </Link>
+                <Link to="/blog">Blogs</Link>
               </li>
               <li>
-                <Link to={LINKS.docs.developerSdk}>
-                  SDKs
-                </Link>
+                <Link to={LINKS.docs.developerSdk}>SDKs</Link>
               </li>
             </ul>
           </div>
@@ -113,28 +120,38 @@ function Footer(): ReactNode {
                 </Link>
               </li>
               <li>
-                <Link
-                  to={LINKS.external.dimoUniversity}
-                  target="_blank"
-                >
+                <Link to={LINKS.external.dimoUniversity} target="_blank">
                   DIMO University
                 </Link>
               </li>
               <li>
-                <Link
-                  to={LINKS.external.status}
-                  target="_blank"
-                >
+                <Link to={LINKS.external.status} target="_blank">
                   API Status
                 </Link>
               </li>
               <li>
-                <Link
-                  to={LINKS.external.chatgpt}
-                  target="_blank"
-                >
+                <Link to={LINKS.external.chatgpt} target="_blank">
                   Get Support
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3 - Company */}
+          <div className={styles.footerColumn}>
+            <h4 className={styles.footerColumnTitle}>Company</h4>
+            <ul className={styles.footerLinks}>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link to="/privacy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/terms">Terms of Service</Link>
               </li>
             </ul>
           </div>

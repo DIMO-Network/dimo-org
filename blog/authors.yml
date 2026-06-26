@@ -3,3 +3,11 @@ dimo-team:
   title: Developer Relations
   url: https://github.com/DIMO-Network
   image_url: https://github.com/DIMO-Network.png
+
+yevgeny-khessin:
+  name: Yevgeny Khessin
+  title: CEO & Co-Founder, DIMO
+  url: https://www.linkedin.com/in/yevgeny-khessin/
+  image_url: https://github.com/DIMO-Network.png
+  socials:
+    linkedin: https://www.linkedin.com/in/yevgeny-khessin/

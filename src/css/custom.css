@@ -6,8 +6,8 @@
 
 /* Universal Sans Display Font Family - Removed in favor of Inter */
 /* @font-face rules removed */
-
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+/* Geist font is loaded via <link> in docusaurus.config.ts headTags
+   (preconnect + stylesheet) to avoid a render-blocking CSS @import chain. */
 
 /* You can override the default Infima variables here. */
 :root {

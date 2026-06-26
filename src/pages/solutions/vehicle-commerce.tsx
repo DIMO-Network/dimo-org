@@ -20,9 +20,7 @@ import {
 const SOLUTION_NAME = 'Vehicle Commerce';
 const HERO_BACKGROUND = '/img/mp4/charging.mp4';
 const imgToken = '/img/token.webp';
-const imgDimoAi = '/img/dimo-pathways.gif';
 const imgShop = '/img/shop.png';
-
 
 const USE_CASES = [
   {
@@ -92,7 +90,7 @@ const TESTIMONIALS = [
   {
     name: 'Elena Rodriguez',
     role: 'CEO, EV Charging Network',
-    text: "Stablecoin payments transformed our business model. Instant settlement means better cash flow, and the low fees let us serve more customers profitably. x402 makes it completely automated.",
+    text: 'Stablecoin payments transformed our business model. Instant settlement means better cash flow, and the low fees let us serve more customers profitably. x402 makes it completely automated.',
   },
   {
     name: 'Thomas Anderson',
@@ -135,15 +133,13 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           Enable Frictionless Vehicle Payments with{' '}
-          <span className={styles.heroTitleGradient}>
-            Stablecoins & x402
-          </span>
+          <span className={styles.heroTitleGradient}>Stablecoins & x402</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Accept stablecoin payments, enable machine-to-machine transactions, and
-          automate vehicle commerce with the x402 protocol. Low fees, instant
-          settlement, and global reachbuilt for modern mobility.
+          Accept stablecoin payments, enable machine-to-machine transactions,
+          and automate vehicle commerce with the x402 protocol. Low fees,
+          instant settlement, and global reachbuilt for modern mobility.
         </p>
 
         <div className={styles.heroButtons}>
@@ -215,9 +211,10 @@ function FeatureSection1() {
         <div className={styles.featureText}>
           <h2>Stablecoin Payments: Fast, Cheap, Global</h2>
           <p>
-            Accept USDC, USDT, and other stablecoins for vehicle services. Instant
-            settlement, low fees, and no currency conversion--payments that work
-            globally without the complexity of traditional payment processors.
+            Accept USDC, USDT, and other stablecoins for vehicle services.
+            Instant settlement, low fees, and no currency conversion--payments
+            that work globally without the complexity of traditional payment
+            processors.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -239,7 +236,7 @@ function FeatureSection1() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgToken} alt="Stablecoin Tokens" />
+          <img src={imgToken} alt="Stablecoin Tokens" />
         </div>
       </div>
     </section>
@@ -249,13 +246,16 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>x402 Protocol: Machine-to-Machine Payments</h2>
           <p>
             The x402 protocol enables automated, permission-based transactions
-            between vehicles and service providers. Vehicles pay for tolls, parking,
-            charging, and services automaticallyno user interaction required.
+            between vehicles and service providers. Vehicles pay for tolls,
+            parking, charging, and services automaticallyno user interaction
+            required.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -277,7 +277,17 @@ function FeatureSection2() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgDimoAi} alt="x402 Protocol Diagram" />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-label="x402 Protocol Diagram"
+          >
+            <source src="/img/dimo-pathways.webm" type="video/webm" />
+            <source src="/img/dimo-pathways.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </section>
@@ -292,8 +302,9 @@ function FeatureSection3() {
           <h2>Built-In Wallet Infrastructure</h2>
           <p>
             Complete wallet solution with user-friendly interfaces. Users manage
-            balances, view transaction history, and control spendingall integrated
-            into your application with no additional development required.
+            balances, view transaction history, and control spendingall
+            integrated into your application with no additional development
+            required.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -315,7 +326,7 @@ function FeatureSection3() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgShop} alt="Wallet Interface" />
+          <img src={imgShop} alt="Wallet Interface" />
         </div>
       </div>
     </section>
@@ -327,7 +338,7 @@ function HowItWorksSection() {
     {
       title: 'Integrate Payment Infrastructure',
       description:
-        'Add DIMO\'s wallet and payment infrastructure to your app. Users create wallets and fund them with stablecoins through our on-ramp integrations.',
+        "Add DIMO's wallet and payment infrastructure to your app. Users create wallets and fund them with stablecoins through our on-ramp integrations.",
     },
     {
       title: 'Configure x402 Permissions',
@@ -352,8 +363,8 @@ function HowItWorksSection() {
         <span className={styles.sectionEyebrow}>How It Works</span>
         <h2 className={styles.sectionTitle}>Enable Vehicle Payments</h2>
         <p className={styles.sectionSubtitle}>
-          From wallet integration to automated payments, DIMO makes it easy to build
-          vehicle commerce applications with stablecoins and x402.
+          From wallet integration to automated payments, DIMO makes it easy to
+          build vehicle commerce applications with stablecoins and x402.
         </p>
       </div>
 
@@ -401,7 +412,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -419,9 +435,7 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Enable Vehicle Commerce?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Enable Vehicle Commerce?</h2>
         <p className={styles.ctaText}>
           Join the companies building the future of vehicle payments with
           stablecoins and the x402 protocol.
@@ -430,10 +444,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get Started <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -462,7 +473,10 @@ export default function VehicleCommercePage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/solutions/vehicle-commerce" />
+        <link
+          rel="canonical"
+          href="https://www.dimo.org/solutions/vehicle-commerce"
+        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
