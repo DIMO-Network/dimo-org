@@ -10,8 +10,8 @@ We are happy to help — pick the channel that fits.
 ## Developer support
 
 - **Email:** [developer-support@dimo.org](mailto:developer-support@dimo.org)
-- **Discord:** [discord.gg/dimonetwork](https://discord.gg/dimonetwork) — the
-  fastest way to get a question answered.
+- **Discord:** [chat.dimo.org](https://chat.dimo.org) — the fastest way to get a
+  question answered.
 - **GitHub:** [github.com/DIMO-Network](https://github.com/DIMO-Network) — open
   an issue on the relevant repository.
 - **API status:** check [the status page](https://status.dimo.org) before

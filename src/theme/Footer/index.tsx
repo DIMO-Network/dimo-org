@@ -168,7 +168,7 @@ function Footer(): ReactNode {
             <img alt="GitHub" src={imgGithub} />
           </a>
           <a
-            href="https://discord.com/invite/dimonetwork"
+            href="https://chat.dimo.org"
             className={styles.socialLink}
             aria-label="Discord"
             target="_blank"

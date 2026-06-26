@@ -36,5 +36,5 @@ that infrastructure real.
 - **Developers:** start in the [documentation](/docs) or the
   [Developer Console](https://console.dimo.org/sign-in).
 - **Partnerships and enterprise:** see our [contact page](/contact).
-- **Community:** join us on [Discord](https://discord.gg/dimonetwork) and
+- **Community:** join us on [Discord](https://chat.dimo.org) and
   [GitHub](https://github.com/DIMO-Network).

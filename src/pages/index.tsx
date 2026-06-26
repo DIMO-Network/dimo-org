@@ -450,10 +450,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get API Keys
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="https://discord.gg/dimonetwork"
-          >
+          <Link className={styles.secondaryBtn} to="https://chat.dimo.org">
             Join Discord
           </Link>
         </div>
@@ -545,7 +542,7 @@ export default function Home(): ReactNode {
               'https://github.com/DIMO-Network',
               'https://x.com/dimo_network',
               'https://twitter.com/dimo_network',
-              'https://discord.gg/dimonetwork',
+              'https://chat.dimo.org',
             ],
             contactPoint: {
               '@type': 'ContactPoint',

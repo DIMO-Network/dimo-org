@@ -71,7 +71,9 @@ export default function ContentPageLayout({
               {ctaLabel} <span className={styles.arrow}>→</span>
             </Link>
           </header>
-          <Breadcrumbs items={breadcrumbs} />
+          <div className={styles.breadcrumbs}>
+            <Breadcrumbs items={breadcrumbs} />
+          </div>
           <article className={styles.article}>{children}</article>
         </main>
         <FooterTheme />

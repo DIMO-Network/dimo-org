@@ -7219,7 +7219,7 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 ### How do I get help?
 
 **Community Support (Free):**
-- 💬 [Discord Community](https://discord.gg/dimonetwork) - 5,000+ developers
+- 💬 [Discord Community](https://chat.dimo.org) - 5,000+ developers
 - 📚 [Documentation](https://www.dimo.org/docs) - Comprehensive guides
 - 🐙 [GitHub Discussions](https://github.com/DIMO-Network) - Technical Q&A
 
@@ -7269,13 +7269,13 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 - [Access Telemetry Data](/docs/api-references/telemetry-api)
 
 **💬 Community**
-- [Discord Server](https://discord.gg/dimonetwork)
+- [Discord Server](https://chat.dimo.org)
 - [Twitter/X](https://x.com/dimo_network)
 - [GitHub](https://github.com/DIMO-Network)
 
 ---
 
-**Still have questions?** Join our [Discord community](https://discord.gg/dimonetwork) or email [developer-support@dimo.org](mailto:developer-support@dimo.org).
+**Still have questions?** Join our [Discord community](https://chat.dimo.org) or email [developer-support@dimo.org](mailto:developer-support@dimo.org).
 
 ---
 
@@ -7840,10 +7840,10 @@ node -r dotenv/config examples/vehicle-dashboard.js 12345
 - 📚 [Authentication Guide](/docs/getting-started/authentication)
 - 🔌 [DIMO Connect (Client SDK)](/docs/build/building-with-tools/client-sdk-dimo-connect)
 - 🎮 [API References](/docs/api-references)
-- 💬 [Discord Community](https://discord.gg/dimonetwork) - Get help from developers
+- 💬 [Discord Community](https://chat.dimo.org) - Get help from developers
 - 📧 [developer-support@dimo.org](mailto:developer-support@dimo.org)
 
-**Questions?** Join our [Discord](https://discord.gg/dimonetwork) and ask in the `#developers` channel!
+**Questions?** Join our [Discord](https://chat.dimo.org) and ask in the `#developers` channel!
 
 ---
 
@@ -8319,7 +8319,7 @@ No credit card required. Start building in 5 minutes:
 2. **[Get API keys](https://console.dimo.org/api-keys)** - Instant access
 3. **[Follow tutorial](/docs/tutorials/connect-first-vehicle)** - 5 minute quickstart
 
-**Questions?** Join 5,000+ developers on [Discord](https://discord.gg/dimonetwork)
+**Questions?** Join 5,000+ developers on [Discord](https://chat.dimo.org)
 
 ---
 

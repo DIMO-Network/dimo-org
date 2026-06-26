@@ -69,6 +69,12 @@
   transform: translateX(4px);
 }
 
+.breadcrumbs {
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+
 .article {
   max-width: 720px;
   margin: 0 auto;

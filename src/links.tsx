@@ -5,28 +5,28 @@
 // Internal documentation links (relative paths)
 export const DOCS_LINKS = {
   base: '/docs',
-	developerSdk: '/docs/build/building-with-tools/client-sdk-dimo-connect',
+  developerSdk: '/docs/build/building-with-tools/client-sdk-dimo-connect',
   aiAppBuilder: '/docs/build/building-with-ai/developer-kit',
-	dimoMcpServer: '/docs/build/building-with-ai/dimo-mcp-server',
-	lowCodeIntegrations: '/docs/build/building-with-tools/low-code-integrations',
-	cheatSheet: '/img/cheat-sheet.png',
+  dimoMcpServer: '/docs/build/building-with-ai/dimo-mcp-server',
+  lowCodeIntegrations: '/docs/build/building-with-tools/low-code-integrations',
+  cheatSheet: '/img/cheat-sheet.png',
 } as const;
 
 // External links
 export const EXTERNAL_LINKS = {
   console: 'https://console.dimo.org/sign-in',
-  chatgpt: 'https://chatgpt.com/g/g-68b72a6088d08191b80a6bd57c0fae3f-dimo-build-gpt',
+  chatgpt:
+    'https://chatgpt.com/g/g-68b72a6088d08191b80a6bd57c0fae3f-dimo-build-gpt',
   github: 'https://github.com/DIMO-Network',
   blogs: 'https://www.dimo.org/blog',
-  discord: 'https://discord.com/invite/dimonetwork',
+  discord: 'https://chat.dimo.org',
   dimoUniversity: 'https://youtu.be/nktm5m9LhIU',
   dimoMobile: 'https://dimo.co',
   dimoJapan: 'https://dimojapan.com/',
   dune: 'https://dune.com/dimo_network/dimo-protocol',
   twitter: 'https://twitter.com/dimo_network',
-  status: 'https://status.dimo.org/'
+  status: 'https://status.dimo.org/',
 } as const;
-
 
 // Combined links object for easy access
 export const LINKS = {
