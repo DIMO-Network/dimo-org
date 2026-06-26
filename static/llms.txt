@@ -1,0 +1,77 @@
+# DIMO Build — Vehicle Data Developer Platform
+
+> DIMO is open infrastructure for connected vehicles. One permissioned API gives
+> developers real-time telemetry, vehicle identity, and event webhooks across
+> 50+ automotive OEMs. Owner consent is enforced through the SACD model, built
+> to meet GDPR and the EU Data Act. The core protocol and tooling are open
+> source. Free tier available; paid plans for production scale.
+
+## Getting started
+- [Introduction](https://www.dimo.org/docs/introduction)
+- [Quickstart](https://www.dimo.org/docs/quickstart)
+- [Getting Started](https://www.dimo.org/docs/getting-started)
+- [Key Concepts](https://www.dimo.org/docs/key-concepts)
+- [What can you build?](https://www.dimo.org/docs/introduction)
+- [FAQ](https://www.dimo.org/docs/faq)
+
+## API references
+- [Identity API](https://www.dimo.org/docs/api-references/identity-api)
+- [Telemetry API](https://www.dimo.org/docs/api-references/telemetry-api)
+- [Fetch API](https://www.dimo.org/docs/api-references/fetch-api)
+- [Attestation API](https://www.dimo.org/docs/api-references/attestation-api)
+- [Device Definitions API](https://www.dimo.org/docs/api-references/device-definitions-api)
+- [Token Exchange API](https://www.dimo.org/docs/api-references/token-exchange-api)
+- [Vehicle Triggers API](https://www.dimo.org/docs/api-references/vehicle-triggers-api)
+
+## Build
+- [Build guides](https://www.dimo.org/docs/build)
+- [Examples](https://www.dimo.org/docs/examples)
+- [Tutorials](https://www.dimo.org/docs/tutorials)
+- [Comparison](https://www.dimo.org/docs/comparison)
+
+## Products
+- [Access](https://www.dimo.org/products/access)
+- [Ingest](https://www.dimo.org/products/ingest)
+- [Storage](https://www.dimo.org/products/storage)
+- [Consent](https://www.dimo.org/products/consent)
+- [Pay](https://www.dimo.org/products/pay)
+
+## Solutions & industries
+- [Agentic Experiences](https://www.dimo.org/solutions/agentic-experiences)
+- [Fleet Intelligence](https://www.dimo.org/solutions/fleet-intelligence)
+- [Vehicle Commerce](https://www.dimo.org/solutions/vehicle-commerce)
+- [Consumer Applications](https://www.dimo.org/solutions/consumer-applications)
+- [OEMs](https://www.dimo.org/industries/oem)
+- [Rentals](https://www.dimo.org/industries/rentals)
+- [Dealerships](https://www.dimo.org/industries/dealerships)
+- [Maintenance](https://www.dimo.org/industries/maintenance)
+
+## Vehicle Session Infrastructure
+- [Vehicle Session Infrastructure (category)](https://www.dimo.org/vehicle-session-infrastructure)
+- [Fleet Spend & EV Charging Reimbursement](https://www.dimo.org/solutions/fleet-spend)
+
+## Compliance
+- [Connected Vehicle Data Compliance](https://www.dimo.org/compliance)
+- [EU Data Act for Vehicle Data](https://www.dimo.org/compliance/eu-data-act)
+- [FTC GM/OnStar Consent Order](https://www.dimo.org/compliance/ftc-gm-consent)
+- [Session-Scoped Consent](https://www.dimo.org/compliance/session-scoped-consent)
+- [Vehicle Access Audit Trails](https://www.dimo.org/compliance/vehicle-access-audit-trail)
+
+## Compare
+- [DIMO vs Smartcar](https://www.dimo.org/compare/smartcar-alternative)
+- [DIMO vs Standard Fleet](https://www.dimo.org/compare/standard-fleet-alternative)
+
+## Pricing
+- [Plans & pricing](https://www.dimo.org/pricing)
+
+## Blog
+- [Data Wars: The Consent Management Crisis OEMs Didn't See Coming](https://www.dimo.org/blog/data-wars-the-consent-management-crisis-oems-didnt-see-coming)
+- [DIMO Vehicle Simulator: Build Without a Car](https://www.dimo.org/blog/dimo-vehicle-simulator)
+
+## For AI assistants & coding agents
+- [DIMO Platform Skill](https://github.com/DIMO-Network/dimo-platform-skill): a drop-in knowledge pack that gives an AI agent the full DIMO platform model — architecture, APIs, SACD permissions, contract addresses, and SDK signatures.
+- [DIMO MCP Server](https://github.com/DIMO-Network/mcp-dimo): a Model Context Protocol server that lets an AI assistant query DIMO data and call platform tools directly.
+
+## Optional
+- [Full documentation corpus](https://www.dimo.org/llms-full.txt)
+- [Sitemap](https://www.dimo.org/sitemap.xml)

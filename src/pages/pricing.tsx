@@ -270,8 +270,16 @@ function EnterpriseModal({
   onClose: () => void;
 }) {
   const { siteConfig } = useDocusaurusContext();
-  const [form, setForm] = useState({ name: '', email: '', company: '', fleetSize: '', details: '' });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    fleetSize: '',
+    details: '',
+  });
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
 
   function update(field: string, value: string) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -296,7 +304,7 @@ function EnterpriseModal({
             `Details: ${form.details}`,
           ].join('\n'),
         },
-        siteConfig.customFields.emailjsPublicKey as string,
+        siteConfig.customFields.emailjsPublicKey as string
       );
       setStatus('success');
     } catch {
@@ -307,15 +315,24 @@ function EnterpriseModal({
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <button className={styles.modalClose} onClick={onClose} aria-label="Close">
+        <button
+          className={styles.modalClose}
+          onClick={onClose}
+          aria-label="Close"
+        >
           <X size={20} />
         </button>
 
         {status === 'success' ? (
           <div className={styles.modalSuccess}>
             <h3>Thanks, {form.name}!</h3>
-            <p>We'll reach out to <strong>{form.email}</strong> shortly to discuss your enterprise needs.</p>
-            <button className={styles.modalBtn} onClick={onClose}>Close</button>
+            <p>
+              We'll reach out to <strong>{form.email}</strong> shortly to
+              discuss your enterprise needs.
+            </p>
+            <button className={styles.modalBtn} onClick={onClose}>
+              Close
+            </button>
           </div>
         ) : (
           <>
@@ -355,7 +372,9 @@ function EnterpriseModal({
                   onChange={e => update('fleetSize', e.target.value)}
                   required
                 >
-                  <option value="" disabled>Fleet size</option>
+                  <option value="" disabled>
+                    Fleet size
+                  </option>
                   <option value="100-500">100 – 500 vehicles</option>
                   <option value="500-5000">500 – 5,000 vehicles</option>
                   <option value="5000-50000">5,000 – 50,000 vehicles</option>
@@ -370,7 +389,9 @@ function EnterpriseModal({
                 rows={4}
               />
               {status === 'error' && (
-                <p className={styles.modalError}>Something went wrong. Please try again.</p>
+                <p className={styles.modalError}>
+                  Something went wrong. Please try again.
+                </p>
               )}
               <button
                 type="submit"
@@ -396,8 +417,13 @@ export default function Pricing(): ReactNode {
     <>
       <Head>
         {/* Primary Meta Tags */}
-        <title>DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free</title>
-        <meta name="title" content="DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free" />
+        <title>
+          DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free
+        </title>
+        <meta
+          name="title"
+          content="DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free"
+        />
         <meta
           name="description"
           content="Flexible pricing for vehicle data APIs and AI agents. Free hobbyist tier, $349/mo for developers, custom enterprise plans. Connect 50+ OEMs with one platform. Start building today."
@@ -413,12 +439,18 @@ export default function Pricing(): ReactNode {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.dimo.org/pricing" />
-        <meta property="og:title" content="DIMO Pricing | Vehicle Data API & AI Agent Plans" />
+        <meta
+          property="og:title"
+          content="DIMO Pricing | Vehicle Data API & AI Agent Plans"
+        />
         <meta
           property="og:description"
           content="Transparent pricing for connected car development. Free to start, scale as you grow. Vehicle data APIs, AI agents, and enterprise solutions."
         />
-        <meta property="og:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+        <meta
+          property="og:image"
+          content="https://www.dimo.org/img/dimo-social-card.png"
+        />
         <meta property="og:site_name" content="DIMO" />
         <meta property="og:locale" content="en_US" />
 
@@ -430,7 +462,10 @@ export default function Pricing(): ReactNode {
           name="twitter:description"
           content="Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ OEMs."
         />
-        <meta name="twitter:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+        <meta
+          name="twitter:image"
+          content="https://www.dimo.org/img/dimo-social-card.png"
+        />
 
         {/* Additional SEO */}
         <meta name="robots" content="index, follow" />
@@ -439,75 +474,70 @@ export default function Pricing(): ReactNode {
         {/* Structured Data - Product with Offers */}
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": "DIMO Platform",
-            "description": "Vehicle intelligence platform with AI agents and data APIs for connected car development",
-            "brand": {
-              "@type": "Brand",
-              "name": "DIMO"
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: 'DIMO Platform',
+            description:
+              'Vehicle intelligence platform with AI agents and data APIs for connected car development',
+            brand: {
+              '@type': 'Brand',
+              name: 'DIMO',
             },
-            "offers": [
+            offers: [
               {
-                "@type": "Offer",
-                "name": "DIMO Hobbyist",
-                "price": "0",
-                "priceCurrency": "USD",
-                "priceSpecification": {
-                  "@type": "UnitPriceSpecification",
-                  "price": "0",
-                  "priceCurrency": "USD",
-                  "referenceQuantity": {
-                    "@type": "QuantitativeValue",
-                    "value": "1",
-                    "unitText": "account"
-                  }
+                '@type': 'Offer',
+                name: 'DIMO Hobbyist',
+                price: '0',
+                priceCurrency: 'USD',
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  referenceQuantity: {
+                    '@type': 'QuantitativeValue',
+                    value: '1',
+                    unitText: 'account',
+                  },
                 },
-                "description": "Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.",
-                "url": "https://www.dimo.org/pricing",
-                "availability": "https://schema.org/InStock"
+                description:
+                  'Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.',
+                url: 'https://www.dimo.org/pricing',
+                availability: 'https://schema.org/InStock',
               },
               {
-                "@type": "Offer",
-                "name": "DIMO Core",
-                "price": "349",
-                "priceCurrency": "USD",
-                "priceSpecification": {
-                  "@type": "UnitPriceSpecification",
-                  "price": "349",
-                  "priceCurrency": "USD",
-                  "billingDuration": "P1M",
-                  "referenceQuantity": {
-                    "@type": "QuantitativeValue",
-                    "value": "1",
-                    "unitText": "month"
-                  }
+                '@type': 'Offer',
+                name: 'DIMO Core',
+                price: '349',
+                priceCurrency: 'USD',
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  price: '349',
+                  priceCurrency: 'USD',
+                  billingDuration: 'P1M',
+                  referenceQuantity: {
+                    '@type': 'QuantitativeValue',
+                    value: '1',
+                    unitText: 'month',
+                  },
                 },
-                "description": "For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.",
-                "url": "https://www.dimo.org/pricing",
-                "availability": "https://schema.org/InStock"
+                description:
+                  'For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.',
+                url: 'https://www.dimo.org/pricing',
+                availability: 'https://schema.org/InStock',
               },
               {
-                "@type": "Offer",
-                "name": "DIMO Enterprise",
-                "price": "0",
-                "priceCurrency": "USD",
-                "priceSpecification": {
-                  "@type": "PriceSpecification",
-                  "priceCurrency": "USD",
-                  "price": "Contact for pricing"
+                '@type': 'Offer',
+                name: 'DIMO Enterprise',
+                priceSpecification: {
+                  '@type': 'PriceSpecification',
+                  priceCurrency: 'USD',
                 },
-                "description": "Custom solutions for large-scale deployments with dedicated support, custom SLAs, and on-premise options.",
-                "url": "https://www.dimo.org/pricing",
-                "availability": "https://schema.org/InStock"
-              }
+                description:
+                  'Custom solutions for large-scale deployments with dedicated support, custom SLAs, and on-premise options.',
+                url: 'https://www.dimo.org/pricing',
+                availability: 'https://schema.org/InStock',
+              },
             ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "5",
-              "ratingCount": "4",
-              "reviewCount": "4"
-            }
           })}
         </script>
       </Head>

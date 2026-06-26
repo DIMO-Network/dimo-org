@@ -86,7 +86,9 @@ const DATA_PERMISSIONS = [
 export default function ConsentFlow() {
   const [mounted, setMounted] = useState(false);
   const [consentGranted, setConsentGranted] = useState(false);
-  const [selectedPermission, setSelectedPermission] = useState(DATA_PERMISSIONS[0]);
+  const [selectedPermission, setSelectedPermission] = useState(
+    DATA_PERMISSIONS[0]
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -96,7 +98,7 @@ export default function ConsentFlow() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handlePermissionClick = (permission: typeof DATA_PERMISSIONS[0]) => {
+  const handlePermissionClick = (permission: (typeof DATA_PERMISSIONS)[0]) => {
     setSelectedPermission(permission);
   };
 
@@ -105,9 +107,7 @@ export default function ConsentFlow() {
       <div className={styles.container}>
         <div className={styles.titleBlock}>
           <span className={styles.eyebrow}>How It Works</span>
-          <h2 className={styles.heading}>
-            User-Controlled Data Permissions
-          </h2>
+          <h2 className={styles.heading}>User-Controlled Data Permissions</h2>
         </div>
 
         <div className={styles.mainLayout}>
@@ -116,7 +116,10 @@ export default function ConsentFlow() {
             {/* Top Row: Vehicle Owner -> DIMO Consent */}
             <div className={styles.topRow}>
               {/* Vehicle Owner */}
-              <div className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0s' }}>
+              <div
+                className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '0s' }}
+              >
                 <div className={styles.stepCard}>
                   <div className={styles.stepIcon}>
                     <User size={32} strokeWidth={1.5} />
@@ -127,30 +130,45 @@ export default function ConsentFlow() {
               </div>
 
               {/* Arrow: Grants Consent */}
-              <div className={`${styles.flowArrowHorizontal} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.3s' }}>
+              <div
+                className={`${styles.flowArrowHorizontal} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '0.3s' }}
+              >
                 <div className={styles.arrowLine}>
-                  <div className={`${styles.arrowPacket} ${consentGranted ? styles.active : ''}`} />
+                  <div
+                    className={`${styles.arrowPacket} ${consentGranted ? styles.active : ''}`}
+                  />
                 </div>
                 <div className={styles.arrowLabel}>Grants Consent</div>
               </div>
 
               {/* DIMO Consent */}
-              <div className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.6s' }}>
+              <div
+                className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '0.6s' }}
+              >
                 <div className={`${styles.stepCard} ${styles.dimoCard}`}>
                   <div className={`${styles.stepIcon} ${styles.dimoIcon}`}>
                     <ShieldCheck size={32} strokeWidth={1.5} />
                   </div>
                   <div className={styles.stepTitle}>DIMO Consent</div>
-                  <div className={styles.stepDesc}>Verifies & records on-chain</div>
+                  <div className={styles.stepDesc}>
+                    Verifies & seals a signed record
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Vertical Arrow from App Developer to Vehicle Owner */}
             <div className={styles.verticalConnector}>
-              <div className={`${styles.flowArrowVertical} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.8s' }}>
+              <div
+                className={`${styles.flowArrowVertical} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '0.8s' }}
+              >
                 <div className={styles.arrowLineVertical}>
-                  <div className={`${styles.arrowPacketUp} ${consentGranted ? styles.active : ''}`} />
+                  <div
+                    className={`${styles.arrowPacketUp} ${consentGranted ? styles.active : ''}`}
+                  />
                 </div>
                 <div className={styles.arrowLabelVertical}>Request Consent</div>
               </div>
@@ -159,7 +177,10 @@ export default function ConsentFlow() {
             {/* Bottom Row: App Developer -> DIMO API */}
             <div className={styles.bottomRow}>
               {/* App Developer */}
-              <div className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '1.0s' }}>
+              <div
+                className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '1.0s' }}
+              >
                 <div className={styles.stepCard}>
                   <div className={styles.stepIcon}>
                     <Code2 size={32} strokeWidth={1.5} />
@@ -170,15 +191,23 @@ export default function ConsentFlow() {
               </div>
 
               {/* Arrow: API Access */}
-              <div className={`${styles.flowArrowHorizontal} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '1.2s' }}>
+              <div
+                className={`${styles.flowArrowHorizontal} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '1.2s' }}
+              >
                 <div className={styles.arrowLine}>
-                  <div className={`${styles.arrowPacket} ${styles.apiPacket} ${consentGranted ? styles.active : ''}`} />
+                  <div
+                    className={`${styles.arrowPacket} ${styles.apiPacket} ${consentGranted ? styles.active : ''}`}
+                  />
                 </div>
                 <div className={styles.arrowLabel}>API Access</div>
               </div>
 
               {/* DIMO API */}
-              <div className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '1.4s' }}>
+              <div
+                className={`${styles.flowStep} ${mounted ? styles.mounted : ''}`}
+                style={{ transitionDelay: '1.4s' }}
+              >
                 <div className={styles.stepCard}>
                   <div className={`${styles.stepIcon} ${styles.storageIcon}`}>
                     <Database size={32} strokeWidth={1.5} />
@@ -191,7 +220,9 @@ export default function ConsentFlow() {
           </div>
 
           {/* Right Side: Permissions & JSON Preview */}
-          <div className={`${styles.rightPanel} ${mounted ? styles.mounted : ''}`}>
+          <div
+            className={`${styles.rightPanel} ${mounted ? styles.mounted : ''}`}
+          >
             {/* Permissions Panel */}
             <div className={styles.permissionsPanel}>
               <div className={styles.permissionsLabel}>Data Previews</div>
@@ -205,10 +236,16 @@ export default function ConsentFlow() {
                   >
                     <div className={styles.permissionIcon}>{perm.icon}</div>
                     <div className={styles.permissionInfo}>
-                      <span className={styles.permissionName}>{perm.label}</span>
-                      <span className={styles.permissionDesc}>{perm.description}</span>
+                      <span className={styles.permissionName}>
+                        {perm.label}
+                      </span>
+                      <span className={styles.permissionDesc}>
+                        {perm.description}
+                      </span>
                     </div>
-                    <div className={`${styles.permissionCheck} ${consentGranted ? styles.visible : ''}`}>
+                    <div
+                      className={`${styles.permissionCheck} ${consentGranted ? styles.visible : ''}`}
+                    >
                       <Check size={12} strokeWidth={3} />
                     </div>
                   </div>
@@ -217,12 +254,16 @@ export default function ConsentFlow() {
             </div>
 
             {/* JSON Preview */}
-            <div className={`${styles.jsonPreview} ${consentGranted ? styles.active : ''}`}>
+            <div
+              className={`${styles.jsonPreview} ${consentGranted ? styles.active : ''}`}
+            >
               <div className={styles.jsonHeader}>
                 <span className={styles.jsonDot} />
                 <span className={styles.jsonDot} />
                 <span className={styles.jsonDot} />
-                <span className={styles.jsonTitle}>{selectedPermission.label} Response</span>
+                <span className={styles.jsonTitle}>
+                  {selectedPermission.label} Response
+                </span>
               </div>
               <pre className={styles.jsonCode}>{selectedPermission.json}</pre>
             </div>
@@ -233,42 +274,62 @@ export default function ConsentFlow() {
         <div className={styles.mobileFlow}>
           <div className={styles.mobileSection}>
             <div className={styles.mobileSectionTitle}>Consent Flow</div>
-            <div className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`}>
+            <div
+              className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`}
+            >
               <div className={styles.mobileStepNumber}>1</div>
               <div className={styles.mobileStepContent}>
                 <Code2 size={24} />
                 <span>App requests consent from user</span>
               </div>
             </div>
-            <div className={styles.mobileArrow}><ArrowDown size={20} /></div>
-            <div className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.2s' }}>
+            <div className={styles.mobileArrow}>
+              <ArrowDown size={20} />
+            </div>
+            <div
+              className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`}
+              style={{ transitionDelay: '0.2s' }}
+            >
               <div className={styles.mobileStepNumber}>2</div>
               <div className={styles.mobileStepContent}>
                 <User size={24} />
                 <span>Vehicle Owner grants consent</span>
               </div>
             </div>
-            <div className={styles.mobileArrow}><ArrowDown size={20} /></div>
-            <div className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.3s' }}>
+            <div className={styles.mobileArrow}>
+              <ArrowDown size={20} />
+            </div>
+            <div
+              className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`}
+              style={{ transitionDelay: '0.3s' }}
+            >
               <div className={styles.mobileStepNumber}>3</div>
               <div className={styles.mobileStepContent}>
                 <ShieldCheck size={24} />
-                <span>DIMO verifies & records on-chain</span>
+                <span>DIMO verifies & seals a signed record</span>
               </div>
             </div>
           </div>
 
           <div className={styles.mobileSection}>
             <div className={styles.mobileSectionTitle}>Data Access</div>
-            <div className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.4s' }}>
+            <div
+              className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`}
+              style={{ transitionDelay: '0.4s' }}
+            >
               <div className={styles.mobileStepNumber}>4</div>
               <div className={styles.mobileStepContent}>
                 <Code2 size={24} />
                 <span>App Developer calls API</span>
               </div>
             </div>
-            <div className={styles.mobileArrow}><ArrowDown size={20} /></div>
-            <div className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`} style={{ transitionDelay: '0.5s' }}>
+            <div className={styles.mobileArrow}>
+              <ArrowDown size={20} />
+            </div>
+            <div
+              className={`${styles.mobileStep} ${mounted ? styles.mounted : ''}`}
+              style={{ transitionDelay: '0.5s' }}
+            >
               <div className={styles.mobileStepNumber}>5</div>
               <div className={styles.mobileStepContent}>
                 <Database size={24} />
@@ -278,7 +339,9 @@ export default function ConsentFlow() {
           </div>
 
           <div className={styles.mobilePermissions}>
-            <div className={styles.mobilePermissionsTitle}>Granular Permissions</div>
+            <div className={styles.mobilePermissionsTitle}>
+              Granular Permissions
+            </div>
             <div className={styles.mobilePermissionsGrid}>
               {DATA_PERMISSIONS.map((perm, idx) => (
                 <div
@@ -291,12 +354,16 @@ export default function ConsentFlow() {
                 </div>
               ))}
             </div>
-            <div className={`${styles.mobileJsonPreview} ${consentGranted ? styles.active : ''}`}>
+            <div
+              className={`${styles.mobileJsonPreview} ${consentGranted ? styles.active : ''}`}
+            >
               <div className={styles.jsonHeader}>
                 <span className={styles.jsonDot} />
                 <span className={styles.jsonDot} />
                 <span className={styles.jsonDot} />
-                <span className={styles.jsonTitle}>{selectedPermission.label}</span>
+                <span className={styles.jsonTitle}>
+                  {selectedPermission.label}
+                </span>
               </div>
               <pre className={styles.jsonCode}>{selectedPermission.json}</pre>
             </div>

@@ -16,14 +16,17 @@ const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
 const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
-const imgHeroHighway = '/img/dimo-pixel-car.gif';
-const imgDimoAi = '/img/dimo-pathways.gif';
-const imgDimoAiPlaceholder = '/img/DIMO-Docs.png';
+const imgDimoAiPlaceholder = '/img/DIMO-Docs.webp';
 
 // Typewriter hook for rotating words
-function useTypewriter(words: string[], typingSpeed = 100, deletingSpeed = 50, pauseTime = 3000) {
+function useTypewriter(
+  words: string[],
+  typingSpeed = 100,
+  deletingSpeed = 50,
+  pauseTime = 3000
+) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
+  const [currentText, setCurrentText] = useState(words[0]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -41,7 +44,7 @@ function useTypewriter(words: string[], typingSpeed = 100, deletingSpeed = 50, p
     if (isDeleting) {
       if (currentText === '') {
         setIsDeleting(false);
-        setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        setCurrentWordIndex(prev => (prev + 1) % words.length);
       } else {
         const timeout = setTimeout(() => {
           setCurrentText(currentWord.substring(0, currentText.length - 1));
@@ -58,13 +61,27 @@ function useTypewriter(words: string[], typingSpeed = 100, deletingSpeed = 50, p
         return () => clearTimeout(timeout);
       }
     }
-  }, [currentText, currentWordIndex, isDeleting, isPaused, words, typingSpeed, deletingSpeed, pauseTime]);
+  }, [
+    currentText,
+    currentWordIndex,
+    isDeleting,
+    isPaused,
+    words,
+    typingSpeed,
+    deletingSpeed,
+    pauseTime,
+  ]);
 
   return currentText;
 }
 
 function HeroSection() {
-  const rotatingWord = useTypewriter(['session-based economy', 'mobility', 'vehicle data'], 100, 50, 3000);
+  const rotatingWord = useTypewriter(
+    ['session-based economy', 'mobility', 'vehicle data'],
+    100,
+    50,
+    3000
+  );
 
   return (
     <header className={styles.hero}>
@@ -84,13 +101,14 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           The infrastructure built for <br />
-          {rotatingWord}<span className={styles.typewriterCursor}>|</span>
+          {rotatingWord}
+          <span className={styles.typewriterCursor}>|</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          DIMO is building the infrastructure for the session-based economy—where
-          vehicles, drivers, and services connect on-demand. Build apps that unlock
-          value across every trip, rental, and interaction.
+          DIMO is building the infrastructure for the session-based
+          economy—where vehicles, drivers, and services connect on-demand. Build
+          apps that unlock value across every trip, rental, and interaction.
         </p>
 
         <div className={styles.heroButtons}>
@@ -108,6 +126,10 @@ function HeroSection() {
             <img
               src={imgDimoAiPlaceholder}
               alt="DIMO Docs"
+              width={3454}
+              height={1970}
+              fetchPriority="high"
+              decoding="async"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
@@ -146,7 +168,7 @@ function FeaturesGrid() {
     },
     {
       title: 'Secure & Compliant',
-      desc: 'DIMO utilizes the immutability of the blockchain while preserving security, ensuring compliance with GDPR and the EU Data Act.',
+      desc: 'DIMO records access on a cryptographically signed, independently verifiable ledger while preserving security, ensuring compliance with GDPR and the EU Data Act.',
       icon: imgIconSecureCompliant,
     },
   ];
@@ -154,7 +176,9 @@ function FeaturesGrid() {
   return (
     <section className={styles.features}>
       <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>Built for the session-based economy</h2>
+        <h2 className={styles.sectionTitle}>
+          Built for the session-based economy
+        </h2>
         <p className={styles.sectionSubtitle}>
           The future of mobility is sessions—not ownership. DIMO gives you the
           primitives to build services that activate at the start of a trip and
@@ -168,7 +192,7 @@ function FeaturesGrid() {
           <div key={i} className={styles.card}>
             <div className={styles.cardGlow} />
             <div className={styles.cardIcon}>
-              <img src={f.icon} alt="" />
+              <img src={f.icon} alt="" width={48} height={48} loading="lazy" />
             </div>
             <h3 className={styles.cardTitle}>{f.title}</h3>
             <p className={styles.cardDesc}>{f.desc}</p>
@@ -184,31 +208,46 @@ function AutomateOperationsSection() {
     <section className={styles.bigFeature}>
       <div className={styles.featureContainer}>
         <div className={styles.featureVisual}>
-          <img src={imgDimoAi} alt="Automate Operations" />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-label="Automate Operations"
+          >
+            <source src="/img/dimo-pathways.webm" type="video/webm" />
+            <source src="/img/dimo-pathways.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className={styles.featureText}>
           <h3>Power every session, end to end</h3>
           <p>
             From the moment a driver unlocks a vehicle to the instant they hand
             it back, DIMO orchestrates the entire session lifecycle. Automate
-            workflows with AI agents that carry context across every interaction—
-            so your team focuses on growth, not ops. Perfect for:
+            workflows with AI agents that carry context across every
+            interaction— so your team focuses on growth, not ops. Perfect for:
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Rentals & Fleet Turnover
+              <span className={styles.checkIcon}>✓</span> Rentals & Fleet
+              Turnover
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Pay-Per-Use & Subscription Services
+              <span className={styles.checkIcon}>✓</span> Pay-Per-Use &
+              Subscription Services
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Session-Based Insurance & Risk
+              <span className={styles.checkIcon}>✓</span> Session-Based
+              Insurance & Risk
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Booking, Check-in & Returns
+              <span className={styles.checkIcon}>✓</span> Booking, Check-in &
+              Returns
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Maintenance Triggered by Usage
+              <span className={styles.checkIcon}>✓</span> Maintenance Triggered
+              by Usage
             </li>
           </ul>
         </div>
@@ -247,7 +286,17 @@ function BigFeatureSection() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgHeroHighway} alt="Telematics Architecture" />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            aria-label="Telematics Architecture"
+          >
+            <source src="/img/dimo-pixel-car.webm" type="video/webm" />
+            <source src="/img/dimo-pixel-car.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </section>
@@ -371,7 +420,14 @@ function HardwareSection() {
           </div>
         </div>
         <div className={styles.hardwareVisual}>
-          <img src={imgHardware} alt="DIMO LTE R1" />
+          <img
+            src={imgHardware}
+            alt="DIMO LTE R1"
+            width={2029}
+            height={1080}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
@@ -412,7 +468,10 @@ export default function Home(): ReactNode {
       <Head>
         {/* Primary Meta Tags */}
         <title>DIMO | Vehicle Platform for the Session-Based Economy</title>
-        <meta name="title" content="DIMO | Vehicle Platform for the Session-Based Economy" />
+        <meta
+          name="title"
+          content="DIMO | Vehicle Platform for the Session-Based Economy"
+        />
         <meta
           name="description"
           content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ OEMs."
@@ -428,24 +487,36 @@ export default function Home(): ReactNode {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.dimo.org/" />
-        <meta property="og:title" content="DIMO | Vehicle Platform for the Session-Based Economy" />
+        <meta
+          property="og:title"
+          content="DIMO | Vehicle Platform for the Session-Based Economy"
+        />
         <meta
           property="og:description"
           content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ OEMs."
         />
-        <meta property="og:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+        <meta
+          property="og:image"
+          content="https://www.dimo.org/img/dimo-social-card.png"
+        />
         <meta property="og:site_name" content="DIMO" />
         <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.dimo.org/" />
-        <meta name="twitter:title" content="DIMO | Vehicle Platform for the Session-Based Economy" />
+        <meta
+          name="twitter:title"
+          content="DIMO | Vehicle Platform for the Session-Based Economy"
+        />
         <meta
           name="twitter:description"
           content="DIMO powers the session-based economy—rentals, pay-per-use, and mobility services built on real-time vehicle data. Start free."
         />
-        <meta name="twitter:image" content="https://www.dimo.org/img/dimo-social-card.png" />
+        <meta
+          name="twitter:image"
+          content="https://www.dimo.org/img/dimo-social-card.png"
+        />
 
         {/* Additional SEO */}
         <meta name="robots" content="index, follow" />
@@ -455,60 +526,88 @@ export default function Home(): ReactNode {
         {/* Structured Data - Organization */}
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "DIMO",
-            "url": "https://www.dimo.org",
-            "logo": "https://www.dimo.org/img/dimo-build-logo-dark.svg",
-            "description": "Developer platform for connected vehicle data and intelligent vehicle applications",
-            "foundingDate": "2021",
-            "sameAs": [
-              "https://github.com/DIMO-Network",
-              "https://twitter.com/dimo_network",
-              "https://discord.gg/dimonetwork"
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            '@id': 'https://www.dimo.org/#organization',
+            name: 'DIMO',
+            legalName: 'DIMO Network, Inc.',
+            url: 'https://www.dimo.org',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://www.dimo.org/img/dimo-build-logo-dark.svg',
+              width: 200,
+              height: 60,
+            },
+            description:
+              'Developer platform for connected vehicle data and intelligent vehicle applications',
+            foundingDate: '2021',
+            sameAs: [
+              'https://github.com/DIMO-Network',
+              'https://x.com/dimo_network',
+              'https://twitter.com/dimo_network',
+              'https://discord.gg/dimonetwork',
             ],
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "Developer Support",
-              "email": "developer-support@dimo.org"
-            }
+            contactPoint: {
+              '@type': 'ContactPoint',
+              contactType: 'Developer Support',
+              email: 'developer-support@dimo.org',
+            },
           })}
         </script>
 
         {/* Structured Data - SoftwareApplication */}
         <script type="application/ld+json">
           {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "DIMO Platform",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Cross-platform",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD",
-              "description": "Free tier available with paid plans for advanced features"
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: 'DIMO Platform',
+            applicationCategory: 'DeveloperApplication',
+            operatingSystem: 'Cross-platform',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              description:
+                'Free tier available with paid plans for advanced features',
             },
-            "description": "Vehicle intelligence platform that enables developers to build apps with real-time data from 50+ automotive OEMs",
-            "url": "https://www.dimo.org",
-            "screenshot": "https://www.dimo.org/img/dimo-social-card.png",
-            "softwareVersion": "3.0",
-            "applicationSubCategory": "API Platform",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "5",
-              "ratingCount": "4",
-              "reviewCount": "4"
+            description:
+              'Vehicle intelligence platform that enables developers to build apps with real-time data from 50+ automotive OEMs',
+            url: 'https://www.dimo.org',
+            screenshot: 'https://www.dimo.org/img/dimo-social-card.png',
+            softwareVersion: '3.0',
+            applicationSubCategory: 'API Platform',
+            featureList: [
+              'Universal OEM compatibility (50+ manufacturers)',
+              'AI-ready data streams',
+              'Privacy-preserving architecture',
+              'Plug-and-play hardware support',
+              'Open source core',
+              'Real-time vehicle telemetry',
+              'Agentic workflow development',
+            ],
+          })}
+        </script>
+
+        {/* Structured Data - WebSite + SearchAction */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': 'https://www.dimo.org/#website',
+            url: 'https://www.dimo.org',
+            name: 'DIMO Build',
+            description:
+              'Developer platform for connected vehicle data and intelligent vehicle applications',
+            publisher: { '@id': 'https://www.dimo.org/#organization' },
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate:
+                  'https://www.dimo.org/search?q={search_term_string}',
+              },
+              'query-input': 'required name=search_term_string',
             },
-            "featureList": [
-              "Universal OEM compatibility (50+ manufacturers)",
-              "AI-ready data streams",
-              "Privacy-preserving architecture",
-              "Plug-and-play hardware support",
-              "Open source core",
-              "Real-time vehicle telemetry",
-              "Agentic workflow development"
-            ]
           })}
         </script>
       </Head>

@@ -1,0 +1,60 @@
+---
+sidebar_position: 3
+title: DIMO Platform Skill
+description: A drop-in knowledge pack that gives AI coding agents the full DIMO platform model, so they build correct integrations without guessing.
+---
+
+# DIMO Platform Skill
+
+The [DIMO Platform Skill](https://github.com/DIMO-Network/dimo-platform-skill) is
+a knowledge pack for AI coding agents. Loaded into an agent like Claude Code or
+Cursor, it gives the agent the DIMO platform already in its head: the
+architecture, the API surface, the SACD permission model, contract addresses,
+and SDK method signatures. The agent stops guessing at endpoints and schemas and
+starts writing integrations that compile and run.
+
+## Why it exists
+
+LLMs are confident even when they are wrong. Ask one to write a DIMO integration
+from memory and it will often invent endpoint paths, mix up the two JWT issuers,
+or cite a contract address from an old README. The skill closes that gap by
+giving the agent verified ground truth to reason from, with pointers to the
+source of record for anything that can change.
+
+## What it covers
+
+- **System architecture** — the node hierarchy, how identity, telemetry, and
+  attestation fit together, and the two-tier JWT auth chain.
+- **APIs** — Identity, Telemetry, Fetch, Token Exchange, Attestation, Device
+  Definitions, and Vehicle Triggers, with auth requirements and query examples.
+- **SACD permissions** — the on-chain permission model and the privilege list.
+- **Protocol** — contract addresses, the node registry, and the rewards and DCX
+  credit model.
+- **SDKs** — installation and method signatures for the JS/TS, Python, and C#
+  server SDKs and the React client SDK.
+
+## Understand, then act: pair it with the MCP server
+
+The skill and the [DIMO MCP Server](/docs/build/building-with-ai/dimo-mcp-server)
+are complements, not alternatives:
+
+- The **skill** is how an agent _understands_ DIMO. It is knowledge, loaded at
+  design time, so the code the agent writes is correct.
+- The **MCP server** is how an agent _acts_ on DIMO. It exposes live tools, so
+  the agent can query data, decode a VIN, or mint a vehicle at runtime.
+
+Use both together and an agent can reason about the platform and operate on it
+in the same session.
+
+## Get started
+
+Add the skill to your agent and pair it with the MCP server:
+
+1. Install the skill from
+   [github.com/DIMO-Network/dimo-platform-skill](https://github.com/DIMO-Network/dimo-platform-skill)
+   following the README for your agent (Claude Code, Cursor, and others).
+2. Connect the
+   [DIMO MCP Server](/docs/build/building-with-ai/dimo-mcp-server) for live tool
+   access.
+3. Point your agent at a task. It now has both the knowledge and the tools to
+   build on DIMO.

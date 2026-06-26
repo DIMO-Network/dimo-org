@@ -91,7 +91,7 @@ const TESTIMONIALS = [
   {
     name: 'Robert Chang',
     role: 'Fleet Manager, Logistics Corp',
-    text: "The SDK made it easy to build custom fleet dashboards tailored to our needs. We integrated our existing systems in days and now have complete visibility across 500+ vehicles.",
+    text: 'The SDK made it easy to build custom fleet dashboards tailored to our needs. We integrated our existing systems in days and now have complete visibility across 500+ vehicles.',
   },
   {
     name: 'Jennifer Lopez',
@@ -133,16 +133,18 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Build Intelligent Fleet Solutions with{' '}
-          <span className={styles.heroTitleGradient}>
-            Real-Time Vehicle Data
-          </span>
+          See every vehicle, every session,{' '}
+          <span className={styles.heroTitleGradient}>across a mixed fleet</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Access comprehensive fleet telemetry, build custom dashboards with our
-          SDKs, and optimize operations with AI-powered insights. Complete fleet
-          intelligence platform for modern transportation.
+          Fleet managers spend 4–5 hours a week consolidating data across
+          fragmented systems. DIMO normalizes telematics across 50+ OEM brands
+          on one integration, and turns it into a{' '}
+          <Link to="/compliance/vehicle-access-audit-trail">
+            verifiable trail you can share with insurers
+          </Link>
+          . See it in <Link to="/industries/rentals">rental operations</Link>.
         </p>
 
         <div className={styles.heroButtons}>
@@ -186,8 +188,9 @@ function UseCasesSection() {
           Everything You Need for Fleet Management
         </h2>
         <p className={styles.sectionSubtitle}>
-          From unified dashboards to powerful SDKs and predictive analytics, DIMO
-          provides the complete platform for building intelligent fleet solutions.
+          From unified dashboards to powerful SDKs and predictive analytics,
+          DIMO provides the complete platform for building intelligent fleet
+          solutions.
         </p>
       </div>
 
@@ -213,10 +216,10 @@ function FeatureSection1() {
         <div className={styles.featureText}>
           <h2>Fleet Dashboard: Coming Soon</h2>
           <p>
-            A comprehensive, production-ready fleet management dashboard is on the
-            way. Get real-time visibility into your entire fleet with customizable
-            views, alerts, and reportingall built on DIMO's reliable
-            infrastructure.
+            A comprehensive, production-ready fleet management dashboard is on
+            the way. Get real-time visibility into your entire fleet with
+            customizable views, alerts, and reportingall built on DIMO's
+            reliable infrastructure.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -248,12 +251,14 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>Build with Powerful SDKs</h2>
           <p>
-            Developer-friendly SDKs for JavaScript, Python, Go, C#, and more. Build
-            custom fleet applications with full API access, comprehensive
+            Developer-friendly SDKs for JavaScript, Python, Go, C#, and more.
+            Build custom fleet applications with full API access, comprehensive
             documentation, and production-ready code examples.
           </p>
           <ul className={styles.featureList}>
@@ -276,7 +281,7 @@ function FeatureSection2() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgSdk} alt="SDK Code Examples" />
+          <img src={imgSdk} alt="SDK Code Examples" />
         </div>
       </div>
     </section>
@@ -290,9 +295,10 @@ function FeatureSection3() {
         <div className={styles.featureText}>
           <h2>AI-Powered Fleet Optimization</h2>
           <p>
-            Leverage machine learning insights to reduce costs, improve safety, and
-            maximize efficiency. Predictive maintenance, route optimization, and
-            driver behavior analysisall powered by clean, normalized vehicle data.
+            Leverage machine learning insights to reduce costs, improve safety,
+            and maximize efficiency. Predictive maintenance, route optimization,
+            and driver behavior analysisall powered by clean, normalized vehicle
+            data.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -314,7 +320,7 @@ function FeatureSection3() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgDelivery} alt="Delivery Vehicle on Route" />
+          <img src={imgDelivery} alt="Delivery Vehicle on Route" />
         </div>
       </div>
     </section>
@@ -400,7 +406,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -418,9 +429,7 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Build Fleet Intelligence?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Build Fleet Intelligence?</h2>
         <p className={styles.ctaText}>
           Join fleet operators building the next generation of intelligent
           transportation solutions with DIMO's platform.
@@ -429,10 +438,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get API Keys <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -445,23 +451,29 @@ export default function FleetIntelligencePage(): ReactNode {
   return (
     <>
       <Head>
-        <title>Fleet Intelligence | Fleet Management Platform by DIMO</title>
+        <title>Mixed-Fleet Management & Telematics, One Dashboard | DIMO</title>
         <meta
           name="description"
-          content="Build intelligent fleet solutions with DIMO's SDKs and APIs. Real-time telemetry, predictive maintenance, and AI-powered optimization. Fleet Dashboard coming soon."
+          content="Normalized telematics and session control across 50+ OEM brands on one integration. Share a verifiable trail with insurers and stop reconciling five systems."
         />
         <meta
           name="keywords"
           content="fleet management, fleet tracking, telematics, fleet API, fleet SDK, predictive maintenance, fleet optimization, vehicle telemetry"
         />
-        <meta property="og:title" content="Fleet Intelligence | DIMO Platform" />
+        <meta
+          property="og:title"
+          content="Mixed-Fleet Management & Telematics, One Dashboard | DIMO"
+        />
         <meta
           property="og:description"
           content="Comprehensive fleet management platform with SDKs, real-time telemetry, and AI-powered insights. Build custom fleet solutions or use our dashboard (coming soon)."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/solutions/fleet-intelligence" />
+        <link
+          rel="canonical"
+          href="https://www.dimo.org/solutions/fleet-intelligence"
+        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">

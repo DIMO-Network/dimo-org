@@ -73,7 +73,7 @@ const USE_CASES = [
     type: 'AI & ML',
     title: 'AI-Ready',
     description:
-      "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences using DIMO's pre-build Agents API.",
+      "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences using DIMO's Agent skills and MCP-accessible data streams.",
     example:
       'AI/ML developers can now access clean data without you juggling. Monetize your data for the AI revolution.',
   },
@@ -133,14 +133,13 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           Build the Future of Mobility with{' '}
-          <span className={styles.heroTitleGradient}>
-            One Unified Platform
-          </span>
+          <span className={styles.heroTitleGradient}>One Unified Platform</span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Turnkey data infrastructure hosted on your terms. Let partners ship faster with developer-friendly SDKs, documentation, AI integration, and tools.
-          Stop wondering if you have the technology.
+          Turnkey data infrastructure hosted on your terms. Let partners ship
+          faster with developer-friendly SDKs, documentation, AI integration,
+          and tools. Stop wondering if you have the technology.
         </p>
 
         <div className={styles.heroButtons}>
@@ -185,8 +184,9 @@ function UseCasesSection() {
         </h2>
         <p className={styles.sectionSubtitle}>
           From unified API access to AI-ready data streams, DIMO provides the
-          complete developer platform for building the next generation of mobility
-          applications for vehicle commerce. Super charge your vehicle data strategy with DIMO.
+          complete developer platform for building the next generation of
+          mobility applications for vehicle commerce. Super charge your vehicle
+          data strategy with DIMO.
         </p>
       </div>
 
@@ -213,9 +213,10 @@ function FeatureSection1() {
           <h2>Developer-First, Privacy-First</h2>
           <p>
             DIMO is built from the ground up with developers and users in mind.
-            Our privacy-first architecture ensures user consent and data ownership,
-            while our developer-friendly tools make integration seamless and
-            straightforward - so you can focus on building relationships that drives revenue, loyalty, and engagement.
+            Our privacy-first architecture ensures user consent and data
+            ownership, while our developer-friendly tools make integration
+            seamless and straightforward - so you can focus on building
+            relationships that drives revenue, loyalty, and engagement.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -228,12 +229,13 @@ function FeatureSection1() {
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Consent management in a box, users control their data sharing experience
+              Consent management in a box, users control their data sharing
+              experience
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgSdk} alt="DIMO SDK Code Example" />
+          <img src={imgSdk} alt="DIMO SDK Code Example" />
         </div>
       </div>
     </section>
@@ -243,31 +245,38 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>Vertically Integrated Experience</h2>
           <p>
-            You understand auto, but we understand developers. DIMO handles the complexity so you can focus on
-            building great cars. Our vertically integrated data stack allows you to offer a seamless experience
-            to app developers, so they can offer innovative services to your customers.
+            You understand auto, but we understand developers. DIMO handles the
+            complexity so you can focus on building great cars. Our vertically
+            integrated data stack allows you to offer a seamless experience to
+            app developers, so they can offer innovative services to your
+            customers.
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Standardized data models across all OEMs, stop worrying about designing vehicle data strategies
+              Standardized data models across all OEMs, stop worrying about
+              designing vehicle data strategies
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Clean data for AI/ML applications with contextualized streams, build AI experiences not AI infra
+              Clean data for AI/ML applications with contextualized streams,
+              build AI experiences not AI infra
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Auto stablecoin payments for EV charging, parking, tolls, and more. Next generation vehicle commerce made easy
+              Auto stablecoin payments for EV charging, parking, tolls, and
+              more. Next generation vehicle commerce made easy
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgRentals} alt="Car Rental Fleet Management" />
+          <img src={imgRentals} alt="Car Rental Fleet Management" />
         </div>
       </div>
     </section>
@@ -299,7 +308,8 @@ function HowItWorksSection() {
         <span className={styles.sectionEyebrow}>How It Works</span>
         <h2 className={styles.sectionTitle}>Get Started in Minutes</h2>
         <p className={styles.sectionSubtitle}>
-          Simply bring your own data into DIMO's plug-and-play infrastructure, we make it easy to build and scale.
+          Simply bring your own data into DIMO's plug-and-play infrastructure,
+          we make it easy to build and scale.
         </p>
       </div>
 
@@ -347,7 +357,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -365,21 +380,16 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Start Monetizing?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Start Monetizing?</h2>
         <p className={styles.ctaText}>
-          Access developers building the future of mobility for your vehicles today.
-          Get your API keys today and start strategizing for tomorrow.
+          Access developers building the future of mobility for your vehicles
+          today. Get your API keys today and start strategizing for tomorrow.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get API Keys <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             Read the Docs <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -392,7 +402,9 @@ export default function OEMPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Auto OEMs | Unified Vehicle Data Platform for Developers</title>
+        <title>
+          DIMO for Auto OEMs | Unified Vehicle Data Platform for Developers
+        </title>
         <meta
           name="description"
           content="Build vehicle applications faster with DIMO's unified API. Access data from 50+ OEMs through one developer-friendly platform. Privacy-first, enterprise-grade, production-ready."
@@ -401,7 +413,10 @@ export default function OEMPage(): ReactNode {
           name="keywords"
           content="vehicle API, OEM integrations, automotive developers, vehicle data platform, Tesla API, Ford API, BMW API, connected car platform, telematics API"
         />
-        <meta property="og:title" content="DIMO for Auto OEMs | Unified Vehicle Data Platform" />
+        <meta
+          property="og:title"
+          content="DIMO for Auto OEMs | Unified Vehicle Data Platform"
+        />
         <meta
           property="og:description"
           content="One API to access vehicle data from 50+ OEMs. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure."
@@ -424,11 +439,6 @@ export default function OEMPage(): ReactNode {
               '@type': 'Offer',
               price: '0',
               priceCurrency: 'USD',
-            },
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: '4.8',
-              ratingCount: '150',
             },
           })}
         </script>

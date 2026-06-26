@@ -31,9 +31,9 @@ const FEATURES = [
   {
     icon: <Shield size={28} />,
     type: 'Verification',
-    title: 'Blockchain-Verified Consent',
+    title: 'Cryptographically Verified Consent',
     description:
-      'Every consent grant is recorded on-chain, creating an immutable audit trail. Prove compliance with cryptographic certainty.',
+      'Every consent grant is recorded as a cryptographically signed, independently verifiable entry, creating an immutable audit trail. Prove compliance with cryptographic certainty.',
     example:
       'Instant verification of consent status for auditors and regulators.',
   },
@@ -47,7 +47,6 @@ const FEATURES = [
       'One-click GDPR data export and deletion for any user, fully automated.',
   },
 ];
-
 
 function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -82,8 +81,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Give users complete control over their vehicle data. Blockchain-verified
-          consent management with built-in regulatory compliance.
+          Give users complete control over their vehicle data. Cryptographically
+          verified consent management with built-in regulatory compliance.
         </p>
 
         <div className={styles.heroButtons}>
@@ -136,9 +135,7 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Build Trust with Users?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Build Trust with Users?</h2>
         <p className={styles.ctaText}>
           Implement consent management that users trust and regulators approve.
           Get started with Login with DIMO today.
@@ -163,16 +160,16 @@ export default function ConsentPage(): ReactNode {
         <title>Consent | DIMO User Consent Management</title>
         <meta
           name="description"
-          content="User-controlled vehicle data consent with blockchain verification and built-in regulatory compliance. GDPR, CCPA, EU Data Act ready."
+          content="User-controlled vehicle data consent with cryptographic verification and built-in regulatory compliance. GDPR, CCPA, EU Data Act ready."
         />
         <meta
           name="keywords"
-          content="consent management, GDPR compliance, OAuth 2.0, Login with DIMO, data privacy, blockchain verification"
+          content="consent management, GDPR compliance, OAuth 2.0, Login with DIMO, data privacy, cryptographic verification"
         />
         <meta property="og:title" content="Consent | DIMO Platform" />
         <meta
           property="og:description"
-          content="Privacy-first consent management with blockchain verification and regulatory compliance."
+          content="Privacy-first consent management with cryptographic verification and regulatory compliance."
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.dimo.org/products/consent" />

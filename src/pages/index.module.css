@@ -39,7 +39,7 @@
   /* Re-added overlay for text readability */
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('/img/dimo-hero.gif');
+    url('/img/dimo-hero.webp');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -152,10 +152,12 @@
 }
 
 @keyframes blink {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  50.1%, 100% {
+  50.1%,
+  100% {
     opacity: 0;
   }
 }
@@ -538,7 +540,8 @@
   z-index: 0;
 }
 
-.featureVisual img {
+.featureVisual img,
+.featureVisual video {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -548,7 +551,8 @@
   transition: transform 0.3s ease;
 }
 
-.featureVisual:hover img {
+.featureVisual:hover img,
+.featureVisual:hover video {
   transform: scale(1.02);
 }
 

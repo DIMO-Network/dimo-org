@@ -61,6 +61,12 @@ const config: Config = {
           trackingID: 'G-6V2WFWB2N7',
           anonymizeIP: true,
         },
+        sitemap: {
+          lastmod: 'date',
+          changefreq: null,
+          priority: null,
+          ignorePatterns: ['/search', '/markdown-page'],
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -81,6 +87,28 @@ const config: Config = {
       innerHTML: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;`,
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap',
+      },
     },
   ],
 

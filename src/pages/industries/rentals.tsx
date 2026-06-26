@@ -90,12 +90,12 @@ const TESTIMONIALS = [
   {
     name: 'Jennifer Walsh',
     role: 'VP Operations, National Car Rental',
-    text: "The AI concierge has dramatically improved our customer experience scores. Renters love having instant help without waiting on hold.",
+    text: 'The AI concierge has dramatically improved our customer experience scores. Renters love having instant help without waiting on hold.',
   },
   {
     name: 'David Park',
     role: 'Fleet Director, Avis Budget Group',
-    text: "Real-time geofence monitoring has reduced our out-of-territory incidents by 60%. The ROI was immediate and substantial.",
+    text: 'Real-time geofence monitoring has reduced our out-of-territory incidents by 60%. The ROI was immediate and substantial.',
   },
   {
     name: 'Amanda Foster',
@@ -132,16 +132,19 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Elevate Every Rental with{' '}
+          Run unmanned, mixed-fleet rental —{' '}
           <span className={styles.heroTitleGradient}>
-            AI-Powered Fleet Intelligence
+            keys, data, and spend in one place
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From personalized AI concierges to real-time fleet monitoring, DIMO
-          helps rental companies deliver premium customer experiences while
-          reducing costs and operational complexity.
+          Stop toggling five tools to answer &ldquo;who has this vehicle right
+          now and what have they spent.&rdquo; One{' '}
+          <Link to="/vehicle-session-infrastructure">vehicle session</Link>{' '}
+          governs identity, digital keys, data, and spend across your mixed
+          fleet, and stays <Link to="/compliance">consent-compliant</Link> by
+          design.
         </p>
 
         <div className={styles.heroButtons}>
@@ -249,14 +252,16 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>Protect Your Fleet in Real-Time</h2>
           <p>
-            Know exactly what's happening with every vehicle in your fleet, every
-            second of the day. DIMO monitors for aggressive driving, speeding,
-            geofence violations, and potential incidents—alerting you instantly
-            when something needs attention.
+            Know exactly what's happening with every vehicle in your fleet,
+            every second of the day. DIMO monitors for aggressive driving,
+            speeding, geofence violations, and potential incidents—alerting you
+            instantly when something needs attention.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -313,10 +318,12 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Seamless Integration, Instant Value</h2>
+        <h2 className={styles.sectionTitle}>
+          Seamless Integration, Instant Value
+        </h2>
         <p className={styles.sectionSubtitle}>
-          DIMO works with your existing fleet management infrastructure and starts
-          delivering value from day one.
+          DIMO works with your existing fleet management infrastructure and
+          starts delivering value from day one.
         </p>
       </div>
 
@@ -343,7 +350,9 @@ function TestimonialsSection() {
     <section className={styles.testimonialsSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Leading Rental Companies</h2>
+        <h2 className={styles.sectionTitle}>
+          Trusted by Leading Rental Companies
+        </h2>
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
@@ -364,7 +373,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -393,10 +407,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Start Building Today <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="mailto:sales@dimo.org"
-          >
+          <Link className={styles.secondaryBtn} to="mailto:sales@dimo.org">
             Contact Sales <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -409,16 +420,19 @@ export default function RentalsPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Rentals | AI-Powered Fleet Intelligence for Car Rental Companies</title>
+        <title>Unmanned, Mixed-Fleet Rental Operations Software | DIMO</title>
         <meta
           name="description"
-          content="Transform your rental operations with DIMO's intelligent vehicle agents. AI concierges, real-time fleet monitoring, geofencing, and automated inspections."
+          content="Operate rentals across Tesla, Ford, GM and 50+ brands from one dashboard. Issue digital keys, scope data, cap spend, and revoke at return — without on-site staff."
         />
         <meta
           name="keywords"
           content="car rental software, fleet management, AI concierge, rental fleet monitoring, geofencing, vehicle tracking, rental technology"
         />
-        <meta property="og:title" content="DIMO for Rentals | AI-Powered Fleet Intelligence" />
+        <meta
+          property="og:title"
+          content="Unmanned, Mixed-Fleet Rental Operations Software | DIMO"
+        />
         <meta
           property="og:description"
           content="Deploy AI concierges for every rental, monitor your fleet in real-time, and streamline operations with intelligent automation."

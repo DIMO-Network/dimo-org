@@ -46,7 +46,7 @@ const USE_CASES = [
     type: 'Security',
     title: 'Verifiable Credentials',
     description:
-      'Blockchain-backed credentials ensure data authenticity and traceability. Every data access is logged and verifiable, meeting the highest compliance standards.',
+      'Cryptographically signed credentials ensure data authenticity and traceability. Every data access is logged and verifiable, meeting the highest compliance standards.',
     example:
       'GDPR, EU Data Act, and SOC 2 compliant out of the box. Audit logs for every data access.',
   },
@@ -82,7 +82,7 @@ const USE_CASES = [
 const STATS = [
   { number: '<2min', label: 'Setup Time' },
   { number: '99.9%', label: 'Service Uptime' },
-  { number: 'One', label: 'Simple Agents API' },
+  { number: 'MCP', label: 'Agent Skills' },
   { number: '5+', label: 'SDKs to Build On' },
 ];
 
@@ -90,7 +90,7 @@ const TESTIMONIALS = [
   {
     name: 'Sarah Johnson',
     role: 'Product Lead, Auto AI',
-    text: "Login with DIMO transformed our onboarding. Users can connect their vehicles in seconds, and the consent management gives them full transparency. Our conversion rate increased 3x.",
+    text: 'Login with DIMO transformed our onboarding. Users can connect their vehicles in seconds, and the consent management gives them full transparency. Our conversion rate increased 3x.',
   },
   {
     name: 'David Kim',
@@ -100,7 +100,7 @@ const TESTIMONIALS = [
   {
     name: 'Maria Garcia',
     role: 'CTO, Service Concierge',
-    text: "The pre-built integrations saved us months of development. We connected our agents to Calendly, Stripe, and our CRM in days. The agent memory is incredible too.",
+    text: 'The pre-built integrations saved us months of development. We connected our agents to Calendly, Stripe, and our CRM in days. The agent memory is incredible too.',
   },
 ];
 
@@ -140,8 +140,8 @@ function HeroSection() {
 
         <p className={styles.heroSubtitle}>
           Deploy intelligent vehicle agents with built-in consent management,
-          secured compute, and seamless integrations. Give users control over their
-          data while building powerful agentic experiences.
+          secured compute, and seamless integrations. Give users control over
+          their data while building powerful agentic experiences.
         </p>
 
         <div className={styles.heroButtons}>
@@ -213,9 +213,9 @@ function FeatureSection1() {
         <div className={styles.featureText}>
           <h2>Login with DIMO: Consent-First Authentication</h2>
           <p>
-            Implement OAuth 2.0 authentication with granular permission controls in
-            minutes. Users connect their vehicles with one click, granting your
-            agents access to exactly the data they need, nothing more.
+            Implement OAuth 2.0 authentication with granular permission controls
+            in minutes. Users connect their vehicles with one click, granting
+            your agents access to exactly the data they need, nothing more.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -237,9 +237,13 @@ function FeatureSection1() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <a href="/docs/build/building-with-tools/client-sdk-dimo-connect" target="_blank" rel="noopener noreferrer">
-                <img src={imgLogin} alt="Login with DIMO Flowchart" />
-            </a>
+          <a
+            href="/docs/build/building-with-tools/client-sdk-dimo-connect"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={imgLogin} alt="Login with DIMO Flowchart" />
+          </a>
         </div>
       </div>
     </section>
@@ -249,13 +253,16 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>Secured Compute: Privacy-Preserving AI</h2>
           <p>
             Run your AI agents in isolated, secure compute environments with
-            access to clean vehicle data. Process sensitive information without exposing
-            raw data to your servers, meeting the strictest compliance requirements.
+            access to clean vehicle data. Process sensitive information without
+            exposing raw data to your servers, meeting the strictest compliance
+            requirements.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -277,7 +284,7 @@ function FeatureSection2() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <img src={imgFleets} alt="Fleet of Connected Vehicles" />
+          <img src={imgFleets} alt="Fleet of Connected Vehicles" />
         </div>
       </div>
     </section>
@@ -354,8 +361,8 @@ function HowItWorksSection() {
         <span className={styles.sectionEyebrow}>How It Works</span>
         <h2 className={styles.sectionTitle}>Deploy Agents in Minutes</h2>
         <p className={styles.sectionSubtitle}>
-          From authentication to deployment, DIMO makes it easy to build and scale
-          agentic experiences with built-in privacy and security.
+          From authentication to deployment, DIMO makes it easy to build and
+          scale agentic experiences with built-in privacy and security.
         </p>
       </div>
 
@@ -403,7 +410,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -421,9 +433,7 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Build Agentic Experiences?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Build Agentic Experiences?</h2>
         <p className={styles.ctaText}>
           Join developers building the next generation of AI-powered vehicle
           applications with privacy-first infrastructure.
@@ -432,10 +442,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get Started <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -457,14 +464,20 @@ export default function AgenticExperiencesPage(): ReactNode {
           name="keywords"
           content="AI agents, vehicle AI, consent management, OAuth authentication, secured compute, agent integrations, privacy-first AI, GDPR compliant"
         />
-        <meta property="og:title" content="Agentic Experiences | DIMO Platform" />
+        <meta
+          property="og:title"
+          content="Agentic Experiences | DIMO Platform"
+        />
         <meta
           property="og:description"
           content="Deploy intelligent vehicle agents with built-in consent management, secured compute, and 50+ integrations. Privacy-first infrastructure for AI."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/solutions/agentic-experiences" />
+        <link
+          rel="canonical"
+          href="https://www.dimo.org/solutions/agentic-experiences"
+        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
