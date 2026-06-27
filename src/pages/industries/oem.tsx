@@ -55,7 +55,7 @@ const USE_CASES = [
     type: 'Universal Platform Coverage',
     title: 'Multi-OEM Compatibility',
     description:
-      'Already works with 50+ major OEMs, proven architecture and pattern so your brand can easily be supported.',
+      'Already works across 50+ vehicle brands, with a proven architecture and pattern so your brand is easy to support.',
     example:
       'Build once, deploy everywhere -- any OEM can be integrated with the same great experience.',
   },
@@ -407,11 +407,11 @@ export default function OEMPage(): ReactNode {
         </title>
         <meta
           name="description"
-          content="Build vehicle applications faster with DIMO's unified API. Access data from 50+ OEMs through one developer-friendly platform. Privacy-first, enterprise-grade, production-ready."
+          content="Build vehicle applications faster with DIMO's unified API. Access data from 50+ vehicle brands through one developer-friendly platform. Privacy-first, enterprise-grade, production-ready."
         />
         <meta
           name="keywords"
-          content="vehicle API, OEM integrations, automotive developers, vehicle data platform, Tesla API, Ford API, BMW API, connected car platform, telematics API"
+          content="vehicle API, vehicle data integration, automotive developers, vehicle data platform, Tesla API, Ford API, BMW API, connected car platform, telematics API"
         />
         <meta
           property="og:title"
@@ -419,7 +419,7 @@ export default function OEMPage(): ReactNode {
         />
         <meta
           property="og:description"
-          content="One API to access vehicle data from 50+ OEMs. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure."
+          content="One API to access vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -432,7 +432,7 @@ export default function OEMPage(): ReactNode {
             '@type': 'SoftwareApplication',
             name: 'DIMO Developer Platform',
             description:
-              'Unified API platform for accessing vehicle data from 50+ OEMs. Developer-friendly SDKs, privacy-first architecture, and enterprise infrastructure.',
+              'Unified API platform for accessing vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise infrastructure.',
             applicationCategory: 'DeveloperApplication',
             operatingSystem: 'Web, iOS, Android',
             offers: {

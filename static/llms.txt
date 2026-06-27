@@ -1,8 +1,9 @@
 # DIMO Build — Vehicle Data Developer Platform
 
 > DIMO is open infrastructure for connected vehicles. One permissioned API gives
-> developers real-time telemetry, vehicle identity, and event webhooks across
-> 50+ automotive OEMs. Owner consent is enforced through the SACD model, built
+> developers real-time telemetry, vehicle identity, and event webhooks. DIMO is
+> make-agnostic, with 50+ vehicle brands already connected by drivers. Owner
+> consent is enforced through the SACD model, built
 > to meet GDPR and the EU Data Act. The core protocol and tooling are open
 > source. Free tier available; paid plans for production scale.
 

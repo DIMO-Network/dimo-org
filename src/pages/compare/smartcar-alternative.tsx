@@ -6,7 +6,7 @@ const SITE = 'https://www.dimo.org';
 
 const TITLE = 'DIMO vs Smartcar: Session Control, Not Just Data | DIMO';
 const DESCRIPTION =
-  'Smartcar is read-only vehicle data. DIMO adds the session: identity, digital key, scoped data, spend caps, and atomic revocation across 50+ OEMs. Here is the difference.';
+  'Smartcar is read-only vehicle data. DIMO adds the session: identity, digital key, scoped data, spend caps, and atomic revocation, across the 50+ vehicle brands already connected to DIMO. Here is the difference.';
 const H1 = 'DIMO vs Smartcar: from reading vehicle data to governing access';
 
 const schema = {
@@ -70,7 +70,7 @@ export default function SmartcarAlternative(): ReactNode {
           <tr>
             <td>Read vehicle data across brands</td>
             <td>Yes</td>
-            <td>Yes (50+ OEM brands)</td>
+            <td>Yes (50+ brands already connected)</td>
           </tr>
           <tr>
             <td>Issue commands (lock/unlock)</td>

@@ -81,7 +81,7 @@ const USE_CASES = [
 
 const STATS = [
   { number: '35%', label: 'Reduction in Late Returns' },
-  { number: '50+', label: 'OEM Integrations' },
+  { number: '50+', label: 'Vehicle Brands' },
   { number: '24/7', label: 'Customer Support' },
   { number: '200k+', label: 'Connected Vehicles' },
 ];

@@ -426,7 +426,7 @@ export default function Pricing(): ReactNode {
         />
         <meta
           name="description"
-          content="Flexible pricing for vehicle data APIs and AI agents. Free hobbyist tier, $349/mo for developers, custom enterprise plans. Connect 50+ OEMs with one platform. Start building today."
+          content="Flexible pricing for vehicle data APIs and AI agents. Free hobbyist tier, $349/mo for developers, custom enterprise plans. Access vehicle data across 50+ brands with one platform. Start building today."
         />
         <meta
           name="keywords"
@@ -460,7 +460,7 @@ export default function Pricing(): ReactNode {
         <meta name="twitter:title" content="DIMO Pricing | Start Free" />
         <meta
           name="twitter:description"
-          content="Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ OEMs."
+          content="Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ brands."
         />
         <meta
           name="twitter:image"

@@ -2,20 +2,25 @@
 title: About DIMO
 description:
   DIMO is the open developer platform for connected vehicle data, with real-time
-  telemetry, permissioned access, and AI tooling across 50+ OEMs.
+  telemetry, permissioned access, and AI tooling across 50+ vehicle brands.
 ---
 
 # About DIMO
 
 DIMO is the open infrastructure for connected vehicles. We give developers a
-single, permissioned API to real-time data from 50+ automotive OEMs, so teams
-can build rentals, pay-per-use, fleet, insurance, and AI applications without
-negotiating one integration per manufacturer.
+single, permissioned API to real-time data from vehicles across the 50+ brands
+already connected to DIMO, so teams can build rentals, pay-per-use, fleet,
+insurance, and AI applications without integrating each make themselves.
 
 ## What we build
 
-- **Universal vehicle data:** one API across 50+ OEMs, with normalized,
-  real-time telemetry, vehicle identity, and event webhooks.
+- **Works with any make:** one API to vehicle data across the 50+ brands already
+  connected to DIMO, with normalized real-time telemetry, vehicle identity, and
+  event webhooks. DIMO runs direct integrations like the
+  [Tesla oracle](https://github.com/DIMO-Network/tesla-oracle), and you can
+  connect any other source by building on the
+  [oracle example](https://github.com/DIMO-Network/oracle-example). Want a
+  direct integration for your brand? [Reach out to us](/contact).
 - **Permissioned by design:** vehicle owners grant and revoke access through the
   SACD consent model. Developers only ever see what a user has explicitly
   shared. This is built to meet GDPR and the EU Data Act.

@@ -7,9 +7,9 @@ const SITE = 'https://www.dimo.org';
 const TITLE =
   'DIMO vs Standard Fleet: Open, Multi-OEM Session Infrastructure | DIMO';
 const DESCRIPTION =
-  'Standard Fleet proved fleets want connected control. DIMO delivers it as an open, multi-OEM protocol with a verifiable audit trail and per-session spend across 50+ brands.';
+  'Standard Fleet proved fleets want connected control. DIMO delivers it as an open, make-agnostic protocol with a verifiable audit trail and per-session spend, across the 50+ vehicle brands already connected to DIMO.';
 const H1 =
-  'DIMO vs Standard Fleet: open protocol, 50+ OEMs, verifiable audit trail';
+  'DIMO vs Standard Fleet: open protocol, any make, verifiable audit trail';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -59,9 +59,9 @@ export default function StandardFleetAlternative(): ReactNode {
         </thead>
         <tbody>
           <tr>
-            <td>OEM coverage</td>
+            <td>Brand coverage</td>
             <td>A focused set of brands</td>
-            <td>50+ OEM brands on one integration</td>
+            <td>Make-agnostic; 50+ brands already connected</td>
           </tr>
           <tr>
             <td>Architecture</td>
@@ -89,8 +89,8 @@ export default function StandardFleetAlternative(): ReactNode {
       <h2>Why the architecture matters</h2>
       <p>
         Two differences compound over time. First, <strong>OEM breadth</strong>:
-        a mixed fleet that adds a brand should not need a new integration, and
-        an open, 50+ OEM protocol means it does not. Second, the{' '}
+        a mixed fleet that adds a brand should not need a new integration, and a
+        make-agnostic protocol means it does not. Second, the{' '}
         <strong>verifiable audit trail</strong>: application-layer logs are fine
         until an insurer or regulator needs a record they can trust without
         taking your word for it. At that point a{' '}

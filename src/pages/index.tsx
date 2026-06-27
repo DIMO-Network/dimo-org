@@ -143,7 +143,7 @@ function FeaturesGrid() {
   const features = [
     {
       title: 'Universal Compatibility',
-      desc: 'Open APIs for Tesla, Ford, BMW, and 50+ other OEMs, with new vehicle signals decoded almost daily.',
+      desc: 'A direct Tesla integration, plus Ford, BMW, and 50+ other brands already on DIMO. New vehicle signals decoded almost daily.',
       icon: imgIconUniversalCompatibility,
     },
     {
@@ -263,8 +263,9 @@ function BigFeatureSection() {
         <div className={styles.featureText}>
           <h3>Connect any vehicle. Start any session.</h3>
           <p>
-            The session-based economy runs on real-time vehicle data. DIMO
-            connects to 50+ OEMs out of the box—or ingest your own data via the{' '}
+            The session-based economy runs on real-time vehicle data. DIMO works
+            with vehicles across 50+ brands already on the network—or ingest
+            your own data via the{' '}
             <a href="https://github.com/DIMO-Network/dis">DIMO Ingest Server</a>
             . Every session gets a verified identity, live telemetry, and
             user-controlled consent so you can charge, insure, and serve drivers
@@ -471,7 +472,7 @@ export default function Home(): ReactNode {
         />
         <meta
           name="description"
-          content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ OEMs."
+          content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ vehicle brands."
         />
         <meta
           name="keywords"
@@ -490,7 +491,7 @@ export default function Home(): ReactNode {
         />
         <meta
           property="og:description"
-          content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ OEMs."
+          content="DIMO is building the infrastructure for the session-based economy. Power rentals, pay-per-use, and mobility services with real-time vehicle data, session consent, and AI automation across 50+ vehicle brands."
         />
         <meta
           property="og:image"
@@ -568,13 +569,13 @@ export default function Home(): ReactNode {
                 'Free tier available with paid plans for advanced features',
             },
             description:
-              'Vehicle intelligence platform that enables developers to build apps with real-time data from 50+ automotive OEMs',
+              'Vehicle intelligence platform that enables developers to build apps with real-time data from vehicles across 50+ brands already connected to DIMO',
             url: 'https://www.dimo.org',
             screenshot: 'https://www.dimo.org/img/dimo-social-card.png',
             softwareVersion: '3.0',
             applicationSubCategory: 'API Platform',
             featureList: [
-              'Universal OEM compatibility (50+ manufacturers)',
+              'Works with any make (50+ vehicle brands already connected)',
               'AI-ready data streams',
               'Privacy-preserving architecture',
               'Plug-and-play hardware support',

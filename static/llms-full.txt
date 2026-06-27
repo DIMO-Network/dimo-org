@@ -7906,7 +7906,7 @@ Choose DIMO if you need:
 
 ✅ **Free tier for testing** - SmartCar charges from day one ($39/mo minimum)
 ✅ **AI-powered features** - Built-in agents, DIMO has none
-✅ **50+ OEM support** - DIMO supports 20+ more brands than SmartCar
+✅ **50+ vehicle brands** - DIMO covers 20+ more brands than SmartCar
 ✅ **Privacy-first architecture** - User-owned data vs SmartCar's centralized model
 ✅ **LATAM coverage** - Strong support vs SmartCar's limited availability
 ✅ **Open source options** - Core protocol is open, SmartCar is closed
@@ -8115,7 +8115,7 @@ Choose direct OEM APIs if:
 **Best choice:** DIMO
 
 - ✅ Free to start, low per-vehicle costs
-- ✅ 50+ OEM support for broad market reach
+- ✅ 50+ vehicle brands for broad market reach
 - ✅ AI agents for intelligent features
 - ✅ Privacy-first (users own their data)
 
@@ -8292,7 +8292,7 @@ const location = await dimo
 **Choose DIMO if:**
 
 1. ✅ You want to **start for free** and scale affordably
-2. ✅ You need **50+ OEM support** with one API
+2. ✅ You need data across **50+ vehicle brands** with one API
 3. ✅ You want **AI-powered features** out of the box
 4. ✅ You care about **user privacy** and data ownership
 5. ✅ You need **LATAM support** (or global expansion)

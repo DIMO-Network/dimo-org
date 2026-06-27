@@ -7,13 +7,7 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import DataIngestFlow from '../../components/DataIngestFlow';
 import { LINKS } from '../../links';
-import {
-  Database,
-  Zap,
-  Shield,
-  ChevronDown,
-  Download,
-} from 'lucide-react';
+import { Database, Zap, Shield, ChevronDown, Download } from 'lucide-react';
 
 const PRODUCT_NAME = 'Ingest';
 const HERO_BACKGROUND = '/img/mp4/ingest.mp4';
@@ -45,7 +39,7 @@ const FEATURES = [
 const STATS = [
   { number: '1B+', label: 'Data Points Daily' },
   { number: '<100ms', label: 'Avg Latency' },
-  { number: '40+', label: 'OEM Integrations' },
+  { number: '40+', label: 'Data Sources' },
   { number: '99.99%', label: 'Uptime SLA' },
 ];
 
@@ -82,8 +76,9 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          A unified data ingestion pipeline that connects to OEMs, aftermarket devices,
-          and smartphone apps. Real-time streaming with enterprise-grade reliability.
+          A unified data ingestion pipeline that connects to OEMs, aftermarket
+          devices, and smartphone apps. Real-time streaming with
+          enterprise-grade reliability.
         </p>
 
         <div className={styles.heroButtons}>
@@ -123,12 +118,10 @@ function FeaturesSection() {
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Product Features</span>
-        <h2 className={styles.sectionTitle}>
-          Enterprise-Grade Data Ingestion
-        </h2>
+        <h2 className={styles.sectionTitle}>Enterprise-Grade Data Ingestion</h2>
         <p className={styles.sectionSubtitle}>
-          Built to handle the complexity of vehicle data at scale. From collection
-          to normalization, DIMO Ingest handles it all.
+          Built to handle the complexity of vehicle data at scale. From
+          collection to normalization, DIMO Ingest handles it all.
         </p>
       </div>
 

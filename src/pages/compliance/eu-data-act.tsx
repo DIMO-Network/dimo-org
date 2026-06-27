@@ -125,8 +125,10 @@ export default function EuDataAct(): ReactNode {
         An OEM integrates one access layer and inherits the compliant behavior
         across every model and market, rather than re-implementing consent for
         each program. The same model normalizes data across{' '}
-        <Link to="/vehicle-session-infrastructure">50+ OEM brands</Link>, which
-        matters for fleets running mixed inventories.
+        <Link to="/vehicle-session-infrastructure">
+          50+ vehicle brands already connected to DIMO
+        </Link>
+        , which matters for fleets running mixed inventories.
       </p>
 
       <h2>From compliance cost to revenue</h2>

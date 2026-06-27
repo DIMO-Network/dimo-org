@@ -139,8 +139,8 @@ function HeroSection() {
 
         <p className={styles.heroSubtitle}>
           Fleet managers spend 4–5 hours a week consolidating data across
-          fragmented systems. DIMO normalizes telematics across 50+ OEM brands
-          on one integration, and turns it into a{' '}
+          fragmented systems. DIMO normalizes telematics across the 50+ vehicle
+          brands already connected, through one API, and turns it into a{' '}
           <Link to="/compliance/vehicle-access-audit-trail">
             verifiable trail you can share with insurers
           </Link>
@@ -454,7 +454,7 @@ export default function FleetIntelligencePage(): ReactNode {
         <title>Mixed-Fleet Management & Telematics, One Dashboard | DIMO</title>
         <meta
           name="description"
-          content="Normalized telematics and session control across 50+ OEM brands on one integration. Share a verifiable trail with insurers and stop reconciling five systems."
+          content="Normalized telematics and session control across the 50+ vehicle brands already connected, through one API. Share a verifiable trail with insurers and stop reconciling five systems."
         />
         <meta
           name="keywords"
