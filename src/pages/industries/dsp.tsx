@@ -91,7 +91,7 @@ const TESTIMONIALS = [
   {
     name: 'Marcus Johnson',
     role: 'Fleet Director, FedEx Ground',
-    text: "Predictive maintenance alone has saved us hundreds of thousands in emergency repairs. We catch issues before they become roadside breakdowns.",
+    text: 'Predictive maintenance alone has saved us hundreds of thousands in emergency repairs. We catch issues before they become roadside breakdowns.',
   },
   {
     name: 'Lisa Rodriguez',
@@ -187,8 +187,8 @@ function UseCasesSection() {
         </h2>
         <p className={styles.sectionSubtitle}>
           DIMO's fleet intelligence platform helps delivery service providers
-          optimize every aspect of their operations—from vehicle health to driver
-          performance to route efficiency.
+          optimize every aspect of their operations—from vehicle health to
+          driver performance to route efficiency.
         </p>
       </div>
 
@@ -249,7 +249,9 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>Optimize Routes, Maximize Deliveries</h2>
           <p>
@@ -313,7 +315,9 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>From Setup to Optimization in Days</h2>
+        <h2 className={styles.sectionTitle}>
+          From Setup to Optimization in Days
+        </h2>
         <p className={styles.sectionSubtitle}>
           DIMO integrates with your existing systems and starts delivering
           actionable intelligence immediately.
@@ -364,7 +368,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -393,10 +402,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Start Building Today <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="mailto:sales@dimo.org"
-          >
+          <Link className={styles.secondaryBtn} to="mailto:contact@dimo.org">
             Contact Sales <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -409,7 +415,9 @@ export default function DeliveryPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Delivery | Fleet Intelligence for Delivery Service Providers</title>
+        <title>
+          DIMO for Delivery | Fleet Intelligence for Delivery Service Providers
+        </title>
         <meta
           name="description"
           content="Optimize delivery operations with DIMO's intelligent fleet platform. Predictive maintenance, driver coaching, route analysis, and real-time fleet monitoring."
@@ -418,7 +426,10 @@ export default function DeliveryPage(): ReactNode {
           name="keywords"
           content="delivery fleet management, predictive maintenance, driver coaching, route optimization, fleet monitoring, logistics technology, delivery operations"
         />
-        <meta property="og:title" content="DIMO for Delivery | Fleet Intelligence Platform" />
+        <meta
+          property="og:title"
+          content="DIMO for Delivery | Fleet Intelligence Platform"
+        />
         <meta
           property="og:description"
           content="Command your delivery fleet with AI-powered predictive maintenance, driver coaching, route analysis, and real-time monitoring."

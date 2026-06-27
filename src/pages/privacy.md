@@ -39,7 +39,7 @@ Vehicle owners control which data is shared, with whom, and for how long, and
 can revoke access at any time. Under the GDPR and EU Data Act you may request
 access to, correction of, or deletion of your personal data, and may object to
 or restrict certain processing. To exercise these rights, contact
-[developer-support@dimo.org](mailto:developer-support@dimo.org).
+[contact@dimo.org](mailto:contact@dimo.org).
 
 ## Sharing
 
@@ -55,4 +55,4 @@ law, and apply technical and organizational measures to protect it.
 ## Changes and contact
 
 We will post updates here with a revised "last updated" date. Questions:
-[developer-support@dimo.org](mailto:developer-support@dimo.org).
+[contact@dimo.org](mailto:contact@dimo.org).

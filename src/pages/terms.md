@@ -53,5 +53,4 @@ prohibited by law.
 
 ## Contact
 
-Questions about these Terms:
-[developer-support@dimo.org](mailto:developer-support@dimo.org).
+Questions about these Terms: [contact@dimo.org](mailto:contact@dimo.org).

@@ -229,7 +229,9 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>A Master Technician in Every Bay</h2>
           <p>
@@ -344,7 +346,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -362,9 +369,7 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Shop?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Transform Your Shop?</h2>
         <p className={styles.ctaText}>
           Join forward-thinking automotive maintenance shops already using DIMO
           to diagnose faster, book more, and build better teams.
@@ -373,10 +378,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Start Building Today <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="mailto:sales@dimo.org"
-          >
+          <Link className={styles.secondaryBtn} to="mailto:contact@dimo.org">
             Contact Sales <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -389,7 +391,10 @@ export default function MaintenancePage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Automotive Maintenance | AI-Powered Diagnostics for Auto Shops</title>
+        <title>
+          DIMO for Automotive Maintenance | AI-Powered Diagnostics for Auto
+          Shops
+        </title>
         <meta
           name="description"
           content="Transform your auto shop with DIMO's intelligent diagnostics. Customer support agents, technician assistance, proactive outreach, and training tools."
@@ -398,14 +403,20 @@ export default function MaintenancePage(): ReactNode {
           name="keywords"
           content="auto shop software, automotive diagnostics, technician training, shop management, vehicle repair, automotive technology, mechanic tools"
         />
-        <meta property="og:title" content="DIMO for Automotive Maintenance | AI-Powered Diagnostics" />
+        <meta
+          property="og:title"
+          content="DIMO for Automotive Maintenance | AI-Powered Diagnostics"
+        />
         <meta
           property="og:description"
           content="Supercharge your shop with AI diagnostics assistance, customer support agents, and technician training tools powered by real vehicle data."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/industries/maintenance" />
+        <link
+          rel="canonical"
+          href="https://www.dimo.org/industries/maintenance"
+        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">

@@ -407,7 +407,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Start Building Today <span className={styles.arrow}>→</span>
           </Link>
-          <Link className={styles.secondaryBtn} to="mailto:sales@dimo.org">
+          <Link className={styles.secondaryBtn} to="mailto:contact@dimo.org">
             Contact Sales <span className={styles.arrow}>→</span>
           </Link>
         </div>

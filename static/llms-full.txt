@@ -142,7 +142,7 @@ https://github.com/DIMO-Network/oracle-example
 ### Storage Nodes
 Deployment and management of DIMO nodes and related infrastructure built using Pulumi.
 With a simple `pulumi up` command, you can now deploy DIMO on your favorite cloud provider.
-Reach out to developer-support@dimo.org for more details.
+Reach out to contact@dimo.org for more details.
 
 ---
 
@@ -5359,7 +5359,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     <div>
     Webhooks can also be setup directly via the DIMO Developer Console, but the options below provide a programmatic way of configuring vehicle triggers and subscribing vehicles to triggers you have configured.
     Webhooks are currently available in public beta. If you have feedback to
-    share, please reach out to <a href="mailto:developersupport@dimo.org">developer-support@dimo.org</a>.
+    share, please reach out to <a href="mailto:contact@dimo.org">contact@dimo.org</a>.
     </div>
   }
   rightColumn={
@@ -7275,7 +7275,7 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 
 ---
 
-**Still have questions?** Join our [Discord community](https://chat.dimo.org) or email [developer-support@dimo.org](mailto:developer-support@dimo.org).
+**Still have questions?** Join our [Discord community](https://chat.dimo.org) or email [contact@dimo.org](mailto:contact@dimo.org).
 
 ---
 
@@ -7841,7 +7841,7 @@ node -r dotenv/config examples/vehicle-dashboard.js 12345
 - 🔌 [DIMO Connect (Client SDK)](/docs/build/building-with-tools/client-sdk-dimo-connect)
 - 🎮 [API References](/docs/api-references)
 - 💬 [Discord Community](https://chat.dimo.org) - Get help from developers
-- 📧 [developer-support@dimo.org](mailto:developer-support@dimo.org)
+- 📧 [contact@dimo.org](mailto:contact@dimo.org)
 
 **Questions?** Join our [Discord](https://chat.dimo.org) and ask in the `#developers` channel!
 
@@ -8329,7 +8329,7 @@ No credit card required. Start building in 5 minutes:
 A: Yes! DIMO's BYOD feature lets you integrate with existing telematics providers or use DIMO + SmartCar simultaneously.
 
 **Q: What if DIMO doesn't support my OEM yet?**
-A: New OEMs are added almost daily. Request support in Discord or contact [developer-support@dimo.org](mailto:developer-support@dimo.org). Most requests are fulfilled within 2-4 weeks.
+A: New OEMs are added almost daily. Request support in Discord or contact [contact@dimo.org](mailto:contact@dimo.org). Most requests are fulfilled within 2-4 weeks.
 
 **Q: Is DIMO more expensive at high volume?**
 A: No. DIMO offers volume discounts for 10,000+ vehicles. Contact sales for custom enterprise pricing.
@@ -8344,7 +8344,7 @@ A: Never. Users own their data. DIMO is a secure intermediary, not a data broker
 
 **Last updated:** January 22, 2025
 
-**See something inaccurate?** Email [developer-support@dimo.org](mailto:developer-support@dimo.org) or contribute on [GitHub](https://github.com/DIMO-Network)
+**See something inaccurate?** Email [contact@dimo.org](mailto:contact@dimo.org) or contribute on [GitHub](https://github.com/DIMO-Network)
 
 ---
 

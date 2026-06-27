@@ -22,7 +22,6 @@ const HERO_BACKGROUND = '/img/mp4/race.mp4';
 const imgCustomers = '/img/customers.png';
 const imgMechanic = '/img/mechanic5.png';
 
-
 const USE_CASES = [
   {
     icon: <MessageSquare size={28} />,
@@ -95,7 +94,7 @@ const TESTIMONIALS = [
   {
     name: 'Sarah Chen',
     role: 'GM, Premier Auto Group',
-    text: "The trade-in valuation tool gives our sales team instant credibility. Customers trust the data-backed numbers, which means faster negotiations and happier buyers.",
+    text: 'The trade-in valuation tool gives our sales team instant credibility. Customers trust the data-backed numbers, which means faster negotiations and happier buyers.',
   },
   {
     name: 'Michael Thompson',
@@ -213,8 +212,8 @@ function FeatureSection1() {
         <div className={styles.featureText}>
           <h2>Works in LATAM and the US — Your Way</h2>
           <p>
-            DIMO offers flexible deployment options designed for your market.
-            In Latin America, we support professionally installed hardware with
+            DIMO offers flexible deployment options designed for your market. In
+            Latin America, we support professionally installed hardware with
             full integration and mobile app experiences. In the United States,
             leverage our BYOD (Bring Your Own Device) approach for rapid
             deployment.
@@ -239,7 +238,10 @@ function FeatureSection1() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgCustomers} alt="Happy Dealership Customers Interacting with AI Agent" />
+          <img
+            src={imgCustomers}
+            alt="Happy Dealership Customers Interacting with AI Agent"
+          />
         </div>
       </div>
     </section>
@@ -249,7 +251,9 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>AI Agents That Know Your Customers</h2>
           <p>
@@ -313,7 +317,9 @@ function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Up and Running in Days, Not Months</h2>
+        <h2 className={styles.sectionTitle}>
+          Up and Running in Days, Not Months
+        </h2>
         <p className={styles.sectionSubtitle}>
           DIMO integrates with your existing systems and starts delivering value
           immediately—no complex implementations required.
@@ -364,7 +370,12 @@ function TestimonialsSection() {
                   <div className={styles.testimonialRole}>{t.role}</div>
                   <div className={styles.testimonialStars}>
                     {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
+                      <Star
+                        key={s}
+                        size={14}
+                        fill="currentColor"
+                        strokeWidth={0}
+                      />
                     ))}
                   </div>
                 </div>
@@ -382,9 +393,7 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Dealership?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Transform Your Dealership?</h2>
         <p className={styles.ctaText}>
           Join forward-thinking dealerships already using DIMO to deliver
           exceptional customer experiences and drive more revenue.
@@ -393,10 +402,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Start Building Today <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="mailto:sales@dimo.org"
-          >
+          <Link className={styles.secondaryBtn} to="mailto:contact@dimo.org">
             Contact Sales <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -409,7 +415,9 @@ export default function DealershipsPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>DIMO for Dealerships | Intelligent Vehicle Agents for Auto Dealers</title>
+        <title>
+          DIMO for Dealerships | Intelligent Vehicle Agents for Auto Dealers
+        </title>
         <meta
           name="description"
           content="Transform your dealership with DIMO's intelligent vehicle agents. Virtual service advisors, AI trade-in valuations, proactive booking, and fleet management solutions."
@@ -418,14 +426,20 @@ export default function DealershipsPage(): ReactNode {
           name="keywords"
           content="dealership software, auto dealer AI, virtual service advisor, trade-in valuation, fleet management, automotive technology, vehicle agents"
         />
-        <meta property="og:title" content="DIMO for Dealerships | Intelligent Vehicle Agents" />
+        <meta
+          property="og:title"
+          content="DIMO for Dealerships | Intelligent Vehicle Agents"
+        />
         <meta
           property="og:description"
           content="Deploy AI-powered vehicle agents for service, sales, and fleet management. 24/7 customer support, data-backed valuations, and proactive service scheduling."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/industries/dealerships" />
+        <link
+          rel="canonical"
+          href="https://www.dimo.org/industries/dealerships"
+        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">

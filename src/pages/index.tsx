@@ -413,7 +413,7 @@ function HardwareSection() {
               </span>
               <Link
                 className={styles.secondaryBtn}
-                to="mailto:developer-support@dimo.org"
+                to="mailto:contact@dimo.org"
               >
                 Let's Chat
               </Link>
@@ -548,7 +548,7 @@ export default function Home(): ReactNode {
             contactPoint: {
               '@type': 'ContactPoint',
               contactType: 'Developer Support',
-              email: 'developer-support@dimo.org',
+              email: 'contact@dimo.org',
             },
           })}
         </script>

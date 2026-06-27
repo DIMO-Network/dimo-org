@@ -9,7 +9,7 @@ We are happy to help — pick the channel that fits.
 
 ## Developer support
 
-- **Email:** [developer-support@dimo.org](mailto:developer-support@dimo.org)
+- **Email:** [contact@dimo.org](mailto:contact@dimo.org)
 - **Discord:** [chat.dimo.org](https://chat.dimo.org) — the fastest way to get a
   question answered.
 - **GitHub:** [github.com/DIMO-Network](https://github.com/DIMO-Network) — open
@@ -21,9 +21,8 @@ We are happy to help — pick the channel that fits.
 
 If you are an OEM, fleet operator, or building at scale and want to talk to our
 team, email
-[developer-support@dimo.org](mailto:developer-support@dimo.org?subject=Partnership%20inquiry)
-with "Partnership" in the subject line and we will route you to the right
-person.
+[contact@dimo.org](mailto:contact@dimo.org?subject=Partnership%20inquiry) with
+"Partnership" in the subject line and we will route you to the right person.
 
 ## Stay up to date
 
