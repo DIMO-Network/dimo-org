@@ -7,26 +7,26 @@
 > source. Free tier available; paid plans for production scale.
 
 ## Getting started
-- [Introduction](https://www.dimo.org/docs/introduction)
+- [Introduction](https://www.dimo.org/docs/introduction/what-can-you-build)
 - [Quickstart](https://www.dimo.org/docs/quickstart)
-- [Getting Started](https://www.dimo.org/docs/getting-started)
+- [Getting Started](https://www.dimo.org/docs/getting-started/create-your-account)
 - [Key Concepts](https://www.dimo.org/docs/key-concepts)
-- [What can you build?](https://www.dimo.org/docs/introduction)
+- [What can you build?](https://www.dimo.org/docs/introduction/where-can-you-start)
 - [FAQ](https://www.dimo.org/docs/faq)
 
 ## API references
-- [Identity API](https://www.dimo.org/docs/api-references/identity-api)
-- [Telemetry API](https://www.dimo.org/docs/api-references/telemetry-api)
-- [Fetch API](https://www.dimo.org/docs/api-references/fetch-api)
+- [Identity API](https://www.dimo.org/docs/api-references/identity-api/introduction)
+- [Telemetry API](https://www.dimo.org/docs/api-references/telemetry-api/introduction)
+- [Fetch API](https://www.dimo.org/docs/api-references/fetch-api/introduction)
 - [Attestation API](https://www.dimo.org/docs/api-references/attestation-api)
 - [Device Definitions API](https://www.dimo.org/docs/api-references/device-definitions-api)
 - [Token Exchange API](https://www.dimo.org/docs/api-references/token-exchange-api)
 - [Vehicle Triggers API](https://www.dimo.org/docs/api-references/vehicle-triggers-api)
 
 ## Build
-- [Build guides](https://www.dimo.org/docs/build)
-- [Examples](https://www.dimo.org/docs/examples)
-- [Tutorials](https://www.dimo.org/docs/tutorials)
+- [Build guides](https://www.dimo.org/docs/build/building-with-ai/developer-kit)
+- [Examples](https://www.dimo.org/docs/examples/build-examples)
+- [Tutorials](https://www.dimo.org/docs/tutorials/connect-first-vehicle)
 - [Comparison](https://www.dimo.org/docs/comparison)
 
 ## Products
