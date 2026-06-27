@@ -27,7 +27,7 @@ const COMPONENTS = [
     description:
       'The DIMO Wallet gives vehicle owners a self-custodied identity on the DIMO Network, used to sign transactions, manage permissions, and hold digital assets.',
     example:
-      'Passkey-based authentication — no seed phrases. Sign SACD permission grants and hold vehicle NFTs and on-chain assets.',
+      'Passkey-based authentication — no seed phrases. Sign SACD permission grants and hold digital IDs and verifiable credentials.',
   },
   {
     id: 'digital-key',
@@ -37,7 +37,7 @@ const COMPONENTS = [
     description:
       "Digital Key enables a smartphone to lock, unlock, and start a vehicle without a physical key fob — integrated into DIMO's identity and permissions layer.",
     example:
-      "NFC and BLE-based access. Time-bound or permission-scoped key sharing tied to the vehicle's on-chain identity for auditability.",
+      "NFC and BLE-based access. Time-bound or permission-scoped key sharing tied to the vehicle's verifiable identity for auditability.",
   },
   {
     id: 'agents',
@@ -241,7 +241,7 @@ export default function ComponentsPage(): ReactNode {
         />
         <meta
           name="keywords"
-          content="DIMO wallet, developer tools, telematic devices, digital key, on-chain identity, AI agents, vehicle NFT, vehicle connectivity"
+          content="DIMO wallet, developer tools, telematic devices, digital key, verifiable identity, AI agents, digital ID, vehicle connectivity"
         />
         <meta property="og:title" content="Components | DIMO Platform" />
         <meta

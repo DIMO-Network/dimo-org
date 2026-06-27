@@ -48,7 +48,7 @@ identical whether it's talking to a Tesla or a virtual Civic.
 
 **The three layers:**
 
-**1. 🔑 Identity layer** — Each simulated vehicle is a real Vehicle NFT minted to
+**1. 🔑 Identity layer** — Each simulated vehicle is a real digital ID minted to
 your developer wallet. It has an on-chain identity, a token ID, and all the same
 permission semantics as a physical vehicle. You own it, you grant access to it,
 you revoke it. Same primitives.
@@ -132,7 +132,7 @@ the console. Getting a license takes a few minutes.
 
 From your dashboard, navigate to **Vehicles → Add Vehicle → Simulator**. Give it
 a name, pick a make/model (we have a growing catalog), and confirm. The console
-mints a Vehicle NFT to your developer wallet on the DIMO Network. You now have a
+mints a digital ID to your developer wallet on the DIMO Network. You now have a
 vehicle with a real on-chain identity.
 
 ![Simulated Vehicle](/img/simulated_vehicle.png)

@@ -393,7 +393,7 @@ agents — without requiring hardware.
 
 :::info No Special Modes
 
-The simulator isn't a mock. Each simulated vehicle is a real Vehicle NFT with
+The simulator isn't a mock. Each simulated vehicle is a real digital ID with
 an on-chain identity. It goes through the same permission grant flow and emits
 signals through the same telemetry pipeline as physical vehicles. Your
 application code is identical whether it's talking to a Tesla or a virtual Civic.
@@ -408,7 +408,7 @@ application code is identical whether it's talking to a Tesla or a virtual Civic
 
     ![Vehicle Simulator Config](/img/vehicle_simulator_config.png)
 
-    The console mints a Vehicle NFT to your developer wallet on the DIMO
+    The console mints a digital ID to your developer wallet on the DIMO
     Network. You now have a vehicle with a real on-chain identity and token ID.
 
     The console walks you through a permission grant using [Login with DIMO Configurator](/docs/developer-console/login-with-dimo-configurator).
@@ -2847,7 +2847,7 @@ title="Hierarchy"
           {
             name: "tokenId",
             type: "Int!",
-            description: "The token id of the license as an NFT."
+            description: "The token id of the license as a digital ID."
           },
           {
             name: "owner",
@@ -5262,7 +5262,7 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
             name: "nftContractAddress",
             type: "string",
             required: true,
-            description: "The Vehicle NFT address, in the Production environment, this is: 0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF. If you're using any of the SDKs, this is set for you when you initialize a DIMO instance in production."
+            description: "The Vehicle ID contract address, in the Production environment, this is: 0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF. If you're using any of the SDKs, this is set for you when you initialize a DIMO instance in production."
           },
           {
             name: "privileges",
