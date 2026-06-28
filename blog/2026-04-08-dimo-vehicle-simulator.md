@@ -231,14 +231,14 @@ The simulator gives you that confidence without a parking lot.
 ### 🚀 Get started
 
 - [Developer Console](https://console.dimo.org) — create your simulated vehicle
-- [Server SDK](https://www.dimo.org/docs/build/building-with-tools/server-sdk) —
-  query telemetry and manage vehicles from your backend
-- [Client SDK](https://www.dimo.org/docs/build/building-with-tools/client-sdk) —
-  add Login with DIMO and vehicle connections to your frontend
-- [Telemetry API](https://www.dimo.org/docs/api-references/telemetry-api) —
-  real-time and historical signal access
-- [Webhooks](https://www.dimo.org/docs/api-references/webhooks) — subscribe to
-  vehicle events
+- [Server SDK](/docs/build/building-with-tools/server-sdk) — query telemetry and
+  manage vehicles from your backend
+- [Client SDK](/docs/build/building-with-tools/client-sdk-dimo-connect) — add
+  Login with DIMO and vehicle connections to your frontend
+- [Telemetry API](/docs/api-references/telemetry-api/introduction) — real-time
+  and historical signal access
+- [Webhooks](/docs/api-references/vehicle-triggers-api) — subscribe to vehicle
+  events
 
 The best way to understand DIMO's permission model is to go through it yourself.
 The simulator is the fastest path to that.
