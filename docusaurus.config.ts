@@ -48,11 +48,14 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
           blogSidebarTitle: 'Recent Posts',
           blogSidebarCount: 10,
+          blogDescription:
+            'Developer insights on vehicle data APIs, connected-car infrastructure, session-based consent, and mobility engineering from the DIMO team.',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -65,7 +68,13 @@ const config: Config = {
           lastmod: 'date',
           changefreq: null,
           priority: null,
-          ignorePatterns: ['/search', '/markdown-page'],
+          ignorePatterns: [
+            '/search',
+            '/markdown-page',
+            '/blog/archive',
+            '/blog/authors',
+            '/blog/tags/**',
+          ],
         },
       } satisfies Preset.Options,
     ],

@@ -2349,11 +2349,11 @@ Utility endpoints for Device Definitions.
 
 ---
 
-# Introduction
+# Identity API Introduction
 
 URL: https://www.dimo.org/docs/api-references/identity-api/introduction
 
-# Introduction
+# Identity API Introduction
 Open catalog of DIMO-connected vehicles, and other entities.
 
 ## Overview
@@ -3733,11 +3733,11 @@ query GetDefinitionByDeviceId {
 
 ---
 
-# Introduction
+# Telemetry API Introduction
 
 URL: https://www.dimo.org/docs/api-references/telemetry-api/introduction
 
-# Introduction
+# Telemetry API Introduction
 Access private data from the DIMO-connected vehicles.
 
 ## Overview
@@ -6353,11 +6353,11 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 
 ---
 
-# Introduction
+# Fetch API Introduction
 
 URL: https://www.dimo.org/docs/api-references/fetch-api/introduction
 
-# Introduction
+# Fetch API Introduction
 Retrieve raw data objects and index keys from cloud storage.
 
 ## Overview

@@ -14,13 +14,45 @@
           "value": "geolocation=(), microphone=(), camera=()"
         },
         {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.algolia.net https://*.algolia.io https://www.google-analytics.com https://api.emailjs.com https://*.dimo.org; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com"
+        },
+        {
           "key": "Content-Signal",
           "value": "ai-train=yes, search=yes, ai-input=yes"
         }
       ]
     },
     {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+      ]
+    },
+    {
       "source": "/docs/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600, stale-while-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
