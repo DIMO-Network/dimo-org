@@ -191,7 +191,7 @@ function Footer(): ReactNode {
 
         {/* Copyright */}
         <div className={styles.footerCopyright}>
-          <p>© 2025 DIMO® All rights reserved</p>
+          <p>© {new Date().getFullYear()} DIMO® All rights reserved</p>
         </div>
       </div>
     </footer>

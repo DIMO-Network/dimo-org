@@ -65,6 +65,7 @@ function HeroSection() {
         loop
         muted
         playsInline
+        preload="none"
       />
       <div className={styles.heroOverlay} />
 
@@ -169,6 +170,26 @@ export default function PayPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dimo.org/products/pay" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            '@id': 'https://dimo.org/products/pay#software',
+            name: 'DIMO Pay',
+            description:
+              'Session-scoped stablecoin payment rails for mobility — in-vehicle payments, reimbursements, and per-session spend controls.',
+            url: 'https://dimo.org/products/pay',
+            applicationCategory: 'DeveloperApplication',
+            operatingSystem: 'Web',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              availability: 'https://schema.org/OnlineOnly',
+            },
+            publisher: { '@id': 'https://dimo.org/#organization' },
+          })}
+        </script>
       </Head>
 
       <div className={styles.industryPage}>

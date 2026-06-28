@@ -59,6 +59,7 @@ function HeroSection() {
         loop
         muted
         playsInline
+        preload="none"
       />
       <div className={styles.heroOverlay} />
 
@@ -165,6 +166,26 @@ export default function StoragePage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dimo.org/products/storage" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            '@id': 'https://dimo.org/products/storage#software',
+            name: 'DIMO Storage',
+            description:
+              'Normalized, queryable storage for connected-vehicle telemetry — time-series vehicle data, cloud or on-prem.',
+            url: 'https://dimo.org/products/storage',
+            applicationCategory: 'DeveloperApplication',
+            operatingSystem: 'Web',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              availability: 'https://schema.org/OnlineOnly',
+            },
+            publisher: { '@id': 'https://dimo.org/#organization' },
+          })}
+        </script>
       </Head>
 
       <div className={styles.industryPage}>

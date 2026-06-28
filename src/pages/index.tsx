@@ -77,7 +77,7 @@ function useTypewriter(
 
 function HeroSection() {
   const rotatingWord = useTypewriter(
-    ['session-based economy', 'mobility', 'vehicle data'],
+    ['vehicle data', 'session-based economy', 'mobility'],
     100,
     50,
     3000

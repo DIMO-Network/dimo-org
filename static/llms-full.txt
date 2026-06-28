@@ -7283,57 +7283,6 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 
 URL: https://dimo.org/docs/tutorials/connect-first-vehicle
 
-<script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "How to Connect Your First Vehicle to DIMO",
-      "description": "Step-by-step guide to connect a vehicle to DIMO and access real-time vehicle data using the DIMO Data SDK",
-      "totalTime": "PT10M",
-      "estimatedCost": {
-        "@type": "MonetaryAmount",
-        "currency": "USD",
-        "value": "0"
-      },
-      "tool": [
-        {
-          "@type": "HowToTool",
-          "name": "DIMO Data SDK"
-        },
-        {
-          "@type": "HowToTool",
-          "name": "Node.js"
-        }
-      ],
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Create DIMO Developer Account",
-          "text": "Sign up for a DIMO Developer License at console.dimo.org"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Get Developer Credentials",
-          "text": "Obtain your Client ID, Redirect URI, and API Key"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Install DIMO Data SDK",
-          "text": "Install the SDK using npm or your preferred package manager"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Authenticate and Get Vehicle Data",
-          "text": "Use the SDK to authenticate and fetch telemetry data"
-        }
-      ]
-    })}
-  </script>
-
 # Connect Your First Vehicle
 
 Learn how to connect your first vehicle to DIMO and access real-time vehicle data.
@@ -7850,21 +7799,6 @@ node -r dotenv/config examples/vehicle-dashboard.js 12345
 # DIMO vs Other Platforms
 
 URL: https://dimo.org/docs/comparison
-
-<script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "DIMO vs Other Vehicle Data Platforms Comparison",
-      "description": "Comprehensive comparison of DIMO, SmartCar, Otonomo, and direct OEM APIs for vehicle data access and management",
-      "author": {
-        "@type": "Organization",
-        "name": "DIMO Network"
-      },
-      "datePublished": "2025-01-22",
-      "dateModified": "2025-01-22"
-    })}
-  </script>
 
 # DIMO vs Other Vehicle Data Platforms
 

@@ -33,7 +33,9 @@ export default function Breadcrumbs({
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      ...(item.url && { item: item.url }),
+      // Omit `item` for in-page fragment anchors (e.g. /#products): they are
+      // not crawlable pages and are invalid as BreadcrumbList item URLs.
+      ...(item.url && !item.url.includes('#') && { item: item.url }),
     })),
   };
 

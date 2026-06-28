@@ -61,6 +61,7 @@ function HeroSection() {
         loop
         muted
         playsInline
+        preload="none"
       />
       <div className={styles.heroOverlay} />
 
@@ -167,6 +168,26 @@ export default function AccessPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dimo.org/products/access" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            '@id': 'https://dimo.org/products/access#software',
+            name: 'DIMO Access',
+            description:
+              'Clean, fast APIs and SDKs (REST, GraphQL, webhooks, streaming) for accessing real-time and historical vehicle data across 50+ connected brands.',
+            url: 'https://dimo.org/products/access',
+            applicationCategory: 'DeveloperApplication',
+            operatingSystem: 'Web',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              availability: 'https://schema.org/OnlineOnly',
+            },
+            publisher: { '@id': 'https://dimo.org/#organization' },
+          })}
+        </script>
       </Head>
 
       <div className={styles.industryPage}>

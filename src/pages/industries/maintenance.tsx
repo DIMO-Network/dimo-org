@@ -85,6 +85,7 @@ function HeroSection() {
         loop
         muted
         playsInline
+        preload="none"
       />
       <div className={styles.heroOverlay} />
 

@@ -403,6 +403,11 @@ export default function EmobiCaseStudy(): ReactNode {
               'Emobi and DIMO Partner to Deliver First Fleet-Ready Plug & Charge Device',
             description:
               "Partnership combines Emobi's JustPlug™ technology with DIMO's vehicle intelligence platform to bring secure, seamless ISO 15118 Plug & Charge to fleets for the first time.",
+            image: {
+              '@type': 'ImageObject',
+              url: 'https://dimo.org/img/emobi.png',
+              contentUrl: 'https://dimo.org/img/emobi.png',
+            },
             author: {
               '@type': 'Organization',
               name: 'DIMO',

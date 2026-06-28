@@ -250,6 +250,26 @@ export default function ComponentsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dimo.org/products/components" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            '@id': 'https://dimo.org/products/components#software',
+            name: 'DIMO Components',
+            description:
+              'Embeddable UI components for DIMO — drop-in consent flows, Login with DIMO, and vehicle connection widgets.',
+            url: 'https://dimo.org/products/components',
+            applicationCategory: 'DeveloperApplication',
+            operatingSystem: 'Web',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+              availability: 'https://schema.org/OnlineOnly',
+            },
+            publisher: { '@id': 'https://dimo.org/#organization' },
+          })}
+        </script>
       </Head>
 
       <div className={styles.industryPage}>

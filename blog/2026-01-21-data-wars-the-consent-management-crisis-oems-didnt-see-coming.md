@@ -64,8 +64,6 @@ a 20-year FTC order.
 DIMO isn't a data broker. We're open-source consent management infrastructure
 helps remove OEM liability.
 
-Article content How DIMO solves the consent problem How DIMO works in practice:
-
 When a customer wants that 50% Lemonade discount:
 
 1. Customer logs into their account
