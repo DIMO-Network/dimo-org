@@ -529,7 +529,7 @@ export default function Home(): ReactNode {
             '@id': 'https://www.dimo.org/#organization',
             name: 'DIMO',
             legalName: 'DIMO Network, Inc.',
-            url: 'https://www.dimo.org',
+            url: 'https://www.dimo.org/',
             logo: {
               '@type': 'ImageObject',
               url: 'https://www.dimo.org/img/dimo-build-logo-dark.svg',
@@ -542,8 +542,7 @@ export default function Home(): ReactNode {
             sameAs: [
               'https://github.com/DIMO-Network',
               'https://x.com/dimo_network',
-              'https://twitter.com/dimo_network',
-              'https://chat.dimo.org',
+              'https://www.linkedin.com/company/dimo-network',
             ],
             contactPoint: {
               '@type': 'ContactPoint',
@@ -558,19 +557,22 @@ export default function Home(): ReactNode {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
+            '@id': 'https://www.dimo.org/#software',
             name: 'DIMO Platform',
             applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Cross-platform',
+            operatingSystem: 'Web',
             offers: {
               '@type': 'Offer',
               price: '0',
               priceCurrency: 'USD',
+              availability: 'https://schema.org/OnlineOnly',
               description:
                 'Free tier available with paid plans for advanced features',
             },
+            publisher: { '@id': 'https://www.dimo.org/#organization' },
             description:
               'Vehicle intelligence platform that enables developers to build apps with real-time data from vehicles across 50+ brands already connected to DIMO',
-            url: 'https://www.dimo.org',
+            url: 'https://www.dimo.org/',
             screenshot: 'https://www.dimo.org/img/dimo-social-card.png',
             softwareVersion: '3.0',
             applicationSubCategory: 'API Platform',
@@ -592,7 +594,7 @@ export default function Home(): ReactNode {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             '@id': 'https://www.dimo.org/#website',
-            url: 'https://www.dimo.org',
+            url: 'https://www.dimo.org/',
             name: 'DIMO Build',
             description:
               'Developer platform for connected vehicle data and intelligent vehicle applications',
