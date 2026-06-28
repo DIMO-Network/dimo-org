@@ -21,7 +21,8 @@ interface Message {
 export default function ChatBot() {
   const { siteConfig } = useDocusaurusContext();
   const EMAILJS_SERVICE_ID = siteConfig.customFields.emailjsServiceId as string;
-  const EMAILJS_TEMPLATE_ID = siteConfig.customFields.emailjsTemplateId as string;
+  const EMAILJS_TEMPLATE_ID = siteConfig.customFields
+    .emailjsTemplateId as string;
   const EMAILJS_PUBLIC_KEY = siteConfig.customFields.emailjsPublicKey as string;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -29,10 +30,13 @@ export default function ChatBot() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [products, setProducts] = useState<string[]>([]);
-  const [details, setDetails] = useState('');
+  const [, setDetails] = useState('');
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { from: 'bot', text: "Hi there! I'm the DIMO assistant. What's your name?" },
+    {
+      from: 'bot',
+      text: "Hi there! I'm the DIMO assistant. What's your name?",
+    },
   ]);
   const [error, setError] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -42,7 +46,7 @@ export default function ChatBot() {
   }, [messages]);
 
   function addMessages(...msgs: Message[]) {
-    setMessages((prev) => [...prev, ...msgs]);
+    setMessages(prev => [...prev, ...msgs]);
   }
 
   function handleTextSubmit() {
@@ -55,7 +59,10 @@ export default function ChatBot() {
       setInput('');
       addMessages(
         { from: 'user', text: value },
-        { from: 'bot', text: `Nice to meet you, ${value}! What's your email address?` },
+        {
+          from: 'bot',
+          text: `Nice to meet you, ${value}! What's your email address?`,
+        }
       );
       setStep(1);
     } else if (step === 1) {
@@ -67,7 +74,10 @@ export default function ChatBot() {
       setInput('');
       addMessages(
         { from: 'user', text: value },
-        { from: 'bot', text: 'Which products interest you? (select all that apply)' },
+        {
+          from: 'bot',
+          text: 'Which products interest you? (select all that apply)',
+        }
       );
       setStep(2);
     } else if (step === 3) {
@@ -83,14 +93,17 @@ export default function ChatBot() {
     const label = products.join(', ');
     addMessages(
       { from: 'user', text: label },
-      { from: 'bot', text: "Great choices! What exactly are you looking for? Tell us a bit more about your needs." },
+      {
+        from: 'bot',
+        text: 'Great choices! What exactly are you looking for? Tell us a bit more about your needs.',
+      }
     );
     setStep(3);
   }
 
   function toggleProduct(value: string) {
-    setProducts((prev) =>
-      prev.includes(value) ? prev.filter((p) => p !== value) : [...prev, value],
+    setProducts(prev =>
+      prev.includes(value) ? prev.filter(p => p !== value) : [...prev, value]
     );
   }
 
@@ -103,7 +116,12 @@ export default function ChatBot() {
     };
 
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
     } catch (err) {
       console.error('EmailJS error:', err);
     }
@@ -128,14 +146,23 @@ export default function ChatBot() {
         <div className={styles.panel}>
           <div className={styles.header}>
             <span className={styles.headerTitle}>Chat with DIMO</span>
-            <button className={styles.closeButton} onClick={() => setIsOpen(false)} aria-label="Close chat">
+            <button
+              className={styles.closeButton}
+              onClick={() => setIsOpen(false)}
+              aria-label="Close chat"
+            >
               <X size={18} />
             </button>
           </div>
 
           <div className={styles.messages}>
             {messages.map((msg, i) => (
-              <div key={i} className={msg.from === 'bot' ? styles.botBubble : styles.userBubble}>
+              <div
+                key={i}
+                className={
+                  msg.from === 'bot' ? styles.botBubble : styles.userBubble
+                }
+              >
                 {msg.text}
               </div>
             ))}
@@ -146,7 +173,7 @@ export default function ChatBot() {
             {step === 2 ? (
               <>
                 <div className={styles.checkboxGroup}>
-                  {PRODUCT_OPTIONS.map((opt) => (
+                  {PRODUCT_OPTIONS.map(opt => (
                     <label key={opt.value} className={styles.checkboxLabel}>
                       <input
                         type="checkbox"
@@ -170,11 +197,15 @@ export default function ChatBot() {
                 <textarea
                   className={styles.textArea}
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={e => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Tell us about your needs..."
                 />
-                <button className={styles.sendButton} onClick={handleTextSubmit} disabled={!input.trim()}>
+                <button
+                  className={styles.sendButton}
+                  onClick={handleTextSubmit}
+                  disabled={!input.trim()}
+                >
                   <Send size={18} />
                 </button>
               </div>
@@ -184,11 +215,15 @@ export default function ChatBot() {
                   <input
                     className={styles.textInput}
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={e => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder={step === 0 ? 'Your name...' : 'Your email...'}
                   />
-                  <button className={styles.sendButton} onClick={handleTextSubmit} disabled={!input.trim()}>
+                  <button
+                    className={styles.sendButton}
+                    onClick={handleTextSubmit}
+                    disabled={!input.trim()}
+                  >
                     <Send size={18} />
                   </button>
                 </div>
@@ -199,7 +234,11 @@ export default function ChatBot() {
         </div>
       )}
 
-      <button className={styles.toggleButton} onClick={() => setIsOpen((o) => !o)} aria-label="Open chat">
+      <button
+        className={styles.toggleButton}
+        onClick={() => setIsOpen(o => !o)}
+        aria-label="Open chat"
+      >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </button>
     </>

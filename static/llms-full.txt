@@ -1,11 +1,11 @@
 # DIMO Build — Full Documentation Corpus
 
 > Concatenated developer documentation for the DIMO vehicle data platform.
-> 39 documents. Source: https://www.dimo.org/docs
+> 39 documents. Source: https://dimo.org/docs
 
 # What Can You Build?
 
-URL: https://www.dimo.org/docs/introduction/what-can-you-build
+URL: https://dimo.org/docs/introduction/what-can-you-build
 
 # What Can You Build?
 
@@ -121,7 +121,7 @@ Explore our comprehensive documentation and get started building on DIMO today.
 
 # Where Can You Start?
 
-URL: https://www.dimo.org/docs/introduction/where-can-you-start
+URL: https://dimo.org/docs/introduction/where-can-you-start
 
 # Where Can You Start?
 
@@ -148,7 +148,7 @@ Reach out to contact@dimo.org for more details.
 
 # Create Your Account
 
-URL: https://www.dimo.org/docs/getting-started/create-your-account
+URL: https://dimo.org/docs/getting-started/create-your-account
 
 # Create Your Account
 
@@ -199,7 +199,7 @@ Google. A mismatching email may result in a passkey error..
 
 # Register a Developer License
 
-URL: https://www.dimo.org/docs/getting-started/register-a-license
+URL: https://dimo.org/docs/getting-started/register-a-license
 
 # Register a Developer License
 
@@ -289,7 +289,7 @@ Here are the key components to your Developer License:
 
 # Authentication
 
-URL: https://www.dimo.org/docs/getting-started/authentication
+URL: https://dimo.org/docs/getting-started/authentication
 
 # Authentication
 How to authenticate using your DIMO Developer License.
@@ -378,7 +378,7 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
 
 # Vehicle Simulator
 
-URL: https://www.dimo.org/docs/getting-started/vehicle-simulator
+URL: https://dimo.org/docs/getting-started/vehicle-simulator
 
 # Vehicle Simulator
 
@@ -411,7 +411,7 @@ application code is identical whether it's talking to a Tesla or a virtual Civic
     The console mints a digital ID to your developer wallet on the DIMO
     Network. You now have a vehicle with a real on-chain identity and token ID.
 
-    The console walks you through a permission grant using [Login with DIMO Configurator](/docs/developer-console/login-with-dimo-configurator).
+    The console walks you through a permission grant using [Login with DIMO Configurator](/docs/getting-started/login-with-dimo-configurator).
     You, the developer, decides which signals to request permissions to and for how long.
 
     This is the same flow your end users will go through when connecting a
@@ -473,7 +473,7 @@ on how the simulator was built and what's coming next.
 
 # Login with DIMO Configurator
 
-URL: https://www.dimo.org/docs/getting-started/login-with-dimo-configurator
+URL: https://dimo.org/docs/getting-started/login-with-dimo-configurator
 
 # Login with DIMO Configurator
 
@@ -512,7 +512,7 @@ Drop it into your frontend and the Login with DIMO button is ready to go.
 
 # RentalOS Registration
 
-URL: https://www.dimo.org/docs/getting-started/rentalos-registration
+URL: https://dimo.org/docs/getting-started/rentalos-registration
 
 # RentalOS Registration
 
@@ -547,7 +547,7 @@ APIs and management tooling in the Developer Console.
 
 # Data Explorer
 
-URL: https://www.dimo.org/docs/getting-started/data-explorer
+URL: https://dimo.org/docs/getting-started/data-explorer
 
 # Data Explorer
 
@@ -580,7 +580,7 @@ integration before writing a single line of application code.
 
 # DIMO MCP Server
 
-URL: https://www.dimo.org/docs/build/building-with-ai/dimo-mcp-server
+URL: https://dimo.org/docs/build/building-with-ai/dimo-mcp-server
 
 # DIMO MCP Server
 
@@ -672,7 +672,7 @@ DIMO_LOGIN_BASE_URL=https://login.dimo.org
 
 # Developer Kit
 
-URL: https://www.dimo.org/docs/build/building-with-ai/developer-kit
+URL: https://dimo.org/docs/build/building-with-ai/developer-kit
 
 # Developer Kit
 
@@ -730,7 +730,7 @@ Deploying an app literally takes you less than **60 seconds**.
 
 # DIMO Platform Skill
 
-URL: https://www.dimo.org/docs/build/building-with-ai/dimo-platform-skill
+URL: https://dimo.org/docs/build/building-with-ai/dimo-platform-skill
 
 # DIMO Platform Skill
 
@@ -791,7 +791,7 @@ Add the skill to your agent and pair it with the MCP server:
 
 # Client SDK (DIMO Connect)
 
-URL: https://www.dimo.org/docs/build/building-with-tools/client-sdk-dimo-connect
+URL: https://dimo.org/docs/build/building-with-tools/client-sdk-dimo-connect
 
 # Client SDK (DIMO Connect)
 
@@ -1033,7 +1033,7 @@ The SDK is guaranteed to have more functionalities as the DIMO Connect URL is bo
 
 # Server SDK
 
-URL: https://www.dimo.org/docs/build/building-with-tools/server-sdk
+URL: https://dimo.org/docs/build/building-with-tools/server-sdk
 
 # Server SDK
 
@@ -1166,7 +1166,7 @@ Console.WriteLine(result);
 
 # Low Code Integrations
 
-URL: https://www.dimo.org/docs/build/building-with-tools/low-code-integrations
+URL: https://dimo.org/docs/build/building-with-tools/low-code-integrations
 
 # Low Code Integrations
 
@@ -1249,7 +1249,7 @@ DIMO offers developers and non-developers an easy way to build data integration 
 
 # Building Your First App
 
-URL: https://www.dimo.org/docs/build/building-your-first-app
+URL: https://dimo.org/docs/build/building-your-first-app
 
 # Building Your First App
 
@@ -1303,7 +1303,7 @@ flowchart TD
 
 # Attestation API
 
-URL: https://www.dimo.org/docs/api-references/attestation-api
+URL: https://dimo.org/docs/api-references/attestation-api
 
 # Attestation API
 Generate verifiable proof about a vehicle's data.
@@ -1664,7 +1664,7 @@ Generate verifiable proof about a vehicle's data.
 
 ## Document Insertion
 
-Insurance cards, registrations, service invoices, titles, inspections, driver licenses, and other vehicle paperwork live on DIMO as signed CloudEvents. You post them to the DIMO Ingest Server (DIS) attestation endpoint, and you pull them back out through the [Fetch API](/docs/api-references/fetch-api). For large files, the Fetch API returns a presigned S3 URL on `dataUrl` instead of inlining the bytes.
+Insurance cards, registrations, service invoices, titles, inspections, driver licenses, and other vehicle paperwork live on DIMO as signed CloudEvents. You post them to the DIMO Ingest Server (DIS) attestation endpoint, and you pull them back out through the [Fetch API](/docs/api-references/fetch-api/introduction). For large files, the Fetch API returns a presigned S3 URL on `dataUrl` instead of inlining the bytes.
 
   leftColumn={
     <div>
@@ -2062,7 +2062,7 @@ Every `dimo.document.*` type carries a defined set of fields under `data.fields`
 
 # Device Definitions API
 
-URL: https://www.dimo.org/docs/api-references/device-definitions-api
+URL: https://dimo.org/docs/api-references/device-definitions-api
 
 # Device Definitions API
 Utility endpoints for Device Definitions.
@@ -2351,7 +2351,7 @@ Utility endpoints for Device Definitions.
 
 # Identity API Introduction
 
-URL: https://www.dimo.org/docs/api-references/identity-api/introduction
+URL: https://dimo.org/docs/api-references/identity-api/introduction
 
 # Identity API Introduction
 Open catalog of DIMO-connected vehicles, and other entities.
@@ -2492,7 +2492,7 @@ query GetVehicleMMY($MyAddress: Address!) {
 
 # Query Reference
 
-URL: https://www.dimo.org/docs/api-references/identity-api/identity-reference
+URL: https://dimo.org/docs/api-references/identity-api/identity-reference
 
 # Query Reference
 Query references for the Identity API.
@@ -3453,7 +3453,7 @@ title="Hierarchy"
 
 # Identity Playground
 
-URL: https://www.dimo.org/docs/api-references/identity-api/identity-playground
+URL: https://dimo.org/docs/api-references/identity-api/identity-playground
 
 # Identity Playground
 
@@ -3735,7 +3735,7 @@ query GetDefinitionByDeviceId {
 
 # Telemetry API Introduction
 
-URL: https://www.dimo.org/docs/api-references/telemetry-api/introduction
+URL: https://dimo.org/docs/api-references/telemetry-api/introduction
 
 # Telemetry API Introduction
 Access private data from the DIMO-connected vehicles.
@@ -4058,7 +4058,7 @@ query {
 
 # Vehicle Signals
 
-URL: https://www.dimo.org/docs/api-references/telemetry-api/signals
+URL: https://dimo.org/docs/api-references/telemetry-api/signals
 
 # Vehicle Signals
 Signals from DIMO-connected vehicles.
@@ -4252,7 +4252,7 @@ It is used to filter by a user-defined geofence that can be set using circles or
 
 # Vehicle Segments
 
-URL: https://www.dimo.org/docs/api-references/telemetry-api/segments
+URL: https://dimo.org/docs/api-references/telemetry-api/segments
 
 # Vehicle Segments
 Get segmented trip data from DIMO-connected vehicles.
@@ -4527,7 +4527,7 @@ The `segments` query allows you to retrieve trip segments.
 
 # Vehicle Events
 
-URL: https://www.dimo.org/docs/api-references/telemetry-api/events
+URL: https://dimo.org/docs/api-references/telemetry-api/events
 
 # Vehicle Events
 Events from DIMO-connected vehicles.
@@ -4607,7 +4607,7 @@ The `events` resource is a collection of vehicle events.
 
 # Telemetry Playground
 
-URL: https://www.dimo.org/docs/api-references/telemetry-api/telemetry-playground
+URL: https://dimo.org/docs/api-references/telemetry-api/telemetry-playground
 
 # Telemetry Playground
 
@@ -4717,7 +4717,7 @@ Use the GraphQL playground below to execute queries against the live Telemetry A
 
 # Additional Queries
 
-URL: https://www.dimo.org/docs/api-references/telemetry-api/additional-queries
+URL: https://dimo.org/docs/api-references/telemetry-api/additional-queries
 
 # Additional Queries
 Supplementary queries for vehicle data summaries, attestations, and daily activity.
@@ -5215,7 +5215,7 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
 
 # Token Exchange API
 
-URL: https://www.dimo.org/docs/api-references/token-exchange-api
+URL: https://dimo.org/docs/api-references/token-exchange-api
 
 # Token Exchange API
 Gateway to obtaining a JWT to access protected API services.
@@ -5337,7 +5337,7 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
 
 # Vehicle Triggers API
 
-URL: https://www.dimo.org/docs/api-references/vehicle-triggers-api
+URL: https://dimo.org/docs/api-references/vehicle-triggers-api
 
 # Vehicle Triggers API
 ## Commonly known as webhooks
@@ -6355,7 +6355,7 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 
 # Fetch API Introduction
 
-URL: https://www.dimo.org/docs/api-references/fetch-api/introduction
+URL: https://dimo.org/docs/api-references/fetch-api/introduction
 
 # Fetch API Introduction
 Retrieve raw data objects and index keys from cloud storage.
@@ -6536,7 +6536,7 @@ query {
 
 # Queries
 
-URL: https://www.dimo.org/docs/api-references/fetch-api/queries
+URL: https://dimo.org/docs/api-references/fetch-api/queries
 
 # Queries
 Root query operations for cloud event indexes and full cloud events.
@@ -6719,7 +6719,7 @@ curl -X POST "https://fetch-api.dimo.zone/query" \\
 
 # Fetch API Playground
 
-URL: https://www.dimo.org/docs/api-references/fetch-api/playground
+URL: https://dimo.org/docs/api-references/fetch-api/playground
 
 # Fetch API Playground
 
@@ -6770,7 +6770,7 @@ Use the playground to try the four root queries: <code>latestIndex</code>, <code
 
 # Build Examples
 
-URL: https://www.dimo.org/docs/examples/build-examples
+URL: https://dimo.org/docs/examples/build-examples
 
 # Build Examples
 
@@ -6808,7 +6808,7 @@ URL: https://www.dimo.org/docs/examples/build-examples
 
 # Frequently Asked Questions
 
-URL: https://www.dimo.org/docs/faq
+URL: https://dimo.org/docs/faq
 
 <script type="application/ld+json">
     {JSON.stringify({
@@ -7220,7 +7220,7 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 
 **Community Support (Free):**
 - 💬 [Discord Community](https://chat.dimo.org) - 5,000+ developers
-- 📚 [Documentation](https://www.dimo.org/docs) - Comprehensive guides
+- 📚 [Documentation](https://dimo.org/docs) - Comprehensive guides
 - 🐙 [GitHub Discussions](https://github.com/DIMO-Network) - Technical Q&A
 
 **Email Support (Core & Enterprise):**
@@ -7260,13 +7260,13 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 
 **📖 Documentation**
 - [Getting Started Guide](/docs/quickstart)
-- [API References](/docs/api-references)
-- [SDK Documentation](/docs/build/client-sdk)
+- [API References](/docs/api-references/identity-api/introduction)
+- [SDK Documentation](/docs/build/building-with-tools/client-sdk-dimo-connect)
 
 **🎓 Tutorials**
 - [Connect Your First Vehicle](/docs/quickstart)
 - [Build AI agents with the DIMO MCP server](/docs/build/building-with-ai/dimo-mcp-server)
-- [Access Telemetry Data](/docs/api-references/telemetry-api)
+- [Access Telemetry Data](/docs/api-references/telemetry-api/introduction)
 
 **💬 Community**
 - [Discord Server](https://chat.dimo.org)
@@ -7281,7 +7281,7 @@ Vehicle compatibility may vary by region, but DIMO supports most countries that 
 
 # Connect Your First Vehicle
 
-URL: https://www.dimo.org/docs/tutorials/connect-first-vehicle
+URL: https://dimo.org/docs/tutorials/connect-first-vehicle
 
 <script type="application/ld+json">
     {JSON.stringify({
@@ -7721,20 +7721,20 @@ node -r dotenv/config src/get-vehicle-data.js
 
 **Continue learning:**
 
-1. **[Explore Telemetry API](/docs/api-references/telemetry-api)**
+1. **[Explore Telemetry API](/docs/api-references/telemetry-api/introduction)**
    Discover all available vehicle signals and data points
 
 2. **[Build AI Agents with the DIMO MCP Server](/docs/build/building-with-ai/dimo-mcp-server)**
    Connect AI assistants to vehicle data with agent skills and MCP-accessible
    data streams
 
-3. **[Set Up Webhooks](/docs/api-references/webhooks)**
+3. **[Set Up Webhooks](/docs/api-references/vehicle-triggers-api)**
    Get real-time notifications when vehicle events occur
 
 4. **[Build with React SDK](/docs/build/building-with-tools/client-sdk-dimo-connect)**
    Use `@dimo-network/login-with-dimo` for seamless user authentication
 
-5. **[Deploy to Production](/docs/build/deployment)**
+5. **[Deploy to Production](/docs/build/building-your-first-app)**
    Best practices for production deployments
 
 ---
@@ -7839,7 +7839,7 @@ node -r dotenv/config examples/vehicle-dashboard.js 12345
 - 📚 [DIMO Data SDK Documentation](/docs/build/building-with-tools/server-sdk)
 - 📚 [Authentication Guide](/docs/getting-started/authentication)
 - 🔌 [DIMO Connect (Client SDK)](/docs/build/building-with-tools/client-sdk-dimo-connect)
-- 🎮 [API References](/docs/api-references)
+- 🎮 [API References](/docs/api-references/identity-api/introduction)
 - 💬 [Discord Community](https://chat.dimo.org) - Get help from developers
 - 📧 [contact@dimo.org](mailto:contact@dimo.org)
 
@@ -7849,7 +7849,7 @@ node -r dotenv/config examples/vehicle-dashboard.js 12345
 
 # DIMO vs Other Platforms
 
-URL: https://www.dimo.org/docs/comparison
+URL: https://dimo.org/docs/comparison
 
 <script type="application/ld+json">
     {JSON.stringify({
@@ -8350,7 +8350,7 @@ A: Never. Users own their data. DIMO is a secure intermediary, not a data broker
 
 # Introduction
 
-URL: https://www.dimo.org/docs
+URL: https://dimo.org/docs
 
 # Introduction
 
@@ -8414,7 +8414,7 @@ Now that you’ve seen what's under the hood, it’s time to unlock the vehicle 
 
 # Key Concepts
 
-URL: https://www.dimo.org/docs/key-concepts
+URL: https://dimo.org/docs/key-concepts
 
 # Key Concepts
 
@@ -8546,7 +8546,7 @@ learning more about what types of applications or intelligent agents you can bui
 
 # Quickstart
 
-URL: https://www.dimo.org/docs/quickstart
+URL: https://dimo.org/docs/quickstart
 
 # Developer Quickstart
 

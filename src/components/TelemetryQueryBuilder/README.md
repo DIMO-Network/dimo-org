@@ -115,7 +115,11 @@ query {
     }
     currentLocationCoordinates {
       timestamp
-      value { latitude longitude hdop }
+      value {
+        latitude
+        longitude
+        hdop
+      }
     }
   }
 }
@@ -132,7 +136,11 @@ query {
     to: "2025-01-02T00:00:00Z"
   ) {
     speed(agg: MAX)
-    currentLocationCoordinates(agg: AVG) { latitude longitude hdop }
+    currentLocationCoordinates(agg: AVG) {
+      latitude
+      longitude
+      hdop
+    }
     timestamp
   }
 }
@@ -166,7 +174,8 @@ import TelemetryQueryBuilder from '@site/src/components/TelemetryQueryBuilder';
 
 ### 1. Location (4 signals)
 
-Coordinates (latitude, longitude, hdop), approximate coordinates, altitude, heading
+Coordinates (latitude, longitude, hdop), approximate coordinates, altitude,
+heading
 
 ### 2. Vehicle Status (4 signals)
 
@@ -260,4 +269,3 @@ Uses Docusaurus theme variables for automatic light/dark mode:
 - Query templates/presets
 - Real-time signal streaming
 - Multi-vehicle comparison queries
-

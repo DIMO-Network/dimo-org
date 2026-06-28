@@ -55,7 +55,7 @@ const SOLUTIONS = [
     icon: <Battery size={28} />,
     title: 'Device-Based Digital Certificates',
     description:
-      'Emobi\'s JustPlug™ technology issues ISO 15118 digital certificates directly to fleet vehicles through DIMO\'s OBD-II device or virtual onboarding—no automaker involvement required.',
+      "Emobi's JustPlug™ technology issues ISO 15118 digital certificates directly to fleet vehicles through DIMO's OBD-II device or virtual onboarding—no automaker involvement required.",
     result:
       'Any fleet can now enable Plug & Charge on any vehicle, including legacy EVs, without waiting for OEM support.',
   },
@@ -63,7 +63,7 @@ const SOLUTIONS = [
     icon: <Shield size={28} />,
     title: 'Secure Identity Bridge',
     description:
-      'DIMO\'s device securely hosts the EV\'s digital charging identity, serving as the bridge for Plug & Charge without requiring any changes to the vehicle itself.',
+      "DIMO's device securely hosts the EV's digital charging identity, serving as the bridge for Plug & Charge without requiring any changes to the vehicle itself.",
     result:
       'Fleets maintain full control over their charging credentials with enterprise-grade security and compliance.',
   },
@@ -71,7 +71,7 @@ const SOLUTIONS = [
     icon: <Zap size={28} />,
     title: 'Universal Charging Access',
     description:
-      'The partnership combines DIMO\'s fleet intelligence platform with Emobi\'s access to over 140,000 chargers across the U.S. and Canada.',
+      "The partnership combines DIMO's fleet intelligence platform with Emobi's access to over 140,000 chargers across the U.S. and Canada.",
     result:
       'Drivers experience seamless, app-free charging across both modern and legacy charging infrastructure.',
   },
@@ -105,19 +105,23 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          <a href="https://www.emobi.ai/" target="_blank" rel="noopener noreferrer">
-            <span className={styles.heroTitleGradient}>
-              {COMPANY_NAME}
-            </span>
-          </a> and DIMO Deliver the First{' '}
+          <a
+            href="https://www.emobi.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={styles.heroTitleGradient}>{COMPANY_NAME}</span>
+          </a>{' '}
+          and DIMO Deliver the First{' '}
           <span className={styles.heroTitleGradient}>
             Fleet-Ready Plug & Charge Device
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          A groundbreaking partnership that brings secure, seamless ISO 15118 Plug & Charge
-          to any fleet vehicle—without automaker dependencies, firmware updates, or hardware upgrades.
+          A groundbreaking partnership that brings secure, seamless ISO 15118
+          Plug & Charge to any fleet vehicle—without automaker dependencies,
+          firmware updates, or hardware upgrades.
         </p>
 
         <div className={styles.heroButtons}>
@@ -160,9 +164,10 @@ function ChallengesSection() {
           Plug & Charge Promise vs. Reality
         </h2>
         <p className={styles.sectionSubtitle}>
-          Plug & Charge has long promised app-free EV charging, but the industry has struggled
-          to deliver it at scale. Cost, complexity, and automaker-led implementations have
-          kept this convenience out of reach for most fleets.
+          Plug & Charge has long promised app-free EV charging, but the industry
+          has struggled to deliver it at scale. Cost, complexity, and
+          automaker-led implementations have kept this convenience out of reach
+          for most fleets.
         </p>
       </div>
 
@@ -188,8 +193,9 @@ function SolutionsSection() {
           Fleet-Level Plug & Charge Enablement
         </h2>
         <p className={styles.sectionSubtitle}>
-          By shifting Plug & Charge enablement from automakers to fleets, the partnership
-          unlocks secure, standards-based charging for any driver in any vehicle.
+          By shifting Plug & Charge enablement from automakers to fleets, the
+          partnership unlocks secure, standards-based charging for any driver in
+          any vehicle.
         </p>
       </div>
 
@@ -221,7 +227,13 @@ function QuoteSection() {
           <Star size={32} fill="currentColor" strokeWidth={0} />
         </div>
         <blockquote className={styles.testimonialQuote}>
-          "This partnership represents a major milestone for EV adoption. Electric vehicles have been promised a seamless Plug & Charge experience for years, but have had to keep waiting as the industry struggled to deliver it at scale. Issuing ISO 15118 digital certificates directly to fleets through DIMO's device puts control where it belongs, and unlocks Plug & Charge functionality for any car today."
+          "This partnership represents a major milestone for EV adoption.
+          Electric vehicles have been promised a seamless Plug & Charge
+          experience for years, but have had to keep waiting as the industry
+          struggled to deliver it at scale. Issuing ISO 15118 digital
+          certificates directly to fleets through DIMO's device puts control
+          where it belongs, and unlocks Plug & Charge functionality for any car
+          today."
         </blockquote>
         <div className={styles.testimonialAuthor}>Lin Sun Fa</div>
         <div className={styles.testimonialRole}>CEO, Emobi</div>
@@ -235,7 +247,10 @@ function SecondQuoteSection() {
     <section className={`${styles.testimonialSection} ${styles.sectionAlt}`}>
       <div className={styles.testimonialContainer}>
         <blockquote className={styles.testimonialQuote}>
-          "With Emobi, we're extending DIMO's mission of smarter, safer mobility into fleet charging operations. Together, we're helping fleets spend less time managing infrastructure complexity and more time keeping vehicles on the road and delivering results."
+          "With Emobi, we're extending DIMO's mission of smarter, safer mobility
+          into fleet charging operations. Together, we're helping fleets spend
+          less time managing infrastructure complexity and more time keeping
+          vehicles on the road and delivering results."
         </blockquote>
         <div className={styles.testimonialAuthor}>Yevgeny Khessin</div>
         <div className={styles.testimonialRole}>Co-founder, DIMO</div>
@@ -250,19 +265,19 @@ function HowItWorksSection() {
       phase: 'Step 1',
       title: 'Connect with DIMO',
       description:
-        'Fleets connect their vehicles using DIMO\'s affordable OBD-II device or virtual onboarding, enabling advanced vehicle intelligence without costly upgrades.',
+        "Fleets connect their vehicles using DIMO's affordable OBD-II device or virtual onboarding, enabling advanced vehicle intelligence without costly upgrades.",
     },
     {
       phase: 'Step 2',
       title: 'Certificate Issuance',
       description:
-        'Emobi\'s JustPlug™ issues and manages an ISO 15118 digital certificate at the fleet level via DIMO\'s device—no automaker involvement or firmware updates required.',
+        "Emobi's JustPlug™ issues and manages an ISO 15118 digital certificate at the fleet level via DIMO's device—no automaker involvement or firmware updates required.",
     },
     {
       phase: 'Step 3',
       title: 'Secure Identity Hosting',
       description:
-        'The DIMO device or cloud securely hosts the EV\'s digital charging identity, serving as the bridge for Plug & Charge without any changes to the vehicle.',
+        "The DIMO device or cloud securely hosts the EV's digital charging identity, serving as the bridge for Plug & Charge without any changes to the vehicle.",
     },
     {
       phase: 'Step 4',
@@ -278,8 +293,8 @@ function HowItWorksSection() {
         <span className={styles.sectionEyebrow}>How It Works</span>
         <h2 className={styles.sectionTitle}>From Connection to Charging</h2>
         <p className={styles.sectionSubtitle}>
-          A simple four-step process that finally delivers the universal Plug & Charge
-          experience fleets and drivers have been waiting for.
+          A simple four-step process that finally delivers the universal Plug &
+          Charge experience fleets and drivers have been waiting for.
         </p>
       </div>
 
@@ -302,9 +317,9 @@ function HowItWorksSection() {
 function KeyTakeawaysSection() {
   const takeaways = [
     'First fleet-ready device to enable secure ISO 15118 Plug & Charge without automaker involvement',
-    'Works with any Teslas — more EVs available through DIMO\'s OBD-II device',
+    "Works with any Teslas — more EVs available through DIMO's OBD-II device",
     'No firmware updates, hardware upgrades, or charging infrastructure changes required',
-    'Access to 140,000+ chargers across the U.S. and Canada through Emobi\'s roaming network',
+    "Access to 140,000+ chargers across the U.S. and Canada through Emobi's roaming network",
     'Fleet-level certificate management puts control where it belongs—with the fleet operator',
     'Trusted by the U.S. Department of Energy and Department of Transportation',
   ];
@@ -335,17 +350,15 @@ function CTASection() {
           Ready to Enable Plug & Charge for Your Fleet?
         </h2>
         <p className={styles.ctaText}>
-          Join the fleets already benefiting from seamless, app-free EV charging.
-          Get started with DIMO and Emobi's JustPlug™ technology today.
+          Join the fleets already benefiting from seamless, app-free EV
+          charging. Get started with DIMO and Emobi's JustPlug™ technology
+          today.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get Started <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             Read the Docs <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -358,7 +371,9 @@ export default function EmobiCaseStudy(): ReactNode {
   return (
     <>
       <Head>
-        <title>Emobi Partnership | DIMO Fleet Plug & Charge Success Story</title>
+        <title>
+          Emobi Partnership | DIMO Fleet Plug & Charge Success Story
+        </title>
         <meta
           name="description"
           content="See how Emobi and DIMO partnered to deliver the first fleet-ready Plug & Charge device using ISO 15118 standards—enabling seamless EV charging for any vehicle without automaker dependencies."
@@ -367,23 +382,27 @@ export default function EmobiCaseStudy(): ReactNode {
           name="keywords"
           content="Emobi, DIMO partnership, Plug and Charge, ISO 15118, fleet EV charging, JustPlug, electric vehicle charging, fleet management"
         />
-        <meta property="og:title" content="Emobi + DIMO Partnership | Fleet Plug & Charge" />
+        <meta
+          property="og:title"
+          content="Emobi + DIMO Partnership | Fleet Plug & Charge"
+        />
         <meta
           property="og:description"
           content="How Emobi and DIMO delivered the first fleet-ready Plug & Charge device: ISO 15118 compliant, any vehicle compatible, 140K+ chargers accessible."
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/customer-stories/emobi" />
+        <link rel="canonical" href="https://dimo.org/customer-stories/emobi" />
 
         {/* Structured Data for Case Study */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: 'Emobi and DIMO Partner to Deliver First Fleet-Ready Plug & Charge Device',
+            headline:
+              'Emobi and DIMO Partner to Deliver First Fleet-Ready Plug & Charge Device',
             description:
-              'Partnership combines Emobi\'s JustPlug™ technology with DIMO\'s vehicle intelligence platform to bring secure, seamless ISO 15118 Plug & Charge to fleets for the first time.',
+              "Partnership combines Emobi's JustPlug™ technology with DIMO's vehicle intelligence platform to bring secure, seamless ISO 15118 Plug & Charge to fleets for the first time.",
             author: {
               '@type': 'Organization',
               name: 'DIMO',
@@ -393,13 +412,13 @@ export default function EmobiCaseStudy(): ReactNode {
               name: 'DIMO',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://www.dimo.org/img/dimo-build-logo-dark.svg',
+                url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
               },
             },
             datePublished: '2026-02-01',
             mainEntityOfPage: {
               '@type': 'WebPage',
-              '@id': 'https://www.dimo.org/customer-stories/emobi',
+              '@id': 'https://dimo.org/customer-stories/emobi',
             },
           })}
         </script>
@@ -410,8 +429,11 @@ export default function EmobiCaseStudy(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Customer Stories', url: 'https://www.dimo.org/#customer-stories' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            {
+              name: 'Customer Stories',
+              url: 'https://dimo.org/#customer-stories',
+            },
             { name: 'Emobi' },
           ]}
         />

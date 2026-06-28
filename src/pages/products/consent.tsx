@@ -172,7 +172,7 @@ export default function ConsentPage(): ReactNode {
           content="Privacy-first consent management with cryptographic verification and regulatory compliance."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.dimo.org/products/consent" />
+        <link rel="canonical" href="https://dimo.org/products/consent" />
       </Head>
 
       <div className={styles.industryPage}>
@@ -180,8 +180,8 @@ export default function ConsentPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Products', url: 'https://www.dimo.org/#products' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Products', url: 'https://dimo.org/#products' },
             { name: 'Consent' },
           ]}
         />

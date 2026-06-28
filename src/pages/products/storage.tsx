@@ -6,14 +6,7 @@ import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
-import {
-  HardDrive,
-  Search,
-  Clock,
-  Shield,
-  ChevronDown,
-  Database,
-} from 'lucide-react';
+import { HardDrive, Search, Clock, ChevronDown, Database } from 'lucide-react';
 
 const PRODUCT_NAME = 'Storage';
 const HERO_BACKGROUND = '/img/mp4/storage.mp4';
@@ -34,8 +27,7 @@ const FEATURES = [
     title: 'Lightning-Fast Queries',
     description:
       'Purpose-built query engine optimized for time-series vehicle data. Run complex analytics across billions of records in milliseconds.',
-    example:
-      'Query average fuel efficiency over 6 months in under 500ms.',
+    example: 'Query average fuel efficiency over 6 months in under 500ms.',
   },
   {
     icon: <Clock size={28} />,
@@ -44,8 +36,8 @@ const FEATURES = [
     description:
       'Stop worrying about data storage compliance, our storage solution is designed with enterprise-grade security and compliance in mind.',
     example:
-      'Fine-grained access controls and encryption to protect sensitive data.'
-  }
+      'Fine-grained access controls and encryption to protect sensitive data.',
+  },
 ];
 
 function HeroSection() {
@@ -81,8 +73,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Petabyte-scale storage optimized for vehicle telemetry. Lightning-fast queries,
-          flexible retention, and enterprise-grade security.
+          Petabyte-scale storage optimized for vehicle telemetry. Lightning-fast
+          queries, flexible retention, and enterprise-grade security.
         </p>
 
         <div className={styles.heroButtons}>
@@ -102,18 +94,15 @@ function HeroSection() {
   );
 }
 
-
 function FeaturesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Product Features</span>
-        <h2 className={styles.sectionTitle}>
-          Built for Vehicle Data at Scale
-        </h2>
+        <h2 className={styles.sectionTitle}>Built for Vehicle Data at Scale</h2>
         <p className={styles.sectionSubtitle}>
-          Purpose-built storage infrastructure that handles the unique challenges
-          of vehicle telemetry data.
+          Purpose-built storage infrastructure that handles the unique
+          challenges of vehicle telemetry data.
         </p>
       </div>
 
@@ -140,8 +129,8 @@ function CTASection() {
           Ready to Deploy Vehicle Data Storage?
         </h2>
         <p className={styles.ctaText}>
-          Get started with DIMO storage designed specifically
-          for vehicle telemetry and analytics.
+          Get started with DIMO storage designed specifically for vehicle
+          telemetry and analytics.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
@@ -175,7 +164,7 @@ export default function StoragePage(): ReactNode {
           content="Scalable storage infrastructure built for vehicle telemetry data at any scale."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.dimo.org/products/storage" />
+        <link rel="canonical" href="https://dimo.org/products/storage" />
       </Head>
 
       <div className={styles.industryPage}>
@@ -183,8 +172,8 @@ export default function StoragePage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Products', url: 'https://www.dimo.org/#products' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Products', url: 'https://dimo.org/#products' },
             { name: 'Storage' },
           ]}
         />

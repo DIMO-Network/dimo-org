@@ -480,11 +480,11 @@ export default function Home(): ReactNode {
         />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://www.dimo.org/" />
+        <link rel="canonical" href="https://dimo.org/" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dimo.org/" />
+        <meta property="og:url" content="https://dimo.org/" />
         <meta
           property="og:title"
           content="DIMO | Vehicle Platform for the Session-Based Economy"
@@ -495,14 +495,14 @@ export default function Home(): ReactNode {
         />
         <meta
           property="og:image"
-          content="https://www.dimo.org/img/dimo-social-card.png"
+          content="https://dimo.org/img/dimo-social-card.png"
         />
         <meta property="og:site_name" content="DIMO" />
         <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.dimo.org/" />
+        <meta name="twitter:url" content="https://dimo.org/" />
         <meta
           name="twitter:title"
           content="DIMO | Vehicle Platform for the Session-Based Economy"
@@ -513,7 +513,7 @@ export default function Home(): ReactNode {
         />
         <meta
           name="twitter:image"
-          content="https://www.dimo.org/img/dimo-social-card.png"
+          content="https://dimo.org/img/dimo-social-card.png"
         />
 
         {/* Additional SEO */}
@@ -526,13 +526,13 @@ export default function Home(): ReactNode {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            '@id': 'https://www.dimo.org/#organization',
+            '@id': 'https://dimo.org/#organization',
             name: 'DIMO',
             legalName: 'DIMO Network, Inc.',
-            url: 'https://www.dimo.org/',
+            url: 'https://dimo.org/',
             logo: {
               '@type': 'ImageObject',
-              url: 'https://www.dimo.org/img/dimo-build-logo-dark.svg',
+              url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
               width: 200,
               height: 60,
             },
@@ -557,7 +557,7 @@ export default function Home(): ReactNode {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
-            '@id': 'https://www.dimo.org/#software',
+            '@id': 'https://dimo.org/#software',
             name: 'DIMO Platform',
             applicationCategory: 'DeveloperApplication',
             operatingSystem: 'Web',
@@ -569,11 +569,11 @@ export default function Home(): ReactNode {
               description:
                 'Free tier available with paid plans for advanced features',
             },
-            publisher: { '@id': 'https://www.dimo.org/#organization' },
+            publisher: { '@id': 'https://dimo.org/#organization' },
             description:
               'Vehicle intelligence platform that enables developers to build apps with real-time data from vehicles across 50+ brands already connected to DIMO',
-            url: 'https://www.dimo.org/',
-            screenshot: 'https://www.dimo.org/img/dimo-social-card.png',
+            url: 'https://dimo.org/',
+            screenshot: 'https://dimo.org/img/dimo-social-card.png',
             softwareVersion: '3.0',
             applicationSubCategory: 'API Platform',
             featureList: [
@@ -593,18 +593,17 @@ export default function Home(): ReactNode {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            '@id': 'https://www.dimo.org/#website',
-            url: 'https://www.dimo.org/',
+            '@id': 'https://dimo.org/#website',
+            url: 'https://dimo.org/',
             name: 'DIMO Build',
             description:
               'Developer platform for connected vehicle data and intelligent vehicle applications',
-            publisher: { '@id': 'https://www.dimo.org/#organization' },
+            publisher: { '@id': 'https://dimo.org/#organization' },
             potentialAction: {
               '@type': 'SearchAction',
               target: {
                 '@type': 'EntryPoint',
-                urlTemplate:
-                  'https://www.dimo.org/search?q={search_term_string}',
+                urlTemplate: 'https://dimo.org/search?q={search_term_string}',
               },
               'query-input': 'required name=search_term_string',
             },

@@ -478,8 +478,16 @@
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 30% 30%, rgba(18, 75, 219, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(18, 75, 219, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(139, 92, 246, 0.1) 0%,
+      transparent 50%
+    );
 }
 
 /* --- How It Works Section --- */
@@ -548,7 +556,11 @@
 .ctaSection {
   padding: 10rem 2rem;
   text-align: center;
-  background: radial-gradient(ellipse at center, rgba(18, 75, 219, 0.15) 0%, #030303 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(18, 75, 219, 0.15) 0%,
+    #030303 70%
+  );
   position: relative;
 }
 

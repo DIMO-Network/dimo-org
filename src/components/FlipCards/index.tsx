@@ -41,12 +41,12 @@ const FlipCard: React.FC<FlipCardProps> = ({
   icon,
   frontContent,
   backItems,
-  backTitle = "Features",
+  backTitle = 'Features',
   badges = [],
   actions = [],
   disabled = false,
   disabledMessage,
-  cardHeight
+  cardHeight,
 }) => {
   const flipCardStyles = {
     container: {
@@ -54,9 +54,9 @@ const FlipCard: React.FC<FlipCardProps> = ({
       height: cardHeight,
       marginBottom: '1.5rem',
       width: '100%',
-      minHeight: '200px' // Ensure minimum height on mobile
+      minHeight: '200px', // Ensure minimum height on mobile
     } as React.CSSProperties,
-    
+
     inner: {
       position: 'relative',
       width: '100%',
@@ -64,13 +64,13 @@ const FlipCard: React.FC<FlipCardProps> = ({
       textAlign: 'center',
       transition: 'transform 0.6s',
       transformStyle: 'preserve-3d',
-      cursor: disabled ? 'default' : 'pointer'
+      cursor: disabled ? 'default' : 'pointer',
     } as React.CSSProperties,
-    
+
     innerFlipped: {
-      transform: 'rotateY(180deg)'
+      transform: 'rotateY(180deg)',
     } as React.CSSProperties,
-    
+
     face: {
       position: 'absolute',
       width: '100%',
@@ -81,20 +81,26 @@ const FlipCard: React.FC<FlipCardProps> = ({
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden' // Prevent content overflow
+      overflow: 'hidden', // Prevent content overflow
     } as React.CSSProperties,
-    
+
     back: {
       transform: 'rotateY(180deg)',
-      backgroundColor: 'var(--ifm-card-background-color, white)'
-    } as React.CSSProperties
+      backgroundColor: 'var(--ifm-card-background-color, white)',
+    } as React.CSSProperties,
   };
 
   const [isFlipped, setIsFlipped] = React.useState(false);
 
-  const getButtonClasses = (variant: string = 'primary', size: string = 'sm') => {
+  const getButtonClasses = (
+    variant: string = 'primary',
+    size: string = 'sm'
+  ) => {
     const baseClass = 'button';
-    const variantClass = variant === 'outline' ? 'button--outline button--primary' : `button--${variant}`;
+    const variantClass =
+      variant === 'outline'
+        ? 'button--outline button--primary'
+        : `button--${variant}`;
     const sizeClass = `button--${size}`;
     return `${baseClass} ${variantClass} ${sizeClass}`;
   };
@@ -180,7 +186,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
   return (
     <>
       <style>{mobileStyles}</style>
-      <div 
+      <div
         className="flip-card-container"
         style={flipCardStyles.container}
         onMouseEnter={() => !disabled && setIsFlipped(true)}
@@ -192,14 +198,14 @@ const FlipCard: React.FC<FlipCardProps> = ({
           }
         }}
       >
-        <div 
+        <div
           style={{
             ...flipCardStyles.inner,
-            ...(isFlipped ? flipCardStyles.innerFlipped : {})
+            ...(isFlipped ? flipCardStyles.innerFlipped : {}),
           }}
         >
           {/* Front Face */}
-          <div 
+          <div
             className="flip-card-front"
             style={{
               ...flipCardStyles.face,
@@ -209,63 +215,69 @@ const FlipCard: React.FC<FlipCardProps> = ({
               padding: '2rem 1rem',
               opacity: disabled ? 0.7 : 1,
               borderStyle: disabled ? 'dashed' : 'solid',
-              borderWidth: disabled ? '2px' : '1px'
+              borderWidth: disabled ? '2px' : '1px',
             }}
           >
-            <div style={{ 
-              textAlign: 'center',
-              width: '100%',
-              maxWidth: '100%'
-            }}>
-              <div 
+            <div
+              style={{
+                textAlign: 'center',
+                width: '100%',
+                maxWidth: '100%',
+              }}
+            >
+              <div
                 className="flip-card-icon"
-                style={{ 
-                  fontSize: '3rem', 
-                  marginBottom: '1rem'
+                style={{
+                  fontSize: '3rem',
+                  marginBottom: '1rem',
                 }}
               >
                 {icon}
               </div>
-              <h3 
+              <h3
                 className="flip-card-title"
-                style={{ 
+                style={{
                   margin: '0 0 1rem 0',
                   fontSize: '1.5rem',
                   color: 'var(--ifm-heading-color)',
                   wordWrap: 'break-word',
-                  hyphens: 'auto'
+                  hyphens: 'auto',
                 }}
               >
                 {title}
               </h3>
-              
+
               {frontContent && (
-                <div style={{ 
-                  marginBottom: '1rem',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.4
-                }}>
+                <div
+                  style={{
+                    marginBottom: '1rem',
+                    fontSize: '0.875rem',
+                    lineHeight: 1.4,
+                  }}
+                >
                   {frontContent}
                 </div>
               )}
-              
+
               {badges.length > 0 && (
-                <div style={{ 
-                  display: 'flex', 
-                  gap: '0.5rem', 
-                  justifyContent: 'center', 
-                  flexWrap: 'wrap',
-                  maxWidth: '100%'
-                }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap',
+                    maxWidth: '100%',
+                  }}
+                >
                   {badges.map((badge, index) => (
-                    <span 
+                    <span
                       key={index}
                       className={`flip-card-badge ${badge.className || 'badge'}`}
                       style={{
                         fontSize: '0.875rem',
                         padding: '0.5rem 1rem',
                         wordBreak: 'break-word',
-                        ...badge.style
+                        ...badge.style,
                       }}
                     >
                       {badge.label}
@@ -277,62 +289,66 @@ const FlipCard: React.FC<FlipCardProps> = ({
           </div>
 
           {/* Back Face */}
-          <div 
+          <div
             className="flip-card-back"
             style={{
               ...flipCardStyles.face,
               ...flipCardStyles.back,
               padding: '1.5rem',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
             }}
           >
             <div style={{ flex: 1, overflow: 'hidden' }}>
-              <h4 
+              <h4
                 className="flip-card-back-title"
-                style={{ 
-                  fontSize: '1.125rem', 
-                  fontWeight: 600, 
+                style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 600,
                   textTransform: 'uppercase',
                   color: 'var(--ifm-color-primary)',
                   marginBottom: '1rem',
                   textAlign: 'center',
-                  wordWrap: 'break-word'
+                  wordWrap: 'break-word',
                 }}
               >
                 {backTitle}
               </h4>
-              <ul style={{ 
-                margin: 0, 
-                paddingLeft: '1.2rem',
-                listStyle: 'none',
-                textAlign: 'left',
-                maxHeight: 'calc(100% - 3rem)',
-                overflowY: 'auto'
-              }}>
+              <ul
+                style={{
+                  margin: 0,
+                  paddingLeft: '1.2rem',
+                  listStyle: 'none',
+                  textAlign: 'left',
+                  maxHeight: 'calc(100% - 3rem)',
+                  overflowY: 'auto',
+                }}
+              >
                 {backItems.map((item, index) => (
-                  <li 
-                    key={index} 
+                  <li
+                    key={index}
                     className="flip-card-back-item"
-                    style={{ 
-                      marginBottom: '0.75rem', 
+                    style={{
+                      marginBottom: '0.75rem',
                       fontSize: '0.9rem',
                       lineHeight: 1.4,
                       position: 'relative',
                       paddingLeft: '1.2rem',
                       wordWrap: 'break-word',
-                      hyphens: 'auto'
+                      hyphens: 'auto',
                     }}
                   >
-                    <span style={{
-                      position: 'absolute',
-                      left: '0',
-                      top: '0.4rem',
-                      width: '6px',
-                      height: '6px',
-                      backgroundColor: 'var(--ifm-color-primary)',
-                      borderRadius: '50%',
-                      flexShrink: 0
-                    }}></span>
+                    <span
+                      style={{
+                        position: 'absolute',
+                        left: '0',
+                        top: '0.4rem',
+                        width: '6px',
+                        height: '6px',
+                        backgroundColor: 'var(--ifm-color-primary)',
+                        borderRadius: '50%',
+                        flexShrink: 0,
+                      }}
+                    ></span>
                     {item}
                   </li>
                 ))}
@@ -342,27 +358,27 @@ const FlipCard: React.FC<FlipCardProps> = ({
             {/* Actions or Disabled Message */}
             {!disabled && actions.length > 0 && (
               <div style={{ marginTop: '1rem', flexShrink: 0 }}>
-                <div 
+                <div
                   className="flip-card-actions"
-                  style={{ 
-                    display: 'flex', 
-                    gap: '0.5rem', 
-                    flexWrap: 'wrap' 
+                  style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    flexWrap: 'wrap',
                   }}
                 >
                   {actions.map((action, index) => (
-                    <a 
+                    <a
                       key={index}
                       href={action.href}
                       className={getButtonClasses(action.variant, action.size)}
-                      style={{ 
+                      style={{
                         flex: actions.length <= 2 ? 1 : 'none',
                         textAlign: 'center',
                         minWidth: actions.length > 2 ? '100px' : 'auto',
                         fontSize: '0.875rem',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        textOverflow: 'ellipsis',
                       }}
                     >
                       {action.label}
@@ -373,9 +389,9 @@ const FlipCard: React.FC<FlipCardProps> = ({
             )}
 
             {disabled && disabledMessage && (
-              <div 
+              <div
                 className="flip-card-disabled-message"
-                style={{ 
+                style={{
                   textAlign: 'center',
                   marginTop: '1rem',
                   padding: '0.75rem',
@@ -385,7 +401,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
                   fontStyle: 'italic',
                   borderRadius: '6px',
                   wordWrap: 'break-word',
-                  flexShrink: 0
+                  flexShrink: 0,
                 }}
               >
                 {disabledMessage}
@@ -404,13 +420,16 @@ const FlipCards: React.FC<FlipCardsProps> = ({
   cardHeight = '250px',
   hoverHint,
   title,
-  subtitle
+  subtitle,
 }) => {
   const getColumnClass = () => {
     switch (columns) {
-      case 3: return 'col--4';
-      case 4: return 'col--3';
-      default: return 'col--6'; // 2 columns
+      case 3:
+        return 'col--4';
+      case 4:
+        return 'col--3';
+      default:
+        return 'col--6'; // 2 columns
     }
   };
 
@@ -459,47 +478,47 @@ const FlipCards: React.FC<FlipCardsProps> = ({
   return (
     <div>
       <style>{responsiveStyles}</style>
-      
+
       {/* Header Section */}
       {(title || subtitle || hoverHint) && (
-        <div 
-          className="text--center flip-cards-header" 
+        <div
+          className="text--center flip-cards-header"
           style={{ marginBottom: '3rem' }}
         >
           {title && (
-            <h2 
+            <h2
               className="flip-cards-title"
-              style={{ 
-                fontSize: '2.5rem', 
+              style={{
+                fontSize: '2.5rem',
                 marginBottom: '1rem',
-                wordWrap: 'break-word'
+                wordWrap: 'break-word',
               }}
             >
               {title}
             </h2>
           )}
           {subtitle && (
-            <p 
+            <p
               className="flip-cards-subtitle"
-              style={{ 
-                fontSize: '1.125rem', 
+              style={{
+                fontSize: '1.125rem',
                 color: 'var(--ifm-color-emphasis-700)',
                 maxWidth: '800px',
                 margin: '0 auto 1rem auto',
                 lineHeight: 1.6,
-                wordWrap: 'break-word'
+                wordWrap: 'break-word',
               }}
             >
               {subtitle}
             </p>
           )}
           {hoverHint && (
-            <p 
+            <p
               className="flip-cards-hint"
               style={{
                 fontSize: '0.9rem',
                 color: 'var(--ifm-color-emphasis-600)',
-                fontStyle: 'italic'
+                fontStyle: 'italic',
               }}
             >
               {hoverHint}
@@ -510,7 +529,7 @@ const FlipCards: React.FC<FlipCardsProps> = ({
 
       {/* Cards Grid */}
       <div className="row flip-cards-row">
-        {items.map((item) => (
+        {items.map(item => (
           <div key={item.id} className={`col ${getColumnClass()}`}>
             <FlipCard {...item} cardHeight={cardHeight} />
           </div>

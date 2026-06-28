@@ -6,7 +6,7 @@ import FooterTheme from '../../theme/Footer';
 import Breadcrumbs from '../Breadcrumbs';
 import styles from './styles.module.css';
 
-const SITE = 'https://www.dimo.org';
+const SITE = 'https://dimo.org';
 
 interface ContentPageLayoutProps {
   title: string;

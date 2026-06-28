@@ -8,7 +8,8 @@ import { join, relative, extname } from 'node:path';
 const ROOT = process.cwd();
 const DOCS_DIR = join(ROOT, 'docs');
 const OUT = join(ROOT, 'static', 'llms-full.txt');
-const SITE = 'https://www.dimo.org';
+// Canonical host is the apex domain; www.dimo.org redirects to it.
+const SITE = 'https://dimo.org';
 
 /** Recursively collect .md / .mdx files. */
 function walk(dir) {

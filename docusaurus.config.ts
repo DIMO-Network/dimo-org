@@ -22,7 +22,8 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://www.dimo.org',
+  // Canonical host is the apex domain; www.dimo.org 301/308-redirects to it.
+  url: 'https://dimo.org',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -32,7 +33,7 @@ const config: Config = {
   organizationName: 'DIMO-Network', // Usually your GitHub org/user name.
   projectName: 'dimo-org', // Usually your repo name.
 
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -85,7 +86,7 @@ const config: Config = {
   markdown: {
     mermaid: true,
     hooks: {
-      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: 'throw',
     },
   },
 

@@ -302,63 +302,66 @@ ${signalQueries}
             {telemetrySignals
               .filter(category => category.signals.length > 0)
               .map(category => (
-              <div key={category.category} className={styles.category}>
-                <h4 className={styles.categoryTitle}>{category.category}</h4>
-                <div className={styles.signalList}>
-                  {category.signals.map(signal => {
-                    const isSelected = selectedSignals[signal.name];
-                    return (
-                      <div key={signal.name} className={styles.signalItem}>
-                        <button
-                          className={`${styles.signalButton} ${isSelected ? styles.signalButtonSelected : ''}`}
-                          onClick={() => toggleSignal(signal.name, signal)}
-                        >
-                          <div className={styles.signalButtonContent}>
-                            <div className={styles.signalButtonName}>
-                              {signal.name}
+                <div key={category.category} className={styles.category}>
+                  <h4 className={styles.categoryTitle}>{category.category}</h4>
+                  <div className={styles.signalList}>
+                    {category.signals.map(signal => {
+                      const isSelected = selectedSignals[signal.name];
+                      return (
+                        <div key={signal.name} className={styles.signalItem}>
+                          <button
+                            className={`${styles.signalButton} ${isSelected ? styles.signalButtonSelected : ''}`}
+                            onClick={() => toggleSignal(signal.name, signal)}
+                          >
+                            <div className={styles.signalButtonContent}>
+                              <div className={styles.signalButtonName}>
+                                {signal.name}
+                              </div>
+                              <div className={styles.signalButtonDescription}>
+                                {signal.description}
+                              </div>
                             </div>
-                            <div className={styles.signalButtonDescription}>
-                              {signal.description}
-                            </div>
-                          </div>
-                          {isSelected && (
-                            <span className={styles.signalCheckmark}>✓</span>
-                          )}
-                        </button>
+                            {isSelected && (
+                              <span className={styles.signalCheckmark}>✓</span>
+                            )}
+                          </button>
 
-                        {/* Aggregation selector for signals mode */}
-                        {isSelected && queryType === 'signals' && (
-                          <div className={styles.aggregationSelector}>
-                            <label className={styles.aggregationLabel}>
-                              Aggregation:
-                            </label>
-                            <select
-                              className={styles.aggregationSelect}
-                              value={
-                                signalAggregations[signal.name] ||
-                                getDefaultAggregation(signal)
-                              }
-                              onChange={e =>
-                                updateSignalAggregation(
-                                  signal.name,
-                                  e.target.value
-                                )
-                              }
-                            >
-                              {getAggregationOptions(signal).map(option => (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                          {/* Aggregation selector for signals mode */}
+                          {isSelected && queryType === 'signals' && (
+                            <div className={styles.aggregationSelector}>
+                              <label className={styles.aggregationLabel}>
+                                Aggregation:
+                              </label>
+                              <select
+                                className={styles.aggregationSelect}
+                                value={
+                                  signalAggregations[signal.name] ||
+                                  getDefaultAggregation(signal)
+                                }
+                                onChange={e =>
+                                  updateSignalAggregation(
+                                    signal.name,
+                                    e.target.value
+                                  )
+                                }
+                              >
+                                {getAggregationOptions(signal).map(option => (
+                                  <option
+                                    key={option.value}
+                                    value={option.value}
+                                  >
+                                    {option.label}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       )}

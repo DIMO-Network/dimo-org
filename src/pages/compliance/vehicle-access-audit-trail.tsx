@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import ContentPageLayout from '../../components/ContentPageLayout';
 
-const SITE = 'https://www.dimo.org';
+const SITE = 'https://dimo.org';
 
 const TITLE =
   'Verifiable Vehicle Access Audit Trails (SB-1394, UNECE R155) | DIMO';

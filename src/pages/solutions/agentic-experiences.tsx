@@ -7,7 +7,6 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
-  Star,
   Shield,
   Lock,
   Key,
@@ -84,24 +83,6 @@ const STATS = [
   { number: '99.9%', label: 'Service Uptime' },
   { number: 'MCP', label: 'Agent Skills' },
   { number: '5+', label: 'SDKs to Build On' },
-];
-
-const TESTIMONIALS = [
-  {
-    name: 'Sarah Johnson',
-    role: 'Product Lead, Auto AI',
-    text: 'Login with DIMO transformed our onboarding. Users can connect their vehicles in seconds, and the consent management gives them full transparency. Our conversion rate increased 3x.',
-  },
-  {
-    name: 'David Kim',
-    role: 'Founder, Fleet Assistant',
-    text: 'Secured Compute was exactly what we needed. We can process sensitive fleet data without ever touching raw information. Our enterprise customers love the security model.',
-  },
-  {
-    name: 'Maria Garcia',
-    role: 'CTO, Service Concierge',
-    text: 'The pre-built integrations saved us months of development. We connected our agents to Calendly, Stripe, and our CRM in days. The agent memory is incredible too.',
-  },
 ];
 
 function HeroSection() {
@@ -291,46 +272,6 @@ function FeatureSection2() {
   );
 }
 
-function FeatureSection3() {
-  return (
-    <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
-      <div className={styles.featureContainer}>
-        <div className={styles.featureText}>
-          <h2>Seamless Integrations: Connect Everything</h2>
-          <p>
-            Pre-built connectors for 50+ popular tools and platforms. Integrate
-            your agents with CRMs, scheduling systems, payment processors, and
-            communication platforms with zero-code configuration.
-          </p>
-          <ul className={styles.featureList}>
-            <li>
-              <span className={styles.checkIcon}>✓</span>
-              Scheduling: Calendly, Cal.com, Google Calendar
-            </li>
-            <li>
-              <span className={styles.checkIcon}>✓</span>
-              Payments: Stripe, PayPal, Square
-            </li>
-            <li>
-              <span className={styles.checkIcon}>✓</span>
-              Communications: Twilio, SendGrid, Slack
-            </li>
-            <li>
-              <span className={styles.checkIcon}>✓</span>
-              CRMs: Salesforce, HubSpot, Pipedrive
-            </li>
-          </ul>
-        </div>
-        <div className={styles.featureVisual}>
-          <div className={styles.imagePlaceholder}>
-            <span>Integration Marketplace</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function HowItWorksSection() {
   const steps = [
     {
@@ -377,53 +318,6 @@ function HowItWorksSection() {
             </div>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by AI Builders</h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star
-                        key={s}
-                        size={14}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -476,7 +370,7 @@ export default function AgenticExperiencesPage(): ReactNode {
         <meta name="twitter:card" content="summary_large_image" />
         <link
           rel="canonical"
-          href="https://www.dimo.org/solutions/agentic-experiences"
+          href="https://dimo.org/solutions/agentic-experiences"
         />
 
         {/* Structured Data for SEO */}
@@ -502,8 +396,8 @@ export default function AgenticExperiencesPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Solutions', url: 'https://www.dimo.org/#solutions' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Solutions', url: 'https://dimo.org/#solutions' },
             { name: 'Agentic Experiences' },
           ]}
         />
@@ -514,9 +408,7 @@ export default function AgenticExperiencesPage(): ReactNode {
           <UseCasesSection />
           <FeatureSection1 />
           <FeatureSection2 />
-          {/* <FeatureSection3 /> */}
           <HowItWorksSection />
-          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

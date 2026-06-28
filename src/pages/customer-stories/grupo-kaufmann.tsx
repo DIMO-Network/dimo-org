@@ -32,7 +32,7 @@ const CHALLENGES = [
     icon: <AlertTriangle size={28} />,
     title: 'No Data Access',
     description:
-      'Grupo Kaufmann lacked direct data access to vehicle data from OEMs, hampering their ability to serve customers effectively with proactive services or real-time insights.'
+      'Grupo Kaufmann lacked direct data access to vehicle data from OEMs, hampering their ability to serve customers effectively with proactive services or real-time insights.',
   },
   {
     icon: <Shield size={28} />,
@@ -102,18 +102,23 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          <a href="https://www.kaufmann.cl/" target="_blank" rel="noopener noreferrer">
-            <span className={styles.heroTitleGradient}>
-              {COMPANY_NAME}
-            </span> 
-          </a> Transformed Their Dealership Network with{' '}
+          <a
+            href="https://www.kaufmann.cl/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={styles.heroTitleGradient}>{COMPANY_NAME}</span>
+          </a>{' '}
+          Transformed Their Dealership Network with{' '}
           <span className={styles.heroTitleGradient}>
             Connected Vehicle Intelligence
           </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From zero connectivity to 100% OEM coverage, real-time theft prevention, and 3x customer engagement—see how Latin America's leading automotive group revolutionize their operations.
+          From zero connectivity to 100% OEM coverage, real-time theft
+          prevention, and 3x customer engagement—see how Latin America's leading
+          automotive group revolutionize their operations.
         </p>
 
         <div className={styles.heroButtons}>
@@ -152,11 +157,12 @@ function ChallengesSection() {
     <section className={styles.section}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>The Kaufmann Story</span>
-        <h2 className={styles.sectionTitle}>
-          The Challenges
-        </h2>
+        <h2 className={styles.sectionTitle}>The Challenges</h2>
         <p className={styles.sectionSubtitle}>
-          As one of Latin America's largest automotive groups, Grupo Kaufmann faced critical operational challenges that prevented them from delivering modern, connected experiences to their dealership network and end customers.
+          As one of Latin America's largest automotive groups, Grupo Kaufmann
+          faced critical operational challenges that prevented them from
+          delivering modern, connected experiences to their dealership network
+          and end customers.
         </p>
       </div>
 
@@ -178,11 +184,12 @@ function SolutionsSection() {
     <section className={`${styles.section} ${styles.sectionAlt}`}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>The DIMO Solution</span>
-        <h2 className={styles.sectionTitle}>
-          Connected Vehicle Intelligence
-        </h2>
+        <h2 className={styles.sectionTitle}>Connected Vehicle Intelligence</h2>
         <p className={styles.sectionSubtitle}>
-          Grupo Kaufmann partnered with DIMO to build a comprehensive connected vehicle ecosystem that solved all four major challenges simultaneously—without the complexity of managing multiple OEM integrations.
+          Grupo Kaufmann partnered with DIMO to build a comprehensive connected
+          vehicle ecosystem that solved all four major challenges
+          simultaneously—without the complexity of managing multiple OEM
+          integrations.
         </p>
       </div>
 
@@ -214,10 +221,16 @@ function TestimonialSection() {
           <Star size={32} fill="currentColor" strokeWidth={0} />
         </div>
         <blockquote className={styles.testimonialQuote}>
-          "DIMO transformed our entire operation. What would have taken us years and millions of dollars in custom integrations was deployed in weeks. Our dealers now have real-time vehicle insights, our customers love the connected experience, and we've virtually eliminated inventory theft. This is the future of automotive retail."
+          "DIMO transformed our entire operation. What would have taken us years
+          and millions of dollars in custom integrations was deployed in weeks.
+          Our dealers now have real-time vehicle insights, our customers love
+          the connected experience, and we've virtually eliminated inventory
+          theft. This is the future of automotive retail."
         </blockquote>
         <div className={styles.testimonialAuthor}>Maximiliano Ipinza</div>
-        <div className={styles.testimonialRole}>Head of Digital Innovation, Grupo Kaufmann</div>
+        <div className={styles.testimonialRole}>
+          Head of Digital Innovation, Grupo Kaufmann
+        </div>
       </div>
     </section>
   );
@@ -229,13 +242,13 @@ function ImplementationSection() {
       phase: 'Week 1',
       title: 'Platform Setup & Integration',
       description:
-        'DIMO team worked with Grupo Kaufmann\'s digital transformation department to configure API access, set up authentication, and establish test data flows.',
+        "DIMO team worked with Grupo Kaufmann's digital transformation department to configure API access, set up authentication, and establish test data flows.",
     },
     {
       phase: 'Week 2',
       title: 'Dealer Portal Development',
       description:
-        'Using DIMO\'s developer-friendly SDKs and comprehensive documentation, the internal team built a custom dealer portal with real-time vehicle data access.',
+        "Using DIMO's developer-friendly SDKs and comprehensive documentation, the internal team built a custom dealer portal with real-time vehicle data access.",
     },
     {
       phase: 'Week 4',
@@ -257,7 +270,8 @@ function ImplementationSection() {
         <span className={styles.sectionEyebrow}>Implementation</span>
         <h2 className={styles.sectionTitle}>8-Week Deployment Timeline</h2>
         <p className={styles.sectionSubtitle}>
-          From kickoff to full production deployment in just two months—no lengthy integrations, no complex infrastructure buildout.
+          From kickoff to full production deployment in just two months—no
+          lengthy integrations, no complex infrastructure buildout.
         </p>
       </div>
 
@@ -309,20 +323,17 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Operations?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Transform Your Operations?</h2>
         <p className={styles.ctaText}>
-          Join Grupo Kaufmann and hundreds of other innovative companies using DIMO to build connected vehicle experiences. Get started today with our free developer tier.
+          Join Grupo Kaufmann and hundreds of other innovative companies using
+          DIMO to build connected vehicle experiences. Get started today with
+          our free developer tier.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get API Keys <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             Read the Docs <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -335,7 +346,9 @@ export default function GrupoKaufmannCaseStudy(): ReactNode {
   return (
     <>
       <Head>
-        <title>Grupo Kaufmann Case Study | DIMO Connected Vehicle Success Story</title>
+        <title>
+          Grupo Kaufmann Case Study | DIMO Connected Vehicle Success Story
+        </title>
         <meta
           name="description"
           content="See how Grupo Kaufmann achieved 100% OEM connectivity, reduced theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform. Real results in 8 weeks."
@@ -344,23 +357,30 @@ export default function GrupoKaufmannCaseStudy(): ReactNode {
           name="keywords"
           content="Grupo Kaufmann, DIMO case study, connected vehicles, dealership technology, vehicle theft prevention, OEM integration, automotive innovation"
         />
-        <meta property="og:title" content="Grupo Kaufmann Case Study | DIMO Success Story" />
+        <meta
+          property="og:title"
+          content="Grupo Kaufmann Case Study | DIMO Success Story"
+        />
         <meta
           property="og:description"
           content="How Latin America's leading automotive group transformed their operations with DIMO: 100% OEM connectivity, 80% theft reduction, 3x customer engagement."
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/customer-stories/grupo-kaufmann" />
+        <link
+          rel="canonical"
+          href="https://dimo.org/customer-stories/grupo-kaufmann"
+        />
 
         {/* Structured Data for Case Study */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: 'How Grupo Kaufmann Transformed Their Dealership Network with DIMO',
+            headline:
+              'How Grupo Kaufmann Transformed Their Dealership Network with DIMO',
             description:
-              'Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO\'s connected vehicle platform.',
+              "Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform.",
             author: {
               '@type': 'Organization',
               name: 'DIMO',
@@ -370,13 +390,13 @@ export default function GrupoKaufmannCaseStudy(): ReactNode {
               name: 'DIMO',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://www.dimo.org/img/dimo-build-logo-dark.svg',
+                url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
               },
             },
             datePublished: '2025-01-28',
             mainEntityOfPage: {
               '@type': 'WebPage',
-              '@id': 'https://www.dimo.org/customer-stories/grupo-kaufmann',
+              '@id': 'https://dimo.org/customer-stories/grupo-kaufmann',
             },
           })}
         </script>
@@ -387,8 +407,11 @@ export default function GrupoKaufmannCaseStudy(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Customer Stories', url: 'https://www.dimo.org/#customer-stories' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            {
+              name: 'Customer Stories',
+              url: 'https://dimo.org/#customer-stories',
+            },
             { name: 'Grupo Kaufmann' },
           ]}
         />

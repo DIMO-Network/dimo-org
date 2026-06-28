@@ -7,7 +7,6 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
-  Star,
   Smartphone,
   Palette,
   Globe,
@@ -86,19 +85,6 @@ const STATS = [
   { number: '<5m', label: 'To Onboard New Marketplace Partners' },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: 'Carlos De Martini Muñoz',
-    role: 'Connected Services Manager, Grupo Kaufmann',
-    text: "We launched our branded vehicle app across Latin America using DIMO's white-label solution. The localization support for our local market was flawless.",
-  },
-  {
-    name: 'Ryo Hayashi',
-    role: 'Founder, DIMO Japan',
-    text: "Localizing for the Japanese market was painless. DIMO's multi-language support and cultural customization options helped us build user trust immediately.",
-  },
-];
-
 function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
 
@@ -134,9 +120,9 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Deploy a fully-branded, production-ready mobile app for iOS and Android.
-          White-label customization, multi-language support, and global reachall
-          included out of the box.
+          Deploy a fully-branded, production-ready mobile app for iOS and
+          Android. White-label customization, multi-language support, and global
+          reachall included out of the box.
         </p>
 
         <div className={styles.heroButtons}>
@@ -227,14 +213,15 @@ function FeatureSection1() {
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              User profiles, authentication, and permission management all built-in
+              User profiles, authentication, and permission management all
+              built-in
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <a href="https://dimo.co" target="_blank" rel="noopener noreferrer">
-                <img src={imgMobile} alt="DIMO Mobile App on Phone" />
-            </a>
+          <a href="https://dimo.co" target="_blank" rel="noopener noreferrer">
+            <img src={imgMobile} alt="DIMO Mobile App on Phone" />
+          </a>
         </div>
       </div>
     </section>
@@ -244,14 +231,16 @@ function FeatureSection1() {
 function FeatureSection2() {
   return (
     <section className={styles.featureSection}>
-      <div className={`${styles.featureContainer} ${styles.featureContainerReversed}`}>
+      <div
+        className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
+      >
         <div className={styles.featureText}>
           <h2>White-Label: Make It Yours</h2>
           <p>
-            Customize every aspect of the DIMO Mobile App with your brand identity.
-            Replace logos, adjust colors, modify copy: all through simple
-            configuration without touching a line of code. Expand to international 
-            markets with built-in localization support.
+            Customize every aspect of the DIMO Mobile App with your brand
+            identity. Replace logos, adjust colors, modify copy: all through
+            simple configuration without touching a line of code. Expand to
+            international markets with built-in localization support.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -277,9 +266,13 @@ function FeatureSection2() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-            <a href="https://dimojapan.com" target="_blank" rel="noopener noreferrer">
-                <img src={imgJapan} alt="DIMO in Japan" />
-            </a>
+          <a
+            href="https://dimojapan.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={imgJapan} alt="DIMO in Japan" />
+          </a>
         </div>
       </div>
     </section>
@@ -316,8 +309,8 @@ function HowItWorksSection() {
         <span className={styles.sectionEyebrow}>How It Works</span>
         <h2 className={styles.sectionTitle}>Launch in Less Than a Week</h2>
         <p className={styles.sectionSubtitle}>
-          From configuration to app store submission, DIMO makes it easy to launch
-          your branded vehicle application globally.
+          From configuration to app store submission, DIMO makes it easy to
+          launch your branded vehicle application globally.
         </p>
       </div>
 
@@ -337,55 +330,11 @@ function HowItWorksSection() {
   );
 }
 
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted Globally</h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star key={s} size={14} fill="currentColor" strokeWidth={0} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Launch Your Vehicle App?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Launch Your Vehicle App?</h2>
         <p className={styles.ctaText}>
           Join companies launching branded vehicle applications globally with
           DIMO's white-label mobile platform.
@@ -394,10 +343,7 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get Started <span className={styles.arrow}>→</span>
           </Link>
-          <Link
-            className={styles.secondaryBtn}
-            to="/docs"
-          >
+          <Link className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
           </Link>
         </div>
@@ -419,14 +365,20 @@ export default function ConsumerApplicationsPage(): ReactNode {
           name="keywords"
           content="white-label mobile app, vehicle app, iOS Android, multi-language app, branded mobile app, localization, DIMO mobile"
         />
-        <meta property="og:title" content="Consumer Applications | DIMO White-Label Platform" />
+        <meta
+          property="og:title"
+          content="Consumer Applications | DIMO White-Label Platform"
+        />
         <meta
           property="og:description"
           content="Production-ready mobile apps for iOS and Android. Fully customizable, multi-language support, and global reach out of the box."
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/solutions/consumer-applications" />
+        <link
+          rel="canonical"
+          href="https://dimo.org/solutions/consumer-applications"
+        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -447,8 +399,8 @@ export default function ConsumerApplicationsPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Solutions', url: 'https://www.dimo.org/#solutions' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Solutions', url: 'https://dimo.org/#solutions' },
             { name: 'Consumer Applications' },
           ]}
         />
@@ -460,7 +412,6 @@ export default function ConsumerApplicationsPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          <TestimonialsSection />
           <CTASection />
         </main>
 

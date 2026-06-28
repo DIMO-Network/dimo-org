@@ -14,8 +14,8 @@ _Last updated: June 26, 2026._
 > counsel before relying on it. Replace this note on publish.
 
 DIMO Network, Inc. ("DIMO", "we", "us") operates the DIMO developer platform at
-www.dimo.org. This policy explains what data we collect, why, and the choices
-you have. It is written to support compliance with the GDPR and the EU Data Act.
+dimo.org. This policy explains what data we collect, why, and the choices you
+have. It is written to support compliance with the GDPR and the EU Data Act.
 
 ## Data we collect
 

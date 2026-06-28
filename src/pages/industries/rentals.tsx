@@ -7,7 +7,6 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
-  Star,
   Headphones,
   Shield,
   ClipboardCheck,
@@ -84,24 +83,6 @@ const STATS = [
   { number: '50+', label: 'Vehicle Brands' },
   { number: '24/7', label: 'Customer Support' },
   { number: '200k+', label: 'Connected Vehicles' },
-];
-
-const TESTIMONIALS = [
-  {
-    name: 'Jennifer Walsh',
-    role: 'VP Operations, National Car Rental',
-    text: 'The AI concierge has dramatically improved our customer experience scores. Renters love having instant help without waiting on hold.',
-  },
-  {
-    name: 'David Park',
-    role: 'Fleet Director, Avis Budget Group',
-    text: 'Real-time geofence monitoring has reduced our out-of-territory incidents by 60%. The ROI was immediate and substantial.',
-  },
-  {
-    name: 'Amanda Foster',
-    role: 'Regional Manager, Enterprise Holdings',
-    text: 'Automated return inspections have cut our turnaround time in half. Staff can process more vehicles with better documentation.',
-  },
 ];
 
 function HeroSection() {
@@ -343,55 +324,6 @@ function HowItWorksSection() {
   );
 }
 
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>
-          Trusted by Leading Rental Companies
-        </h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star
-                        key={s}
-                        size={14}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -439,7 +371,7 @@ export default function RentalsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/industries/rentals" />
+        <link rel="canonical" href="https://dimo.org/industries/rentals" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -467,8 +399,8 @@ export default function RentalsPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Industries', url: 'https://www.dimo.org/#industries' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Industries', url: 'https://dimo.org/#industries' },
             { name: 'Rentals' },
           ]}
         />
@@ -480,7 +412,6 @@ export default function RentalsPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

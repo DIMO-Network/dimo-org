@@ -6,16 +6,7 @@ import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
-import {
-  Star,
-  Code,
-  Zap,
-  Lock,
-  Globe,
-  Layers,
-  ChevronDown,
-  Cpu,
-} from 'lucide-react';
+import { Code, Zap, Lock, Globe, Layers, ChevronDown, Cpu } from 'lucide-react';
 
 const INDUSTRY_NAME = 'Auto OEMs';
 const HERO_BACKGROUND = '/img/mp4/oem.mp4';
@@ -84,24 +75,6 @@ const STATS = [
   { number: '>95%', label: 'Developer Satisfaction' },
   { number: '99.9%', label: 'API Uptime' },
   { number: '<100ms', label: 'Average Latency' },
-];
-
-const TESTIMONIALS = [
-  {
-    name: 'Alex Rodriguez',
-    role: 'CTO, Mobility Startup',
-    text: "DIMO's unified API saved us months of development time. Instead of integrating with each OEM separately, we had access to all major brands in a week. The SDK is phenomenal.",
-  },
-  {
-    name: 'Emma Chen',
-    role: 'Lead Engineer, Fleet Platform',
-    text: 'The documentation and developer experience are top-notch. We went from proof-of-concept to production in under a month. The real-time data streaming is incredibly reliable.',
-  },
-  {
-    name: 'Michael Foster',
-    role: 'Founder, Automotive AI',
-    text: "As a small team, we couldn't afford to build and maintain OEM integrations ourselves. DIMO gave us enterprise-level capabilities without the enterprise-level cost.",
-  },
 ];
 
 function HeroSection() {
@@ -329,53 +302,6 @@ function HowItWorksSection() {
   );
 }
 
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Loved by Developers</h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star
-                        key={s}
-                        size={14}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -423,7 +349,7 @@ export default function OEMPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/industries/oem" />
+        <link rel="canonical" href="https://dimo.org/industries/oem" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -449,8 +375,8 @@ export default function OEMPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Industries', url: 'https://www.dimo.org/#industries' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Industries', url: 'https://dimo.org/#industries' },
             { name: 'OEM' },
           ]}
         />
@@ -462,7 +388,6 @@ export default function OEMPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

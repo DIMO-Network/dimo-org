@@ -17,12 +17,14 @@ interface BreadcrumbsProps {
  *
  * @example
  * <Breadcrumbs items={[
- *   { name: 'Home', url: 'https://www.dimo.org/' },
- *   { name: 'Industries', url: 'https://www.dimo.org/industries' },
+ *   { name: 'Home', url: 'https://dimo.org/' },
+ *   { name: 'Industries', url: 'https://dimo.org/industries' },
  *   { name: 'Dealerships' }
  * ]} />
  */
-export default function Breadcrumbs({ items }: BreadcrumbsProps): React.JSX.Element {
+export default function Breadcrumbs({
+  items,
+}: BreadcrumbsProps): React.JSX.Element {
   // Generate JSON-LD structured data
   const structuredData = {
     '@context': 'https://schema.org',
@@ -55,7 +57,10 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps): React.JSX.Elem
                     {item.name}
                   </Link>
                   {index < items.length - 1 && (
-                    <span className={styles.breadcrumbSeparator} aria-hidden="true">
+                    <span
+                      className={styles.breadcrumbSeparator}
+                      aria-hidden="true"
+                    >
                       /
                     </span>
                   )}

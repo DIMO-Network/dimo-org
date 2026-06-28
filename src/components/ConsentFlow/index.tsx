@@ -49,12 +49,12 @@ const DATA_PERMISSIONS = [
     json: `[
   {
     "name": "HarshAcceleration",
-    "metadata": "{\"counterValue\":1}",
+    "metadata": "{"counterValue":1}",
     "timestamp": "2025-12-04T23:20:57Z"
   },
   {
     "name": "ExtremeBraking",
-    "metadata": "{\"counterValue\":1}",
+    "metadata": "{"counterValue":1}",
     "timestamp": "2025-12-04T23:20:53Z"
   }
 ]`,

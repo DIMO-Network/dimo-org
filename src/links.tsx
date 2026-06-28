@@ -18,7 +18,7 @@ export const EXTERNAL_LINKS = {
   chatgpt:
     'https://chatgpt.com/g/g-68b72a6088d08191b80a6bd57c0fae3f-dimo-build-gpt',
   github: 'https://github.com/DIMO-Network',
-  blogs: 'https://www.dimo.org/blog',
+  blogs: 'https://dimo.org/blog',
   discord: 'https://chat.dimo.org',
   dimoUniversity: 'https://youtu.be/nktm5m9LhIU',
   dimoMobile: 'https://dimo.co',

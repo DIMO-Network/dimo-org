@@ -8,71 +8,71 @@
 > source. Free tier available; paid plans for production scale.
 
 ## Getting started
-- [Introduction](https://www.dimo.org/docs/introduction/what-can-you-build)
-- [Quickstart](https://www.dimo.org/docs/quickstart)
-- [Getting Started](https://www.dimo.org/docs/getting-started/create-your-account)
-- [Key Concepts](https://www.dimo.org/docs/key-concepts)
-- [What can you build?](https://www.dimo.org/docs/introduction/where-can-you-start)
-- [FAQ](https://www.dimo.org/docs/faq)
+- [Introduction](https://dimo.org/docs/introduction/what-can-you-build)
+- [Quickstart](https://dimo.org/docs/quickstart)
+- [Getting Started](https://dimo.org/docs/getting-started/create-your-account)
+- [Key Concepts](https://dimo.org/docs/key-concepts)
+- [What can you build?](https://dimo.org/docs/introduction/where-can-you-start)
+- [FAQ](https://dimo.org/docs/faq)
 
 ## API references
-- [Identity API](https://www.dimo.org/docs/api-references/identity-api/introduction)
-- [Telemetry API](https://www.dimo.org/docs/api-references/telemetry-api/introduction)
-- [Fetch API](https://www.dimo.org/docs/api-references/fetch-api/introduction)
-- [Attestation API](https://www.dimo.org/docs/api-references/attestation-api)
-- [Device Definitions API](https://www.dimo.org/docs/api-references/device-definitions-api)
-- [Token Exchange API](https://www.dimo.org/docs/api-references/token-exchange-api)
-- [Vehicle Triggers API](https://www.dimo.org/docs/api-references/vehicle-triggers-api)
+- [Identity API](https://dimo.org/docs/api-references/identity-api/introduction)
+- [Telemetry API](https://dimo.org/docs/api-references/telemetry-api/introduction)
+- [Fetch API](https://dimo.org/docs/api-references/fetch-api/introduction)
+- [Attestation API](https://dimo.org/docs/api-references/attestation-api)
+- [Device Definitions API](https://dimo.org/docs/api-references/device-definitions-api)
+- [Token Exchange API](https://dimo.org/docs/api-references/token-exchange-api)
+- [Vehicle Triggers API](https://dimo.org/docs/api-references/vehicle-triggers-api)
 
 ## Build
-- [Build guides](https://www.dimo.org/docs/build/building-with-ai/developer-kit)
-- [Examples](https://www.dimo.org/docs/examples/build-examples)
-- [Tutorials](https://www.dimo.org/docs/tutorials/connect-first-vehicle)
-- [Comparison](https://www.dimo.org/docs/comparison)
+- [Build guides](https://dimo.org/docs/build/building-with-ai/developer-kit)
+- [Examples](https://dimo.org/docs/examples/build-examples)
+- [Tutorials](https://dimo.org/docs/tutorials/connect-first-vehicle)
+- [Comparison](https://dimo.org/docs/comparison)
 
 ## Products
-- [Access](https://www.dimo.org/products/access)
-- [Ingest](https://www.dimo.org/products/ingest)
-- [Storage](https://www.dimo.org/products/storage)
-- [Consent](https://www.dimo.org/products/consent)
-- [Pay](https://www.dimo.org/products/pay)
+- [Access](https://dimo.org/products/access)
+- [Ingest](https://dimo.org/products/ingest)
+- [Storage](https://dimo.org/products/storage)
+- [Consent](https://dimo.org/products/consent)
+- [Pay](https://dimo.org/products/pay)
 
 ## Solutions & industries
-- [Agentic Experiences](https://www.dimo.org/solutions/agentic-experiences)
-- [Fleet Intelligence](https://www.dimo.org/solutions/fleet-intelligence)
-- [Vehicle Commerce](https://www.dimo.org/solutions/vehicle-commerce)
-- [Consumer Applications](https://www.dimo.org/solutions/consumer-applications)
-- [OEMs](https://www.dimo.org/industries/oem)
-- [Rentals](https://www.dimo.org/industries/rentals)
-- [Dealerships](https://www.dimo.org/industries/dealerships)
-- [Maintenance](https://www.dimo.org/industries/maintenance)
+- [Agentic Experiences](https://dimo.org/solutions/agentic-experiences)
+- [Fleet Intelligence](https://dimo.org/solutions/fleet-intelligence)
+- [Vehicle Commerce](https://dimo.org/solutions/vehicle-commerce)
+- [Consumer Applications](https://dimo.org/solutions/consumer-applications)
+- [OEMs](https://dimo.org/industries/oem)
+- [Rentals](https://dimo.org/industries/rentals)
+- [Dealerships](https://dimo.org/industries/dealerships)
+- [Maintenance](https://dimo.org/industries/maintenance)
 
 ## Vehicle Session Infrastructure
-- [Vehicle Session Infrastructure (category)](https://www.dimo.org/vehicle-session-infrastructure)
-- [Fleet Spend & EV Charging Reimbursement](https://www.dimo.org/solutions/fleet-spend)
+- [Vehicle Session Infrastructure (category)](https://dimo.org/vehicle-session-infrastructure)
+- [Fleet Spend & EV Charging Reimbursement](https://dimo.org/solutions/fleet-spend)
 
 ## Compliance
-- [Connected Vehicle Data Compliance](https://www.dimo.org/compliance)
-- [EU Data Act for Vehicle Data](https://www.dimo.org/compliance/eu-data-act)
-- [FTC GM/OnStar Consent Order](https://www.dimo.org/compliance/ftc-gm-consent)
-- [Session-Scoped Consent](https://www.dimo.org/compliance/session-scoped-consent)
-- [Vehicle Access Audit Trails](https://www.dimo.org/compliance/vehicle-access-audit-trail)
+- [Connected Vehicle Data Compliance](https://dimo.org/compliance)
+- [EU Data Act for Vehicle Data](https://dimo.org/compliance/eu-data-act)
+- [FTC GM/OnStar Consent Order](https://dimo.org/compliance/ftc-gm-consent)
+- [Session-Scoped Consent](https://dimo.org/compliance/session-scoped-consent)
+- [Vehicle Access Audit Trails](https://dimo.org/compliance/vehicle-access-audit-trail)
 
 ## Compare
-- [DIMO vs Smartcar](https://www.dimo.org/compare/smartcar-alternative)
-- [DIMO vs Standard Fleet](https://www.dimo.org/compare/standard-fleet-alternative)
+- [DIMO vs Smartcar](https://dimo.org/compare/smartcar-alternative)
+- [DIMO vs Standard Fleet](https://dimo.org/compare/standard-fleet-alternative)
 
 ## Pricing
-- [Plans & pricing](https://www.dimo.org/pricing)
+- [Plans & pricing](https://dimo.org/pricing)
 
 ## Blog
-- [Data Wars: The Consent Management Crisis OEMs Didn't See Coming](https://www.dimo.org/blog/data-wars-the-consent-management-crisis-oems-didnt-see-coming)
-- [DIMO Vehicle Simulator: Build Without a Car](https://www.dimo.org/blog/dimo-vehicle-simulator)
+- [Data Wars: The Consent Management Crisis OEMs Didn't See Coming](https://dimo.org/blog/data-wars-the-consent-management-crisis-oems-didnt-see-coming)
+- [DIMO Vehicle Simulator: Build Without a Car](https://dimo.org/blog/dimo-vehicle-simulator)
 
 ## For AI assistants & coding agents
 - [DIMO Platform Skill](https://github.com/DIMO-Network/dimo-platform-skill): a drop-in knowledge pack that gives an AI agent the full DIMO platform model — architecture, APIs, SACD permissions, contract addresses, and SDK signatures.
 - [DIMO MCP Server](https://github.com/DIMO-Network/mcp-dimo): a Model Context Protocol server that lets an AI assistant query DIMO data and call platform tools directly.
 
 ## Optional
-- [Full documentation corpus](https://www.dimo.org/llms-full.txt)
-- [Sitemap](https://www.dimo.org/sitemap.xml)
+- [Full documentation corpus](https://dimo.org/llms-full.txt)
+- [Sitemap](https://dimo.org/sitemap.xml)

@@ -6,7 +6,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.dimo.org/sitemap.xml
+Sitemap: https://dimo.org/sitemap.xml
 
 # Specific bot configurations
 User-agent: Googlebot

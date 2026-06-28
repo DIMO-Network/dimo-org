@@ -7,7 +7,6 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
-  Star,
   Gauge,
   Wrench,
   Users,
@@ -85,24 +84,6 @@ const STATS = [
   { number: '18%', label: 'Fuel Cost Savings' },
   { number: 'Zero', label: 'SQL Queries Required' },
   { number: '30%', label: 'Quality of Life Improvements' },
-];
-
-const TESTIMONIALS = [
-  {
-    name: 'Marcus Johnson',
-    role: 'Fleet Director, FedEx Ground',
-    text: 'Predictive maintenance alone has saved us hundreds of thousands in emergency repairs. We catch issues before they become roadside breakdowns.',
-  },
-  {
-    name: 'Lisa Rodriguez',
-    role: 'Operations VP, Amazon Logistics',
-    text: "The route analysis feature revealed inefficiencies we'd never noticed. Our on-time delivery rate improved by 15% after optimizing based on DIMO data.",
-  },
-  {
-    name: 'Robert Kim',
-    role: 'Safety Manager, UPS',
-    text: 'Driver coaching through DIMO has reduced aggressive driving incidents by 40%. Our drivers appreciate the real-time feedback.',
-  },
 ];
 
 function HeroSection() {
@@ -340,53 +321,6 @@ function HowItWorksSection() {
   );
 }
 
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Industry Leaders</h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star
-                        key={s}
-                        size={14}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -436,7 +370,7 @@ export default function DeliveryPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://www.dimo.org/industries/dsp" />
+        <link rel="canonical" href="https://dimo.org/industries/dsp" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -464,8 +398,8 @@ export default function DeliveryPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Industries', url: 'https://www.dimo.org/#industries' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Industries', url: 'https://dimo.org/#industries' },
             { name: 'Data Service Providers' },
           ]}
         />
@@ -477,7 +411,6 @@ export default function DeliveryPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

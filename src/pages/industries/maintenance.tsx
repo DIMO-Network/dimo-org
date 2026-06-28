@@ -7,7 +7,6 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
-  Star,
   MessageCircle,
   Stethoscope,
   Phone,
@@ -65,24 +64,6 @@ const STATS = [
   { number: '30%', label: 'Increase in Bookings' },
   { number: '25 %', label: 'More Accurate Estimates' },
   { number: '200k+', label: 'Connected Vehicles' },
-];
-
-const TESTIMONIALS = [
-  {
-    name: 'Mike Sullivan',
-    role: 'Owner, Sullivan Auto Care',
-    text: "The customer support agent has transformed how we intake vehicles. By the time the car arrives, we already know exactly what's wrong and have parts ready.",
-  },
-  {
-    name: 'Chris Williams',
-    role: 'Service Manager, Pep Boys',
-    text: "Our junior techs are learning twice as fast with the training assistant. It's like having a master technician available 24/7 to answer questions.",
-  },
-  {
-    name: 'Rachel Torres',
-    role: 'Director, Firestone Complete Auto Care',
-    text: 'Proactive outreach has increased our repeat customer rate by 40%. Customers appreciate that we remember their service schedule.',
-  },
 ];
 
 function HeroSection() {
@@ -318,53 +299,6 @@ function HowItWorksSection() {
   );
 }
 
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Shops Nationwide</h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star
-                        key={s}
-                        size={14}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -413,10 +347,7 @@ export default function MaintenancePage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://www.dimo.org/industries/maintenance"
-        />
+        <link rel="canonical" href="https://dimo.org/industries/maintenance" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -444,8 +375,8 @@ export default function MaintenancePage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Industries', url: 'https://www.dimo.org/#industries' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Industries', url: 'https://dimo.org/#industries' },
             { name: 'Maintenance' },
           ]}
         />
@@ -457,7 +388,6 @@ export default function MaintenancePage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          {/* <TestimonialsSection /> */}
           <CTASection />
         </main>
 

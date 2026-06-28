@@ -14,7 +14,9 @@
   color: #fff;
   box-shadow: 0 4px 20px rgba(18, 75, 219, 0.4);
   z-index: 1000;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .toggleButton:hover {

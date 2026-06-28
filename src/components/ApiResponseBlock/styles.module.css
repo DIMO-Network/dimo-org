@@ -3,11 +3,15 @@
   background: #1e1e1e;
   border: 1px solid #333;
   border-radius: 12px;
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 20px 50px -10px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
   overflow: hidden;
   margin: 1rem 0;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Header section */
@@ -77,7 +81,17 @@
 }
 
 /* Scrollbar */
-.codeBlock::-webkit-scrollbar { height: 8px; width: 8px; }
-.codeBlock::-webkit-scrollbar-track { background: #1e1e1e; }
-.codeBlock::-webkit-scrollbar-thumb { background: #424242; border-radius: 4px; }
-.codeBlock::-webkit-scrollbar-thumb:hover { background: #4f4f4f; }
+.codeBlock::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.codeBlock::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+.codeBlock::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 4px;
+}
+.codeBlock::-webkit-scrollbar-thumb:hover {
+  background: #4f4f4f;
+}

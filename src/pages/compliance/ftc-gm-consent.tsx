@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import ContentPageLayout from '../../components/ContentPageLayout';
 
-const SITE = 'https://www.dimo.org';
+const SITE = 'https://dimo.org';
 
 const TITLE = "The FTC's GM/OnStar Order & the End of Bulk Telematics | DIMO";
 const DESCRIPTION =

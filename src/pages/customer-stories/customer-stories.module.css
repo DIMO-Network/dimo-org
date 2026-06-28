@@ -486,7 +486,11 @@
 .ctaSection {
   padding: 8rem 2rem;
   text-align: center;
-  background: radial-gradient(ellipse at center, rgba(18, 75, 219, 0.15) 0%, #030303 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(18, 75, 219, 0.15) 0%,
+    #030303 70%
+  );
   position: relative;
 }
 

@@ -23,19 +23,19 @@ const APIS = [
     icon: <Fingerprint size={20} />,
     label: 'Identity',
     description: 'Authentication & authorization',
-    link: 'https://www.dimo.org/docs/api-references/identity-api/introduction',
+    link: 'https://dimo.org/docs/api-references/identity-api/introduction',
   },
   {
     icon: <Gauge size={20} />,
     label: 'Telemetry',
     description: 'Real-time vehicle data',
-    link: 'https://www.dimo.org/docs/api-references/telemetry-api/introduction',
+    link: 'https://dimo.org/docs/api-references/telemetry-api/introduction',
   },
   {
     icon: <Bot size={20} />,
     label: 'Agent Skills',
     description: 'MCP-accessible data streams',
-    link: 'https://www.dimo.org/docs/build/building-with-ai/dimo-mcp-server',
+    link: 'https://dimo.org/docs/build/building-with-ai/dimo-mcp-server',
   },
 ];
 

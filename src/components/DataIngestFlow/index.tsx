@@ -12,13 +12,15 @@ const SOURCES = [
   {
     icon: <Radio size={24} strokeWidth={2} />,
     title: 'DIMO-Connected Device',
-    description: 'Pre-certified DIMO hardware with seamless plug-and-play integration',
+    description:
+      'Pre-certified DIMO hardware with seamless plug-and-play integration',
     examples: 'R1, Smart5, AutoPi, Macaron, etc',
   },
   {
     icon: <LinkIcon size={24} strokeWidth={2} />,
     title: 'DIMO Native Integrations',
-    description: 'Direct API connections with major OEMs and fleet management platforms',
+    description:
+      'Direct API connections with major OEMs and fleet management platforms',
     examples: 'Tesla, Samsara, Geotab, etc',
   },
 ];
@@ -57,7 +59,7 @@ export default function DataIngestFlow() {
           </div>
 
           <div className={styles.flowContainer}>
-            {[0, 1, 2].map((i) => (
+            {[0, 1, 2].map(i => (
               <div
                 key={i}
                 className={styles.dataPacket}
@@ -69,7 +71,9 @@ export default function DataIngestFlow() {
             ))}
           </div>
 
-          <div className={`${styles.serverContainer} ${mounted ? styles.mounted : ''}`}>
+          <div
+            className={`${styles.serverContainer} ${mounted ? styles.mounted : ''}`}
+          >
             <div className={styles.serverBox}>
               <Server size={52} strokeWidth={2} />
               <div className={styles.serverTitle}>DIMO Ingest Server</div>

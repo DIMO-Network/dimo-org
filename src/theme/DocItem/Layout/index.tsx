@@ -7,7 +7,7 @@ import { useDoc } from '@docusaurus/plugin-content-docs/client';
 
 type Props = WrapperProps<typeof LayoutType>;
 
-const SITE = 'https://www.dimo.org';
+const SITE = 'https://dimo.org';
 
 // Wrapper: emit TechArticle + a full BreadcrumbList for every docs page.
 // Anchors each page to the site WebSite/Organization entity graph and gives

@@ -7,13 +7,7 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import DataAccessFlow from '../../components/DataAccessFlow';
 import { LINKS } from '../../links';
-import {
-  Key,
-  Webhook,
-  Code,
-  Gauge,
-  ChevronDown,
-} from 'lucide-react';
+import { Key, Webhook, Code, ChevronDown } from 'lucide-react';
 
 const PRODUCT_NAME = 'Access';
 const HERO_BACKGROUND = '/img/mp4/access.mp4';
@@ -45,7 +39,7 @@ const FEATURES = [
       'Get notified instantly when vehicle data changes. Real-time webhooks, events, and trips data to build event-driven applications.',
     example:
       'Receive notifications when a vehicle enters a geofence, look up harsh braking events, and analyze trips.',
-  }
+  },
 ];
 
 function HeroSection() {
@@ -81,7 +75,9 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Clean, fast, easy-to-use APIs & SDKs for accessing vehicle data. Drive meaningful outcomes using AI Agents to allow conversational interactions with your fleet.
+          Clean, fast, easy-to-use APIs & SDKs for accessing vehicle data. Drive
+          meaningful outcomes using AI Agents to allow conversational
+          interactions with your fleet.
         </p>
 
         <div className={styles.heroButtons}>
@@ -106,9 +102,7 @@ function FeaturesSection() {
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Product Features</span>
-        <h2 className={styles.sectionTitle}>
-          Developer-First API Platform
-        </h2>
+        <h2 className={styles.sectionTitle}>Developer-First API Platform</h2>
         <p className={styles.sectionSubtitle}>
           Built by developers, for developers. Clean APIs, comprehensive SDKs,
           and documentation that actually helps.
@@ -134,12 +128,11 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Access Vehicle Data?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Access Vehicle Data?</h2>
         <p className={styles.ctaText}>
           Get your API keys and start building in minutes. Comprehensive SDKs
-          for every major language, works seamlessly with our REST and GraphQL APIs.
+          for every major language, works seamlessly with our REST and GraphQL
+          APIs.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
@@ -173,7 +166,7 @@ export default function AccessPage(): ReactNode {
           content="Developer-first API platform for vehicle data with global edge deployment."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.dimo.org/products/access" />
+        <link rel="canonical" href="https://dimo.org/products/access" />
       </Head>
 
       <div className={styles.industryPage}>
@@ -181,8 +174,8 @@ export default function AccessPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Products', url: 'https://www.dimo.org/#products' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Products', url: 'https://dimo.org/#products' },
             { name: 'Access' },
           ]}
         />

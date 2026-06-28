@@ -43,9 +43,7 @@ function ParametersBlock({
               </span>
             )}
           </div>
-          <div className={styles.parameterDescription}>
-            {param.description}
-          </div>
+          <div className={styles.parameterDescription}>{param.description}</div>
           {param.expandable && (
             <div className={styles.expandableSection}>
               <Details

@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import ContentPageLayout from '../../components/ContentPageLayout';
 
-const SITE = 'https://www.dimo.org';
+const SITE = 'https://dimo.org';
 
 const TITLE =
   'DIMO vs Standard Fleet: Open, Multi-OEM Session Infrastructure | DIMO';

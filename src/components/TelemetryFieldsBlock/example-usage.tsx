@@ -68,7 +68,8 @@ const locationFields: TelemetryField[] = [
     commonName: 'Approximate Coordinates',
     aggregationType: 'LocationAggregation!',
     units: 'WGS 84 coordinates (latitude, longitude, hdop)',
-    description: 'Approximation of current location in WGS 84 coordinates (latitude, longitude, hdop).',
+    description:
+      'Approximation of current location in WGS 84 coordinates (latitude, longitude, hdop).',
   },
   {
     signal: 'currentLocationAltitude',

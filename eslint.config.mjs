@@ -1,14 +1,20 @@
 import js from '@eslint/js';
+import globals from 'globals';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
 
 export default [
   js.configs.recommended,
+  // Plain JS / config / Node scripts (.js, .jsx, .mjs, .cjs)
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx,mjs,cjs}'],
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: 'module',
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -16,19 +22,13 @@ export default [
       },
     },
     rules: {
-      'max-len': [
-        'warn',
-        {
-          code: 80,
-          ignoreUrls: true,
-          ignoreStrings: true,
-          ignoreTemplateLiterals: true,
-          ignoreComments: true,
-        },
-      ],
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
+  // TypeScript / React. TypeScript itself resolves identifiers, so `no-undef`
+  // is turned off here (per typescript-eslint guidance) — it produces false
+  // positives on type-only names like RequestInit. Line length is owned by
+  // Prettier (see format:check), so `max-len` is intentionally not enforced.
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -36,21 +36,10 @@ export default [
       ecmaVersion: 2021,
       sourceType: 'module',
       globals: {
+        ...globals.browser,
+        ...globals.node,
         React: 'readonly',
         JSX: 'readonly',
-        require: 'readonly',
-        module: 'readonly',
-        process: 'readonly',
-        __dirname: 'readonly',
-        __filename: 'readonly',
-        global: 'readonly',
-        Buffer: 'readonly',
-        console: 'readonly',
-        navigator: 'readonly',
-        setTimeout: 'readonly',
-        clearTimeout: 'readonly',
-        window: 'readonly',
-        document: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: {
@@ -62,16 +51,8 @@ export default [
       '@typescript-eslint': tseslint,
     },
     rules: {
-      'max-len': [
-        'warn',
-        {
-          code: 80,
-          ignoreUrls: true,
-          ignoreStrings: true,
-          ignoreTemplateLiterals: true,
-          ignoreComments: true,
-        },
-      ],
+      'no-undef': 'off',
+      'no-unused-vars': 'off', // base rule conflicts with the TS version
       '@typescript-eslint/no-unused-vars': [
         'error',
         { argsIgnorePattern: '^_' },
@@ -79,7 +60,6 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-require-imports': 'off',
-      'no-unused-vars': 'off', // Turn off base rule as it conflicts with TS version
     },
   },
   {

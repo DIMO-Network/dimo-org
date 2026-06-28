@@ -434,11 +434,11 @@ export default function Pricing(): ReactNode {
         />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://www.dimo.org/pricing" />
+        <link rel="canonical" href="https://dimo.org/pricing" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.dimo.org/pricing" />
+        <meta property="og:url" content="https://dimo.org/pricing" />
         <meta
           property="og:title"
           content="DIMO Pricing | Vehicle Data API & AI Agent Plans"
@@ -449,14 +449,14 @@ export default function Pricing(): ReactNode {
         />
         <meta
           property="og:image"
-          content="https://www.dimo.org/img/dimo-social-card.png"
+          content="https://dimo.org/img/dimo-social-card.png"
         />
         <meta property="og:site_name" content="DIMO" />
         <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.dimo.org/pricing" />
+        <meta name="twitter:url" content="https://dimo.org/pricing" />
         <meta name="twitter:title" content="DIMO Pricing | Start Free" />
         <meta
           name="twitter:description"
@@ -464,7 +464,7 @@ export default function Pricing(): ReactNode {
         />
         <meta
           name="twitter:image"
-          content="https://www.dimo.org/img/dimo-social-card.png"
+          content="https://dimo.org/img/dimo-social-card.png"
         />
 
         {/* Additional SEO */}
@@ -501,7 +501,7 @@ export default function Pricing(): ReactNode {
                 },
                 description:
                   'Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.',
-                url: 'https://www.dimo.org/pricing',
+                url: 'https://dimo.org/pricing',
                 availability: 'https://schema.org/InStock',
               },
               {
@@ -522,7 +522,7 @@ export default function Pricing(): ReactNode {
                 },
                 description:
                   'For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.',
-                url: 'https://www.dimo.org/pricing',
+                url: 'https://dimo.org/pricing',
                 availability: 'https://schema.org/InStock',
               },
               {
@@ -534,7 +534,7 @@ export default function Pricing(): ReactNode {
                 },
                 description:
                   'Custom solutions for large-scale deployments with dedicated support, custom SLAs, and on-premise options.',
-                url: 'https://www.dimo.org/pricing',
+                url: 'https://dimo.org/pricing',
                 availability: 'https://schema.org/InStock',
               },
             ],

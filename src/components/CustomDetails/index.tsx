@@ -9,11 +9,11 @@ interface CustomDetailsProps {
   className?: string;
 }
 
-const CustomDetails: React.FC<CustomDetailsProps> = ({ 
-  summary, 
-  children, 
+const CustomDetails: React.FC<CustomDetailsProps> = ({
+  summary,
+  children,
   defaultOpen = false,
-  className 
+  className,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -52,9 +52,7 @@ const CustomDetails: React.FC<CustomDetailsProps> = ({
 
       {/* Collapsible content */}
       <div className={clsx(styles.content, isOpen && styles.contentOpen)}>
-        <div className={styles.contentInner}>
-          {children}
-        </div>
+        <div className={styles.contentInner}>{children}</div>
       </div>
     </div>
   );

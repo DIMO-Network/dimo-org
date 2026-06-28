@@ -202,7 +202,6 @@ ${fieldsQuery}  }
     setQueryResult(null);
 
     try {
-      // eslint-disable-next-line no-undef
       const response = await fetch('https://identity-api.dimo.zone/query', {
         method: 'POST',
         headers: {

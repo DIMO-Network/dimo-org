@@ -62,7 +62,7 @@ const COMPONENTS = [
 ];
 
 function HeroSection() {
-  const [scrollY, setScrollY] = useState(0);
+  const [, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -249,7 +249,7 @@ export default function ComponentsPage(): ReactNode {
           content="The building blocks of vehicle ownership on the DIMO Network."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.dimo.org/products/components" />
+        <link rel="canonical" href="https://dimo.org/products/components" />
       </Head>
 
       <div className={styles.industryPage}>
@@ -257,8 +257,8 @@ export default function ComponentsPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Products', url: 'https://www.dimo.org/#products' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Products', url: 'https://dimo.org/#products' },
             { name: 'Components' },
           ]}
         />

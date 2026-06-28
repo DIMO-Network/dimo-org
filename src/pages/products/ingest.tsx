@@ -36,13 +36,6 @@ const FEATURES = [
   },
 ];
 
-const STATS = [
-  { number: '1B+', label: 'Data Points Daily' },
-  { number: '<100ms', label: 'Avg Latency' },
-  { number: '40+', label: 'Data Sources' },
-  { number: '99.99%', label: 'Uptime SLA' },
-];
-
 function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
 
@@ -95,21 +88,6 @@ function HeroSection() {
         <ChevronDown size={32} />
       </div>
     </header>
-  );
-}
-
-function StatsSection() {
-  return (
-    <section className={styles.statsBanner}>
-      <div className={styles.statsGrid}>
-        {STATS.map((stat, i) => (
-          <div key={i} className={styles.statItem}>
-            <div className={styles.statNumber}>{stat.number}</div>
-            <div className={styles.statLabel}>{stat.label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -181,7 +159,7 @@ export default function IngestPage(): ReactNode {
           content="Unified vehicle data ingestion from any source with real-time streaming and enterprise reliability."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.dimo.org/products/ingest" />
+        <link rel="canonical" href="https://dimo.org/products/ingest" />
       </Head>
 
       <div className={styles.industryPage}>
@@ -189,8 +167,8 @@ export default function IngestPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Products', url: 'https://www.dimo.org/#products' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Products', url: 'https://dimo.org/#products' },
             { name: 'Ingest' },
           ]}
         />

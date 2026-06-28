@@ -1,4 +1,4 @@
-import React, { type ReactNode, useEffect, useRef, useState } from 'react';
+import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import styles from './industry.module.css';
@@ -7,7 +7,6 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import {
-  Star,
   MessageSquare,
   FileSearch,
   DollarSign,
@@ -83,24 +82,6 @@ const STATS = [
   { number: '25%', label: 'Improved Customer Engagement' },
   { number: '40%', label: 'Faster Service Booking' },
   { number: '200k+', label: 'Connected Vehicles' },
-];
-
-const TESTIMONIALS = [
-  {
-    name: 'Carlos Martinez',
-    role: 'Service Director, AutoNation',
-    text: "The virtual service advisor has transformed how we interact with customers. We're booking 40% more service appointments and our CSI scores have never been higher.",
-  },
-  {
-    name: 'Sarah Chen',
-    role: 'GM, Premier Auto Group',
-    text: 'The trade-in valuation tool gives our sales team instant credibility. Customers trust the data-backed numbers, which means faster negotiations and happier buyers.',
-  },
-  {
-    name: 'Michael Thompson',
-    role: 'Fleet Manager, Enterprise Dealers',
-    text: 'Managing our leased fleet used to be a nightmare. Now we have real-time visibility into every vehicle and maintenance is proactive instead of reactive.',
-  },
 ];
 
 function HeroSection() {
@@ -342,53 +323,6 @@ function HowItWorksSection() {
   );
 }
 
-function TestimonialsSection() {
-  const [isPaused, setIsPaused] = useState(false);
-
-  return (
-    <section className={styles.testimonialsSection}>
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Testimonials</span>
-        <h2 className={styles.sectionTitle}>Trusted by Leading Dealerships</h2>
-      </div>
-
-      <div className={styles.testimonialMarqueeContainer}>
-        <div
-          className={`${styles.testimonialMarquee} ${isPaused ? styles.paused : ''}`}
-        >
-          {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-            <div
-              key={i}
-              className={styles.testimonialCard}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className={styles.testimonialHeader}>
-                <div className={styles.testimonialAvatar}>{t.name[0]}</div>
-                <div>
-                  <div className={styles.testimonialName}>{t.name}</div>
-                  <div className={styles.testimonialRole}>{t.role}</div>
-                  <div className={styles.testimonialStars}>
-                    {[1, 2, 3, 4, 5].map(s => (
-                      <Star
-                        key={s}
-                        size={14}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className={styles.testimonialText}>{t.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CTASection() {
   return (
     <section className={styles.ctaSection}>
@@ -436,10 +370,7 @@ export default function DealershipsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://www.dimo.org/industries/dealerships"
-        />
+        <link rel="canonical" href="https://dimo.org/industries/dealerships" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
@@ -467,8 +398,8 @@ export default function DealershipsPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Industries', url: 'https://www.dimo.org/#industries' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Industries', url: 'https://dimo.org/#industries' },
             { name: 'Dealerships' },
           ]}
         />
@@ -480,7 +411,6 @@ export default function DealershipsPage(): ReactNode {
           <FeatureSection1 />
           <FeatureSection2 />
           <HowItWorksSection />
-          <TestimonialsSection />
           <CTASection />
         </main>
 

@@ -84,7 +84,7 @@ the same names you'd see from a physical vehicle:
 | `powertrainType`                          | `"COMBUSTION"` (static)                                                                                            |
 | `powertrainCombustionEngineSpeed`         | RPM derived from a gear model — idle at 800, scales with speed and gear                                            |
 | `powertrainCombustionEngineECT`           | Engine coolant temperature in °C — models cold start warmup (~5 min to operating temp), then thermostat regulation |
-| `powertrainFuelSystemAbsoluteLevel`       | Fuel in liters (60L tank), drains with speed and RPM, auto-refuels at 10%                                         |
+| `powertrainFuelSystemAbsoluteLevel`       | Fuel in liters (60L tank), drains with speed and RPM, auto-refuels at 10%                                          |
 | `powertrainTransmissionTravelledDistance` | Odometer in km, accumulated from speed each tick                                                                   |
 | `chassisAxleRow1WheelLeftTirePressure`    | Tire pressure in kPa (~32 PSI nominal), slow independent drift per wheel                                           |
 | `chassisAxleRow1WheelRightTirePressure`   | Same                                                                                                               |
@@ -108,9 +108,9 @@ roads:
 | 18:30–00:00 | Parked overnight | —                                   |
 
 All signals flow into the Telemetry API in real time. You can query historical
-signal data via our Telemetry API, subscribe to live updates, or let them trigger
-webhooks and agentic workflows — same as any physical vehicle on the DIMO
-network.
+signal data via our Telemetry API, subscribe to live updates, or let them
+trigger webhooks and agentic workflows — same as any physical vehicle on the
+DIMO network.
 
 ---
 
@@ -151,8 +151,8 @@ permission model before your users hit it.
 **Step 4: Configure and start a drive**
 
 The simulator gives you control over the vehicle parameters before you start.
-Set the initial fuel level, odometer, and which route to run — then hit
-**Start Simulation** and the vehicle comes online.
+Set the initial fuel level, odometer, and which route to run — then hit **Start
+Simulation** and the vehicle comes online.
 
 ![Vehicle Simulator Config](/img/vehicle_simulator_config.png)
 
@@ -179,16 +179,16 @@ experience of any feature you're building — all from a virtual vehicle.
 The current simulator is solid for development and integration testing. Here's
 where we might be investing next:
 
-**🗺️ Better routes** — The current four routes cover NYC/NJ road types well but are
-limited in variety. We want to add more cities, more traffic patterns, and
+**🗺️ Better routes** — The current four routes cover NYC/NJ road types well but
+are limited in variety. We want to add more cities, more traffic patterns, and
 eventually dynamic route generation: give it an origin and destination and the
 routing engine builds the path from OSRM without needing a hand-crafted JSON
 file.
 
-**🛣️ Longer routes** — The longest route today is 32 km (the I-95 segment). We want
-to support full interstate drives — multi-state, multi-hour sessions — which is
-what you need to test long-distance trip modeling, EV range estimation, and
-fleet utilization analytics.
+**🛣️ Longer routes** — The longest route today is 32 km (the I-95 segment). We
+want to support full interstate drives — multi-state, multi-hour sessions —
+which is what you need to test long-distance trip modeling, EV range estimation,
+and fleet utilization analytics.
 
 **⚡ More signals** — The current signal set is ICE-focused. EV-specific signals
 (state of charge, charging status, target charge level, estimated range) are the

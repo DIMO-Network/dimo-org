@@ -10,7 +10,7 @@ import {
   CreditCard,
   ShieldCheck,
   ChevronDown,
-  CircleDollarSign
+  CircleDollarSign,
 } from 'lucide-react';
 
 const PRODUCT_NAME = 'Pay';
@@ -43,7 +43,7 @@ const FEATURES = [
       'Reward drivers for safe driving, eco-friendly habits, or loyalty. Customizable rewards programs to drive engagement and retention.',
     example:
       'Give drivers cashback for fuel-efficient driving or discounts at partner businesses.',
-  }
+  },
 ];
 
 function HeroSection() {
@@ -79,8 +79,8 @@ function HeroSection() {
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Incentivize your fleet with rewards for safe driving, or
-          encourage your customers to take their vehicle to a dealership
+          Incentivize your fleet with rewards for safe driving, or encourage
+          your customers to take their vehicle to a dealership
         </p>
 
         <div className={styles.heroButtons}>
@@ -105,12 +105,10 @@ function FeaturesSection() {
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
         <span className={styles.sectionEyebrow}>Product Features</span>
-        <h2 className={styles.sectionTitle}>
-          Payments Built for Mobility
-        </h2>
+        <h2 className={styles.sectionTitle}>Payments Built for Mobility</h2>
         <p className={styles.sectionSubtitle}>
-          From in-vehicle transactions to complex multi-party settlements,
-          DIMO Pay handles the unique payment needs of the automotive industry.
+          From in-vehicle transactions to complex multi-party settlements, DIMO
+          Pay handles the unique payment needs of the automotive industry.
         </p>
       </div>
 
@@ -133,12 +131,10 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>
-          Ready to Incentivize Drivers?
-        </h2>
+        <h2 className={styles.ctaTitle}>Ready to Incentivize Drivers?</h2>
         <p className={styles.ctaText}>
-          Enable vehicle-native payments and rewards.
-          Start processing payments in minutes.
+          Enable vehicle-native payments and rewards. Start processing payments
+          in minutes.
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
@@ -172,7 +168,7 @@ export default function PayPage(): ReactNode {
           content="Enable payments from inside the vehicle with customizable rewards."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.dimo.org/products/pay" />
+        <link rel="canonical" href="https://dimo.org/products/pay" />
       </Head>
 
       <div className={styles.industryPage}>
@@ -180,8 +176,8 @@ export default function PayPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://www.dimo.org/' },
-            { name: 'Products', url: 'https://www.dimo.org/#products' },
+            { name: 'Home', url: 'https://dimo.org/' },
+            { name: 'Products', url: 'https://dimo.org/#products' },
             { name: 'Pay' },
           ]}
         />

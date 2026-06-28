@@ -214,7 +214,8 @@ export const batteryFields: TelemetryField[] = [
     commonName: 'Battery Range',
     aggregationType: 'FloatAggregation!',
     units: 'km',
-    description: 'Remaining range in km based on current battery state of charge.',
+    description:
+      'Remaining range in km based on current battery state of charge.',
   },
   {
     signal: 'powertrainTractionBatteryStateOfChargeCurrent',
@@ -334,7 +335,8 @@ export const diagnosticsFields: TelemetryField[] = [
     commonName: 'Fuel Type',
     aggregationType: 'StringAggregation!',
     units: 'N/A',
-    description: 'PID 51 decoded - fuel type name (e.g. Gasoline, Diesel, Electric).',
+    description:
+      'PID 51 decoded - fuel type name (e.g. Gasoline, Diesel, Electric).',
   },
   {
     signal: 'obdOilTemperature',
@@ -348,7 +350,8 @@ export const diagnosticsFields: TelemetryField[] = [
     commonName: 'Commanded EGR',
     aggregationType: 'FloatAggregation!',
     units: 'percent',
-    description: 'PID 2C - Commanded Exhaust Gas Recirculation (EGR) percentage.',
+    description:
+      'PID 2C - Commanded Exhaust Gas Recirculation (EGR) percentage.',
   },
   {
     signal: 'obdCommandedEVAP',
@@ -390,21 +393,24 @@ export const diagnosticsFields: TelemetryField[] = [
     commonName: 'Distance Since DTC Clear',
     aggregationType: 'FloatAggregation!',
     units: 'km',
-    description: 'PID 31 - Distance travelled since diagnostic trouble codes were last cleared.',
+    description:
+      'PID 31 - Distance travelled since diagnostic trouble codes were last cleared.',
   },
   {
     signal: 'obdDistanceWithMIL',
     commonName: 'Distance with MIL On',
     aggregationType: 'FloatAggregation!',
     units: 'km',
-    description: 'PID 21 - Distance travelled with Malfunction Indicator Lamp (MIL) on.',
+    description:
+      'PID 21 - Distance travelled with Malfunction Indicator Lamp (MIL) on.',
   },
   {
     signal: 'obdWarmupsSinceDTCClear',
     commonName: 'Warmups Since DTC Clear',
     aggregationType: 'FloatAggregation!',
     units: 'N/A',
-    description: 'PID 30 - Number of warm-up cycles since diagnostic trouble codes were cleared.',
+    description:
+      'PID 30 - Number of warm-up cycles since diagnostic trouble codes were cleared.',
   },
   {
     signal: 'obdIsEngineBlocked',
@@ -495,7 +501,8 @@ export const engineFields: TelemetryField[] = [
     commonName: 'Oil Level (Relative)',
     aggregationType: 'FloatAggregation!',
     units: 'percent',
-    description: 'Engine oil level as a percentage of the recommended full level (0–100%).',
+    description:
+      'Engine oil level as a percentage of the recommended full level (0–100%).',
   },
   {
     signal: 'powertrainCombustionEngineECT',
@@ -523,14 +530,16 @@ export const engineFields: TelemetryField[] = [
     commonName: 'DEF Level',
     aggregationType: 'FloatAggregation!',
     units: 'percent',
-    description: 'Diesel Exhaust Fluid (DEF/AdBlue) level as a percentage of tank capacity (0–100%).',
+    description:
+      'Diesel Exhaust Fluid (DEF/AdBlue) level as a percentage of tank capacity (0–100%).',
   },
   {
     signal: 'powertrainCombustionEngineDieselExhaustFluidCapacity',
     commonName: 'DEF Tank Capacity',
     aggregationType: 'FloatAggregation!',
     units: 'liters',
-    description: 'Total capacity of the Diesel Exhaust Fluid (DEF/AdBlue) tank.',
+    description:
+      'Total capacity of the Diesel Exhaust Fluid (DEF/AdBlue) tank.',
   },
 ];
 
@@ -571,7 +580,8 @@ export const fuelFields: TelemetryField[] = [
     commonName: 'Accumulated Fuel Consumption',
     aggregationType: 'FloatAggregation!',
     units: 'liters',
-    description: 'Total accumulated fuel consumed over the lifetime of the vehicle.',
+    description:
+      'Total accumulated fuel consumed over the lifetime of the vehicle.',
   },
 ];
 
@@ -581,7 +591,8 @@ export const transmissionFields: TelemetryField[] = [
     commonName: 'Current Gear',
     aggregationType: 'FloatAggregation!',
     units: 'N/A',
-    description: 'The current engaged gear of the transmission. Negative values may indicate reverse.',
+    description:
+      'The current engaged gear of the transmission. Negative values may indicate reverse.',
   },
   {
     signal: 'powertrainTransmissionSelectedGear',
@@ -610,7 +621,8 @@ export const transmissionFields: TelemetryField[] = [
     commonName: 'Retarder Torque',
     aggregationType: 'FloatAggregation!',
     units: 'percent',
-    description: 'Actual torque of the transmission retarder as a percentage of maximum.',
+    description:
+      'Actual torque of the transmission retarder as a percentage of maximum.',
   },
   {
     signal: 'powertrainTransmissionRetarderTorqueMode',
@@ -709,7 +721,8 @@ export const brakesFields: TelemetryField[] = [
     commonName: 'Brake Pedal Position',
     aggregationType: 'FloatAggregation!',
     units: 'percent',
-    description: 'Brake pedal position as a percentage of maximum travel (0–100%).',
+    description:
+      'Brake pedal position as a percentage of maximum travel (0–100%).',
   },
   {
     signal: 'chassisParkingBrakeIsEngaged',

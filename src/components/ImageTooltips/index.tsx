@@ -16,18 +16,22 @@ export type ImageTooltipsProps = {
   tooltipAreas?: TooltipArea[];
 };
 
-const ImageTooltips: React.FC<ImageTooltipsProps> = ({ src, alt, tooltipAreas = [] }) => {
+const ImageTooltips: React.FC<ImageTooltipsProps> = ({
+  src,
+  alt,
+  tooltipAreas = [],
+}) => {
   const [activeTooltip, setActiveTooltip] = useState<TooltipArea | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLImageElement>(null);
 
   const handleMouseEnter = (area: TooltipArea, event: React.MouseEvent) => {
     if (!imageRef.current) return;
-    
+
     const rect = imageRef.current.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    
+
     setTooltipPosition({ x, y });
     setActiveTooltip(area);
   };
@@ -47,14 +51,14 @@ const ImageTooltips: React.FC<ImageTooltipsProps> = ({ src, alt, tooltipAreas = 
 
   return (
     <div className={styles.imageContainer}>
-      <img 
+      <img
         ref={imageRef}
-        src={src} 
-        alt={alt} 
+        src={src}
+        alt={alt}
         className={styles.image}
         onMouseMove={handleMouseMove}
       />
-      
+
       {tooltipAreas.map((area, index) => (
         <div
           key={index}
@@ -65,11 +69,11 @@ const ImageTooltips: React.FC<ImageTooltipsProps> = ({ src, alt, tooltipAreas = 
             width: `${area.width}%`,
             height: `${area.height}%`,
           }}
-          onMouseEnter={(e) => handleMouseEnter(area, e)}
+          onMouseEnter={e => handleMouseEnter(area, e)}
           onMouseLeave={handleMouseLeave}
         />
       ))}
-      
+
       {activeTooltip && (
         <div
           className={styles.tooltip}

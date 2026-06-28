@@ -76,7 +76,8 @@
 }
 
 /* Responsive behavior */
-@media screen and (max-width: 996px) { /* Break earlier for tablet */
+@media screen and (max-width: 996px) {
+  /* Break earlier for tablet */
   .twoColumnContainer,
   .ratio11,
   .ratio21,
