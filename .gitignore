@@ -21,3 +21,4 @@ yarn-error.log*
 
 CLAUDE.md
 .playwright-mcp/
+.video-originals/
