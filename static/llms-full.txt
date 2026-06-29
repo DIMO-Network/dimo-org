@@ -2,6 +2,7 @@
 
 > Concatenated developer documentation for the DIMO vehicle data platform.
 > 39 documents. Source: https://dimo.org/docs
+> Usage: public developer docs — AI training, search, and inference permitted (see the Content-Signal HTTP header). Attribution: DIMO (https://dimo.org).
 
 # What Can You Build?
 
@@ -18,44 +19,28 @@ As a developer, you can plug into the network in any of the following roles:
 
 ## 📱 App Developers
 
-<div style={{ marginBottom: '1rem' }}>
-  <span className="badge badge--success">Beginner</span> <span className="badge badge--info">Available</span>
-</div>
-
 **Consume Data through APIs and Webhooks**
 
 - Build apps with the full DIMO login experience and vehicle permission sharing
 - Get notified through webhooks and access real-time or historical vehicle data via the API
 - Create one-of-a-kind experiences for vehicle owners
 
-<a className="button button--primary" href="/docs/introduction/where-can-you-start" style={{ maxHeight: '36px' }}>
   Quick Start →
-</a>
 
 ---
 
 ## ✨ AI Agents
-
-<div style={{ marginBottom: '1rem' }}>
-  <span className="badge badge--success">Beginner</span> <span className="badge badge--secondary">Alpha</span>
-</div>
 
 **Build Intelligent Vehicle-Powered Experiences**
 
 - Create autonomous vehicle agents using your business's vehicle data
 - Automate processes like appointment scheduling, repairs, and much more
 
-<a className="button button--primary" href="/docs/introduction/where-can-you-start" style={{ maxHeight: '36px' }}>
   Quick Start →
-</a>
 
 ---
 
 ## 📊 Connection Oracles
-
-<div style={{ marginBottom: '1rem' }}>
-  <span className="badge badge--warning">Intermediate</span> <span className="badge badge--info">Available</span>
-</div>
 
 **Contribute Data through Connections**
 
@@ -63,17 +48,11 @@ As a developer, you can plug into the network in any of the following roles:
 - Integrate your own telematics data feed and make it available to other developers
 - Contribute to network discoverability and data availability
 
-<a className="button button--primary" href="/docs/introduction/where-can-you-start" style={{ maxHeight: '36px' }}>
   Quick Start →
-</a>
 
 ---
 
 ## 💾 Storage Nodes
-
-<div style={{ marginBottom: '1rem' }}>
-  <span className="badge badge--danger">Advanced</span> <span className="badge badge--secondary">Alpha</span>
-</div>
 
 **Store Data with DIMO Storage Nodes**
 
@@ -81,17 +60,11 @@ As a developer, you can plug into the network in any of the following roles:
 - Provide decentralized storage solutions for vehicle data
 - Contribute to network resilience and service availability
 
-<a className="button button--primary" href="/docs/introduction/where-can-you-start" style={{ maxHeight: '36px' }}>
   Quick Start →
-</a>
 
 ---
 
 ## 🔍 Data Validators
-
-<div style={{ marginBottom: '1rem' }}>
-  <span className="badge badge--danger">Advanced</span> <span className="badge badge--secondary">Coming Soon</span>
-</div>
 
 **Validate data as an attestor**
 
@@ -108,14 +81,8 @@ As a developer, you can plug into the network in any of the following roles:
 
 Explore our comprehensive documentation and get started building on DIMO today.
 
-<div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '1.5rem' }}>
-  <a className="button button--primary button--lg" href="/docs/getting-started/create-your-account" style={{ maxHeight: '46px' }}>
     Sign Up
-  </a>
-  <a className="button button--outline button--primary button--lg" href="/docs/api-references/attestation-api" style={{ maxHeight: '46px'}}>
     API References
-  </a>
-</div>
 
 ---
 
@@ -354,7 +321,6 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
       />
     Use your **Vehicle JWT** in [Telemetry API](https://telemetry-api.dimo.zone/). 
 
-      <p>Simply copy and paste this following header & query while replacing `<yourVehicleJwt>` and `<vehicleTokenId>`: </p>
     
       ```json
       { "Authorization": "<yourVehicleJwt>" }
@@ -367,12 +333,10 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
         )
       }
       ```
-      <iframe 
         src="https://telemetry-api.dimo.zone"
         width="100%"
         height="600px"
       >
-      </iframe>
 
 ---
 
@@ -682,7 +646,6 @@ both the [DIMO Connect Client SDK](/docs/build/building-with-tools/client-sdk-di
 Deploying an app literally takes you less than **60 seconds**.
 
 ## How It Works
-<iframe 
 	width="560" 
 	height="315" 
 	src="https://www.youtube.com/embed/xGdE8GgZ1iI?si=HA_tz5lrWdJlUfT0" 
@@ -1311,12 +1274,9 @@ Generate verifiable proof about a vehicle's data.
 ## Overview
 
   leftColumn={
-    <div>
     The DIMO Attestation API provides cryptographic, on-chain attestations for vehicle data and identity verification. This API enables developers to generate verifiable attestations.
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -1340,7 +1300,6 @@ Generate verifiable proof about a vehicle's data.
           }
         ]}
       />
-    </div>
   }
 />
 
@@ -1348,7 +1307,6 @@ Generate verifiable proof about a vehicle's data.
 
   id="vin-vc"
   leftColumn={
-    <div>
       Generates the VIN attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -1369,10 +1327,8 @@ Generate verifiable proof about a vehicle's data.
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v2/attestation/vin/:tokenId"
         codeExamples={[{
@@ -1416,7 +1372,6 @@ Generate verifiable proof about a vehicle's data.
     "message": "VC generated successfully. Retrieve using the provided GQL URL and query parameter."
 }`}
       />
-    </div>
   }
 />
 
@@ -1424,7 +1379,6 @@ Generate verifiable proof about a vehicle's data.
 
   id="odometer-vc"
   leftColumn={
-    <div>
       Generates the odometer statement attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -1451,10 +1405,8 @@ Generate verifiable proof about a vehicle's data.
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v2/attestation/odometer-statement/:tokenId"
         codeExamples={[{
@@ -1494,7 +1446,6 @@ Generate verifiable proof about a vehicle's data.
   "message": "VC generated successfully, retrieve using the provided telemetry-api."
 }`}
       />
-    </div>
   }
 />
 
@@ -1502,7 +1453,6 @@ Generate verifiable proof about a vehicle's data.
 
   id="health-vc"
   leftColumn={
-    <div>
       Generates the vehicle health attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -1535,10 +1485,8 @@ Generate verifiable proof about a vehicle's data.
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v2/attestation/vehicle-health/:tokenId"
         codeExamples={[{
@@ -1580,7 +1528,6 @@ Generate verifiable proof about a vehicle's data.
   "message": "VC generated successfully, retrieve using the provided telemetry-api."
 }`}
       />
-    </div>
   }
 />
 
@@ -1588,7 +1535,6 @@ Generate verifiable proof about a vehicle's data.
 
   id="position-vc"
   leftColumn={
-    <div>
       Generates the vehicle position attestation for a given vehicle if it has never been created, or
       if it has expired. If an unexpired attestation is found, returns the attestation. After
       you've obtained the <code>rawVC</code> from the response, you can use it to perform
@@ -1615,10 +1561,8 @@ Generate verifiable proof about a vehicle's data.
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v2/attestation/vehicle-position/:tokenId"
         codeExamples={[{
@@ -1658,7 +1602,6 @@ Generate verifiable proof about a vehicle's data.
   "message": "VC generated successfully, retrieve using the provided telemetry-api."
 }`}
       />
-    </div>
   }
 />
 
@@ -1667,7 +1610,6 @@ Generate verifiable proof about a vehicle's data.
 Insurance cards, registrations, service invoices, titles, inspections, driver licenses, and other vehicle paperwork live on DIMO as signed CloudEvents. You post them to the DIMO Ingest Server (DIS) attestation endpoint, and you pull them back out through the [Fetch API](/docs/api-references/fetch-api/introduction). For large files, the Fetch API returns a presigned S3 URL on `dataUrl` instead of inlining the bytes.
 
   leftColumn={
-    <div>
       DIS accepts two CloudEvent type families on the attestation endpoint in addition to `dimo.attestation`:
 
         title="CloudEvent types"
@@ -1694,10 +1636,8 @@ Insurance cards, registrations, service invoices, titles, inspections, driver li
           { name: "dimo.document.unknown", description: "Returned by the Extract API when classification fails. Useful as a placeholder; not normally posted directly." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -1739,7 +1679,6 @@ Insurance cards, registrations, service invoices, titles, inspections, driver li
         }]}
         defaultLanguage="shell"
       />
-    </div>
   }
 />
 
@@ -1767,7 +1706,6 @@ To see which document types exist for a vehicle before querying, hit [`available
 The Extract API is the parser. You hand it a vehicle document; it tells you what the document is and what fields it contains. That is the whole job. It does not store the file, it does not sign a CloudEvent, and it does not post anything to DIS. If you already have your own storage and lifecycle pipeline and just need classification plus field extraction, this is the right service to call. If you want the full upload + storage + attestation flow handled for you, go through the orchestration layer in the DIMO mobile backend instead.
 
   leftColumn={
-    <div>
       Upload a PDF or image (JPEG, PNG, GIF, WebP, TIFF, BMP, up to 20 MB). You get back the inferred CloudEvent `type` and the extracted fields. Auth is a developer-license JWT in the standard `Authorization: Bearer` header.
 
         title="Request (multipart/form-data)"
@@ -1795,10 +1733,8 @@ The Extract API is the parser. You hand it a vehicle document; it tells you what
       />
 
       If you pass an unknown value or skip the field entirely, the service quietly falls back to the full spec set. There is a small efficiency reason to do this on purpose: the un-hinted path keeps the prompt cache warm, so requests run a little faster. When in doubt, leave `category_hint` off.
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -1833,7 +1769,6 @@ The Extract API is the parser. You hand it a vehicle document; it tells you what
   }
 }`}
       />
-    </div>
   }
 />
 
@@ -2070,13 +2005,10 @@ Utility endpoints for Device Definitions.
 ## Overview
 
   leftColumn={
-    <div>
     The Device Definitions API provides helper functions for accessing vehicle device definitions that are now stored in Tableland, a decentralized cloud database. The API enables developers to decode Vehicle Identification Numbers (VINs) to retrieve corresponding device definition IDs and search for vehicle definitions by make, model, year, and other filters.
 
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -2091,19 +2023,13 @@ Utility endpoints for Device Definitions.
         ]}
       />
 
-      {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
-
-    </div>
   }
 />
-
-{/* VIN DECODING REQUESTS */}
 
 ### Submit a VIN decoding request
 
   id="decode-vin"
   leftColumn={
-    <div>
       Submits a decoding request for vehicle identification number, returns the device definition ID corresponding to the VIN.
       Use <code>application/json</code> for raw body parameters.
 
@@ -2122,10 +2048,8 @@ Utility endpoints for Device Definitions.
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/device-definitions/decode-vin"
         codeExamples={[{
@@ -2175,7 +2099,6 @@ Utility endpoints for Device Definitions.
     newTransactionHash: ''
   }`}
       />
-    </div>
   }
 />
 
@@ -2184,7 +2107,6 @@ Utility endpoints for Device Definitions.
   id="search"
   stickyRight={true}
   leftColumn={
-    <div>
       Retrieves a list of device definitions by search filters.
 
         parameters={[
@@ -2226,10 +2148,8 @@ Utility endpoints for Device Definitions.
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/device-definitions/search"
         codeExamples={[{
@@ -2343,7 +2263,6 @@ Utility endpoints for Device Definitions.
   }
 }`}
       />
-    </div>
   }
 />
 
@@ -2359,13 +2278,10 @@ Open catalog of DIMO-connected vehicles, and other entities.
 ## Overview
 
   leftColumn={
-    <div>
     The Identity API serves as an open registry for vehicles and developers on the DIMO Network. All data in the Identity API is public, can be read by anyone, and does not require any authentication. The DIMO Identity API is written in GraphQL, and there is only a single endpoint, <code>/query</code>, which is used for executing queries.
 
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -2373,7 +2289,6 @@ Open catalog of DIMO-connected vehicles, and other entities.
           },
         ]}
       />
-    </div>
   }
 />
 
@@ -2381,7 +2296,6 @@ Open catalog of DIMO-connected vehicles, and other entities.
 
   stickyRight={true}
   leftColumn={
-    <div>
       The basic unit of components of a GraphQL schema are object types - it represents an object you can fetch for and the definitions of what fields will be included in the response. A representation of GraphQL schema language may look like this in Identity API:
 
       title=""
@@ -2404,10 +2318,8 @@ Open catalog of DIMO-connected vehicles, and other entities.
         },
       ]}
     />
-    </div>
   }
   rightColumn={
-          <pre><code className="language-graphql">{`type SyntheticDevice {
     tokenId: Int!
     integrationId: Int!
     address: Address!
@@ -2420,7 +2332,6 @@ Open catalog of DIMO-connected vehicles, and other entities.
 
   stickyRight={true}
   leftColumn={
-    <div>
       Scalars are the value types that every field in a GraphQL document eventually resolves to. It can be viewed as the primitive data type that stores a single value. There are 5 built-in scalars: int, float, string, Boolean, and id - we have also defined custom scalars to help define the data we return.
 
       title=""
@@ -2467,10 +2378,8 @@ Open catalog of DIMO-connected vehicles, and other entities.
         },
       ]}
     />
-    </div>
   }
   rightColumn={
-<pre><code className="language-graphql">{`# Sample query
 
 query GetVehicleMMY($MyAddress: Address!) {
     vehicles(filterBy: {owner: $MyAddress}, first: 100) {
@@ -3498,9 +3407,6 @@ Below are common queries you can try in the playground above. Simply copy any qu
 
 ### General Info
 
-<details>
-<summary>Getting the total count of vehicles on the DIMO Network</summary>
-
 ```graphql
 query GetTotalVehicles {
   vehicles (first: 10) {
@@ -3509,14 +3415,9 @@ query GetTotalVehicles {
 }
 ```
 
-</details>
-
 ---
 
 ### Developer License Info
-
-<details>
-<summary>Getting information on Developer License for a given License Token ID</summary>
 
 ```graphql
 query GetDevLicenseByTokenId {
@@ -3536,11 +3437,6 @@ query GetDevLicenseByTokenId {
 }
 ```
 
-</details>
-
-<details>
-<summary>Getting a list of Vehicle Token IDs and Token DIDs granted to a given Developer License</summary>
-
 ```graphql
 query GetVehicleByDevLicense {
   vehicles(filterBy: { privileged: "<dev_license_0x>" }, first: 100) {
@@ -3558,14 +3454,9 @@ query GetVehicleByDevLicense {
 }
 ```
 
-</details>
-
 ---
 
 ### Vehicle Ownership Info
-
-<details>
-<summary>Getting the total count of vehicles for a given owner</summary>
 
 ```graphql
 query GetVehiclesByOwner {
@@ -3574,11 +3465,6 @@ query GetVehiclesByOwner {
   }
 }
 ```
-
-</details>
-
-<details>
-<summary>Getting a Make/Model/Year and vehicle <code>tokenId</code>, <code>tokenDID</code> list for a given owner</summary>
 
 ```graphql
 query GetVehicleMMYByOwner {
@@ -3596,14 +3482,9 @@ query GetVehicleMMYByOwner {
 }
 ```
 
-</details>
-
 ---
 
 ### Vehicle Basic Info
-
-<details>
-<summary>Getting Make/Model/Year and owner address for a given Vehicle Token ID</summary>
 
 ```graphql
 query GetVehicleMMYByTokenId {
@@ -3618,16 +3499,11 @@ query GetVehicleMMYByTokenId {
 }
 ```
 
-</details>
-
 ---
 
 ### Vehicle Permissions (SACD) Info
 
 Permissions are encoded in hexadecimals - reference the [common permissions table](https://docs.dimo.org/developer-platform/getting-started/developer-guide/permissions-contract-sacd#permissions-table) for details.
-
-<details>
-<summary>Getting permissions shared for a given Vehicle Token ID</summary>
 
 ```graphql
 query GetSacdForVehicle {
@@ -3645,14 +3521,9 @@ query GetSacdForVehicle {
 }
 ```
 
-</details>
-
 ---
 
 ### Rewards
-
-<details>
-<summary>Getting the Rewards data for a given owner</summary>
 
 ```graphql
 query GetRewardsByOwner {
@@ -3661,11 +3532,6 @@ query GetRewardsByOwner {
   }
 }
 ```
-
-</details>
-
-<details>
-<summary>Getting the Reward history for a given owner</summary>
 
 ```graphql
 query GetRewardHistoryByOwner {
@@ -3692,14 +3558,9 @@ query GetRewardHistoryByOwner {
 }
 ```
 
-</details>
-
 ---
 
 ### Vehicle Device Definitions
-
-<details>
-<summary>Getting the Device Definition ID by a given Vehicle Token ID</summary>
 
 ```graphql
 query GetDDIdByVehicleTokenId {
@@ -3710,11 +3571,6 @@ query GetDDIdByVehicleTokenId {
   }
 }
 ```
-
-</details>
-
-<details>
-<summary>Getting the Device Definitions by Device Definition ID</summary>
 
 ```graphql
 query GetDefinitionByDeviceId {
@@ -3729,8 +3585,6 @@ query GetDefinitionByDeviceId {
 }
 ```
 
-</details>
-
 ---
 
 # Telemetry API Introduction
@@ -3743,13 +3597,10 @@ Access private data from the DIMO-connected vehicles.
 ## Overview
 
   leftColumn={
-    <div>
     The Telemetry API is the entrypoint for getting realtime and historical vehicle data for DIMO-connected vehicles. The DIMO Telemetry API is written in GraphQL, and there is only a single endpoint, <code>/query</code>, which is used for executing queries.
 
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -3757,7 +3608,6 @@ Access private data from the DIMO-connected vehicles.
           },
         ]}
       />
-    </div>
   }
 />
 
@@ -3771,9 +3621,7 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
 
   stickyRight={true}
   leftColumn={
-    <div>
       The Telemetry API displays data in two aggregation types, FloatAggregation & StringAggregation. To specify for each aggregation type, you will need to provide an interval.<br/><br/>
-      <h4>Interval String</h4>
       Interval is the time span that is used for aggregating the data with. A
       duration string is a sequence of decimal numbers, each with optional
       fraction and a unit suffix, such as <code>300ms</code>, <code>-1.5h</code>
@@ -3800,7 +3648,6 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
         ]}
       />
 
-      <h4>FloatAggregationType</h4>
       Aggregation type for floats.
 
         title=""
@@ -3836,7 +3683,6 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
         ]}
       />
 
-      <h4>StringAggregationType</h4>
       Aggregation type for strings.
 
         title=""
@@ -3864,7 +3710,6 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
         ]}
       />
 
-      <h4>StringValueFilter</h4>
       Filter type for vehicle events.
 
         title=""
@@ -3888,7 +3733,6 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
         ]}
       />
 
-      <h4>SignalFloatFilter</h4>
       Per-signal value filter available on individual float signal fields. Use as the `filter` argument on any float signal in the query.
 
         title=""
@@ -3932,7 +3776,6 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
         ]}
       />
 
-      <h4>SignalFilter</h4>
       The SignalFilter filters signals by source type, valid source types are described below:
 
         title="Valid Source Input"
@@ -3955,10 +3798,8 @@ Please review our section on [Authentication](/docs/getting-started/authenticati
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`# Sample Telemetry Query
 
 query {
     signals(
@@ -3985,7 +3826,6 @@ query {
 
   stickyRight={true}
   leftColumn={
-    <div>
       Scalars are the value types that every field in a GraphQL document eventually resolves to. It can be viewed as the primitive data type that stores a single value. There are 5 built-in scalars: <code>int</code>, <code>float</code>, <code>string</code>, <code>Boolean</code>, and <code>id</code> - we have also defined custom scalars to help define the data we return.
 
       title=""
@@ -4028,10 +3868,8 @@ query {
         },
       ]}
     />
-    </div>
   }
   rightColumn={
-<pre><code className="language-graphql">{`# Sample Telemetry Query
 
 query {
     signals(
@@ -4076,7 +3914,6 @@ sources.
 
   stickyRight={true}
   leftColumn={
-    <div>
       The signals  resource is an aggregation of detailed signal fields, used to
       retrieve vehicle signal data between a specified time period in the past.
 
@@ -4109,12 +3946,9 @@ sources.
           },
           ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
     When using <code>signals</code>, be sure to also include the relevant aggregation type.
-    <pre><code className="language-graphql">{`# Sample Telemetry Query
 
 query GetHistoricalSignals{
     signals(
@@ -4134,7 +3968,6 @@ query GetHistoricalSignals{
 
   stickyRight={true}
   leftColumn={
-    <div>
       The signalsLatest resource is a SignalCollection that returns data for any signal that was most recently seen matching the filter.
 
         title="Arguments"
@@ -4151,12 +3984,9 @@ query GetHistoricalSignals{
           },
           ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
     When using <code>signalsLatest</code>, be sure to include a value and optionally a timestamp.
-    <pre><code className="language-graphql">{`# Sample Telemetry Query
 
 query GetLatestSignals{
     signalsLatest(tokenId: 12345) {
@@ -4302,8 +4132,6 @@ The `segments` query allows you to retrieve trip segments.
 
   stickyRight={true}
   leftColumn={
-    <div>
-      <h3>Query Arguments</h3>
         title="Arguments"
         parameters={[
           {
@@ -4363,7 +4191,6 @@ The `segments` query allows you to retrieve trip segments.
         ]}
       />
 
-      <h3>Response Fields (Segment)</h3>
         title="Fields"
         parameters={[
           {
@@ -4404,7 +4231,6 @@ The `segments` query allows you to retrieve trip segments.
         ]}
       />
 
-      <h3>SegmentConfig</h3>
         title="Configuration"
         parameters={[
           {
@@ -4435,7 +4261,6 @@ The `segments` query allows you to retrieve trip segments.
         ]}
       />
 
-      <h3>Input Types</h3>
         title="SegmentSignalRequest"
         parameters={[
           {
@@ -4459,11 +4284,8 @@ The `segments` query allows you to retrieve trip segments.
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
-      <pre><code className="language-graphql">{`query GetSegments {
   segments(
     tokenId: 117315
     from: "2025-11-01T09:21:19Z"
@@ -4493,8 +4315,6 @@ The `segments` query allows you to retrieve trip segments.
   }
 }`}</code></pre>
 
-      <h4>Response Example</h4>
-      <pre><code className="language-json">{`{
   "data": {
     "segments": [
       {
@@ -4519,7 +4339,6 @@ The `segments` query allows you to retrieve trip segments.
     ]
   }
 }`}</code></pre>
-    </div>
   }
 />
 
@@ -4726,7 +4545,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns a summary of all signal and event data for a given vehicle, including total signal count, available signal names, and per-signal/per-event breakdowns with first/last seen timestamps.
 
         title="Arguments"
@@ -4746,7 +4564,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
         ]}
       />
 
-      <h4>DataSummary</h4>
         title="Fields"
         parameters={[
           {
@@ -4781,11 +4598,8 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
-      <pre><code className="language-graphql">{`query GetDataSummary {
   dataSummary(tokenId: 12345) {
     numberOfSignals
     availableSignals
@@ -4805,7 +4619,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
     }
   }
 }`}</code></pre>
-    </div>
   }
 />
 
@@ -4813,7 +4626,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns attestations for a given vehicle. Attestations are signed records that certify vehicle data.
 
         title="Arguments"
@@ -4839,7 +4651,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
         ]}
       />
 
-      <h4>AttestationFilter</h4>
         title="Filter Fields"
         parameters={[
           {
@@ -4887,7 +4698,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
         ]}
       />
 
-      <h4>Attestation</h4>
         title="Fields"
         parameters={[
           {
@@ -4942,11 +4752,8 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
-      <pre><code className="language-graphql">{`query GetAttestations {
   attestations(
     tokenId: 12345
     filter: {
@@ -4965,7 +4772,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
     tags
   }
 }`}</code></pre>
-    </div>
   }
 />
 
@@ -4973,10 +4779,7 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns one record per calendar day in the date range, summarizing vehicle activity. Maximum date range: 31 days.
-
-      <strong>Note:</strong> The <code>mechanism</code> must be <code>ignitionDetection</code>, <code>frequencyAnalysis</code>, or <code>changePointDetection</code>. The <code>idling</code>, <code>refuel</code>, and <code>recharge</code> mechanisms are not supported for daily activity.
 
         title="Arguments"
         parameters={[
@@ -5031,7 +4834,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
         ]}
       />
 
-      <h4>DailyActivity</h4>
         title="Fields"
         parameters={[
           {
@@ -5066,11 +4868,8 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
-      <pre><code className="language-graphql">{`query GetDailyActivity {
   dailyActivity(
     tokenId: 12345
     from: "2025-11-01T00:00:00Z"
@@ -5096,8 +4895,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
   }
 }`}</code></pre>
 
-      <h4>Response Example</h4>
-      <pre><code className="language-json">{`{
   "data": {
     "dailyActivity": [
       {
@@ -5119,7 +4916,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
     ]
   }
 }`}</code></pre>
-    </div>
   }
 />
 
@@ -5127,10 +4923,7 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns the latest VIN Verifiable Credential (VC) for a given vehicle token.
-
-      <strong>Note:</strong> Requires the <code>VEHICLE_VIN_CREDENTIAL</code> privilege.
 
         title="Arguments"
         parameters={[
@@ -5143,7 +4936,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
         ]}
       />
 
-      <h4>VINVC</h4>
         title="Fields"
         parameters={[
           {
@@ -5193,11 +4985,8 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
           }
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
-      <pre><code className="language-graphql">{`query GetVINVC {
   vinVCLatest(tokenId: 12345) {
     vin
     recordedBy
@@ -5207,7 +4996,6 @@ Supplementary queries for vehicle data summaries, attestations, and daily activi
     validTo
   }
 }`}</code></pre>
-    </div>
   }
 />
 
@@ -5220,7 +5008,6 @@ URL: https://dimo.org/docs/api-references/token-exchange-api
 # Token Exchange API
 Gateway to obtaining a JWT to access protected API services.
 
-{/* TODO: Add links */}
 :::info Developer Notes
 New to authentication on DIMO? Check out the Authentication Explainer here, or
 check out our video on how the different JSON Web Tokens (JWTs) work.
@@ -5229,12 +5016,9 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
 ## Overview
 
   leftColumn={
-    <div>
     This is a private API endpoint for developers on the DIMO Network. It handles the exchange to obtain a Vehicle JWT. When users shared permissions with an app, the app can now request for vehicle data on behalf of the users.
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -5243,9 +5027,7 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
           },
         ]}
       />
-      {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
 
-    </div>
   }
 />
 
@@ -5254,7 +5036,6 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
   id="exchange"
   stickyRight={true}
   leftColumn={
-    <div>
       Creates a token exchange to obtain a Vehicle JWT. The response will provide a short-lived token that last you 10 minutes to access additional vehicle information such as Trips and Telemetry data.
 
         parameters={[
@@ -5278,10 +5059,8 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v1/tokens/exchange"
         codeExamples={[{
@@ -5329,7 +5108,6 @@ check out our video on how the different JSON Web Tokens (JWTs) work.
     "token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJmMGM3NTc5ZmYyYTAzMGY0NmY1YzVkMzMyY2YyYjMyMzkxMzIxZGIifQ.eyJjb250cmFjdF9hZGRyZXNzIjoiMHhiYTU3MzhhMThkODNkNDE4NDdkZmZiZGM2MTAxZDM3YzY5YzliMGNmIiwiZXhwIjoxNzA2MDM4MTI4LCJpYXQiOjE3MDYwMzc1MjgsImlzcyI6Imh0dHBzOi8vYXV0aC1yb2xlcy1yaWdodHMuZGltby56b25lIiwicHJpdmlsZWdlX2lkcyI6WzRdLCJzdWIiOiIweGJBNTczOGExOGQ4M0Q0MTg0N2RmRmJEQzYxMDFkMzdDNjljOUIwY0YvMjE5NTciLCJ0b2tlbl9pZCI6IjIxOTU3In0.0J3HIsNeG5-JvMBcTwR8KHhTnXb31jvwjxiKVRnNaFidE0vLbyd6PtPsouniZQMIC46wzqwm2c7aZ61WhPIx9p5TB-cKcMmeKFE9mFZfBuSmvNbDd5icAvkxogWlNPki5WM2_otaGf9WtsZPlWW9GgUmBoPaRhiKB3fX7TPROcn0tTjtVir9HJKnf2CMkDwTk9rZxer8eGB6ekBSJr1aDjdqlY6HRxF_azy_rWVdzB1Wd1He9KyB3HHr1qBk5XK8d_zTA-4X3i3IEP5Z8Q3gxgoQRem70SnBNpjJjeRgAgzjfqHnKaFcjhKlxWD0h9mnpGWvd3oZLd9BPqR3WyDUCA"
 }`}
       />
-    </div>
   }
 />
 
@@ -5345,7 +5123,6 @@ Vehicle Triggers is a way for DIMO to automatically send real-time data to your 
 Think of it like a "push notification" for servers — instead of you constantly checking the API (polling) for updates,
 your app now gets notified instantly when something happens.
 
-{/* TODO: Add links */}
 :::info Developer Notes
 Webhooks that you configure are tied to a specific Developer License.
 
@@ -5356,14 +5133,11 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 
   stickyLeft={true}
   leftColumn={
-    <div>
     Webhooks can also be setup directly via the DIMO Developer Console, but the options below provide a programmatic way of configuring vehicle triggers and subscribing vehicles to triggers you have configured.
     Webhooks are currently available in public beta. If you have feedback to
     share, please reach out to <a href="mailto:contact@dimo.org">contact@dimo.org</a>.
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'GET',
@@ -5423,9 +5197,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
         ]}
       />
 
-      {/* TODO: ADD A HEADERS SECTION FOR DEV JWT */}
-
-    </div>
   }
 />
 
@@ -5434,12 +5205,9 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="list-webhooks"
   leftColumn={
-    <div>
       Retrieves a list of all the webhooks that have been created under your Developer License.
-    </div>
   }
   rightColumn={
-    <div>
         requestType="GET"
         path="/v1/webhooks"
         codeExamples={[{
@@ -5498,7 +5266,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       }
 ]`}
       />
-    </div>
   }
 />
 
@@ -5507,11 +5274,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyRight={true}
   id="create-webhook"
   leftColumn={
-    <div>
       Registers a new webhook with the specified configurations and conditions.
 
-      {/* TODO: Inline linking, code, fomatting, etc */}
-      {/* TODO: Read thru and fix up all language, need better examples/samples in new code blocks */}
         parameters={[
           {
             name: "service",
@@ -5533,10 +5297,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
             expandable: {
               summary: "CEL Conditions",
               content: (
-                <div>
                   To learn more about how CEL conditions work, check out{" "}
                     this README
-                </div>
               ),
               defaultOpen: false
             }
@@ -5579,10 +5341,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v1/webhooks"
         codeExamples={[{
@@ -5648,7 +5408,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "message": "Webhook registered successfully"
   }`}
       />
-    </div>
   }
 />
 
@@ -5657,12 +5416,9 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="get-webhook-signals"
   leftColumn={
-    <div>
       Retrieves a list of signal names available for the data field.
-    </div>
   }
   rightColumn={
-    <div>
         requestType="GET"
         path="/v1/webhooks/signals"
         codeExamples={[{
@@ -5703,7 +5459,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
       },
   ...`}
       />
-    </div>
   }
 />
 
@@ -5712,7 +5467,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="update-webhook"
   leftColumn={
-    <div>
       Updates the parameters or configurations of an existing webhook via the
       webhooks webhookId.
         parameters={[
@@ -5730,10 +5484,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="PUT"
         path="/v1/webhooks/:webhookId"
         codeExamples={[{
@@ -5800,7 +5552,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "message": "Webhook updated successfully"
   }`}
       />
-    </div>
   }
 />
 
@@ -5809,7 +5560,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="delete-webhook"
   leftColumn={
-    <div>
       Deletes an existing webhook that was configured under your Developer
       License. In order to successfully delete a webhook, you must have first
       unsubscribed all vehicles from the webhook. Otherwise, the deletion will fail.
@@ -5822,10 +5572,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="DELETE"
         path="/v1/webhooks/:webhookId"
         codeExamples={[{
@@ -5859,7 +5607,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "message": "Webhook deleted successfully"
   }`}
       />
-    </div>
   }
 />
 
@@ -5868,7 +5615,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="vehicles-subbed-to-webhook"
   leftColumn={
-    <div>
       Lists all of the vehicles that are subscribed to a specific webhook that you've created.
         parameters={[
           {
@@ -5879,10 +5625,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="GET"
         path="/v1/webhooks/:webhookId"
         codeExamples={[{
@@ -5916,7 +5660,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     [12345, 54321]
 }`}
       />
-    </div>
   }
 />
 
@@ -5925,7 +5668,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="webhook-subs-per-vehicle"
   leftColumn={
-    <div>
       Lists all the webhooks that a provided vehicle tokenDID is subscribed to.
         parameters={[
           {
@@ -5936,10 +5678,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="GET"
         path="/v1/webhooks/vehicles/:tokenDID"
         codeExamples={[{
@@ -5976,7 +5716,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "description": "Fires when a vehicle begins charging"
   }`}
       />
-    </div>
   }
 />
 
@@ -5985,7 +5724,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="subscribe-vehicle"
   leftColumn={
-    <div>
       Subscribes a vehicle tokenDID to a specified webhook.
         parameters={[
           {
@@ -6002,10 +5740,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v1/webhooks/:webhookId/subscribe/:tokenDID"
         codeExamples={[{
@@ -6042,7 +5778,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 	  "message": "Vehicle assigned successfully"
 }`}
       />
-    </div>
   }
 />
 
@@ -6051,7 +5786,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="subscribe-all"
   leftColumn={
-    <div>
       Subscribes all vehicles that have previously shared permissions with your Developer License to a specific webhook.
         parameters={[
           {
@@ -6062,10 +5796,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="POST"
         path="/v1/webhooks/:webhookId/subscribe/all"
         codeExamples={[{
@@ -6100,7 +5832,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 	  "message": "Subscribed 100 assets"
 }`}
       />
-    </div>
   }
 />
 
@@ -6109,7 +5840,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="unsubscribe-vehicle"
   leftColumn={
-    <div>
       Unsubscribes a vehicle tokenDID from a specified webhook.
         parameters={[
           {
@@ -6126,10 +5856,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="DELETE"
         path="/v1/webhooks/:webhookId/unsubscribe/:tokenDID"
         codeExamples={[{
@@ -6165,7 +5893,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 	  "message": "Vehicle unsubscribed successfully"
 }`}
       />
-    </div>
   }
 />
 
@@ -6174,7 +5901,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
   stickyLeft={true}
   id="unsubscribe-all"
   leftColumn={
-    <div>
       Unsubscribes all previously subscribed vehicles from a webhook you've created.
         parameters={[
           {
@@ -6185,10 +5911,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         requestType="DELETE"
         path="/v1/webhooks/:webhookId/unsubscribe/all"
         codeExamples={[{
@@ -6222,7 +5946,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     "message": "Unsubscribed 100 vehicles"
   }`}
       />
-    </div>
   }
 />
 
@@ -6230,7 +5953,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
 
   stickyRight={true}
   leftColumn={
-    <div>
       When a vehicle that you have subscribed to an event meets the criteria you've configured in your webhook trigger, it will send a <code>POST</code> request to your specified <code>targetURL</code>. The response body will contain the information that you need to handle the event as required by your application.
         title = "Data"
         parameters={[
@@ -6316,10 +6038,8 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
           },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
         code={`{
     "id": "6be980f3-7edf-4cab-ba72-3871f61e6cdb",
     "source": "vehicle-triggers-api",
@@ -6347,7 +6067,6 @@ If you have multiple Developer Licenses under a single account in the DIMO Devel
     }
   }`}
       />
-    </div>
   }
 />
 
@@ -6363,14 +6082,11 @@ Retrieve raw data objects and index keys from cloud storage.
 ## Overview
 
   leftColumn={
-    <div>
     The Fetch API provides access to raw data stored in the cloud, formatted as <a href="https://cloudevents.io/">CloudEvents</a>. It is written in GraphQL and exposes a single endpoint, <code>/query</code>, for executing queries. You can retrieve CloudEvent-formatted data and index keys by <code>did</code> (Decentralized Identifier), and request only the fields you need—for example, <code>header</code> and/or <code>data</code>.
 
     The <code>did</code> parameter accepts any DID in the DIMO system (e.g. a vehicle DID like <code>did:erc721:1:0xContractAddress:tokenId</code>).
-    </div>
   }
   rightColumn={
-    <div>
         endpoints={[
           {
             method: 'POST',
@@ -6378,7 +6094,6 @@ Retrieve raw data objects and index keys from cloud storage.
           },
         ]}
       />
-    </div>
   }
 />
 
@@ -6390,8 +6105,6 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
 
   stickyRight={true}
   leftColumn={
-    <div>
-      <h4>CloudEvent</h4>
       A full CloudEvent object. Select only the fields you need to keep responses small.
 
         title="CloudEvent fields"
@@ -6403,7 +6116,6 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
         ]}
       />
 
-      <h4>CloudEventHeader</h4>
       CloudEvents v1.0 metadata fields. Required fields are always present; optional fields may be null.
 
         title="Required header fields"
@@ -6429,7 +6141,6 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
         ]}
       />
 
-      <h4>CloudEventIndex</h4>
       A lightweight index entry referencing a stored CloudEvent. Contains the event header and a storage key for retrieval.
 
         title="CloudEventIndex fields"
@@ -6439,7 +6150,6 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
         ]}
       />
 
-      <h4>CloudEventFilter</h4>
       Optional filter for queries. All fields are optional—combine them to narrow results.
 
         title="CloudEventFilter fields"
@@ -6455,7 +6165,6 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
         ]}
       />
 
-      <h4>CloudEventTypeSummary</h4>
       Returned by <code>availableCloudEventTypes</code>. Use it to discover which CloudEvent types exist for a subject before you commit to a full query.
 
         title="CloudEventTypeSummary fields"
@@ -6466,11 +6175,8 @@ To access data via the Fetch API, a token exchange is required to obtain a JWT w
           { name: "lastSeen", type: "Time!", description: "Timestamp of the most recent event of this type." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <div>
-    <pre><code className="language-graphql">{`# Full CloudEvent with all header fields
 
 query {
   latestCloudEvent(
@@ -6497,7 +6203,6 @@ query {
     dataUrl
   }
 }`}</code></pre>
-    </div>
   }
 />
 
@@ -6505,7 +6210,6 @@ query {
 
   stickyRight={true}
   leftColumn={
-    <div>
       The Fetch API uses two custom scalars in addition to GraphQL built-ins:
 
         title=""
@@ -6514,10 +6218,8 @@ query {
           { name: "JSON", description: "Arbitrary JSON value; serialized as raw JSON (object/array), not an escaped string. The structure depends on the event type." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`# Minimal query — just header + data
 
 query {
   cloudEvents(
@@ -6561,7 +6263,6 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns the latest cloud event index (header + indexKey) that matches the given filter. Use this when you only need the index entry, not the full payload.
 
         title="Arguments"
@@ -6570,10 +6271,8 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
           { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`query GetLatestIndex {
   latestIndex(
     did: "did:erc721:1:0x...:tokenId",
     filter: { type: "dimo.status" }
@@ -6589,7 +6288,6 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns a list of cloud event indexes matching the filter. Each item includes <code>header</code> and <code>indexKey</code>.
 
         title="Arguments"
@@ -6599,10 +6297,8 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
           { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`query ListIndexes {
   indexes(
     did: "did:erc721:1:0x...:tokenId",
     limit: 10,
@@ -6619,7 +6315,6 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns the most recent full cloud event (header and optionally <code>data</code> / <code>dataBase64</code>) that matches the filter.
 
         title="Arguments"
@@ -6628,10 +6323,8 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
           { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`query GetLatestCloudEvent {
   latestCloudEvent(
     did: "did:erc721:1:0x...:tokenId",
     filter: { type: "dimo.status" }
@@ -6648,7 +6341,6 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns a list of full cloud events matching the filter. Request only the fields you need (<code>header</code>, <code>data</code>, <code>dataBase64</code>).
 
         title="Arguments"
@@ -6658,10 +6350,8 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
           { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types (OR list), dataversion, source, producer, before, after." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`query ListCloudEvents {
   cloudEvents(
     did: "did:erc721:1:0x...:tokenId",
     limit: 5,
@@ -6679,7 +6369,6 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
 
   stickyRight={true}
   leftColumn={
-    <div>
       Returns a list of <code>CloudEventTypeSummary</code> entries describing every cloud event type stored for the subject, along with counts and first/last-seen timestamps. Useful as a discovery query. For example, run it against a vehicle DID to see which <code>dimo.document.*</code> types have been uploaded before you commit to a full <code>cloudEvents</code> call.
 
         title="Arguments"
@@ -6688,10 +6377,8 @@ Some event types are too big to inline as JSON. Uploaded documents (`dimo.docume
           { name: "filter", type: "CloudEventFilter", required: false, description: "Optional filter by id, type, types, dataversion, source, producer, before, after. Applied before aggregating counts." },
         ]}
       />
-    </div>
   }
   rightColumn={
-    <pre><code className="language-graphql">{`query AvailableTypes {
   availableCloudEventTypes(
     did: "did:erc721:1:0x...:tokenId"
   ) {
@@ -6775,7 +6462,6 @@ URL: https://dimo.org/docs/examples/build-examples
 # Build Examples
 
 :::warning Disclaimer
-<small>
 	Demo applications provided on this documentation site are for demonstration and informational purposes only.
 	These applications are not intended for production use and may not reflect the full capabilities,
 	security standards, or data integrity of final production systems.
@@ -6785,7 +6471,6 @@ URL: https://dimo.org/docs/examples/build-examples
 	resulting from the use, misuse, or reliance on demo applications. Use of demo applications is at your own risk.
 	For accurate, reliable solutions, always refer to officially supported production releases and consult with relevant
 	technical or legal advisors before deploying to live environments.
-</small>
 :::
 	- [Cardbird](https://carbird.ai/): Realtime AI Chatbot for your vehicle
 	- [Roadside Roadie](https://roadside-roadie.replit.app/): AI-powered roadside assistant
@@ -6810,8 +6495,7 @@ URL: https://dimo.org/docs/examples/build-examples
 
 URL: https://dimo.org/docs/faq
 
-<script type="application/ld+json">
-    {JSON.stringify({
+{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
@@ -6857,7 +6541,6 @@ URL: https://dimo.org/docs/faq
         }
       ]
     })}
-  </script>
 
 # Frequently Asked Questions
 
@@ -7088,16 +6771,6 @@ DIMO supports **50+ automotive OEMs** with near-universal compatibility:
 
 ## 🔧 Technical Details
 
-		<p>Rate limits vary by plan:</p>
-		<ul>
-			<li><strong>Hobbyist:</strong> 10 requests/second per API service</li>
-			<li><strong>Core:</strong> 25 requests/second per API service</li>
-			<li><strong>Enterprise:</strong> Custom limits (up to 1000+ req/sec)</li>
-		</ul>
-		<p>Rate limits are enforced per client host. DIMO does not send the number of remaining requests in HTTP headers.</p>
-		<p>Need higher limits? <a href="https://app.formcrafts.com/7c869c6f">Contact sales</a>.</p>
-		<p>DIMO APIs return standard HTTP status codes:</p>
-
 | Status Code | Status | Description |
 |-------------|--------|-------------|
 | `200` | OK | The request was successfully processed by DIMO. |
@@ -7111,27 +6784,6 @@ DIMO supports **50+ automotive OEMs** with near-universal compatibility:
 | `409` | Resource Conflict | The requested resource could not be processed because of a conflict in the request. |
 | `424` | Failed Dependency | The requested operation can not be performed because it depends on another action that had failed. |
 | `500` | Internal Server Error | An internal error occurred in DIMO. |
-
-		<p><strong>99.9% uptime</strong> for production APIs:</p>
-		<ul>
-			<li>⚡ <strong>Average response time:</strong> &lt;200ms</li>
-			<li>📊 <strong>Availability:</strong> 99.9% (Enterprise SLA)</li>
-			<li>🔄 <strong>Redundancy:</strong> Multi-region deployment</li>
-			<li>📈 <strong>Status:</strong> <a href="https://status.dimo.co" target="_blank">status.dimo.co</a></li>
-		</ul>
-
-		<p><strong>Yes!</strong> DIMO provides both REST and GraphQL APIs:</p>
-		<ul>
-			<li>✅ <strong>REST API:</strong> Traditional endpoints for simple requests</li>
-			<li>✅ <strong>GraphQL:</strong> Flexible queries for complex data needs</li>
-		</ul>
-		<p><a href="/docs/api-references/identity-api">Try GraphQL Playground →</a></p>
-
-		<p>We host our public keys at <a href="https://auth.dimo.zone/keys" target="_blank">auth.dimo.zone/keys</a>.</p>
-		<p>Developers use this to validate that returned responses are indeed coming from DIMO (JWT verification).</p>
-		<p>Keys are rotated regularly for security. Always fetch keys dynamically rather than hardcoding.</p>
-
-		<p>DIMO uses <strong>OAuth 2.0</strong> for authentication:</p>
 
 **1. Get credentials:**
 ```bash
@@ -7160,35 +6812,6 @@ const vehicles = await dimo.vehicles.list({
 **Token lifetime:** 1 hour (refresh before expiration)
 
 [Full authentication guide →](/docs/getting-started/authentication)
-
-		<p><strong>AI agents are intelligent assistants</strong> that interact with vehicle data to automate tasks:</p>
-		<ul>
-			<li>🤖 <strong>Built-in memory:</strong> Remember user context and preferences</li>
-			<li>💬 <strong>Conversational:</strong> Natural language interactions</li>
-			<li>🔧 <strong>Agentic workflows:</strong> Multi-step task automation</li>
-			<li>🎯 <strong>Pre-trained:</strong> Understand vehicle terminology</li>
-		</ul>
-		<p><strong>Use cases:</strong></p>
-		<ul>
-			<li>Virtual service advisors</li>
-			<li>Predictive maintenance alerts</li>
-			<li>Customer support automation</li>
-			<li>Fleet management assistants</li>
-		</ul>
-		<p><a href="/docs/build/building-with-ai/dimo-mcp-server">Build agent skills with the DIMO MCP server →</a></p>
-
-		<p>Depends on your plan:</p>
-		<ul>
-			<li><strong>Hobbyist:</strong> 1 AI agent included</li>
-			<li><strong>Core:</strong> Unlimited agents (pay-as-you-go usage)</li>
-			<li><strong>Enterprise:</strong> Custom agent allocation</li>
-		</ul>
-		<p>Each agent can serve multiple users/vehicles.</p>
-
-		<p><strong>No, we currently don't support bringing your own LLM API key.</strong> As of January 2026, DIMO utilizes:</p>
-		<ul>
-			<li>✅ <strong>Anthropic:</strong> Claude Sonnet 4.5 & Haiku 4.5</li>
-		</ul>
 
 ---
 
@@ -8166,14 +7789,6 @@ const bmwData = await bmwAPI.vehicles(bmwId).status();
 
 **Code comparison:**
 
-<table>
-<tr>
-<th>SmartCar</th>
-<th>DIMO</th>
-</tr>
-<tr>
-<td>
-
 ```javascript
 const smartcar = require('smartcar');
 
@@ -8191,9 +7806,6 @@ const vehicle = new smartcar
 const location = await vehicle.location();
 ```
 
-</td>
-<td>
-
 ```javascript
 const { DIMO } = require('@dimo-network/client-sdk');
 
@@ -8208,10 +7820,6 @@ const vehicles = await dimo
 const location = await dimo
   .telemetry.latest(vehicleId);
 ```
-
-</td>
-</tr>
-</table>
 
 **Benefits of switching:**
 - ✅ 20+ more OEMs supported
@@ -8306,15 +7914,12 @@ Let's begin by going through how this site works so you can get the most out of 
 				We've added these best practices or warning blocks to facilitate learning.
 			:::
       Follow along with our DIMO University video series.
-      <div className="videoWrapper">
-        <iframe
           src="https://www.youtube.com/embed/nktm5m9LhIU?si=ZFJdiIEcoTBnaZ4d"
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         ></iframe>
-      </div>
 			Interact with images (by hovering over) and widgets to learn more about details.
           src="/img/dimo-logos.png"
           alt="DIMO Logos"
@@ -8416,8 +8021,6 @@ data with.
 
 ### DIMO Connect
 
-<sup>Also known as: Login with DIMO (LIWD)</sup>
-
 DIMO Connect offers a robust user interface that is tightly integrated with our consent
 management and privacy engine (SACD).
 
@@ -8470,8 +8073,6 @@ cryptographically-verifiable attestations on critical vehicle attributes and lif
 This approach delivers a foundational trust layer, facilitating compliance and secure data exchange across complex automotive and mobility ecosystems.
 Learn more about getting proof of data using [Attestation
 API](/docs/api-references/attestation-api).
-
-<hr/>
 
 Now that you understand some of the core concepts on DIMO, you can start
 learning more about what types of applications or intelligent agents you can build.

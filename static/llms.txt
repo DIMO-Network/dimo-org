@@ -7,72 +7,79 @@
 > to meet GDPR and the EU Data Act. The core protocol and tooling are open
 > source. Free tier available; paid plans for production scale.
 
+> Usage: public developer documentation — AI training, search, and inference are
+> permitted (see the Content-Signal HTTP header). Attribution: DIMO (dimo.org).
+
 ## Getting started
-- [Introduction](https://dimo.org/docs/introduction/what-can-you-build)
-- [Quickstart](https://dimo.org/docs/quickstart)
-- [Getting Started](https://dimo.org/docs/getting-started/create-your-account)
-- [Key Concepts](https://dimo.org/docs/key-concepts)
-- [What can you build?](https://dimo.org/docs/introduction/where-can-you-start)
-- [FAQ](https://dimo.org/docs/faq)
+- [Introduction](https://dimo.org/docs/introduction/what-can-you-build): what you can build on DIMO and the core capabilities.
+- [Quickstart](https://dimo.org/docs/quickstart): from zero to your first vehicle data query.
+- [Getting Started](https://dimo.org/docs/getting-started/create-your-account): create an account and a Developer License.
+- [Key Concepts](https://dimo.org/docs/key-concepts): SACD consent, Developer License, vehicle digital IDs, signals, events, attestations.
+- [What can you build?](https://dimo.org/docs/introduction/where-can-you-start): builder paths — app developer, oracle, storage node.
+- [FAQ](https://dimo.org/docs/faq): common questions on pricing, vehicle support, APIs, AI agents, and compliance.
 
 ## API references
-- [Identity API](https://dimo.org/docs/api-references/identity-api/introduction)
-- [Telemetry API](https://dimo.org/docs/api-references/telemetry-api/introduction)
-- [Fetch API](https://dimo.org/docs/api-references/fetch-api/introduction)
-- [Attestation API](https://dimo.org/docs/api-references/attestation-api)
-- [Device Definitions API](https://dimo.org/docs/api-references/device-definitions-api)
-- [Token Exchange API](https://dimo.org/docs/api-references/token-exchange-api)
-- [Vehicle Triggers API](https://dimo.org/docs/api-references/vehicle-triggers-api)
+- [Identity API](https://dimo.org/docs/api-references/identity-api/introduction): GraphQL API for vehicle identity, ownership, and permissions.
+- [Telemetry API](https://dimo.org/docs/api-references/telemetry-api/introduction): real-time and historical vehicle signals (speed, location, fuel, battery, diagnostics).
+- [Fetch API](https://dimo.org/docs/api-references/fetch-api/introduction): retrieve stored attestations and signed vehicle documents.
+- [Attestation API](https://dimo.org/docs/api-references/attestation-api): issue and verify signed vehicle data as CloudEvents (VIN, odometer, health, position).
+- [Device Definitions API](https://dimo.org/docs/api-references/device-definitions-api): decode makes, models, and supported vehicle signals.
+- [Token Exchange API](https://dimo.org/docs/api-references/token-exchange-api): exchange a Developer JWT for a permission-scoped Vehicle JWT.
+- [Vehicle Triggers API](https://dimo.org/docs/api-references/vehicle-triggers-api): webhooks that fire on vehicle events and signal thresholds.
 
 ## Build
-- [Build guides](https://dimo.org/docs/build/building-with-ai/developer-kit)
-- [Examples](https://dimo.org/docs/examples/build-examples)
-- [Tutorials](https://dimo.org/docs/tutorials/connect-first-vehicle)
-- [Comparison](https://dimo.org/docs/comparison)
+- [Build guides](https://dimo.org/docs/build/building-with-ai/developer-kit): SDKs, the AI developer kit, and the DIMO MCP server.
+- [Examples](https://dimo.org/docs/examples/build-examples): community-built apps and reference integrations.
+- [Tutorials](https://dimo.org/docs/tutorials/connect-first-vehicle): step-by-step guide to connect a vehicle and read telemetry.
+- [Comparison](https://dimo.org/docs/comparison): DIMO vs Smartcar, Otonomo, High Mobility, and direct OEM APIs.
 
 ## Products
-- [Access](https://dimo.org/products/access)
-- [Ingest](https://dimo.org/products/ingest)
-- [Storage](https://dimo.org/products/storage)
-- [Consent](https://dimo.org/products/consent)
-- [Pay](https://dimo.org/products/pay)
+- [Access](https://dimo.org/products/access): REST and GraphQL APIs, SDKs, and webhooks for reading vehicle data.
+- [Ingest](https://dimo.org/products/ingest): bring-your-own telematics into DIMO via the DIMO Ingest Server (DIS).
+- [Storage](https://dimo.org/products/storage): normalized, queryable time-series storage for vehicle telemetry.
+- [Consent](https://dimo.org/products/consent): user-owned, session-scoped permissions (SACD) with atomic grant and revocation.
+- [Pay](https://dimo.org/products/pay): session-scoped stablecoin payment rails for mobility services.
 
 ## Solutions & industries
-- [Agentic Experiences](https://dimo.org/solutions/agentic-experiences)
-- [Fleet Intelligence](https://dimo.org/solutions/fleet-intelligence)
-- [Vehicle Commerce](https://dimo.org/solutions/vehicle-commerce)
-- [Consumer Applications](https://dimo.org/solutions/consumer-applications)
-- [OEMs](https://dimo.org/industries/oem)
-- [Rentals](https://dimo.org/industries/rentals)
-- [Dealerships](https://dimo.org/industries/dealerships)
-- [Maintenance](https://dimo.org/industries/maintenance)
+- [Agentic Experiences](https://dimo.org/solutions/agentic-experiences): build AI agents on consent-governed vehicle data.
+- [Fleet Intelligence](https://dimo.org/solutions/fleet-intelligence): unified telemetry and insights across a mixed-brand fleet.
+- [Vehicle Commerce](https://dimo.org/solutions/vehicle-commerce): in-vehicle payments, EV charging reimbursement, and toll automation.
+- [Consumer Applications](https://dimo.org/solutions/consumer-applications): consumer apps powered by user-permissioned vehicle data.
+- [OEMs](https://dimo.org/industries/oem): a developer platform and data layer for automakers.
+- [Rentals](https://dimo.org/industries/rentals): mixed-fleet rental ops — keys, data, and spend in one place.
+- [Dealerships](https://dimo.org/industries/dealerships): service, trade-in, and customer engagement from live vehicle data.
+- [Maintenance](https://dimo.org/industries/maintenance): predictive maintenance and diagnostics from real-time signals.
 
 ## Vehicle Session Infrastructure
-- [Vehicle Session Infrastructure (category)](https://dimo.org/vehicle-session-infrastructure)
-- [Fleet Spend & EV Charging Reimbursement](https://dimo.org/solutions/fleet-spend)
+- [Vehicle Session Infrastructure (category)](https://dimo.org/vehicle-session-infrastructure): the Stripe/Auth0-style layer for vehicle sessions.
+- [Fleet Spend & EV Charging Reimbursement](https://dimo.org/solutions/fleet-spend): automate EV charging reimbursement tied to each vehicle session.
+
+## Customer stories
+- [Grupo Kaufmann](https://dimo.org/customer-stories/grupo-kaufmann): a Latin American automotive group using DIMO across its dealership network.
+- [Emobi](https://dimo.org/customer-stories/emobi): fleet-ready ISO 15118 Plug & Charge built on DIMO vehicle identity.
 
 ## Compliance
-- [Connected Vehicle Data Compliance](https://dimo.org/compliance)
-- [EU Data Act for Vehicle Data](https://dimo.org/compliance/eu-data-act)
-- [FTC GM/OnStar Consent Order](https://dimo.org/compliance/ftc-gm-consent)
-- [Session-Scoped Consent](https://dimo.org/compliance/session-scoped-consent)
-- [Vehicle Access Audit Trails](https://dimo.org/compliance/vehicle-access-audit-trail)
+- [Connected Vehicle Data Compliance](https://dimo.org/compliance): how DIMO's architecture makes compliance a byproduct, not a retrofit.
+- [EU Data Act for Vehicle Data](https://dimo.org/compliance/eu-data-act): what the EU Data Act requires for connected-vehicle data and how DIMO meets it.
+- [FTC GM/OnStar Consent Order](https://dimo.org/compliance/ftc-gm-consent): the consent precedent and what it means for vehicle data programs.
+- [Session-Scoped Consent](https://dimo.org/compliance/session-scoped-consent): granting and revoking access per session with SACD.
+- [Vehicle Access Audit Trails](https://dimo.org/compliance/vehicle-access-audit-trail): cryptographically signed, verifiable records of every data access.
 
 ## Compare
-- [DIMO vs Smartcar](https://dimo.org/compare/smartcar-alternative)
-- [DIMO vs Standard Fleet](https://dimo.org/compare/standard-fleet-alternative)
+- [DIMO vs Smartcar](https://dimo.org/compare/smartcar-alternative): a make-agnostic, consent-governed alternative to Smartcar.
+- [DIMO vs Standard Fleet](https://dimo.org/compare/standard-fleet-alternative): how DIMO compares for fleet data and management.
 
 ## Pricing
-- [Plans & pricing](https://dimo.org/pricing)
+- [Plans & pricing](https://dimo.org/pricing): free Hobbyist tier, Core at $349/mo + $1.25/vehicle, and Enterprise.
 
 ## Blog
-- [Data Wars: The Consent Management Crisis OEMs Didn't See Coming](https://dimo.org/blog/data-wars-the-consent-management-crisis-oems-didnt-see-coming)
-- [DIMO Vehicle Simulator: Build Without a Car](https://dimo.org/blog/dimo-vehicle-simulator)
+- [Data Wars: The Consent Management Crisis OEMs Didn't See Coming](https://dimo.org/blog/data-wars-the-consent-management-crisis-oems-didnt-see-coming): why consent management is becoming the battleground for vehicle data.
+- [DIMO Vehicle Simulator: Build Without a Car](https://dimo.org/blog/dimo-vehicle-simulator): generate realistic vehicle telemetry to develop and test without hardware.
 
 ## For AI assistants & coding agents
 - [DIMO Platform Skill](https://github.com/DIMO-Network/dimo-platform-skill): a drop-in knowledge pack that gives an AI agent the full DIMO platform model — architecture, APIs, SACD permissions, contract addresses, and SDK signatures.
 - [DIMO MCP Server](https://github.com/DIMO-Network/mcp-dimo): a Model Context Protocol server that lets an AI assistant query DIMO data and call platform tools directly.
 
 ## Optional
-- [Full documentation corpus](https://dimo.org/llms-full.txt)
-- [Sitemap](https://dimo.org/sitemap.xml)
+- [Full documentation corpus](https://dimo.org/llms-full.txt): every doc page concatenated as plain markdown for AI ingestion.
+- [Sitemap](https://dimo.org/sitemap.xml): all indexable URLs.

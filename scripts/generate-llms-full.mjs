@@ -43,7 +43,13 @@ function clean(raw) {
   return body
     .split('\n')
     .filter(line => !/^\s*(import|export)\s/.test(line))
-    .filter(line => !/^\s*<\/?[A-Z][\w.]*/.test(line)) // <Component ...> lines
+    .filter(line => {
+      const t = line.trim();
+      if (/^<https?:/i.test(t)) return true; // keep markdown autolinks
+      if (/^<\/?[A-Za-z][\w.-]*/.test(t)) return false; // drop JSX/HTML tag lines
+      if (/^\{\/\*[\s\S]*\*\/\}$/.test(t)) return false; // drop {/* comments */}
+      return true;
+    })
     .join('\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
@@ -70,7 +76,8 @@ const sections = files.map(f => {
 const header =
   `# DIMO Build — Full Documentation Corpus\n\n` +
   `> Concatenated developer documentation for the DIMO vehicle data platform.\n` +
-  `> ${files.length} documents. Source: ${SITE}/docs\n`;
+  `> ${files.length} documents. Source: ${SITE}/docs\n` +
+  `> Usage: public developer docs — AI training, search, and inference permitted (see the Content-Signal HTTP header). Attribution: DIMO (${SITE}).\n`;
 
 writeFileSync(OUT, `${header}\n${sections.join('\n\n---\n\n')}\n`, 'utf8');
 console.log(`[llms-full] wrote ${files.length} docs -> ${relative(ROOT, OUT)}`);
