@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const SOLUTION_NAME = 'Vehicle Commerce';
-const HERO_BACKGROUND = '/img/mp4/charging.mp4';
+const HERO_BACKGROUND = '/img/mp4/charging.mp4?v=2';
 const imgToken = '/img/token.webp';
 const imgShop = '/img/shop.png';
 

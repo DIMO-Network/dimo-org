@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const SOLUTION_NAME = 'Fleet Intelligence';
-const HERO_BACKGROUND = '/img/mp4/fleets.mp4';
+const HERO_BACKGROUND = '/img/mp4/fleets.mp4?v=2';
 const imgFleet = '/img/trucks2.png';
 const imgSdk = '/img/sdks.webp';
 const imgDelivery = '/img/delivery.png';

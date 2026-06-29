@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const SOLUTION_NAME = 'Agentic Experiences';
-const HERO_BACKGROUND = '/img/mp4/agents.mp4';
+const HERO_BACKGROUND = '/img/mp4/agents.mp4?v=2';
 const imgLogin = '/img/ShareWithUsers.png';
 const imgFleets = '/img/tesla-fleet2.png';
 

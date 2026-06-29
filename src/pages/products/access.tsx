@@ -10,7 +10,7 @@ import { LINKS } from '../../links';
 import { Key, Webhook, Code, ChevronDown } from 'lucide-react';
 
 const PRODUCT_NAME = 'Access';
-const HERO_BACKGROUND = '/img/mp4/access.mp4';
+const HERO_BACKGROUND = '/img/mp4/access.mp4?v=2';
 
 const FEATURES = [
   {

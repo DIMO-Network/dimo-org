@@ -9,7 +9,7 @@ import { LINKS } from '../../links';
 import { HardDrive, Search, Clock, ChevronDown, Database } from 'lucide-react';
 
 const PRODUCT_NAME = 'Storage';
-const HERO_BACKGROUND = '/img/mp4/storage.mp4';
+const HERO_BACKGROUND = '/img/mp4/storage.mp4?v=2';
 
 const FEATURES = [
   {

@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const INDUSTRY_NAME = 'Dealerships';
-const HERO_BACKGROUND = '/img/mp4/race.mp4';
+const HERO_BACKGROUND = '/img/mp4/race.mp4?v=2';
 const imgCustomers = '/img/customers.png';
 const imgMechanic = '/img/mechanic5.png';
 

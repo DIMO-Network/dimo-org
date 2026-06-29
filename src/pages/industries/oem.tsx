@@ -9,7 +9,7 @@ import { LINKS } from '../../links';
 import { Code, Zap, Lock, Globe, Layers, ChevronDown, Cpu } from 'lucide-react';
 
 const INDUSTRY_NAME = 'Auto OEMs';
-const HERO_BACKGROUND = '/img/mp4/oem.mp4';
+const HERO_BACKGROUND = '/img/mp4/oem.mp4?v=2';
 const imgSdk = '/img/sdks.webp';
 const imgRentals = '/img/rentals.png';
 

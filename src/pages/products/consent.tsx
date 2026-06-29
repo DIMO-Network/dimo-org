@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 const PRODUCT_NAME = 'Consent';
-const HERO_BACKGROUND = '/img/mp4/consent.mp4';
+const HERO_BACKGROUND = '/img/mp4/consent.mp4?v=2';
 
 const FEATURES = [
   {

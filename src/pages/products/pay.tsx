@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 const PRODUCT_NAME = 'Pay';
-const HERO_BACKGROUND = '/img/mp4/payments.mp4';
+const HERO_BACKGROUND = '/img/mp4/payments.mp4?v=2';
 
 const FEATURES = [
   {

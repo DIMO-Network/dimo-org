@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const INDUSTRY_NAME = 'Rentals';
-const HERO_BACKGROUND = '/img/mp4/rentals.mp4';
+const HERO_BACKGROUND = '/img/mp4/rentals.mp4?v=2';
 const imgFleet = '/img/tesla-fleet.png';
 const imgCustomers = '/img/customers.png';
 

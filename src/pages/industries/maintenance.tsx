@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 
 const INDUSTRY_NAME = 'Automotive Maintenance';
-const HERO_BACKGROUND = '/img/mp4/mechanics.mp4';
+const HERO_BACKGROUND = '/img/mp4/mechanics.mp4?v=2';
 const imgMechanic = '/img/mechanic.png';
 const imgCustomer = '/img/customers.png';
 

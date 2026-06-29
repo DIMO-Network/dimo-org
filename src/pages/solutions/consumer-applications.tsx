@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const SOLUTION_NAME = 'Consumer Applications';
-const HERO_BACKGROUND = '/img/mp4/consumer.mp4';
+const HERO_BACKGROUND = '/img/mp4/consumer.mp4?v=2';
 const imgMobile = '/img/dimo-mobile.png';
 const imgJapan = '/img/dimo-japan.png';
 

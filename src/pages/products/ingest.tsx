@@ -10,7 +10,7 @@ import { LINKS } from '../../links';
 import { Database, Zap, Shield, ChevronDown, Download } from 'lucide-react';
 
 const PRODUCT_NAME = 'Ingest';
-const HERO_BACKGROUND = '/img/mp4/ingest.mp4';
+const HERO_BACKGROUND = '/img/mp4/ingest.mp4?v=2';
 
 const FEATURES = [
   {
