@@ -1,4 +1,4 @@
-import React, { type ReactNode, useState, useEffect } from 'react';
+import React, { type ReactNode, useState, useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import styles from './index.module.css';
@@ -18,70 +18,93 @@ const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
 const imgDimoAiPlaceholder = '/img/DIMO-Docs.webp';
 
-// Typewriter hook for rotating words
-function useTypewriter(
-  words: string[],
-  typingSpeed = 100,
-  deletingSpeed = 50,
-  pauseTime = 3000
-) {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState(words[0]);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+// Rotating word for the hero H1. Cross-fades between complete words so the
+// heading is always readable — the old typewriter effect left fragments like
+// "built for se|" on screen for seconds at a time.
+function useRotatingWord(words: string[], holdMs = 3500, fadeMs = 400) {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const currentWord = words[currentWordIndex];
+    let swap: ReturnType<typeof setTimeout>;
+    const timer = setInterval(() => {
+      setVisible(false);
+      swap = setTimeout(() => {
+        setIndex(prev => (prev + 1) % words.length);
+        setVisible(true);
+      }, fadeMs);
+    }, holdMs);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(swap);
+    };
+  }, [words, holdMs, fadeMs]);
 
-    if (isPaused) {
-      const pauseTimeout = setTimeout(() => {
-        setIsPaused(false);
-        setIsDeleting(true);
-      }, pauseTime);
-      return () => clearTimeout(pauseTimeout);
-    }
-
-    if (isDeleting) {
-      if (currentText === '') {
-        setIsDeleting(false);
-        setCurrentWordIndex(prev => (prev + 1) % words.length);
-      } else {
-        const timeout = setTimeout(() => {
-          setCurrentText(currentWord.substring(0, currentText.length - 1));
-        }, deletingSpeed);
-        return () => clearTimeout(timeout);
-      }
-    } else {
-      if (currentText === currentWord) {
-        setIsPaused(true);
-      } else {
-        const timeout = setTimeout(() => {
-          setCurrentText(currentWord.substring(0, currentText.length + 1));
-        }, typingSpeed);
-        return () => clearTimeout(timeout);
-      }
-    }
-  }, [
-    currentText,
-    currentWordIndex,
-    isDeleting,
-    isPaused,
-    words,
-    typingSpeed,
-    deletingSpeed,
-    pauseTime,
-  ]);
-
-  return currentText;
+  return { word: words[index], visible };
 }
 
-function HeroSection() {
-  const rotatingWord = useTypewriter(
-    ['vehicle data', 'session-based economy', 'mobility'],
-    100,
-    50,
-    3000
+// Defers video fetching until the element nears the viewport. `autoplay` in
+// the HTML makes browsers start downloading immediately even with
+// preload="none", so the sources are injected (and playback started) only
+// when the section is about to be seen.
+function LazyVideo({
+  webm,
+  mp4,
+  label,
+}: {
+  webm: string;
+  mp4: string;
+  label: string;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (shouldLoad) {
+      ref.current?.play().catch(() => {});
+    }
+  }, [shouldLoad]);
+
+  return (
+    <video
+      ref={ref}
+      loop
+      muted
+      playsInline
+      preload="none"
+      aria-label={label}
+      style={{ aspectRatio: '1 / 1' }}
+    >
+      {shouldLoad && (
+        <>
+          <source src={webm} type="video/webm" />
+          <source src={mp4} type="video/mp4" />
+        </>
+      )}
+    </video>
   );
+}
+
+const ROTATING_WORDS = ['vehicle data', 'session-based economy', 'mobility'];
+
+function HeroSection() {
+  const { word, visible } = useRotatingWord(ROTATING_WORDS);
 
   return (
     <header className={styles.hero}>
@@ -101,8 +124,13 @@ function HeroSection() {
 
         <h1 className={styles.heroTitle}>
           The infrastructure built for <br />
-          {rotatingWord}
-          <span className={styles.typewriterCursor}>|</span>
+          <span
+            className={`${styles.rotatingWord} ${
+              visible ? styles.rotatingWordVisible : ''
+            }`}
+          >
+            {word}
+          </span>
         </h1>
 
         <p className={styles.heroSubtitle}>
@@ -238,17 +266,11 @@ function AutomateOperationsSection() {
     <section className={styles.bigFeature}>
       <div className={styles.featureContainer}>
         <div className={styles.featureVisual}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            aria-label="Automate Operations"
-          >
-            <source src="/img/dimo-pathways.webm" type="video/webm" />
-            <source src="/img/dimo-pathways.mp4" type="video/mp4" />
-          </video>
+          <LazyVideo
+            webm="/img/dimo-pathways.webm"
+            mp4="/img/dimo-pathways.mp4"
+            label="Automate Operations"
+          />
         </div>
         <div className={styles.featureText}>
           <h3>Power every session, end to end</h3>
@@ -317,17 +339,11 @@ function BigFeatureSection() {
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            aria-label="Telematics Architecture"
-          >
-            <source src="/img/dimo-pixel-car.webm" type="video/webm" />
-            <source src="/img/dimo-pixel-car.mp4" type="video/mp4" />
-          </video>
+          <LazyVideo
+            webm="/img/dimo-pixel-car.webm"
+            mp4="/img/dimo-pixel-car.mp4"
+            label="Telematics Architecture"
+          />
         </div>
       </div>
     </section>
@@ -562,9 +578,9 @@ export default function Home(): ReactNode {
             url: 'https://dimo.org/',
             logo: {
               '@type': 'ImageObject',
-              url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
-              width: 200,
-              height: 60,
+              url: 'https://dimo.org/img/dimo-logo.png',
+              width: 640,
+              height: 120,
             },
             description:
               'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',

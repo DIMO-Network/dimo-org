@@ -8,9 +8,10 @@ type Props = WrapperProps<typeof BlogPostPageType>;
 
 const SITE = 'https://dimo.org';
 
-// Graft a `publisher` (required for Article/BlogPosting rich results) onto the
-// BlogPosting schema the blog plugin emits. Both blocks share the same @id, so
-// JSON-LD processors merge the properties.
+// Adds a BreadcrumbList to every blog post. The BlogPosting itself is
+// emitted by src/theme/BlogPostPage/StructuredData (which replaces the
+// plugin default), so this wrapper no longer grafts a second partial
+// BlogPosting block.
 export default function BlogPostPageWrapper(props: Props): ReactNode {
   const { content } = props;
   const postUrl = `${SITE}${content.metadata.permalink}`;
@@ -20,17 +21,27 @@ export default function BlogPostPageWrapper(props: Props): ReactNode {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            '@id': postUrl,
-            publisher: {
-              '@type': 'Organization',
-              '@id': `${SITE}/#organization`,
-              name: 'DIMO',
-              logo: {
-                '@type': 'ImageObject',
-                url: `${SITE}/img/dimo-build-logo-dark.svg`,
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: `${SITE}/`,
               },
-            },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: `${SITE}/blog`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: content.metadata.title,
+                item: postUrl,
+              },
+            ],
           })}
         </script>
       </Head>

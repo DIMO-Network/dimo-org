@@ -16,9 +16,18 @@ const schema = {
   description: DESCRIPTION,
   url: `${SITE}/compare/smartcar-alternative`,
   datePublished: '2026-06-26',
+  dateModified: '2026-07-06',
   isPartOf: { '@id': `${SITE}/#website` },
-  author: { '@id': `${SITE}/#organization`, name: 'DIMO' },
-  publisher: { '@id': `${SITE}/#organization`, name: 'DIMO' },
+  author: {
+    '@type': 'Organization',
+    '@id': `${SITE}/#organization`,
+    name: 'DIMO',
+  },
+  publisher: {
+    '@type': 'Organization',
+    '@id': `${SITE}/#organization`,
+    name: 'DIMO',
+  },
 };
 
 export default function SmartcarAlternative(): ReactNode {
@@ -99,6 +108,72 @@ export default function SmartcarAlternative(): ReactNode {
           </tr>
         </tbody>
       </table>
+
+      <h2>How the pricing models differ</h2>
+      <p>
+        Smartcar prices per connected vehicle with plan minimums, which works
+        well when every connected car maps to a paying end user. DIMO separates
+        the two decisions. The Hobbyist tier is free with vehicles at
+        $1.25/month each, so you can validate an idea against your own car
+        before any commitment. Core is $349/month with 100 vehicles included and
+        higher rate limits for production apps. Enterprise adds custom SLAs,
+        on-premise deployment, and volume pricing. There is no charge for the
+        consent and session layer itself; it ships with every tier.
+      </p>
+      <p>
+        One structural difference matters more than the numbers: DIMO&apos;s
+        core protocol is open source. If pricing or terms ever stop working for
+        you, the exit path is running the infrastructure yourself rather than
+        rewriting your product against a new proprietary API.
+      </p>
+
+      <h2>Migrating from Smartcar</h2>
+      <p>
+        Most Smartcar migrations are endpoint mapping, not re-architecture.
+        Smartcar&apos;s REST reads (odometer, location, battery, fuel) map to
+        DIMO&apos;s GraphQL Telemetry API, and vehicle authorization maps to a
+        SACD consent grant. The practical sequence: create a free account at
+        console.dimo.org, generate API keys, point the{' '}
+        <Link to="/docs/build/building-with-tools/server-sdk">
+          TypeScript, Python, or C# SDK
+        </Link>{' '}
+        at your existing data model, and run both providers in parallel while
+        your users re-consent. The{' '}
+        <Link to="/docs/comparison">platform comparison in the docs</Link>{' '}
+        includes a field-by-field migration guide with code samples.
+      </p>
+
+      <h2>Where Smartcar is still the right call</h2>
+      <p>
+        Honest answer: if your product only reads data, never touches access
+        control, and your users are all in Smartcar&apos;s coverage footprint,
+        Smartcar is a mature, well-documented choice and switching would buy you
+        little. The reason developers move to DIMO is almost always that their
+        roadmap grew past read-only: they need keys, scoped grants,
+        session-based billing, or an audit trail regulators will accept, and
+        bolting those onto a read-only API means building the hard part
+        themselves.
+      </p>
+
+      <h2>Common questions</h2>
+      <p>
+        <strong>Do I need hardware?</strong> No. Most of the 50+ supported
+        brands connect through software integrations. The optional DIMO LTE R1
+        adapter adds high-frequency data for vehicles without a usable cloud
+        API.
+      </p>
+      <p>
+        <strong>Can a vehicle owner revoke access mid-session?</strong> Yes.
+        Revocation is atomic: the key, the data grant, and the spend
+        authorization all end together, and the session record stays on the
+        audit trail.
+      </p>
+      <p>
+        <strong>Is this compliant in Europe?</strong> The SACD consent model was
+        built for GDPR and the EU Data Act; see the{' '}
+        <Link to="/compliance/eu-data-act">EU Data Act guide</Link> for
+        specifics.
+      </p>
 
       <h2>When to choose which</h2>
       <p>

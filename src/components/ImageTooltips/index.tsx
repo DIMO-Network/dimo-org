@@ -13,12 +13,16 @@ export type TooltipArea = {
 export type ImageTooltipsProps = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
   tooltipAreas?: TooltipArea[];
 };
 
 const ImageTooltips: React.FC<ImageTooltipsProps> = ({
   src,
   alt,
+  width,
+  height,
   tooltipAreas = [],
 }) => {
   const [activeTooltip, setActiveTooltip] = useState<TooltipArea | null>(null);
@@ -55,6 +59,10 @@ const ImageTooltips: React.FC<ImageTooltipsProps> = ({
         ref={imageRef}
         src={src}
         alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
         className={styles.image}
         onMouseMove={handleMouseMove}
       />

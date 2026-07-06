@@ -22,6 +22,9 @@ export default function LayoutWrapper(props: Props): ReactNode {
     headline: metadata.title,
     description: metadata.description,
     url,
+    ...(metadata.lastUpdatedAt
+      ? { dateModified: new Date(metadata.lastUpdatedAt).toISOString() }
+      : {}),
     isPartOf: { '@type': 'WebSite', '@id': `${SITE}/#website` },
     author: {
       '@type': 'Organization',

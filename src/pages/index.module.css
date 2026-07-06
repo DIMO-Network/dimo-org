@@ -9,6 +9,7 @@
   color: #ffffff;
   min-height: 100vh;
   font-family:
+    'Geist Variable',
     'Geist',
     -apple-system,
     BlinkMacSystemFont,
@@ -142,24 +143,16 @@
   color: #124bdb;
 }
 
-/* Typewriter cursor animation */
-.typewriterCursor {
+/* Rotating hero word: cross-fade between complete words */
+.rotatingWord {
   display: inline-block;
-  margin-left: 0.05em;
-  animation: blink 1s step-end infinite;
   color: #124bdb;
-  font-weight: 300;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  50.1%,
-  100% {
-    opacity: 0;
-  }
+.rotatingWordVisible {
+  opacity: 1;
 }
 
 .heroSubtitle {
@@ -964,13 +957,16 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 6rem;
+    /* Tighter top spacing on phones: keeps both hero CTAs above the
+       real-device fold and clear of the fixed chat widget, which was
+       covering the second button at 375px. */
+    padding-top: 3.5rem;
     min-height: auto;
     background-size: 180% auto;
     background-position: center 20%;
   }
   .heroTitle {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
   }
   .heroButtons {
     flex-direction: column;

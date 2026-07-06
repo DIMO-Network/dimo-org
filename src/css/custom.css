@@ -4,10 +4,10 @@
  * work well for content-centric websites.
  */
 
-/* Universal Sans Display Font Family - Removed in favor of Inter */
-/* @font-face rules removed */
-/* Geist font is loaded via <link> in docusaurus.config.ts headTags
-   (preconnect + stylesheet) to avoid a render-blocking CSS @import chain. */
+/* Geist is self-hosted as a single variable woff2 (100-900 range) via
+   @fontsource-variable/geist, bundled by webpack — no external font
+   requests, no render-blocking Google Fonts stylesheet. */
+@import '@fontsource-variable/geist';
 
 /* You can override the default Infima variables here. */
 :root {
@@ -23,9 +23,9 @@
 
   /* Custom font variables */
   --ifm-font-family-base:
-    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Geist Variable', 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   --ifm-font-family-monospace:
     'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Oxygen Mono',
     'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono',
@@ -80,6 +80,7 @@
 /* Universal Sans Display utility classes */
 .font-universal {
   font-family:
+    'Geist Variable',
     'Geist',
     -apple-system,
     BlinkMacSystemFont,

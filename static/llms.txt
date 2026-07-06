@@ -34,6 +34,8 @@
 - [Comparison](https://dimo.org/docs/comparison): DIMO vs Smartcar, Otonomo, High Mobility, and direct OEM APIs.
 
 ## Products
+- [Connected Car API](https://dimo.org/connected-car-api): telemetry, identity, commands, and consent across 50+ brands through one API.
+- [Vehicle Data API](https://dimo.org/vehicle-data-api): real-time and historical vehicle telemetry signals with GraphQL aggregation.
 - [Access](https://dimo.org/products/access): REST and GraphQL APIs, SDKs, and webhooks for reading vehicle data.
 - [Ingest](https://dimo.org/products/ingest): bring-your-own telematics into DIMO via the DIMO Ingest Server (DIS).
 - [Storage](https://dimo.org/products/storage): normalized, queryable time-series storage for vehicle telemetry.

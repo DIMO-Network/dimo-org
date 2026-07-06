@@ -28,6 +28,11 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
+  // One canonical URL shape: no trailing slash. Keeps canonical tags,
+  // sitemap entries, and hreflang alternates in agreement (the audit found
+  // /compliance vs /compliance/ both indexable).
+  trailingSlash: false,
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'DIMO-Network', // Usually your GitHub org/user name.
@@ -90,37 +95,11 @@ const config: Config = {
     },
   },
 
-  headTags: [
-    {
-      tagName: 'script',
-      attributes: {},
-      innerHTML: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;`,
-    },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com',
-      },
-    },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossorigin: 'anonymous',
-      },
-    },
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap',
-      },
-    },
-  ],
+  // Geist is self-hosted via @fontsource-variable/geist (imported in
+  // custom.css) — no render-blocking Google Fonts stylesheet, no external
+  // font round-trips. The gtag preset plugin injects its own init snippet,
+  // so no manual dataLayer bootstrap is needed here.
+  headTags: [],
 
   themeConfig: {
     // Replace with your project's social card

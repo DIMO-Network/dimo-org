@@ -528,18 +528,6 @@ export default function Pricing(): ReactNode {
                 url: 'https://dimo.org/pricing',
                 availability: 'https://schema.org/InStock',
               },
-              {
-                '@type': 'Offer',
-                name: 'DIMO Enterprise',
-                priceSpecification: {
-                  '@type': 'PriceSpecification',
-                  priceCurrency: 'USD',
-                },
-                description:
-                  'Custom solutions for large-scale deployments with dedicated support, custom SLAs, and on-premise options.',
-                url: 'https://dimo.org/pricing',
-                availability: 'https://schema.org/InStock',
-              },
             ],
           })}
         </script>

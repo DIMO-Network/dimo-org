@@ -34,6 +34,7 @@
     "@docusaurus/preset-classic": "^3.9.2",
     "@docusaurus/theme-mermaid": "^3.9.2",
     "@emailjs/browser": "^4.4.1",
+    "@fontsource-variable/geist": "^5.2.9",
     "@mdx-js/react": "^3.1.1",
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
