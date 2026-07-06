@@ -192,6 +192,14 @@ function WhatIsDimoSection() {
           and the free Hobbyist tier lets developers make their first API call
           in minutes.
         </p>
+        <p>
+          Start with the <Link to="/connected-car-api">connected car API</Link>{' '}
+          overview for capabilities, the{' '}
+          <Link to="/vehicle-data-api">vehicle data API</Link> page for the
+          signal catalog, or the{' '}
+          <Link to="/compare/smartcar-alternative">DIMO vs Smartcar</Link>{' '}
+          comparison if you are evaluating providers.
+        </p>
       </div>
     </section>
   );
@@ -622,6 +630,7 @@ export default function Home(): ReactNode {
               'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
             url: 'https://dimo.org/',
             screenshot: 'https://dimo.org/img/dimo-social-card.png',
+            dateModified: '2026-07-06',
             softwareVersion: '3.0',
             applicationSubCategory: 'API Platform',
             featureList: [
@@ -644,6 +653,7 @@ export default function Home(): ReactNode {
             '@id': 'https://dimo.org/#website',
             url: 'https://dimo.org/',
             name: 'DIMO Build',
+            dateModified: '2026-07-06',
             description:
               'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
             publisher: { '@id': 'https://dimo.org/#organization' },

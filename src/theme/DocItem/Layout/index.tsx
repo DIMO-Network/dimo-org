@@ -22,6 +22,7 @@ export default function LayoutWrapper(props: Props): ReactNode {
     headline: metadata.title,
     description: metadata.description,
     url,
+    image: `${SITE}/img/dimo-social-card.png`,
     ...(metadata.lastUpdatedAt
       ? { dateModified: new Date(metadata.lastUpdatedAt).toISOString() }
       : {}),

@@ -15,6 +15,7 @@ const schema = {
   headline: H1,
   description: DESCRIPTION,
   url: `${SITE}/connected-car-api`,
+  image: `${SITE}/img/dimo-social-card.png`,
   datePublished: '2026-07-06',
   dateModified: '2026-07-06',
   isPartOf: { '@id': `${SITE}/#website` },
@@ -123,7 +124,9 @@ export default function ConnectedCarApi(): ReactNode {
         source land in one system of record with identity, owner consent, and
         sharing built in, and the core is open source, so you can run it
         yourself. You can keep an existing Smartcar or Flespi integration and
-        put DIMO on top of it.
+        put DIMO on top of it. This is the access layer that powers the
+        session-based economy: identity, data, and consent packaged so a vehicle
+        can be rented, shared, or serviced as one auditable session.
       </p>
 
       <h2>One query, any source</h2>

@@ -15,6 +15,7 @@ const schema = {
   headline: H1,
   description: DESCRIPTION,
   url: `${SITE}/vehicle-data-api`,
+  image: `${SITE}/img/dimo-social-card.png`,
   datePublished: '2026-07-06',
   dateModified: '2026-07-06',
   isPartOf: { '@id': `${SITE}/#website` },
@@ -70,6 +71,13 @@ export default function VehicleDataApi(): ReactNode {
         provider like Smartcar, Flespi, or Volteras, or DIMO hardware. Whatever
         the source, you query everything through a single GraphQL endpoint with
         consistent names and units.
+      </p>
+      <p>
+        One scoping note: if you need static reference data (VIN decoding,
+        make/model/trim specs, market values), that is a lookup database, and
+        this is not that. This API is live and historical sensor data from
+        vehicles on the road, with owner consent attached. It is the data layer
+        DIMO provides for the session-based economy.
       </p>
 
       <h2>Signals you can query</h2>

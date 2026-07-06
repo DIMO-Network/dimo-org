@@ -151,7 +151,7 @@
   transition: opacity 0.4s ease;
 }
 
-.rotatingWordVisible {
+.rotatingWord.rotatingWordVisible {
   opacity: 1;
 }
 

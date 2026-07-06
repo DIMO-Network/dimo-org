@@ -15,6 +15,7 @@ const schema = {
   headline: H1,
   description: DESCRIPTION,
   url: `${SITE}/compare/smartcar-alternative`,
+  image: `${SITE}/img/dimo-social-card.png`,
   datePublished: '2026-06-26',
   dateModified: '2026-07-06',
   isPartOf: { '@id': `${SITE}/#website` },
@@ -30,6 +31,37 @@ const schema = {
   },
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do I need hardware to use DIMO instead of Smartcar?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Most of the 50+ supported brands connect through software integrations. The optional DIMO LTE R1 adapter adds high-frequency data for vehicles without a usable cloud API.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can a vehicle owner revoke access mid-session?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Revocation is atomic: the key, the data grant, and the spend authorization all end together, and the session record stays on the audit trail.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is DIMO compliant in Europe?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The SACD consent model was built for GDPR and the EU Data Act. Every query runs against an owner-granted, scoped, revocable permission recorded on a signed audit trail.',
+      },
+    },
+  ],
+};
+
 export default function SmartcarAlternative(): ReactNode {
   return (
     <ContentPageLayout
@@ -38,11 +70,12 @@ export default function SmartcarAlternative(): ReactNode {
       canonicalPath="/compare/smartcar-alternative"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
-        { name: 'Compare', url: `${SITE}/compare/smartcar-alternative` },
-        { name: 'Smartcar' },
+        { name: 'Smartcar alternative' },
       ]}
-      schema={schema}
+      schema={[schema, faqSchema]}
       heroEyebrow="Compare"
+      ctaLabel="Get API keys"
+      ctaHref="https://console.dimo.org/sign-in"
       heroTitle={H1}
       heroSubtitle="Smartcar converts an OEM feed and passes it through to you. DIMO stores vehicle data with owner consent, sharing, and sessions built in, and can even ingest through Smartcar itself. Here is how to think about the difference."
     >
@@ -229,8 +262,13 @@ export default function SmartcarAlternative(): ReactNode {
           vehicle session infrastructure
         </Link>
         ; see it applied to{' '}
-        <Link to="/industries/rentals">rental operations</Link>, and start in
-        the <Link to="/docs">developer docs</Link>.
+        <Link to="/industries/rentals">rental operations</Link>. For the product
+        itself, the{' '}
+        <Link to="/connected-car-api">connected car API overview</Link> and{' '}
+        <Link to="/vehicle-data-api">vehicle data API</Link> pages cover
+        capabilities and signals, <Link to="/pricing">pricing</Link> is
+        published (free Hobbyist tier, $349/month Core), and the{' '}
+        <Link to="/docs">developer docs</Link> take you to a first API call.
       </p>
     </ContentPageLayout>
   );

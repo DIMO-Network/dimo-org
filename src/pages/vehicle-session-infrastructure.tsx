@@ -16,7 +16,9 @@ const schema = {
   headline: H1,
   description: DESCRIPTION,
   url: `${SITE}/vehicle-session-infrastructure`,
+  image: `${SITE}/img/dimo-social-card.png`,
   datePublished: '2026-06-26',
+  dateModified: '2026-07-06',
   isPartOf: { '@id': `${SITE}/#website` },
   author: { '@id': `${SITE}/#organization`, name: 'DIMO' },
   publisher: { '@id': `${SITE}/#organization`, name: 'DIMO' },
@@ -40,10 +42,11 @@ export default function VehicleSessionInfrastructure(): ReactNode {
       <p>
         <strong>Vehicle Session Infrastructure</strong> is the software layer
         that provisions a vehicle for a shared use case in one operation, then
-        revokes everything when the use case ends. It sits between the car and
-        the apps, fleets, and services that need temporary, governed access. The
-        easiest way to picture it is by analogy to plumbing that already runs
-        the internet:
+        revokes everything when the use case ends. It is the concept at the
+        center of DIMO, the vehicle data infrastructure that powers the
+        session-based economy. It sits between the car and the apps, fleets, and
+        services that need temporary, governed access. The easiest way to
+        picture it is by analogy to plumbing that already runs the internet:
       </p>
       <ul>
         <li>

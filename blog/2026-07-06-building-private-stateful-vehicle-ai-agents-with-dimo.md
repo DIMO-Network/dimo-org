@@ -3,7 +3,9 @@ slug: building-private-stateful-vehicle-ai-agents-with-dimo
 title: 'Building Private, Stateful, Vehicle AI Agents with DIMO'
 authors: [yevgeny-khessin]
 tags: [privacy, data, compliance]
-description: 'An interview with Yevgeny Khessin on why DIMO exists.'
+description:
+  'DIMO CEO Yevgeny Khessin on why vehicle AI agents fail at consent, not data,
+  and how SACD permissions, MCP, and vehicle wallets fix the governance layer.'
 image: /img/dimo-social-card.png
 ---
 

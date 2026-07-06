@@ -301,12 +301,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  /* 44x44 minimum tap target (WCAG 2.5.5); padding keeps the icon 24px */
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 7px;
   position: relative;
   z-index: 1001;
 }
