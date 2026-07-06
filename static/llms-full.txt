@@ -7462,7 +7462,7 @@ Choosing the right vehicle data platform? Here's an honest comparison to help yo
 Choose DIMO if you need:
 
 ✅ **Free tier for testing** - SmartCar charges from day one ($39/mo minimum)
-✅ **AI-powered features** - Built-in agents, DIMO has none
+✅ **AI-powered features** - Built-in agents, SmartCar has none
 ✅ **50+ vehicle brands** - DIMO covers 20+ more brands than SmartCar
 ✅ **Privacy-first architecture** - User-owned data vs SmartCar's centralized model
 ✅ **LATAM coverage** - Strong support vs SmartCar's limited availability

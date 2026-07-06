@@ -543,6 +543,8 @@ export default function Home(): ReactNode {
               'https://github.com/DIMO-Network',
               'https://x.com/dimo_network',
               'https://www.linkedin.com/company/dimo-network',
+              'https://www.youtube.com/@dimo_network',
+              'https://medium.com/dimo-network',
             ],
             contactPoint: {
               '@type': 'ContactPoint',
@@ -571,7 +573,7 @@ export default function Home(): ReactNode {
             },
             publisher: { '@id': 'https://dimo.org/#organization' },
             description:
-              'DIMO is open infrastructure for connected vehicles: developers and AI agents build on real-time, consent-governed data from 50+ vehicle brands already connected.',
+              'DIMO is open infrastructure for connected vehicles — a single, permissioned API for real-time vehicle telemetry, identity, and owner consent (SACD) across 50+ brands, with an open-source core.',
             url: 'https://dimo.org/',
             screenshot: 'https://dimo.org/img/dimo-social-card.png',
             softwareVersion: '3.0',

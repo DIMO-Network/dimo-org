@@ -476,9 +476,12 @@ export default function Pricing(): ReactNode {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Product',
+            '@id': 'https://dimo.org/pricing#product',
             name: 'DIMO Platform',
+            url: 'https://dimo.org/pricing',
+            image: 'https://dimo.org/img/dimo-social-card.png',
             description:
-              'Vehicle intelligence platform with AI agents and data APIs for connected car development',
+              'DIMO is open infrastructure for connected vehicles — plans for developers building on real-time, consent-governed vehicle data and AI agents.',
             brand: {
               '@type': 'Brand',
               name: 'DIMO',
