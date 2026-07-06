@@ -7,10 +7,11 @@ description:
 
 # About DIMO
 
-DIMO is the open infrastructure for connected vehicles. We give developers a
-single, permissioned API to real-time data from vehicles across the 50+ brands
-already connected to DIMO, so teams can build rentals, pay-per-use, fleet,
-insurance, and AI applications without integrating each make themselves.
+DIMO is the vehicle data infrastructure that powers the session-based economy.
+We give developers a single, permissioned API to real-time data from vehicles
+across the 50+ brands already connected to DIMO, so teams can build rentals,
+pay-per-use, fleet, insurance, and AI applications without integrating each make
+themselves.
 
 ## What we build
 

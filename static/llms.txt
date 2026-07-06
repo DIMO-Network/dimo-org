@@ -1,6 +1,6 @@
 # DIMO Build — Vehicle Data Developer Platform
 
-> DIMO is open infrastructure for connected vehicles. One permissioned API gives
+> DIMO is the vehicle data infrastructure that powers the session-based economy. One permissioned API gives
 > developers real-time telemetry, vehicle identity, and event webhooks. DIMO is
 > make-agnostic, with 50+ vehicle brands already connected by drivers. Owner
 > consent is enforced through the SACD model, built
@@ -73,6 +73,7 @@
 - [Plans & pricing](https://dimo.org/pricing): free Hobbyist tier, Core at $349/mo + $1.25/vehicle, and Enterprise.
 
 ## Blog
+- [Building Private, Stateful, Vehicle AI Agents with DIMO](https://dimo.org/blog/building-private-stateful-vehicle-ai-agents-with-dimo): the identity, consent, and permission stack behind the DIMO agents architecture, from the CEO.
 - [Data Wars: The Consent Management Crisis OEMs Didn't See Coming](https://dimo.org/blog/data-wars-the-consent-management-crisis-oems-didnt-see-coming): why consent management is becoming the battleground for vehicle data.
 - [DIMO Vehicle Simulator: Build Without a Car](https://dimo.org/blog/dimo-vehicle-simulator): generate realistic vehicle telemetry to develop and test without hardware.
 

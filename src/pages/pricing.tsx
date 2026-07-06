@@ -481,7 +481,7 @@ export default function Pricing(): ReactNode {
             url: 'https://dimo.org/pricing',
             image: 'https://dimo.org/img/dimo-social-card.png',
             description:
-              'DIMO is open infrastructure for connected vehicles — plans for developers building on real-time, consent-governed vehicle data and AI agents.',
+              'DIMO is the vehicle data infrastructure that powers the session-based economy. Plans for developers building on real-time, consent-governed vehicle data and AI agents.',
             brand: {
               '@type': 'Brand',
               name: 'DIMO',
