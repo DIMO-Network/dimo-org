@@ -60,10 +60,12 @@ export default function ConnectedCarApi(): ReactNode {
         A connected car API lets your software talk to vehicles: read the
         battery level, find the car, check the odometer, unlock the doors. Every
         automaker exposes some of this, but each one behind its own contracts,
-        auth flows, and data formats. Integrating brand by brand takes 3-6
-        months per manufacturer. DIMO collapses that into one integration:
-        drivers connect their own cars to the network, and you query all of them
-        the same way.
+        auth flows, and data formats. DIMO is not another brand-by-brand
+        connectivity contract. It is the toolkit for building vehicle access:
+        data flows in through whatever connectivity you already have or choose
+        (a direct OEM oracle, a provider like Smartcar, Flespi, or Volteras, or
+        your own telematics hardware), and DIMO turns it into stored,
+        consent-governed, queryable vehicle data behind one GraphQL contract.
       </p>
 
       <h2>What you can do with it</h2>
@@ -101,14 +103,35 @@ export default function ConnectedCarApi(): ReactNode {
             <td>Events</td>
             <td>Webhooks for state changes via Vehicle Triggers</td>
           </tr>
+          <tr>
+            <td>Ingest sources</td>
+            <td>
+              Direct OEM oracles, providers like Smartcar, Flespi, and Volteras,
+              or your own hardware (BYOD)
+            </td>
+          </tr>
         </tbody>
       </table>
 
-      <h2>One query, any brand</h2>
+      <h2>Connectivity from anywhere, one data layer</h2>
       <p>
-        Tesla, Ford, BMW, Toyota, Hyundai, and 50+ other brands all answer the
-        same GraphQL query. No per-manufacturer parsing, no unit conversion, no
-        separate auth flows:
+        Connectivity providers such as Smartcar, Flespi, and Volteras are
+        pass-through APIs: they convert an OEM&apos;s format and hand the data
+        to you, and what happens next is your problem. They do not store the
+        data, they have no sharing or consent model, and you cannot self-host
+        them. DIMO is the layer those feeds flow into. Signals from any ingest
+        source land in one system of record with identity, owner consent, and
+        sharing built in, and the core is open source, so you can run it
+        yourself. You can keep an existing Smartcar or Flespi integration and
+        put DIMO on top of it.
+      </p>
+
+      <h2>One query, any source</h2>
+      <p>
+        Vehicles across 50+ brands are already on the DIMO network, connected by
+        drivers through OEM oracles, partner providers, and DIMO hardware.
+        However a vehicle arrives, it answers the same GraphQL query. No
+        per-manufacturer parsing, no unit conversion, no separate auth flows:
       </p>
       <pre>
         <code>{EXAMPLE_QUERY}</code>

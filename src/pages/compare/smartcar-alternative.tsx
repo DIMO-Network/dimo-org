@@ -6,7 +6,7 @@ const SITE = 'https://dimo.org';
 
 const TITLE = 'DIMO vs Smartcar: Session Control, Not Just Data | DIMO';
 const DESCRIPTION =
-  'Smartcar is read-only vehicle data. DIMO adds the session: identity, digital key, scoped data, spend caps, and atomic revocation, across the 50+ vehicle brands already connected to DIMO. Here is the difference.';
+  'Smartcar is pass-through vehicle data with conversion. DIMO is storage with sharing: identity, consent, digital keys, spend caps, and atomic revocation. Self-hostable, and it can even ingest through Smartcar.';
 const H1 = 'DIMO vs Smartcar: from reading vehicle data to governing access';
 
 const schema = {
@@ -44,7 +44,7 @@ export default function SmartcarAlternative(): ReactNode {
       schema={schema}
       heroEyebrow="Compare"
       heroTitle={H1}
-      heroSubtitle="Smartcar and DIMO both connect to vehicles across many brands. The difference is what happens after you read the data — whether you can also govern access, spend, and revocation as one session."
+      heroSubtitle="Smartcar converts an OEM feed and passes it through to you. DIMO stores vehicle data with owner consent, sharing, and sessions built in, and can even ingest through Smartcar itself. Here is how to think about the difference."
     >
       <p>
         If you are evaluating Smartcar, you are almost certainly trying to do
@@ -64,6 +64,15 @@ export default function SmartcarAlternative(): ReactNode {
         analytics feature, you may never need that. For a rental, a carshare, or
         any case where a stranger temporarily uses a vehicle, the session is the
         whole job.
+      </p>
+      <p>
+        The architectural difference underneath: Smartcar is pass-through with
+        conversion. It translates an OEM feed and hands the result to you. It is
+        not a system of record, it has no data sharing or consent model, and you
+        cannot self-host it. DIMO is data storage with sharing: ingested signals
+        become normalized time-series that vehicle owners can share, scope, and
+        revoke, on infrastructure you can run yourself because the core is open
+        source.
       </p>
 
       <h2>Side by side</h2>
@@ -85,6 +94,21 @@ export default function SmartcarAlternative(): ReactNode {
             <td>Issue commands (lock/unlock)</td>
             <td>Yes</td>
             <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Stores data as a shareable system of record</td>
+            <td>— (pass-through with conversion)</td>
+            <td>Yes (consent-governed time-series)</td>
+          </tr>
+          <tr>
+            <td>Self-hostable</td>
+            <td>—</td>
+            <td>Yes (open-source core)</td>
+          </tr>
+          <tr>
+            <td>Ingests from other connectivity providers</td>
+            <td>—</td>
+            <td>Yes (including Smartcar, Flespi, Volteras)</td>
           </tr>
           <tr>
             <td>Digital key as part of a session</td>
@@ -127,13 +151,28 @@ export default function SmartcarAlternative(): ReactNode {
         rewriting your product against a new proprietary API.
       </p>
 
+      <h2>You may not need to migrate at all</h2>
+      <p>
+        This is the part most evaluations miss: DIMO and Smartcar are not
+        mutually exclusive. DIMO can ingest data <em>through</em> Smartcar (and
+        through Flespi or Volteras) the same way it ingests from OEM oracles or
+        its own hardware. If your Smartcar integration works, keep it as the
+        connectivity layer and put DIMO on top for what Smartcar does not do:
+        storage, owner consent, sharing, sessions, and an audit trail. See the{' '}
+        <Link to="https://github.com/DIMO-Network/oracle-example">
+          oracle example
+        </Link>{' '}
+        for how ingest sources plug in.
+      </p>
+
       <h2>Migrating from Smartcar</h2>
       <p>
-        Most Smartcar migrations are endpoint mapping, not re-architecture.
-        Smartcar&apos;s REST reads (odometer, location, battery, fuel) map to
-        DIMO&apos;s GraphQL Telemetry API, and vehicle authorization maps to a
-        SACD consent grant. The practical sequence: create a free account at
-        console.dimo.org, generate API keys, point the{' '}
+        If you do want to replace Smartcar outright, most migrations are
+        endpoint mapping, not re-architecture. Smartcar&apos;s REST reads
+        (odometer, location, battery, fuel) map to DIMO&apos;s GraphQL Telemetry
+        API, and vehicle authorization maps to a SACD consent grant. The
+        practical sequence: create a free account at console.dimo.org, generate
+        API keys, point the{' '}
         <Link to="/docs/build/building-with-tools/server-sdk">
           TypeScript, Python, or C# SDK
         </Link>{' '}

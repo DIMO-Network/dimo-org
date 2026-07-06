@@ -32,11 +32,14 @@ telemetry (location, battery, fuel, odometer, tire pressure, diagnostics),
 verify vehicle identity, and issue commands through a single GraphQL endpoint
 with SDKs for TypeScript, Python, and C#.
 
-What separates DIMO from read-only vehicle data APIs is the consent and session
-layer. Vehicle owners grant scoped, revocable permissions through the SACD
-consent model, and every grant lands on a signed audit trail — which makes GDPR,
-EU Data Act, and CCPA compliance a property of the architecture. The core
-protocol is open source.
+What separates DIMO from pass-through connectivity APIs (Smartcar, Flespi,
+Volteras) is that DIMO is data storage with sharing, not conversion and
+hand-off. DIMO can ingest through those providers, through direct OEM oracles,
+or through its own hardware, and the ingested signals become a consent-governed
+system of record. Vehicle owners grant scoped, revocable permissions through the
+SACD consent model, and every grant lands on a signed audit trail, which makes
+GDPR, EU Data Act, and CCPA compliance a property of the architecture. The core
+protocol is open source and self-hostable; pass-through providers are not.
 
 The free Hobbyist tier includes all APIs with vehicles at $1.25/month; Core is
 $349/month with 100 vehicles included. DIMO is a 2026 MotorTrend Group SDV Award

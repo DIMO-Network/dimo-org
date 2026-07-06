@@ -65,10 +65,11 @@ export default function VehicleDataApi(): ReactNode {
         Vehicle data is fragmented on purpose: every manufacturer has its own
         cloud, schema, units, and gatekeeping. A vehicle data API earns its keep
         by normalizing that mess into one contract your code can trust. DIMO
-        does the normalization once, network-wide: drivers connect their cars,
-        signals stream in from OEM clouds and optional hardware, and you query
-        everything through a single GraphQL endpoint with consistent names and
-        units.
+        does the normalization once, network-wide. Signals stream in through the
+        connectivity source you choose: a direct OEM oracle, a pass-through
+        provider like Smartcar, Flespi, or Volteras, or DIMO hardware. Whatever
+        the source, you query everything through a single GraphQL endpoint with
+        consistent names and units.
       </p>
 
       <h2>Signals you can query</h2>
@@ -117,11 +118,23 @@ export default function VehicleDataApi(): ReactNode {
         adapter.
       </p>
 
+      <h2>Storage with sharing, not pass-through</h2>
+      <p>
+        This is the difference between DIMO and connectivity providers.
+        Smartcar, Flespi, and Volteras convert an OEM feed and pass it through
+        to you; they are not a system of record, they have no consent or sharing
+        model, and you cannot self-host them. DIMO ingests from those same
+        providers (or from OEM oracles and hardware) and stores the signals as
+        normalized time-series that vehicle owners can share, scope, and revoke.
+        The open-source core means the whole stack can run on your own
+        infrastructure.
+      </p>
+
       <h2>Historical data with aggregation</h2>
       <p>
-        The same endpoint serves time-series history with server-side
-        aggregation, so a week of driving becomes one query instead of a data
-        pipeline:
+        Because DIMO stores the data, the same endpoint serves time-series
+        history with server-side aggregation, so a week of driving becomes one
+        query instead of a data pipeline:
       </p>
       <pre>
         <code>{HISTORY_QUERY}</code>
