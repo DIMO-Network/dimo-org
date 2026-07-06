@@ -5,8 +5,11 @@ authors: [yevgeny-khessin]
 tags: [privacy, data, compliance]
 description: 'An interview with Yevgeny Khessin on why DIMO exists.'
 image: /img/dimo-social-card.png
-draft: true
 ---
+
+Most vehicle-data projects don't die because the data is missing—they die
+building identity, consent, and permission plumbing. Here's the stack DIMO built
+so agentic apps can skip that quarter of work.
 
 <!-- truncate -->
 
@@ -73,9 +76,8 @@ integration partner.
 
 ## Agents API: the orchestration surface
 
-[DIMO Agents API](https://www.dimo.org/docs/api-references/agents-api) is how
-you build “chat with your car” experiences without wiring dozens of brittle
-flows.
+[DIMO Agents API](https://www.dimo.org/solutions/agentic-experiences) is how you
+build “chat with your car” experiences without wiring dozens of brittle flows.
 
 You create a scoped agent for a user, then message it. The agent delegates
 internally: vehicle identity lookups, telemetry queries, structured tool calls.
@@ -153,7 +155,7 @@ Otherwise you get “autonomous agents” and then you get a security incident.
 - Build services using the
   [Server SDK](https://www.dimo.org/docs/build/building-with-tools/server-sdk)
 - Build experiences using the
-  [Client SDK](https://www.dimo.org/docs/build/building-with-tools/client-sdk)
+  [Client SDK](https://www.dimo.org/docs/build/building-with-tools/client-sdk-dimo-connect)
 
-The goal isn’t “AI magic”, it’s having an agent that scan safely access real
+The goal isn’t “AI magic”, it’s having an agent that can safely access real
 vehicle data—without you spending the next quarter building permission plumbing.

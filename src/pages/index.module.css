@@ -372,6 +372,30 @@
   opacity: 1;
 }
 
+/* --- What is DIMO (answer block) --- */
+.answerSection {
+  padding: 5rem 1.5rem 2rem;
+  background: #030303;
+}
+
+.answerBlock {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.answerBlock h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.answerBlock p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--hp-text-muted);
+}
+
 /* --- Features Grid --- */
 .features {
   padding: 8rem 1.5rem;
