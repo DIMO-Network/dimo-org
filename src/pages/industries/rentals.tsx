@@ -79,7 +79,7 @@ const USE_CASES = [
 ];
 
 const STATS = [
-  { number: '35%', label: 'Reduction in Late Returns' },
+  { number: '$1.25', label: 'Per Vehicle per Month' },
   { number: '50+', label: 'Vehicle Brands' },
   { number: '24/7', label: 'Customer Support' },
   { number: '200k+', label: 'Connected Vehicles' },

@@ -154,12 +154,14 @@ export default function VehicleSessionInfrastructure(): ReactNode {
 
       <h2>Why now</h2>
       <p>
-        There are roughly{' '}
-        <strong>500 million vehicle sessions a year in the US</strong>: every
-        rental, carshare trip, robotaxi ride, and fleet dispatch. Zero of them
-        run on a shared protocol. At the same time, regulators are mandating
-        exactly the properties a session provides: consented, scoped, revocable,
-        auditable access (see{' '}
+        There are{' '}
+        <strong>
+          hundreds of millions of vehicle sessions a year in the US
+        </strong>
+        : every rental, carshare trip, robotaxi ride, and fleet dispatch. Zero
+        of them run on a shared protocol. At the same time, regulators are
+        mandating exactly the properties a session provides: consented, scoped,
+        revocable, auditable access (see{' '}
         <Link to="/compliance">connected vehicle data compliance</Link>). The
         demand and the rules are arriving together.
       </p>

@@ -136,12 +136,12 @@ export default function EuDataAct(): ReactNode {
         It is tempting to read the Data Act as pure cost. It is not. The same
         consented, scoped access that satisfies the regulation is the foundation
         for the software revenue OEMs are already chasing. They are collectively
-        targeting <strong>$62–67 billion a year</strong> from software and
-        connected services by 2030. The difference is that the compliant path
-        and the revenue path are now the <em>same</em> path. An OEM that can
-        grant a driver-authorized session can also offer per-session insurance,
-        plug-and-charge, or maintenance services on top of it, legally, with the
-        consent already captured.
+        targeting <strong>tens of billions of dollars a year</strong> from
+        software and connected services by 2030. The difference is that the
+        compliant path and the revenue path are now the <em>same</em> path. An
+        OEM that can grant a driver-authorized session can also offer
+        per-session insurance, plug-and-charge, or maintenance services on top
+        of it, legally, with the consent already captured.
       </p>
       <p>
         Contrast that with the closed path. As the{' '}
