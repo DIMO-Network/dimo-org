@@ -57,10 +57,11 @@ further investment warranted.
 
 ## Citability (per-page)
 
-- **Homepage — RESOLVED ✓ (2026-07-06):** self-contained 158-word "What is
-  DIMO?" answer block added directly after the hero (SSR, first 30% of page).
-  Entity conflict resolved in the reverse direction per CEO decision:
-  "session-based economy" IS the brand — schema descriptions
+- **Homepage — RESOLVED ✓ (2026-07-06):** self-contained ~165-word "What is
+  DIMO?" answer block added directly after the hero (SSR, first 30% of page),
+  stating the chain explicitly: session economy → DIMO handles vehicle access →
+  build apps and businesses. Entity conflict resolved in the reverse direction
+  per CEO decision: "session-based economy" IS the brand — schema descriptions
   (Organization/SoftwareApplication/WebSite) and meta description realigned to
   the session-based definition to match visible copy.
 - **EU Data Act — STRONG:** dense, dated, self-contained regulatory answer in
@@ -95,9 +96,12 @@ inside the <3-month window that earns the ~3× citation boost.
    the original suggestion — visible copy kept;
    Organization/SoftwareApplication/WebSite schema + meta description realigned
    to "DIMO is the vehicle data infrastructure powering the session-based
-   economy — a single, permissioned API for real-time vehicle telemetry,
-   identity, and owner consent (SACD) across 50+ brands, with an open-source
-   core." Visible copy and schema now agree.
+   economy — it handles vehicle access with a single, permissioned API for
+   real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so
+   developers can build apps and businesses on connected vehicles. Open-source
+   core." Visible copy and schema now agree. (CEO refinement: make the chain
+   explicit — session economy → handles vehicle access → build apps and
+   businesses.)
 3. ~~Expand FAQPage schema~~ — **DONE (2026-07-06).** 5 → 28 (all real Q&As on
    the page).
 4. ~~Publish one fresh technical post~~ — **DONE (2026-07-06).** CEO draft
