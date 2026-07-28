@@ -124,6 +124,18 @@
   max-width: 85%;
 }
 
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .inputArea {
   padding: 12px 20px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);

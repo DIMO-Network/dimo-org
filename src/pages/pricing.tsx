@@ -1,4 +1,4 @@
-import React, { useState, type ReactNode } from 'react';
+import React, { useState, useRef, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -7,6 +7,14 @@ import { X } from 'lucide-react';
 import styles from './pricing.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
+import {
+  isValidEmail,
+  MIN_FILL_TIME_MS,
+  withinCooldown,
+  markSubmitted,
+} from '../utils/antiSpam';
+
+const LAST_SUBMIT_KEY = 'dimo_enterprise_last_submit';
 
 type BillingCycle = 'annual' | 'monthly';
 type PlanType = 'ai' | 'data';
@@ -277,9 +285,11 @@ function EnterpriseModal({
     fleetSize: '',
     details: '',
   });
+  const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<
     'idle' | 'loading' | 'success' | 'error'
   >('idle');
+  const mountedAt = useRef(Date.now());
 
   function update(field: string, value: string) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -288,6 +298,24 @@ function EnterpriseModal({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (status === 'loading') return;
+
+    if (!isValidEmail(form.email)) {
+      setStatus('error');
+      return;
+    }
+
+    // Honeypot caught a bot, or the form was submitted faster than a human
+    // could fill it out. Pretend it worked so the bot doesn't adapt.
+    if (honeypot || Date.now() - mountedAt.current < MIN_FILL_TIME_MS) {
+      setStatus('success');
+      return;
+    }
+
+    if (withinCooldown(LAST_SUBMIT_KEY)) {
+      setStatus('success');
+      return;
+    }
+
     setStatus('loading');
 
     try {
@@ -306,6 +334,7 @@ function EnterpriseModal({
         },
         siteConfig.customFields.emailjsPublicKey as string
       );
+      markSubmitted(LAST_SUBMIT_KEY);
       setStatus('success');
     } catch {
       setStatus('error');
@@ -341,6 +370,18 @@ function EnterpriseModal({
               Tell us about your project and we'll put together a custom plan.
             </p>
             <form className={styles.modalForm} onSubmit={handleSubmit}>
+              {/* Honeypot: hidden from sighted users and screen readers, but
+                  bots that auto-fill every field will populate it. */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                className={styles.honeypot}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
               <div className={styles.modalRow}>
                 <input
                   className={styles.modalInput}
@@ -390,7 +431,9 @@ function EnterpriseModal({
               />
               {status === 'error' && (
                 <p className={styles.modalError}>
-                  Something went wrong. Please try again.
+                  {isValidEmail(form.email)
+                    ? 'Something went wrong. Please try again.'
+                    : 'Please enter a valid email address.'}
                 </p>
               )}
               <button

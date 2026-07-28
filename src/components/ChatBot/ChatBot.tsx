@@ -3,6 +3,14 @@ import emailjs from '@emailjs/browser';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { MessageCircle, X, Send } from 'lucide-react';
 import styles from './ChatBot.module.css';
+import {
+  isValidEmail,
+  MIN_FILL_TIME_MS,
+  withinCooldown,
+  markSubmitted,
+} from '../../utils/antiSpam';
+
+const LAST_SUBMIT_KEY = 'dimo_chatbot_last_submit';
 
 const PRODUCT_OPTIONS = [
   { value: 'Ingest', label: 'Ingest – send telematics data to DIMO' },
@@ -32,6 +40,7 @@ export default function ChatBot() {
   const [products, setProducts] = useState<string[]>([]);
   const [, setDetails] = useState('');
   const [input, setInput] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     {
       from: 'bot',
@@ -40,6 +49,7 @@ export default function ChatBot() {
   ]);
   const [error, setError] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const mountedAt = useRef(Date.now());
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -66,7 +76,7 @@ export default function ChatBot() {
       );
       setStep(1);
     } else if (step === 1) {
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      if (!isValidEmail(value)) {
         setError('Please enter a valid email address.');
         return;
       }
@@ -108,22 +118,28 @@ export default function ChatBot() {
   }
 
   async function sendAndClose(detailsText: string) {
-    const templateParams = {
-      name,
-      email,
-      products: products.join(', '),
-      details: detailsText,
-    };
+    const isBot =
+      Boolean(honeypot) || Date.now() - mountedAt.current < MIN_FILL_TIME_MS;
 
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
-    } catch (err) {
-      console.error('EmailJS error:', err);
+    if (!isBot && !withinCooldown(LAST_SUBMIT_KEY)) {
+      const templateParams = {
+        name,
+        email,
+        products: products.join(', '),
+        details: detailsText,
+      };
+
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY
+        );
+        markSubmitted(LAST_SUBMIT_KEY);
+      } catch (err) {
+        console.error('EmailJS error:', err);
+      }
     }
 
     addMessages({
@@ -170,6 +186,18 @@ export default function ChatBot() {
           </div>
 
           <div className={styles.inputArea}>
+            {/* Honeypot: hidden from sighted users and screen readers, but
+                bots that auto-fill every field will populate it. */}
+            <input
+              type="text"
+              name="company"
+              value={honeypot}
+              onChange={e => setHoneypot(e.target.value)}
+              className={styles.honeypot}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
             {step === 2 ? (
               <>
                 <div className={styles.checkboxGroup}>

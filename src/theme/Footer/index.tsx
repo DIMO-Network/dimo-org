@@ -1,23 +1,54 @@
-import React, { type ReactNode, useState } from 'react';
+import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import emailjs from '@emailjs/browser';
 import { ArrowRight, Check } from 'lucide-react';
 import styles from './styles.module.css';
 import { LINKS } from '../../links';
+import {
+  isValidEmail,
+  MIN_FILL_TIME_MS,
+  withinCooldown,
+  markSubmitted,
+} from '../../utils/antiSpam';
 
 const imgGithub = '/img/icon-github.svg';
+const LAST_SUBMIT_KEY = 'dimo_newsletter_last_submit';
 
 function NewsletterSignup() {
   const { siteConfig } = useDocusaurusContext();
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<
     'idle' | 'loading' | 'success' | 'error'
   >('idle');
+  const mountedAt = useRef(Date.now());
+
+  useEffect(() => {
+    if (withinCooldown(LAST_SUBMIT_KEY)) setStatus('success');
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim() || status === 'loading') return;
+    if (status === 'loading') return;
+
+    const trimmedEmail = email.trim();
+    if (!isValidEmail(trimmedEmail)) {
+      setStatus('error');
+      return;
+    }
+
+    // Honeypot caught a bot, or the form was submitted faster than a human
+    // could fill it out. Pretend it worked so the bot doesn't adapt.
+    if (honeypot || Date.now() - mountedAt.current < MIN_FILL_TIME_MS) {
+      setStatus('success');
+      return;
+    }
+
+    if (withinCooldown(LAST_SUBMIT_KEY)) {
+      setStatus('success');
+      return;
+    }
 
     setStatus('loading');
     try {
@@ -26,12 +57,13 @@ function NewsletterSignup() {
         siteConfig.customFields.emailjsTemplateId as string,
         {
           name: 'Newsletter Subscriber',
-          email,
+          email: trimmedEmail,
           products: 'Newsletter',
           details: 'Footer newsletter signup',
         },
         siteConfig.customFields.emailjsPublicKey as string
       );
+      markSubmitted(LAST_SUBMIT_KEY);
       setStatus('success');
       setEmail('');
     } catch {
@@ -62,6 +94,18 @@ function NewsletterSignup() {
           }}
           required
         />
+        {/* Honeypot: hidden from sighted users and screen readers, but bots
+            that auto-fill every field will populate it. */}
+        <input
+          type="text"
+          name="company"
+          value={honeypot}
+          onChange={e => setHoneypot(e.target.value)}
+          className={styles.newsletterHoneypot}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
         <button
           type="submit"
           className={styles.newsletterButton}
@@ -72,7 +116,7 @@ function NewsletterSignup() {
       </div>
       {status === 'error' && (
         <p className={styles.newsletterError}>
-          Something went wrong. Please try again.
+          Please enter a valid email address.
         </p>
       )}
     </form>
