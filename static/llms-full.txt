@@ -1,7 +1,7 @@
 # DIMO Build — Full Documentation Corpus
 
 > Concatenated developer documentation for the DIMO vehicle data platform.
-> 39 documents. Source: https://dimo.org/docs
+> 40 documents. Source: https://dimo.org/docs
 > Usage: public developer docs — AI training, search, and inference permitted (see the Content-Signal HTTP header). Attribution: DIMO (https://dimo.org).
 
 # What Can You Build?
@@ -182,6 +182,12 @@ public and unique amongst the DIMO Network.
 
 :::
 
+:::tip Building a multi-tenant app?
+If your app needs a **separate Developer License per end user** (e.g. each customer brings their own API key)
+rather than one shared license, see [Auto-Create a Developer License](./auto-create-license) — it covers
+provisioning licenses programmatically with the Login with DIMO SDK instead of the manual Console flow below.
+:::
+
 ### How It Works
 
 			Login to your DIMO Account via the [Console](https://console.dimo.org).
@@ -251,6 +257,179 @@ Here are the key components to your Developer License:
 			}
 		]}
 	/>
+
+---
+
+# Auto-Create a Developer License
+
+URL: https://dimo.org/docs/getting-started/auto-create-license
+
+# Auto-Create a Developer License
+
+### Provision Licenses Programmatically
+
+The [previous section](./register-a-license) covers creating a single Developer License for yourself in the
+[Console](https://console.dimo.org). That works well if your app operates under one shared license.
+
+Some apps need a **new Developer License per end user** instead — for example, a multi-tenant app where each
+customer brings and manages their own API key rather than sharing yours. For that pattern, the
+[Login with DIMO SDK](https://www.npmjs.com/package/@dimo-network/login-with-dimo) can mint (or reconnect) a
+Developer License directly from your app's onboarding flow, without sending anyone to the Console.
+
+:::info Developer Notes
+Provisioning still creates a real, on-chain Developer License — it's the same object you'd otherwise create
+manually. The SDK just automates account creation, on-chain registration, and key generation on behalf of
+whoever is onboarding into your app.
+:::
+
+### When to Use This
+
+Reach for provisioning when your app's architecture requires **one Developer License per tenant or end user**,
+so each of them supplies their own API key rather than all traffic flowing through a single shared license.
+
+### How It Works
+
+    Initialize the SDK once at app startup with your own `clientId` and `redirectUri` — these must already be
+    registered in the [Developer Console](https://console.dimo.org) before provisioning will work. This is the
+    identity of *your app*, not the license being provisioned.
+
+    ```tsx
+
+    initializeDimoSDK({
+      clientId: process.env.REACT_APP_DIMO_CLIENT_ID!,
+      redirectUri: process.env.REACT_APP_DIMO_REDIRECT_URI!,
+      environment: 'production',
+    });
+    ```
+
+    Render the provisioning component (React) or open the provisioning URL directly (any other stack) during
+    your onboarding flow.
+
+        ```tsx
+          DimoSDKModes,
+          ProvisionDeveloperLicenseWithDimo,
+        } from '@dimo-network/login-with-dimo';
+
+        function OnboardingPage() {
+          const handleSuccess = async (result: ProvisionResult) => {
+            // Persist the credentials — warn the user to save the key now;
+            // it cannot be retrieved again after this point.
+            await myApi.saveTenantCredentials({
+              clientId: result.clientId,
+              apiKey: result.privateKey, // raw hex, ready to use
+            });
+
+            navigate('/dashboard');
+          };
+
+          return (
+              mode={DimoSDKModes.POPUP}
+              domain="https://yourapp.com"
+              onSuccess={handleSuccess}
+              onError={(err) => console.error('Provision failed', err)}
+            />
+          );
+        }
+        ```
+
+        | Prop | Type | Required | Description |
+        |---|---|---|---|
+        | `mode` | `DimoSDKModes` | yes | `POPUP` or `REDIRECT` |
+        | `domain` | `string` | yes | Your app's origin URL — recorded on the developer license NFT. Use your canonical origin, not `localhost`. |
+        | `onSuccess` | `(result: ProvisionResult) => void` | yes | Called with credentials when provisioning completes |
+        | `onError` | `(error: Error) => void` | yes | Called on any failure |
+        | `existingTokenId` | `number` | no | Token ID of a license to reconnect (skip mint) |
+        | `existingClientId` | `string` | no | Client ID of a license to reconnect (skip mint) |
+        If you're not on React, drive the same flow by opening `login.dimo.org` yourself with
+        `entryState=PROVISION_DEVELOPER_LICENSE` and listening for the result via `postMessage` — this is the
+        approach non-React apps like ParentOS and Fleet Lite use.
+
+        ```js
+        const redirectUri = encodeURIComponent(window.location.origin + '/login-callback');
+        const url =
+          `https://login.dimo.org?clientId=${YOUR_CLIENT_ID}` +
+          `&redirectUri=${redirectUri}` +
+          `&entryState=PROVISION_DEVELOPER_LICENSE`;
+
+        const popup = window.open(url, 'dimo-provision', 'width=500,height=640');
+
+        window.addEventListener('message', (event) => {
+          // Always validate the origin before trusting the payload
+          if (event.origin !== 'https://login.dimo.org') return;
+          if (event.data?.eventType !== 'provisionResponse') return;
+
+          const { clientId, privateKey, tokenId } = event.data;
+          // Persist clientId / privateKey exactly as in the React example
+        });
+        ```
+
+    Both approaches deliver the same shape once provisioning succeeds:
+
+    ```ts
+    interface ProvisionResult {
+      clientId: string;   // DIMO client ID (0x-prefixed address)
+      privateKey: string; // raw hex private key — no 0x prefix
+      domain: string;     // the domain you passed in, echoed back
+      tokenId: number;    // on-chain token ID of the new developer license NFT
+    }
+    ```
+
+    :::info Terminology
+    The Console UI calls this secret an **API Key**; the provisioning response calls the same value
+    `privateKey`. They're the same secret — just named differently depending on which flow created it.
+    :::
+
+    Store `privateKey` encrypted at rest immediately. Once the popup or redirect closes, DIMO cannot show it to
+    you again — the same one-time-display rule as API keys generated manually in the Console.
+
+    If a user already has a license from a previous session (e.g. they're switching devices or re-authorizing),
+    pass their existing `tokenId` and `clientId` to skip minting a new one:
+
+    ```tsx
+      mode={DimoSDKModes.POPUP}
+      domain="https://yourapp.com"
+      onSuccess={handleSuccess}
+      onError={handleError}
+      existingTokenId={user.licenseTokenId}
+      existingClientId={user.clientId}
+    />
+    ```
+
+    For the manual URL approach, pass the same values as additional query parameters on the provisioning URL.
+
+### How the Flow Works
+
+```
+[ Your App ]
+   └── triggers provisioning (component click, or window.open)
+         ↓
+      login.dimo.org (entryState=PROVISION_DEVELOPER_LICENSE)
+         └── authenticates the user
+         └── creates or reconnects a developer license NFT
+         └── generates a private key for the license
+         ↓
+      popup/redirect posts { eventType: "provisionResponse", clientId, tokenId, privateKey }
+         ↓
+[ Your App ]
+   └── validates the origin, reads the result
+   └── stores credentials, continues onboarding
+```
+
+### Security Notes
+
+- The private key is generated inside the DIMO popup/redirect and delivered only via `postMessage` with strict
+  origin validation — it never touches your server during provisioning.
+- Store it encrypted at rest. Once the flow completes it cannot be retrieved from DIMO again.
+- The `domain` you provide is recorded on-chain against the license NFT — use your app's real origin.
+
+  href="https://github.com/dimo-network/login-with-dimo/tree/main/sdk"
+  data-color-scheme="no-preference: light; light: light; dark: dark;"
+  data-icon="github"
+  data-size="large"
+  data-show-count="false"
+  aria-label="Star dimo-network/login-with-dimo on GitHub"
+>
+  Client SDK: DIMO Connect
 
 ---
 
@@ -964,6 +1143,12 @@ Developers can get started using either the [React Component SDK (aka Login with
 ## Using the SDK
 If you are a React developer, you are more than welcome to use the SDK directly and skip using the DIMO Connect URL.
 The SDK is guaranteed to have more functionalities as the DIMO Connect URL is bounded by query parameter limitations.
+
+:::tip Provisioning a Developer License per user
+Building a multi-tenant app where each end user needs their own Developer License (their own API key), rather
+than sharing yours? See [Auto-Create a Developer License](../../1_getting-started/2_auto-create-license.mdx)
+for how to mint or reconnect licenses programmatically from this same SDK.
+:::
 
   href="https://github.com/dimo-network/login-with-dimo/tree/main/sdk"
   data-color-scheme="no-preference: light; light: light; dark: dark;"
