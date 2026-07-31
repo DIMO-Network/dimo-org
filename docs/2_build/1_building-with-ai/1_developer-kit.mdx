@@ -12,7 +12,7 @@ import GitHubButton from "react-github-btn";
 # Developer Kit
 
 ## AI App Builder
-[DIMO Developer Kit (DDK)](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) is an AI Agent-powered boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
+[DIMO Developer Kit (DDK)](https://github.com/DIMO-Network/dimo-developer-kit) is an AI Agent-powered boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
 both the [DIMO Connect Client SDK](/docs/build/building-with-tools/client-sdk-dimo-connect) and the [Server SDK](/docs/build/building-with-tools/server-sdk) in Typescript.
 Deploying an app literally takes you less than **60 seconds**.
 
@@ -29,8 +29,8 @@ Deploying an app literally takes you less than **60 seconds**.
 ></iframe>
 
 <Stepper>
-  <Step title="Remix the App">
-		Powered by Replit, you can either [remix the app on Replit](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) as shown here or [fork the GitHub repository](https://github.com/DIMO-Network/dimo-developer-kit) directly.
+  <Step title="Fork the App">
+		Powered by Replit, you simply start by [forking the GitHub repository](https://github.com/DIMO-Network/dimo-developer-kit) directly.
 		<GitHubButton
 			href="https://github.com/dimo-network/dimo-developer-kit"
 			data-color-scheme="no-preference: light; light: light; dark: dark;"
@@ -41,26 +41,10 @@ Deploying an app literally takes you less than **60 seconds**.
 		>
 			DIMO Developer Kit
 		</GitHubButton>
-		<ImageTooltips
-      src="/img/ddk.png"
-      alt="DIMO Developer Kit"
-      tooltipAreas={[
-        {
-          x: 2, y: 50, width: 30, height: 10,
-          title: "Remix this app",
-          text: "Sign up for a Replit account and remix the DIMO Developer Kit."
-        },
-				{
-          x: 32, y: 22, width: 66, height: 74,
-          title: "Quick preview of the app",
-          text: "The code of the boilerplate, it is also open-sourced and hosted on GitHub."
-        }
-      ]}
-    />
 	</Step>
 
   	<Step title="Update Secrets on the App">
-		You will need to update the secrets required on the Developer Kit boilerplate. 
+		Deploy the app to Replit and update the secrets required on the Developer Kit boilerplate. 
 		You can find these keys in the [Developer Console](https://console.dimo.org):
 		- Client ID: `DIMO_CLIENT_ID` & `VITE_DIMO_CLIENT_ID`
 		- Redirect URI: `DIMO_REDIRECT_URI` & `VITE_DIMO_REDIRECT_URI`
