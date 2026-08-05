@@ -167,6 +167,41 @@ function HeroSection() {
   );
 }
 
+// Press logos are shown grayscale, sized uniformly, and linked to the actual
+// coverage — nominative use identifying real editorial features, per the
+// trademark note below the strip. Only add outlets with verifiable articles.
+function FeaturedInSection() {
+  return (
+    <section className={styles.trustedBy} aria-label="Press coverage">
+      <p className={styles.trustedByText}>As featured in</p>
+      <div className={styles.logoMarquee}>
+        <a
+          href="https://www.motortrend.com/reviews/2025-ram-1500-laramie-4x4-yearlong-review-update-8-dimo-data-dump"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Read MotorTrend's coverage of DIMO"
+        >
+          <img
+            src="/img/logo-motortrend.svg"
+            alt="MotorTrend"
+            width={155}
+            height={30}
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <p className={styles.pressQuote}>
+        “Any true data nerd should connect to DIMO.” — MotorTrend, July 2026
+      </p>
+      <p className={styles.trademarkNote}>
+        All third-party trademarks are the property of their respective owners
+        and identify independent editorial coverage only. No endorsement or
+        sponsorship is implied.
+      </p>
+    </section>
+  );
+}
+
 function WhatIsDimoSection() {
   return (
     <section className={styles.answerSection}>
@@ -673,6 +708,7 @@ export default function Home(): ReactNode {
         <CustomNavbar dark={true} />
         <main>
           <HeroSection />
+          <FeaturedInSection />
           <WhatIsDimoSection />
           <AutomateOperationsSection />
           <BigFeatureSection />

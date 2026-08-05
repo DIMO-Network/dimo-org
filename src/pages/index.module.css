@@ -359,10 +359,38 @@
 .logoMarquee img {
   height: 30px;
   transition: opacity 0.2s;
+  /* Knock colored press logos to white so the strip reads on the dark
+     background; the container's grayscale+opacity keeps them muted. */
+  filter: brightness(0) invert(1);
 }
 
 .logoMarquee img:hover {
   opacity: 1;
+}
+
+.logoMarquee a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pressQuote {
+  text-align: center;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--hp-text-muted);
+  margin: 1.5rem auto 0;
+  max-width: 640px;
+  padding: 0 1.5rem;
+}
+
+.trademarkNote {
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #525252;
+  margin: 0.75rem auto 0;
+  max-width: 640px;
+  padding: 0 1.5rem;
 }
 
 /* --- What is DIMO (answer block) --- */
