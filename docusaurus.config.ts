@@ -7,11 +7,6 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 const config: Config = {
-  customFields: {
-    emailjsServiceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-    emailjsTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-    emailjsPublicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-  },
   title: 'DIMO Build',
   tagline: 'The vehicle data platform that puts privacy first',
   favicon: 'img/favicon.ico',
