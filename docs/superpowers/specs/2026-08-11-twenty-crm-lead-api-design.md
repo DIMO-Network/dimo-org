@@ -12,8 +12,8 @@ structured CRM records.
 
 We're replacing this with a server-side integration into Twenty CRM (Twenty
 Cloud, `https://api.twenty.com/rest`), which gives structured lead records
-(Person + Opportunity) and lets us enforce anti-spam checks server-side where
-they can't be bypassed.
+(Person + Opportunity) and moves anti-spam enforcement from bypassable client JS
+to the server, raising the cost of casual/naive abuse.
 
 ## Architecture
 
@@ -59,8 +59,12 @@ Content-Type: application/json
    - Reject (400) if `Date.now() - formStartedAt < MIN_FILL_TIME_MS` (reuse the
      existing constant from `antiSpam.ts`).
    - Reject (400) if `email` fails the existing email regex.
-   - This moves anti-spam enforcement from bypassable client JS to the server —
-     the main security improvement of this change.
+   - This moves anti-spam enforcement from bypassable client JS to the server,
+     which raises the cost of casual/naive abuse (a browser-based bot or someone
+     hand-editing form values) — it does not stop a scripted attacker who crafts
+     the POST body directly, since `formStartedAt` is still client-supplied. A
+     rate limit (e.g. via Vercel Firewall) would be a stronger next layer, out
+     of scope for this change.
 
 2. **Upsert Person**
    - `GET /rest/people?filter=emails.primaryEmail[eq]:<email>` to look for an

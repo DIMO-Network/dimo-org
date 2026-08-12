@@ -297,7 +297,8 @@ function EnterpriseModal({
     e.preventDefault();
     if (status === 'loading') return;
 
-    if (!isValidEmail(form.email)) {
+    const trimmedEmail = form.email.trim();
+    if (!isValidEmail(trimmedEmail)) {
       setStatus('error');
       return;
     }
@@ -319,7 +320,7 @@ function EnterpriseModal({
     try {
       await submitLead({
         name: form.name,
-        email: form.email,
+        email: trimmedEmail,
         company: form.company,
         products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
         details: [

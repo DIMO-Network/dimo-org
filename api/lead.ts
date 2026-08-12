@@ -49,16 +49,19 @@ async function findPersonIdByEmail(email: string): Promise<string | null> {
   return person?.id ?? null;
 }
 
-async function createPerson(payload: LeadPayload): Promise<string> {
-  const [firstName, ...rest] = payload.name.trim().split(' ');
+async function createPerson(
+  email: string,
+  payload: LeadPayload
+): Promise<string> {
+  const [firstName, ...rest] = payload.name.trim().split(/\s+/);
   const data = await twentyFetch('/people', {
     method: 'POST',
     body: JSON.stringify({
       name: {
         firstName: firstName || payload.name,
-        lastName: rest.join(' ') || '-',
+        lastName: rest.join(' '),
       },
-      emails: { primaryEmail: payload.email },
+      emails: { primaryEmail: email },
       ...(payload.phone
         ? { phones: { primaryPhoneNumber: payload.phone } }
         : {}),
@@ -73,27 +76,89 @@ const SOURCE_LABELS: Record<LeadSource, string> = {
   enterprise: 'Enterprise Inquiry',
 };
 
+function detailsToBlocknote(text: string): string {
+  const paragraphs = text.split('\n').map((line, i) => ({
+    id: `block-${i}`,
+    type: 'paragraph',
+    props: {
+      textColor: 'default',
+      backgroundColor: 'default',
+      textAlignment: 'left',
+    },
+    content: line ? [{ type: 'text', text: line, styles: {} }] : [],
+    children: [],
+  }));
+  return JSON.stringify(paragraphs);
+}
+
 async function createOpportunity(
   personId: string,
+  email: string,
   payload: LeadPayload
 ): Promise<void> {
-  const label = payload.company || payload.email;
-  await twentyFetch('/opportunities', {
+  const label = payload.company || email;
+  const data = await twentyFetch('/opportunities', {
     method: 'POST',
     body: JSON.stringify({
       name: `${SOURCE_LABELS[payload.source]} - ${label}`,
       pointOfContactId: personId,
     }),
   });
+  const opportunityId = data.data.createOpportunity.id;
+
+  const noteBody = [
+    payload.products ? `Products: ${payload.products}` : null,
+    payload.details ? `Details: ${payload.details}` : null,
+  ]
+    .filter(Boolean)
+    .join('\n');
+  if (!noteBody) return;
+
+  const note = await twentyFetch('/notes', {
+    method: 'POST',
+    body: JSON.stringify({
+      title: `${SOURCE_LABELS[payload.source]} - ${label}`,
+      bodyV2: { blocknote: detailsToBlocknote(noteBody) },
+    }),
+  });
+  const noteId = note.data.createNote.id;
+
+  await twentyFetch('/noteTargets', {
+    method: 'POST',
+    body: JSON.stringify({
+      noteId,
+      targetOpportunityId: opportunityId,
+    }),
+  });
 }
+
+const VALID_SOURCES = new Set<LeadSource>([
+  'newsletter',
+  'chatbot',
+  'enterprise',
+]);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
     res.status(405).json({ error: 'Method not allowed' });
     return;
   }
 
-  const payload = req.body as LeadPayload;
+  const payload = req.body as LeadPayload | undefined | null;
+
+  if (!payload || typeof payload !== 'object') {
+    res.status(400).json({ error: 'Invalid submission' });
+    return;
+  }
+
+  if (!TWENTY_API_KEY) {
+    console.error('TWENTY_API_KEY is not configured');
+    res
+      .status(500)
+      .json({ error: 'Failed to submit. Please try again later.' });
+    return;
+  }
 
   if (payload.honeypot) {
     res.status(400).json({ error: 'Invalid submission' });
@@ -110,17 +175,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.status(400).json({ error: 'Please enter a valid email address.' });
     return;
   }
-  if (!payload.name || !payload.source) {
+  if (!payload.name || !payload.source || !VALID_SOURCES.has(payload.source)) {
     res.status(400).json({ error: 'Missing required fields.' });
     return;
   }
 
+  const email = payload.email.trim().toLowerCase();
+
   try {
-    let personId = await findPersonIdByEmail(payload.email);
+    let personId = await findPersonIdByEmail(email);
     if (!personId) {
-      personId = await createPerson(payload);
+      personId = await createPerson(email, payload);
     }
-    await createOpportunity(personId, payload);
+    await createOpportunity(personId, email, payload);
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Twenty CRM lead submission failed:', err);

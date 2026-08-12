@@ -118,7 +118,7 @@ export default function ChatBot() {
       try {
         await submitLead({
           name,
-          email,
+          email: email.trim(),
           details: detailsText,
           products: products.join(', '),
           source: 'chatbot',
