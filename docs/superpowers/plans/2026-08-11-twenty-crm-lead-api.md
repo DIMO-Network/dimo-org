@@ -1,34 +1,62 @@
 # Twenty CRM Lead API Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use
+> superpowers:subagent-driven-development (recommended) or
+> superpowers:executing-plans to implement this plan task-by-task. Steps use
+> checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace client-side EmailJS calls in the three lead-capture forms (Footer newsletter, ChatBot, Pricing enterprise modal) with a server-side `/api/lead` function that validates submissions and creates Person + Opportunity records in Twenty CRM.
+**Goal:** Replace client-side EmailJS calls in the three lead-capture forms
+(Footer newsletter, ChatBot, Pricing enterprise modal) with a server-side
+`/api/lead` function that validates submissions and creates Person + Opportunity
+records in Twenty CRM.
 
-**Architecture:** One new Vercel serverless function (`api/lead.ts`) holds `TWENTY_API_KEY`/`TWENTY_API_URL` server-side and does anti-spam validation + Twenty REST calls. All three forms call a shared client helper (`src/utils/lead.ts`) that POSTs to this endpoint instead of calling `emailjs.send()` directly.
+**Architecture:** One new Vercel serverless function (`api/lead.ts`) holds
+`TWENTY_API_KEY`/`TWENTY_API_URL` server-side and does anti-spam validation +
+Twenty REST calls. All three forms call a shared client helper
+(`src/utils/lead.ts`) that POSTs to this endpoint instead of calling
+`emailjs.send()` directly.
 
-**Tech Stack:** Vercel serverless function (`@vercel/node` types), TypeScript, Twenty CRM REST API (`https://api.twenty.com/rest`), existing React/Docusaurus form components.
+**Tech Stack:** Vercel serverless function (`@vercel/node` types), TypeScript,
+Twenty CRM REST API (`https://api.twenty.com/rest`), existing React/Docusaurus
+form components.
 
 ## Global Constraints
 
 - Twenty API base URL: `https://api.twenty.com/rest` (Twenty Cloud).
-- `TWENTY_API_KEY` and `TWENTY_API_URL` must be server-side env vars only — never referenced from client code or `docusaurus.config.ts` `customFields` (that pattern is EmailJS-specific and is being removed).
-- Anti-spam constant `MIN_FILL_TIME_MS = 1500` and the email regex must match the existing values in `src/utils/antiSpam.ts` — don't invent new thresholds.
-- No test framework exists in this repo (confirmed via `package.json`) — verification is via `vercel dev` + `curl` + manual browser testing, not automated tests.
-- Twenty's REST schema is workspace-specific. Field names used below (`emails.primaryEmail`, `pointOfContactId`, etc.) are Twenty's documented defaults — if a live call fails with a schema error, check the workspace's Settings → API & Webhooks docs and adjust field names, not the overall structure.
-- Run `npm run check-all` (typecheck + lint + format check) before considering any task done — this is this repo's standing CI gate.
+- `TWENTY_API_KEY` and `TWENTY_API_URL` must be server-side env vars only —
+  never referenced from client code or `docusaurus.config.ts` `customFields`
+  (that pattern is EmailJS-specific and is being removed).
+- Anti-spam constant `MIN_FILL_TIME_MS = 1500` and the email regex must match
+  the existing values in `src/utils/antiSpam.ts` — don't invent new thresholds.
+- No test framework exists in this repo (confirmed via `package.json`) —
+  verification is via `vercel dev` + `curl` + manual browser testing, not
+  automated tests.
+- Twenty's REST schema is workspace-specific. Field names used below
+  (`emails.primaryEmail`, `pointOfContactId`, etc.) are Twenty's documented
+  defaults — if a live call fails with a schema error, check the workspace's
+  Settings → API & Webhooks docs and adjust field names, not the overall
+  structure.
+- Run `npm run check-all` (typecheck + lint + format check) before considering
+  any task done — this is this repo's standing CI gate.
 
 ---
 
 ### Task 1: Configure Twenty CRM environment variables
 
-**Files:** none (Vercel project config + local `.env.local`, which is gitignored)
+**Files:** none (Vercel project config + local `.env.local`, which is
+gitignored)
 
 **Interfaces:**
-- Produces: `TWENTY_API_KEY` and `TWENTY_API_URL` available as `process.env.TWENTY_API_KEY` / `process.env.TWENTY_API_URL` at runtime for `api/lead.ts` (Task 3).
+
+- Produces: `TWENTY_API_KEY` and `TWENTY_API_URL` available as
+  `process.env.TWENTY_API_KEY` / `process.env.TWENTY_API_URL` at runtime for
+  `api/lead.ts` (Task 3).
 
 - [ ] **Step 1: Add the env vars to the Vercel project**
 
-Run (values are the Twenty API key and `https://api.twenty.com/rest` provided out-of-band — do not paste the raw key into any command that gets logged to a file that's committed):
+Run (values are the Twenty API key and `https://api.twenty.com/rest` provided
+out-of-band — do not paste the raw key into any command that gets logged to a
+file that's committed):
 
 ```bash
 vercel env add TWENTY_API_URL production preview development
@@ -48,19 +76,24 @@ TWENTY_API_KEY=<the key>
 
 - [ ] **Step 3: Verify**
 
-Run: `vercel env ls`
-Expected: `TWENTY_API_URL` and `TWENTY_API_KEY` listed for Production, Preview, and Development.
+Run: `vercel env ls` Expected: `TWENTY_API_URL` and `TWENTY_API_KEY` listed for
+Production, Preview, and Development.
 
 ---
 
 ### Task 2: Shared client-side lead submission helper
 
 **Files:**
+
 - Create: `src/utils/lead.ts`
 
 **Interfaces:**
+
 - Consumes: nothing new (plain `fetch`).
-- Produces: `submitLead(input: LeadInput): Promise<void>` and `LeadInput`/`LeadSource` types, imported by Tasks 4–6. `submitLead` throws on any non-2xx response or network error/timeout — callers catch and set their existing error UI state.
+- Produces: `submitLead(input: LeadInput): Promise<void>` and
+  `LeadInput`/`LeadSource` types, imported by Tasks 4–6. `submitLead` throws on
+  any non-2xx response or network error/timeout — callers catch and set their
+  existing error UI state.
 
 - [ ] **Step 1: Create the file**
 
@@ -104,8 +137,7 @@ export async function submitLead(input: LeadInput): Promise<void> {
 
 - [ ] **Step 2: Typecheck**
 
-Run: `npm run typecheck`
-Expected: no errors related to `src/utils/lead.ts`.
+Run: `npm run typecheck` Expected: no errors related to `src/utils/lead.ts`.
 
 - [ ] **Step 3: Commit**
 
@@ -119,12 +151,22 @@ git commit -m "feat: add shared client helper for posting leads to /api/lead"
 ### Task 3: Twenty CRM serverless function
 
 **Files:**
+
 - Create: `api/lead.ts`
-- Modify: `package.json` (add `@vercel/node` devDependency, remove `@emailjs/browser` — see Task 7 for the removal half; this task only adds `@vercel/node`)
+- Modify: `package.json` (add `@vercel/node` devDependency, remove
+  `@emailjs/browser` — see Task 7 for the removal half; this task only adds
+  `@vercel/node`)
 
 **Interfaces:**
-- Consumes: `TWENTY_API_KEY`, `TWENTY_API_URL` from `process.env` (Task 1). `LeadInput` shape from Task 2 (duplicated here as `LeadPayload` since this file runs in a separate serverless bundle, not the Docusaurus client bundle — importing across that boundary isn't supported by Vercel's zero-config function build for non-Next.js projects).
-- Produces: `POST /api/lead` — `200 { ok: true }` on success, `400 { error }` on validation/spam failure, `405` on non-POST, `502 { error }` on Twenty API failure. Consumed by `submitLead` (Task 2).
+
+- Consumes: `TWENTY_API_KEY`, `TWENTY_API_URL` from `process.env` (Task 1).
+  `LeadInput` shape from Task 2 (duplicated here as `LeadPayload` since this
+  file runs in a separate serverless bundle, not the Docusaurus client bundle —
+  importing across that boundary isn't supported by Vercel's zero-config
+  function build for non-Next.js projects).
+- Produces: `POST /api/lead` — `200 { ok: true }` on success, `400 { error }` on
+  validation/spam failure, `405` on non-POST, `502 { error }` on Twenty API
+  failure. Consumed by `submitLead` (Task 2).
 
 - [ ] **Step 1: Install `@vercel/node` types**
 
@@ -223,10 +265,7 @@ async function createOpportunity(
   });
 }
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -263,7 +302,9 @@ export default async function handler(
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Twenty CRM lead submission failed:', err);
-    res.status(502).json({ error: 'Failed to submit. Please try again later.' });
+    res
+      .status(502)
+      .json({ error: 'Failed to submit. Please try again later.' });
   }
 }
 ```
@@ -278,7 +319,8 @@ curl -i -X POST http://localhost:3000/api/lead \
   -d '{"name":"Test User","email":"test@example.com","details":"test","products":"Newsletter","source":"newsletter","honeypot":"","formStartedAt":'"$(($(date +%s%N)/1000000 - 2000))"'}'
 ```
 
-Expected: `HTTP/1.1 200` and `{"ok":true}`, and a new Person + Opportunity visible in the Twenty workspace.
+Expected: `HTTP/1.1 200` and `{"ok":true}`, and a new Person + Opportunity
+visible in the Twenty workspace.
 
 Also verify rejection paths:
 
@@ -296,8 +338,7 @@ Expected: both return `400`.
 
 - [ ] **Step 4: Typecheck and lint**
 
-Run: `npm run typecheck && npm run lint`
-Expected: no errors.
+Run: `npm run typecheck && npm run lint` Expected: no errors.
 
 - [ ] **Step 5: Commit**
 
@@ -311,9 +352,11 @@ git commit -m "feat: add /api/lead serverless function for Twenty CRM integratio
 ### Task 4: Wire the Footer newsletter form to `/api/lead`
 
 **Files:**
+
 - Modify: `src/theme/Footer/index.tsx`
 
 **Interfaces:**
+
 - Consumes: `submitLead` from `../../utils/lead` (Task 2).
 
 - [ ] **Step 1: Replace the EmailJS import and `useDocusaurusContext` usage**
@@ -331,49 +374,50 @@ with:
 import { submitLead } from '../../utils/lead';
 ```
 
-Remove the now-unused `const { siteConfig } = useDocusaurusContext();` line inside `NewsletterSignup()`.
+Remove the now-unused `const { siteConfig } = useDocusaurusContext();` line
+inside `NewsletterSignup()`.
 
 - [ ] **Step 2: Replace the `emailjs.send` call in `handleSubmit`**
 
 Replace:
 
 ```ts
-      await emailjs.send(
-        siteConfig.customFields.emailjsServiceId as string,
-        siteConfig.customFields.emailjsTemplateId as string,
-        {
-          name: 'Newsletter Subscriber',
-          email: trimmedEmail,
-          products: 'Newsletter',
-          details: 'Footer newsletter signup',
-        },
-        siteConfig.customFields.emailjsPublicKey as string
-      );
+await emailjs.send(
+  siteConfig.customFields.emailjsServiceId as string,
+  siteConfig.customFields.emailjsTemplateId as string,
+  {
+    name: 'Newsletter Subscriber',
+    email: trimmedEmail,
+    products: 'Newsletter',
+    details: 'Footer newsletter signup',
+  },
+  siteConfig.customFields.emailjsPublicKey as string
+);
 ```
 
 with:
 
 ```ts
-      await submitLead({
-        name: 'Newsletter Subscriber',
-        email: trimmedEmail,
-        details: 'Footer newsletter signup',
-        products: 'Newsletter',
-        source: 'newsletter',
-        honeypot,
-        formStartedAt: mountedAt.current,
-      });
+await submitLead({
+  name: 'Newsletter Subscriber',
+  email: trimmedEmail,
+  details: 'Footer newsletter signup',
+  products: 'Newsletter',
+  source: 'newsletter',
+  honeypot,
+  formStartedAt: mountedAt.current,
+});
 ```
 
 - [ ] **Step 3: Typecheck**
 
-Run: `npm run typecheck`
-Expected: no errors.
+Run: `npm run typecheck` Expected: no errors.
 
 - [ ] **Step 4: Manual browser verification**
 
-Run `npm start`, go to any page, scroll to the footer, submit the newsletter form with a real email.
-Expected: success state shown ("You're subscribed!"), and a `POST /api/lead` call visible in the browser Network tab returning `200`.
+Run `npm start`, go to any page, scroll to the footer, submit the newsletter
+form with a real email. Expected: success state shown ("You're subscribed!"),
+and a `POST /api/lead` call visible in the browser Network tab returning `200`.
 
 - [ ] **Step 5: Commit**
 
@@ -387,9 +431,11 @@ git commit -m "feat: send newsletter signups through /api/lead instead of EmailJ
 ### Task 5: Wire the ChatBot to `/api/lead`
 
 **Files:**
+
 - Modify: `src/components/ChatBot/ChatBot.tsx`
 
 **Interfaces:**
+
 - Consumes: `submitLead` from `../../utils/lead` (Task 2).
 
 - [ ] **Step 1: Replace the EmailJS import and config wiring**
@@ -410,11 +456,10 @@ import { submitLead } from '../../utils/lead';
 Remove:
 
 ```ts
-  const { siteConfig } = useDocusaurusContext();
-  const EMAILJS_SERVICE_ID = siteConfig.customFields.emailjsServiceId as string;
-  const EMAILJS_TEMPLATE_ID = siteConfig.customFields
-    .emailjsTemplateId as string;
-  const EMAILJS_PUBLIC_KEY = siteConfig.customFields.emailjsPublicKey as string;
+const { siteConfig } = useDocusaurusContext();
+const EMAILJS_SERVICE_ID = siteConfig.customFields.emailjsServiceId as string;
+const EMAILJS_TEMPLATE_ID = siteConfig.customFields.emailjsTemplateId as string;
+const EMAILJS_PUBLIC_KEY = siteConfig.customFields.emailjsPublicKey as string;
 ```
 
 - [ ] **Step 2: Replace the send call in `sendAndClose`**
@@ -475,13 +520,13 @@ with:
 
 - [ ] **Step 3: Typecheck**
 
-Run: `npm run typecheck`
-Expected: no errors.
+Run: `npm run typecheck` Expected: no errors.
 
 - [ ] **Step 4: Manual browser verification**
 
-Run `npm start`, open the chat widget, complete the flow (name → email → products → details).
-Expected: closing "thanks" message shown, and a `POST /api/lead` call visible in Network tab returning `200`.
+Run `npm start`, open the chat widget, complete the flow (name → email →
+products → details). Expected: closing "thanks" message shown, and a
+`POST /api/lead` call visible in Network tab returning `200`.
 
 - [ ] **Step 5: Commit**
 
@@ -495,9 +540,11 @@ git commit -m "feat: send ChatBot inquiries through /api/lead instead of EmailJS
 ### Task 6: Wire the Pricing enterprise modal to `/api/lead`
 
 **Files:**
+
 - Modify: `src/pages/pricing.tsx`
 
 **Interfaces:**
+
 - Consumes: `submitLead` from `../utils/lead` (Task 2).
 
 - [ ] **Step 1: Replace the EmailJS import and `useDocusaurusContext` usage**
@@ -515,53 +562,53 @@ with:
 import { submitLead } from '../utils/lead';
 ```
 
-Remove the now-unused `const { siteConfig } = useDocusaurusContext();` line inside `EnterpriseModal()`.
+Remove the now-unused `const { siteConfig } = useDocusaurusContext();` line
+inside `EnterpriseModal()`.
 
 - [ ] **Step 2: Replace the `emailjs.send` call in `handleSubmit`**
 
 Replace:
 
 ```ts
-      await emailjs.send(
-        siteConfig.customFields.emailjsServiceId as string,
-        siteConfig.customFields.emailjsTemplateId as string,
-        {
-          name: form.name,
-          email: form.email,
-          products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
-          details: [
-            `Company: ${form.company}`,
-            `Fleet Size: ${form.fleetSize}`,
-            `Details: ${form.details}`,
-          ].join('\n'),
-        },
-        siteConfig.customFields.emailjsPublicKey as string
-      );
+await emailjs.send(
+  siteConfig.customFields.emailjsServiceId as string,
+  siteConfig.customFields.emailjsTemplateId as string,
+  {
+    name: form.name,
+    email: form.email,
+    products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
+    details: [
+      `Company: ${form.company}`,
+      `Fleet Size: ${form.fleetSize}`,
+      `Details: ${form.details}`,
+    ].join('\n'),
+  },
+  siteConfig.customFields.emailjsPublicKey as string
+);
 ```
 
 with:
 
 ```ts
-      await submitLead({
-        name: form.name,
-        email: form.email,
-        company: form.company,
-        products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
-        details: [
-          `Company: ${form.company}`,
-          `Fleet Size: ${form.fleetSize}`,
-          `Details: ${form.details}`,
-        ].join('\n'),
-        source: 'enterprise',
-        honeypot,
-        formStartedAt: mountedAt.current,
-      });
+await submitLead({
+  name: form.name,
+  email: form.email,
+  company: form.company,
+  products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
+  details: [
+    `Company: ${form.company}`,
+    `Fleet Size: ${form.fleetSize}`,
+    `Details: ${form.details}`,
+  ].join('\n'),
+  source: 'enterprise',
+  honeypot,
+  formStartedAt: mountedAt.current,
+});
 ```
 
 - [ ] **Step 3: Typecheck**
 
-Run: `npm run typecheck`
-Expected: no errors.
+Run: `npm run typecheck` Expected: no errors.
 
 - [ ] **Step 4: Manual browser verification**
 
@@ -580,16 +627,18 @@ git commit -m "feat: send enterprise inquiries through /api/lead instead of Emai
 ### Task 7: Remove EmailJS entirely
 
 **Files:**
+
 - Modify: `package.json` (remove `@emailjs/browser`)
 - Modify: `docusaurus.config.ts` (remove `customFields`)
 - Modify: `vercel.json` (drop `https://api.emailjs.com` from CSP `connect-src`)
 
-**Interfaces:** none — this is cleanup after Tasks 4–6 have removed all `emailjs`/`customFields.emailjs*` references.
+**Interfaces:** none — this is cleanup after Tasks 4–6 have removed all
+`emailjs`/`customFields.emailjs*` references.
 
 - [ ] **Step 1: Confirm no remaining references**
 
-Run: `grep -rn "emailjs" src/ docusaurus.config.ts`
-Expected: no output (Tasks 4–6 already removed all usages).
+Run: `grep -rn "emailjs" src/ docusaurus.config.ts` Expected: no output (Tasks
+4–6 already removed all usages).
 
 - [ ] **Step 2: Remove the dependency**
 
@@ -609,12 +658,15 @@ Remove:
 
 - [ ] **Step 4: Update the CSP in `vercel.json`**
 
-In the `Content-Security-Policy` value, remove ` https://api.emailjs.com` from the `connect-src` directive (keep the surrounding entries intact — `'self' https://*.algolia.net ... https://api.emailjs.com https://*.dimo.org` becomes `'self' https://*.algolia.net ... https://*.dimo.org`).
+In the `Content-Security-Policy` value, remove ` https://api.emailjs.com` from
+the `connect-src` directive (keep the surrounding entries intact —
+`'self' https://*.algolia.net ... https://api.emailjs.com https://*.dimo.org`
+becomes `'self' https://*.algolia.net ... https://*.dimo.org`).
 
 - [ ] **Step 5: Full verification**
 
-Run: `npm run check-all && npm run build`
-Expected: all pass, build succeeds with no broken links.
+Run: `npm run check-all && npm run build` Expected: all pass, build succeeds
+with no broken links.
 
 - [ ] **Step 6: Commit**
 
@@ -636,14 +688,22 @@ Run: `vercel` (creates a preview deployment)
 - [ ] **Step 2: Exercise all three forms on the preview URL**
 
 For each of Footer newsletter, ChatBot, and Pricing enterprise modal:
-- Submit with valid data → confirm success UI and a new Person + Opportunity in the Twenty workspace.
-- Submit again immediately (within the 24h cooldown) → confirm it silently succeeds client-side without a second `/api/lead` call (existing cooldown behavior, unchanged).
+
+- Submit with valid data → confirm success UI and a new Person + Opportunity in
+  the Twenty workspace.
+- Submit again immediately (within the 24h cooldown) → confirm it silently
+  succeeds client-side without a second `/api/lead` call (existing cooldown
+  behavior, unchanged).
 
 - [ ] **Step 3: Confirm no lingering EmailJS references**
 
-Run: `grep -rn "emailjs" -i . --include="*.ts" --include="*.tsx" --include="*.json" --exclude-dir=node_modules --exclude-dir=.docusaurus --exclude-dir=build`
+Run:
+`grep -rn "emailjs" -i . --include="*.ts" --include="*.tsx" --include="*.json" --exclude-dir=node_modules --exclude-dir=.docusaurus --exclude-dir=build`
 Expected: no output.
 
 - [ ] **Step 4: Report results to the user before promoting to production**
 
-Summarize: which forms were tested, whether Person/Opportunity records appeared correctly in Twenty, and any field-mapping adjustments needed. Get explicit confirmation before running `vercel --prod` (per this project's deploy confirmation requirement).
+Summarize: which forms were tested, whether Person/Opportunity records appeared
+correctly in Twenty, and any field-mapping adjustments needed. Get explicit
+confirmation before running `vercel --prod` (per this project's deploy
+confirmation requirement).
