@@ -1,7 +1,6 @@
 import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import emailjs from '@emailjs/browser';
+import { submitLead } from '../../utils/lead';
 import { ArrowRight, Check } from 'lucide-react';
 import styles from './styles.module.css';
 import { LINKS } from '../../links';
@@ -16,7 +15,6 @@ const imgGithub = '/img/icon-github.svg';
 const LAST_SUBMIT_KEY = 'dimo_newsletter_last_submit';
 
 function NewsletterSignup() {
-  const { siteConfig } = useDocusaurusContext();
   const [email, setEmail] = useState('');
   const [honeypot, setHoneypot] = useState('');
   const [status, setStatus] = useState<
@@ -52,17 +50,15 @@ function NewsletterSignup() {
 
     setStatus('loading');
     try {
-      await emailjs.send(
-        siteConfig.customFields.emailjsServiceId as string,
-        siteConfig.customFields.emailjsTemplateId as string,
-        {
-          name: 'Newsletter Subscriber',
-          email: trimmedEmail,
-          products: 'Newsletter',
-          details: 'Footer newsletter signup',
-        },
-        siteConfig.customFields.emailjsPublicKey as string
-      );
+      await submitLead({
+        name: 'Newsletter Subscriber',
+        email: trimmedEmail,
+        details: 'Footer newsletter signup',
+        products: 'Newsletter',
+        source: 'newsletter',
+        honeypot,
+        formStartedAt: mountedAt.current,
+      });
       markSubmitted(LAST_SUBMIT_KEY);
       setStatus('success');
       setEmail('');
