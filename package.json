@@ -58,6 +58,7 @@
     "@types/leaflet": "^1.9.21",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
+    "@vercel/node": "^5.9.9",
     "eslint": "^9.34.0",
     "eslint-plugin-mdx": "^3.6.2",
     "eslint-plugin-react": "^7.37.5",
