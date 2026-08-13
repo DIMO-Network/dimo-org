@@ -49,6 +49,52 @@ async function findPersonIdByEmail(email: string): Promise<string | null> {
   return person?.id ?? null;
 }
 
+const FREE_EMAIL_DOMAINS = new Set([
+  'gmail.com',
+  'googlemail.com',
+  'yahoo.com',
+  'yahoo.co.uk',
+  'outlook.com',
+  'hotmail.com',
+  'icloud.com',
+  'aol.com',
+  'protonmail.com',
+  'live.com',
+  'msn.com',
+  'me.com',
+]);
+
+function inferCompanyNameFromEmail(email: string): string | null {
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (!domain || FREE_EMAIL_DOMAINS.has(domain)) return null;
+  const base = domain.split('.')[0];
+  if (!base) return null;
+  return base.charAt(0).toUpperCase() + base.slice(1);
+}
+
+function resolveCompanyName(
+  email: string,
+  payload: LeadPayload
+): string | null {
+  const explicit = payload.company?.trim();
+  if (explicit) return explicit;
+  return inferCompanyNameFromEmail(email);
+}
+
+async function findOrCreateCompanyIdByName(name: string): Promise<string> {
+  const filter = encodeURIComponent(`name[eq]:${name}`);
+  const data = await twentyFetch(`/companies?filter=${filter}`, {
+    method: 'GET',
+  });
+  const existing = data?.data?.companies?.[0];
+  if (existing) return existing.id;
+  const created = await twentyFetch('/companies', {
+    method: 'POST',
+    body: JSON.stringify({ name }),
+  });
+  return created.data.createCompany.id;
+}
+
 async function createPerson(
   email: string,
   payload: LeadPayload
@@ -94,14 +140,17 @@ function detailsToBlocknote(text: string): string {
 async function createOpportunity(
   personId: string,
   email: string,
-  payload: LeadPayload
+  payload: LeadPayload,
+  companyId: string | undefined,
+  companyName: string | null
 ): Promise<void> {
-  const label = payload.company || email;
+  const label = companyName ?? email;
   const data = await twentyFetch('/opportunities', {
     method: 'POST',
     body: JSON.stringify({
-      name: `${SOURCE_LABELS[payload.source]} - ${label}`,
+      name: `${label} - ${SOURCE_LABELS[payload.source]}`,
       pointOfContactId: personId,
+      ...(companyId ? { companyId } : {}),
     }),
   });
   const opportunityId = data.data.createOpportunity.id;
@@ -117,7 +166,7 @@ async function createOpportunity(
   const note = await twentyFetch('/notes', {
     method: 'POST',
     body: JSON.stringify({
-      title: `${SOURCE_LABELS[payload.source]} - ${label}`,
+      title: `${label} - ${SOURCE_LABELS[payload.source]}`,
       bodyV2: { blocknote: detailsToBlocknote(noteBody) },
     }),
   });
@@ -187,7 +236,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!personId) {
       personId = await createPerson(email, payload);
     }
-    await createOpportunity(personId, email, payload);
+    const companyName = resolveCompanyName(email, payload);
+    const companyId = companyName
+      ? await findOrCreateCompanyIdByName(companyName)
+      : undefined;
+    await createOpportunity(personId, email, payload, companyId, companyName);
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Twenty CRM lead submission failed:', err);
