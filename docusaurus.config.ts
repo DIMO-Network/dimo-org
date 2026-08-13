@@ -1,17 +1,8 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
-import * as dotenv from 'dotenv';
-
-// Load .env.local for local development
-dotenv.config({ path: '.env.local' });
 
 const config: Config = {
-  customFields: {
-    emailjsServiceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-    emailjsTemplateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-    emailjsPublicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-  },
   title: 'DIMO Build',
   tagline: 'The vehicle data platform that puts privacy first',
   favicon: 'img/favicon.ico',

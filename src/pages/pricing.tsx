@@ -1,9 +1,8 @@
 import React, { useState, useRef, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import emailjs from '@emailjs/browser';
 import { X } from 'lucide-react';
+import { submitLead } from '../utils/lead';
 import styles from './pricing.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
@@ -277,7 +276,6 @@ function EnterpriseModal({
   planType: PlanType;
   onClose: () => void;
 }) {
-  const { siteConfig } = useDocusaurusContext();
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -299,7 +297,8 @@ function EnterpriseModal({
     e.preventDefault();
     if (status === 'loading') return;
 
-    if (!isValidEmail(form.email)) {
+    const trimmedEmail = form.email.trim();
+    if (!isValidEmail(trimmedEmail)) {
       setStatus('error');
       return;
     }
@@ -319,21 +318,20 @@ function EnterpriseModal({
     setStatus('loading');
 
     try {
-      await emailjs.send(
-        siteConfig.customFields.emailjsServiceId as string,
-        siteConfig.customFields.emailjsTemplateId as string,
-        {
-          name: form.name,
-          email: form.email,
-          products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
-          details: [
-            `Company: ${form.company}`,
-            `Fleet Size: ${form.fleetSize}`,
-            `Details: ${form.details}`,
-          ].join('\n'),
-        },
-        siteConfig.customFields.emailjsPublicKey as string
-      );
+      await submitLead({
+        name: form.name,
+        email: trimmedEmail,
+        company: form.company,
+        products: `Enterprise Inquiry (${planType === 'ai' ? 'AI + Vehicle Data' : 'Vehicle Data Only'})`,
+        details: [
+          `Company: ${form.company}`,
+          `Fleet Size: ${form.fleetSize}`,
+          `Details: ${form.details}`,
+        ].join('\n'),
+        source: 'enterprise',
+        honeypot,
+        formStartedAt: mountedAt.current,
+      });
       markSubmitted(LAST_SUBMIT_KEY);
       setStatus('success');
     } catch {

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { submitLead } from '../../utils/lead';
 import { MessageCircle, X, Send } from 'lucide-react';
 import styles from './ChatBot.module.css';
 import {
@@ -27,12 +26,6 @@ interface Message {
 }
 
 export default function ChatBot() {
-  const { siteConfig } = useDocusaurusContext();
-  const EMAILJS_SERVICE_ID = siteConfig.customFields.emailjsServiceId as string;
-  const EMAILJS_TEMPLATE_ID = siteConfig.customFields
-    .emailjsTemplateId as string;
-  const EMAILJS_PUBLIC_KEY = siteConfig.customFields.emailjsPublicKey as string;
-
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');
@@ -122,23 +115,19 @@ export default function ChatBot() {
       Boolean(honeypot) || Date.now() - mountedAt.current < MIN_FILL_TIME_MS;
 
     if (!isBot && !withinCooldown(LAST_SUBMIT_KEY)) {
-      const templateParams = {
-        name,
-        email,
-        products: products.join(', '),
-        details: detailsText,
-      };
-
       try {
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          templateParams,
-          EMAILJS_PUBLIC_KEY
-        );
+        await submitLead({
+          name,
+          email: email.trim(),
+          details: detailsText,
+          products: products.join(', '),
+          source: 'chatbot',
+          honeypot,
+          formStartedAt: mountedAt.current,
+        });
         markSubmitted(LAST_SUBMIT_KEY);
       } catch (err) {
-        console.error('EmailJS error:', err);
+        console.error('Lead submission error:', err);
       }
     }
 
