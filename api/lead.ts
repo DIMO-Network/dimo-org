@@ -64,10 +64,22 @@ const FREE_EMAIL_DOMAINS = new Set([
   'me.com',
 ]);
 
+const MAIL_SUBDOMAIN_PREFIXES = new Set([
+  'mail',
+  'email',
+  'smtp',
+  'webmail',
+  'mx',
+]);
+
 function inferCompanyNameFromEmail(email: string): string | null {
   const domain = email.split('@')[1]?.toLowerCase();
   if (!domain || FREE_EMAIL_DOMAINS.has(domain)) return null;
-  const base = domain.split('.')[0];
+  const parts = domain.split('.');
+  const base =
+    parts.length > 2 && MAIL_SUBDOMAIN_PREFIXES.has(parts[0])
+      ? parts[1]
+      : parts[0];
   if (!base) return null;
   return base.charAt(0).toUpperCase() + base.slice(1);
 }
@@ -82,7 +94,7 @@ function resolveCompanyName(
 }
 
 async function findOrCreateCompanyIdByName(name: string): Promise<string> {
-  const filter = encodeURIComponent(`name[eq]:${name}`);
+  const filter = encodeURIComponent(`name[eq]:"${name}"`);
   const data = await twentyFetch(`/companies?filter=${filter}`, {
     method: 'GET',
   });
