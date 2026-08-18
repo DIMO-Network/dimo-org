@@ -25,7 +25,8 @@ export function cosineSimilarity(a: number[], b: number[]): number {
     normA += a[i] * a[i];
     normB += b[i] * b[i];
   }
-  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+  const denom = Math.sqrt(normA) * Math.sqrt(normB);
+  return denom === 0 ? 0 : dot / denom;
 }
 
 export function loadIndex(jsonPath: string): DocEntry[] {
@@ -36,10 +37,13 @@ export function loadIndex(jsonPath: string): DocEntry[] {
 export function searchDocs(
   index: DocEntry[],
   queryEmbedding: number[],
-  topK = 5,
+  topK = 5
 ): SearchResult[] {
   return index
-    .map(doc => ({ doc, score: cosineSimilarity(doc.embedding, queryEmbedding) }))
+    .map(doc => ({
+      doc,
+      score: cosineSimilarity(doc.embedding, queryEmbedding),
+    }))
     .sort((a, b) => b.score - a.score)
     .slice(0, topK)
     .map(({ doc }) => ({

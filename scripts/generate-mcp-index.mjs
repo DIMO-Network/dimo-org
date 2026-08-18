@@ -38,20 +38,33 @@ export async function buildIndex({ docsDir, embed }) {
 async function main() {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    console.error('[mcp-index] OPENAI_API_KEY is required to generate embeddings.');
-    process.exit(1);
+    if (process.env.VERCEL) {
+      console.error(
+        '[mcp-index] OPENAI_API_KEY is required to generate embeddings.'
+      );
+      process.exit(1);
+    }
+    console.error(
+      '[mcp-index] OPENAI_API_KEY not set — skipping docs-index generation (this is required for real deploys, see docs/superpowers/specs/2026-08-17-docs-mcp-server-design.md)'
+    );
+    process.exit(0);
   }
 
   const { default: OpenAI } = await import('openai');
   const client = new OpenAI({ apiKey });
   const embed = async text => {
-    const res = await client.embeddings.create({ model: EMBEDDING_MODEL, input: text });
+    const res = await client.embeddings.create({
+      model: EMBEDDING_MODEL,
+      input: text,
+    });
     return res.data[0].embedding;
   };
 
   const entries = await buildIndex({ docsDir: DOCS_DIR, embed });
   writeFileSync(OUT, JSON.stringify(entries), 'utf8');
-  console.log(`[mcp-index] wrote ${entries.length} docs -> ${relative(ROOT, OUT)}`);
+  console.log(
+    `[mcp-index] wrote ${entries.length} docs -> ${relative(ROOT, OUT)}`
+  );
 }
 
 // Only run when executed directly (not when imported by tests).

@@ -65,10 +65,13 @@ function buildServer(): McpServer {
           ],
         };
       } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
+        console.error('[search_docs] failed:', err);
         return {
           content: [
-            { type: 'text' as const, text: `search_docs failed: ${message}` },
+            {
+              type: 'text' as const,
+              text: 'search_docs failed — see server logs for details',
+            },
           ],
           isError: true,
         };
