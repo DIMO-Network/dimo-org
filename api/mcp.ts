@@ -9,7 +9,7 @@ import {
   searchDocs,
   fetchDoc,
   type DocEntry,
-} from './lib/retrieval.ts';
+} from './lib/retrieval';
 
 const EMBEDDING_MODEL = 'text-embedding-3-small';
 const INDEX_PATH = join(process.cwd(), 'static', 'mcp-index.json');
