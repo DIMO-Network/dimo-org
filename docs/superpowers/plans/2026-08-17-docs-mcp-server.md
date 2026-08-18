@@ -1,43 +1,68 @@
 # DIMO Docs MCP Server Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use
+> superpowers:subagent-driven-development (recommended) or
+> superpowers:executing-plans to implement this plan task-by-task. Steps use
+> checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Stand up a remote HTTP MCP server on Vercel that exposes the DIMO docs corpus via embedding-based `search_docs` / `fetch_doc` tools.
+**Goal:** Stand up a remote HTTP MCP server on Vercel that exposes the DIMO docs
+corpus via embedding-based `search_docs` / `fetch_doc` tools.
 
-**Architecture:** A build-time indexer embeds every doc page with OpenAI's `text-embedding-3-small` and writes a static JSON vector index; a Vercel Function (`api/mcp.ts`) using the MCP TypeScript SDK's Streamable HTTP transport loads that index and serves the two tools, embedding incoming queries on demand and ranking by cosine similarity.
+**Architecture:** A build-time indexer embeds every doc page with OpenAI's
+`text-embedding-3-small` and writes a static JSON vector index; a Vercel
+Function (`api/mcp.ts`) using the MCP TypeScript SDK's Streamable HTTP transport
+loads that index and serves the two tools, embedding incoming queries on demand
+and ranking by cosine similarity.
 
-**Tech Stack:** Node.js 24 (native TS execution + `node:test`), `@modelcontextprotocol/sdk`, `openai` SDK, `zod`, Vercel Functions.
+**Tech Stack:** Node.js 24 (native TS execution + `node:test`),
+`@modelcontextprotocol/sdk`, `openai` SDK, `zod`, Vercel Functions.
 
 **Spec:** `docs/superpowers/specs/2026-08-17-docs-mcp-server-design.md`
 
 ## Global Constraints
 
-- Node >=24 (per `package.json` engines) — use native `node --test` for all new tests, no test framework dependency.
-- Remote HTTP MCP only, deployed as a Vercel Function — no local stdio server variant.
+- Node >=24 (per `package.json` engines) — use native `node --test` for all new
+  tests, no test framework dependency.
+- Remote HTTP MCP only, deployed as a Vercel Function — no local stdio server
+  variant.
 - No authentication on the MCP endpoint — docs are public.
-- One embedding per doc (whole cleaned page) — no section/heading-level chunking.
-- Embeddings via OpenAI `text-embedding-3-small`, called both at build time (indexing) and request time (query embedding).
-- `OPENAI_API_KEY` is required in both the build environment and the Vercel Function's runtime environment.
-- The indexer must fail the build loudly if `OPENAI_API_KEY` is missing — never write an empty/stale index silently.
-- No cross-build embedding cache — re-embed all docs on every build (42 docs is cheap; don't add caching complexity).
-- Confirm with James before running any deploy step (`vercel --prod`, pushing to a branch that triggers deploy, or setting production env vars).
+- One embedding per doc (whole cleaned page) — no section/heading-level
+  chunking.
+- Embeddings via OpenAI `text-embedding-3-small`, called both at build time
+  (indexing) and request time (query embedding).
+- `OPENAI_API_KEY` is required in both the build environment and the Vercel
+  Function's runtime environment.
+- The indexer must fail the build loudly if `OPENAI_API_KEY` is missing — never
+  write an empty/stale index silently.
+- No cross-build embedding cache — re-embed all docs on every build (42 docs is
+  cheap; don't add caching complexity).
+- Confirm with James before running any deploy step (`vercel --prod`, pushing to
+  a branch that triggers deploy, or setting production env vars).
 
 ---
 
 ## Task 1: Extract shared docs-corpus helpers into a library module
 
 **Files:**
+
 - Create: `scripts/lib/docs-corpus.mjs`
 - Create: `scripts/lib/docs-corpus.test.mjs`
 - Modify: `scripts/generate-llms-full.mjs`
 
 **Interfaces:**
+
 - Produces (used by Task 1's refactor and by Task 2's indexer):
   - `SITE: string` — `'https://dimo.org'`
-  - `walk(dir: string): string[]` — recursively collects `.md`/`.mdx` file paths under `dir`
-  - `toUrl(file: string, docsDir: string): string` — converts a doc file path to its canonical `https://dimo.org/docs/...` URL, stripping numeric ordering prefixes and `index` segments
-  - `clean(raw: string): string` — strips frontmatter, `import`/`export` lines, and JSX/HTML tag lines from raw MDX
-  - `title(raw: string, url: string): string` — extracts a title from frontmatter, falling back to the first `#` heading, falling back to the last URL segment
+  - `walk(dir: string): string[]` — recursively collects `.md`/`.mdx` file paths
+    under `dir`
+  - `toUrl(file: string, docsDir: string): string` — converts a doc file path to
+    its canonical `https://dimo.org/docs/...` URL, stripping numeric ordering
+    prefixes and `index` segments
+  - `clean(raw: string): string` — strips frontmatter, `import`/`export` lines,
+    and JSX/HTML tag lines from raw MDX
+  - `title(raw: string, url: string): string` — extracts a title from
+    frontmatter, falling back to the first `#` heading, falling back to the last
+    URL segment
 
 - [ ] **Step 1: Write the failing test**
 
@@ -55,11 +80,11 @@ function makeFixture() {
   mkdirSync(join(dir, '3_api-references'));
   writeFileSync(
     join(dir, '3_api-references', '0_agents-api.mdx'),
-    '---\ntitle: Agents API\n---\nimport Foo from "./Foo";\n\n# Agents API\n\nSome body text.\n',
+    '---\ntitle: Agents API\n---\nimport Foo from "./Foo";\n\n# Agents API\n\nSome body text.\n'
   );
   writeFileSync(
     join(dir, '1_getting-started.md'),
-    '# Getting Started\n\nNo frontmatter here.\n',
+    '# Getting Started\n\nNo frontmatter here.\n'
   );
   return dir;
 }
@@ -67,7 +92,9 @@ function makeFixture() {
 test('walk finds all md/mdx files recursively', () => {
   const dir = makeFixture();
   try {
-    const files = walk(dir).map(f => f.replace(dir, '')).sort();
+    const files = walk(dir)
+      .map(f => f.replace(dir, ''))
+      .sort();
     assert.deepEqual(files, [
       '/1_getting-started.md',
       '/3_api-references/0_agents-api.mdx',
@@ -100,14 +127,17 @@ test('title prefers frontmatter, falls back to heading', () => {
   assert.equal(title(withFm, `${SITE}/docs/x`), 'Agents API');
 
   const withoutFm = '# Getting Started\n\nBody.\n';
-  assert.equal(title(withoutFm, `${SITE}/docs/getting-started`), 'Getting Started');
+  assert.equal(
+    title(withoutFm, `${SITE}/docs/getting-started`),
+    'Getting Started'
+  );
 });
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --test scripts/lib/docs-corpus.test.mjs`
-Expected: FAIL — `docs-corpus.mjs` does not exist yet (module not found).
+Run: `node --test scripts/lib/docs-corpus.test.mjs` Expected: FAIL —
+`docs-corpus.mjs` does not exist yet (module not found).
 
 - [ ] **Step 3: Write the library module**
 
@@ -177,8 +207,7 @@ export function title(raw, url) {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --test scripts/lib/docs-corpus.test.mjs`
-Expected: PASS (4 tests)
+Run: `node --test scripts/lib/docs-corpus.test.mjs` Expected: PASS (4 tests)
 
 - [ ] **Step 5: Refactor `generate-llms-full.mjs` to use the shared module**
 
@@ -216,16 +245,19 @@ console.log(`[llms-full] wrote ${files.length} docs -> ${relative(ROOT, OUT)}`);
 - [ ] **Step 6: Verify the refactor produces byte-identical output**
 
 Run:
+
 ```bash
 cp static/llms-full.txt /tmp/llms-full.before.txt
 node scripts/generate-llms-full.mjs
 diff /tmp/llms-full.before.txt static/llms-full.txt
 ```
+
 Expected: no diff output (files identical).
 
 - [ ] **Step 7: Add a `test` script to package.json**
 
 Modify `package.json` scripts block to add (after `"prebuild"`):
+
 ```json
 "test": "node --test scripts api",
 ```
@@ -242,18 +274,23 @@ git commit -m "refactor: extract docs-corpus helpers into shared lib module"
 ## Task 2: Build-time embedding indexer
 
 **Files:**
+
 - Create: `scripts/generate-mcp-index.mjs`
 - Create: `scripts/generate-mcp-index.test.mjs`
-- Modify: `package.json` (add `openai` dependency, chain indexer into `prebuild`)
+- Modify: `package.json` (add `openai` dependency, chain indexer into
+  `prebuild`)
 
 **Interfaces:**
-- Consumes: `walk`, `toUrl`, `clean`, `title` from `scripts/lib/docs-corpus.mjs` (Task 1)
+
+- Consumes: `walk`, `toUrl`, `clean`, `title` from `scripts/lib/docs-corpus.mjs`
+  (Task 1)
 - Produces (used by Task 4's `api/lib/retrieval.ts` and Task 5's `api/mcp.ts`):
   - `static/mcp-index.json` — JSON array of:
     ```ts
     { id: string; title: string; url: string; content: string; embedding: number[] }
     ```
-  - `buildIndex({ docsDir: string, embed: (text: string) => Promise<number[]> }): Promise<DocEntry[]>` — exported for testing with a fake `embed` function
+  - `buildIndex({ docsDir: string, embed: (text: string) => Promise<number[]> }): Promise<DocEntry[]>`
+    — exported for testing with a fake `embed` function
 
 - [ ] **Step 1: Install the OpenAI SDK**
 
@@ -274,11 +311,14 @@ import { buildIndex } from './generate-mcp-index.mjs';
 
 function makeFixture() {
   const dir = mkdtempSync(join(tmpdir(), 'mcp-index-fixture-'));
-  writeFileSync(join(dir, '1_getting-started.md'), '# Getting Started\n\nSetup instructions.\n');
+  writeFileSync(
+    join(dir, '1_getting-started.md'),
+    '# Getting Started\n\nSetup instructions.\n'
+  );
   mkdirSync(join(dir, '3_api-references'));
   writeFileSync(
     join(dir, '3_api-references', '0_agents-api.mdx'),
-    '---\ntitle: Agents API\n---\n# Agents API\n\nEndpoint docs.\n',
+    '---\ntitle: Agents API\n---\n# Agents API\n\nEndpoint docs.\n'
   );
   return dir;
 }
@@ -310,8 +350,8 @@ test('buildIndex produces one entry per doc with an embedding for each', async (
 
 - [ ] **Step 3: Run test to verify it fails**
 
-Run: `node --test scripts/generate-mcp-index.test.mjs`
-Expected: FAIL — `generate-mcp-index.mjs` does not exist / `buildIndex` not exported.
+Run: `node --test scripts/generate-mcp-index.test.mjs` Expected: FAIL —
+`generate-mcp-index.mjs` does not exist / `buildIndex` not exported.
 
 - [ ] **Step 4: Write the indexer**
 
@@ -381,12 +421,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
 - [ ] **Step 5: Run test to verify it passes**
 
-Run: `node --test scripts/generate-mcp-index.test.mjs`
-Expected: PASS
+Run: `node --test scripts/generate-mcp-index.test.mjs` Expected: PASS
 
 - [ ] **Step 6: Chain the indexer into `prebuild`**
 
 Modify `package.json`:
+
 ```json
 "prebuild": "node scripts/generate-llms-full.mjs && node scripts/generate-mcp-index.mjs",
 ```
@@ -403,17 +443,21 @@ git commit -m "feat: add build-time embedding indexer for docs MCP server"
 ## Task 3: Retrieval logic (cosine similarity search + doc lookup)
 
 **Files:**
+
 - Create: `api/lib/retrieval.ts`
 - Create: `api/lib/retrieval.test.ts`
 
 **Interfaces:**
-- Consumes: `static/mcp-index.json` shape produced by Task 2 (`{ id, title, url, content, embedding }[]`)
+
+- Consumes: `static/mcp-index.json` shape produced by Task 2
+  (`{ id, title, url, content, embedding }[]`)
 - Produces (used by Task 4's `api/mcp.ts`):
   - `interface DocEntry { id: string; title: string; url: string; content: string; embedding: number[] }`
   - `interface SearchResult { title: string; url: string; snippet: string }`
   - `loadIndex(jsonPath: string): DocEntry[]`
   - `cosineSimilarity(a: number[], b: number[]): number`
-  - `searchDocs(index: DocEntry[], queryEmbedding: number[], topK?: number): SearchResult[]` (default `topK = 5`)
+  - `searchDocs(index: DocEntry[], queryEmbedding: number[], topK?: number): SearchResult[]`
+    (default `topK = 5`)
   - `fetchDoc(index: DocEntry[], url: string): string | null`
 
 - [ ] **Step 1: Write the failing test**
@@ -425,12 +469,36 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { cosineSimilarity, loadIndex, searchDocs, fetchDoc, type DocEntry } from './retrieval';
+import {
+  cosineSimilarity,
+  loadIndex,
+  searchDocs,
+  fetchDoc,
+  type DocEntry,
+} from './retrieval';
 
 const FIXTURE_INDEX: DocEntry[] = [
-  { id: 'a', title: 'Doc A', url: 'https://dimo.org/docs/a', content: 'Content A', embedding: [1, 0] },
-  { id: 'b', title: 'Doc B', url: 'https://dimo.org/docs/b', content: 'Content B', embedding: [0, 1] },
-  { id: 'c', title: 'Doc C', url: 'https://dimo.org/docs/c', content: 'Content C', embedding: [1, 1] },
+  {
+    id: 'a',
+    title: 'Doc A',
+    url: 'https://dimo.org/docs/a',
+    content: 'Content A',
+    embedding: [1, 0],
+  },
+  {
+    id: 'b',
+    title: 'Doc B',
+    url: 'https://dimo.org/docs/b',
+    content: 'Content B',
+    embedding: [0, 1],
+  },
+  {
+    id: 'c',
+    title: 'Doc C',
+    url: 'https://dimo.org/docs/c',
+    content: 'Content C',
+    embedding: [1, 1],
+  },
 ];
 
 test('cosineSimilarity of identical vectors is 1', () => {
@@ -469,8 +537,8 @@ test('loadIndex reads and parses a JSON index file from disk', () => {
 
 - [ ] **Step 2: Run test to verify it fails**
 
-Run: `node --test api/lib/retrieval.test.ts`
-Expected: FAIL — `./retrieval` module does not exist.
+Run: `node --test api/lib/retrieval.test.ts` Expected: FAIL — `./retrieval`
+module does not exist.
 
 - [ ] **Step 3: Write the retrieval module**
 
@@ -514,10 +582,13 @@ export function loadIndex(jsonPath: string): DocEntry[] {
 export function searchDocs(
   index: DocEntry[],
   queryEmbedding: number[],
-  topK = 5,
+  topK = 5
 ): SearchResult[] {
   return index
-    .map(doc => ({ doc, score: cosineSimilarity(doc.embedding, queryEmbedding) }))
+    .map(doc => ({
+      doc,
+      score: cosineSimilarity(doc.embedding, queryEmbedding),
+    }))
     .sort((a, b) => b.score - a.score)
     .slice(0, topK)
     .map(({ doc }) => ({
@@ -538,8 +609,7 @@ export function fetchDoc(index: DocEntry[], url: string): string | null {
 
 - [ ] **Step 4: Run test to verify it passes**
 
-Run: `node --test api/lib/retrieval.test.ts`
-Expected: PASS (5 tests)
+Run: `node --test api/lib/retrieval.test.ts` Expected: PASS (5 tests)
 
 - [ ] **Step 5: Commit**
 
@@ -553,12 +623,16 @@ git commit -m "feat: add retrieval module for docs MCP server"
 ## Task 4: MCP server Vercel Function
 
 **Files:**
+
 - Create: `api/mcp.ts`
 - Modify: `vercel.json` (bundle `static/mcp-index.json` into the function)
-- Modify: `package.json` (add `@modelcontextprotocol/sdk` and `zod` dependencies)
+- Modify: `package.json` (add `@modelcontextprotocol/sdk` and `zod`
+  dependencies)
 
 **Interfaces:**
-- Consumes: `loadIndex`, `searchDocs`, `fetchDoc`, `DocEntry` from `api/lib/retrieval.ts` (Task 3)
+
+- Consumes: `loadIndex`, `searchDocs`, `fetchDoc`, `DocEntry` from
+  `api/lib/retrieval.ts` (Task 3)
 - Produces: the deployed `/api/mcp` endpoint (verified manually — see Step 6/7)
 
 - [ ] **Step 1: Install dependencies**
@@ -577,7 +651,12 @@ import OpenAI from 'openai';
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { loadIndex, searchDocs, fetchDoc, type DocEntry } from './lib/retrieval';
+import {
+  loadIndex,
+  searchDocs,
+  fetchDoc,
+  type DocEntry,
+} from './lib/retrieval';
 
 const EMBEDDING_MODEL = 'text-embedding-3-small';
 const INDEX_PATH = join(process.cwd(), 'static', 'mcp-index.json');
@@ -627,15 +706,21 @@ function buildServer(): McpServer {
         });
         const queryEmbedding = embeddingRes.data[0].embedding;
         const results = searchDocs(getIndex(), queryEmbedding, top_k ?? 5);
-        return { content: [{ type: 'text' as const, text: JSON.stringify(results, null, 2) }] };
+        return {
+          content: [
+            { type: 'text' as const, text: JSON.stringify(results, null, 2) },
+          ],
+        };
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
         return {
-          content: [{ type: 'text' as const, text: `search_docs failed: ${message}` }],
+          content: [
+            { type: 'text' as const, text: `search_docs failed: ${message}` },
+          ],
           isError: true,
         };
       }
-    },
+    }
   );
 
   server.registerTool(
@@ -651,12 +736,14 @@ function buildServer(): McpServer {
       const content = fetchDoc(getIndex(), url);
       if (!content) {
         return {
-          content: [{ type: 'text' as const, text: `No doc found for URL: ${url}` }],
+          content: [
+            { type: 'text' as const, text: `No doc found for URL: ${url}` },
+          ],
           isError: true,
         };
       }
       return { content: [{ type: 'text' as const, text: content }] };
-    },
+    }
   );
 
   return server;
@@ -664,10 +751,12 @@ function buildServer(): McpServer {
 
 export default async function handler(
   req: IncomingMessage & { body?: unknown },
-  res: ServerResponse,
+  res: ServerResponse
 ) {
   const server = buildServer();
-  const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: undefined,
+  });
 
   res.on('close', () => {
     transport.close();
@@ -683,12 +772,14 @@ export default async function handler(
 > versions. After `npm install`, check
 > `node_modules/@modelcontextprotocol/sdk/dist/esm/server/mcp.d.ts` and
 > `.../streamableHttp.d.ts` to confirm `registerTool`'s signature and
-> `StreamableHTTPServerTransport`'s constructor options match what's used
-> above, and adjust if the installed version differs.
+> `StreamableHTTPServerTransport`'s constructor options match what's used above,
+> and adjust if the installed version differs.
 
 - [ ] **Step 3: Bundle the index file into the function**
 
-Modify `vercel.json` — add a top-level `functions` key alongside the existing `headers` array:
+Modify `vercel.json` — add a top-level `functions` key alongside the existing
+`headers` array:
+
 ```json
 {
   "cleanUrls": true,
@@ -706,15 +797,18 @@ Modify `vercel.json` — add a top-level `functions` key alongside the existing 
 
 - [ ] **Step 4: Typecheck**
 
-Run: `npm run typecheck`
-Expected: no errors. If the SDK's types don't match the note in Step 2, fix `api/mcp.ts` to match the installed version's actual types.
+Run: `npm run typecheck` Expected: no errors. If the SDK's types don't match the
+note in Step 2, fix `api/mcp.ts` to match the installed version's actual types.
 
 - [ ] **Step 5: Generate a real index locally**
 
-This requires an OpenAI API key (ask James for one if you don't have it, or use his if working in his environment):
+This requires an OpenAI API key (ask James for one if you don't have it, or use
+his if working in his environment):
+
 ```bash
 OPENAI_API_KEY=sk-... node scripts/generate-mcp-index.mjs
 ```
+
 Expected: `[mcp-index] wrote 42 docs -> static/mcp-index.json`
 
 - [ ] **Step 6: Smoke-test the function locally**
@@ -722,11 +816,16 @@ Expected: `[mcp-index] wrote 42 docs -> static/mcp-index.json`
 ```bash
 OPENAI_API_KEY=sk-... npx vercel dev
 ```
+
 In another terminal, use the MCP inspector against the local server:
+
 ```bash
 npx @modelcontextprotocol/inspector
 ```
-Point it at `http://localhost:3000/api/mcp`, call `search_docs` with a query like `"how do I get a vehicle JWT"`, and confirm a relevant doc ranks first. Call `fetch_doc` with that result's URL and confirm the full content comes back.
+
+Point it at `http://localhost:3000/api/mcp`, call `search_docs` with a query
+like `"how do I get a vehicle JWT"`, and confirm a relevant doc ranks first.
+Call `fetch_doc` with that result's URL and confirm the full content comes back.
 
 - [ ] **Step 7: Commit**
 
@@ -743,10 +842,13 @@ git commit -m "feat: add MCP server Vercel Function for docs search/fetch"
 
 - [ ] **Step 1: Set `OPENAI_API_KEY` in Vercel's project environment variables**
 
-This is a dashboard/CLI action against shared infrastructure — confirm with James before doing this, then either add it via the Vercel dashboard or:
+This is a dashboard/CLI action against shared infrastructure — confirm with
+James before doing this, then either add it via the Vercel dashboard or:
+
 ```bash
 vercel env add OPENAI_API_KEY
 ```
+
 Add it for both Preview and Production environments.
 
 - [ ] **Step 2: Confirm with James, then deploy a preview**
@@ -754,11 +856,14 @@ Add it for both Preview and Production environments.
 ```bash
 vercel
 ```
-(Do not deploy to production without an explicit go-ahead per Global Constraints.)
+
+(Do not deploy to production without an explicit go-ahead per Global
+Constraints.)
 
 - [ ] **Step 3: Verify the preview build generated the index**
 
 Check the preview deployment's build logs for the line:
+
 ```
 [mcp-index] wrote 42 docs -> static/mcp-index.json
 ```
@@ -768,8 +873,12 @@ Check the preview deployment's build logs for the line:
 ```bash
 npx @modelcontextprotocol/inspector
 ```
-Point it at `https://<preview-url>/api/mcp`. Run `search_docs` for a couple of known queries and `fetch_doc` on a returned result. Confirm both tools respond correctly against the deployed function.
+
+Point it at `https://<preview-url>/api/mcp`. Run `search_docs` for a couple of
+known queries and `fetch_doc` on a returned result. Confirm both tools respond
+correctly against the deployed function.
 
 - [ ] **Step 5: Report results to James**
 
-Summarize: preview URL, confirmation that both tools work, and ask whether to promote to production.
+Summarize: preview URL, confirmation that both tools work, and ask whether to
+promote to production.
