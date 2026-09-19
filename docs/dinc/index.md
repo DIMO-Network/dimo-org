@@ -50,6 +50,7 @@ informed about our information practices and the choices available to you.
 - [Sharing of Information](#sharing-of-information)
 - Advertising and Analytics
 - [Transfer of Information to the United States and Other Countries](#transfer-of-information-to-the-united-states-and-other-countries)
+- [Text Messaging (SMS)](#text-messaging-sms)
 - [Your Choices](#your-choices)
 - [Your California Privacy Rights](#your-california-privacy-rights)
 - [Additional Disclosures for Individuals in Europe](#additional-disclosures-for-individuals-in-europe)
@@ -317,6 +318,16 @@ third-party providers mentioned above. These clauses require all recipients to
 protect all personal information that they process originating from the EEA or
 UK in accordance with European data protection laws and regulations. Our
 Standard Contractual Clauses can be provided upon request.
+
+## TEXT MESSAGING (SMS)
+
+If you opt in to text messages in the DIMO mobile app, we use your mobile number
+to send you messages about your vehicles and your AI assistant conversations.
+Notwithstanding anything else in this Privacy Policy, we do not sell, rent, or
+share mobile numbers or SMS opt-in data and consent with third parties or
+affiliates for marketing or promotional purposes. Message frequency varies.
+Message and data rates may apply. Reply STOP to opt out at any time or HELP for
+help.
 
 ## YOUR CHOICES
 

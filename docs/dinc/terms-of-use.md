@@ -342,6 +342,17 @@ a payment instruction, resulting in loss of profits which could have been
 obtained) due to occurrences such as emergency situations and force majeure
 events, DINC is under no obligation to take any corrective action or measure.
 
+## DIMO Text Messaging
+
+By opting in under Account > Communication Preferences > Text messages in the
+DIMO mobile app, you agree to receive text messages from DIMO (Digital
+Infrastructure Inc.) about your vehicles and your AI assistant conversations.
+Message frequency varies. Message and data rates may apply. Reply STOP to cancel
+at any time, or HELP for help, or visit support.dimo.co. Carriers are not liable
+for delayed or undelivered messages. Consent to receive text messages is not a
+condition of purchase. See our [Privacy Policy](/docs/dinc) for how we handle
+your mobile number.
+
 ## Contact Us
 
 Digital Infrastructure Inc.is a corporation organized and existing under the
