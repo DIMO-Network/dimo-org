@@ -32,6 +32,21 @@ test('walk finds all md/mdx files recursively', () => {
   }
 });
 
+test('walk skips the dinc legal pages', () => {
+  const dir = makeFixture();
+  try {
+    mkdirSync(join(dir, 'dinc'));
+    writeFileSync(join(dir, 'dinc', 'index.md'), '# Privacy Policy\n');
+    const files = walk(dir).map(f => f.replace(dir, '')).sort();
+    assert.deepEqual(files, [
+      '/1_getting-started.md',
+      '/3_api-references/0_agents-api.mdx',
+    ]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('toUrl strips numeric prefixes and extension', () => {
   const dir = makeFixture();
   try {

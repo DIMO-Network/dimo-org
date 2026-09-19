@@ -4,12 +4,18 @@ import { join, relative, extname } from 'node:path';
 // Canonical host is the apex domain; www.dimo.org redirects to it.
 export const SITE = 'https://dimo.org';
 
+// Directories under docs/ that are served by the docs plugin but are not
+// developer documentation (dinc = legal pages), so they stay out of
+// llms-full.txt and the MCP search index.
+const EXCLUDED_DIRS = new Set(['dinc']);
+
 /** Recursively collect .md / .mdx file paths under dir. */
 export function walk(dir) {
   const out = [];
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) {
+      if (EXCLUDED_DIRS.has(entry)) continue;
       out.push(...walk(full));
     } else if (['.md', '.mdx'].includes(extname(entry))) {
       out.push(full);
