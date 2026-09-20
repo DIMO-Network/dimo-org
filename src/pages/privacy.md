@@ -9,10 +9,6 @@ description:
 
 _Last updated: June 26, 2026._
 
-> **Note for the DIMO team:** This is an engineering-authored baseline so the
-> page exists and is linked sitewide. Have it reviewed and finalized by legal
-> counsel before relying on it. Replace this note on publish.
-
 DIMO Network, Inc. ("DIMO", "we", "us") operates the DIMO developer platform at
 dimo.org. This policy explains what data we collect, why, and the choices you
 have. It is written to support compliance with the GDPR and the EU Data Act.
