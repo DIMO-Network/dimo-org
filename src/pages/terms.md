@@ -9,10 +9,6 @@ description:
 
 _Last updated: June 26, 2026._
 
-> **Note for the DIMO team:** This is an engineering-authored baseline so the
-> page exists and is linked sitewide. Have it reviewed and finalized by legal
-> counsel before relying on it. Replace this note on publish.
-
 These Terms of Service ("Terms") govern your access to and use of the DIMO
 developer platform, including the APIs, SDKs, Developer Console, and
 documentation (the "Services") provided by DIMO Network, Inc. By accessing the
