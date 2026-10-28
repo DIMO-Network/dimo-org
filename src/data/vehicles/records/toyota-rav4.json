@@ -1,0 +1,57 @@
+{
+  "make": "Toyota",
+  "model": "RAV4",
+  "slug": "toyota/rav4",
+  "powertrains": ["ice", "hybrid", "phev"],
+  "regions": ["US"],
+  "coverage": [
+    {
+      "type": "oem_cloud",
+      "provider": "Toyota Connected Services",
+      "years": { "from": 2021, "to": 2025 },
+      "signals": [
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel level",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        { "name": "currentLocationCoordinates", "label": "Location" }
+      ],
+      "events": ["refuel"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": { "from": 2008, "to": 2025 },
+      "signals": [
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel level",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Engine coolant temperature",
+          "unit": "°C"
+        },
+        { "name": "obdDTCList", "label": "Diagnostic trouble codes" },
+        { "name": "speed", "label": "Speed", "unit": "km/h" }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "speeding", "dtc"]
+    }
+  ],
+  "verification": "expected",
+  "lastVerified": "2026-10-01",
+  "publishDate": "2027-01-04",
+  "faq": []
+}
