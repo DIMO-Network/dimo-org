@@ -1,0 +1,49 @@
+# Submits new or changed URLs to IndexNow after each successful production
+# deploy. IndexNow covers Bing and other engines, not Google; Google discovery
+# relies on the sitemap in Search Console.
+#
+# Secret: INDEXNOW_KEY (also committed as static/<key>.txt, public by design).
+name: IndexNow
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Restore sitemap snapshot
+        uses: actions/cache/restore@v4
+        with:
+          path: .indexnow
+          key: indexnow-sitemap-${{ github.run_id }}
+          restore-keys: indexnow-sitemap-
+
+      - name: Submit new and changed URLs
+        run: node scripts/aeo/indexnow.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Save sitemap snapshot
+        uses: actions/cache/save@v4
+        with:
+          path: .indexnow
+          key: indexnow-sitemap-${{ github.run_id }}

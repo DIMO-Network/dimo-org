@@ -90,6 +90,8 @@ export default function vehiclePages(context: LoadContext): Plugin<Content> {
           component: '@site/src/components/VehiclePage',
           exact: true,
           modules: { data: dataPath },
+          // Sitemap lastmod, which IndexNow uses to resubmit changed pages.
+          metadata: { lastUpdatedAt: Date.parse(record.lastVerified) },
         });
       }
 

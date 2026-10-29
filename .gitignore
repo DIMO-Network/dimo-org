@@ -25,3 +25,4 @@ CLAUDE.md
 
 # Build-generated docs index (re-embedded on every build; see scripts/generate-mcp-index.mjs)
 /static/mcp-index.json
+.indexnow/
