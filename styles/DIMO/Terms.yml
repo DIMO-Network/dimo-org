@@ -1,0 +1,11 @@
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: error
+ignorecase: false
+swap:
+  'Dimo': DIMO
+  '(?:oem|Oem)': OEM
+  '(?:dtc|Dtc)': DTC
+  '(?:ev|Ev)s?\b': EV
+  '(?:Graphql|GraphQl|graphQL|graphql)': GraphQL
+  '(?:data act|Data act|data Act)': Data Act

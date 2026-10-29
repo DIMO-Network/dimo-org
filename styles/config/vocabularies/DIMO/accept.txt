@@ -1,0 +1,24 @@
+DIMO
+OEMs?
+DTCs?
+EVs?
+GraphQL
+JWTs?
+SDKs?
+APIs?
+OBD(?:-II)?
+tokenId
+FordPass
+LTE R1
+AutoPi
+Macaron
+Smartcar
+Geotab
+(?i)geofences?
+(?i)odometers?
+(?i)powertrains?
+(?i)refuel(?:s|ed|ing)?
+(?i)recharg(?:e|es|ed|ing)
+(?i)webhooks?
+(?i)quickstart
+(?i)provenance
