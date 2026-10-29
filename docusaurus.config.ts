@@ -1,6 +1,13 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
+import type { ProcessBlogPostsFn } from '@docusaurus/plugin-content-blog';
+import { isLive } from './plugins/vehicle-pages/publishDate';
+
+// Scheduled publishing for blog instances: posts dated after the build date
+// (UTC) are dropped from pages, feeds and the sitemap until a later build.
+const dropScheduledPosts: ProcessBlogPostsFn = async ({ blogPosts }) =>
+  blogPosts.filter(post => isLive(new Date(post.metadata.date).toISOString()));
 
 const config: Config = {
   title: 'DIMO Build',
@@ -53,6 +60,7 @@ const config: Config = {
           blogSidebarCount: 10,
           blogDescription:
             'Developer insights on vehicle data APIs, connected-car infrastructure, session-based consent, and mobility engineering from the DIMO team.',
+          processBlogPosts: dropScheduledPosts,
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -71,6 +79,9 @@ const config: Config = {
             '/blog/archive',
             '/blog/authors',
             '/blog/tags/**',
+            '/resources/archive',
+            '/resources/authors',
+            '/resources/tags/**',
           ],
         },
       } satisfies Preset.Options,
@@ -80,7 +91,25 @@ const config: Config = {
   themes: ['@docusaurus/theme-mermaid'],
 
   // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
-  plugins: ['./plugins/vehicle-pages/index.ts'],
+  plugins: [
+    './plugins/vehicle-pages/index.ts',
+    // Hand-edited AEO guides (MDX), published on their `date`.
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'resources',
+        path: 'resources',
+        routeBasePath: 'resources',
+        blogTitle: 'Resources',
+        blogDescription:
+          'Guides for building with DIMO vehicle data: signals, events, connection options and the DIMO API.',
+        blogSidebarTitle: 'Recent guides',
+        blogSidebarCount: 10,
+        showReadingTime: true,
+        processBlogPosts: dropScheduledPosts,
+      },
+    ],
+  ],
 
   markdown: {
     mermaid: true,
