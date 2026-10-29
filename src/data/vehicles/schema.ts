@@ -49,4 +49,5 @@ export const VehicleRecord = z.object({
   realWorld: z.never().optional(),
 });
 
+// eslint-disable-next-line no-redeclare -- Zod schema and inferred type share a name
 export type VehicleRecord = z.infer<typeof VehicleRecord>;

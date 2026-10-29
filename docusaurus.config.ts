@@ -79,6 +79,9 @@ const config: Config = {
 
   themes: ['@docusaurus/theme-mermaid'],
 
+  // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
+  plugins: ['./plugins/vehicle-pages/index.ts'],
+
   markdown: {
     mermaid: true,
     hooks: {
