@@ -2,6 +2,8 @@ name: PR checks
 
 on:
   pull_request:
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -9,7 +11,7 @@ permissions:
   pull-requests: read
 
 concurrency:
-  group: pr-checks-${{ github.event.pull_request.number }}
+  group: pr-checks-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -30,11 +32,33 @@ jobs:
       - name: Typecheck, lint, format
         run: npm run check-all
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install DIMO SDKs for snippets
+        run: |
+          pip install dimo-python-sdk
+          npm install --no-save @dimo-network/data-sdk
+
+      # Snippets tagged `test` run against a sandbox developer license and test
+      # vehicle. Fork PRs get no secrets, so they syntax-check only; pushes to
+      # main and PRs from this repo must have the secrets.
       - name: Unit tests and snippets
         run: npm test
+        env:
+          DIMO_CLIENT_ID: ${{ secrets.DIMO_SANDBOX_CLIENT_ID }}
+          DIMO_API_KEY: ${{ secrets.DIMO_SANDBOX_API_KEY }}
+          DIMO_REDIRECT_URI: ${{ secrets.DIMO_SANDBOX_REDIRECT_URI }}
+          DIMO_TOKEN_ID: ${{ secrets.DIMO_SANDBOX_TOKEN_ID }}
+          AEO_SNIPPETS_REQUIRE_CREDS:
+            ${{ (github.event_name == 'push' ||
+            github.event.pull_request.head.repo.full_name == github.repository)
+            && '1' || '0' }}
 
       - name: Changed prose files
         id: prose
+        if: github.event_name == 'pull_request'
         run: |
           files=$(git diff --name-only --diff-filter=AM \
             "${{ github.event.pull_request.base.sha }}" HEAD -- \
@@ -42,11 +66,11 @@ jobs:
           echo "files=$(printf '%s\n' $files | jq -R . | jq -cs 'map(select(length > 0))')" >> "$GITHUB_OUTPUT"
 
       - name: Install MDX parser for Vale
-        if: steps.prose.outputs.files != '[]'
+        if: steps.prose.outputs.files && steps.prose.outputs.files != '[]'
         run: npm install --global mdx2vast
 
       - name: Vale
-        if: steps.prose.outputs.files != '[]'
+        if: steps.prose.outputs.files && steps.prose.outputs.files != '[]'
         uses: errata-ai/vale-action@v2.1.1
         with:
           files: ${{ steps.prose.outputs.files }}
