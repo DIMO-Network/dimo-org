@@ -1,36 +1,50 @@
 // Snippet harness. Fenced code blocks tagged `test` (```js test, ```ts test,
 // ```python test) in resources/ and blog/, plus the VehiclePage "Build it"
-// template for every vehicle record, are syntax-checked always and executed
-// when sandbox DIMO credentials are present. Untagged blocks are skipped.
+// template for every vehicle record, are syntax-checked and executed. JS/TS
+// snippets run against an offline @dimo-network/data-sdk stub that answers from
+// fixtures/telemetry.json (see dimo-sdk-stub.mjs), so CI never calls DIMO.
+// Python snippets that use DIMO are syntax-checked only. Untagged blocks are
+// skipped.
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from 'node:fs';
 import path from 'node:path';
 import { test } from 'node:test';
 import { loadRecords } from '../../plugins/vehicle-pages/records.ts';
 import { buildSnippet } from '../../src/components/VehiclePage/snippet.ts';
 
 const ROOT = path.join(import.meta.dirname, '../..');
-// Under node_modules so bare imports (@dimo-network/data-sdk) resolve.
-const WORK_DIR = path.join(ROOT, 'node_modules/.cache/aeo-snippets');
+// Outside node_modules: Node won't strip types there. The SDK import resolves
+// to the stub through HOOKS.
+const WORK_DIR = path.join(ROOT, '.aeo-snippets');
 const TIMEOUT_MS = 30_000;
-const CREDENTIALS = [
-  'DIMO_CLIENT_ID',
-  'DIMO_API_KEY',
-  'DIMO_REDIRECT_URI',
-  'DIMO_TOKEN_ID',
-];
+const HOOKS = path.join(import.meta.dirname, 'dimo-sdk-hooks.mjs');
+const FIXTURE = path.join(import.meta.dirname, 'fixtures/telemetry.json');
+const SNIPPET_ENV = {
+  ...process.env,
+  DIMO_CLIENT_ID: '0xstub-client-id',
+  DIMO_API_KEY: 'stub-api-key',
+  DIMO_REDIRECT_URI: 'https://example.com/callback',
+  DIMO_TOKEN_ID: '1',
+  AEO_TELEMETRY_FIXTURE: FIXTURE,
+};
 
 const LANGS = {
   js: {
     ext: '.mjs',
     check: f => ['node', ['--check', f]],
-    run: f => ['node', [f]],
+    run: f => ['node', ['--import', HOOKS, f]],
   },
   ts: {
     ext: '.mts',
     check: f => ['node', ['--check', f]],
-    run: f => ['node', [f]],
+    run: f => ['node', ['--import', HOOKS, f]],
   },
   python: {
     ext: '.py',
@@ -96,41 +110,25 @@ function vehicleBlocks() {
   }));
 }
 
-function redact(text) {
-  return CREDENTIALS.reduce(
-    (out, name) =>
-      process.env[name] ? out.split(process.env[name]).join('***') : out,
-    text
-  );
-}
-
 function exec([cmd, args]) {
   const res = spawnSync(cmd, args, {
     cwd: WORK_DIR,
     encoding: 'utf8',
     timeout: TIMEOUT_MS,
-    env: process.env,
+    env: SNIPPET_ENV,
   });
   if (res.error?.code === 'ETIMEDOUT')
     return `timed out after ${TIMEOUT_MS / 1000}s`;
   if (res.error) return res.error.message;
-  return res.status === 0 ? null : redact(`${res.stderr}${res.stdout}`).trim();
+  return res.status === 0 ? null : `${res.stderr}${res.stdout}`.trim();
 }
 
-const missing = CREDENTIALS.filter(name => !process.env[name]);
-const requireCreds = process.env.AEO_SNIPPETS_REQUIRE_CREDS === '1';
 const usesNetwork = code => /DIMO_[A-Z_]+/.test(code);
 
 {
   mkdirSync(WORK_DIR, { recursive: true });
   const blocks = [...contentBlocks(), ...vehicleBlocks()];
   const seen = new Set();
-
-  if (missing.length && !requireCreds) {
-    console.log(
-      `snippets: ${missing.join(', ')} not set; network snippets are syntax-checked only`
-    );
-  }
 
   blocks.forEach((block, n) => {
     if (seen.has(block.code)) return;
@@ -144,13 +142,15 @@ const usesNetwork = code => /DIMO_[A-Z_]+/.test(code);
       const syntaxError = exec(lang.check(file));
       assert.equal(syntaxError, null, `${where}: syntax error\n${syntaxError}`);
 
-      if (usesNetwork(block.code) && missing.length) {
+      if (usesNetwork(block.code)) {
+        if (block.lang === 'python') {
+          t.skip('Python DIMO snippets are syntax-checked only');
+          return;
+        }
         assert.ok(
-          !requireCreds,
-          `${where}: ${missing.join(', ')} must be set in CI (AEO_SNIPPETS_REQUIRE_CREDS=1)`
+          existsSync(FIXTURE),
+          `${where}: ${path.relative(ROOT, FIXTURE)} is missing (format in scripts/aeo/dimo-sdk-stub.mjs)`
         );
-        t.skip(`needs ${missing.join(', ')}`);
-        return;
       }
       const runError = exec(lang.run(file));
       assert.equal(runError, null, `${where}: snippet failed\n${runError}`);
