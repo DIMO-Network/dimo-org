@@ -1,0 +1,93 @@
+name: PR checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: read
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck, lint, format
+        run: npm run check-all
+
+      # Snippets tagged `test` run against an offline DIMO SDK stub fed by
+      # scripts/aeo/fixtures/telemetry.json, so no DIMO credentials are needed.
+      - name: Unit tests and snippets
+        run: npm test
+
+      - name: Changed prose files
+        id: prose
+        if: github.event_name == 'pull_request'
+        run: |
+          files=$(git diff --name-only --diff-filter=AM \
+            "${{ github.event.pull_request.base.sha }}" HEAD -- \
+            'resources/**/*.mdx' 'resources/**/*.md' 'blog/**/*.md' 'blog/**/*.mdx')
+          echo "files=$(printf '%s\n' $files | jq -R . | jq -cs 'map(select(length > 0))')" >> "$GITHUB_OUTPUT"
+
+      - name: Install MDX parser for Vale
+        if: steps.prose.outputs.files && steps.prose.outputs.files != '[]'
+        run: npm install --global mdx2vast
+
+      - name: Vale
+        if: steps.prose.outputs.files && steps.prose.outputs.files != '[]'
+        uses: errata-ai/vale-action@v2.1.1
+        with:
+          files: ${{ steps.prose.outputs.files }}
+          reporter: github-pr-check
+          fail_on_error: true
+          filter_mode: nofilter
+
+      - name: Build
+        run: npm run build
+
+      - name: Near-duplicate vehicle pages
+        run: node scripts/aeo/dup-check.mjs
+
+      - name: Internal links (offline)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --offline --no-progress --root-dir ${{ github.workspace }}/build
+            --fallback-extensions html --index-files index.html,.
+            'build/**/*.html'
+          fail: true
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+
+      - name: External links (non-blocking)
+        uses: lycheeverse/lychee-action@v2
+        continue-on-error: true
+        with:
+          args: >-
+            --no-progress --cache --max-cache-age 1d --max-retries 2 --root-dir
+            ${{ github.workspace }}/build --fallback-extensions html
+            --index-files index.html,. --scheme https --scheme http
+            'build/**/*.html'
+          fail: false

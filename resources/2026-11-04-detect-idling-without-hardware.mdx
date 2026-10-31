@@ -1,0 +1,84 @@
+---
+title: How do I detect vehicle idling without installing hardware?
+description: Use the DIMO Telemetry API's idling segments to find idle periods from a vehicle's existing connection, with no device to install.
+slug: detect-idling-without-hardware
+date: 2026-11-04
+authors: [dimo-team]
+tags: [idling, events, telemetry-api]
+---
+
+{/* DRAFT QUALITY: sample guide for the AEO template. Review facts and the tested snippet before this date passes. */}
+
+DIMO detects idling by querying the Telemetry API for `segments` with the `idling` detection mechanism, which returns each contiguous period where engine RPM stayed in the idle range. If the vehicle's OEM cloud connection reports engine speed, you can do this with no hardware: the owner connects the vehicle and consents to sharing, and you query.
+
+{/* truncate */}
+
+## Steps
+
+1. **Get developer credentials.** Create a developer license in the [DIMO Developer Console](https://console.dimo.org) and note your client ID, redirect URI and API key. See [Authentication](/docs/getting-started/authentication).
+2. **Have the owner share the vehicle.** The owner connects the vehicle through [DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect) and grants your app access. You receive the vehicle's `tokenId`.
+3. **Exchange tokens.** Use your Developer JWT and the `tokenId` to get a Vehicle JWT.
+4. **Query idling segments.** Call `segments` with `mechanism: idling` for a date range of up to 31 days. Each segment has a start, an end (null while ongoing) and a `duration` in seconds.
+5. **Tune detection if needed.** `config.maxIdleRpm` sets the upper bound for idle RPM (default 1000). See [Vehicle Segments](/docs/api-references/telemetry-api/segments).
+
+## Code
+
+```js test
+import { DIMO } from '@dimo-network/data-sdk';
+
+const dimo = new DIMO('Production');
+const tokenId = Number(process.env.DIMO_TOKEN_ID);
+
+const developerJwt = await dimo.auth.getDeveloperJwt({
+  client_id: process.env.DIMO_CLIENT_ID,
+  domain: process.env.DIMO_REDIRECT_URI,
+  private_key: process.env.DIMO_API_KEY,
+});
+const vehicleJwt = await dimo.tokenexchange.getVehicleJwt({
+  ...developerJwt,
+  tokenId,
+});
+
+const to = new Date();
+const from = new Date(to.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+const result = await dimo.telemetry.query({
+  ...vehicleJwt,
+  query: `
+    query {
+      segments(
+        tokenId: ${tokenId}
+        from: "${from.toISOString()}"
+        to: "${to.toISOString()}"
+        mechanism: idling
+      ) {
+        start { timestamp }
+        end { timestamp }
+        duration
+        isOngoing
+      }
+    }`,
+});
+
+console.log(JSON.stringify(result, null, 2));
+```
+
+## FAQ
+
+### Does idling detection need a DIMO device?
+
+No, as long as the vehicle's connection reports engine speed. The `idling` mechanism works from engine RPM, whichever connection type supplies it. Check the signal tables on the vehicle's page under [/vehicles](/vehicles).
+
+### How long a period can I query?
+
+Up to 31 days per `segments` query. Use the `after` cursor to page through more than 200 segments.
+
+### Can I change what counts as idle?
+
+Yes. Set `config.maxIdleRpm` between 300 and 3000. Windows where the maximum RPM is at or below that value are treated as idle.
+
+### Who controls access to this data?
+
+Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+_Methodology: based on the DIMO Telemetry API [Vehicle Segments](/docs/api-references/telemetry-api/segments) reference and the [Developer quickstart](/docs/quickstart)._

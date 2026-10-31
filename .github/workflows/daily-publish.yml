@@ -1,0 +1,27 @@
+# Daily production rebuild. Scheduled AEO content (vehicle records and
+# /resources or /blog posts) goes live on the first production build on or
+# after its publish date (UTC), so this workflow is the publish trigger.
+#
+# Requirements:
+# - VERCEL_DEPLOY_HOOK_PROD: a Vercel deploy hook that targets the
+#   PRODUCTION branch (main), stored as a repo secret.
+# - Vercel env: AEO_INCLUDE_FUTURE=1 is set for the Preview environment ONLY,
+#   so reviewers see scheduled pages on previews. Production must NOT set it.
+name: Daily publish
+
+on:
+  schedule:
+    # 13:07 UTC ≈ 6:07 am Pacific during PDT; off the hour on purpose.
+    - cron: '7 13 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger production deploy
+        run: curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_PROD"
+        env:
+          VERCEL_DEPLOY_HOOK_PROD: ${{ secrets.VERCEL_DEPLOY_HOOK_PROD }}

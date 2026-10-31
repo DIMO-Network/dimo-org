@@ -1,0 +1,69 @@
+{
+  "make": "Ford",
+  "model": "F-150",
+  "slug": "ford/f-150",
+  "powertrains": ["ice", "hybrid", "ev"],
+  "regions": ["US"],
+  "coverage": [
+    {
+      "type": "oem_cloud",
+      "provider": "FordPass",
+      "years": { "from": 2020, "to": 2025 },
+      "signals": [
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel level",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        { "name": "currentLocationCoordinates", "label": "Location" },
+        { "name": "isIgnitionOn", "label": "Ignition status" }
+      ],
+      "events": ["idling", "refuel"],
+      "notes": "Placeholder: fuel level not reported on F-150 Lightning (EV) trims."
+    },
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": { "from": 2008, "to": 2025 },
+      "signals": [
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel level",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Engine coolant temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine speed",
+          "unit": "rpm"
+        },
+        { "name": "obdDTCList", "label": "Diagnostic trouble codes" },
+        {
+          "name": "speed",
+          "label": "Speed",
+          "unit": "km/h",
+          "typicalFrequency": "every 10s while driving"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "speeding", "dtc"]
+    }
+  ],
+  "verification": "expected",
+  "lastVerified": "2026-10-01",
+  "publishDate": "2026-10-01",
+  "faq": []
+}

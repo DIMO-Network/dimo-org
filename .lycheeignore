@@ -1,0 +1,4 @@
+# Pre-existing: TelemetryFieldsBlock links to a privilege-definitions anchor that
+# doesn't exist (and resolves relative to the wrong directory). Remove this
+# once the link in src/components/TelemetryFieldsBlock is fixed.
+build/token-exchange-api#privilege-definitions

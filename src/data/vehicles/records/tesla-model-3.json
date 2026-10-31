@@ -1,0 +1,42 @@
+{
+  "make": "Tesla",
+  "model": "Model 3",
+  "slug": "tesla/model-3",
+  "powertrains": ["ev"],
+  "regions": ["US", "EU"],
+  "coverage": [
+    {
+      "type": "oem_cloud",
+      "provider": "Tesla Fleet API",
+      "years": { "from": 2018, "to": 2025 },
+      "signals": [
+        {
+          "name": "powertrainTractionBatteryStateOfChargeCurrent",
+          "label": "Battery state of charge",
+          "unit": "%"
+        },
+        { "name": "powertrainRange", "label": "Estimated range", "unit": "km" },
+        {
+          "name": "powertrainTractionBatteryChargingIsCharging",
+          "label": "Charging status"
+        },
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Outside temperature",
+          "unit": "°C"
+        },
+        { "name": "currentLocationCoordinates", "label": "Location" }
+      ],
+      "events": ["recharge"]
+    }
+  ],
+  "verification": "expected",
+  "lastVerified": "2026-10-01",
+  "publishDate": "2026-10-15",
+  "faq": []
+}
