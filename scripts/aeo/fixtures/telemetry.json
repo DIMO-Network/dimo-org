@@ -1,0 +1,51 @@
+{
+  "signalsLatest": {
+    "powertrainFuelSystemRelativeLevel": {
+      "value": 50,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "powertrainTransmissionTravelledDistance": {
+      "value": 10000,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "isIgnitionOn": {
+      "value": 1,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "powertrainCombustionEngineECT": {
+      "value": 90,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "powertrainCombustionEngineSpeed": {
+      "value": 800,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "speed": {
+      "value": 0,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "powertrainTractionBatteryStateOfChargeCurrent": null,
+    "powertrainRange": {
+      "value": 400,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "powertrainTractionBatteryChargingIsCharging": null,
+    "exteriorAirTemperature": {
+      "value": 20,
+      "timestamp": "2026-01-01T00:00:00Z"
+    },
+    "obdDTCList": null
+  },
+  "segments": [
+    {
+      "start": {
+        "timestamp": "2026-01-01T00:00:00Z"
+      },
+      "end": {
+        "timestamp": "2026-01-01T00:05:00Z"
+      },
+      "duration": 300,
+      "isOngoing": false
+    }
+  ]
+}
