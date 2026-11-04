@@ -23,7 +23,7 @@
         { "name": "currentLocationCoordinates", "label": "Location" },
         { "name": "isIgnitionOn", "label": "Ignition status" }
       ],
-      "events": ["idling", "refuel"],
+      "events": ["refuel"],
       "notes": "Placeholder: fuel level not reported on F-150 Lightning (EV) trims."
     },
     {
