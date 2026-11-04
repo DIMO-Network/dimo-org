@@ -8,7 +8,7 @@ import { loadRecords } from './records.ts';
 // Event → guide slug under /resources. A link renders only once that guide is
 // live, so scheduled guides never produce broken links.
 const EVENT_GUIDES: Record<string, string> = {
-  idling: 'detect-idling-without-hardware',
+  idling: 'detect-vehicle-idling',
 };
 
 export type VehicleSummary = Pick<
