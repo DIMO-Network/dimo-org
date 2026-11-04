@@ -43,6 +43,18 @@ export function events(r: VehicleRecord): EventType[] {
   return [...new Set(r.coverage.flatMap(c => c.events))];
 }
 
+// Connection types that provide the event, or [] when every connection on
+// the record does (so the page only qualifies events some connections lack).
+export function eventConnections(
+  r: VehicleRecord,
+  e: EventType
+): ConnectionType[] {
+  const types = connectionTypes(r).filter(t =>
+    coverageOf(r, t).some(c => c.events.includes(e))
+  );
+  return types.length === connectionTypes(r).length ? [] : types;
+}
+
 // Model-year ranges inside the record's overall span that no OEM cloud
 // connection covers, i.e. the years that need a DIMO device.
 export function yearsWithoutOemCloud(r: VehicleRecord): Years[] {

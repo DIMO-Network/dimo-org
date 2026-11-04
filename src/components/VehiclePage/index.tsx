@@ -9,6 +9,7 @@ import {
   connectionTypes,
   coverageOf,
   directAnswer,
+  eventConnections,
   events,
   formatYears,
   vehicleName,
@@ -137,6 +138,10 @@ function Events({ record, eventGuides }: VehiclePageData) {
             ) : (
               EVENT_LABELS[e]
             )}
+            {eventConnections(record, e).length > 0 &&
+              ` (${eventConnections(record, e)
+                .map(t => CONNECTION_LABELS[t])
+                .join(', ')})`}
           </li>
         ))}
       </ul>
