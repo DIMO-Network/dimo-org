@@ -10,6 +10,7 @@ import CustomNavbar from '../components/CustomNavbar';
 import { LINKS } from '../links';
 import { Star } from 'lucide-react';
 import ChatBot from '../components/ChatBot/ChatBot';
+import Translate, { translate } from '@docusaurus/Translate';
 
 // Asset imports
 const imgIconPlugPlay = '/img/icon-plug-play.svg';
@@ -104,7 +105,14 @@ function LazyVideo({
   );
 }
 
-const ROTATING_WORDS = ['vehicle data', 'session-based economy', 'mobility'];
+const ROTATING_WORDS = [
+  translate({ id: 'home.rotatingWords.vehicleData', message: 'vehicle data' }),
+  translate({
+    id: 'home.rotatingWords.sessionBasedEconomy',
+    message: 'session-based economy',
+  }),
+  translate({ id: 'home.rotatingWords.mobility', message: 'mobility' }),
+];
 
 function HeroSection() {
   const { word, visible } = useRotatingWord(ROTATING_WORDS);
@@ -119,35 +127,54 @@ function HeroSection() {
           className={styles.pill}
           to="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo"
         >
-          <span className={styles.pillNew}>New</span>
+          <span className={styles.pillNew}>
+            <Translate id="home.hero.new">New</Translate>
+          </span>
           <span>
-            Check us out on ProductHunt <span className={styles.arrow}>→</span>
+            <Translate id="home.hero.checkUsOutOn">
+              Check us out on ProductHunt
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </span>
         </Link>
 
         <h1 className={styles.heroTitle}>
-          The infrastructure built for <br />
-          <span
-            className={`${styles.rotatingWord} ${
-              visible ? styles.rotatingWordVisible : ''
-            }`}
+          <Translate
+            id="home.hero.theInfrastructureBuiltFor"
+            values={{
+              br: <br />,
+              word: (
+                <span
+                  className={`${styles.rotatingWord} ${
+                    visible ? styles.rotatingWordVisible : ''
+                  }`}
+                >
+                  {word}
+                </span>
+              ),
+            }}
           >
-            {word}
-          </span>
+            {'The infrastructure built for {br}{word}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          DIMO is building the infrastructure for the session-based
-          economy—where vehicles, drivers, and services connect on-demand. Build
-          apps that unlock value across every trip, rental, and interaction.
+          <Translate id="home.hero.dimoIsBuildingThe">
+            DIMO is building the infrastructure for the session-based
+            economy—where vehicles, drivers, and services connect on-demand.
+            Build apps that unlock value across every trip, rental, and
+            interaction.
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Sign Up <span className={styles.arrow}>→</span>
+            <Translate id="home.hero.signUp">Sign Up</Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            Read the Docs <span className={styles.arrow}>→</span>
+            <Translate id="home.hero.readTheDocs">Read the Docs</Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
 
@@ -175,14 +202,25 @@ function HeroSection() {
 // trademark note below the strip. Only add outlets with verifiable articles.
 function FeaturedInSection() {
   return (
-    <section className={styles.trustedBy} aria-label="Press coverage">
-      <p className={styles.trustedByText}>As featured in</p>
+    <section
+      className={styles.trustedBy}
+      aria-label={translate({
+        id: 'home.featuredIn.pressCoverage',
+        message: 'Press coverage',
+      })}
+    >
+      <p className={styles.trustedByText}>
+        <Translate id="home.featuredIn.asFeaturedIn">As featured in</Translate>
+      </p>
       <div className={styles.logoMarquee}>
         <a
           href="https://www.motortrend.com/reviews/2025-ram-1500-laramie-4x4-yearlong-review-update-8-dimo-data-dump"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Read MotorTrend's coverage of DIMO"
+          aria-label={translate({
+            id: 'home.featuredIn.readMotorTrendsCoverageOf',
+            message: "Read MotorTrend's coverage of DIMO",
+          })}
         >
           <img
             src="/img/logo-motortrend.svg"
@@ -194,12 +232,16 @@ function FeaturedInSection() {
         </a>
       </div>
       <p className={styles.pressQuote}>
-        “Any true data nerd should connect to DIMO.” — MotorTrend, July 2026
+        <Translate id="home.featuredIn.anyTrueDataNerd">
+          “Any true data nerd should connect to DIMO.” — MotorTrend, July 2026
+        </Translate>
       </p>
       <p className={styles.trademarkNote}>
-        All third-party trademarks are the property of their respective owners
-        and identify independent editorial coverage only. No endorsement or
-        sponsorship is implied.
+        <Translate id="home.featuredIn.allThirdPartyTrademarksAre">
+          All third-party trademarks are the property of their respective owners
+          and identify independent editorial coverage only. No endorsement or
+          sponsorship is implied.
+        </Translate>
       </p>
     </section>
   );
@@ -209,34 +251,62 @@ function WhatIsDimoSection() {
   return (
     <section className={styles.answerSection}>
       <div className={styles.answerBlock}>
-        <h2>What is DIMO?</h2>
+        <h2>
+          <Translate id="home.whatIsDimo.whatIsDimo">What is DIMO?</Translate>
+        </h2>
         <p>
-          DIMO (Digital Infrastructure for Moving Objects) is the vehicle data
-          infrastructure that powers the session-based economy, where vehicles,
-          drivers, and services connect on-demand. DIMO handles vehicle access
-          through a single, permissioned API for real-time telemetry, vehicle
-          identity, and owner consent (SACD) across 50+ brands, including Tesla,
-          Ford, BMW, Toyota, and Hyundai, so developers can build apps and
-          businesses without negotiating separate integrations with each
-          manufacturer. Developers create a free account at console.dimo.org,
-          generate API keys, and query live vehicle data such as location,
-          battery and fuel level, odometer, tire pressure, and diagnostic
-          trouble codes through GraphQL and REST endpoints, with official SDKs
-          for TypeScript, Python, and C#. Vehicle owners control their data:
-          they grant or revoke access with granular, auditable permissions that
-          can activate and expire with each session, which keeps applications
-          compliant with GDPR and the EU Data Act by default. The platform core
-          is open source, supports bring-your-own-device telematics hardware,
-          and the free Hobbyist tier lets developers make their first API call
-          in minutes.
+          <Translate id="home.whatIsDimo.dimoDigitalInfrastructureFor">
+            DIMO (Digital Infrastructure for Moving Objects) is the vehicle data
+            infrastructure that powers the session-based economy, where
+            vehicles, drivers, and services connect on-demand. DIMO handles
+            vehicle access through a single, permissioned API for real-time
+            telemetry, vehicle identity, and owner consent (SACD) across 50+
+            brands, including Tesla, Ford, BMW, Toyota, and Hyundai, so
+            developers can build apps and businesses without negotiating
+            separate integrations with each manufacturer. Developers create a
+            free account at console.dimo.org, generate API keys, and query live
+            vehicle data such as location, battery and fuel level, odometer,
+            tire pressure, and diagnostic trouble codes through GraphQL and REST
+            endpoints, with official SDKs for TypeScript, Python, and C#.
+            Vehicle owners control their data: they grant or revoke access with
+            granular, auditable permissions that can activate and expire with
+            each session, which keeps applications compliant with GDPR and the
+            EU Data Act by default. The platform core is open source, supports
+            bring-your-own-device telematics hardware, and the free Hobbyist
+            tier lets developers make their first API call in minutes.
+          </Translate>
         </p>
         <p>
-          Start with the <Link to="/connected-car-api">connected car API</Link>{' '}
-          overview for capabilities, the{' '}
-          <Link to="/vehicle-data-api">vehicle data API</Link> page for the
-          signal catalog, or the{' '}
-          <Link to="/compare/smartcar-alternative">DIMO vs Smartcar</Link>{' '}
-          comparison if you are evaluating providers.
+          <Translate
+            id="home.whatIsDimo.startWithTheOverview"
+            values={{
+              link: (
+                <Link to="/connected-car-api">
+                  <Translate id="home.whatIsDimo.connectedCarApi">
+                    connected car API
+                  </Translate>
+                </Link>
+              ),
+              link2: (
+                <Link to="/vehicle-data-api">
+                  <Translate id="home.whatIsDimo.vehicleDataApi">
+                    vehicle data API
+                  </Translate>
+                </Link>
+              ),
+              link3: (
+                <Link to="/compare/smartcar-alternative">
+                  <Translate id="home.whatIsDimo.dimoVsSmartcar">
+                    DIMO vs Smartcar
+                  </Translate>
+                </Link>
+              ),
+            }}
+          >
+            {
+              'Start with the {link} overview for capabilities, the {link2} page for the signal catalog, or the {link3} comparison if you are evaluating providers.'
+            }
+          </Translate>
         </p>
       </div>
     </section>
@@ -246,33 +316,75 @@ function WhatIsDimoSection() {
 function FeaturesGrid() {
   const features = [
     {
-      title: 'Universal Compatibility',
-      desc: 'A direct Tesla integration, plus Ford, BMW, and 50+ other brands already on DIMO. New vehicle signals decoded almost daily.',
+      title: translate({
+        id: 'home.featuresGrid.universalCompatibility.title',
+        message: 'Universal Compatibility',
+      }),
+      desc: translate({
+        id: 'home.featuresGrid.universalCompatibility.desc',
+        message:
+          'A direct Tesla integration, plus Ford, BMW, and 50+ other brands already on DIMO. New vehicle signals decoded almost daily.',
+      }),
       icon: imgIconUniversalCompatibility,
     },
     {
-      title: 'Privacy by Design',
-      desc: 'User-owned data architecture. Grant and revoke access with granular permissions built on verifiable credentials.',
+      title: translate({
+        id: 'home.featuresGrid.privacyByDesign.title',
+        message: 'Privacy by Design',
+      }),
+      desc: translate({
+        id: 'home.featuresGrid.privacyByDesign.desc',
+        message:
+          'User-owned data architecture. Grant and revoke access with granular permissions built on verifiable credentials.',
+      }),
       icon: imgIconPrivacyPreserving,
     },
     {
-      title: 'AI-Ready Context',
-      desc: 'Clean, normalized data streams ready for developing agentic workflows. ',
+      title: translate({
+        id: 'home.featuresGrid.aiReadyContext.title',
+        message: 'AI-Ready Context',
+      }),
+      desc: translate({
+        id: 'home.featuresGrid.aiReadyContext.desc',
+        message:
+          'Clean, normalized data streams ready for developing agentic workflows. ',
+      }),
       icon: imgIconStarsAI,
     },
     {
-      title: 'Plug & Play Hardware',
-      desc: 'Onboard vehicles instantly with optional hardware like the DIMO LTE R1. Zero-config installation for users.',
+      title: translate({
+        id: 'home.featuresGrid.plugPlayHardware.title',
+        message: 'Plug & Play Hardware',
+      }),
+      desc: translate({
+        id: 'home.featuresGrid.plugPlayHardware.desc',
+        message:
+          'Onboard vehicles instantly with optional hardware like the DIMO LTE R1. Zero-config installation for users.',
+      }),
       icon: imgIconPlugPlay,
     },
     {
-      title: 'Open Source Core',
-      desc: 'Built on open protocols. Audit the code, contribute to the network, and own your infrastructure.',
+      title: translate({
+        id: 'home.featuresGrid.openSourceCore.title',
+        message: 'Open Source Core',
+      }),
+      desc: translate({
+        id: 'home.featuresGrid.openSourceCore.desc',
+        message:
+          'Built on open protocols. Audit the code, contribute to the network, and own your infrastructure.',
+      }),
       icon: imgOpenSource,
     },
     {
-      title: 'Secure & Compliant',
-      desc: 'DIMO records access on a cryptographically signed, independently verifiable ledger while preserving security, ensuring compliance with GDPR and the EU Data Act.',
+      title: translate({
+        id: 'home.featuresGrid.secureCompliant.title',
+        message: 'Secure & Compliant',
+      }),
+      desc: translate({
+        id: 'home.featuresGrid.secureCompliant.desc',
+        message:
+          'DIMO records access on a cryptographically signed, independently verifiable ledger while preserving security, ensuring compliance with GDPR and the EU Data Act.',
+      }),
       icon: imgIconSecureCompliant,
     },
   ];
@@ -281,13 +393,17 @@ function FeaturesGrid() {
     <section className={styles.features}>
       <div className={styles.sectionHeader}>
         <h2 className={styles.sectionTitle}>
-          Built for the session-based economy
+          <Translate id="home.featuresGrid.builtForTheSessionBased">
+            Built for the session-based economy
+          </Translate>
         </h2>
         <p className={styles.sectionSubtitle}>
-          The future of mobility is sessions—not ownership. DIMO gives you the
-          primitives to build services that activate at the start of a trip and
-          settle when it ends: data consent, real-time telemetry, payments, and
-          AI-driven automation—all in one platform.
+          <Translate id="home.featuresGrid.theFutureOfMobility">
+            The future of mobility is sessions—not ownership. DIMO gives you the
+            primitives to build services that activate at the start of a trip
+            and settle when it ends: data consent, real-time telemetry,
+            payments, and AI-driven automation—all in one platform.
+          </Translate>
         </p>
       </div>
 
@@ -315,37 +431,56 @@ function AutomateOperationsSection() {
           <LazyVideo
             webm="/img/dimo-pathways.webm"
             mp4="/img/dimo-pathways.mp4"
-            label="Automate Operations"
+            label={translate({
+              id: 'home.automateOperations.automateOperations',
+              message: 'Automate Operations',
+            })}
           />
         </div>
         <div className={styles.featureText}>
-          <h3>Power every session, end to end</h3>
+          <h3>
+            <Translate id="home.automateOperations.powerEverySessionEnd">
+              Power every session, end to end
+            </Translate>
+          </h3>
           <p>
-            From the moment a driver unlocks a vehicle to the instant they hand
-            it back, DIMO orchestrates the entire session lifecycle. Automate
-            workflows with AI agents that carry context across every
-            interaction— so your team focuses on growth, not ops. Perfect for:
+            <Translate id="home.automateOperations.fromTheMomentA">
+              From the moment a driver unlocks a vehicle to the instant they
+              hand it back, DIMO orchestrates the entire session lifecycle.
+              Automate workflows with AI agents that carry context across every
+              interaction— so your team focuses on growth, not ops. Perfect for:
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Rentals & Fleet
-              Turnover
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.automateOperations.rentalsFleetTurnover">
+                Rentals & Fleet Turnover
+              </Translate>
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Pay-Per-Use &
-              Subscription Services
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.automateOperations.payPerUseSubscriptionServices">
+                Pay-Per-Use & Subscription Services
+              </Translate>
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Session-Based
-              Insurance & Risk
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.automateOperations.sessionBasedInsuranceRisk">
+                Session-Based Insurance & Risk
+              </Translate>
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Booking, Check-in &
-              Returns
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.automateOperations.bookingCheckInReturns">
+                Booking, Check-in & Returns
+              </Translate>
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Maintenance Triggered
-              by Usage
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.automateOperations.maintenanceTriggeredByUsage">
+                Maintenance Triggered by Usage
+              </Translate>
             </li>
           </ul>
         </div>
@@ -359,28 +494,45 @@ function BigFeatureSection() {
     <section className={styles.bigFeature}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h3>Connect any vehicle. Start any session.</h3>
+          <h3>
+            <Translate id="home.bigFeature.connectAnyVehicleStart">
+              Connect any vehicle. Start any session.
+            </Translate>
+          </h3>
           <p>
-            The session-based economy runs on real-time vehicle data. DIMO works
-            with vehicles across 50+ brands already on the network—or ingest
-            your own data via the{' '}
-            <a href="https://github.com/DIMO-Network/dis">DIMO Ingest Server</a>
-            . Every session gets a verified identity, live telemetry, and
-            user-controlled consent so you can charge, insure, and serve drivers
-            with confidence.
+            <Translate
+              id="home.bigFeature.theSessionBasedEconomyRuns"
+              values={{
+                link: (
+                  <a href="https://github.com/DIMO-Network/dis">
+                    DIMO Ingest Server
+                  </a>
+                ),
+              }}
+            >
+              {
+                'The session-based economy runs on real-time vehicle data. DIMO works with vehicles across 50+ brands already on the network—or ingest your own data via the {link}. Every session gets a verified identity, live telemetry, and user-controlled consent so you can charge, insure, and serve drivers with confidence.'
+              }
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
-              <span className={styles.checkIcon}>✓</span> Verified vehicle &
-              driver identity per session
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.bigFeature.verifiedVehicleDriverIdentity">
+                Verified vehicle & driver identity per session
+              </Translate>
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Real-time telemetry
-              from ignition to park
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.bigFeature.realTimeTelemetryFromIgnition">
+                Real-time telemetry from ignition to park
+              </Translate>
             </li>
             <li>
-              <span className={styles.checkIcon}>✓</span> Granular consent that
-              activates and expires with each session
+              <span className={styles.checkIcon}>✓</span>{' '}
+              <Translate id="home.bigFeature.granularConsentThatActivates">
+                Granular consent that activates and expires with each session
+              </Translate>
             </li>
           </ul>
         </div>
@@ -388,7 +540,10 @@ function BigFeatureSection() {
           <LazyVideo
             webm="/img/dimo-pixel-car.webm"
             mp4="/img/dimo-pixel-car.mp4"
-            label="Telematics Architecture"
+            label={translate({
+              id: 'home.bigFeature.telematicsArchitecture',
+              message: 'Telematics Architecture',
+            })}
           />
         </div>
       </div>
@@ -399,19 +554,35 @@ function BigFeatureSection() {
 const testimonials = [
   {
     name: 'Maximiliano Ipinza',
-    text: "Just love it. we are starting building with this kit and it's getting easier and easier. actually we are using DIMO in LATAM and we get all the data via API into our own telematics solution. another thing that really makes integrations easier is the level of support with James team and the delivery.",
+    text: translate({
+      id: 'home.testimonials.maximilianoIpinza.text',
+      message:
+        "Just love it. we are starting building with this kit and it's getting easier and easier. actually we are using DIMO in LATAM and we get all the data via API into our own telematics solution. another thing that really makes integrations easier is the level of support with James team and the delivery.",
+    }),
   },
   {
     name: 'Collin McCloskey',
-    text: "The DIMO team has done a phenomenal job making it easy to build on their platform. When I have questions I use their GPT. When I'm writing code with CC or cursor, I copy the docs in one click. Their team is quick to support and they ship faster than I can keep up. It's honestly a really pleasant experience!",
+    text: translate({
+      id: 'home.testimonials.collinMcCloskey.text',
+      message:
+        "The DIMO team has done a phenomenal job making it easy to build on their platform. When I have questions I use their GPT. When I'm writing code with CC or cursor, I copy the docs in one click. Their team is quick to support and they ship faster than I can keep up. It's honestly a really pleasant experience!",
+    }),
   },
   {
     name: 'Daniel Wedding',
-    text: 'As an avid EV consumer and software engineer, DIMO provided a platform that not only allowed personal insight into the vehicle metrics I was looking for, but also integrated an easy-to-use developer API so I could integrate everything flawlessly into my tech stack.',
+    text: translate({
+      id: 'home.testimonials.danielWedding.text',
+      message:
+        'As an avid EV consumer and software engineer, DIMO provided a platform that not only allowed personal insight into the vehicle metrics I was looking for, but also integrated an easy-to-use developer API so I could integrate everything flawlessly into my tech stack.',
+    }),
   },
   {
     name: 'Rob Solomon',
-    text: "I've built several apps on DIMO. Incredibly easy. As a non-dev, I've been able to launch things that really truly work with Replit, n8n, and Bubble. The documentation is clear and the platform works as advertised. Way easier to get started than others! Perhaps I'm a bit biased... but who cares! It's great.",
+    text: translate({
+      id: 'home.testimonials.robSolomon.text',
+      message:
+        "I've built several apps on DIMO. Incredibly easy. As a non-dev, I've been able to launch things that really truly work with Replit, n8n, and Bubble. The documentation is clear and the platform works as advertised. Way easier to get started than others! Perhaps I'm a bit biased... but who cares! It's great.",
+    }),
   },
 ];
 
@@ -426,7 +597,11 @@ function TestimonialsSection() {
   return (
     <section className={styles.wallOfLove}>
       <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>What devs are saying</h2>
+        <h2 className={styles.sectionTitle}>
+          <Translate id="home.testimonials.whatDevsAreSaying">
+            What devs are saying
+          </Translate>
+        </h2>
       </div>
 
       <div className={styles.testimonialMarqueeContainer}>
@@ -486,28 +661,38 @@ function HardwareSection() {
       <div className={styles.hardwareContainer}>
         <div className={styles.hardwareContent}>
           <span className={styles.hardwareSubBanner}>DIMO LTE R1</span>
-          <h2 className={styles.hardwareTitle}>Compatible Hardware</h2>
+          <h2 className={styles.hardwareTitle}>
+            <Translate id="home.hardware.compatibleHardware">
+              Compatible Hardware
+            </Translate>
+          </h2>
           <p className={styles.hardwareDescription}>
-            Access high-frequency vehicle data with the DIMO LTE R1. It installs
-            in seconds, works with almost any car, and streams data directly to
-            the network.
+            <Translate id="home.hardware.accessHighFrequencyVehicleData">
+              Access high-frequency vehicle data with the DIMO LTE R1. It
+              installs in seconds, works with almost any car, and streams data
+              directly to the network.
+            </Translate>
           </p>
           <div className={styles.hardwareButtons}>
             <Link
               className={styles.primaryBtn}
               to="https://dimo.co/products/dimo-lte-r1"
             >
-              Buy DIMO LTE R1
+              <Translate id="home.hardware.buyDimoLteR1">
+                Buy DIMO LTE R1
+              </Translate>
             </Link>
             <div className={styles.hardwareCustomIntegration}>
               <span className={styles.hardwareCustomText}>
-                Need a custom hardware integration?
+                <Translate id="home.hardware.needACustomHardware">
+                  Need a custom hardware integration?
+                </Translate>
               </span>
               <Link
                 className={styles.secondaryBtn}
                 to="mailto:contact@dimo.org"
               >
-                Let's Chat
+                <Translate id="home.hardware.letsChat">Let's Chat</Translate>
               </Link>
             </div>
           </div>
@@ -531,20 +716,27 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>Ready to build for sessions?</h2>
+        <h2 className={styles.ctaTitle}>
+          <Translate id="home.cta.readyToBuildFor">
+            Ready to build for sessions?
+          </Translate>
+        </h2>
         <p className={styles.ctaText}>
-          Join developers building the next generation of session-based mobility
-          services. Get your API keys and ship your first session today.
+          <Translate id="home.cta.joinDevelopersBuildingThe">
+            Join developers building the next generation of session-based
+            mobility services. Get your API keys and ship your first session
+            today.
+          </Translate>
         </p>
         <div
           className={styles.heroButtons}
           style={{ justifyContent: 'center' }}
         >
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get API Keys
+            <Translate id="home.cta.getApiKeys">Get API Keys</Translate>
           </Link>
           <Link className={styles.secondaryBtn} to="https://chat.dimo.org">
-            Join Discord
+            <Translate id="home.cta.joinDiscord">Join Discord</Translate>
           </Link>
         </div>
       </div>
@@ -558,29 +750,52 @@ export default function Home(): ReactNode {
     <>
       <Head>
         {/* Primary Meta Tags */}
-        <title>DIMO | Vehicle Platform for the Session-Based Economy</title>
+        <title>
+          {translate({
+            id: 'home.meta.title',
+            message: 'DIMO | Vehicle Platform for the Session-Based Economy',
+          })}
+        </title>
         <meta
           name="title"
-          content="DIMO | Vehicle Platform for the Session-Based Economy"
+          content={translate({
+            id: 'home.meta.title',
+            message: 'DIMO | Vehicle Platform for the Session-Based Economy',
+          })}
         />
         <meta
           name="description"
-          content="DIMO powers the session-based economy: it handles vehicle access, telemetry, identity, and consent (SACD) across 50+ brands so you can build apps and businesses."
+          content={translate({
+            id: 'home.meta.description',
+            message:
+              'DIMO powers the session-based economy: it handles vehicle access, telemetry, identity, and consent (SACD) across 50+ brands so you can build apps and businesses.',
+          })}
         />
         <meta
           name="keywords"
-          content="session-based economy, vehicle data API, connected car platform, automotive developer platform, vehicle intelligence, car API, telematics API, OEM API, mobility as a service, vehicle SDK, DIMO"
+          content={translate({
+            id: 'home.meta.keywords',
+            message:
+              'session-based economy, vehicle data API, connected car platform, automotive developer platform, vehicle intelligence, car API, telematics API, OEM API, mobility as a service, vehicle SDK, DIMO',
+          })}
         />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="DIMO | Vehicle Platform for the Session-Based Economy"
+          content={translate({
+            id: 'home.meta.ogTitle',
+            message: 'DIMO | Vehicle Platform for the Session-Based Economy',
+          })}
         />
         <meta
           property="og:description"
-          content="DIMO powers the session-based economy: it handles vehicle access, telemetry, identity, and consent (SACD) across 50+ brands so you can build apps and businesses."
+          content={translate({
+            id: 'home.meta.ogDescription',
+            message:
+              'DIMO powers the session-based economy: it handles vehicle access, telemetry, identity, and consent (SACD) across 50+ brands so you can build apps and businesses.',
+          })}
         />
         <meta
           property="og:image"
@@ -592,11 +807,18 @@ export default function Home(): ReactNode {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="DIMO | Vehicle Platform for the Session-Based Economy"
+          content={translate({
+            id: 'home.meta.twitterTitle',
+            message: 'DIMO | Vehicle Platform for the Session-Based Economy',
+          })}
         />
         <meta
           name="twitter:description"
-          content="DIMO powers the session-based economy—rentals, pay-per-use, and mobility services built on real-time vehicle data. Start free."
+          content={translate({
+            id: 'home.meta.twitterDescription',
+            message:
+              'DIMO powers the session-based economy—rentals, pay-per-use, and mobility services built on real-time vehicle data. Start free.',
+          })}
         />
         <meta
           name="twitter:image"

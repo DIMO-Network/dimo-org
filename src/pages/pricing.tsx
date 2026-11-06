@@ -15,6 +15,7 @@ import {
   withinCooldown,
   markSubmitted,
 } from '../utils/antiSpam';
+import Translate, { translate } from '@docusaurus/Translate';
 
 const LAST_SUBMIT_KEY = 'dimo_enterprise_last_submit';
 
@@ -44,21 +45,42 @@ const getPricingTiers = (
     {
       id: 'hobbyist',
       name: 'DIMO Hobbyist',
-      price: 'FREE',
+      price: translate({ id: 'pricing.tiers.hobbyist.price', message: 'FREE' }),
       period: '',
-      subPrice: '+ $1.25 per vehicle/mo',
-      description: 'Perfect for enthusiasts building for their own vehicles.',
+      subPrice: translate({
+        id: 'pricing.tiers.subPrice',
+        message: '+ $1.25 per vehicle/mo',
+      }),
+      description: translate({
+        id: 'pricing.tiers.hobbyist.description',
+        message: 'Perfect for enthusiasts building for their own vehicles.',
+      }),
       features: [
-        'Access vehicle data securely',
+        translate({
+          id: 'pricing.tiers.hobbyist.features.accessVehicleData',
+          message: 'Access vehicle data securely',
+        }),
         ...(planType === 'ai'
           ? [
-              'Limited to 1 AI agent',
-              'Pay as you go AI',
-              'Access to built-in MCPs',
+              translate({
+                id: 'pricing.tiers.hobbyist.features.oneAiAgent',
+                message: 'Limited to 1 AI agent',
+              }),
+              translate({
+                id: 'pricing.tiers.hobbyist.features.payAsYouGoAi',
+                message: 'Pay as you go AI',
+              }),
+              translate({
+                id: 'pricing.tiers.hobbyist.features.builtInMcps',
+                message: 'Access to built-in MCPs',
+              }),
             ]
           : []),
       ],
-      buttonText: 'Get Started',
+      buttonText: translate({
+        id: 'pricing.tiers.getStarted',
+        message: 'Get Started',
+      }),
       buttonLink: 'https://console.dimo.org/sign-in',
       highlight: false,
     },
@@ -69,40 +91,106 @@ const getPricingTiers = (
       id: 'core',
       name: 'DIMO Core',
       price: billingCycle === 'annual' ? '$349' : '$399',
-      period: '/mo',
-      subPrice: '+ $1.25 per vehicle/mo',
-      description: 'For developers building apps for a fleet or user base.',
+      period: translate({ id: 'pricing.tiers.perMonth', message: '/mo' }),
+      subPrice: translate({
+        id: 'pricing.tiers.subPrice',
+        message: '+ $1.25 per vehicle/mo',
+      }),
+      description: translate({
+        id: 'pricing.tiers.core.description',
+        message: 'For developers building apps for a fleet or user base.',
+      }),
       features: [
-        'Everything in DIMO Hobbyist',
-        '100 vehicles included',
-        'More request limits',
-        'Bring your own data',
-        'Includes data storage',
+        translate(
+          { id: 'pricing.tiers.everythingIn', message: 'Everything in {plan}' },
+          { plan: 'DIMO Hobbyist' }
+        ),
+        translate({
+          id: 'pricing.tiers.core.features.vehiclesIncluded',
+          message: '100 vehicles included',
+        }),
+        translate({
+          id: 'pricing.tiers.core.features.moreRequestLimits',
+          message: 'More request limits',
+        }),
+        translate({
+          id: 'pricing.tiers.core.features.bringYourOwnData',
+          message: 'Bring your own data',
+        }),
+        translate({
+          id: 'pricing.tiers.core.features.dataStorage',
+          message: 'Includes data storage',
+        }),
       ],
-      buttonText: 'Start Building',
+      buttonText: translate({
+        id: 'pricing.tiers.startBuilding',
+        message: 'Start Building',
+      }),
       buttonLink: 'https://console.dimo.org/sign-in',
       highlight: true,
-      badge: 'MOST POPULAR',
+      badge: translate({
+        id: 'pricing.tiers.mostPopular',
+        message: 'MOST POPULAR',
+      }),
     });
   }
 
   tiers.push({
     id: 'enterprise',
     name: 'DIMO Enterprise',
-    price: 'Custom',
-    subPrice: planType === 'data' ? undefined : '+ $1.25 per vehicle/mo',
-    description: 'Tailored solutions for large-scale deployments.',
+    price: translate({
+      id: 'pricing.tiers.enterprise.price',
+      message: 'Custom',
+    }),
+    subPrice:
+      planType === 'data'
+        ? undefined
+        : translate({
+            id: 'pricing.tiers.subPrice',
+            message: '+ $1.25 per vehicle/mo',
+          }),
+    description: translate({
+      id: 'pricing.tiers.enterprise.description',
+      message: 'Tailored solutions for large-scale deployments.',
+    }),
     features: [
-      `Everything in ${planType === 'ai' ? 'DIMO Core' : 'DIMO Hobbyist'}`,
-      'Custom request limits',
+      translate(
+        { id: 'pricing.tiers.everythingIn', message: 'Everything in {plan}' },
+        { plan: planType === 'ai' ? 'DIMO Core' : 'DIMO Hobbyist' }
+      ),
+      translate({
+        id: 'pricing.tiers.enterprise.features.customRequestLimits',
+        message: 'Custom request limits',
+      }),
       ...(planType === 'ai'
-        ? ['More AI agents included', 'Bring your own AI keys']
+        ? [
+            translate({
+              id: 'pricing.tiers.enterprise.features.moreAiAgents',
+              message: 'More AI agents included',
+            }),
+            translate({
+              id: 'pricing.tiers.enterprise.features.bringYourOwnAiKeys',
+              message: 'Bring your own AI keys',
+            }),
+          ]
         : []),
-      'Dedicated support channel',
-      'Custom SLA & contracts',
-      'On-premise deployment options',
+      translate({
+        id: 'pricing.tiers.enterprise.features.dedicatedSupport',
+        message: 'Dedicated support channel',
+      }),
+      translate({
+        id: 'pricing.tiers.enterprise.features.customSla',
+        message: 'Custom SLA & contracts',
+      }),
+      translate({
+        id: 'pricing.tiers.enterprise.features.onPremise',
+        message: 'On-premise deployment options',
+      }),
     ],
-    buttonText: 'Contact Us',
+    buttonText: translate({
+      id: 'pricing.tiers.contactUs',
+      message: 'Contact Us',
+    }),
     buttonLink: 'https://app.formcrafts.com/7c869c6f',
     highlight: false,
     isEnterprise: true,
@@ -125,11 +213,21 @@ function HeroSection({
   return (
     <header className={styles.hero}>
       <div className={styles.heroContent}>
-        <div className={styles.earlyBirdBadge}>🎉 Early Bird Pricing</div>
-        <h1 className={styles.heroTitle}>Choose Your Plan</h1>
+        <div className={styles.earlyBirdBadge}>
+          <Translate id="pricing.hero.earlyBirdPricing">
+            🎉 Early Bird Pricing
+          </Translate>
+        </div>
+        <h1 className={styles.heroTitle}>
+          <Translate id="pricing.hero.chooseYourPlan">
+            Choose Your Plan
+          </Translate>
+        </h1>
         <p className={styles.heroSubtitle}>
-          Select the perfect plan for your needs. Scale from hobbyist to
-          enterprise with flexible pricing options.
+          <Translate id="pricing.hero.selectThePerfectPlan">
+            Select the perfect plan for your needs. Scale from hobbyist to
+            enterprise with flexible pricing options.
+          </Translate>
         </p>
 
         <div className={styles.toggleContainer}>
@@ -139,13 +237,17 @@ function HeroSection({
               className={`${styles.toggleButton} ${planType === 'ai' ? styles.toggleButtonActive : ''}`}
               onClick={() => setPlanType('ai')}
             >
-              AI + Vehicle Data
+              <Translate id="pricing.hero.aiVehicleData">
+                AI + Vehicle Data
+              </Translate>
             </button>
             <button
               className={`${styles.toggleButton} ${planType === 'data' ? styles.toggleButtonActive : ''}`}
               onClick={() => setPlanType('data')}
             >
-              Vehicle Data Only
+              <Translate id="pricing.hero.vehicleDataOnly">
+                Vehicle Data Only
+              </Translate>
             </button>
           </div>
 
@@ -156,13 +258,13 @@ function HeroSection({
                 className={`${styles.toggleButton} ${billingCycle === 'annual' ? styles.toggleButtonActive : ''}`}
                 onClick={() => setBillingCycle('annual')}
               >
-                Annual
+                <Translate id="pricing.hero.annual">Annual</Translate>
               </button>
               <button
                 className={`${styles.toggleButton} ${billingCycle === 'monthly' ? styles.toggleButtonActive : ''}`}
                 onClick={() => setBillingCycle('monthly')}
               >
-                Monthly
+                <Translate id="pricing.hero.monthly">Monthly</Translate>
               </button>
             </div>
           )}
@@ -251,13 +353,25 @@ function PricingGrid({
           fontSize: '0.9rem',
         }}
       >
-        All plans include access to the DIMO network. Need more information?{' '}
-        <EnglishLink
-          to="/docs"
-          style={{ color: '#fff', textDecoration: 'underline' }}
+        <Translate
+          id="pricing.pricingGrid.allPlansIncludeAccess"
+          values={{
+            link: (
+              <EnglishLink
+                to="/docs"
+                style={{ color: '#fff', textDecoration: 'underline' }}
+              >
+                <Translate id="pricing.pricingGrid.viewDetailedComparison">
+                  View detailed comparison
+                </Translate>
+              </EnglishLink>
+            ),
+          }}
         >
-          View detailed comparison
-        </EnglishLink>
+          {
+            'All plans include access to the DIMO network. Need more information? {link}'
+          }
+        </Translate>
       </div>
       <div
         style={{
@@ -268,8 +382,10 @@ function PricingGrid({
           fontStyle: 'italic',
         }}
       >
-        * Early bird pricing is available for a limited time. Pricing and
-        features are subject to change.
+        <Translate id="pricing.pricingGrid.earlyBirdPricingIs">
+          * Early bird pricing is available for a limited time. Pricing and
+          features are subject to change.
+        </Translate>
       </div>
     </section>
   );
@@ -351,27 +467,49 @@ function EnterpriseModal({
         <button
           className={styles.modalClose}
           onClick={onClose}
-          aria-label="Close"
+          aria-label={translate({
+            id: 'pricing.enterpriseModal.close',
+            message: 'Close',
+          })}
         >
           <X size={20} />
         </button>
 
         {status === 'success' ? (
           <div className={styles.modalSuccess}>
-            <h3>Thanks, {form.name}!</h3>
+            <h3>
+              <Translate
+                id="pricing.enterpriseModal.thanks"
+                values={{ name: form.name }}
+              >
+                {'Thanks, {name}!'}
+              </Translate>
+            </h3>
             <p>
-              We'll reach out to <strong>{form.email}</strong> shortly to
-              discuss your enterprise needs.
+              <Translate
+                id="pricing.enterpriseModal.wellReachOutTo"
+                values={{ strong: <strong>{form.email}</strong> }}
+              >
+                {
+                  "We'll reach out to {strong} shortly to discuss your enterprise needs."
+                }
+              </Translate>
             </p>
             <button className={styles.modalBtn} onClick={onClose}>
-              Close
+              <Translate id="pricing.enterpriseModal.close">Close</Translate>
             </button>
           </div>
         ) : (
           <>
-            <h3 className={styles.modalTitle}>Contact Us for Enterprise</h3>
+            <h3 className={styles.modalTitle}>
+              <Translate id="pricing.enterpriseModal.contactUsForEnterprise">
+                Contact Us for Enterprise
+              </Translate>
+            </h3>
             <p className={styles.modalSubtitle}>
-              Tell us about your project and we'll put together a custom plan.
+              <Translate id="pricing.enterpriseModal.tellUsAboutYour">
+                Tell us about your project and we'll put together a custom plan.
+              </Translate>
             </p>
             <form className={styles.modalForm} onSubmit={handleSubmit}>
               {/* Honeypot: hidden from sighted users and screen readers, but
@@ -389,7 +527,10 @@ function EnterpriseModal({
               <div className={styles.modalRow}>
                 <input
                   className={styles.modalInput}
-                  placeholder="Your name"
+                  placeholder={translate({
+                    id: 'pricing.enterpriseModal.yourName',
+                    message: 'Your name',
+                  })}
                   value={form.name}
                   onChange={e => update('name', e.target.value)}
                   required
@@ -397,7 +538,10 @@ function EnterpriseModal({
                 <input
                   className={styles.modalInput}
                   type="email"
-                  placeholder="Work email"
+                  placeholder={translate({
+                    id: 'pricing.enterpriseModal.workEmail',
+                    message: 'Work email',
+                  })}
                   value={form.email}
                   onChange={e => update('email', e.target.value)}
                   required
@@ -406,7 +550,10 @@ function EnterpriseModal({
               <div className={styles.modalRow}>
                 <input
                   className={styles.modalInput}
-                  placeholder="Company name"
+                  placeholder={translate({
+                    id: 'pricing.enterpriseModal.companyName',
+                    message: 'Company name',
+                  })}
                   value={form.company}
                   onChange={e => update('company', e.target.value)}
                   required
@@ -418,17 +565,43 @@ function EnterpriseModal({
                   required
                 >
                   <option value="" disabled>
-                    Fleet size
+                    {translate({
+                      id: 'pricing.enterpriseModal.fleetSize',
+                      message: 'Fleet size',
+                    })}
                   </option>
-                  <option value="100-500">100 – 500 vehicles</option>
-                  <option value="500-5000">500 – 5,000 vehicles</option>
-                  <option value="5000-50000">5,000 – 50,000 vehicles</option>
-                  <option value="50000+">50,000+ vehicles</option>
+                  <option value="100-500">
+                    {translate({
+                      id: 'pricing.enterpriseModal.100500Vehicles',
+                      message: '100 – 500 vehicles',
+                    })}
+                  </option>
+                  <option value="500-5000">
+                    {translate({
+                      id: 'pricing.enterpriseModal.5005000Vehicles',
+                      message: '500 – 5,000 vehicles',
+                    })}
+                  </option>
+                  <option value="5000-50000">
+                    {translate({
+                      id: 'pricing.enterpriseModal.500050000Vehicles',
+                      message: '5,000 – 50,000 vehicles',
+                    })}
+                  </option>
+                  <option value="50000+">
+                    {translate({
+                      id: 'pricing.enterpriseModal.50000Vehicles',
+                      message: '50,000+ vehicles',
+                    })}
+                  </option>
                 </select>
               </div>
               <textarea
                 className={styles.modalTextarea}
-                placeholder="Tell us about your use case and requirements..."
+                placeholder={translate({
+                  id: 'pricing.enterpriseModal.tellUsAboutYour2',
+                  message: 'Tell us about your use case and requirements...',
+                })}
                 value={form.details}
                 onChange={e => update('details', e.target.value)}
                 rows={4}
@@ -436,8 +609,14 @@ function EnterpriseModal({
               {status === 'error' && (
                 <p className={styles.modalError}>
                   {isValidEmail(form.email)
-                    ? 'Something went wrong. Please try again.'
-                    : 'Please enter a valid email address.'}
+                    ? translate({
+                        id: 'pricing.enterpriseModal.error',
+                        message: 'Something went wrong. Please try again.',
+                      })
+                    : translate({
+                        id: 'pricing.enterpriseModal.invalidEmail',
+                        message: 'Please enter a valid email address.',
+                      })}
                 </p>
               )}
               <button
@@ -445,7 +624,15 @@ function EnterpriseModal({
                 className={styles.modalBtn}
                 disabled={status === 'loading'}
               >
-                {status === 'loading' ? 'Sending...' : 'Get in Touch'}
+                {status === 'loading'
+                  ? translate({
+                      id: 'pricing.enterpriseModal.sending',
+                      message: 'Sending...',
+                    })
+                  : translate({
+                      id: 'pricing.enterpriseModal.getInTouch',
+                      message: 'Get in Touch',
+                    })}
               </button>
             </form>
           </>
@@ -466,30 +653,53 @@ export default function Pricing(): ReactNode {
       <Head>
         {/* Primary Meta Tags */}
         <title>
-          DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free
+          {translate({
+            id: 'pricing.meta.title',
+            message:
+              'DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free',
+          })}
         </title>
         <meta
           name="title"
-          content="DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free"
+          content={translate({
+            id: 'pricing.meta.title',
+            message:
+              'DIMO Pricing | Vehicle Data API & AI Agent Plans - Start Free',
+          })}
         />
         <meta
           name="description"
-          content="Flexible pricing for vehicle data APIs and AI agents. Free hobbyist tier, $349/mo for developers, custom enterprise plans. Access vehicle data across 50+ brands with one platform. Start building today."
+          content={translate({
+            id: 'pricing.meta.description',
+            message:
+              'Flexible pricing for vehicle data APIs and AI agents. Free hobbyist tier, $349/mo for developers, custom enterprise plans. Access vehicle data across 50+ brands with one platform. Start building today.',
+          })}
         />
         <meta
           name="keywords"
-          content="vehicle API pricing, DIMO pricing, automotive data costs, car API plans, vehicle intelligence pricing, fleet management pricing, telematics API cost"
+          content={translate({
+            id: 'pricing.meta.keywords',
+            message:
+              'vehicle API pricing, DIMO pricing, automotive data costs, car API plans, vehicle intelligence pricing, fleet management pricing, telematics API cost',
+          })}
         />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="DIMO Pricing | Vehicle Data API & AI Agent Plans"
+          content={translate({
+            id: 'pricing.meta.ogTitle',
+            message: 'DIMO Pricing | Vehicle Data API & AI Agent Plans',
+          })}
         />
         <meta
           property="og:description"
-          content="Transparent pricing for connected car development. Free to start, scale as you grow. Vehicle data APIs, AI agents, and enterprise solutions."
+          content={translate({
+            id: 'pricing.meta.ogDescription',
+            message:
+              'Transparent pricing for connected car development. Free to start, scale as you grow. Vehicle data APIs, AI agents, and enterprise solutions.',
+          })}
         />
         <meta
           property="og:image"
@@ -499,10 +709,20 @@ export default function Pricing(): ReactNode {
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DIMO Pricing | Start Free" />
+        <meta
+          name="twitter:title"
+          content={translate({
+            id: 'pricing.meta.twitterTitle',
+            message: 'DIMO Pricing | Start Free',
+          })}
+        />
         <meta
           name="twitter:description"
-          content="Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ brands."
+          content={translate({
+            id: 'pricing.meta.twitterDescription',
+            message:
+              'Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ brands.',
+          })}
         />
         <meta
           name="twitter:image"
