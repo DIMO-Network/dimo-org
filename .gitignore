@@ -25,3 +25,7 @@ CLAUDE.md
 
 # Build-generated docs index (re-embedded on every build; see scripts/generate-mcp-index.mjs)
 /static/mcp-index.json
+
+# Planning docs written by the superpowers skills. Anything under docs/ is published
+# (site, sitemap, llms-full.txt, MCP index), so these stay local.
+/docs/superpowers/
