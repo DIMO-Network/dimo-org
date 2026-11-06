@@ -37,7 +37,7 @@
     "@fontsource-variable/geist": "^5.2.9",
     "@mdx-js/react": "^3.1.1",
     "@modelcontextprotocol/sdk": "^1.32.2",
-    "@vercel/analytics": "^1.6.1",
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "codemirror": "^6.0.2",
     "graphql": "^16.12.0",
