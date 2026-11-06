@@ -27,7 +27,7 @@ const USE_CASES = [
     type: 'Mobile Platform',
     title: 'DIMO Mobile App',
     description:
-      'Production-ready mobile application for iOS and Android. Users can connect their vehicles, view real-time data, and manage permissionsall out of the box.',
+      'Production-ready mobile application for iOS and Android. Users can connect their vehicles, view real-time data, and manage permissions—all out of the box.',
     example:
       'Launch your vehicle platform in weeks, not months. Complete mobile experience included.',
   },
@@ -38,7 +38,7 @@ const USE_CASES = [
     description:
       'Fully customizable UI with your branding, colors, and logo. Make DIMO Mobile App look and feel like your own product with no code changes required.',
     example:
-      'Replace logos, adjust color schemes, and customize messagingall through configuration.',
+      'Replace logos, adjust color schemes, and customize messaging—all through configuration.',
   },
   {
     icon: <Globe size={28} />,
@@ -47,7 +47,7 @@ const USE_CASES = [
     description:
       'Built-in support for 20+ languages with easy localization framework. Expand to new markets without rebuilding your app from scratch.',
     example:
-      'English, Spanish, Portuguese, French, German, Japanese, and moreready to deploy globally.',
+      'English, Spanish, Portuguese, French, German, Japanese, and more—ready to deploy globally.',
   },
   {
     icon: <Zap size={28} />,
@@ -56,7 +56,7 @@ const USE_CASES = [
     description:
       'Access live vehicle telemetry, diagnostics, location, and more through an intuitive interface. All data streams pre-integrated and tested.',
     example:
-      'Battery level, tire pressure, location tracking, trip historyeverything your users need.',
+      'Battery level, tire pressure, location tracking, trip history—everything your users need.',
   },
   {
     icon: <Users size={28} />,
@@ -122,7 +122,7 @@ function HeroSection() {
         <p className={styles.heroSubtitle}>
           Deploy a fully-branded, production-ready mobile app for iOS and
           Android. White-label customization, multi-language support, and global
-          reachall included out of the box.
+          reach—all included out of the box.
         </p>
 
         <div className={styles.heroButtons}>
@@ -284,7 +284,7 @@ function HowItWorksSection() {
     {
       title: 'Configure Your Brand',
       description:
-        'Upload your logos, choose your color scheme, and customize app messaging through our configuration dashboardno coding required.',
+        'Upload your logos, choose your color scheme, and customize app messaging through our configuration dashboard—no coding required.',
     },
     {
       title: 'Select Languages & Regions',
