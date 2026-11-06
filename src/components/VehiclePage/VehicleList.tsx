@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import type { VehicleSummary } from '../../../plugins/vehicle-pages';
-import { formatYears } from './content';
+import { sinceYear } from './content';
 
 export default function VehicleList({
   vehicles,
@@ -15,7 +15,7 @@ export default function VehicleList({
           <Link to={`/vehicles/${v.slug}`}>
             {v.make} {v.model}
           </Link>{' '}
-          ({formatYears(v.years)})
+          ({sinceYear(v.years.from)})
         </li>
       ))}
     </ul>

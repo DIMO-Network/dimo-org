@@ -17,6 +17,7 @@ export default function VehicleIndex({
   const makes = [...new Set(vehicles.map(v => v.make))];
   return (
     <ContentPageLayout
+      wide
       title="Vehicle Data API Coverage by Make & Model | DIMO"
       description={DESCRIPTION}
       canonicalPath="/vehicles"
