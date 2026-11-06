@@ -145,17 +145,17 @@ Google. A mismatching email may result in a passkey error..
 		alt="DIMO Developer Console"
 		tooltipAreas={[
 			{
-				x: 13.5, y: 35, width: 25, height: 20,
+				x: 11.5, y: 38, width: 25, height: 18,
 				title: "Sign in with Email",
 				text: "Sign in with any type of email"
 			},
 			{
-				x: 13.5, y: 55, width: 25, height: 11,
+				x: 11.5, y: 58, width: 25, height: 11,
 				title: "Social Logins",
 				text: "Use either Google, Apple, or GitHub to sign in"
 			},
 			{
-				x: 13.5, y: 66, width: 25, height: 6,
+				x: 11.5, y: 69, width: 25, height: 8,
 				title: "Get Help",
 				text: "Reset passkeys with your email or get in contact with support"
 			}
@@ -221,39 +221,24 @@ Here are the key components to your Developer License:
 		alt="Developer License Details"
 		tooltipAreas={[
 			{
-				x: 10, y: 5, width: 65, height: 7,
-				title: "Developer License URL",
-				text: "Shareable URL including your public ID (481 for instance) to other console users."
-			},
-			{
-				x: 19, y: 20, width: 78, height: 7,
+				x: 17, y: 11, width: 78, height: 10,
 				title: "Developer License Info",
 				text: "General information including your public name, Client ID, and Token ID (located to the left of your license name)"
 			},
 			{
-				x: 19, y: 30, width: 38, height: 12,
+				x: 19, y: 30, width: 38, height: 16,
 				title: "Usage Section",
 				text: "Track your API credits consumed and usage statistics."
 			},
 			{
-				x: 57, y: 30, width: 38, height: 12,
+				x: 59, y: 30, width: 38, height: 16,
 				title: "Connected Vehicles",
 				text: "View and manage vehicles connected to your application."
 			},
 			{
-				x: 19, y: 44, width: 78, height: 11,
-				title: "Developer JWTs",
-				text: "Generate a one-time Developer JSON Web Token for authentication, the system generates one for you using your DIMO Account for testing purposes."
-			},
-			{
-				x: 19, y: 54, width: 78, height: 24,
-				title: "API Keys",
-				text: "Public identifier of your API keys. The secrets to these are used to authenticate requests to the DIMO API."
-			},
-			{
-				x: 19, y: 78, width: 78, height: 16,
-				title: "Redirect URIs",
-				text: "Authorized Redirect URIs used to authenticate your API calls and to redirect users back to your app."
+				x: 17, y: 46, width: 78, height: 11,
+				title: "Quick Actions",
+				text: "Generate your API keys, configure Redirect URIs, branding, and setup vehicle sharing."
 			}
 		]}
 	/>
@@ -546,13 +531,15 @@ application code is identical whether it's talking to a Tesla or a virtual Civic
 ### How It Works
 
     Log in to the [Developer Console](https://console.dimo.org) and navigate to
-    **Vehicles → Add Vehicle → Simulator**. Pick a make/model/year,
+    **Vehicles → Vehicle Simulator**. Pick a route, choose your make/model/year,
     and confirm the mint.
 
     ![Vehicle Simulator Config](/img/vehicle_simulator_config.png)
 
     The console mints a digital ID to your developer wallet on the DIMO
     Network. You now have a vehicle with a real on-chain identity and token ID.
+
+    ![Vehicle Simulator Config](/img/vehicle_simulator_config_view.png)
 
     The console walks you through a permission grant using [Login with DIMO Configurator](/docs/getting-started/login-with-dimo-configurator).
     You, the developer, decides which signals to request permissions to and for how long.
@@ -820,7 +807,7 @@ URL: https://dimo.org/docs/build/building-with-ai/developer-kit
 # Developer Kit
 
 ## AI App Builder
-[DIMO Developer Kit (DDK)](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) is an AI Agent-powered boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
+[DIMO Developer Kit (DDK)](https://github.com/DIMO-Network/dimo-developer-kit) is an AI Agent-powered boilerplate code that the DIMO Team has provided to quickly get you started. It integrates
 both the [DIMO Connect Client SDK](/docs/build/building-with-tools/client-sdk-dimo-connect) and the [Server SDK](/docs/build/building-with-tools/server-sdk) in Typescript.
 Deploying an app literally takes you less than **60 seconds**.
 
@@ -835,7 +822,7 @@ Deploying an app literally takes you less than **60 seconds**.
 	allowfullscreen
 ></iframe>
 
-		Powered by Replit, you can either [remix the app on Replit](https://replit.com/t/dimo/repls/DIMO-Developer-Kit/view#README.md) as shown here or [fork the GitHub repository](https://github.com/DIMO-Network/dimo-developer-kit) directly.
+		Powered by Replit, you simply start by [forking the GitHub repository](https://github.com/DIMO-Network/dimo-developer-kit) directly.
 			href="https://github.com/dimo-network/dimo-developer-kit"
 			data-color-scheme="no-preference: light; light: light; dark: dark;"
 			data-icon="github"
@@ -844,23 +831,8 @@ Deploying an app literally takes you less than **60 seconds**.
 			aria-label="Star dimo-network/dimo-developer-kit on GitHub"
 		>
 			DIMO Developer Kit
-      src="/img/ddk.png"
-      alt="DIMO Developer Kit"
-      tooltipAreas={[
-        {
-          x: 2, y: 50, width: 30, height: 10,
-          title: "Remix this app",
-          text: "Sign up for a Replit account and remix the DIMO Developer Kit."
-        },
-				{
-          x: 32, y: 22, width: 66, height: 74,
-          title: "Quick preview of the app",
-          text: "The code of the boilerplate, it is also open-sourced and hosted on GitHub."
-        }
-      ]}
-    />
 
-		You will need to update the secrets required on the Developer Kit boilerplate. 
+		Deploy the app to Replit and update the secrets required on the Developer Kit boilerplate. 
 		You can find these keys in the [Developer Console](https://console.dimo.org):
 		- Client ID: `DIMO_CLIENT_ID` & `VITE_DIMO_CLIENT_ID`
 		- Redirect URI: `DIMO_REDIRECT_URI` & `VITE_DIMO_REDIRECT_URI`
