@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 
 import styles from './styles.module.css';
+import Translate, { translate } from '@docusaurus/Translate';
 
 // Asset imports - descriptive names
 const imgLogoDimoLight = '/img/dimo-build-logo.svg';
@@ -103,7 +104,10 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
         <button
           className={styles.hamburger}
           onClick={toggleMobileMenu}
-          aria-label="Toggle navigation menu"
+          aria-label={translate({
+            id: 'navbar.body.toggleNavigationMenu',
+            message: 'Toggle navigation menu',
+          })}
         >
           <span
             className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.hamburgerLineActive : ''}`}
@@ -125,7 +129,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             onMouseLeave={handleProductsMouseLeave}
           >
             <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
-              Products
+              <Translate id="navbar.body.products">Products</Translate>
               <img
                 src={imgDropdownArrow}
                 alt=""
@@ -137,16 +141,24 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 className={`${styles.dropdownMenu} ${styles.dropdownMenuProducts}`}
               >
                 <div className={styles.dropdownSection}>
-                  <div className={styles.dropdownSectionTitle}>Components</div>
+                  <div className={styles.dropdownSectionTitle}>
+                    <Translate id="navbar.body.components">
+                      Components
+                    </Translate>
+                  </div>
                   <Link
                     to="/products/components#wallet"
                     className={styles.dropdownItemWithIcon}
                   >
                     <Wallet size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Wallet</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.wallet">Wallet</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Self-custodied vehicle identity and asset management
+                        <Translate id="navbar.body.selfCustodiedVehicleIdentityAnd">
+                          Self-custodied vehicle identity and asset management
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -157,10 +169,14 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     <Smartphone size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>
-                        Digital Key (CCC)
+                        <Translate id="navbar.body.digitalKeyCcc">
+                          Digital Key (CCC)
+                        </Translate>
                       </span>
                       <span className={styles.dropdownItemDesc}>
-                        Phone-as-key vehicle access via NFC and BLE
+                        <Translate id="navbar.body.phoneAsKeyVehicleAccessVia">
+                          Phone-as-key vehicle access via NFC and BLE
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -170,9 +186,14 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   >
                     <Bot size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Agents</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.agents">Agents</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Autonomous vehicle intelligence and workflow automation
+                        <Translate id="navbar.body.autonomousVehicleIntelligenceAnd">
+                          Autonomous vehicle intelligence and workflow
+                          automation
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -183,10 +204,14 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     <Terminal size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>
-                        Developer Tools
+                        <Translate id="navbar.body.developerTools">
+                          Developer Tools
+                        </Translate>
                       </span>
                       <span className={styles.dropdownItemDesc}>
-                        SDKs, APIs, console, and AI-native integrations
+                        <Translate id="navbar.body.sdksApisConsoleAnd">
+                          SDKs, APIs, console, and AI-native integrations
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -197,26 +222,36 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     <Car size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
                       <span className={styles.dropdownItemTitle}>
-                        Vehicle Simulator
+                        <Translate id="navbar.body.vehicleSimulator">
+                          Vehicle Simulator
+                        </Translate>
                       </span>
                       <span className={styles.dropdownItemDesc}>
-                        Simulate vehicle data for development and testing
+                        <Translate id="navbar.body.simulateVehicleDataFor">
+                          Simulate vehicle data for development and testing
+                        </Translate>
                       </span>
                     </div>
                   </Link>
                 </div>
                 <div className={styles.dropdownSection}>
-                  <div className={styles.dropdownSectionTitle}>Platform</div>
+                  <div className={styles.dropdownSectionTitle}>
+                    <Translate id="navbar.body.platform">Platform</Translate>
+                  </div>
                   <Link
                     to="/products/ingest"
                     className={styles.dropdownItemWithIcon}
                   >
                     <Download size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Ingest</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.ingest">Ingest</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Bring your own data (BYOD) or integrate with telematics
-                        partners
+                        <Translate id="navbar.body.bringYourOwnData">
+                          Bring your own data (BYOD) or integrate with
+                          telematics partners
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -226,9 +261,14 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   >
                     <Database size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Storage</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.storage">Storage</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Normalized, clean, AI-ready data - managed or on-premise
+                        <Translate id="navbar.body.normalizedCleanAiReadyData">
+                          Normalized, clean, AI-ready data - managed or
+                          on-premise
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -241,9 +281,13 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                       className={styles.dropdownItemIcon}
                     />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Consent</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.consent">Consent</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Off-the-shelf data privacy and permissions management
+                        <Translate id="navbar.body.offTheShelfDataPrivacyAnd">
+                          Off-the-shelf data privacy and permissions management
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -253,9 +297,13 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   >
                     <Key size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Access</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.access">Access</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Consume governed data via API, SDK, and AI Agents
+                        <Translate id="navbar.body.consumeGovernedDataVia">
+                          Consume governed data via API, SDK, and AI Agents
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -265,9 +313,13 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   >
                     <CreditCard size={20} className={styles.dropdownItemIcon} />
                     <div className={styles.dropdownItemContent}>
-                      <span className={styles.dropdownItemTitle}>Pay</span>
+                      <span className={styles.dropdownItemTitle}>
+                        <Translate id="navbar.body.pay">Pay</Translate>
+                      </span>
                       <span className={styles.dropdownItemDesc}>
-                        Payment & reward rails for vehicle-centric commerce
+                        <Translate id="navbar.body.paymentRewardRailsFor">
+                          Payment & reward rails for vehicle-centric commerce
+                        </Translate>
                       </span>
                     </div>
                   </Link>
@@ -283,7 +335,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             onMouseLeave={handleSolutionsMouseLeave}
           >
             <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
-              Solutions
+              <Translate id="navbar.body.solutions">Solutions</Translate>
               <img
                 src={imgDropdownArrow}
                 alt=""
@@ -294,52 +346,72 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               <div className={styles.dropdownMenu}>
                 <div className={styles.dropdownSection}>
                   <div className={styles.dropdownSectionTitle}>
-                    By Experience
+                    <Translate id="navbar.body.byExperience">
+                      By Experience
+                    </Translate>
                   </div>
                   <Link
                     to="/solutions/agentic-experiences"
                     className={styles.dropdownItem}
                   >
-                    Agentic Experiences
+                    <Translate id="navbar.body.agenticExperiences">
+                      Agentic Experiences
+                    </Translate>
                   </Link>
                   <Link
                     to="/solutions/consumer-applications"
                     className={styles.dropdownItem}
                   >
-                    Consumer Applications
+                    <Translate id="navbar.body.consumerApplications">
+                      Consumer Applications
+                    </Translate>
                   </Link>
                   <Link
                     to="/solutions/fleet-intelligence"
                     className={styles.dropdownItem}
                   >
-                    Fleet Intelligence
+                    <Translate id="navbar.body.fleetIntelligence">
+                      Fleet Intelligence
+                    </Translate>
                   </Link>
                   <Link
                     to="/solutions/vehicle-commerce"
                     className={styles.dropdownItem}
                   >
-                    Vehicle Commerce
+                    <Translate id="navbar.body.vehicleCommerce">
+                      Vehicle Commerce
+                    </Translate>
                   </Link>
                 </div>
                 <div className={styles.dropdownSection}>
-                  <div className={styles.dropdownSectionTitle}>By Industry</div>
+                  <div className={styles.dropdownSectionTitle}>
+                    <Translate id="navbar.body.byIndustry">
+                      By Industry
+                    </Translate>
+                  </div>
                   <Link to="/industries/oem" className={styles.dropdownItem}>
-                    Auto OEMs
+                    <Translate id="navbar.body.autoOems">Auto OEMs</Translate>
                   </Link>
                   <Link
                     to="/industries/dealerships"
                     className={styles.dropdownItem}
                   >
-                    Dealerships
+                    <Translate id="navbar.body.dealerships">
+                      Dealerships
+                    </Translate>
                   </Link>
                   <Link to="/industries/dsp" className={styles.dropdownItem}>
-                    Delivery Service Providers
+                    <Translate id="navbar.body.deliveryServiceProviders">
+                      Delivery Service Providers
+                    </Translate>
                   </Link>
                   <Link
                     to="/industries/rentals"
                     className={styles.dropdownItem}
                   >
-                    Rentals & P2P Car Sharing
+                    <Translate id="navbar.body.rentalsP2pCarSharing">
+                      Rentals & P2P Car Sharing
+                    </Translate>
                   </Link>
                 </div>
               </div>
@@ -353,7 +425,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             onMouseLeave={handleResourcesMouseLeave}
           >
             <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
-              Resources
+              <Translate id="navbar.body.resources">Resources</Translate>
               <img
                 src={imgDropdownArrow}
                 alt=""
@@ -363,16 +435,22 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
             {isResourcesDropdownOpen && (
               <div className={styles.dropdownMenu}>
                 <div className={styles.dropdownSection}>
-                  <div className={styles.dropdownSectionTitle}>Learn</div>
+                  <div className={styles.dropdownSectionTitle}>
+                    <Translate id="navbar.body.learn">Learn</Translate>
+                  </div>
                   <EnglishLink to="/docs" className={styles.dropdownItem}>
-                    Documentation
+                    <Translate id="navbar.body.documentation">
+                      Documentation
+                    </Translate>
                   </EnglishLink>
                   <Link
                     to={LINKS.external.blogs}
                     className={styles.dropdownItem}
                     target="_blank"
                   >
-                    Developer Blog
+                    <Translate id="navbar.body.developerBlog">
+                      Developer Blog
+                    </Translate>
                   </Link>
                   <Link
                     to={LINKS.external.dimoUniversity}
@@ -384,7 +462,9 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 </div>
                 <div className={styles.dropdownSection}>
                   <div className={styles.dropdownSectionTitle}>
-                    Customer Stories
+                    <Translate id="navbar.body.customerStories">
+                      Customer Stories
+                    </Translate>
                   </div>
                   <Link
                     to="/customer-stories/emobi"
@@ -404,7 +484,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
           </div>
 
           <Link to="/pricing" className={styles.navItem}>
-            Pricing
+            <Translate id="navbar.body.pricing">Pricing</Translate>
           </Link>
 
           {/* Locale Dropdown */}
@@ -468,7 +548,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               to={LINKS.external.console}
               target="_blank"
             >
-              Console
+              <Translate id="navbar.body.console">Console</Translate>
             </Link>
           </div>
         </div>
@@ -486,134 +566,162 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               <div className={styles.mobileMenuLinks}>
                 {/* Products Section */}
                 <div className={styles.mobileMenuSection}>
-                  <div className={styles.mobileMenuSectionTitle}>Products</div>
+                  <div className={styles.mobileMenuSectionTitle}>
+                    <Translate id="navbar.body.products">Products</Translate>
+                  </div>
                   <Link
                     to="/products/components"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Components
+                    <Translate id="navbar.body.components">
+                      Components
+                    </Translate>
                   </Link>
                   <Link
                     to="/products/components#vehicle-simulator"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Vehicle Simulator
+                    <Translate id="navbar.body.vehicleSimulator">
+                      Vehicle Simulator
+                    </Translate>
                   </Link>
                   <Link
                     to="/products/ingest"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Ingest
+                    <Translate id="navbar.body.ingest">Ingest</Translate>
                   </Link>
                   <Link
                     to="/products/storage"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Storage
+                    <Translate id="navbar.body.storage">Storage</Translate>
                   </Link>
                   <Link
                     to="/products/consent"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Consent
+                    <Translate id="navbar.body.consent">Consent</Translate>
                   </Link>
                   <Link
                     to="/products/access"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Access
+                    <Translate id="navbar.body.access">Access</Translate>
                   </Link>
                   <Link
                     to="/products/pay"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Pay
+                    <Translate id="navbar.body.pay">Pay</Translate>
                   </Link>
                 </div>
 
                 {/* Solutions Section */}
                 <div className={styles.mobileMenuSection}>
-                  <div className={styles.mobileMenuSectionTitle}>Solutions</div>
+                  <div className={styles.mobileMenuSectionTitle}>
+                    <Translate id="navbar.body.solutions">Solutions</Translate>
+                  </div>
                   <Link
                     to="/solutions/agentic-experiences"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Agentic Experiences
+                    <Translate id="navbar.body.agenticExperiences">
+                      Agentic Experiences
+                    </Translate>
                   </Link>
                   <Link
                     to="/solutions/consumer-applications"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Consumer Applications
+                    <Translate id="navbar.body.consumerApplications">
+                      Consumer Applications
+                    </Translate>
                   </Link>
                   <Link
                     to="/solutions/fleet-intelligence"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Fleet Intelligence
+                    <Translate id="navbar.body.fleetIntelligence">
+                      Fleet Intelligence
+                    </Translate>
                   </Link>
                   <Link
                     to="/solutions/vehicle-commerce"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Vehicle Commerce
+                    <Translate id="navbar.body.vehicleCommerce">
+                      Vehicle Commerce
+                    </Translate>
                   </Link>
                 </div>
 
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>
-                    Industries
+                    <Translate id="navbar.body.industries">
+                      Industries
+                    </Translate>
                   </div>
                   <Link
                     to="/industries/oem"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Auto OEMs
+                    <Translate id="navbar.body.autoOems">Auto OEMs</Translate>
                   </Link>
                   <Link
                     to="/industries/dealerships"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Dealerships
+                    <Translate id="navbar.body.dealerships">
+                      Dealerships
+                    </Translate>
                   </Link>
                   <Link
                     to="/industries/delivery-service-providers"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Delivery Service Providers
+                    <Translate id="navbar.body.deliveryServiceProviders">
+                      Delivery Service Providers
+                    </Translate>
                   </Link>
                   <Link
                     to="/industries/rentals"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Rentals & P2P Car Sharing
+                    <Translate id="navbar.body.rentalsP2pCarSharing">
+                      Rentals & P2P Car Sharing
+                    </Translate>
                   </Link>
                 </div>
 
                 {/* Resources Section */}
                 <div className={styles.mobileMenuSection}>
-                  <div className={styles.mobileMenuSectionTitle}>Resources</div>
+                  <div className={styles.mobileMenuSectionTitle}>
+                    <Translate id="navbar.body.resources">Resources</Translate>
+                  </div>
                   <EnglishLink
                     to="/docs"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
-                    Documentation
+                    <Translate id="navbar.body.documentation">
+                      Documentation
+                    </Translate>
                   </EnglishLink>
                   <Link
                     to={LINKS.external.blogs}
@@ -621,7 +729,9 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     onClick={closeMobileMenu}
                     target="_blank"
                   >
-                    Developer Blog
+                    <Translate id="navbar.body.developerBlog">
+                      Developer Blog
+                    </Translate>
                   </Link>
                   <Link
                     to={LINKS.external.dimoUniversity}
@@ -652,7 +762,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                   className={styles.mobileMenuItem}
                   onClick={closeMobileMenu}
                 >
-                  Pricing
+                  <Translate id="navbar.body.pricing">Pricing</Translate>
                 </Link>
 
                 <div className={styles.mobileMenuSection}>
@@ -701,7 +811,7 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                     target="_blank"
                     onClick={closeMobileMenu}
                   >
-                    Console
+                    <Translate id="navbar.body.console">Console</Translate>
                   </Link>
                 </div>
               </div>

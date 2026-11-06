@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
+import { translate } from '@docusaurus/Translate';
 import { localizeSchema } from '../../lib/seo';
 import { usePageLocale } from '../../lib/use-page-locale';
 import CustomNavbar from '../CustomNavbar';
@@ -36,7 +37,10 @@ export default function ContentPageLayout({
   heroEyebrow,
   heroTitle,
   heroSubtitle,
-  ctaLabel = 'Talk to our team',
+  ctaLabel = translate({
+    id: 'contentPage.cta.talkToOurTeam',
+    message: 'Talk to our team',
+  }),
   ctaHref = '/contact',
   children,
   wide = false,

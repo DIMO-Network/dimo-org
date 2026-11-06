@@ -11,6 +11,7 @@ import {
   withinCooldown,
   markSubmitted,
 } from '../../utils/antiSpam';
+import Translate, { translate } from '@docusaurus/Translate';
 
 const imgGithub = '/img/icon-github.svg';
 const LAST_SUBMIT_KEY = 'dimo_newsletter_last_submit';
@@ -72,7 +73,11 @@ function NewsletterSignup() {
     return (
       <div className={styles.newsletterSuccess}>
         <Check size={18} />
-        <span>You're subscribed! We'll be in touch.</span>
+        <span>
+          <Translate id="footer.newsletterSignup.youreSubscribedWellBe">
+            You're subscribed! We'll be in touch.
+          </Translate>
+        </span>
       </div>
     );
   }
@@ -83,7 +88,10 @@ function NewsletterSignup() {
         <input
           type="email"
           className={styles.newsletterInput}
-          placeholder="Enter your email"
+          placeholder={translate({
+            id: 'footer.newsletterSignup.enterYourEmail',
+            message: 'Enter your email',
+          })}
           value={email}
           onChange={e => {
             setEmail(e.target.value);
@@ -108,12 +116,21 @@ function NewsletterSignup() {
           className={styles.newsletterButton}
           disabled={status === 'loading'}
         >
-          {status === 'loading' ? 'Sending...' : <ArrowRight size={18} />}
+          {status === 'loading' ? (
+            translate({
+              id: 'footer.newsletter.sending',
+              message: 'Sending...',
+            })
+          ) : (
+            <ArrowRight size={18} />
+          )}
         </button>
       </div>
       {status === 'error' && (
         <p className={styles.newsletterError}>
-          Please enter a valid email address.
+          <Translate id="footer.newsletterSignup.pleaseEnterAValid">
+            Please enter a valid email address.
+          </Translate>
         </p>
       )}
     </form>
@@ -126,10 +143,14 @@ function Footer(): ReactNode {
       <div className={styles.footerContent}>
         {/* Newsletter Section */}
         <div className={styles.newsletterSection}>
-          <h4 className={styles.newsletterTitle}>Stay up to date</h4>
+          <h4 className={styles.newsletterTitle}>
+            <Translate id="footer.body.stayUpToDate">Stay up to date</Translate>
+          </h4>
           <p className={styles.newsletterDescription}>
-            Get the latest on DIMO developer tools, API updates, and vehicle
-            data insights.
+            <Translate id="footer.body.getTheLatestOn">
+              Get the latest on DIMO developer tools, API updates, and vehicle
+              data insights.
+            </Translate>
           </p>
           <NewsletterSignup />
         </div>
@@ -137,23 +158,35 @@ function Footer(): ReactNode {
         <div className={styles.footerColumns}>
           {/* Column 1 - Learn More */}
           <div className={styles.footerColumn}>
-            <h4 className={styles.footerColumnTitle}>Learn More</h4>
+            <h4 className={styles.footerColumnTitle}>
+              <Translate id="footer.body.learnMore">Learn More</Translate>
+            </h4>
             <ul className={styles.footerLinks}>
               <li>
-                <EnglishLink to={LINKS.docs.base}>Developer Docs</EnglishLink>
+                <EnglishLink to={LINKS.docs.base}>
+                  <Translate id="footer.body.developerDocs">
+                    Developer Docs
+                  </Translate>
+                </EnglishLink>
               </li>
               <li>
-                <EnglishLink to="/blog">Blogs</EnglishLink>
+                <EnglishLink to="/blog">
+                  <Translate id="footer.body.blogs">Blogs</Translate>
+                </EnglishLink>
               </li>
               <li>
-                <EnglishLink to={LINKS.docs.developerSdk}>SDKs</EnglishLink>
+                <EnglishLink to={LINKS.docs.developerSdk}>
+                  <Translate id="footer.body.sdks">SDKs</Translate>
+                </EnglishLink>
               </li>
             </ul>
           </div>
 
           {/* Column 2 - Resources */}
           <div className={styles.footerColumn}>
-            <h4 className={styles.footerColumnTitle}>Resources</h4>
+            <h4 className={styles.footerColumnTitle}>
+              <Translate id="footer.body.resources">Resources</Translate>
+            </h4>
             <ul className={styles.footerLinks}>
               <li>
                 <Link to={LINKS.external.console} target="_blank">
@@ -167,12 +200,12 @@ function Footer(): ReactNode {
               </li>
               <li>
                 <Link to={LINKS.external.status} target="_blank">
-                  API Status
+                  <Translate id="footer.body.apiStatus">API Status</Translate>
                 </Link>
               </li>
               <li>
                 <Link to={LINKS.external.chatgpt} target="_blank">
-                  Get Support
+                  <Translate id="footer.body.getSupport">Get Support</Translate>
                 </Link>
               </li>
             </ul>
@@ -180,19 +213,33 @@ function Footer(): ReactNode {
 
           {/* Column 3 - Company */}
           <div className={styles.footerColumn}>
-            <h4 className={styles.footerColumnTitle}>Company</h4>
+            <h4 className={styles.footerColumnTitle}>
+              <Translate id="footer.body.company">Company</Translate>
+            </h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/about">
+                  <Translate id="footer.body.about">About</Translate>
+                </Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact">
+                  <Translate id="footer.body.contact">Contact</Translate>
+                </Link>
               </li>
               <li>
-                <EnglishLink to="/privacy">Privacy Policy</EnglishLink>
+                <EnglishLink to="/privacy">
+                  <Translate id="footer.body.privacyPolicy">
+                    Privacy Policy
+                  </Translate>
+                </EnglishLink>
               </li>
               <li>
-                <EnglishLink to="/terms">Terms of Service</EnglishLink>
+                <EnglishLink to="/terms">
+                  <Translate id="footer.body.termsOfService">
+                    Terms of Service
+                  </Translate>
+                </EnglishLink>
               </li>
             </ul>
           </div>
@@ -232,7 +279,14 @@ function Footer(): ReactNode {
 
         {/* Copyright */}
         <div className={styles.footerCopyright}>
-          <p>© {new Date().getFullYear()} DIMO® All rights reserved</p>
+          <p>
+            <Translate
+              id="footer.body.copyright"
+              values={{ year: new Date().getFullYear() }}
+            >
+              {'© {year} DIMO® All rights reserved'}
+            </Translate>
+          </p>
         </div>
       </div>
     </footer>
