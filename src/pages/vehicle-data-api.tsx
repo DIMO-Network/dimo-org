@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../components/EnglishLink';
 import ContentPageLayout from '../components/ContentPageLayout';
 
 const SITE = 'https://dimo.org';
@@ -118,9 +119,9 @@ export default function VehicleDataApi(): ReactNode {
         Signal names follow the COVESA Vehicle Signal Specification, so
         <code> speed</code> means the same thing for a Tesla as for a Ford.
         Availability varies by make and connection type; the{' '}
-        <Link to="/docs/api-references/telemetry-api/introduction">
+        <EnglishLink to="/docs/api-references/telemetry-api/introduction">
           Telemetry API reference
-        </Link>{' '}
+        </EnglishLink>{' '}
         lists the full catalog. Update frequency ranges from 30 seconds through
         OEM cloud connections to sub-second with the optional DIMO LTE R1
         adapter.
@@ -165,11 +166,13 @@ export default function VehicleDataApi(): ReactNode {
         Create a free account at{' '}
         <Link to="https://console.dimo.org/sign-in">console.dimo.org</Link>,
         generate a license and API keys, and query. SDKs for{' '}
-        <Link to="/docs/build/building-with-tools/server-sdk">
+        <EnglishLink to="/docs/build/building-with-tools/server-sdk">
           TypeScript, Python, and C#
-        </Link>{' '}
+        </EnglishLink>{' '}
         handle auth and token exchange. No car handy? The{' '}
-        <Link to="/blog/dimo-vehicle-simulator">vehicle simulator</Link>{' '}
+        <EnglishLink to="/blog/dimo-vehicle-simulator">
+          vehicle simulator
+        </EnglishLink>{' '}
         generates realistic telemetry so you can build before connecting real
         hardware.
       </p>
@@ -189,7 +192,8 @@ export default function VehicleDataApi(): ReactNode {
         <Link to="/connected-car-api">connected car API overview</Link>. For a
         head-to-head with other providers, read{' '}
         <Link to="/compare/smartcar-alternative">DIMO vs Smartcar</Link>. The{' '}
-        <Link to="/docs">developer docs</Link> cover everything else.
+        <EnglishLink to="/docs">developer docs</EnglishLink> cover everything
+        else.
       </p>
     </ContentPageLayout>
   );

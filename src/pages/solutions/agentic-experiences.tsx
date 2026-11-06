@@ -1,5 +1,6 @@
 import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
 import styles from './solutions.module.css';
 import FooterTheme from '../../theme/Footer';
@@ -129,9 +130,9 @@ function HeroSection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Start Building <span className={styles.arrow}>→</span>
           </Link>
-          <Link className={styles.secondaryBtn} to="/docs">
+          <EnglishLink className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
-          </Link>
+          </EnglishLink>
         </div>
       </div>
 
@@ -336,9 +337,9 @@ function CTASection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Get Started <span className={styles.arrow}>→</span>
           </Link>
-          <Link className={styles.secondaryBtn} to="/docs">
+          <EnglishLink className={styles.secondaryBtn} to="/docs">
             View Documentation <span className={styles.arrow}>→</span>
-          </Link>
+          </EnglishLink>
         </div>
       </div>
     </section>

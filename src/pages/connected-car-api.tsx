@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../components/EnglishLink';
 import ContentPageLayout from '../components/ContentPageLayout';
 
 const SITE = 'https://dimo.org';
@@ -141,9 +142,9 @@ export default function ConnectedCarApi(): ReactNode {
       </pre>
       <p>
         Official SDKs cover{' '}
-        <Link to="/docs/build/building-with-tools/server-sdk">
+        <EnglishLink to="/docs/build/building-with-tools/server-sdk">
           TypeScript, Python, and C#
-        </Link>
+        </EnglishLink>
         , and a React SDK handles the user-facing consent flow. Most developers
         make their first successful API call within five minutes of creating a
         key.
@@ -187,8 +188,9 @@ export default function ConnectedCarApi(): ReactNode {
         <Link to="/compare/smartcar-alternative">DIMO vs Smartcar</Link>{' '}
         breakdown covers the differences in depth. If you want raw signal specs,
         see the <Link to="/vehicle-data-api">vehicle data API overview</Link> or
-        jump straight into the <Link to="/docs">developer docs</Link>.
-        Everything starts with a free account at{' '}
+        jump straight into the{' '}
+        <EnglishLink to="/docs">developer docs</EnglishLink>. Everything starts
+        with a free account at{' '}
         <Link to="https://console.dimo.org/sign-in">console.dimo.org</Link>.
       </p>
     </ContentPageLayout>

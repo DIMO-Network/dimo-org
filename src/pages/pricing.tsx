@@ -1,5 +1,6 @@
 import React, { useState, useRef, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../components/EnglishLink';
 import Head from '@docusaurus/Head';
 import { X } from 'lucide-react';
 import { submitLead } from '../utils/lead';
@@ -249,9 +250,12 @@ function PricingGrid({
         }}
       >
         All plans include access to the DIMO network. Need more information?{' '}
-        <Link to="/docs" style={{ color: '#fff', textDecoration: 'underline' }}>
+        <EnglishLink
+          to="/docs"
+          style={{ color: '#fff', textDecoration: 'underline' }}
+        >
           View detailed comparison
-        </Link>
+        </EnglishLink>
       </div>
       <div
         style={{

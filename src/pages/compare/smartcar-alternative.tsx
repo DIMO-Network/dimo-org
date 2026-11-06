@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../../components/EnglishLink';
 import ContentPageLayout from '../../components/ContentPageLayout';
 
 const SITE = 'https://dimo.org';
@@ -206,12 +207,14 @@ export default function SmartcarAlternative(): ReactNode {
         API, and vehicle authorization maps to a SACD consent grant. The
         practical sequence: create a free account at console.dimo.org, generate
         API keys, point the{' '}
-        <Link to="/docs/build/building-with-tools/server-sdk">
+        <EnglishLink to="/docs/build/building-with-tools/server-sdk">
           TypeScript, Python, or C# SDK
-        </Link>{' '}
+        </EnglishLink>{' '}
         at your existing data model, and run both providers in parallel while
         your users re-consent. The{' '}
-        <Link to="/docs/comparison">platform comparison in the docs</Link>{' '}
+        <EnglishLink to="/docs/comparison">
+          platform comparison in the docs
+        </EnglishLink>{' '}
         includes a field-by-field migration guide with code samples.
       </p>
 
@@ -268,7 +271,8 @@ export default function SmartcarAlternative(): ReactNode {
         <Link to="/vehicle-data-api">vehicle data API</Link> pages cover
         capabilities and signals, <Link to="/pricing">pricing</Link> is
         published (free Hobbyist tier, $349/month Core), and the{' '}
-        <Link to="/docs">developer docs</Link> take you to a first API call.
+        <EnglishLink to="/docs">developer docs</EnglishLink> take you to a first
+        API call.
       </p>
     </ContentPageLayout>
   );

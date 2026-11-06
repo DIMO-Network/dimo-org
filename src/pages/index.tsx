@@ -1,5 +1,6 @@
 import React, { type ReactNode, useState, useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../components/EnglishLink';
 import Head from '@docusaurus/Head';
 import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
@@ -143,9 +144,9 @@ function HeroSection() {
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
             Sign Up <span className={styles.arrow}>→</span>
           </Link>
-          <Link className={styles.secondaryBtn} to="/docs">
+          <EnglishLink className={styles.secondaryBtn} to="/docs">
             Read the Docs <span className={styles.arrow}>→</span>
-          </Link>
+          </EnglishLink>
         </div>
 
         {/* Visual / Code Editor */}

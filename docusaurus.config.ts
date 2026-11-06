@@ -13,6 +13,11 @@ import {
 const dropScheduledPosts: ProcessBlogPostsFn = async ({ blogPosts }) =>
   blogPosts.filter(post => isLive(new Date(post.metadata.date).toISOString()));
 
+// Docs, blog, privacy and terms stay English. Docusaurus builds each locale
+// separately, so non-English builds drop them entirely: nothing to index as a
+// duplicate under a locale prefix, and links to them go through englishHref.
+const isEnglishBuild = (process.env.DOCUSAURUS_CURRENT_LOCALE ?? 'en') === 'en';
+
 const config: Config = {
   title: 'DIMO Build',
   tagline: 'The vehicle data platform that puts privacy first',
@@ -53,23 +58,27 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'es', 'ja', 'zh-Hans', 'zh-Hant'],
+    localeConfigs: {
+      en: { label: 'English', htmlLang: 'en' },
+      es: { label: 'Español', htmlLang: 'es' },
+      ja: { label: '日本語', htmlLang: 'ja' },
+      'zh-Hans': { label: '简体中文', htmlLang: 'zh-Hans' },
+      'zh-Hant': { label: '繁體中文', htmlLang: 'zh-Hant' },
+    },
   },
 
   presets: [
     [
       'classic',
       {
-        docs: {
+        docs: isEnglishBuild && {
           sidebarPath: './sidebars.ts',
           showLastUpdateTime: true,
         },
-        blog: {
+        blog: isEnglishBuild && {
           showReadingTime: true,
           blogSidebarTitle: 'Recent Posts',
           blogSidebarCount: 10,
@@ -77,6 +86,19 @@ const config: Config = {
             'Developer insights on vehicle data APIs, connected-car infrastructure, session-based consent, and mobility engineering from the DIMO team.',
           processBlogPosts: dropScheduledPosts,
         },
+        pages: isEnglishBuild
+          ? {}
+          : {
+              exclude: [
+                // Docusaurus defaults, which a custom exclude replaces
+                '**/_*.{js,jsx,ts,tsx,md,mdx}',
+                '**/_*/**',
+                '**/*.test.{js,jsx,ts,tsx}',
+                '**/__tests__/**',
+                'privacy.md',
+                'terms.md',
+              ],
+            },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -201,7 +223,9 @@ const config: Config = {
       appId: '1UPBW4N7NX',
       apiKey: '19eb8461516e41ddb1580e426cd5f92a',
       indexName: 'DIMO Docs Crawler',
-      contextualSearch: true,
+      // Search is English-only (docs and blog); contextual search would
+      // filter by the current locale and return nothing on translated pages.
+      contextualSearch: false,
       searchPagePath: 'search',
 
       // DocSearch v4 features

@@ -670,3 +670,10 @@
     padding: 0.75rem 0;
   }
 }
+
+.dropdownMenuLocales {
+  min-width: 180px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 0.75rem;
+}

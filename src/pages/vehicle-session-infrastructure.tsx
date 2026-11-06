@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../components/EnglishLink';
 import ContentPageLayout from '../components/ContentPageLayout';
 
 const SITE = 'https://dimo.org';
@@ -173,8 +174,8 @@ export default function VehicleSessionInfrastructure(): ReactNode {
         OEM connected-services teams use it to meet the{' '}
         <Link to="/compliance/eu-data-act">EU Data Act</Link> and offer
         post-session revenue; and developers build on the{' '}
-        <Link to="/docs">DIMO APIs and SDKs</Link>. One session primitive, many
-        callers, including ones the industry has not met yet.
+        <EnglishLink to="/docs">DIMO APIs and SDKs</EnglishLink>. One session
+        primitive, many callers, including ones the industry has not met yet.
       </p>
     </ContentPageLayout>
   );

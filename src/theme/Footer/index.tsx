@@ -1,5 +1,6 @@
 import React, { type ReactNode, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
+import EnglishLink from '../../components/EnglishLink';
 import { submitLead } from '../../utils/lead';
 import { ArrowRight, Check } from 'lucide-react';
 import styles from './styles.module.css';
@@ -139,13 +140,13 @@ function Footer(): ReactNode {
             <h4 className={styles.footerColumnTitle}>Learn More</h4>
             <ul className={styles.footerLinks}>
               <li>
-                <Link to={LINKS.docs.base}>Developer Docs</Link>
+                <EnglishLink to={LINKS.docs.base}>Developer Docs</EnglishLink>
               </li>
               <li>
-                <Link to="/blog">Blogs</Link>
+                <EnglishLink to="/blog">Blogs</EnglishLink>
               </li>
               <li>
-                <Link to={LINKS.docs.developerSdk}>SDKs</Link>
+                <EnglishLink to={LINKS.docs.developerSdk}>SDKs</EnglishLink>
               </li>
             </ul>
           </div>
@@ -188,10 +189,10 @@ function Footer(): ReactNode {
                 <Link to="/contact">Contact</Link>
               </li>
               <li>
-                <Link to="/privacy">Privacy Policy</Link>
+                <EnglishLink to="/privacy">Privacy Policy</EnglishLink>
               </li>
               <li>
-                <Link to="/terms">Terms of Service</Link>
+                <EnglishLink to="/terms">Terms of Service</EnglishLink>
               </li>
             </ul>
           </div>

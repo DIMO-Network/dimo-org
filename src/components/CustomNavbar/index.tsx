@@ -1,4 +1,7 @@
 import Link from '@docusaurus/Link';
+import EnglishLink from '../EnglishLink';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { useAlternatePageUtils } from '@docusaurus/theme-common/internal';
 import { useState } from 'react';
 import { LINKS } from '../../links';
 import {
@@ -27,11 +30,32 @@ interface CustomNavbarProps {
   dark?: boolean;
 }
 
+// Same URLs as Docusaurus's own locale dropdown: pathname:// plus
+// autoAddBaseUrl={false} so the target locale's baseUrl isn't doubled.
+function useLocaleLinks() {
+  const {
+    i18n: { currentLocale, locales, localeConfigs },
+  } = useDocusaurusContext();
+  const alternatePageUtils = useAlternatePageUtils();
+  return {
+    currentLabel: localeConfigs[currentLocale].label,
+    links: locales.map(locale => ({
+      locale,
+      label: localeConfigs[locale].label,
+      lang: localeConfigs[locale].htmlLang,
+      to: `pathname://${alternatePageUtils.createUrl({ locale, fullyQualified: false })}`,
+      isCurrent: locale === currentLocale,
+    })),
+  };
+}
+
 export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const [isSolutionsDropdownOpen, setIsSolutionsDropdownOpen] = useState(false);
   const [isResourcesDropdownOpen, setIsResourcesDropdownOpen] = useState(false);
+  const [isLocaleDropdownOpen, setIsLocaleDropdownOpen] = useState(false);
+  const localeLinks = useLocaleLinks();
 
   const imgLogoDimo = dark ? imgLogoDimoDark : imgLogoDimoLight;
 
@@ -340,9 +364,9 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
               <div className={styles.dropdownMenu}>
                 <div className={styles.dropdownSection}>
                   <div className={styles.dropdownSectionTitle}>Learn</div>
-                  <Link to="/docs" className={styles.dropdownItem}>
+                  <EnglishLink to="/docs" className={styles.dropdownItem}>
                     Documentation
-                  </Link>
+                  </EnglishLink>
                   <Link
                     to={LINKS.external.blogs}
                     className={styles.dropdownItem}
@@ -382,6 +406,41 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
           <Link to="/pricing" className={styles.navItem}>
             Pricing
           </Link>
+
+          {/* Locale Dropdown */}
+          <div
+            className={styles.dropdownContainer}
+            onMouseEnter={() => setIsLocaleDropdownOpen(true)}
+            onMouseLeave={() => setIsLocaleDropdownOpen(false)}
+          >
+            <div className={`${styles.navItem} ${styles.dropdownTrigger}`}>
+              {localeLinks.currentLabel}
+              <img
+                src={imgDropdownArrow}
+                alt=""
+                className={`${styles.dropdownIcon} ${isLocaleDropdownOpen ? styles.rotated : ''}`}
+              />
+            </div>
+            {isLocaleDropdownOpen && (
+              <div
+                className={`${styles.dropdownMenu} ${styles.dropdownMenuLocales}`}
+              >
+                {localeLinks.links.map(link => (
+                  <Link
+                    key={link.locale}
+                    to={link.to}
+                    lang={link.lang}
+                    target="_self"
+                    autoAddBaseUrl={false}
+                    aria-current={link.isCurrent ? 'true' : undefined}
+                    className={styles.dropdownItem}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className={styles.navItem}>
             <a
@@ -549,13 +608,13 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 {/* Resources Section */}
                 <div className={styles.mobileMenuSection}>
                   <div className={styles.mobileMenuSectionTitle}>Resources</div>
-                  <Link
+                  <EnglishLink
                     to="/docs"
                     className={styles.mobileMenuItem}
                     onClick={closeMobileMenu}
                   >
                     Documentation
-                  </Link>
+                  </EnglishLink>
                   <Link
                     to={LINKS.external.blogs}
                     className={styles.mobileMenuItem}
@@ -595,6 +654,23 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 >
                   Pricing
                 </Link>
+
+                <div className={styles.mobileMenuSection}>
+                  {localeLinks.links.map(link => (
+                    <Link
+                      key={link.locale}
+                      to={link.to}
+                      lang={link.lang}
+                      target="_self"
+                      autoAddBaseUrl={false}
+                      aria-current={link.isCurrent ? 'true' : undefined}
+                      className={styles.mobileMenuItem}
+                      onClick={closeMobileMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
 
                 {/* Icons in Mobile Menu */}
                 <div style={{ display: 'flex', gap: '1rem', padding: '1rem' }}>
