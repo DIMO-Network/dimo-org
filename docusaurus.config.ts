@@ -9,14 +9,17 @@ const config: Config = {
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    // The v4 flags `v4: true` turned on in Docusaurus 3.9. In 3.10 the
-    // shorthand also turns on fasterByDefault (Rspack/SWC, which needs the
-    // @docusaurus/faster package), siteStorageNamespacing (renames the
-    // localStorage keys, resetting saved theme and dismissed banners) and
-    // mdx1CompatDisabledByDefault. Adopt those deliberately, not via a bump.
-    v4: {
-      removeLegacyPostBuildHeadAttribute: true,
-      useCssCascadeLayers: true,
+    // All Docusaurus v4 behavior: Rspack/SWC/Lightning CSS via
+    // @docusaurus/faster, SSG worker threads, namespaced localStorage keys,
+    // and no MDX 1 compatibility. Content must use MDX syntax:
+    // `:::tip[Title]` for admonition titles, `{/* comment */}` not `<!-- -->`.
+    v4: true,
+    faster: {
+      // Docusaurus 3.10.2 bug: the eager Git strategy keys file history by
+      // absolute path, but pages and blog routes look up their sitemap
+      // lastmod with a site-relative path, so those URLs lose <lastmod>.
+      // Docs are unaffected. Re-enable once that lookup is fixed upstream.
+      gitEagerVcs: false,
     },
   },
 
