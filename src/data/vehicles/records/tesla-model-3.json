@@ -34,14 +34,14 @@
           "unit": "km"
         },
         {
-          "name": "powertrainTractionBatteryChargingChargeCurrentAC",
-          "label": "AC Current Charge (Alternating Current)",
-          "unit": "amps"
-        },
-        {
           "name": "exteriorAirTemperature",
           "label": "Air Temperature",
           "unit": "°C"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeCurrentAC",
+          "label": "AC Current Charge (Alternating Current)",
+          "unit": "amps"
         },
         {
           "name": "cabinDoorRow2DriverSideIsOpen",
@@ -93,10 +93,6 @@
           "unit": "volts"
         },
         {
-          "name": "currentLocationCoordinates",
-          "label": "Coordinates"
-        },
-        {
           "name": "cabinDoorRow1DriverSideIsOpen",
           "label": "Front Driver Side Door"
         },
@@ -131,6 +127,10 @@
           "name": "powertrainTractionBatteryChargingAddedEnergy",
           "label": "Session Energy",
           "unit": "kWh"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
         }
       ],
       "events": ["recharge"]

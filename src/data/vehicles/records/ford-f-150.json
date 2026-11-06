@@ -33,14 +33,19 @@
           "label": "Vehicle Ignition Status"
         },
         {
-          "name": "exteriorAirTemperature",
-          "label": "Air Temperature",
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
           "unit": "°C"
         },
         {
-          "name": "currentLocationAltitude",
-          "label": "Altitude Level",
-          "unit": "m"
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
         },
         {
           "name": "chassisAxleRow2WheelLeftTirePressure",
@@ -53,15 +58,6 @@
           "unit": "kPa"
         },
         {
-          "name": "powertrainCombustionEngineECT",
-          "label": "Coolant Temperature",
-          "unit": "°C"
-        },
-        {
-          "name": "currentLocationCoordinates",
-          "label": "Coordinates"
-        },
-        {
           "name": "obdDistanceWithMIL",
           "label": "Distance with MIL On",
           "unit": "km"
@@ -69,11 +65,6 @@
         {
           "name": "obdStatusDTCCount",
           "label": "DTC Count"
-        },
-        {
-          "name": "powertrainCombustionEngineSpeed",
-          "label": "Engine RPM",
-          "unit": "rpm"
         },
         {
           "name": "obdRunTime",
@@ -95,11 +86,6 @@
           "label": "Fuel Type"
         },
         {
-          "name": "currentLocationHeading",
-          "label": "Heading",
-          "unit": "degrees"
-        },
-        {
           "name": "lowVoltageBatteryCurrentVoltage",
           "label": "Low Voltage Battery",
           "unit": "volts"
@@ -116,6 +102,20 @@
           "name": "powertrainCombustionEngineTPS",
           "label": "Throttle Position",
           "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
         }
       ],
       "events": ["idling", "refuel", "harsh_braking"]
@@ -144,19 +144,9 @@
           "unit": "km/h"
         },
         {
-          "name": "exteriorAirTemperature",
-          "label": "Air Temperature",
-          "unit": "°C"
-        },
-        {
-          "name": "currentLocationAltitude",
-          "label": "Altitude Level",
-          "unit": "m"
-        },
-        {
-          "name": "obdBarometricPressure",
-          "label": "Barometric Pressure",
-          "unit": "kPa"
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
         },
         {
           "name": "powertrainCombustionEngineECT",
@@ -164,8 +154,14 @@
           "unit": "°C"
         },
         {
-          "name": "currentLocationCoordinates",
-          "label": "Coordinates"
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
         },
         {
           "name": "obdDTCList",
@@ -185,11 +181,6 @@
           "name": "obdEngineLoad",
           "label": "Engine Load",
           "unit": "%"
-        },
-        {
-          "name": "powertrainCombustionEngineSpeed",
-          "label": "Engine RPM",
-          "unit": "rpm"
         },
         {
           "name": "obdRunTime",
@@ -229,6 +220,15 @@
         {
           "name": "obdWarmupsSinceDTCClear",
           "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
         }
       ],
       "events": ["idling", "refuel", "dtc"]
