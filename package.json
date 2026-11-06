@@ -40,7 +40,7 @@
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
     "codemirror": "^6.0.2",
-    "graphql": "^16.12.0",
+    "graphql": "^17.0.2",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.575.0",
     "openai": "^7.5.0",
