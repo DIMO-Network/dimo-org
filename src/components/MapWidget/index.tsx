@@ -402,12 +402,6 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           zoom={initialZoom}
           style={{ height: '100%', width: '100%' }}
           scrollWheelZoom={true}
-          whenCreated={mapInstance => {
-            // Force map to invalidate size when created
-            setTimeout(() => {
-              mapInstance.invalidateSize();
-            }, 100);
-          }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
