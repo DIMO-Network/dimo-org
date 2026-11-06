@@ -24,7 +24,6 @@ export default function ComplianceHub(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compliance"
       breadcrumbs={[{ name: 'Home', url: `${SITE}/` }, { name: 'Compliance' }]}
       schema={schema}
       heroEyebrow="Compliance"

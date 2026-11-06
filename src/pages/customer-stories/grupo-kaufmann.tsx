@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './customer-stories.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -344,6 +346,7 @@ function CTASection() {
 }
 
 export default function GrupoKaufmannCaseStudy(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -368,43 +371,45 @@ export default function GrupoKaufmannCaseStudy(): ReactNode {
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://dimo.org/customer-stories/grupo-kaufmann"
-        />
 
         {/* Structured Data for Case Study */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline:
-              'How Grupo Kaufmann Transformed Their Dealership Network with DIMO',
-            description:
-              "Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform.",
-            image: {
-              '@type': 'ImageObject',
-              url: 'https://dimo.org/img/kaufmann.webp',
-              contentUrl: 'https://dimo.org/img/kaufmann.webp',
-            },
-            author: {
-              '@type': 'Organization',
-              name: 'DIMO',
-            },
-            publisher: {
-              '@type': 'Organization',
-              name: 'DIMO',
-              logo: {
-                '@type': 'ImageObject',
-                url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Article',
+                headline:
+                  'How Grupo Kaufmann Transformed Their Dealership Network with DIMO',
+                description:
+                  "Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform.",
+                image: {
+                  '@type': 'ImageObject',
+                  url: 'https://dimo.org/img/kaufmann.webp',
+                  contentUrl: 'https://dimo.org/img/kaufmann.webp',
+                },
+                author: {
+                  '@type': 'Organization',
+                  name: 'DIMO',
+                },
+                publisher: {
+                  '@type': 'Organization',
+                  name: 'DIMO',
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
+                  },
+                },
+                datePublished: '2025-01-28',
+                mainEntityOfPage: {
+                  '@type': 'WebPage',
+                  '@id': 'https://dimo.org/customer-stories/grupo-kaufmann',
+                },
               },
-            },
-            datePublished: '2025-01-28',
-            mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': 'https://dimo.org/customer-stories/grupo-kaufmann',
-            },
-          })}
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

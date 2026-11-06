@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
+import { isTranslatedPath, localeUrl, SITE } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './styles.module.css';
 
 export interface BreadcrumbItem {
@@ -25,11 +27,24 @@ interface BreadcrumbsProps {
 export default function Breadcrumbs({
   items,
 }: BreadcrumbsProps): React.JSX.Element {
+  const { locale } = usePageLocale();
+  // Point dimo.org crumbs at the current locale's copy of the page.
+  const localize = (url: string): string => {
+    if (!url.startsWith(SITE)) return url;
+    const { pathname, hash } = new URL(url);
+    const path = pathname.replace(/\/$/, '') || '/';
+    return isTranslatedPath(path) ? localeUrl(locale, path) + hash : url;
+  };
+  const crumbs = items.map(item => ({
+    ...item,
+    url: item.url && localize(item.url),
+  }));
+
   // Generate JSON-LD structured data
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
+    itemListElement: crumbs.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
@@ -51,7 +66,7 @@ export default function Breadcrumbs({
       {/* Visual Breadcrumbs */}
       <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
         <ol className={styles.breadcrumbList}>
-          {items.map((item, index) => (
+          {crumbs.map((item, index) => (
             <li key={index} className={styles.breadcrumbItem}>
               {item.url ? (
                 <>

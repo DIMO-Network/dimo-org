@@ -51,7 +51,6 @@ export default function VehicleDataApi(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/vehicle-data-api"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Vehicle Data API' },

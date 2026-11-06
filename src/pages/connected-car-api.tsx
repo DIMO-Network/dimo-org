@@ -46,7 +46,6 @@ export default function ConnectedCarApi(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/connected-car-api"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Connected Car API' },

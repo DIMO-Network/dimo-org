@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -354,6 +356,7 @@ function CTASection() {
 }
 
 export default function ConsumerApplicationsPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -376,22 +379,24 @@ export default function ConsumerApplicationsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://dimo.org/solutions/consumer-applications"
-        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'MobileApplication',
-            name: 'DIMO Mobile App Platform',
-            description:
-              'White-label mobile application platform for vehicle data. iOS and Android apps with customization and localization.',
-            operatingSystem: 'iOS, Android',
-            applicationCategory: 'Automotive',
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'MobileApplication',
+                name: 'DIMO Mobile App Platform',
+                description:
+                  'White-label mobile application platform for vehicle data. iOS and Android apps with customization and localization.',
+                operatingSystem: 'iOS, Android',
+                applicationCategory: 'Automotive',
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

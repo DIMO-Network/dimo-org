@@ -68,7 +68,6 @@ export default function SmartcarAlternative(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compare/smartcar-alternative"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Smartcar alternative' },

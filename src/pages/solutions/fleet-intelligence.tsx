@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -383,6 +385,7 @@ function CTASection() {
 }
 
 export default function FleetIntelligencePage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -405,26 +408,28 @@ export default function FleetIntelligencePage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://dimo.org/solutions/fleet-intelligence"
-        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            name: 'DIMO Fleet Intelligence Platform',
-            description:
-              'Fleet management platform with SDKs, APIs, and AI-powered insights. Build custom fleet solutions with real-time vehicle telemetry.',
-            applicationCategory: 'BusinessApplication',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'DIMO Fleet Intelligence Platform',
+                description:
+                  'Fleet management platform with SDKs, APIs, and AI-powered insights. Build custom fleet solutions with real-time vehicle telemetry.',
+                applicationCategory: 'BusinessApplication',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

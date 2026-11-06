@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from '../solutions/solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -155,6 +157,7 @@ function CTASection() {
 }
 
 export default function ConsentPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -173,26 +176,31 @@ export default function ConsentPage(): ReactNode {
           content="Privacy-first consent management with cryptographic verification and regulatory compliance."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dimo.org/products/consent" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            '@id': 'https://dimo.org/products/consent#software',
-            name: 'DIMO Consent',
-            description:
-              'Privacy-preserving, user-owned consent management for vehicle data — session-scoped permissions with atomic grant and revocation (SACD).',
-            url: 'https://dimo.org/products/consent',
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              availability: 'https://schema.org/OnlineOnly',
-            },
-            publisher: { '@id': 'https://dimo.org/#organization' },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                '@id': 'https://dimo.org/products/consent#software',
+                name: 'DIMO Consent',
+                description:
+                  'Privacy-preserving, user-owned consent management for vehicle data — session-scoped permissions with atomic grant and revocation (SACD).',
+                url: 'https://dimo.org/products/consent',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/OnlineOnly',
+                },
+                publisher: { '@id': 'https://dimo.org/#organization' },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

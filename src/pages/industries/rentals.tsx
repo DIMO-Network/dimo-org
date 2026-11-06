@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './industry.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -350,6 +352,7 @@ function CTASection() {
 }
 
 export default function RentalsPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -372,26 +375,31 @@ export default function RentalsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://dimo.org/industries/rentals" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: 'DIMO for Rentals',
-            description:
-              'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',
-            brand: {
-              '@type': 'Brand',
-              name: 'DIMO',
-            },
-            category: 'Fleet Management Software',
-            audience: {
-              '@type': 'Audience',
-              audienceType: 'Car Rental Companies',
-            },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Product',
+                name: 'DIMO for Rentals',
+                description:
+                  'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',
+                brand: {
+                  '@type': 'Brand',
+                  name: 'DIMO',
+                },
+                category: 'Fleet Management Software',
+                audience: {
+                  '@type': 'Audience',
+                  audienceType: 'Car Rental Companies',
+                },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

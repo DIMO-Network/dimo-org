@@ -26,7 +26,6 @@ export default function EuDataAct(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compliance/eu-data-act"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Compliance', url: `${SITE}/compliance` },

@@ -1,6 +1,8 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import CustomNavbar from '../CustomNavbar';
 import FooterTheme from '../../theme/Footer';
 import Breadcrumbs from '../Breadcrumbs';
@@ -11,7 +13,6 @@ const SITE = 'https://dimo.org';
 interface ContentPageLayoutProps {
   title: string;
   description: string;
-  canonicalPath: string;
   breadcrumbs: { name: string; url?: string }[];
   schema: object;
   heroEyebrow?: string;
@@ -25,12 +26,11 @@ interface ContentPageLayoutProps {
 }
 
 // Shared layout for SEO content pages (pillars, spokes, comparisons). Supplies
-// branded chrome, the <Head> (title/description/canonical/OG + JSON-LD), and a
+// branded chrome, the <Head> (title/description/OG + JSON-LD; canonical comes from SiteMetadata), and a
 // readable article column, so each content page is thin metadata + body JSX.
 export default function ContentPageLayout({
   title,
   description,
-  canonicalPath,
   breadcrumbs,
   schema,
   heroEyebrow,
@@ -41,16 +41,13 @@ export default function ContentPageLayout({
   children,
   wide = false,
 }: ContentPageLayoutProps): ReactNode {
-  const url = `${SITE}${canonicalPath}`;
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content={url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta
@@ -58,7 +55,9 @@ export default function ContentPageLayout({
           content={`${SITE}/img/dimo-social-card.png`}
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(localizeSchema(schema, locale, path))}
+        </script>
       </Head>
       <div className={styles.page}>
         <CustomNavbar dark={true} />

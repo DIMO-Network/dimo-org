@@ -225,7 +225,6 @@ export default function VehiclePage({
       wide
       title={title}
       description={description}
-      canonicalPath={path}
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Vehicles', url: `${SITE}/vehicles` },

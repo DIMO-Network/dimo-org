@@ -27,7 +27,6 @@ export default function FleetSpend(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/solutions/fleet-spend"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Solutions', url: `${SITE}/#solutions` },

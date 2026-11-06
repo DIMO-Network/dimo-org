@@ -28,7 +28,6 @@ export default function StandardFleetAlternative(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compare/standard-fleet-alternative"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Compare', url: `${SITE}/compare/standard-fleet-alternative` },

@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from '../solutions/solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -142,6 +144,7 @@ function CTASection() {
 }
 
 export default function IngestPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -160,26 +163,31 @@ export default function IngestPage(): ReactNode {
           content="Unified vehicle data ingestion from any source with real-time streaming and enterprise reliability."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dimo.org/products/ingest" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            '@id': 'https://dimo.org/products/ingest#software',
-            name: 'DIMO Ingest',
-            description:
-              'Bring-your-own telematics ingestion via the DIMO Ingest Server (DIS) into a unified vehicle data pipeline.',
-            url: 'https://dimo.org/products/ingest',
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              availability: 'https://schema.org/OnlineOnly',
-            },
-            publisher: { '@id': 'https://dimo.org/#organization' },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                '@id': 'https://dimo.org/products/ingest#software',
+                name: 'DIMO Ingest',
+                description:
+                  'Bring-your-own telematics ingestion via the DIMO Ingest Server (DIS) into a unified vehicle data pipeline.',
+                url: 'https://dimo.org/products/ingest',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/OnlineOnly',
+                },
+                publisher: { '@id': 'https://dimo.org/#organization' },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

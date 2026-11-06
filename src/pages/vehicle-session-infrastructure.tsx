@@ -30,7 +30,6 @@ export default function VehicleSessionInfrastructure(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/vehicle-session-infrastructure"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Vehicle Session Infrastructure' },

@@ -27,7 +27,6 @@ export default function ResourcePage({ content: Content }: Props): ReactNode {
           wide
           title={`${title} | DIMO`}
           description={description}
-          canonicalPath={permalink}
           breadcrumbs={[
             { name: 'Home', url: `${SITE}/` },
             { name: 'Resources', url: `${SITE}/resources` },

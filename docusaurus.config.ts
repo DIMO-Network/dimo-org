@@ -61,12 +61,24 @@ const config: Config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es', 'ja', 'zh-Hans', 'zh-Hant'],
+    // baseUrl is what a full build infers anyway. Spelling it out keeps a
+    // single-locale build (npm run build -- --locale ja) under /ja/ too,
+    // where Docusaurus would otherwise serve it from / and the canonical and
+    // hreflang URLs would point at paths that build doesn't have.
     localeConfigs: {
       en: { label: 'English', htmlLang: 'en' },
-      es: { label: 'Español', htmlLang: 'es' },
-      ja: { label: '日本語', htmlLang: 'ja' },
-      'zh-Hans': { label: '简体中文', htmlLang: 'zh-Hans' },
-      'zh-Hant': { label: '繁體中文', htmlLang: 'zh-Hant' },
+      es: { label: 'Español', htmlLang: 'es', baseUrl: '/es/' },
+      ja: { label: '日本語', htmlLang: 'ja', baseUrl: '/ja/' },
+      'zh-Hans': {
+        label: '简体中文',
+        htmlLang: 'zh-Hans',
+        baseUrl: '/zh-Hans/',
+      },
+      'zh-Hant': {
+        label: '繁體中文',
+        htmlLang: 'zh-Hant',
+        baseUrl: '/zh-Hant/',
+      },
     },
   },
 
@@ -120,6 +132,8 @@ const config: Config = {
             '/resources/authors',
             '/resources/tags/**',
           ],
+          // A locale's home is /zh-Hans/ to Docusaurus but /zh-Hans to the
+          // canonical (trailingSlash: false); list the canonical form.
           createSitemapItems: async ({
             defaultCreateSitemapItems,
             ...params
@@ -127,7 +141,10 @@ const config: Config = {
             clampLastmod(
               await defaultCreateSitemapItems(params),
               publishDates(process.cwd())
-            ),
+            ).map(item => ({
+              ...item,
+              url: item.url.replace(/^(\w+:\/\/[^/]+\/.+)\/$/, '$1'),
+            })),
         },
       } satisfies Preset.Options,
     ],

@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from '../solutions/solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -149,6 +151,7 @@ function CTASection() {
 }
 
 export default function AccessPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -167,26 +170,31 @@ export default function AccessPage(): ReactNode {
           content="Developer-first API platform for vehicle data with global edge deployment."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dimo.org/products/access" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            '@id': 'https://dimo.org/products/access#software',
-            name: 'DIMO Access',
-            description:
-              'Clean, fast APIs and SDKs (REST, GraphQL, webhooks, streaming) for accessing real-time and historical vehicle data across 50+ connected brands.',
-            url: 'https://dimo.org/products/access',
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              availability: 'https://schema.org/OnlineOnly',
-            },
-            publisher: { '@id': 'https://dimo.org/#organization' },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                '@id': 'https://dimo.org/products/access#software',
+                name: 'DIMO Access',
+                description:
+                  'Clean, fast APIs and SDKs (REST, GraphQL, webhooks, streaming) for accessing real-time and historical vehicle data across 50+ connected brands.',
+                url: 'https://dimo.org/products/access',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/OnlineOnly',
+                },
+                publisher: { '@id': 'https://dimo.org/#organization' },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

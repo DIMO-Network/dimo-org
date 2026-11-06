@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -389,6 +391,7 @@ function CTASection() {
 }
 
 export default function VehicleCommercePage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -408,26 +411,28 @@ export default function VehicleCommercePage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://dimo.org/solutions/vehicle-commerce"
-        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            name: 'DIMO Vehicle Commerce Platform',
-            description:
-              'Vehicle payment platform with stablecoin support and x402 protocol. Enable automated, low-fee payments for mobility services.',
-            applicationCategory: 'FinanceApplication',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'DIMO Vehicle Commerce Platform',
+                description:
+                  'Vehicle payment platform with stablecoin support and x402 protocol. Enable automated, low-fee payments for mobility services.',
+                applicationCategory: 'FinanceApplication',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

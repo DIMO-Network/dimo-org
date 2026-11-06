@@ -26,7 +26,6 @@ export default function SessionScopedConsent(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compliance/session-scoped-consent"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Compliance', url: `${SITE}/compliance` },

@@ -26,7 +26,6 @@ export default function FtcGmConsent(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compliance/ftc-gm-consent"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Compliance', url: `${SITE}/compliance` },

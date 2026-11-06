@@ -8,6 +8,7 @@
     "prebuild": "node scripts/generate-llms-full.mjs && node scripts/generate-mcp-index.mjs",
     "test": "node --test 'scripts/**/*.test.mjs' 'api/**/*.test.mjs' 'api/**/*.test.ts'",
     "build": "docusaurus build",
+    "postbuild": "node scripts/check-seo.mjs build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

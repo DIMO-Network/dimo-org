@@ -2,6 +2,8 @@ import React, { type ReactNode, useState, useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../lib/seo';
+import { usePageLocale } from '../lib/use-page-locale';
 import styles from './index.module.css';
 import FooterTheme from '../theme/Footer';
 import CustomNavbar from '../components/CustomNavbar';
@@ -551,6 +553,7 @@ function CTASection() {
 }
 
 export default function Home(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -569,12 +572,8 @@ export default function Home(): ReactNode {
           content="session-based economy, vehicle data API, connected car platform, automotive developer platform, vehicle intelligence, car API, telematics API, OEM API, mobility as a service, vehicle SDK, DIMO"
         />
 
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://dimo.org/" />
-
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dimo.org/" />
         <meta
           property="og:title"
           content="DIMO | Vehicle Platform for the Session-Based Economy"
@@ -588,11 +587,9 @@ export default function Home(): ReactNode {
           content="https://dimo.org/img/dimo-social-card.png"
         />
         <meta property="og:site_name" content="DIMO" />
-        <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://dimo.org/" />
         <meta
           name="twitter:title"
           content="DIMO | Vehicle Platform for the Session-Based Economy"
@@ -608,100 +605,118 @@ export default function Home(): ReactNode {
 
         {/* Additional SEO */}
         <meta name="robots" content="index, follow" />
-        <meta name="language" content="English" />
         <meta name="author" content="DIMO" />
 
         {/* Structured Data - Organization */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            '@id': 'https://dimo.org/#organization',
-            name: 'DIMO',
-            legalName: 'DIMO Network, Inc.',
-            url: 'https://dimo.org/',
-            logo: {
-              '@type': 'ImageObject',
-              url: 'https://dimo.org/img/dimo-logo.png',
-              width: 640,
-              height: 120,
-            },
-            description:
-              'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
-            foundingDate: '2021',
-            sameAs: [
-              'https://github.com/DIMO-Network',
-              'https://x.com/dimo_network',
-              'https://www.linkedin.com/company/dimo-network',
-              'https://www.youtube.com/@dimo_network',
-              'https://medium.com/dimo-network',
-            ],
-            contactPoint: {
-              '@type': 'ContactPoint',
-              contactType: 'Developer Support',
-              email: 'contact@dimo.org',
-            },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Organization',
+                '@id': 'https://dimo.org/#organization',
+                name: 'DIMO',
+                legalName: 'DIMO Network, Inc.',
+                url: 'https://dimo.org/',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://dimo.org/img/dimo-logo.png',
+                  width: 640,
+                  height: 120,
+                },
+                description:
+                  'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
+                foundingDate: '2021',
+                sameAs: [
+                  'https://github.com/DIMO-Network',
+                  'https://x.com/dimo_network',
+                  'https://www.linkedin.com/company/dimo-network',
+                  'https://www.youtube.com/@dimo_network',
+                  'https://medium.com/dimo-network',
+                ],
+                contactPoint: {
+                  '@type': 'ContactPoint',
+                  contactType: 'Developer Support',
+                  email: 'contact@dimo.org',
+                },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
 
         {/* Structured Data - SoftwareApplication */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            '@id': 'https://dimo.org/#software',
-            name: 'DIMO Platform',
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              availability: 'https://schema.org/OnlineOnly',
-              description:
-                'Free tier available with paid plans for advanced features',
-            },
-            publisher: { '@id': 'https://dimo.org/#organization' },
-            description:
-              'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
-            url: 'https://dimo.org/',
-            screenshot: 'https://dimo.org/img/dimo-social-card.png',
-            dateModified: '2026-07-06',
-            softwareVersion: '3.0',
-            applicationSubCategory: 'API Platform',
-            featureList: [
-              'Works with any make (50+ vehicle brands already connected)',
-              'AI-ready data streams',
-              'Privacy-preserving architecture',
-              'Plug-and-play hardware support',
-              'Open source core',
-              'Real-time vehicle telemetry',
-              'Agentic workflow development',
-            ],
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                '@id': 'https://dimo.org/#software',
+                name: 'DIMO Platform',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/OnlineOnly',
+                  description:
+                    'Free tier available with paid plans for advanced features',
+                },
+                publisher: { '@id': 'https://dimo.org/#organization' },
+                description:
+                  'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
+                url: 'https://dimo.org/',
+                screenshot: 'https://dimo.org/img/dimo-social-card.png',
+                dateModified: '2026-07-06',
+                softwareVersion: '3.0',
+                applicationSubCategory: 'API Platform',
+                featureList: [
+                  'Works with any make (50+ vehicle brands already connected)',
+                  'AI-ready data streams',
+                  'Privacy-preserving architecture',
+                  'Plug-and-play hardware support',
+                  'Open source core',
+                  'Real-time vehicle telemetry',
+                  'Agentic workflow development',
+                ],
+              },
+              locale,
+              path
+            )
+          )}
         </script>
 
         {/* Structured Data - WebSite + SearchAction */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            '@id': 'https://dimo.org/#website',
-            url: 'https://dimo.org/',
-            name: 'DIMO Build',
-            dateModified: '2026-07-06',
-            description:
-              'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
-            publisher: { '@id': 'https://dimo.org/#organization' },
-            potentialAction: {
-              '@type': 'SearchAction',
-              target: {
-                '@type': 'EntryPoint',
-                urlTemplate: 'https://dimo.org/search?q={search_term_string}',
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                '@id': 'https://dimo.org/#website',
+                url: 'https://dimo.org/',
+                name: 'DIMO Build',
+                dateModified: '2026-07-06',
+                description:
+                  'DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source.',
+                publisher: { '@id': 'https://dimo.org/#organization' },
+                potentialAction: {
+                  '@type': 'SearchAction',
+                  target: {
+                    '@type': 'EntryPoint',
+                    urlTemplate:
+                      'https://dimo.org/search?q={search_term_string}',
+                  },
+                  'query-input': 'required name=search_term_string',
+                },
               },
-              'query-input': 'required name=search_term_string',
-            },
-          })}
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

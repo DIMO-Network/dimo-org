@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from '../solutions/solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -147,6 +149,7 @@ function CTASection() {
 }
 
 export default function StoragePage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -165,26 +168,31 @@ export default function StoragePage(): ReactNode {
           content="Scalable storage infrastructure built for vehicle telemetry data at any scale."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dimo.org/products/storage" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            '@id': 'https://dimo.org/products/storage#software',
-            name: 'DIMO Storage',
-            description:
-              'Normalized, queryable storage for connected-vehicle telemetry — time-series vehicle data, cloud or on-prem.',
-            url: 'https://dimo.org/products/storage',
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              availability: 'https://schema.org/OnlineOnly',
-            },
-            publisher: { '@id': 'https://dimo.org/#organization' },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                '@id': 'https://dimo.org/products/storage#software',
+                name: 'DIMO Storage',
+                description:
+                  'Normalized, queryable storage for connected-vehicle telemetry — time-series vehicle data, cloud or on-prem.',
+                url: 'https://dimo.org/products/storage',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/OnlineOnly',
+                },
+                publisher: { '@id': 'https://dimo.org/#organization' },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

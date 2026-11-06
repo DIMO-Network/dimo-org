@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from '../solutions/solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -151,6 +153,7 @@ function CTASection() {
 }
 
 export default function PayPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -169,26 +172,31 @@ export default function PayPage(): ReactNode {
           content="Enable payments from inside the vehicle with customizable rewards."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dimo.org/products/pay" />
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            '@id': 'https://dimo.org/products/pay#software',
-            name: 'DIMO Pay',
-            description:
-              'Session-scoped stablecoin payment rails for mobility — in-vehicle payments, reimbursements, and per-session spend controls.',
-            url: 'https://dimo.org/products/pay',
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-              availability: 'https://schema.org/OnlineOnly',
-            },
-            publisher: { '@id': 'https://dimo.org/#organization' },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                '@id': 'https://dimo.org/products/pay#software',
+                name: 'DIMO Pay',
+                description:
+                  'Session-scoped stablecoin payment rails for mobility — in-vehicle payments, reimbursements, and per-session spend controls.',
+                url: 'https://dimo.org/products/pay',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'Web',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/OnlineOnly',
+                },
+                publisher: { '@id': 'https://dimo.org/#organization' },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

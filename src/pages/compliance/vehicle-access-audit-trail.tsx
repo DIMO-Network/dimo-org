@@ -28,7 +28,6 @@ export default function AuditTrail(): ReactNode {
     <ContentPageLayout
       title={TITLE}
       description={DESCRIPTION}
-      canonicalPath="/compliance/vehicle-access-audit-trail"
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Compliance', url: `${SITE}/compliance` },

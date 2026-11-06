@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './industry.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -347,6 +349,7 @@ function CTASection() {
 }
 
 export default function DealershipsPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -371,26 +374,31 @@ export default function DealershipsPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://dimo.org/industries/dealerships" />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: 'DIMO for Dealerships',
-            description:
-              'Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management.',
-            brand: {
-              '@type': 'Brand',
-              name: 'DIMO',
-            },
-            category: 'Automotive Software',
-            audience: {
-              '@type': 'Audience',
-              audienceType: 'Automotive Dealerships',
-            },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Product',
+                name: 'DIMO for Dealerships',
+                description:
+                  'Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management.',
+                brand: {
+                  '@type': 'Brand',
+                  name: 'DIMO',
+                },
+                category: 'Automotive Software',
+                audience: {
+                  '@type': 'Audience',
+                  audienceType: 'Automotive Dealerships',
+                },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './customer-stories.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -369,6 +371,7 @@ function CTASection() {
 }
 
 export default function EmobiCaseStudy(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -393,40 +396,45 @@ export default function EmobiCaseStudy(): ReactNode {
         />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://dimo.org/customer-stories/emobi" />
 
         {/* Structured Data for Case Study */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline:
-              'Emobi and DIMO Partner to Deliver First Fleet-Ready Plug & Charge Device',
-            description:
-              "Partnership combines Emobi's JustPlug™ technology with DIMO's vehicle intelligence platform to bring secure, seamless ISO 15118 Plug & Charge to fleets for the first time.",
-            image: {
-              '@type': 'ImageObject',
-              url: 'https://dimo.org/img/emobi.png',
-              contentUrl: 'https://dimo.org/img/emobi.png',
-            },
-            author: {
-              '@type': 'Organization',
-              name: 'DIMO',
-            },
-            publisher: {
-              '@type': 'Organization',
-              name: 'DIMO',
-              logo: {
-                '@type': 'ImageObject',
-                url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Article',
+                headline:
+                  'Emobi and DIMO Partner to Deliver First Fleet-Ready Plug & Charge Device',
+                description:
+                  "Partnership combines Emobi's JustPlug™ technology with DIMO's vehicle intelligence platform to bring secure, seamless ISO 15118 Plug & Charge to fleets for the first time.",
+                image: {
+                  '@type': 'ImageObject',
+                  url: 'https://dimo.org/img/emobi.png',
+                  contentUrl: 'https://dimo.org/img/emobi.png',
+                },
+                author: {
+                  '@type': 'Organization',
+                  name: 'DIMO',
+                },
+                publisher: {
+                  '@type': 'Organization',
+                  name: 'DIMO',
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://dimo.org/img/dimo-build-logo-dark.svg',
+                  },
+                },
+                datePublished: '2026-02-01',
+                mainEntityOfPage: {
+                  '@type': 'WebPage',
+                  '@id': 'https://dimo.org/customer-stories/emobi',
+                },
               },
-            },
-            datePublished: '2026-02-01',
-            mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': 'https://dimo.org/customer-stories/emobi',
-            },
-          })}
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

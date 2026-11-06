@@ -2,6 +2,8 @@ import React, { useState, useRef, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../lib/seo';
+import { usePageLocale } from '../lib/use-page-locale';
 import { X } from 'lucide-react';
 import { submitLead } from '../utils/lead';
 import styles from './pricing.module.css';
@@ -454,6 +456,7 @@ function EnterpriseModal({
 }
 
 export default function Pricing(): ReactNode {
+  const { locale, path } = usePageLocale();
   const [planType, setPlanType] = useState<PlanType>('ai');
   const [billingCycle, setBillingCycle] = useState<BillingCycle>('annual');
   const [showEnterprise, setShowEnterprise] = useState(false);
@@ -478,12 +481,8 @@ export default function Pricing(): ReactNode {
           content="vehicle API pricing, DIMO pricing, automotive data costs, car API plans, vehicle intelligence pricing, fleet management pricing, telematics API cost"
         />
 
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://dimo.org/pricing" />
-
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dimo.org/pricing" />
         <meta
           property="og:title"
           content="DIMO Pricing | Vehicle Data API & AI Agent Plans"
@@ -497,11 +496,9 @@ export default function Pricing(): ReactNode {
           content="https://dimo.org/img/dimo-social-card.png"
         />
         <meta property="og:site_name" content="DIMO" />
-        <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://dimo.org/pricing" />
         <meta name="twitter:title" content="DIMO Pricing | Start Free" />
         <meta
           name="twitter:description"
@@ -514,67 +511,72 @@ export default function Pricing(): ReactNode {
 
         {/* Additional SEO */}
         <meta name="robots" content="index, follow" />
-        <meta name="language" content="English" />
 
         {/* Structured Data - Product with Offers */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            '@id': 'https://dimo.org/pricing#product',
-            name: 'DIMO Platform',
-            url: 'https://dimo.org/pricing',
-            image: 'https://dimo.org/img/dimo-social-card.png',
-            description:
-              'DIMO is the vehicle data infrastructure that powers the session-based economy. Plans for developers building on real-time, consent-governed vehicle data and AI agents.',
-            brand: {
-              '@type': 'Brand',
-              name: 'DIMO',
-            },
-            offers: [
+          {JSON.stringify(
+            localizeSchema(
               {
-                '@type': 'Offer',
-                name: 'DIMO Hobbyist',
-                price: '0',
-                priceCurrency: 'USD',
-                priceSpecification: {
-                  '@type': 'UnitPriceSpecification',
-                  price: '0',
-                  priceCurrency: 'USD',
-                  referenceQuantity: {
-                    '@type': 'QuantitativeValue',
-                    value: '1',
-                    unitText: 'account',
-                  },
-                },
-                description:
-                  'Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.',
+                '@context': 'https://schema.org',
+                '@type': 'Product',
+                '@id': 'https://dimo.org/pricing#product',
+                name: 'DIMO Platform',
                 url: 'https://dimo.org/pricing',
-                availability: 'https://schema.org/InStock',
-              },
-              {
-                '@type': 'Offer',
-                name: 'DIMO Core',
-                price: '349',
-                priceCurrency: 'USD',
-                priceSpecification: {
-                  '@type': 'UnitPriceSpecification',
-                  price: '349',
-                  priceCurrency: 'USD',
-                  billingDuration: 'P1M',
-                  referenceQuantity: {
-                    '@type': 'QuantitativeValue',
-                    value: '1',
-                    unitText: 'month',
-                  },
-                },
+                image: 'https://dimo.org/img/dimo-social-card.png',
                 description:
-                  'For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.',
-                url: 'https://dimo.org/pricing',
-                availability: 'https://schema.org/InStock',
+                  'DIMO is the vehicle data infrastructure that powers the session-based economy. Plans for developers building on real-time, consent-governed vehicle data and AI agents.',
+                brand: {
+                  '@type': 'Brand',
+                  name: 'DIMO',
+                },
+                offers: [
+                  {
+                    '@type': 'Offer',
+                    name: 'DIMO Hobbyist',
+                    price: '0',
+                    priceCurrency: 'USD',
+                    priceSpecification: {
+                      '@type': 'UnitPriceSpecification',
+                      price: '0',
+                      priceCurrency: 'USD',
+                      referenceQuantity: {
+                        '@type': 'QuantitativeValue',
+                        value: '1',
+                        unitText: 'account',
+                      },
+                    },
+                    description:
+                      'Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.',
+                    url: 'https://dimo.org/pricing',
+                    availability: 'https://schema.org/InStock',
+                  },
+                  {
+                    '@type': 'Offer',
+                    name: 'DIMO Core',
+                    price: '349',
+                    priceCurrency: 'USD',
+                    priceSpecification: {
+                      '@type': 'UnitPriceSpecification',
+                      price: '349',
+                      priceCurrency: 'USD',
+                      billingDuration: 'P1M',
+                      referenceQuantity: {
+                        '@type': 'QuantitativeValue',
+                        value: '1',
+                        unitText: 'month',
+                      },
+                    },
+                    description:
+                      'For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.',
+                    url: 'https://dimo.org/pricing',
+                    availability: 'https://schema.org/InStock',
+                  },
+                ],
               },
-            ],
-          })}
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 

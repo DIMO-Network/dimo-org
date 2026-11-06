@@ -2,6 +2,8 @@ import React, { type ReactNode, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import EnglishLink from '../../components/EnglishLink';
 import Head from '@docusaurus/Head';
+import { localizeSchema } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import styles from './solutions.module.css';
 import FooterTheme from '../../theme/Footer';
 import CustomNavbar from '../../components/CustomNavbar';
@@ -347,6 +349,7 @@ function CTASection() {
 }
 
 export default function AgenticExperiencesPage(): ReactNode {
+  const { locale, path } = usePageLocale();
   return (
     <>
       <Head>
@@ -369,26 +372,28 @@ export default function AgenticExperiencesPage(): ReactNode {
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link
-          rel="canonical"
-          href="https://dimo.org/solutions/agentic-experiences"
-        />
 
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
-            name: 'DIMO Agentic Experiences Platform',
-            description:
-              'Build trustworthy AI vehicle agents with consent management, secured compute, and pre-built integrations.',
-            applicationCategory: 'DeveloperApplication',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
-          })}
+          {JSON.stringify(
+            localizeSchema(
+              {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'DIMO Agentic Experiences Platform',
+                description:
+                  'Build trustworthy AI vehicle agents with consent management, secured compute, and pre-built integrations.',
+                applicationCategory: 'DeveloperApplication',
+                offers: {
+                  '@type': 'Offer',
+                  price: '0',
+                  priceCurrency: 'USD',
+                },
+              },
+              locale,
+              path
+            )
+          )}
         </script>
       </Head>
 
