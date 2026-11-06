@@ -9,6 +9,10 @@ import { loadRecords } from './records.ts';
 // live, so scheduled guides never produce broken links.
 const EVENT_GUIDES: Record<string, string> = {
   idling: 'detect-vehicle-idling',
+  refuel: 'track-refuel-events',
+  recharge: 'track-ev-charging-sessions',
+  harsh_braking: 'detect-harsh-braking',
+  dtc: 'check-engine-light-alerts',
 };
 
 export type VehicleSummary = Pick<
