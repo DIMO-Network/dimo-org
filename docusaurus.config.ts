@@ -9,7 +9,15 @@ const config: Config = {
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    // The v4 flags `v4: true` turned on in Docusaurus 3.9. In 3.10 the
+    // shorthand also turns on fasterByDefault (Rspack/SWC, which needs the
+    // @docusaurus/faster package), siteStorageNamespacing (renames the
+    // localStorage keys, resetting saved theme and dismissed banners) and
+    // mdx1CompatDisabledByDefault. Adopt those deliberately, not via a bump.
+    v4: {
+      removeLegacyPostBuildHeadAttribute: true,
+      useCssCascadeLayers: true,
+    },
   },
 
   // Set the production url of your site here

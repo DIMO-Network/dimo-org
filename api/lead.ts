@@ -1,4 +1,14 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+
+// Vercel's Node.js runtime adds body parsing and the status()/json() helpers
+// to every function in api/. These are the parts of @vercel/node's
+// VercelRequest/VercelResponse used here, declared locally so the package
+// (dev tooling that pins its own vulnerable undici) isn't installed for types.
+type VercelRequest = IncomingMessage & { body: unknown };
+type VercelResponse = ServerResponse & {
+  status(statusCode: number): VercelResponse;
+  json(body: unknown): VercelResponse;
+};
 
 const MIN_FILL_TIME_MS = 1500;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
