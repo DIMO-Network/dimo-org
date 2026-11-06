@@ -15,37 +15,77 @@ import {
   ChevronDown,
   CircleDollarSign,
 } from 'lucide-react';
+import Translate, { translate } from '@docusaurus/Translate';
 
-const PRODUCT_NAME = 'Pay';
+const PRODUCT_NAME = translate({
+  id: 'products.pay.meta.productName',
+  message: 'Pay',
+});
 const HERO_BACKGROUND = '/img/mp4/payments.mp4?v=2';
 
 const FEATURES = [
   {
     icon: <CreditCard size={28} />,
-    type: 'Payments',
-    title: 'In-Vehicle Payments',
-    description:
-      'Enable seamless payments from inside the vehicle. Fuel, parking, tolls, EV charging - all automated with driver consent.',
-    example:
-      'Drivers pay for EV charging automatically when they plug in/unplug, delete those 20 apps today.',
+    type: translate({
+      id: 'products.pay.features.inVehiclePayments.type',
+      message: 'Payments',
+    }),
+    title: translate({
+      id: 'products.pay.features.inVehiclePayments.title',
+      message: 'In-Vehicle Payments',
+    }),
+    description: translate({
+      id: 'products.pay.features.inVehiclePayments.description',
+      message:
+        'Enable seamless payments from inside the vehicle. Fuel, parking, tolls, EV charging - all automated with driver consent.',
+    }),
+    example: translate({
+      id: 'products.pay.features.inVehiclePayments.example',
+      message:
+        'Drivers pay for EV charging automatically when they plug in/unplug, delete those 20 apps today.',
+    }),
   },
   {
     icon: <ShieldCheck size={28} />,
-    type: 'Security',
-    title: 'Security-first Vehicle Commerce',
-    description:
-      'Built-in security features to protect user data and transactions. Compliance with industry standards and regulations.',
-    example:
-      'Drive and pay seamlessly with DIMO, without worrying about security.',
+    type: translate({
+      id: 'products.pay.features.securityFirstVehicleCommerce.type',
+      message: 'Security',
+    }),
+    title: translate({
+      id: 'products.pay.features.securityFirstVehicleCommerce.title',
+      message: 'Security-first Vehicle Commerce',
+    }),
+    description: translate({
+      id: 'products.pay.features.securityFirstVehicleCommerce.description',
+      message:
+        'Built-in security features to protect user data and transactions. Compliance with industry standards and regulations.',
+    }),
+    example: translate({
+      id: 'products.pay.features.securityFirstVehicleCommerce.example',
+      message:
+        'Drive and pay seamlessly with DIMO, without worrying about security.',
+    }),
   },
   {
     icon: <CircleDollarSign size={28} />,
-    type: 'Rewards',
-    title: 'Driver Rewards & Incentives',
-    description:
-      'Reward drivers for safe driving, eco-friendly habits, or loyalty. Customizable rewards programs to drive engagement and retention.',
-    example:
-      'Give drivers cashback for fuel-efficient driving or discounts at partner businesses.',
+    type: translate({
+      id: 'products.pay.features.driverRewardsIncentives.type',
+      message: 'Rewards',
+    }),
+    title: translate({
+      id: 'products.pay.features.driverRewardsIncentives.title',
+      message: 'Driver Rewards & Incentives',
+    }),
+    description: translate({
+      id: 'products.pay.features.driverRewardsIncentives.description',
+      message:
+        'Reward drivers for safe driving, eco-friendly habits, or loyalty. Customizable rewards programs to drive engagement and retention.',
+    }),
+    example: translate({
+      id: 'products.pay.features.driverRewardsIncentives.example',
+      message:
+        'Give drivers cashback for fuel-efficient driving or discounts at partner businesses.',
+    }),
   },
 ];
 
@@ -77,21 +117,41 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Vehicle-Native{' '}
-          <span className={styles.heroTitleGradient}>Commerce</span>
+          <Translate
+            id="products.pay.hero.vehicleNative"
+            values={{
+              span: (
+                <span className={styles.heroTitleGradient}>
+                  <Translate id="products.pay.hero.commerce">
+                    Commerce
+                  </Translate>
+                </span>
+              ),
+            }}
+          >
+            {'Vehicle-Native {span}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Incentivize your fleet with rewards for safe driving, or encourage
-          your customers to take their vehicle to a dealership
+          <Translate id="products.pay.hero.incentivizeYourFleetWith">
+            Incentivize your fleet with rewards for safe driving, or encourage
+            your customers to take their vehicle to a dealership
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Start Building <span className={styles.arrow}>→</span>
+            <Translate id="products.pay.hero.startBuilding">
+              Start Building
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="products.pay.hero.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -107,11 +167,22 @@ function FeaturesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Product Features</span>
-        <h2 className={styles.sectionTitle}>Payments Built for Mobility</h2>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="products.pay.features.productFeatures">
+            Product Features
+          </Translate>
+        </span>
+        <h2 className={styles.sectionTitle}>
+          <Translate id="products.pay.features.paymentsBuiltForMobility">
+            Payments Built for Mobility
+          </Translate>
+        </h2>
         <p className={styles.sectionSubtitle}>
-          From in-vehicle transactions to complex multi-party settlements, DIMO
-          Pay handles the unique payment needs of the automotive industry.
+          <Translate id="products.pay.features.fromInVehicleTransactionsTo">
+            From in-vehicle transactions to complex multi-party settlements,
+            DIMO Pay handles the unique payment needs of the automotive
+            industry.
+          </Translate>
         </p>
       </div>
 
@@ -134,17 +205,27 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>Ready to Incentivize Drivers?</h2>
+        <h2 className={styles.ctaTitle}>
+          <Translate id="products.pay.cta.readyToIncentivizeDrivers">
+            Ready to Incentivize Drivers?
+          </Translate>
+        </h2>
         <p className={styles.ctaText}>
-          Enable vehicle-native payments and rewards. Start processing payments
-          in minutes.
+          <Translate id="products.pay.cta.enableVehicleNativePaymentsAnd">
+            Enable vehicle-native payments and rewards. Start processing
+            payments in minutes.
+          </Translate>
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="products.pay.cta.getStarted">Get Started</Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="products.pay.cta.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -157,19 +238,42 @@ export default function PayPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>Pay | DIMO Vehicle Payments</title>
+        <title>
+          {translate({
+            id: 'products.pay.meta.title',
+            message: 'Pay | DIMO Vehicle Payments',
+          })}
+        </title>
         <meta
           name="description"
-          content="Vehicle-native payments for fuel, parking, tolling, EV charging -- with customizable rewards based on driving data."
+          content={translate({
+            id: 'products.pay.meta.description',
+            message:
+              'Vehicle-native payments for fuel, parking, tolling, EV charging -- with customizable rewards based on driving data.',
+          })}
         />
         <meta
           name="keywords"
-          content="vehicle payments, in-car payments, mobility payments, EV charging payments"
+          content={translate({
+            id: 'products.pay.meta.keywords',
+            message:
+              'vehicle payments, in-car payments, mobility payments, EV charging payments',
+          })}
         />
-        <meta property="og:title" content="Pay | DIMO Platform" />
+        <meta
+          property="og:title"
+          content={translate({
+            id: 'products.pay.meta.ogTitle',
+            message: 'Pay | DIMO Platform',
+          })}
+        />
         <meta
           property="og:description"
-          content="Enable payments from inside the vehicle with customizable rewards."
+          content={translate({
+            id: 'products.pay.meta.ogDescription',
+            message:
+              'Enable payments from inside the vehicle with customizable rewards.',
+          })}
         />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
@@ -205,9 +309,26 @@ export default function PayPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://dimo.org/' },
-            { name: 'Products', url: 'https://dimo.org/#products' },
-            { name: 'Pay' },
+            {
+              name: translate({
+                id: 'products.pay.body.home.name',
+                message: 'Home',
+              }),
+              url: 'https://dimo.org/',
+            },
+            {
+              name: translate({
+                id: 'products.pay.body.products.name',
+                message: 'Products',
+              }),
+              url: 'https://dimo.org/#products',
+            },
+            {
+              name: translate({
+                id: 'products.pay.body.pay.name',
+                message: 'Pay',
+              }),
+            },
           ]}
         />
 

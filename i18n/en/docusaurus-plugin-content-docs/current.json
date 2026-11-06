@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Identity API": {
+    "message": "Identity API",
+    "description": "The label for category 'Identity API' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Telemetry API": {
+    "message": "Telemetry API",
+    "description": "The label for category 'Telemetry API' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Fetch API": {
+    "message": "Fetch API",
+    "description": "The label for category 'Fetch API' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.doc.Replit Developer Kit": {
+    "message": "Replit Developer Kit",
+    "description": "The label for the doc item 'Replit Developer Kit' in sidebar 'tutorialSidebar', linking to the doc build/building-with-ai/developer-kit"
+  }
+}

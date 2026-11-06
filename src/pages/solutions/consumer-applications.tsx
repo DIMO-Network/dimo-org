@@ -18,8 +18,12 @@ import {
   ChevronDown,
   Users,
 } from 'lucide-react';
+import Translate, { translate } from '@docusaurus/Translate';
 
-const SOLUTION_NAME = 'Consumer Applications';
+const SOLUTION_NAME = translate({
+  id: 'solutions.consumerApplications.meta.solutionName',
+  message: 'Consumer Applications',
+});
 const HERO_BACKGROUND = '/img/mp4/consumer.mp4?v=2';
 const imgMobile = '/img/dimo-mobile.png';
 const imgJapan = '/img/dimo-japan.png';
@@ -27,65 +31,158 @@ const imgJapan = '/img/dimo-japan.png';
 const USE_CASES = [
   {
     icon: <Smartphone size={28} />,
-    type: 'Mobile Platform',
+    type: translate({
+      id: 'solutions.consumerApplications.useCases.mobilePlatform.type',
+      message: 'Mobile Platform',
+    }),
     title: 'DIMO Mobile App',
-    description:
-      'Production-ready mobile application for iOS and Android. Users can connect their vehicles, view real-time data, and manage permissions—all out of the box.',
-    example:
-      'Launch your vehicle platform in weeks, not months. Complete mobile experience included.',
+    description: translate({
+      id: 'solutions.consumerApplications.useCases.mobilePlatform.description',
+      message:
+        'Production-ready mobile application for iOS and Android. Users can connect their vehicles, view real-time data, and manage permissions—all out of the box.',
+    }),
+    example: translate({
+      id: 'solutions.consumerApplications.useCases.mobilePlatform.example',
+      message:
+        'Launch your vehicle platform in weeks, not months. Complete mobile experience included.',
+    }),
   },
   {
     icon: <Palette size={28} />,
-    type: 'Customization',
-    title: 'White-Label Experience',
-    description:
-      'Fully customizable UI with your branding, colors, and logo. Make DIMO Mobile App look and feel like your own product with no code changes required.',
-    example:
-      'Replace logos, adjust color schemes, and customize messaging—all through configuration.',
+    type: translate({
+      id: 'solutions.consumerApplications.useCases.whiteLabelExperience.type',
+      message: 'Customization',
+    }),
+    title: translate({
+      id: 'solutions.consumerApplications.useCases.whiteLabelExperience.title',
+      message: 'White-Label Experience',
+    }),
+    description: translate({
+      id: 'solutions.consumerApplications.useCases.whiteLabelExperience.description',
+      message:
+        'Fully customizable UI with your branding, colors, and logo. Make DIMO Mobile App look and feel like your own product with no code changes required.',
+    }),
+    example: translate({
+      id: 'solutions.consumerApplications.useCases.whiteLabelExperience.example',
+      message:
+        'Replace logos, adjust color schemes, and customize messaging—all through configuration.',
+    }),
   },
   {
     icon: <Globe size={28} />,
-    type: 'Localization',
-    title: 'Multi-Language Support',
-    description:
-      'Built-in support for 20+ languages with easy localization framework. Expand to new markets without rebuilding your app from scratch.',
-    example:
-      'English, Spanish, Portuguese, French, German, Japanese, and more—ready to deploy globally.',
+    type: translate({
+      id: 'solutions.consumerApplications.useCases.multiLanguageSupport.type',
+      message: 'Localization',
+    }),
+    title: translate({
+      id: 'solutions.consumerApplications.useCases.multiLanguageSupport.title',
+      message: 'Multi-Language Support',
+    }),
+    description: translate({
+      id: 'solutions.consumerApplications.useCases.multiLanguageSupport.description',
+      message:
+        'Built-in support for 20+ languages with easy localization framework. Expand to new markets without rebuilding your app from scratch.',
+    }),
+    example: translate({
+      id: 'solutions.consumerApplications.useCases.multiLanguageSupport.example',
+      message:
+        'English, Spanish, Portuguese, French, German, Japanese, and more—ready to deploy globally.',
+    }),
   },
   {
     icon: <Zap size={28} />,
-    type: 'Features',
-    title: 'Real-Time Vehicle Data',
-    description:
-      'Access live vehicle telemetry, diagnostics, location, and more through an intuitive interface. All data streams pre-integrated and tested.',
-    example:
-      'Battery level, tire pressure, location tracking, trip history—everything your users need.',
+    type: translate({
+      id: 'solutions.consumerApplications.useCases.realTimeVehicleData.type',
+      message: 'Features',
+    }),
+    title: translate({
+      id: 'solutions.consumerApplications.useCases.realTimeVehicleData.title',
+      message: 'Real-Time Vehicle Data',
+    }),
+    description: translate({
+      id: 'solutions.consumerApplications.useCases.realTimeVehicleData.description',
+      message:
+        'Access live vehicle telemetry, diagnostics, location, and more through an intuitive interface. All data streams pre-integrated and tested.',
+    }),
+    example: translate({
+      id: 'solutions.consumerApplications.useCases.realTimeVehicleData.example',
+      message:
+        'Battery level, tire pressure, location tracking, trip history—everything your users need.',
+    }),
   },
   {
     icon: <Users size={28} />,
-    type: 'User Management',
-    title: 'Account & Permissions',
-    description:
-      'Complete user authentication, profile management, and granular permission controls. Users manage data sharing preferences with full transparency.',
-    example:
-      'OAuth 2.0 authentication, profile settings, connected apps dashboard, and consent management.',
+    type: translate({
+      id: 'solutions.consumerApplications.useCases.accountPermissions.type',
+      message: 'User Management',
+    }),
+    title: translate({
+      id: 'solutions.consumerApplications.useCases.accountPermissions.title',
+      message: 'Account & Permissions',
+    }),
+    description: translate({
+      id: 'solutions.consumerApplications.useCases.accountPermissions.description',
+      message:
+        'Complete user authentication, profile management, and granular permission controls. Users manage data sharing preferences with full transparency.',
+    }),
+    example: translate({
+      id: 'solutions.consumerApplications.useCases.accountPermissions.example',
+      message:
+        'OAuth 2.0 authentication, profile settings, connected apps dashboard, and consent management.',
+    }),
   },
   {
     icon: <Download size={28} />,
-    type: 'Distribution',
-    title: 'App Store Ready',
-    description:
-      'Pre-configured for iOS App Store and Google Play Store submission. Includes all necessary compliance, privacy policies, and app store assets.',
-    example:
-      'Submit your branded app to stores in days with included assets and compliance documentation.',
+    type: translate({
+      id: 'solutions.consumerApplications.useCases.appStoreReady.type',
+      message: 'Distribution',
+    }),
+    title: translate({
+      id: 'solutions.consumerApplications.useCases.appStoreReady.title',
+      message: 'App Store Ready',
+    }),
+    description: translate({
+      id: 'solutions.consumerApplications.useCases.appStoreReady.description',
+      message:
+        'Pre-configured for iOS App Store and Google Play Store submission. Includes all necessary compliance, privacy policies, and app store assets.',
+    }),
+    example: translate({
+      id: 'solutions.consumerApplications.useCases.appStoreReady.example',
+      message:
+        'Submit your branded app to stores in days with included assets and compliance documentation.',
+    }),
   },
 ];
 
 const STATS = [
-  { number: '100%', label: 'Customizable UI' },
-  { number: '<1 Week', label: 'Time to Launch' },
-  { number: '<3m', label: 'To Onboard New Users' },
-  { number: '<5m', label: 'To Onboard New Marketplace Partners' },
+  {
+    number: '100%',
+    label: translate({
+      id: 'solutions.consumerApplications.stats.customizableUi.label',
+      message: 'Customizable UI',
+    }),
+  },
+  {
+    number: '<1 Week',
+    label: translate({
+      id: 'solutions.consumerApplications.stats.timeToLaunch.label',
+      message: 'Time to Launch',
+    }),
+  },
+  {
+    number: '<3m',
+    label: translate({
+      id: 'solutions.consumerApplications.stats.toOnboardNew.label',
+      message: 'To Onboard New Users',
+    }),
+  },
+  {
+    number: '<5m',
+    label: translate({
+      id: 'solutions.consumerApplications.stats.toOnboardNew.label2',
+      message: 'To Onboard New Marketplace Partners',
+    }),
+  },
 ];
 
 function HeroSection() {
@@ -116,24 +213,42 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Launch Your Vehicle App with{' '}
-          <span className={styles.heroTitleGradient}>
-            Zero Development Time
-          </span>
+          <Translate
+            id="solutions.consumerApplications.hero.launchYourVehicleApp"
+            values={{
+              span: (
+                <span className={styles.heroTitleGradient}>
+                  <Translate id="solutions.consumerApplications.hero.zeroDevelopmentTime">
+                    Zero Development Time
+                  </Translate>
+                </span>
+              ),
+            }}
+          >
+            {'Launch Your Vehicle App with {span}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Deploy a fully-branded, production-ready mobile app for iOS and
-          Android. White-label customization, multi-language support, and global
-          reach—all included out of the box.
+          <Translate id="solutions.consumerApplications.hero.deployAFullyBrandedProductionReady">
+            Deploy a fully-branded, production-ready mobile app for iOS and
+            Android. White-label customization, multi-language support, and
+            global reach—all included out of the box.
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="solutions.consumerApplications.hero.getStarted">
+              Get Started
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="solutions.consumerApplications.hero.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -164,14 +279,22 @@ function UseCasesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Platform Features</span>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="solutions.consumerApplications.useCases.platformFeatures">
+            Platform Features
+          </Translate>
+        </span>
         <h2 className={styles.sectionTitle}>
-          Everything You Need for Consumer Apps
+          <Translate id="solutions.consumerApplications.useCases.everythingYouNeedFor">
+            Everything You Need for Consumer Apps
+          </Translate>
         </h2>
         <p className={styles.sectionSubtitle}>
-          From mobile apps to white-label customization and global localization,
-          DIMO provides the complete platform for launching consumer vehicle
-          applications.
+          <Translate id="solutions.consumerApplications.useCases.fromMobileAppsTo">
+            From mobile apps to white-label customization and global
+            localization, DIMO provides the complete platform for launching
+            consumer vehicle applications.
+          </Translate>
         </p>
       </div>
 
@@ -195,35 +318,56 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>DIMO Mobile App: Production-Ready Platform</h2>
+          <h2>
+            <Translate id="solutions.consumerApplications.featureSection1.dimoMobileAppProductionReady">
+              DIMO Mobile App: Production-Ready Platform
+            </Translate>
+          </h2>
           <p>
-            Launch with a complete mobile application for iOS and Android. Every
-            feature your users need: vehicle connectivity, real-time data, trip
-            tracking, diagnostics, and more -- tested and ready for production.
+            <Translate id="solutions.consumerApplications.featureSection1.launchWithAComplete">
+              Launch with a complete mobile application for iOS and Android.
+              Every feature your users need: vehicle connectivity, real-time
+              data, trip tracking, diagnostics, and more -- tested and ready for
+              production.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Native iOS and Android apps built with modern mobile frameworks
+              <Translate id="solutions.consumerApplications.featureSection1.nativeIosAndAndroid">
+                Native iOS and Android apps built with modern mobile frameworks
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Real-time vehicle data: location, battery, diagnostics
+              <Translate id="solutions.consumerApplications.featureSection1.realTimeVehicleDataLocation">
+                Real-time vehicle data: location, battery, diagnostics
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Trip tracking with detailed analytics and history
+              <Translate id="solutions.consumerApplications.featureSection1.tripTrackingWithDetailed">
+                Trip tracking with detailed analytics and history
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              User profiles, authentication, and permission management all
-              built-in
+              <Translate id="solutions.consumerApplications.featureSection1.userProfilesAuthenticationAnd">
+                User profiles, authentication, and permission management all
+                built-in
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
           <a href="https://dimo.co" target="_blank" rel="noopener noreferrer">
-            <img src={imgMobile} alt="DIMO Mobile App on Phone" />
+            <img
+              src={imgMobile}
+              alt={translate({
+                id: 'solutions.consumerApplications.featureSection1.dimoMobileAppOn',
+                message: 'DIMO Mobile App on Phone',
+              })}
+            />
           </a>
         </div>
       </div>
@@ -238,33 +382,49 @@ function FeatureSection2() {
         className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
       >
         <div className={styles.featureText}>
-          <h2>White-Label: Make It Yours</h2>
+          <h2>
+            <Translate id="solutions.consumerApplications.featureSection2.whiteLabelMakeItYours">
+              White-Label: Make It Yours
+            </Translate>
+          </h2>
           <p>
-            Customize every aspect of the DIMO Mobile App with your brand
-            identity. Replace logos, adjust colors, modify copy: all through
-            simple configuration without touching a line of code. Expand to
-            international markets with built-in localization support.
+            <Translate id="solutions.consumerApplications.featureSection2.customizeEveryAspectOf">
+              Customize every aspect of the DIMO Mobile App with your brand
+              identity. Replace logos, adjust colors, modify copy: all through
+              simple configuration without touching a line of code. Expand to
+              international markets with built-in localization support.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Brand customization: logos, colors, fonts, and themes
+              <Translate id="solutions.consumerApplications.featureSection2.brandCustomizationLogosColors">
+                Brand customization: logos, colors, fonts, and themes
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Custom messaging and copy throughout the app
+              <Translate id="solutions.consumerApplications.featureSection2.customMessagingAndCopy">
+                Custom messaging and copy throughout the app
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Your app name and identity in app stores
+              <Translate id="solutions.consumerApplications.featureSection2.yourAppNameAnd">
+                Your app name and identity in app stores
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Configuration-based: no code changes required
+              <Translate id="solutions.consumerApplications.featureSection2.configurationBasedNoCodeChanges">
+                Configuration-based: no code changes required
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Regional customization for dates, currencies, and units
+              <Translate id="solutions.consumerApplications.featureSection2.regionalCustomizationForDates">
+                Regional customization for dates, currencies, and units
+              </Translate>
             </li>
           </ul>
         </div>
@@ -274,7 +434,13 @@ function FeatureSection2() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={imgJapan} alt="DIMO in Japan" />
+            <img
+              src={imgJapan}
+              alt={translate({
+                id: 'solutions.consumerApplications.featureSection2.dimoInJapan',
+                message: 'DIMO in Japan',
+              })}
+            />
           </a>
         </div>
       </div>
@@ -285,35 +451,69 @@ function FeatureSection2() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Configure Your Brand',
-      description:
-        'Upload your logos, choose your color scheme, and customize app messaging through our configuration dashboard—no coding required.',
+      title: translate({
+        id: 'solutions.consumerApplications.howItWorks.configureYourBrand.title',
+        message: 'Configure Your Brand',
+      }),
+      description: translate({
+        id: 'solutions.consumerApplications.howItWorks.configureYourBrand.description',
+        message:
+          'Upload your logos, choose your color scheme, and customize app messaging through our configuration dashboard—no coding required.',
+      }),
     },
     {
-      title: 'Select Languages & Regions',
-      description:
-        'Choose which languages to enable and configure regional settings. Add custom translations if needed through our localization framework.',
+      title: translate({
+        id: 'solutions.consumerApplications.howItWorks.selectLanguagesRegions.title',
+        message: 'Select Languages & Regions',
+      }),
+      description: translate({
+        id: 'solutions.consumerApplications.howItWorks.selectLanguagesRegions.description',
+        message:
+          'Choose which languages to enable and configure regional settings. Add custom translations if needed through our localization framework.',
+      }),
     },
     {
-      title: 'Test Your App',
-      description:
-        'Use our TestFlight and Google Play beta distribution to test your branded app with internal teams before public launch.',
+      title: translate({
+        id: 'solutions.consumerApplications.howItWorks.testYourApp.title',
+        message: 'Test Your App',
+      }),
+      description: translate({
+        id: 'solutions.consumerApplications.howItWorks.testYourApp.description',
+        message:
+          'Use our TestFlight and Google Play beta distribution to test your branded app with internal teams before public launch.',
+      }),
     },
     {
-      title: 'Launch to App Stores',
-      description:
-        'Submit your app to iOS App Store and Google Play Store with included compliance documentation and app store assets.',
+      title: translate({
+        id: 'solutions.consumerApplications.howItWorks.launchToApp.title',
+        message: 'Launch to App Stores',
+      }),
+      description: translate({
+        id: 'solutions.consumerApplications.howItWorks.launchToApp.description',
+        message:
+          'Submit your app to iOS App Store and Google Play Store with included compliance documentation and app store assets.',
+      }),
     },
   ];
 
   return (
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Launch in Less Than a Week</h2>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="solutions.consumerApplications.howItWorks.howItWorks">
+            How It Works
+          </Translate>
+        </span>
+        <h2 className={styles.sectionTitle}>
+          <Translate id="solutions.consumerApplications.howItWorks.launchInLessThan">
+            Launch in Less Than a Week
+          </Translate>
+        </h2>
         <p className={styles.sectionSubtitle}>
-          From configuration to app store submission, DIMO makes it easy to
-          launch your branded vehicle application globally.
+          <Translate id="solutions.consumerApplications.howItWorks.fromConfigurationToApp">
+            From configuration to app store submission, DIMO makes it easy to
+            launch your branded vehicle application globally.
+          </Translate>
         </p>
       </div>
 
@@ -337,17 +537,29 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>Ready to Launch Your Vehicle App?</h2>
+        <h2 className={styles.ctaTitle}>
+          <Translate id="solutions.consumerApplications.cta.readyToLaunchYour">
+            Ready to Launch Your Vehicle App?
+          </Translate>
+        </h2>
         <p className={styles.ctaText}>
-          Join companies launching branded vehicle applications globally with
-          DIMO's white-label mobile platform.
+          <Translate id="solutions.consumerApplications.cta.joinCompaniesLaunchingBranded">
+            Join companies launching branded vehicle applications globally with
+            DIMO's white-label mobile platform.
+          </Translate>
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="solutions.consumerApplications.cta.getStarted">
+              Get Started
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="solutions.consumerApplications.cta.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -360,22 +572,42 @@ export default function ConsumerApplicationsPage(): ReactNode {
   return (
     <>
       <Head>
-        <title>Consumer Applications | White-Label Mobile Apps by DIMO</title>
+        <title>
+          {translate({
+            id: 'solutions.consumerApplications.meta.title',
+            message: 'Consumer Applications | White-Label Mobile Apps by DIMO',
+          })}
+        </title>
         <meta
           name="description"
-          content="Launch your branded vehicle mobile app in days. DIMO provides production-ready iOS and Android apps with white-label customization and 20+ language support."
+          content={translate({
+            id: 'solutions.consumerApplications.meta.description',
+            message:
+              'Launch your branded vehicle mobile app in days. DIMO provides production-ready iOS and Android apps with white-label customization and 20+ language support.',
+          })}
         />
         <meta
           name="keywords"
-          content="white-label mobile app, vehicle app, iOS Android, multi-language app, branded mobile app, localization, DIMO mobile"
+          content={translate({
+            id: 'solutions.consumerApplications.meta.keywords',
+            message:
+              'white-label mobile app, vehicle app, iOS Android, multi-language app, branded mobile app, localization, DIMO mobile',
+          })}
         />
         <meta
           property="og:title"
-          content="Consumer Applications | DIMO White-Label Platform"
+          content={translate({
+            id: 'solutions.consumerApplications.meta.ogTitle',
+            message: 'Consumer Applications | DIMO White-Label Platform',
+          })}
         />
         <meta
           property="og:description"
-          content="Production-ready mobile apps for iOS and Android. Fully customizable, multi-language support, and global reach out of the box."
+          content={translate({
+            id: 'solutions.consumerApplications.meta.ogDescription',
+            message:
+              'Production-ready mobile apps for iOS and Android. Fully customizable, multi-language support, and global reach out of the box.',
+          })}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -405,9 +637,26 @@ export default function ConsumerApplicationsPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://dimo.org/' },
-            { name: 'Solutions', url: 'https://dimo.org/#solutions' },
-            { name: 'Consumer Applications' },
+            {
+              name: translate({
+                id: 'solutions.consumerApplications.body.home.name',
+                message: 'Home',
+              }),
+              url: 'https://dimo.org/',
+            },
+            {
+              name: translate({
+                id: 'solutions.consumerApplications.body.solutions.name',
+                message: 'Solutions',
+              }),
+              url: 'https://dimo.org/#solutions',
+            },
+            {
+              name: translate({
+                id: 'solutions.consumerApplications.body.consumerApplications.name',
+                message: 'Consumer Applications',
+              }),
+            },
           ]}
         />
 

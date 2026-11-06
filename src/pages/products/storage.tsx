@@ -10,36 +10,76 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import { HardDrive, Search, Clock, ChevronDown, Database } from 'lucide-react';
+import Translate, { translate } from '@docusaurus/Translate';
 
-const PRODUCT_NAME = 'Storage';
+const PRODUCT_NAME = translate({
+  id: 'products.storage.meta.productName',
+  message: 'Storage',
+});
 const HERO_BACKGROUND = '/img/mp4/storage.mp4?v=2';
 
 const FEATURES = [
   {
     icon: <HardDrive size={28} />,
-    type: 'Infrastructure',
-    title: 'Cloud or On-Prem, Your Choice',
-    description:
-      'Store vehicle data with flexible options, managed by DIMO or on-premise in your data infrastructure.',
-    example:
-      'Start easy with our free cloud storage or deploy to your own AWS or GCP clusters.',
+    type: translate({
+      id: 'products.storage.features.cloudOrOnPrem.type',
+      message: 'Infrastructure',
+    }),
+    title: translate({
+      id: 'products.storage.features.cloudOrOnPrem.title',
+      message: 'Cloud or On-Prem, Your Choice',
+    }),
+    description: translate({
+      id: 'products.storage.features.cloudOrOnPrem.description',
+      message:
+        'Store vehicle data with flexible options, managed by DIMO or on-premise in your data infrastructure.',
+    }),
+    example: translate({
+      id: 'products.storage.features.cloudOrOnPrem.example',
+      message:
+        'Start easy with our free cloud storage or deploy to your own AWS or GCP clusters.',
+    }),
   },
   {
     icon: <Search size={28} />,
-    type: 'Query Engine',
-    title: 'Lightning-Fast Queries',
-    description:
-      'Purpose-built query engine optimized for time-series vehicle data. Run complex analytics across billions of records in milliseconds.',
-    example: 'Query average fuel efficiency over 6 months in under 500ms.',
+    type: translate({
+      id: 'products.storage.features.lightningFastQueries.type',
+      message: 'Query Engine',
+    }),
+    title: translate({
+      id: 'products.storage.features.lightningFastQueries.title',
+      message: 'Lightning-Fast Queries',
+    }),
+    description: translate({
+      id: 'products.storage.features.lightningFastQueries.description',
+      message:
+        'Purpose-built query engine optimized for time-series vehicle data. Run complex analytics across billions of records in milliseconds.',
+    }),
+    example: translate({
+      id: 'products.storage.features.lightningFastQueries.example',
+      message: 'Query average fuel efficiency over 6 months in under 500ms.',
+    }),
   },
   {
     icon: <Clock size={28} />,
-    type: 'Flexibility',
-    title: 'Flexibility + Security',
-    description:
-      'Stop worrying about data storage compliance, our storage solution is designed with enterprise-grade security and compliance in mind.',
-    example:
-      'Fine-grained access controls and encryption to protect sensitive data.',
+    type: translate({
+      id: 'products.storage.features.flexibilitySecurity.type',
+      message: 'Flexibility',
+    }),
+    title: translate({
+      id: 'products.storage.features.flexibilitySecurity.title',
+      message: 'Flexibility + Security',
+    }),
+    description: translate({
+      id: 'products.storage.features.flexibilitySecurity.description',
+      message:
+        'Stop worrying about data storage compliance, our storage solution is designed with enterprise-grade security and compliance in mind.',
+    }),
+    example: translate({
+      id: 'products.storage.features.flexibilitySecurity.example',
+      message:
+        'Fine-grained access controls and encryption to protect sensitive data.',
+    }),
   },
 ];
 
@@ -71,21 +111,42 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Scalable Data Storage{' '}
-          <span className={styles.heroTitleGradient}>Cloud or On-Prem</span>
+          <Translate
+            id="products.storage.hero.scalableDataStorage"
+            values={{
+              span: (
+                <span className={styles.heroTitleGradient}>
+                  <Translate id="products.storage.hero.cloudOrOnPrem">
+                    Cloud or On-Prem
+                  </Translate>
+                </span>
+              ),
+            }}
+          >
+            {'Scalable Data Storage {span}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Petabyte-scale storage optimized for vehicle telemetry. Lightning-fast
-          queries, flexible retention, and enterprise-grade security.
+          <Translate id="products.storage.hero.petabyteScaleStorageOptimizedFor">
+            Petabyte-scale storage optimized for vehicle telemetry.
+            Lightning-fast queries, flexible retention, and enterprise-grade
+            security.
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Start Building <span className={styles.arrow}>→</span>
+            <Translate id="products.storage.hero.startBuilding">
+              Start Building
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="products.storage.hero.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -101,11 +162,21 @@ function FeaturesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Product Features</span>
-        <h2 className={styles.sectionTitle}>Built for Vehicle Data at Scale</h2>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="products.storage.features.productFeatures">
+            Product Features
+          </Translate>
+        </span>
+        <h2 className={styles.sectionTitle}>
+          <Translate id="products.storage.features.builtForVehicleData">
+            Built for Vehicle Data at Scale
+          </Translate>
+        </h2>
         <p className={styles.sectionSubtitle}>
-          Purpose-built storage infrastructure that handles the unique
-          challenges of vehicle telemetry data.
+          <Translate id="products.storage.features.purposeBuiltStorageInfrastructureThat">
+            Purpose-built storage infrastructure that handles the unique
+            challenges of vehicle telemetry data.
+          </Translate>
         </p>
       </div>
 
@@ -129,18 +200,28 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Deploy Vehicle Data Storage?
+          <Translate id="products.storage.cta.readyToDeployVehicle">
+            Ready to Deploy Vehicle Data Storage?
+          </Translate>
         </h2>
         <p className={styles.ctaText}>
-          Get started with DIMO storage designed specifically for vehicle
-          telemetry and analytics.
+          <Translate id="products.storage.cta.getStartedWithDimo">
+            Get started with DIMO storage designed specifically for vehicle
+            telemetry and analytics.
+          </Translate>
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="products.storage.cta.getStarted">
+              Get Started
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="products.storage.cta.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -153,19 +234,42 @@ export default function StoragePage(): ReactNode {
   return (
     <>
       <Head>
-        <title>Storage | DIMO Vehicle Data Storage</title>
+        <title>
+          {translate({
+            id: 'products.storage.meta.title',
+            message: 'Storage | DIMO Vehicle Data Storage',
+          })}
+        </title>
         <meta
           name="description"
-          content="Petabyte-scale vehicle data storage with lightning-fast queries, flexible retention, and enterprise-grade security."
+          content={translate({
+            id: 'products.storage.meta.description',
+            message:
+              'Petabyte-scale vehicle data storage with lightning-fast queries, flexible retention, and enterprise-grade security.',
+          })}
         />
         <meta
           name="keywords"
-          content="vehicle data storage, time-series database, vehicle telemetry, data retention, encrypted storage"
+          content={translate({
+            id: 'products.storage.meta.keywords',
+            message:
+              'vehicle data storage, time-series database, vehicle telemetry, data retention, encrypted storage',
+          })}
         />
-        <meta property="og:title" content="Storage | DIMO Platform" />
+        <meta
+          property="og:title"
+          content={translate({
+            id: 'products.storage.meta.ogTitle',
+            message: 'Storage | DIMO Platform',
+          })}
+        />
         <meta
           property="og:description"
-          content="Scalable storage infrastructure built for vehicle telemetry data at any scale."
+          content={translate({
+            id: 'products.storage.meta.ogDescription',
+            message:
+              'Scalable storage infrastructure built for vehicle telemetry data at any scale.',
+          })}
         />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
@@ -201,9 +305,26 @@ export default function StoragePage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://dimo.org/' },
-            { name: 'Products', url: 'https://dimo.org/#products' },
-            { name: 'Storage' },
+            {
+              name: translate({
+                id: 'products.storage.body.home.name',
+                message: 'Home',
+              }),
+              url: 'https://dimo.org/',
+            },
+            {
+              name: translate({
+                id: 'products.storage.body.products.name',
+                message: 'Products',
+              }),
+              url: 'https://dimo.org/#products',
+            },
+            {
+              name: translate({
+                id: 'products.storage.body.storage.name',
+                message: 'Storage',
+              }),
+            },
           ]}
         />
 

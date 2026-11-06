@@ -19,8 +19,12 @@ import {
   Truck,
   ChevronDown,
 } from 'lucide-react';
+import Translate, { translate } from '@docusaurus/Translate';
 
-const INDUSTRY_NAME = 'Delivery Service Providers';
+const INDUSTRY_NAME = translate({
+  id: 'industries.dsp.meta.industryName',
+  message: 'Delivery Service Providers',
+});
 const HERO_BACKGROUND = '/img/mp4/dsp.mp4?v=2';
 const imgTrucks = '/img/trucks.png';
 const imgMechanic = '/img/mechanic5.png';
@@ -28,65 +32,161 @@ const imgMechanic = '/img/mechanic5.png';
 const USE_CASES = [
   {
     icon: <LayoutDashboard size={28} />,
-    type: 'Fleets',
-    title: 'Fleet Operations Command Center',
-    description:
-      'Get real-time visibility into your entire fleet with a comprehensive dashboard showing availability, conditions, maintenance needs, and driver status at a glance.',
-    example:
-      '"Show me all vehicles currently available and their last maintenance date."',
+    type: translate({
+      id: 'industries.dsp.useCases.fleetOperationsCommand.type',
+      message: 'Fleets',
+    }),
+    title: translate({
+      id: 'industries.dsp.useCases.fleetOperationsCommand.title',
+      message: 'Fleet Operations Command Center',
+    }),
+    description: translate({
+      id: 'industries.dsp.useCases.fleetOperationsCommand.description',
+      message:
+        'Get real-time visibility into your entire fleet with a comprehensive dashboard showing availability, conditions, maintenance needs, and driver status at a glance.',
+    }),
+    example: translate({
+      id: 'industries.dsp.useCases.fleetOperationsCommand.example',
+      message:
+        '"Show me all vehicles currently available and their last maintenance date."',
+    }),
   },
   {
     icon: <Wrench size={28} />,
-    type: 'Fleets',
-    title: 'Predictive Maintenance Copilot',
-    description:
-      'AI-powered maintenance predictions that analyze vehicle data to identify issues before they cause breakdowns, reducing downtime and repair costs.',
-    example:
-      '"Vehicle F-2847 shows early signs of brake wear. Schedule service within the next 500 miles."',
+    type: translate({
+      id: 'industries.dsp.useCases.predictiveMaintenanceCopilot.type',
+      message: 'Fleets',
+    }),
+    title: translate({
+      id: 'industries.dsp.useCases.predictiveMaintenanceCopilot.title',
+      message: 'Predictive Maintenance Copilot',
+    }),
+    description: translate({
+      id: 'industries.dsp.useCases.predictiveMaintenanceCopilot.description',
+      message:
+        'AI-powered maintenance predictions that analyze vehicle data to identify issues before they cause breakdowns, reducing downtime and repair costs.',
+    }),
+    example: translate({
+      id: 'industries.dsp.useCases.predictiveMaintenanceCopilot.example',
+      message:
+        '"Vehicle F-2847 shows early signs of brake wear. Schedule service within the next 500 miles."',
+    }),
   },
   {
     icon: <Users size={28} />,
-    type: 'Fleets',
-    title: 'Driver Behavior Coaching',
-    description:
-      'Monitor driving patterns and automatically provide coaching and corrective actions for aggressive driving, harsh braking, and other risky behaviors.',
-    example:
-      'Agent sends coaching message: "3 harsh braking events detected today. Smooth braking extends tire life and fuel economy."',
+    type: translate({
+      id: 'industries.dsp.useCases.driverBehaviorCoaching.type',
+      message: 'Fleets',
+    }),
+    title: translate({
+      id: 'industries.dsp.useCases.driverBehaviorCoaching.title',
+      message: 'Driver Behavior Coaching',
+    }),
+    description: translate({
+      id: 'industries.dsp.useCases.driverBehaviorCoaching.description',
+      message:
+        'Monitor driving patterns and automatically provide coaching and corrective actions for aggressive driving, harsh braking, and other risky behaviors.',
+    }),
+    example: translate({
+      id: 'industries.dsp.useCases.driverBehaviorCoaching.example',
+      message:
+        'Agent sends coaching message: "3 harsh braking events detected today. Smooth braking extends tire life and fuel economy."',
+    }),
   },
   {
     icon: <Route size={28} />,
-    type: 'Fleets',
-    title: 'Route Performance Analysis',
-    description:
-      'Analyze historical route data to identify the fastest, safest, and most efficient delivery routes. Flag routes with high incident rates.',
-    example:
-      '"Route 7A has 40% faster completion times than Route 7B, with fewer aggressive driving events."',
+    type: translate({
+      id: 'industries.dsp.useCases.routePerformanceAnalysis.type',
+      message: 'Fleets',
+    }),
+    title: translate({
+      id: 'industries.dsp.useCases.routePerformanceAnalysis.title',
+      message: 'Route Performance Analysis',
+    }),
+    description: translate({
+      id: 'industries.dsp.useCases.routePerformanceAnalysis.description',
+      message:
+        'Analyze historical route data to identify the fastest, safest, and most efficient delivery routes. Flag routes with high incident rates.',
+    }),
+    example: translate({
+      id: 'industries.dsp.useCases.routePerformanceAnalysis.example',
+      message:
+        '"Route 7A has 40% faster completion times than Route 7B, with fewer aggressive driving events."',
+    }),
   },
   {
     icon: <AlertOctagon size={28} />,
-    type: 'Fleets',
-    title: 'Damage Detection & Incident Response',
-    description:
-      'Automatically detect vehicle damage, crashes, and incidents. Generate reports, trigger notifications, and coordinate response workflows.',
-    example:
-      'Instant alert: "Collision detected on Vehicle D-1923 at 2:34 PM. Location: 5th & Main. Driver status: OK."',
+    type: translate({
+      id: 'industries.dsp.useCases.damageDetectionIncident.type',
+      message: 'Fleets',
+    }),
+    title: translate({
+      id: 'industries.dsp.useCases.damageDetectionIncident.title',
+      message: 'Damage Detection & Incident Response',
+    }),
+    description: translate({
+      id: 'industries.dsp.useCases.damageDetectionIncident.description',
+      message:
+        'Automatically detect vehicle damage, crashes, and incidents. Generate reports, trigger notifications, and coordinate response workflows.',
+    }),
+    example: translate({
+      id: 'industries.dsp.useCases.damageDetectionIncident.example',
+      message:
+        'Instant alert: "Collision detected on Vehicle D-1923 at 2:34 PM. Location: 5th & Main. Driver status: OK."',
+    }),
   },
   {
     icon: <Gauge size={28} />,
-    type: 'Fleets',
-    title: 'Real-Time Fleet Health Dashboard',
-    description:
-      'Monitor fuel levels, tire pressure, engine diagnostics, and overall vehicle health across your entire fleet in one unified view.',
-    example:
-      '"5 vehicles need attention: 2 low fuel, 2 tire pressure alerts, 1 check engine light."',
+    type: translate({
+      id: 'industries.dsp.useCases.realTimeFleetHealth.type',
+      message: 'Fleets',
+    }),
+    title: translate({
+      id: 'industries.dsp.useCases.realTimeFleetHealth.title',
+      message: 'Real-Time Fleet Health Dashboard',
+    }),
+    description: translate({
+      id: 'industries.dsp.useCases.realTimeFleetHealth.description',
+      message:
+        'Monitor fuel levels, tire pressure, engine diagnostics, and overall vehicle health across your entire fleet in one unified view.',
+    }),
+    example: translate({
+      id: 'industries.dsp.useCases.realTimeFleetHealth.example',
+      message:
+        '"5 vehicles need attention: 2 low fuel, 2 tire pressure alerts, 1 check engine light."',
+    }),
   },
 ];
 
 const STATS = [
-  { number: '25%', label: 'Reduction in Vehicle Downtime' },
-  { number: '18%', label: 'Fuel Cost Savings' },
-  { number: 'Zero', label: 'SQL Queries Required' },
-  { number: '30%', label: 'Quality of Life Improvements' },
+  {
+    number: '25%',
+    label: translate({
+      id: 'industries.dsp.stats.reductionInVehicle.label',
+      message: 'Reduction in Vehicle Downtime',
+    }),
+  },
+  {
+    number: '18%',
+    label: translate({
+      id: 'industries.dsp.stats.fuelCostSavings.label',
+      message: 'Fuel Cost Savings',
+    }),
+  },
+  {
+    number: 'Zero',
+    label: translate({
+      id: 'industries.dsp.stats.sqlQueriesRequired.label',
+      message: 'SQL Queries Required',
+    }),
+  },
+  {
+    number: '30%',
+    label: translate({
+      id: 'industries.dsp.stats.qualityOfLife.label',
+      message: 'Quality of Life Improvements',
+    }),
+  },
 ];
 
 function HeroSection() {
@@ -117,24 +217,43 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Command Your Fleet with{' '}
-          <span className={styles.heroTitleGradient}>
-            Intelligent Operations
-          </span>
+          <Translate
+            id="industries.dsp.hero.commandYourFleetWith"
+            values={{
+              span: (
+                <span className={styles.heroTitleGradient}>
+                  <Translate id="industries.dsp.hero.intelligentOperations">
+                    Intelligent Operations
+                  </Translate>
+                </span>
+              ),
+            }}
+          >
+            {'Command Your Fleet with {span}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          From predictive maintenance to driver coaching and route optimization,
-          DIMO gives delivery service providers the real-time intelligence they
-          need to maximize uptime, reduce costs, and deliver on every promise.
+          <Translate id="industries.dsp.hero.fromPredictiveMaintenanceTo">
+            From predictive maintenance to driver coaching and route
+            optimization, DIMO gives delivery service providers the real-time
+            intelligence they need to maximize uptime, reduce costs, and deliver
+            on every promise.
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="industries.dsp.hero.getStarted">
+              Get Started
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="industries.dsp.hero.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -165,14 +284,20 @@ function UseCasesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Use Cases</span>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="industries.dsp.useCases.useCases">Use Cases</Translate>
+        </span>
         <h2 className={styles.sectionTitle}>
-          Built for High-Performance Delivery Operations
+          <Translate id="industries.dsp.useCases.builtForHighPerformanceDelivery">
+            Built for High-Performance Delivery Operations
+          </Translate>
         </h2>
         <p className={styles.sectionSubtitle}>
-          DIMO's fleet intelligence platform helps delivery service providers
-          optimize every aspect of their operations—from vehicle health to
-          driver performance to route efficiency.
+          <Translate id="industries.dsp.useCases.dimosFleetIntelligencePlatform">
+            DIMO's fleet intelligence platform helps delivery service providers
+            optimize every aspect of their operations—from vehicle health to
+            driver performance to route efficiency.
+          </Translate>
         </p>
       </div>
 
@@ -196,34 +321,54 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Predict Problems Before They Happen</h2>
+          <h2>
+            <Translate id="industries.dsp.featureSection1.predictProblemsBeforeThey">
+              Predict Problems Before They Happen
+            </Translate>
+          </h2>
           <p>
-            DIMO's predictive maintenance copilot continuously analyzes vehicle
-            data—engine diagnostics, usage patterns, environmental conditions,
-            and historical maintenance records—to identify issues before they
-            cause expensive breakdowns or missed deliveries.
+            <Translate id="industries.dsp.featureSection1.dimosPredictiveMaintenanceCopilot">
+              DIMO's predictive maintenance copilot continuously analyzes
+              vehicle data—engine diagnostics, usage patterns, environmental
+              conditions, and historical maintenance records—to identify issues
+              before they cause expensive breakdowns or missed deliveries.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              AI-powered failure prediction based on real vehicle data
+              <Translate id="industries.dsp.featureSection1.aiPoweredFailurePredictionBased">
+                AI-powered failure prediction based on real vehicle data
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Automatic maintenance scheduling when issues are detected
+              <Translate id="industries.dsp.featureSection1.automaticMaintenanceSchedulingWhen">
+                Automatic maintenance scheduling when issues are detected
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Integration with your existing maintenance systems
+              <Translate id="industries.dsp.featureSection1.integrationWithYourExisting">
+                Integration with your existing maintenance systems
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Reduce emergency repairs and roadside breakdowns
+              <Translate id="industries.dsp.featureSection1.reduceEmergencyRepairsAnd">
+                Reduce emergency repairs and roadside breakdowns
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgMechanic} alt="Mechanic Inspecting Delivery Vehicle" />
+          <img
+            src={imgMechanic}
+            alt={translate({
+              id: 'industries.dsp.featureSection1.mechanicInspectingDeliveryVehicle',
+              message: 'Mechanic Inspecting Delivery Vehicle',
+            })}
+          />
         </div>
       </div>
     </section>
@@ -237,34 +382,54 @@ function FeatureSection2() {
         className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
       >
         <div className={styles.featureText}>
-          <h2>Optimize Routes, Maximize Deliveries</h2>
+          <h2>
+            <Translate id="industries.dsp.featureSection2.optimizeRoutesMaximizeDeliveries">
+              Optimize Routes, Maximize Deliveries
+            </Translate>
+          </h2>
           <p>
-            Go beyond basic GPS tracking. DIMO's route analysis intelligence
-            examines historical performance data to identify which routes are
-            fastest, where problems occur, and how to optimize your delivery
-            network for maximum efficiency.
+            <Translate id="industries.dsp.featureSection2.goBeyondBasicGps">
+              Go beyond basic GPS tracking. DIMO's route analysis intelligence
+              examines historical performance data to identify which routes are
+              fastest, where problems occur, and how to optimize your delivery
+              network for maximum efficiency.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Identify high-performing vs. problem routes
+              <Translate id="industries.dsp.featureSection2.identifyHighPerformingVsProblem">
+                Identify high-performing vs. problem routes
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Correlate routes with driver behavior and incidents
+              <Translate id="industries.dsp.featureSection2.correlateRoutesWithDriver">
+                Correlate routes with driver behavior and incidents
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Suggest optimized alternatives based on real data
+              <Translate id="industries.dsp.featureSection2.suggestOptimizedAlternativesBased">
+                Suggest optimized alternatives based on real data
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Track improvements over time with analytics
+              <Translate id="industries.dsp.featureSection2.trackImprovementsOverTime">
+                Track improvements over time with analytics
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgTrucks} alt="Delivery Trucks on Route" />
+          <img
+            src={imgTrucks}
+            alt={translate({
+              id: 'industries.dsp.featureSection2.deliveryTrucksOnRoute',
+              message: 'Delivery Trucks on Route',
+            })}
+          />
         </div>
       </div>
     </section>
@@ -274,37 +439,69 @@ function FeatureSection2() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Connect Your Fleet',
-      description:
-        'Onboard your delivery vehicles using DIMO hardware or native OEM connections. Integration is seamless with your existing fleet management tools.',
+      title: translate({
+        id: 'industries.dsp.howItWorks.connectYourFleet.title',
+        message: 'Connect Your Fleet',
+      }),
+      description: translate({
+        id: 'industries.dsp.howItWorks.connectYourFleet.description',
+        message:
+          'Onboard your delivery vehicles using DIMO hardware or native OEM connections. Integration is seamless with your existing fleet management tools.',
+      }),
     },
     {
-      title: 'Configure Your Command Center',
-      description:
-        'Set up real-time monitoring, maintenance thresholds, driver coaching parameters, and custom alerts tailored to your operations.',
+      title: translate({
+        id: 'industries.dsp.howItWorks.configureYourCommand.title',
+        message: 'Configure Your Command Center',
+      }),
+      description: translate({
+        id: 'industries.dsp.howItWorks.configureYourCommand.description',
+        message:
+          'Set up real-time monitoring, maintenance thresholds, driver coaching parameters, and custom alerts tailored to your operations.',
+      }),
     },
     {
-      title: 'Deploy Intelligent Agents',
-      description:
-        'Activate AI-powered copilots for maintenance prediction, route analysis, driver coaching, and incident response.',
+      title: translate({
+        id: 'industries.dsp.howItWorks.deployIntelligentAgents.title',
+        message: 'Deploy Intelligent Agents',
+      }),
+      description: translate({
+        id: 'industries.dsp.howItWorks.deployIntelligentAgents.description',
+        message:
+          'Activate AI-powered copilots for maintenance prediction, route analysis, driver coaching, and incident response.',
+      }),
     },
     {
-      title: 'Optimize Continuously',
-      description:
-        'Use real-time data and analytics to continuously improve fleet performance, reduce costs, and maximize on-time deliveries.',
+      title: translate({
+        id: 'industries.dsp.howItWorks.optimizeContinuously.title',
+        message: 'Optimize Continuously',
+      }),
+      description: translate({
+        id: 'industries.dsp.howItWorks.optimizeContinuously.description',
+        message:
+          'Use real-time data and analytics to continuously improve fleet performance, reduce costs, and maximize on-time deliveries.',
+      }),
     },
   ];
 
   return (
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>How It Works</span>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="industries.dsp.howItWorks.howItWorks">
+            How It Works
+          </Translate>
+        </span>
         <h2 className={styles.sectionTitle}>
-          From Setup to Optimization in Days
+          <Translate id="industries.dsp.howItWorks.fromSetupToOptimization">
+            From Setup to Optimization in Days
+          </Translate>
         </h2>
         <p className={styles.sectionSubtitle}>
-          DIMO integrates with your existing systems and starts delivering
-          actionable intelligence immediately.
+          <Translate id="industries.dsp.howItWorks.dimoIntegratesWithYour">
+            DIMO integrates with your existing systems and starts delivering
+            actionable intelligence immediately.
+          </Translate>
         </p>
       </div>
 
@@ -329,18 +526,28 @@ function CTASection() {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
         <h2 className={styles.ctaTitle}>
-          Ready to Transform Your Delivery Operations?
+          <Translate id="industries.dsp.cta.readyToTransformYour">
+            Ready to Transform Your Delivery Operations?
+          </Translate>
         </h2>
         <p className={styles.ctaText}>
-          Join leading delivery service providers using DIMO to reduce costs,
-          improve reliability, and deliver on every promise.
+          <Translate id="industries.dsp.cta.joinLeadingDeliveryService">
+            Join leading delivery service providers using DIMO to reduce costs,
+            improve reliability, and deliver on every promise.
+          </Translate>
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Start Building Today <span className={styles.arrow}>→</span>
+            <Translate id="industries.dsp.cta.startBuildingToday">
+              Start Building Today
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <Link className={styles.secondaryBtn} to="mailto:contact@dimo.org">
-            Contact Sales <span className={styles.arrow}>→</span>
+            <Translate id="industries.dsp.cta.contactSales">
+              Contact Sales
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
         </div>
       </div>
@@ -354,23 +561,42 @@ export default function DeliveryPage(): ReactNode {
     <>
       <Head>
         <title>
-          DIMO for Delivery | Fleet Intelligence for Delivery Service Providers
+          {translate({
+            id: 'industries.dsp.meta.title',
+            message:
+              'DIMO for Delivery | Fleet Intelligence for Delivery Service Providers',
+          })}
         </title>
         <meta
           name="description"
-          content="Optimize delivery operations with DIMO's intelligent fleet platform. Predictive maintenance, driver coaching, route analysis, and real-time fleet monitoring."
+          content={translate({
+            id: 'industries.dsp.meta.description',
+            message:
+              "Optimize delivery operations with DIMO's intelligent fleet platform. Predictive maintenance, driver coaching, route analysis, and real-time fleet monitoring.",
+          })}
         />
         <meta
           name="keywords"
-          content="delivery fleet management, predictive maintenance, driver coaching, route optimization, fleet monitoring, logistics technology, delivery operations"
+          content={translate({
+            id: 'industries.dsp.meta.keywords',
+            message:
+              'delivery fleet management, predictive maintenance, driver coaching, route optimization, fleet monitoring, logistics technology, delivery operations',
+          })}
         />
         <meta
           property="og:title"
-          content="DIMO for Delivery | Fleet Intelligence Platform"
+          content={translate({
+            id: 'industries.dsp.meta.ogTitle',
+            message: 'DIMO for Delivery | Fleet Intelligence Platform',
+          })}
         />
         <meta
           property="og:description"
-          content="Command your delivery fleet with AI-powered predictive maintenance, driver coaching, route analysis, and real-time monitoring."
+          content={translate({
+            id: 'industries.dsp.meta.ogDescription',
+            message:
+              'Command your delivery fleet with AI-powered predictive maintenance, driver coaching, route analysis, and real-time monitoring.',
+          })}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -407,9 +633,26 @@ export default function DeliveryPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://dimo.org/' },
-            { name: 'Industries', url: 'https://dimo.org/#industries' },
-            { name: 'Data Service Providers' },
+            {
+              name: translate({
+                id: 'industries.dsp.body.home.name',
+                message: 'Home',
+              }),
+              url: 'https://dimo.org/',
+            },
+            {
+              name: translate({
+                id: 'industries.dsp.body.industries.name',
+                message: 'Industries',
+              }),
+              url: 'https://dimo.org/#industries',
+            },
+            {
+              name: translate({
+                id: 'industries.dsp.body.dataServiceProviders.name',
+                message: 'Data Service Providers',
+              }),
+            },
           ]}
         />
 

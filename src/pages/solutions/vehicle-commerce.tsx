@@ -18,8 +18,12 @@ import {
   ChevronDown,
   CreditCard,
 } from 'lucide-react';
+import Translate, { translate } from '@docusaurus/Translate';
 
-const SOLUTION_NAME = 'Vehicle Commerce';
+const SOLUTION_NAME = translate({
+  id: 'solutions.vehicleCommerce.meta.solutionName',
+  message: 'Vehicle Commerce',
+});
 const HERO_BACKGROUND = '/img/mp4/charging.mp4?v=2';
 const imgToken = '/img/token.webp';
 const imgShop = '/img/shop.png';
@@ -27,65 +31,161 @@ const imgShop = '/img/shop.png';
 const USE_CASES = [
   {
     icon: <Coins size={28} />,
-    type: 'Payments',
-    title: 'Stablecoin Payments',
-    description:
-      'Accept payments in USDC, USDT, and other stablecoins directly from vehicles. Low fees, instant settlement, and global reach without currency conversion.',
-    example:
-      'Tolls, parking, charging, and vehicle services—all paid automatically with stable, reliable cryptocurrency.',
+    type: translate({
+      id: 'solutions.vehicleCommerce.useCases.stablecoinPayments.type',
+      message: 'Payments',
+    }),
+    title: translate({
+      id: 'solutions.vehicleCommerce.useCases.stablecoinPayments.title',
+      message: 'Stablecoin Payments',
+    }),
+    description: translate({
+      id: 'solutions.vehicleCommerce.useCases.stablecoinPayments.description',
+      message:
+        'Accept payments in USDC, USDT, and other stablecoins directly from vehicles. Low fees, instant settlement, and global reach without currency conversion.',
+    }),
+    example: translate({
+      id: 'solutions.vehicleCommerce.useCases.stablecoinPayments.example',
+      message:
+        'Tolls, parking, charging, and vehicle services—all paid automatically with stable, reliable cryptocurrency.',
+    }),
   },
   {
     icon: <Shield size={28} />,
-    type: 'Protocol',
-    title: 'x402 Payment Protocol',
-    description:
-      'Machine-to-machine payment standard built for vehicles. Automated, secure, and permission-based transactions between vehicles and service providers.',
-    example:
-      'Vehicles pay for services automatically—no user intervention, no payment failures, no friction.',
+    type: translate({
+      id: 'solutions.vehicleCommerce.useCases.x402PaymentProtocol.type',
+      message: 'Protocol',
+    }),
+    title: translate({
+      id: 'solutions.vehicleCommerce.useCases.x402PaymentProtocol.title',
+      message: 'x402 Payment Protocol',
+    }),
+    description: translate({
+      id: 'solutions.vehicleCommerce.useCases.x402PaymentProtocol.description',
+      message:
+        'Machine-to-machine payment standard built for vehicles. Automated, secure, and permission-based transactions between vehicles and service providers.',
+    }),
+    example: translate({
+      id: 'solutions.vehicleCommerce.useCases.x402PaymentProtocol.example',
+      message:
+        'Vehicles pay for services automatically—no user intervention, no payment failures, no friction.',
+    }),
   },
   {
     icon: <Zap size={28} />,
-    type: 'Infrastructure',
-    title: 'Instant Settlement',
-    description:
-      'Payments settle in seconds, not days. Eliminate chargebacks, reduce fraud, and improve cash flow with blockchain-based settlement.',
-    example:
-      'Service providers receive funds immediately—no waiting for bank transfers or payment processors.',
+    type: translate({
+      id: 'solutions.vehicleCommerce.useCases.instantSettlement.type',
+      message: 'Infrastructure',
+    }),
+    title: translate({
+      id: 'solutions.vehicleCommerce.useCases.instantSettlement.title',
+      message: 'Instant Settlement',
+    }),
+    description: translate({
+      id: 'solutions.vehicleCommerce.useCases.instantSettlement.description',
+      message:
+        'Payments settle in seconds, not days. Eliminate chargebacks, reduce fraud, and improve cash flow with blockchain-based settlement.',
+    }),
+    example: translate({
+      id: 'solutions.vehicleCommerce.useCases.instantSettlement.example',
+      message:
+        'Service providers receive funds immediately—no waiting for bank transfers or payment processors.',
+    }),
   },
   {
     icon: <DollarSign size={28} />,
-    type: 'Economics',
-    title: 'Low Transaction Fees',
-    description:
-      'Pay a fraction of traditional payment processing fees. No interchange fees, no processing delays—just simple, cost-effective transactions.',
-    example:
-      'Save 60-80% on payment processing costs compared to traditional card networks.',
+    type: translate({
+      id: 'solutions.vehicleCommerce.useCases.lowTransactionFees.type',
+      message: 'Economics',
+    }),
+    title: translate({
+      id: 'solutions.vehicleCommerce.useCases.lowTransactionFees.title',
+      message: 'Low Transaction Fees',
+    }),
+    description: translate({
+      id: 'solutions.vehicleCommerce.useCases.lowTransactionFees.description',
+      message:
+        'Pay a fraction of traditional payment processing fees. No interchange fees, no processing delays—just simple, cost-effective transactions.',
+    }),
+    example: translate({
+      id: 'solutions.vehicleCommerce.useCases.lowTransactionFees.example',
+      message:
+        'Save 60-80% on payment processing costs compared to traditional card networks.',
+    }),
   },
   {
     icon: <RefreshCw size={28} />,
-    type: 'Automation',
-    title: 'Automated Micropayments',
-    description:
-      'Enable micropayments for usage-based services. Pay-per-mile insurance, per-kWh charging, or per-minute parking—all automated and seamless.',
-    example:
-      'Users pay only for what they use, with transactions happening automatically in the background.',
+    type: translate({
+      id: 'solutions.vehicleCommerce.useCases.automatedMicropayments.type',
+      message: 'Automation',
+    }),
+    title: translate({
+      id: 'solutions.vehicleCommerce.useCases.automatedMicropayments.title',
+      message: 'Automated Micropayments',
+    }),
+    description: translate({
+      id: 'solutions.vehicleCommerce.useCases.automatedMicropayments.description',
+      message:
+        'Enable micropayments for usage-based services. Pay-per-mile insurance, per-kWh charging, or per-minute parking—all automated and seamless.',
+    }),
+    example: translate({
+      id: 'solutions.vehicleCommerce.useCases.automatedMicropayments.example',
+      message:
+        'Users pay only for what they use, with transactions happening automatically in the background.',
+    }),
   },
   {
     icon: <CreditCard size={28} />,
-    type: 'Integration',
-    title: 'Seamless Wallet Integration',
-    description:
-      'Built-in wallet infrastructure with user-friendly interfaces. Users manage balances, view transactions, and control spending—all within your app.',
-    example:
-      'One-tap payments, transaction history, and spending controls—native wallet experience included.',
+    type: translate({
+      id: 'solutions.vehicleCommerce.useCases.seamlessWalletIntegration.type',
+      message: 'Integration',
+    }),
+    title: translate({
+      id: 'solutions.vehicleCommerce.useCases.seamlessWalletIntegration.title',
+      message: 'Seamless Wallet Integration',
+    }),
+    description: translate({
+      id: 'solutions.vehicleCommerce.useCases.seamlessWalletIntegration.description',
+      message:
+        'Built-in wallet infrastructure with user-friendly interfaces. Users manage balances, view transactions, and control spending—all within your app.',
+    }),
+    example: translate({
+      id: 'solutions.vehicleCommerce.useCases.seamlessWalletIntegration.example',
+      message:
+        'One-tap payments, transaction history, and spending controls—native wallet experience included.',
+    }),
   },
 ];
 
 const STATS = [
-  { number: '<3s', label: 'Payment Settlement' },
-  { number: '70%', label: 'Lower Fees' },
-  { number: 'USDC/USDT', label: 'Stablecoins Supported' },
-  { number: 'x402', label: 'Open Protocol' },
+  {
+    number: '<3s',
+    label: translate({
+      id: 'solutions.vehicleCommerce.stats.paymentSettlement.label',
+      message: 'Payment Settlement',
+    }),
+  },
+  {
+    number: '70%',
+    label: translate({
+      id: 'solutions.vehicleCommerce.stats.lowerFees.label',
+      message: 'Lower Fees',
+    }),
+  },
+  {
+    number: 'USDC/USDT',
+    label: translate({
+      id: 'solutions.vehicleCommerce.stats.stablecoinsSupported.label',
+      message: 'Stablecoins Supported',
+    }),
+  },
+  {
+    number: 'x402',
+    label: translate({
+      id: 'solutions.vehicleCommerce.stats.openProtocol.label',
+      message: 'Open Protocol',
+    }),
+  },
 ];
 
 function HeroSection() {
@@ -116,22 +216,42 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Enable Frictionless Vehicle Payments with{' '}
-          <span className={styles.heroTitleGradient}>Stablecoins & x402</span>
+          <Translate
+            id="solutions.vehicleCommerce.hero.enableFrictionlessVehiclePayments"
+            values={{
+              span: (
+                <span className={styles.heroTitleGradient}>
+                  <Translate id="solutions.vehicleCommerce.hero.stablecoinsX402">
+                    Stablecoins & x402
+                  </Translate>
+                </span>
+              ),
+            }}
+          >
+            {'Enable Frictionless Vehicle Payments with {span}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Accept stablecoin payments, enable machine-to-machine transactions,
-          and automate vehicle commerce with the x402 protocol. Low fees,
-          instant settlement, and global reach—built for modern mobility.
+          <Translate id="solutions.vehicleCommerce.hero.acceptStablecoinPaymentsEnable">
+            Accept stablecoin payments, enable machine-to-machine transactions,
+            and automate vehicle commerce with the x402 protocol. Low fees,
+            instant settlement, and global reach—built for modern mobility.
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="solutions.vehicleCommerce.hero.getStarted">
+              Get Started
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="solutions.vehicleCommerce.hero.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -162,14 +282,22 @@ function UseCasesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Platform Features</span>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="solutions.vehicleCommerce.useCases.platformFeatures">
+            Platform Features
+          </Translate>
+        </span>
         <h2 className={styles.sectionTitle}>
-          Everything You Need for Vehicle Payments
+          <Translate id="solutions.vehicleCommerce.useCases.everythingYouNeedFor">
+            Everything You Need for Vehicle Payments
+          </Translate>
         </h2>
         <p className={styles.sectionSubtitle}>
-          From stablecoin infrastructure to the x402 payment protocol, DIMO
-          provides the complete platform for building modern vehicle commerce
-          applications.
+          <Translate id="solutions.vehicleCommerce.useCases.fromStablecoinInfrastructureTo">
+            From stablecoin infrastructure to the x402 payment protocol, DIMO
+            provides the complete platform for building modern vehicle commerce
+            applications.
+          </Translate>
         </p>
       </div>
 
@@ -193,34 +321,54 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Stablecoin Payments: Fast, Cheap, Global</h2>
+          <h2>
+            <Translate id="solutions.vehicleCommerce.featureSection1.stablecoinPaymentsFastCheap">
+              Stablecoin Payments: Fast, Cheap, Global
+            </Translate>
+          </h2>
           <p>
-            Accept USDC, USDT, and other stablecoins for vehicle services.
-            Instant settlement, low fees, and no currency conversion--payments
-            that work globally without the complexity of traditional payment
-            processors.
+            <Translate id="solutions.vehicleCommerce.featureSection1.acceptUsdcUsdtAnd">
+              Accept USDC, USDT, and other stablecoins for vehicle services.
+              Instant settlement, low fees, and no currency conversion--payments
+              that work globally without the complexity of traditional payment
+              processors.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              USDC and USDT support on major blockchains (Polygon, Base, etc.)
+              <Translate id="solutions.vehicleCommerce.featureSection1.usdcAndUsdtSupport">
+                USDC and USDT support on major blockchains (Polygon, Base, etc.)
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Settlement in seconds, not days
+              <Translate id="solutions.vehicleCommerce.featureSection1.settlementInSecondsNot">
+                Settlement in seconds, not days
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              70% lower transaction fees than card networks
+              <Translate id="solutions.vehicleCommerce.featureSection1.70LowerTransactionFees">
+                70% lower transaction fees than card networks
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              No chargebacks, no fraud -- immutable on-chain transactions
+              <Translate id="solutions.vehicleCommerce.featureSection1.noChargebacksNoFraud">
+                No chargebacks, no fraud -- immutable on-chain transactions
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgToken} alt="Stablecoin Tokens" />
+          <img
+            src={imgToken}
+            alt={translate({
+              id: 'solutions.vehicleCommerce.featureSection1.stablecoinTokens',
+              message: 'Stablecoin Tokens',
+            })}
+          />
         </div>
       </div>
     </section>
@@ -234,29 +382,43 @@ function FeatureSection2() {
         className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
       >
         <div className={styles.featureText}>
-          <h2>x402 Protocol: Machine-to-Machine Payments</h2>
+          <h2>
+            <Translate id="solutions.vehicleCommerce.featureSection2.x402ProtocolMachineToMachinePayments">
+              x402 Protocol: Machine-to-Machine Payments
+            </Translate>
+          </h2>
           <p>
-            The x402 protocol enables automated, permission-based transactions
-            between vehicles and service providers. Vehicles pay for tolls,
-            parking, charging, and services automatically—no user interaction
-            required.
+            <Translate id="solutions.vehicleCommerce.featureSection2.theX402ProtocolEnables">
+              The x402 protocol enables automated, permission-based transactions
+              between vehicles and service providers. Vehicles pay for tolls,
+              parking, charging, and services automatically—no user interaction
+              required.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Open standard for vehicle-to-infrastructure payments
+              <Translate id="solutions.vehicleCommerce.featureSection2.openStandardForVehicleToInfrastructure">
+                Open standard for vehicle-to-infrastructure payments
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Permission-based spending with user-defined limits
+              <Translate id="solutions.vehicleCommerce.featureSection2.permissionBasedSpendingWithUserDefined">
+                Permission-based spending with user-defined limits
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Automated payments without user intervention
+              <Translate id="solutions.vehicleCommerce.featureSection2.automatedPaymentsWithoutUser">
+                Automated payments without user intervention
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Compatible with existing payment infrastructure
+              <Translate id="solutions.vehicleCommerce.featureSection2.compatibleWithExistingPayment">
+                Compatible with existing payment infrastructure
+              </Translate>
             </li>
           </ul>
         </div>
@@ -267,7 +429,10 @@ function FeatureSection2() {
             muted
             playsInline
             preload="none"
-            aria-label="x402 Protocol Diagram"
+            aria-label={translate({
+              id: 'solutions.vehicleCommerce.featureSection2.x402ProtocolDiagram',
+              message: 'x402 Protocol Diagram',
+            })}
           >
             <source src="/img/dimo-pathways.webm" type="video/webm" />
             <source src="/img/dimo-pathways.mp4" type="video/mp4" />
@@ -283,34 +448,54 @@ function FeatureSection3() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Built-In Wallet Infrastructure</h2>
+          <h2>
+            <Translate id="solutions.vehicleCommerce.featureSection3.builtInWalletInfrastructure">
+              Built-In Wallet Infrastructure
+            </Translate>
+          </h2>
           <p>
-            Complete wallet solution with user-friendly interfaces. Users manage
-            balances, view transaction history, and control spending—all
-            integrated into your application with no additional development
-            required.
+            <Translate id="solutions.vehicleCommerce.featureSection3.completeWalletSolutionWith">
+              Complete wallet solution with user-friendly interfaces. Users
+              manage balances, view transaction history, and control
+              spending—all integrated into your application with no additional
+              development required.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Non-custodial wallets with secure key management
+              <Translate id="solutions.vehicleCommerce.featureSection3.nonCustodialWalletsWithSecure">
+                Non-custodial wallets with secure key management
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              On/off ramp integrations for fiat conversion
+              <Translate id="solutions.vehicleCommerce.featureSection3.onOffRampIntegrationsFor">
+                On/off ramp integrations for fiat conversion
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Transaction history and spending analytics
+              <Translate id="solutions.vehicleCommerce.featureSection3.transactionHistoryAndSpending">
+                Transaction history and spending analytics
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Spending limits and parental controls
+              <Translate id="solutions.vehicleCommerce.featureSection3.spendingLimitsAndParental">
+                Spending limits and parental controls
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgShop} alt="Wallet Interface" />
+          <img
+            src={imgShop}
+            alt={translate({
+              id: 'solutions.vehicleCommerce.featureSection3.walletInterface',
+              message: 'Wallet Interface',
+            })}
+          />
         </div>
       </div>
     </section>
@@ -320,35 +505,69 @@ function FeatureSection3() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Integrate Payment Infrastructure',
-      description:
-        "Add DIMO's wallet and payment infrastructure to your app. Users create wallets and fund them with stablecoins through our on-ramp integrations.",
+      title: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.integratePaymentInfrastructure.title',
+        message: 'Integrate Payment Infrastructure',
+      }),
+      description: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.integratePaymentInfrastructure.description',
+        message:
+          "Add DIMO's wallet and payment infrastructure to your app. Users create wallets and fund them with stablecoins through our on-ramp integrations.",
+      }),
     },
     {
-      title: 'Configure x402 Permissions',
-      description:
-        'Users grant payment permissions to their vehicles with spending limits and service categories. All permissions are transparent and revocable.',
+      title: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.configureX402Permissions.title',
+        message: 'Configure x402 Permissions',
+      }),
+      description: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.configureX402Permissions.description',
+        message:
+          'Users grant payment permissions to their vehicles with spending limits and service categories. All permissions are transparent and revocable.',
+      }),
     },
     {
-      title: 'Enable Automated Payments',
-      description:
-        'Vehicles pay for services automatically using x402 protocol. Tolls, parking, charging—all handled without user intervention.',
+      title: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.enableAutomatedPayments.title',
+        message: 'Enable Automated Payments',
+      }),
+      description: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.enableAutomatedPayments.description',
+        message:
+          'Vehicles pay for services automatically using x402 protocol. Tolls, parking, charging—all handled without user intervention.',
+      }),
     },
     {
-      title: 'Track & Settle Instantly',
-      description:
-        'Payments settle in seconds on-chain. Service providers receive funds immediately, and users see real-time transaction history.',
+      title: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.trackSettleInstantly.title',
+        message: 'Track & Settle Instantly',
+      }),
+      description: translate({
+        id: 'solutions.vehicleCommerce.howItWorks.trackSettleInstantly.description',
+        message:
+          'Payments settle in seconds on-chain. Service providers receive funds immediately, and users see real-time transaction history.',
+      }),
     },
   ];
 
   return (
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Enable Vehicle Payments</h2>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="solutions.vehicleCommerce.howItWorks.howItWorks">
+            How It Works
+          </Translate>
+        </span>
+        <h2 className={styles.sectionTitle}>
+          <Translate id="solutions.vehicleCommerce.howItWorks.enableVehiclePayments">
+            Enable Vehicle Payments
+          </Translate>
+        </h2>
         <p className={styles.sectionSubtitle}>
-          From wallet integration to automated payments, DIMO makes it easy to
-          build vehicle commerce applications with stablecoins and x402.
+          <Translate id="solutions.vehicleCommerce.howItWorks.fromWalletIntegrationTo">
+            From wallet integration to automated payments, DIMO makes it easy to
+            build vehicle commerce applications with stablecoins and x402.
+          </Translate>
         </p>
       </div>
 
@@ -372,17 +591,29 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>Ready to Enable Vehicle Commerce?</h2>
+        <h2 className={styles.ctaTitle}>
+          <Translate id="solutions.vehicleCommerce.cta.readyToEnableVehicle">
+            Ready to Enable Vehicle Commerce?
+          </Translate>
+        </h2>
         <p className={styles.ctaText}>
-          Join the companies building the future of vehicle payments with
-          stablecoins and the x402 protocol.
+          <Translate id="solutions.vehicleCommerce.cta.joinTheCompaniesBuilding">
+            Join the companies building the future of vehicle payments with
+            stablecoins and the x402 protocol.
+          </Translate>
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get Started <span className={styles.arrow}>→</span>
+            <Translate id="solutions.vehicleCommerce.cta.getStarted">
+              Get Started
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="solutions.vehicleCommerce.cta.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -395,19 +626,42 @@ export default function VehicleCommercePage(): ReactNode {
   return (
     <>
       <Head>
-        <title>Vehicle Commerce | Stablecoin Payments & x402 Protocol</title>
+        <title>
+          {translate({
+            id: 'solutions.vehicleCommerce.meta.title',
+            message: 'Vehicle Commerce | Stablecoin Payments & x402 Protocol',
+          })}
+        </title>
         <meta
           name="description"
-          content="Enable frictionless vehicle payments with stablecoins (USDC, USDT) and the x402 protocol. Instant settlement, low fees, and automated machine-to-machine transactions."
+          content={translate({
+            id: 'solutions.vehicleCommerce.meta.description',
+            message:
+              'Enable frictionless vehicle payments with stablecoins (USDC, USDT) and the x402 protocol. Instant settlement, low fees, and automated machine-to-machine transactions.',
+          })}
         />
         <meta
           name="keywords"
-          content="vehicle payments, stablecoin payments, USDC, USDT, x402 protocol, crypto payments, blockchain payments, vehicle commerce, automated payments"
+          content={translate({
+            id: 'solutions.vehicleCommerce.meta.keywords',
+            message:
+              'vehicle payments, stablecoin payments, USDC, USDT, x402 protocol, crypto payments, blockchain payments, vehicle commerce, automated payments',
+          })}
         />
-        <meta property="og:title" content="Vehicle Commerce | DIMO Platform" />
+        <meta
+          property="og:title"
+          content={translate({
+            id: 'solutions.vehicleCommerce.meta.ogTitle',
+            message: 'Vehicle Commerce | DIMO Platform',
+          })}
+        />
         <meta
           property="og:description"
-          content="Accept stablecoin payments and enable automated vehicle transactions with x402 protocol. Low fees, instant settlement, and global reach."
+          content={translate({
+            id: 'solutions.vehicleCommerce.meta.ogDescription',
+            message:
+              'Accept stablecoin payments and enable automated vehicle transactions with x402 protocol. Low fees, instant settlement, and global reach.',
+          })}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -441,9 +695,26 @@ export default function VehicleCommercePage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://dimo.org/' },
-            { name: 'Solutions', url: 'https://dimo.org/#solutions' },
-            { name: 'Vehicle Commerce' },
+            {
+              name: translate({
+                id: 'solutions.vehicleCommerce.body.home.name',
+                message: 'Home',
+              }),
+              url: 'https://dimo.org/',
+            },
+            {
+              name: translate({
+                id: 'solutions.vehicleCommerce.body.solutions.name',
+                message: 'Solutions',
+              }),
+              url: 'https://dimo.org/#solutions',
+            },
+            {
+              name: translate({
+                id: 'solutions.vehicleCommerce.body.vehicleCommerce.name',
+                message: 'Vehicle Commerce',
+              }),
+            },
           ]}
         />
 

@@ -1,0 +1,10 @@
+{
+  "logo.alt": {
+    "message": "DIMO",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Log In": {
+    "message": "Log In",
+    "description": "Navbar item with label Log In"
+  }
+}

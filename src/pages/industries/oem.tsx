@@ -10,8 +10,12 @@ import CustomNavbar from '../../components/CustomNavbar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { LINKS } from '../../links';
 import { Code, Zap, Lock, Globe, Layers, ChevronDown, Cpu } from 'lucide-react';
+import Translate, { translate } from '@docusaurus/Translate';
 
-const INDUSTRY_NAME = 'Auto OEMs';
+const INDUSTRY_NAME = translate({
+  id: 'industries.oem.meta.industryName',
+  message: 'Auto OEMs',
+});
 const HERO_BACKGROUND = '/img/mp4/oem.mp4?v=2';
 const imgSdk = '/img/sdks.webp';
 const imgRentals = '/img/rentals.png';
@@ -19,65 +23,161 @@ const imgRentals = '/img/rentals.png';
 const USE_CASES = [
   {
     icon: <Code size={28} />,
-    type: 'Vehicle Data Platform',
-    title: 'Unified Data Infrastructure',
-    description:
-      'Real-time telemetry ingest, processing, storage, and query interfaces. Stop worrying about data structure, API designs, infrastructure, or support.',
-    example:
-      'Allow 3rd-party developers to access your real-time diagnostics, location, battery status, and more with a streamlined, standardized interface.',
+    type: translate({
+      id: 'industries.oem.useCases.unifiedDataInfrastructure.type',
+      message: 'Vehicle Data Platform',
+    }),
+    title: translate({
+      id: 'industries.oem.useCases.unifiedDataInfrastructure.title',
+      message: 'Unified Data Infrastructure',
+    }),
+    description: translate({
+      id: 'industries.oem.useCases.unifiedDataInfrastructure.description',
+      message:
+        'Real-time telemetry ingest, processing, storage, and query interfaces. Stop worrying about data structure, API designs, infrastructure, or support.',
+    }),
+    example: translate({
+      id: 'industries.oem.useCases.unifiedDataInfrastructure.example',
+      message:
+        'Allow 3rd-party developers to access your real-time diagnostics, location, battery status, and more with a streamlined, standardized interface.',
+    }),
   },
   {
     icon: <Zap size={28} />,
-    type: 'E2E Developer Platform',
-    title: 'Easy-to-Use SDK & Tools',
-    description:
-      'Industry-leading, developer-friendly SDKs in modern languages. Production-ready code examples, developer console, and comprehensive documentation included.',
-    example:
-      'Empower 3rd-party developers with delightful tools and SDK - so they see value in your vehicle data in minutes, not months.',
+    type: translate({
+      id: 'industries.oem.useCases.easyToUseSdkTools.type',
+      message: 'E2E Developer Platform',
+    }),
+    title: translate({
+      id: 'industries.oem.useCases.easyToUseSdkTools.title',
+      message: 'Easy-to-Use SDK & Tools',
+    }),
+    description: translate({
+      id: 'industries.oem.useCases.easyToUseSdkTools.description',
+      message:
+        'Industry-leading, developer-friendly SDKs in modern languages. Production-ready code examples, developer console, and comprehensive documentation included.',
+    }),
+    example: translate({
+      id: 'industries.oem.useCases.easyToUseSdkTools.example',
+      message:
+        'Empower 3rd-party developers with delightful tools and SDK - so they see value in your vehicle data in minutes, not months.',
+    }),
   },
   {
     icon: <Lock size={28} />,
-    type: 'Security & Privacy',
-    title: 'Privacy-First Architecture',
-    description:
-      'User consent and data ownership at the core, open-sourced. Out-of-the-box GDPR and EU Data Act compliant, with granular permission controls and verifiable credentials.',
-    example:
-      'Low liability: Vehicle owners control what data is shared, when, and with whom, building trust between you and your customers. No vendor lock-in.',
+    type: translate({
+      id: 'industries.oem.useCases.privacyFirstArchitecture.type',
+      message: 'Security & Privacy',
+    }),
+    title: translate({
+      id: 'industries.oem.useCases.privacyFirstArchitecture.title',
+      message: 'Privacy-First Architecture',
+    }),
+    description: translate({
+      id: 'industries.oem.useCases.privacyFirstArchitecture.description',
+      message:
+        'User consent and data ownership at the core, open-sourced. Out-of-the-box GDPR and EU Data Act compliant, with granular permission controls and verifiable credentials.',
+    }),
+    example: translate({
+      id: 'industries.oem.useCases.privacyFirstArchitecture.example',
+      message:
+        'Low liability: Vehicle owners control what data is shared, when, and with whom, building trust between you and your customers. No vendor lock-in.',
+    }),
   },
   {
     icon: <Globe size={28} />,
-    type: 'Universal Platform Coverage',
-    title: 'Multi-OEM Compatibility',
-    description:
-      'Already works across 50+ vehicle brands, with a proven architecture and pattern so your brand is easy to support.',
-    example:
-      'Build once, deploy everywhere -- any OEM can be integrated with the same great experience.',
+    type: translate({
+      id: 'industries.oem.useCases.multiOemCompatibility.type',
+      message: 'Universal Platform Coverage',
+    }),
+    title: translate({
+      id: 'industries.oem.useCases.multiOemCompatibility.title',
+      message: 'Multi-OEM Compatibility',
+    }),
+    description: translate({
+      id: 'industries.oem.useCases.multiOemCompatibility.description',
+      message:
+        'Already works across 50+ vehicle brands, with a proven architecture and pattern so your brand is easy to support.',
+    }),
+    example: translate({
+      id: 'industries.oem.useCases.multiOemCompatibility.example',
+      message:
+        'Build once, deploy everywhere -- any OEM can be integrated with the same great experience.',
+    }),
   },
   {
     icon: <Layers size={28} />,
-    type: 'Rewards, Payments & Monetization',
-    title: 'Scalable Monetary Systems',
-    description:
-      'Stablecoin payment & rewards infrastructure built for the next generation of vehicle commerce applications. Enterprise-grade architecture designed for scale.',
-    example:
-      'Payment rails are built-in, so you can focus on building great experiences that drive revenue, loyalty, and engagement.',
+    type: translate({
+      id: 'industries.oem.useCases.scalableMonetarySystems.type',
+      message: 'Rewards, Payments & Monetization',
+    }),
+    title: translate({
+      id: 'industries.oem.useCases.scalableMonetarySystems.title',
+      message: 'Scalable Monetary Systems',
+    }),
+    description: translate({
+      id: 'industries.oem.useCases.scalableMonetarySystems.description',
+      message:
+        'Stablecoin payment & rewards infrastructure built for the next generation of vehicle commerce applications. Enterprise-grade architecture designed for scale.',
+    }),
+    example: translate({
+      id: 'industries.oem.useCases.scalableMonetarySystems.example',
+      message:
+        'Payment rails are built-in, so you can focus on building great experiences that drive revenue, loyalty, and engagement.',
+    }),
   },
   {
     icon: <Cpu size={28} />,
-    type: 'AI & ML',
-    title: 'AI-Ready',
-    description:
-      "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences using DIMO's Agent skills and MCP-accessible data streams.",
-    example:
-      'AI/ML developers can now access clean data without you juggling. Monetize your data for the AI revolution.',
+    type: translate({
+      id: 'industries.oem.useCases.aiReady.type',
+      message: 'AI & ML',
+    }),
+    title: translate({
+      id: 'industries.oem.useCases.aiReady.title',
+      message: 'AI-Ready',
+    }),
+    description: translate({
+      id: 'industries.oem.useCases.aiReady.description',
+      message:
+        "Clean, normalized, and contextualized vehicle data ready for AI/ML applications. Build agentic experiences using DIMO's Agent skills and MCP-accessible data streams.",
+    }),
+    example: translate({
+      id: 'industries.oem.useCases.aiReady.example',
+      message:
+        'AI/ML developers can now access clean data without you juggling. Monetize your data for the AI revolution.',
+    }),
   },
 ];
 
 const STATS = [
-  { number: '100%', label: 'COVESA Standards' },
-  { number: '>95%', label: 'Developer Satisfaction' },
-  { number: '99.9%', label: 'API Uptime' },
-  { number: '<100ms', label: 'Average Latency' },
+  {
+    number: '100%',
+    label: translate({
+      id: 'industries.oem.stats.covesaStandards.label',
+      message: 'COVESA Standards',
+    }),
+  },
+  {
+    number: '>95%',
+    label: translate({
+      id: 'industries.oem.stats.developerSatisfaction.label',
+      message: 'Developer Satisfaction',
+    }),
+  },
+  {
+    number: '99.9%',
+    label: translate({
+      id: 'industries.oem.stats.apiUptime.label',
+      message: 'API Uptime',
+    }),
+  },
+  {
+    number: '<100ms',
+    label: translate({
+      id: 'industries.oem.stats.averageLatency.label',
+      message: 'Average Latency',
+    }),
+  },
 ];
 
 function HeroSection() {
@@ -108,22 +208,42 @@ function HeroSection() {
         </span>
 
         <h1 className={styles.heroTitle}>
-          Build the Future of Mobility with{' '}
-          <span className={styles.heroTitleGradient}>One Unified Platform</span>
+          <Translate
+            id="industries.oem.hero.buildTheFutureOf"
+            values={{
+              span: (
+                <span className={styles.heroTitleGradient}>
+                  <Translate id="industries.oem.hero.oneUnifiedPlatform">
+                    One Unified Platform
+                  </Translate>
+                </span>
+              ),
+            }}
+          >
+            {'Build the Future of Mobility with {span}'}
+          </Translate>
         </h1>
 
         <p className={styles.heroSubtitle}>
-          Turnkey data infrastructure hosted on your terms. Let partners ship
-          faster with developer-friendly SDKs, documentation, AI integration,
-          and tools. Stop wondering if you have the technology.
+          <Translate id="industries.oem.hero.turnkeyDataInfrastructureHosted">
+            Turnkey data infrastructure hosted on your terms. Let partners ship
+            faster with developer-friendly SDKs, documentation, AI integration,
+            and tools. Stop wondering if you have the technology.
+          </Translate>
         </p>
 
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get API Keys <span className={styles.arrow}>→</span>
+            <Translate id="industries.oem.hero.getApiKeys">
+              Get API Keys
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            View Documentation <span className={styles.arrow}>→</span>
+            <Translate id="industries.oem.hero.viewDocumentation">
+              View Documentation
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -154,15 +274,23 @@ function UseCasesSection() {
   return (
     <section className={styles.useCasesSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>Platform Features</span>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="industries.oem.useCases.platformFeatures">
+            Platform Features
+          </Translate>
+        </span>
         <h2 className={styles.sectionTitle}>
-          Everything You Need For Vehicle Commerce
+          <Translate id="industries.oem.useCases.everythingYouNeedFor">
+            Everything You Need For Vehicle Commerce
+          </Translate>
         </h2>
         <p className={styles.sectionSubtitle}>
-          From unified API access to AI-ready data streams, DIMO provides the
-          complete developer platform for building the next generation of
-          mobility applications for vehicle commerce. Super charge your vehicle
-          data strategy with DIMO.
+          <Translate id="industries.oem.useCases.fromUnifiedApiAccess">
+            From unified API access to AI-ready data streams, DIMO provides the
+            complete developer platform for building the next generation of
+            mobility applications for vehicle commerce. Super charge your
+            vehicle data strategy with DIMO.
+          </Translate>
         </p>
       </div>
 
@@ -186,32 +314,50 @@ function FeatureSection1() {
     <section className={`${styles.featureSection} ${styles.featureSectionAlt}`}>
       <div className={styles.featureContainer}>
         <div className={styles.featureText}>
-          <h2>Developer-First, Privacy-First</h2>
+          <h2>
+            <Translate id="industries.oem.featureSection1.developerFirstPrivacyFirst">
+              Developer-First, Privacy-First
+            </Translate>
+          </h2>
           <p>
-            DIMO is built from the ground up with developers and users in mind.
-            Our privacy-first architecture ensures user consent and data
-            ownership, while our developer-friendly tools make integration
-            seamless and straightforward - so you can focus on building
-            relationships that drives revenue, loyalty, and engagement.
+            <Translate id="industries.oem.featureSection1.dimoIsBuiltFrom">
+              DIMO is built from the ground up with developers and users in
+              mind. Our privacy-first architecture ensures user consent and data
+              ownership, while our developer-friendly tools make integration
+              seamless and straightforward - so you can focus on building
+              relationships that drives revenue, loyalty, and engagement.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Open APIs, SDKs, and comprehensive developer tools
+              <Translate id="industries.oem.featureSection1.openApisSdksAnd">
+                Open APIs, SDKs, and comprehensive developer tools
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Interactive developer docs with code examples and boilerplates
+              <Translate id="industries.oem.featureSection1.interactiveDeveloperDocsWith">
+                Interactive developer docs with code examples and boilerplates
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Consent management in a box, users control their data sharing
-              experience
+              <Translate id="industries.oem.featureSection1.consentManagementInA">
+                Consent management in a box, users control their data sharing
+                experience
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgSdk} alt="DIMO SDK Code Example" />
+          <img
+            src={imgSdk}
+            alt={translate({
+              id: 'industries.oem.featureSection1.dimoSdkCodeExample',
+              message: 'DIMO SDK Code Example',
+            })}
+          />
         </div>
       </div>
     </section>
@@ -225,34 +371,52 @@ function FeatureSection2() {
         className={`${styles.featureContainer} ${styles.featureContainerReversed}`}
       >
         <div className={styles.featureText}>
-          <h2>Vertically Integrated Experience</h2>
+          <h2>
+            <Translate id="industries.oem.featureSection2.verticallyIntegratedExperience">
+              Vertically Integrated Experience
+            </Translate>
+          </h2>
           <p>
-            You understand auto, but we understand developers. DIMO handles the
-            complexity so you can focus on building great cars. Our vertically
-            integrated data stack allows you to offer a seamless experience to
-            app developers, so they can offer innovative services to your
-            customers.
+            <Translate id="industries.oem.featureSection2.youUnderstandAutoBut">
+              You understand auto, but we understand developers. DIMO handles
+              the complexity so you can focus on building great cars. Our
+              vertically integrated data stack allows you to offer a seamless
+              experience to app developers, so they can offer innovative
+              services to your customers.
+            </Translate>
           </p>
           <ul className={styles.featureList}>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Standardized data models across all OEMs, stop worrying about
-              designing vehicle data strategies
+              <Translate id="industries.oem.featureSection2.standardizedDataModelsAcross">
+                Standardized data models across all OEMs, stop worrying about
+                designing vehicle data strategies
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Clean data for AI/ML applications with contextualized streams,
-              build AI experiences not AI infra
+              <Translate id="industries.oem.featureSection2.cleanDataForAiMl">
+                Clean data for AI/ML applications with contextualized streams,
+                build AI experiences not AI infra
+              </Translate>
             </li>
             <li>
               <span className={styles.checkIcon}>✓</span>
-              Auto stablecoin payments for EV charging, parking, tolls, and
-              more. Next generation vehicle commerce made easy
+              <Translate id="industries.oem.featureSection2.autoStablecoinPaymentsFor">
+                Auto stablecoin payments for EV charging, parking, tolls, and
+                more. Next generation vehicle commerce made easy
+              </Translate>
             </li>
           </ul>
         </div>
         <div className={styles.featureVisual}>
-          <img src={imgRentals} alt="Car Rental Fleet Management" />
+          <img
+            src={imgRentals}
+            alt={translate({
+              id: 'industries.oem.featureSection2.carRentalFleetManagement',
+              message: 'Car Rental Fleet Management',
+            })}
+          />
         </div>
       </div>
     </section>
@@ -262,30 +426,58 @@ function FeatureSection2() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: 'Sign Up & Get API Keys',
-      description:
-        'Create your DIMO developer account and get instant access to your API credentials. No waiting, no approval process.',
+      title: translate({
+        id: 'industries.oem.howItWorks.signUpGet.title',
+        message: 'Sign Up & Get API Keys',
+      }),
+      description: translate({
+        id: 'industries.oem.howItWorks.signUpGet.description',
+        message:
+          'Create your DIMO developer account and get instant access to your API credentials. No waiting, no approval process.',
+      }),
     },
     {
-      title: 'Bring Your Own Data',
-      description:
-        'Implement DIMO Ingest by setting up a Kafka stream or equivalent. No more data re-designs, complex ETL, or data warehouse infrastructure.',
+      title: translate({
+        id: 'industries.oem.howItWorks.bringYourOwn.title',
+        message: 'Bring Your Own Data',
+      }),
+      description: translate({
+        id: 'industries.oem.howItWorks.bringYourOwn.description',
+        message:
+          'Implement DIMO Ingest by setting up a Kafka stream or equivalent. No more data re-designs, complex ETL, or data warehouse infrastructure.',
+      }),
     },
     {
-      title: 'Build & Scale',
-      description:
-        'Once the data flow is established, the Developer Platform, API, and SDK are ready-to-use. Scale to millions of developers with confidence on DIMO.',
+      title: translate({
+        id: 'industries.oem.howItWorks.buildScale.title',
+        message: 'Build & Scale',
+      }),
+      description: translate({
+        id: 'industries.oem.howItWorks.buildScale.description',
+        message:
+          'Once the data flow is established, the Developer Platform, API, and SDK are ready-to-use. Scale to millions of developers with confidence on DIMO.',
+      }),
     },
   ];
 
   return (
     <section className={styles.howItWorksSection}>
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>How It Works</span>
-        <h2 className={styles.sectionTitle}>Get Started in Minutes</h2>
+        <span className={styles.sectionEyebrow}>
+          <Translate id="industries.oem.howItWorks.howItWorks">
+            How It Works
+          </Translate>
+        </span>
+        <h2 className={styles.sectionTitle}>
+          <Translate id="industries.oem.howItWorks.getStartedInMinutes">
+            Get Started in Minutes
+          </Translate>
+        </h2>
         <p className={styles.sectionSubtitle}>
-          Simply bring your own data into DIMO's plug-and-play infrastructure,
-          we make it easy to build and scale.
+          <Translate id="industries.oem.howItWorks.simplyBringYourOwn">
+            Simply bring your own data into DIMO's plug-and-play infrastructure,
+            we make it easy to build and scale.
+          </Translate>
         </p>
       </div>
 
@@ -309,17 +501,29 @@ function CTASection() {
   return (
     <section className={styles.ctaSection}>
       <div className={styles.ctaContent}>
-        <h2 className={styles.ctaTitle}>Ready to Start Monetizing?</h2>
+        <h2 className={styles.ctaTitle}>
+          <Translate id="industries.oem.cta.readyToStartMonetizing">
+            Ready to Start Monetizing?
+          </Translate>
+        </h2>
         <p className={styles.ctaText}>
-          Access developers building the future of mobility for your vehicles
-          today. Get your API keys today and start strategizing for tomorrow.
+          <Translate id="industries.oem.cta.accessDevelopersBuildingThe">
+            Access developers building the future of mobility for your vehicles
+            today. Get your API keys today and start strategizing for tomorrow.
+          </Translate>
         </p>
         <div className={styles.heroButtons}>
           <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            Get API Keys <span className={styles.arrow}>→</span>
+            <Translate id="industries.oem.cta.getApiKeys">
+              Get API Keys
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </Link>
           <EnglishLink className={styles.secondaryBtn} to="/docs">
-            Read the Docs <span className={styles.arrow}>→</span>
+            <Translate id="industries.oem.cta.readTheDocs">
+              Read the Docs
+            </Translate>{' '}
+            <span className={styles.arrow}>→</span>
           </EnglishLink>
         </div>
       </div>
@@ -333,23 +537,42 @@ export default function OEMPage(): ReactNode {
     <>
       <Head>
         <title>
-          DIMO for Auto OEMs | Unified Vehicle Data Platform for Developers
+          {translate({
+            id: 'industries.oem.meta.title',
+            message:
+              'DIMO for Auto OEMs | Unified Vehicle Data Platform for Developers',
+          })}
         </title>
         <meta
           name="description"
-          content="Build vehicle applications faster with DIMO's unified API. Access data from 50+ vehicle brands through one developer-friendly platform. Privacy-first, enterprise-grade, production-ready."
+          content={translate({
+            id: 'industries.oem.meta.description',
+            message:
+              "Build vehicle applications faster with DIMO's unified API. Access data from 50+ vehicle brands through one developer-friendly platform. Privacy-first, enterprise-grade, production-ready.",
+          })}
         />
         <meta
           name="keywords"
-          content="vehicle API, vehicle data integration, automotive developers, vehicle data platform, Tesla API, Ford API, BMW API, connected car platform, telematics API"
+          content={translate({
+            id: 'industries.oem.meta.keywords',
+            message:
+              'vehicle API, vehicle data integration, automotive developers, vehicle data platform, Tesla API, Ford API, BMW API, connected car platform, telematics API',
+          })}
         />
         <meta
           property="og:title"
-          content="DIMO for Auto OEMs | Unified Vehicle Data Platform"
+          content={translate({
+            id: 'industries.oem.meta.ogTitle',
+            message: 'DIMO for Auto OEMs | Unified Vehicle Data Platform',
+          })}
         />
         <meta
           property="og:description"
-          content="One API to access vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure."
+          content={translate({
+            id: 'industries.oem.meta.ogDescription',
+            message:
+              'One API to access vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure.',
+          })}
         />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -384,9 +607,26 @@ export default function OEMPage(): ReactNode {
 
         <Breadcrumbs
           items={[
-            { name: 'Home', url: 'https://dimo.org/' },
-            { name: 'Industries', url: 'https://dimo.org/#industries' },
-            { name: 'OEM' },
+            {
+              name: translate({
+                id: 'industries.oem.body.home.name',
+                message: 'Home',
+              }),
+              url: 'https://dimo.org/',
+            },
+            {
+              name: translate({
+                id: 'industries.oem.body.industries.name',
+                message: 'Industries',
+              }),
+              url: 'https://dimo.org/#industries',
+            },
+            {
+              name: translate({
+                id: 'industries.oem.body.oem.name',
+                message: 'OEM',
+              }),
+            },
           ]}
         />
 
