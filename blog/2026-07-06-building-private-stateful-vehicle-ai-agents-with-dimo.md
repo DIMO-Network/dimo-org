@@ -13,7 +13,7 @@ Most vehicle-data projects don't die because the data is missing. They die
 building identity, consent, and permission plumbing. This is the stack DIMO
 built so agentic apps can skip that quarter of work.
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Stop building plumbing. Start building products
 
