@@ -2,7 +2,12 @@
   // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
+    // @docusaurus/tsconfig still sets baseUrl, which TypeScript 6 deprecates.
+    // Unset it and resolve @site/* from this file's directory instead.
+    "baseUrl": null,
+    "paths": {
+      "@site/*": ["./*"]
+    },
     "allowImportingTsExtensions": true
   },
   "exclude": [".docusaurus", "build"]
