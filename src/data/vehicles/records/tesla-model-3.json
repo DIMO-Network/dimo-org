@@ -3,40 +3,141 @@
   "model": "Model 3",
   "slug": "tesla/model-3",
   "powertrains": ["ev"],
-  "regions": ["US", "EU"],
+  "regions": ["Global"],
   "coverage": [
     {
       "type": "oem_cloud",
-      "provider": "Tesla Fleet API",
-      "years": { "from": 2018, "to": 2025 },
+      "provider": "Tesla",
+      "years": {
+        "from": 2018,
+        "to": 2026
+      },
       "signals": [
-        {
-          "name": "powertrainTractionBatteryStateOfChargeCurrent",
-          "label": "Battery state of charge",
-          "unit": "%"
-        },
-        { "name": "powertrainRange", "label": "Estimated range", "unit": "km" },
-        {
-          "name": "powertrainTractionBatteryChargingIsCharging",
-          "label": "Charging status"
-        },
         {
           "name": "powertrainTransmissionTravelledDistance",
           "label": "Odometer",
           "unit": "km"
         },
         {
+          "name": "powertrainTractionBatteryStateOfChargeCurrent",
+          "label": "Current Charge Level",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainRange",
+          "label": "Range (remaining)",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeCurrentAC",
+          "label": "AC Current Charge (Alternating Current)",
+          "unit": "amps"
+        },
+        {
           "name": "exteriorAirTemperature",
-          "label": "Outside temperature",
+          "label": "Air Temperature",
           "unit": "°C"
         },
-        { "name": "currentLocationCoordinates", "label": "Location" }
+        {
+          "name": "cabinDoorRow2DriverSideIsOpen",
+          "label": "Back Driver Side Door"
+        },
+        {
+          "name": "cabinDoorRow2DriverSideWindowIsOpen",
+          "label": "Back Driver Side Window"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "cabinDoorRow2PassengerSideIsOpen",
+          "label": "Back Passenger Side Door"
+        },
+        {
+          "name": "cabinDoorRow2PassengerSideWindowIsOpen",
+          "label": "Back Passenger Side Window"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainTractionBatteryCurrentPower",
+          "label": "Battery Power",
+          "unit": "watts"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeLimit",
+          "label": "Charge Limit",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingIsChargingCableConnected",
+          "label": "Charging Cable Connected"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingIsCharging",
+          "label": "Charging Status"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeVoltageUnknownType",
+          "label": "Charging Voltage",
+          "unit": "volts"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "cabinDoorRow1DriverSideIsOpen",
+          "label": "Front Driver Side Door"
+        },
+        {
+          "name": "cabinDoorRow1DriverSideWindowIsOpen",
+          "label": "Front Driver Side Window"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "cabinDoorRow1PassengerSideIsOpen",
+          "label": "Front Passenger Side Door"
+        },
+        {
+          "name": "cabinDoorRow1PassengerSideWindowIsOpen",
+          "label": "Front Passenger Side Window"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainTractionBatteryStateOfChargeCurrentEnergy",
+          "label": "Remaining Energy",
+          "unit": "kWh"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingAddedEnergy",
+          "label": "Session Energy",
+          "unit": "kWh"
+        }
       ],
       "events": ["recharge"]
     }
   ],
-  "verification": "expected",
-  "lastVerified": "2026-10-01",
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
   "publishDate": "2026-10-15",
   "faq": []
 }
