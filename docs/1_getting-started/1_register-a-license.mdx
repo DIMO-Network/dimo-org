@@ -12,14 +12,14 @@ import ImageTooltips from '@site/src/components/ImageTooltips';
 Before accessing the DIMO APIs, you will need to obtain and configure a
 Developer License. 
 
-:::info Developer Notes
+:::info[Developer Notes]
 
 Developer Licenses are FREE, and the name that you give your license is
 public and unique amongst the DIMO Network.
 
 :::
 
-:::tip Building a multi-tenant app?
+:::tip[Building a multi-tenant app?]
 If your app needs a **separate Developer License per end user** (e.g. each customer brings their own API key)
 rather than one shared license, see [Auto-Create a Developer License](./auto-create-license) — it covers
 provisioning licenses programmatically with the Login with DIMO SDK instead of the manual Console flow below.
@@ -38,7 +38,7 @@ provisioning licenses programmatically with the Login with DIMO SDK instead of t
 		</Step>
 		<Step title="Configure Your License">
 			1. Generate at least a set of `API Key` and make sure you copy the secret and save it somewhere safe.
-			:::info API Key Best Practices
+			:::info[API Key Best Practices]
 				Save and store your keys in a secure vault, as DIMO will only display this key once during generation
 				and will not store your API secrets. We highly recommend that you rotate your API Keys on a
 				regular basis for enhanced security.
@@ -47,14 +47,14 @@ provisioning licenses programmatically with the Login with DIMO SDK instead of t
 			2. Configure at least one `Redirect URI`, this is used for both authentication and for redirecting 
 			users back to your application when you're building a client-side flow with DIMO. 
 
-			:::info Redirect URI Best Practices
+			:::info[Redirect URI Best Practices]
 			A Redirect URI should be a valid domain (ideally some domain you own) and must include `http://` or `https://`.
 			You're also welcome to use `localhost` while you're in the build phase.
 			:::
 
 		</Step>
 		<Step title="Sharing Your License">
-		<!-- TODO: DVR-710 -->
+		{/* TODO: DVR-710 */}
 			Locate the `Token ID`, `Client ID`, and `Redirect URI` from your Developer License. 
 			Share these with anyone that's working with you on your app.
 			For `API Keys`, please follow our best practices and share using a secured vault.

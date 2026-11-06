@@ -29,7 +29,7 @@ const USE_CASES = [
     description:
       'Accept payments in USDC, USDT, and other stablecoins directly from vehicles. Low fees, instant settlement, and global reach without currency conversion.',
     example:
-      'Tolls, parking, charging, and vehicle servicesall paid automatically with stable, reliable cryptocurrency.',
+      'Tolls, parking, charging, and vehicle services—all paid automatically with stable, reliable cryptocurrency.',
   },
   {
     icon: <Shield size={28} />,
@@ -38,7 +38,7 @@ const USE_CASES = [
     description:
       'Machine-to-machine payment standard built for vehicles. Automated, secure, and permission-based transactions between vehicles and service providers.',
     example:
-      'Vehicles pay for services automaticallyno user intervention, no payment failures, no friction.',
+      'Vehicles pay for services automatically—no user intervention, no payment failures, no friction.',
   },
   {
     icon: <Zap size={28} />,
@@ -47,14 +47,14 @@ const USE_CASES = [
     description:
       'Payments settle in seconds, not days. Eliminate chargebacks, reduce fraud, and improve cash flow with blockchain-based settlement.',
     example:
-      'Service providers receive funds immediatelyno waiting for bank transfers or payment processors.',
+      'Service providers receive funds immediately—no waiting for bank transfers or payment processors.',
   },
   {
     icon: <DollarSign size={28} />,
     type: 'Economics',
     title: 'Low Transaction Fees',
     description:
-      'Pay a fraction of traditional payment processing fees. No interchange fees, no processing delaysjust simple, cost-effective transactions.',
+      'Pay a fraction of traditional payment processing fees. No interchange fees, no processing delays—just simple, cost-effective transactions.',
     example:
       'Save 60-80% on payment processing costs compared to traditional card networks.',
   },
@@ -63,7 +63,7 @@ const USE_CASES = [
     type: 'Automation',
     title: 'Automated Micropayments',
     description:
-      'Enable micropayments for usage-based services. Pay-per-mile insurance, per-kWh charging, or per-minute parkingall automated and seamless.',
+      'Enable micropayments for usage-based services. Pay-per-mile insurance, per-kWh charging, or per-minute parking—all automated and seamless.',
     example:
       'Users pay only for what they use, with transactions happening automatically in the background.',
   },
@@ -72,9 +72,9 @@ const USE_CASES = [
     type: 'Integration',
     title: 'Seamless Wallet Integration',
     description:
-      'Built-in wallet infrastructure with user-friendly interfaces. Users manage balances, view transactions, and control spendingall within your app.',
+      'Built-in wallet infrastructure with user-friendly interfaces. Users manage balances, view transactions, and control spending—all within your app.',
     example:
-      'One-tap payments, transaction history, and spending controlsnative wallet experience included.',
+      'One-tap payments, transaction history, and spending controls—native wallet experience included.',
   },
 ];
 
@@ -120,7 +120,7 @@ function HeroSection() {
         <p className={styles.heroSubtitle}>
           Accept stablecoin payments, enable machine-to-machine transactions,
           and automate vehicle commerce with the x402 protocol. Low fees,
-          instant settlement, and global reachbuilt for modern mobility.
+          instant settlement, and global reach—built for modern mobility.
         </p>
 
         <div className={styles.heroButtons}>
@@ -235,7 +235,7 @@ function FeatureSection2() {
           <p>
             The x402 protocol enables automated, permission-based transactions
             between vehicles and service providers. Vehicles pay for tolls,
-            parking, charging, and services automaticallyno user interaction
+            parking, charging, and services automatically—no user interaction
             required.
           </p>
           <ul className={styles.featureList}>
@@ -283,7 +283,7 @@ function FeatureSection3() {
           <h2>Built-In Wallet Infrastructure</h2>
           <p>
             Complete wallet solution with user-friendly interfaces. Users manage
-            balances, view transaction history, and control spendingall
+            balances, view transaction history, and control spending—all
             integrated into your application with no additional development
             required.
           </p>
@@ -329,7 +329,7 @@ function HowItWorksSection() {
     {
       title: 'Enable Automated Payments',
       description:
-        'Vehicles pay for services automatically using x402 protocol. Tolls, parking, chargingall handled without user intervention.',
+        'Vehicles pay for services automatically using x402 protocol. Tolls, parking, charging—all handled without user intervention.',
     },
     {
       title: 'Track & Settle Instantly',

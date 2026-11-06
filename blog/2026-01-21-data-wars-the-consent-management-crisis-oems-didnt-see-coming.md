@@ -7,7 +7,7 @@ description: "Legacy OEMs can't share data, but Tesla just did with Lemonade"
 image: /img/dimo-social-card.png
 ---
 
-<!-- truncate -->
+{/* truncate */}
 
 ## Maybe they did, but news this week revealed the $100B automotive data infrastructure gap. Read more to learn about what happened:
 

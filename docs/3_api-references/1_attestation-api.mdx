@@ -576,7 +576,7 @@ The Extract API is the parser. You hand it a vehicle document; it tells you what
   }
 />
 
-:::tip Full document lifecycle
+:::tip[Full document lifecycle]
 Extract only parses. If you want the whole document round-trip — store the file, parse it, link the parse back to the raw upload, query both later — it looks like this:
 
 1. POST a `dimo.raw.<subtype>` CloudEvent to `https://attest.dimo.zone` with the file as the signed `data` payload. Save the event id; it becomes the `raweventid` for the parse.

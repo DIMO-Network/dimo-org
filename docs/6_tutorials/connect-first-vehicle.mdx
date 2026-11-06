@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 Learn how to connect your first vehicle to DIMO and access real-time vehicle data.
 
-:::info Quick Info
+:::info[Quick Info]
 **⏱️ Time to complete:** 10 minutes
 **💰 Cost:** Free (Hobbyist tier)
 **📚 Prerequisites:** Basic JavaScript/TypeScript knowledge, Node.js installed
@@ -38,7 +38,7 @@ By the end of this tutorial, you'll have:
 3. Create a **Developer License** - this acts like an access card for the DIMO platform
 4. Give your license a descriptive name (e.g., "My First DIMO App")
 
-:::tip What is a Developer License?
+:::tip[What is a Developer License?]
 A Developer License is your application's identity on the DIMO platform. It allows you to request data from vehicle owners and access DIMO APIs.
 :::
 
@@ -56,7 +56,7 @@ From your Developer License in the console, you'll need three things:
 2. **Redirect URI** - Where users return after granting permissions (e.g., `http://localhost:3000/callback`)
 3. **API Key** - Your private key for authentication
 
-:::warning Security Notice
+:::warning[Security Notice]
 Keep your API Key secure! Never commit it to Git or share it publicly. Store it in environment variables.
 :::
 
@@ -249,7 +249,7 @@ console.log(dimoConnectUrl);
 4. **User is redirected** back to your `redirect_uri` with authorization
 5. **You receive a `tokenId`** for each vehicle they shared
 
-:::tip Using the Mobile App
+:::tip[Using the Mobile App]
 Users can also connect vehicles through the DIMO Mobile app and then grant permissions to your app through the "Connected Apps" settings.
 :::
 

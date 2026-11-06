@@ -132,7 +132,7 @@ available social login links. If you've already registered for an account with
 DIMO mobile, you can log in to the DIMO Developer Console with the same email
 address here.
 
-:::info Developer Notes
+:::info[Developer Notes]
 
 If you are using
 [Google Chrome Profiles](https://support.google.com/chrome/answer/2364824?hl=en&co=GENIE.Platform%3DDesktop),
@@ -175,14 +175,14 @@ URL: https://dimo.org/docs/getting-started/register-a-license
 Before accessing the DIMO APIs, you will need to obtain and configure a
 Developer License. 
 
-:::info Developer Notes
+:::info[Developer Notes]
 
 Developer Licenses are FREE, and the name that you give your license is
 public and unique amongst the DIMO Network.
 
 :::
 
-:::tip Building a multi-tenant app?
+:::tip[Building a multi-tenant app?]
 If your app needs a **separate Developer License per end user** (e.g. each customer brings their own API key)
 rather than one shared license, see [Auto-Create a Developer License](./auto-create-license) — it covers
 provisioning licenses programmatically with the Login with DIMO SDK instead of the manual Console flow below.
@@ -194,7 +194,7 @@ provisioning licenses programmatically with the Login with DIMO SDK instead of t
 			Once you're logged into your DIMO Account, simply give your license a name and hit
 			`Create`.  
 			1. Generate at least a set of `API Key` and make sure you copy the secret and save it somewhere safe.
-			:::info API Key Best Practices
+			:::info[API Key Best Practices]
 				Save and store your keys in a secure vault, as DIMO will only display this key once during generation
 				and will not store your API secrets. We highly recommend that you rotate your API Keys on a
 				regular basis for enhanced security.
@@ -203,12 +203,11 @@ provisioning licenses programmatically with the Login with DIMO SDK instead of t
 			2. Configure at least one `Redirect URI`, this is used for both authentication and for redirecting 
 			users back to your application when you're building a client-side flow with DIMO. 
 
-			:::info Redirect URI Best Practices
+			:::info[Redirect URI Best Practices]
 			A Redirect URI should be a valid domain (ideally some domain you own) and must include `http://` or `https://`.
 			You're also welcome to use `localhost` while you're in the build phase.
 			:::
 
-		<!-- TODO: DVR-710 -->
 			Locate the `Token ID`, `Client ID`, and `Redirect URI` from your Developer License. 
 			Share these with anyone that's working with you on your app.
 			For `API Keys`, please follow our best practices and share using a secured vault.
@@ -261,7 +260,7 @@ customer brings and manages their own API key rather than sharing yours. For tha
 [Login with DIMO SDK](https://www.npmjs.com/package/@dimo-network/login-with-dimo) can mint (or reconnect) a
 Developer License directly from your app's onboarding flow, without sending anyone to the Console.
 
-:::info Developer Notes
+:::info[Developer Notes]
 Provisioning still creates a real, on-chain Developer License — it's the same object you'd otherwise create
 manually. The SDK just automates account creation, on-chain registration, and key generation on behalf of
 whoever is onboarding into your app.
@@ -359,7 +358,7 @@ so each of them supplies their own API key rather than all traffic flowing throu
     }
     ```
 
-    :::info Terminology
+    :::info[Terminology]
     The Console UI calls this secret an **API Key**; the provisioning response calls the same value
     `privateKey`. They're the same secret — just named differently depending on which flow created it.
     :::
@@ -451,7 +450,7 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
         title="Test Using Your Developer JWT"
       />
     When you have a vehicle available, attempt to get a **Vehicle JWT** by sending a request to the [Token Exchange API](/docs/api-references/token-exchange-api).
-    :::warning Developer Notes
+    :::warning[Developer Notes]
     You will need to have a vehicle shared with you in order to fetch a Vehicle JWT. 
     Learn more about vehicle sharing using [DIMO Connect](/docs/build/building-with-tools/client-sdk-dimo-connect).
     :::
@@ -519,7 +518,7 @@ from the Developer Console. It generates realistic driving signals and exercises
 every part of the DIMO stack — identity, permissions, telemetry, webhooks, and
 agents — without requiring hardware.
 
-:::info No Special Modes
+:::info[No Special Modes]
 
 The simulator isn't a mock. Each simulated vehicle is a real digital ID with
 an on-chain identity. It goes through the same permission grant flow and emits
@@ -592,7 +591,7 @@ The simulator runs a daily schedule across four routes based on real NYC/NJ road
 
 ![DIMO Vehicle Simulator](/img/vehicle_simulator.png)
 
-:::tip Blog Post
+:::tip[Blog Post]
 
 Read the [full architecture writeup](/blog/dimo-vehicle-simulator) for details
 on how the simulator was built and what's coming next.
@@ -719,7 +718,7 @@ An MCP (Model Context Protocol) server that provides seamless access to the DIMO
 enabling AI assistants to query vehicle data, execute vehicle commands, decode VINs, 
 create verifiable credentials, and interact with the DIMO ecosystem.
 
-:::tip Pair it with the DIMO Platform Skill
+:::tip[Pair it with the DIMO Platform Skill]
 The MCP server lets an agent _act_ on DIMO. The [DIMO Platform Skill](/docs/build/building-with-ai/dimo-platform-skill) lets it _understand_ DIMO. Load both so your agent can reason about the platform and operate on it in the same session.
 :::
 
@@ -938,7 +937,7 @@ Developers can get started using either the [React Component SDK (aka Login with
     />
     Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
 
-    :::tip Use a Configuration ID (recommended)
+    :::tip[Use a Configuration ID (recommended)]
     The [DIMO Developer Console](https://console.dimo.org) includes a **Login With DIMO Configurator** — a widget where you set your component type (`LoginWithDimo` or `ShareVehiclesWithDimo`), redirect URI, UTM, expiration date, and permissions (template or custom). It generates a **Configuration ID** and lets you copy the ready-to-use `login.dimo.org` link directly. Pass the `configurationId` in your integration instead of individual query parameters.
     :::
 
@@ -1116,7 +1115,7 @@ Developers can get started using either the [React Component SDK (aka Login with
 If you are a React developer, you are more than welcome to use the SDK directly and skip using the DIMO Connect URL.
 The SDK is guaranteed to have more functionalities as the DIMO Connect URL is bounded by query parameter limitations.
 
-:::tip Provisioning a Developer License per user
+:::tip[Provisioning a Developer License per user]
 Building a multi-tenant app where each end user needs their own Developer License (their own API key), rather
 than sharing yours? See [Auto-Create a Developer License](../../1_getting-started/2_auto-create-license.mdx)
 for how to mint or reconnect licenses programmatically from this same SDK.
@@ -1929,7 +1928,7 @@ The Extract API is the parser. You hand it a vehicle document; it tells you what
   }
 />
 
-:::tip Full document lifecycle
+:::tip[Full document lifecycle]
 Extract only parses. If you want the whole document round-trip — store the file, parse it, link the parse back to the raw upload, query both later — it looks like this:
 
 1. POST a `dimo.raw.<subtype>` CloudEvent to `https://attest.dimo.zone` with the file as the signed `data` payload. Save the event id; it becomes the `raweventid` for the parse.
@@ -3768,7 +3767,7 @@ Access private data from the DIMO-connected vehicles.
   }
 />
 
-:::info Developer Notes
+:::info[Developer Notes]
 To access the Vehicle data under the Telemetry API, a token exchange transaction
 is required to obtain a Vehicle JWT with permissions to access a given vehicle.
 Please review our section on [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for more information.
@@ -4160,7 +4159,7 @@ query GetLatestSignals{
 />
 
 ## Categories of Data
-:::info Keys
+:::info[Keys]
 - **Signal**: The field name that can be queried for signals or signalsLatest.
 - **Common Name**: A simplified, consumer-friendly naming convention for the signal.
 - **Aggregation (Agg.) Type**: The Aggregation Type as specified for the signals resource.
@@ -4508,7 +4507,7 @@ URL: https://dimo.org/docs/api-references/telemetry-api/events
 # Vehicle Events
 Events from DIMO-connected vehicles.
 
-:::info Notice
+:::info[Notice]
 DIMO Events are only available on vehicles equipped with R1 LTE's. For additional support for DIMO Events, reach out to our Developer Support team via the Console.
 :::
 
@@ -4589,7 +4588,7 @@ URL: https://dimo.org/docs/api-references/telemetry-api/telemetry-playground
 
 Build custom telemetry queries using the interactive query builder below. Select signals, configure aggregations, and generate GraphQL queries to use with the DIMO Telemetry API.
 
-:::info Authentication Required
+:::info[Authentication Required]
 The Telemetry API requires authentication with a Vehicle JWT token. You'll need:
 - A Developer License (get one at the [Developer Console](https://console.dimo.org))
 - Vehicle permissions granted to your license
@@ -5165,7 +5164,7 @@ URL: https://dimo.org/docs/api-references/token-exchange-api
 # Token Exchange API
 Gateway to obtaining a JWT to access protected API services.
 
-:::info Developer Notes
+:::info[Developer Notes]
 New to authentication on DIMO? Check out the Authentication Explainer here, or
 check out our video on how the different JSON Web Tokens (JWTs) work.
 :::
@@ -5280,7 +5279,7 @@ Vehicle Triggers is a way for DIMO to automatically send real-time data to your 
 Think of it like a "push notification" for servers — instead of you constantly checking the API (polling) for updates,
 your app now gets notified instantly when something happens.
 
-:::info Developer Notes
+:::info[Developer Notes]
 Webhooks that you configure are tied to a specific Developer License.
 
 If you have multiple Developer Licenses under a single account in the DIMO Developer Console, please make sure to authenticate using the Developer JWT associated with the specific license.
@@ -6254,7 +6253,7 @@ Retrieve raw data objects and index keys from cloud storage.
   }
 />
 
-:::info Developer Notes
+:::info[Developer Notes]
 To access data via the Fetch API, a token exchange is required to obtain a JWT with the appropriate permissions. The entity must have been shared with your app with **raw data** permission. When requesting the token (e.g. via the [Token Exchange API](/docs/api-references/token-exchange-api)), include the privilege that grants raw data access. See [Authentication](/docs/getting-started/authentication) and the [Token Exchange API](/docs/api-references/token-exchange-api) for details.
 :::
 
@@ -6412,7 +6411,7 @@ The Fetch API exposes five root queries:
 
 All queries require a <code>did</code> (Decentralized Identifier). The <code>did</code> parameter accepts any DID in the DIMO system (e.g. <code>did:erc721:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
 
-:::tip Large or binary payloads
+:::tip[Large or binary payloads]
 Some event types are too big to inline as JSON. Uploaded documents (`dimo.document.*`) and raw blobs are the common ones. When you select <code>data</code> or <code>dataBase64</code> on these events, the Fetch API gives you a presigned S3 URL on <code>dataUrl</code> instead. Always request <code>dataUrl</code> alongside <code>data</code> if there is any chance you are querying a document or raw-blob type, otherwise you will get back a response with no payload.
 :::
 
@@ -6569,7 +6568,7 @@ URL: https://dimo.org/docs/api-references/fetch-api/playground
 
 Run GraphQL queries against the Fetch API using the playground below.
 
-:::info Authentication Required
+:::info[Authentication Required]
 The Fetch API requires a JWT with **raw data** permission. You need:
 - A [Developer License](https://console.dimo.org)
 - The entity shared with your app with raw data permission
@@ -6618,16 +6617,15 @@ URL: https://dimo.org/docs/examples/build-examples
 
 # Build Examples
 
-:::warning Disclaimer
-	Demo applications provided on this documentation site are for demonstration and informational purposes only.
-	These applications are not intended for production use and may not reflect the full capabilities,
-	security standards, or data integrity of final production systems.
-	The functionality, data, and results shown in these demos are provided “as is” and carry no warranties—express
-	or implied—including, but not limited to, any implied warranties of merchantability, fitness for a particular
-	purpose, or non-infringement. DIMO Foundation assumes no responsibility for any loss, damage, or other consequences
-	resulting from the use, misuse, or reliance on demo applications. Use of demo applications is at your own risk.
-	For accurate, reliable solutions, always refer to officially supported production releases and consult with relevant
-	technical or legal advisors before deploying to live environments.
+:::warning[Disclaimer]
+These applications are not intended for production use and may not reflect the full capabilities,
+security standards, or data integrity of final production systems.
+The functionality, data, and results shown in these demos are provided “as is” and carry no warranties—express
+or implied—including, but not limited to, any implied warranties of merchantability, fitness for a particular
+purpose, or non-infringement. DIMO Foundation assumes no responsibility for any loss, damage, or other consequences
+resulting from the use, misuse, or reliance on demo applications. Use of demo applications is at your own risk.
+For accurate, reliable solutions, always refer to officially supported production releases and consult with relevant
+technical or legal advisors before deploying to live environments.</small>
 :::
 	- [Cardbird](https://carbird.ai/): Realtime AI Chatbot for your vehicle
 	- [Roadside Roadie](https://roadside-roadie.replit.app/): AI-powered roadside assistant
@@ -7251,7 +7249,7 @@ URL: https://dimo.org/docs/tutorials/connect-first-vehicle
 
 Learn how to connect your first vehicle to DIMO and access real-time vehicle data.
 
-:::info Quick Info
+:::info[Quick Info]
 **⏱️ Time to complete:** 10 minutes
 **💰 Cost:** Free (Hobbyist tier)
 **📚 Prerequisites:** Basic JavaScript/TypeScript knowledge, Node.js installed
@@ -7278,7 +7276,7 @@ By the end of this tutorial, you'll have:
 3. Create a **Developer License** - this acts like an access card for the DIMO platform
 4. Give your license a descriptive name (e.g., "My First DIMO App")
 
-:::tip What is a Developer License?
+:::tip[What is a Developer License?]
 A Developer License is your application's identity on the DIMO platform. It allows you to request data from vehicle owners and access DIMO APIs.
 :::
 
@@ -7296,7 +7294,7 @@ From your Developer License in the console, you'll need three things:
 2. **Redirect URI** - Where users return after granting permissions (e.g., `http://localhost:3000/callback`)
 3. **API Key** - Your private key for authentication
 
-:::warning Security Notice
+:::warning[Security Notice]
 Keep your API Key secure! Never commit it to Git or share it publicly. Store it in environment variables.
 :::
 
@@ -7465,7 +7463,7 @@ console.log(dimoConnectUrl);
 4. **User is redirected** back to your `redirect_uri` with authorization
 5. **You receive a `tokenId`** for each vehicle they shared
 
-:::tip Using the Mobile App
+:::tip[Using the Mobile App]
 Users can also connect vehicles through the DIMO Mobile app and then grant permissions to your app through the "Connected Apps" settings.
 :::
 
@@ -8251,7 +8249,7 @@ so that you can get up and running quickly as you follow along with the document
 Let's begin by going through how this site works so you can get the most out of our documentation.
 			Navigate to your desired page using the left navigation panel.
 			Learn about how to build on the DIMO Network.
-      :::info Best Practices
+      :::info[Best Practices]
 				We've added these best practices or warning blocks to facilitate learning.
 			:::
       Follow along with our DIMO University video series.
