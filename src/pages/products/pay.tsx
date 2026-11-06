@@ -284,8 +284,11 @@ export default function PayPage(): ReactNode {
                 '@type': 'SoftwareApplication',
                 '@id': 'https://dimo.org/products/pay#software',
                 name: 'DIMO Pay',
-                description:
-                  'Session-scoped stablecoin payment rails for mobility — in-vehicle payments, reimbursements, and per-session spend controls.',
+                description: translate({
+                  id: 'products.pay.schema.description',
+                  message:
+                    'Session-scoped stablecoin payment rails for mobility — in-vehicle payments, reimbursements, and per-session spend controls.',
+                }),
                 url: 'https://dimo.org/products/pay',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',

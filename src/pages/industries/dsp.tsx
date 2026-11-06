@@ -608,17 +608,29 @@ export default function DeliveryPage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'Product',
-                name: 'DIMO for Delivery',
-                description:
-                  'Fleet intelligence platform for delivery service providers. Predictive maintenance, driver coaching, and route optimization.',
+                name: translate({
+                  id: 'industries.dsp.schema.dimoForDelivery.name',
+                  message: 'DIMO for Delivery',
+                }),
+                description: translate({
+                  id: 'industries.dsp.schema.dimoForDelivery.description',
+                  message:
+                    'Fleet intelligence platform for delivery service providers. Predictive maintenance, driver coaching, and route optimization.',
+                }),
                 brand: {
                   '@type': 'Brand',
                   name: 'DIMO',
                 },
-                category: 'Fleet Management Software',
+                category: translate({
+                  id: 'industries.dsp.schema.dimoForDelivery.category',
+                  message: 'Fleet Management Software',
+                }),
                 audience: {
                   '@type': 'Audience',
-                  audienceType: 'Delivery Service Providers',
+                  audienceType: translate({
+                    id: 'industries.dsp.schema.audienceType',
+                    message: 'Delivery Service Providers',
+                  }),
                 },
               },
               locale,

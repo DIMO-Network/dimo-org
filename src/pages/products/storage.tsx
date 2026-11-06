@@ -280,8 +280,11 @@ export default function StoragePage(): ReactNode {
                 '@type': 'SoftwareApplication',
                 '@id': 'https://dimo.org/products/storage#software',
                 name: 'DIMO Storage',
-                description:
-                  'Normalized, queryable storage for connected-vehicle telemetry — time-series vehicle data, cloud or on-prem.',
+                description: translate({
+                  id: 'products.storage.schema.description',
+                  message:
+                    'Normalized, queryable storage for connected-vehicle telemetry — time-series vehicle data, cloud or on-prem.',
+                }),
                 url: 'https://dimo.org/products/storage',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',

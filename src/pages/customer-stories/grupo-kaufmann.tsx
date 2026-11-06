@@ -621,10 +621,16 @@ export default function GrupoKaufmannCaseStudy(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'Article',
-                headline:
-                  'How Grupo Kaufmann Transformed Their Dealership Network with DIMO',
-                description:
-                  "Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform.",
+                headline: translate({
+                  id: 'customerStories.grupoKaufmann.schema.howGrupoKaufmann.headline',
+                  message:
+                    'How Grupo Kaufmann Transformed Their Dealership Network with DIMO',
+                }),
+                description: translate({
+                  id: 'customerStories.grupoKaufmann.schema.howGrupoKaufmann.description',
+                  message:
+                    "Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform.",
+                }),
                 image: {
                   '@type': 'ImageObject',
                   url: 'https://dimo.org/img/kaufmann.webp',

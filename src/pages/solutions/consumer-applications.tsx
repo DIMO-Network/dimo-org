@@ -619,9 +619,15 @@ export default function ConsumerApplicationsPage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'MobileApplication',
-                name: 'DIMO Mobile App Platform',
-                description:
-                  'White-label mobile application platform for vehicle data. iOS and Android apps with customization and localization.',
+                name: translate({
+                  id: 'solutions.consumerApplications.schema.dimoMobileApp.name',
+                  message: 'DIMO Mobile App Platform',
+                }),
+                description: translate({
+                  id: 'solutions.consumerApplications.schema.dimoMobileApp.description',
+                  message:
+                    'White-label mobile application platform for vehicle data. iOS and Android apps with customization and localization.',
+                }),
                 operatingSystem: 'iOS, Android',
                 applicationCategory: 'Automotive',
               },

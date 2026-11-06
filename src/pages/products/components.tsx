@@ -400,8 +400,11 @@ export default function ComponentsPage(): ReactNode {
                 '@type': 'SoftwareApplication',
                 '@id': 'https://dimo.org/products/components#software',
                 name: 'DIMO Components',
-                description:
-                  'Embeddable UI components for DIMO — drop-in consent flows, Login with DIMO, and vehicle connection widgets.',
+                description: translate({
+                  id: 'products.components.schema.description',
+                  message:
+                    'Embeddable UI components for DIMO — drop-in consent flows, Login with DIMO, and vehicle connection widgets.',
+                }),
                 url: 'https://dimo.org/products/components',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',

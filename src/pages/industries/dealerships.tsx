@@ -609,17 +609,29 @@ export default function DealershipsPage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'Product',
-                name: 'DIMO for Dealerships',
-                description:
-                  'Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management.',
+                name: translate({
+                  id: 'industries.dealerships.schema.dimoForDealerships.name',
+                  message: 'DIMO for Dealerships',
+                }),
+                description: translate({
+                  id: 'industries.dealerships.schema.dimoForDealerships.description',
+                  message:
+                    'Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management.',
+                }),
                 brand: {
                   '@type': 'Brand',
                   name: 'DIMO',
                 },
-                category: 'Automotive Software',
+                category: translate({
+                  id: 'industries.dealerships.schema.dimoForDealerships.category',
+                  message: 'Automotive Software',
+                }),
                 audience: {
                   '@type': 'Audience',
-                  audienceType: 'Automotive Dealerships',
+                  audienceType: translate({
+                    id: 'industries.dealerships.schema.audienceType',
+                    message: 'Automotive Dealerships',
+                  }),
                 },
               },
               locale,

@@ -585,8 +585,11 @@ export default function OEMPage(): ReactNode {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
                 name: 'DIMO Developer Platform',
-                description:
-                  'Unified API platform for accessing vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise infrastructure.',
+                description: translate({
+                  id: 'industries.oem.schema.description',
+                  message:
+                    'Unified API platform for accessing vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise infrastructure.',
+                }),
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web, iOS, Android',
                 offers: {

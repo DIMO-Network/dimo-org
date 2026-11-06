@@ -288,8 +288,11 @@ export default function ConsentPage(): ReactNode {
                 '@type': 'SoftwareApplication',
                 '@id': 'https://dimo.org/products/consent#software',
                 name: 'DIMO Consent',
-                description:
-                  'Privacy-preserving, user-owned consent management for vehicle data — session-scoped permissions with atomic grant and revocation (SACD).',
+                description: translate({
+                  id: 'products.consent.schema.description',
+                  message:
+                    'Privacy-preserving, user-owned consent management for vehicle data — session-scoped permissions with atomic grant and revocation (SACD).',
+                }),
                 url: 'https://dimo.org/products/consent',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',

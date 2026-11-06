@@ -686,9 +686,15 @@ export default function FleetIntelligencePage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'DIMO Fleet Intelligence Platform',
-                description:
-                  'Fleet management platform with SDKs, APIs, and AI-powered insights. Build custom fleet solutions with real-time vehicle telemetry.',
+                name: translate({
+                  id: 'solutions.fleetIntelligence.schema.dimoFleetIntelligence.name',
+                  message: 'DIMO Fleet Intelligence Platform',
+                }),
+                description: translate({
+                  id: 'solutions.fleetIntelligence.schema.dimoFleetIntelligence.description',
+                  message:
+                    'Fleet management platform with SDKs, APIs, and AI-powered insights. Build custom fleet solutions with real-time vehicle telemetry.',
+                }),
                 applicationCategory: 'BusinessApplication',
                 offers: {
                   '@type': 'Offer',

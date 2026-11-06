@@ -743,8 +743,11 @@ export default function Pricing(): ReactNode {
                 name: 'DIMO Platform',
                 url: 'https://dimo.org/pricing',
                 image: 'https://dimo.org/img/dimo-social-card.png',
-                description:
-                  'DIMO is the vehicle data infrastructure that powers the session-based economy. Plans for developers building on real-time, consent-governed vehicle data and AI agents.',
+                description: translate({
+                  id: 'pricing.schema.description',
+                  message:
+                    'DIMO is the vehicle data infrastructure that powers the session-based economy. Plans for developers building on real-time, consent-governed vehicle data and AI agents.',
+                }),
                 brand: {
                   '@type': 'Brand',
                   name: 'DIMO',
@@ -765,8 +768,11 @@ export default function Pricing(): ReactNode {
                         unitText: 'account',
                       },
                     },
-                    description:
-                      'Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.',
+                    description: translate({
+                      id: 'pricing.schema.0.description',
+                      message:
+                        'Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing.',
+                    }),
                     url: 'https://dimo.org/pricing',
                     availability: 'https://schema.org/InStock',
                   },
@@ -786,8 +792,11 @@ export default function Pricing(): ReactNode {
                         unitText: 'month',
                       },
                     },
-                    description:
-                      'For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.',
+                    description: translate({
+                      id: 'pricing.schema.1.description',
+                      message:
+                        'For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage.',
+                    }),
                     url: 'https://dimo.org/pricing',
                     availability: 'https://schema.org/InStock',
                   },

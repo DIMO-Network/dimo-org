@@ -341,6 +341,33 @@
   "home.meta.twitterDescription": {
     "message": "DIMO powers the session-based economy—rentals, pay-per-use, and mobility services built on real-time vehicle data. Start free."
   },
+  "home.schema.description": {
+    "message": "DIMO is the vehicle data infrastructure that powers the session-based economy. It handles vehicle access through a single, permissioned API for real-time telemetry, identity, and owner consent (SACD) across 50+ brands, so developers can build apps and businesses on connected vehicles. The core platform is open source."
+  },
+  "home.schema.description2": {
+    "message": "Free tier available with paid plans for advanced features"
+  },
+  "home.schema.featureList.worksWithAny": {
+    "message": "Works with any make (50+ vehicle brands already connected)"
+  },
+  "home.schema.featureList.aiReadyDataStreams": {
+    "message": "AI-ready data streams"
+  },
+  "home.schema.featureList.privacyPreservingArchitecture": {
+    "message": "Privacy-preserving architecture"
+  },
+  "home.schema.featureList.plugAndPlayHardwareSupport": {
+    "message": "Plug-and-play hardware support"
+  },
+  "home.schema.featureList.openSourceCore": {
+    "message": "Open source core"
+  },
+  "home.schema.featureList.realTimeVehicleTelemetry": {
+    "message": "Real-time vehicle telemetry"
+  },
+  "home.schema.featureList.agenticWorkflowDevelopment": {
+    "message": "Agentic workflow development"
+  },
   "pricing.tiers.hobbyist.price": {
     "message": "FREE"
   },
@@ -523,6 +550,15 @@
   },
   "pricing.meta.twitterDescription": {
     "message": "Free hobbyist tier • $349/mo developer plan • Custom enterprise solutions. Build with vehicle data from 50+ brands."
+  },
+  "pricing.schema.description": {
+    "message": "DIMO is the vehicle data infrastructure that powers the session-based economy. Plans for developers building on real-time, consent-governed vehicle data and AI agents."
+  },
+  "pricing.schema.0.description": {
+    "message": "Free tier for enthusiasts building for their own vehicles. Includes 1 AI agent and pay-as-you-go pricing."
+  },
+  "pricing.schema.1.description": {
+    "message": "For developers building apps for fleets or user bases. Includes 100 vehicles, higher request limits, and data storage."
   },
   "vehicleDataApi.meta.title": {
     "message": "Vehicle Data API: Real-Time Telemetry, 50+ Brands | DIMO"
@@ -2177,6 +2213,12 @@
   "customerStories.emobi.meta.ogDescription": {
     "message": "How Emobi and DIMO delivered the first fleet-ready Plug & Charge device: ISO 15118 compliant, any vehicle compatible, 140K+ chargers accessible."
   },
+  "customerStories.emobi.schema.emobiAndDimo.headline": {
+    "message": "Emobi and DIMO Partner to Deliver First Fleet-Ready Plug & Charge Device"
+  },
+  "customerStories.emobi.schema.emobiAndDimo.description": {
+    "message": "Partnership combines Emobi's JustPlug™ technology with DIMO's vehicle intelligence platform to bring secure, seamless ISO 15118 Plug & Charge to fleets for the first time."
+  },
   "customerStories.emobi.body.home.name": {
     "message": "Home"
   },
@@ -2386,6 +2428,12 @@
   },
   "customerStories.grupoKaufmann.meta.ogDescription": {
     "message": "How Latin America's leading automotive group transformed their operations with DIMO: 100% OEM connectivity, 80% theft reduction, 3x customer engagement."
+  },
+  "customerStories.grupoKaufmann.schema.howGrupoKaufmann.headline": {
+    "message": "How Grupo Kaufmann Transformed Their Dealership Network with DIMO"
+  },
+  "customerStories.grupoKaufmann.schema.howGrupoKaufmann.description": {
+    "message": "Case study: Grupo Kaufmann achieved 100% OEM connectivity, reduced vehicle theft by 80%, and tripled customer engagement using DIMO's connected vehicle platform."
   },
   "customerStories.grupoKaufmann.body.home.name": {
     "message": "Home"
@@ -2605,6 +2653,18 @@
   },
   "industries.dealerships.meta.ogDescription": {
     "message": "Deploy AI-powered vehicle agents for service, sales, and fleet management. 24/7 customer support, data-backed valuations, and proactive service scheduling."
+  },
+  "industries.dealerships.schema.dimoForDealerships.name": {
+    "message": "DIMO for Dealerships"
+  },
+  "industries.dealerships.schema.dimoForDealerships.description": {
+    "message": "Intelligent vehicle agents for automotive dealerships. Virtual service advisors, trade-in valuations, and fleet management."
+  },
+  "industries.dealerships.schema.dimoForDealerships.category": {
+    "message": "Automotive Software"
+  },
+  "industries.dealerships.schema.audienceType": {
+    "message": "Automotive Dealerships"
   },
   "industries.dealerships.body.home.name": {
     "message": "Home"
@@ -2828,6 +2888,18 @@
   "industries.dsp.meta.ogDescription": {
     "message": "Command your delivery fleet with AI-powered predictive maintenance, driver coaching, route analysis, and real-time monitoring."
   },
+  "industries.dsp.schema.dimoForDelivery.name": {
+    "message": "DIMO for Delivery"
+  },
+  "industries.dsp.schema.dimoForDelivery.description": {
+    "message": "Fleet intelligence platform for delivery service providers. Predictive maintenance, driver coaching, and route optimization."
+  },
+  "industries.dsp.schema.dimoForDelivery.category": {
+    "message": "Fleet Management Software"
+  },
+  "industries.dsp.schema.audienceType": {
+    "message": "Delivery Service Providers"
+  },
   "industries.dsp.body.home.name": {
     "message": "Home"
   },
@@ -3025,6 +3097,18 @@
   },
   "industries.maintenance.meta.ogDescription": {
     "message": "Supercharge your shop with AI diagnostics assistance, customer support agents, and technician training tools powered by real vehicle data."
+  },
+  "industries.maintenance.schema.dimoForAutomotive.name": {
+    "message": "DIMO for Automotive Maintenance"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.description": {
+    "message": "AI-powered diagnostics and customer support for automotive maintenance shops. Faster diagnosis, better training, more bookings."
+  },
+  "industries.maintenance.schema.dimoForAutomotive.category": {
+    "message": "Automotive Software"
+  },
+  "industries.maintenance.schema.audienceType": {
+    "message": "Automotive Repair Shops"
   },
   "industries.maintenance.body.home.name": {
     "message": "Home"
@@ -3235,6 +3319,9 @@
   },
   "industries.oem.meta.ogDescription": {
     "message": "One API to access vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise-grade infrastructure."
+  },
+  "industries.oem.schema.description": {
+    "message": "Unified API platform for accessing vehicle data from 50+ brands. Developer-friendly SDKs, privacy-first architecture, and enterprise infrastructure."
   },
   "industries.oem.body.home.name": {
     "message": "Home"
@@ -3461,6 +3548,18 @@
   "industries.rentals.meta.ogDescription": {
     "message": "Deploy AI concierges for every rental, monitor your fleet in real-time, and streamline operations with intelligent automation."
   },
+  "industries.rentals.schema.dimoForRentals.name": {
+    "message": "DIMO for Rentals"
+  },
+  "industries.rentals.schema.dimoForRentals.description": {
+    "message": "AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations."
+  },
+  "industries.rentals.schema.dimoForRentals.category": {
+    "message": "Fleet Management Software"
+  },
+  "industries.rentals.schema.audienceType": {
+    "message": "Car Rental Companies"
+  },
   "industries.rentals.body.home.name": {
     "message": "Home"
   },
@@ -3556,6 +3655,9 @@
   },
   "products.access.meta.ogDescription": {
     "message": "Developer-first API platform for vehicle data with global edge deployment."
+  },
+  "products.access.schema.description": {
+    "message": "Clean, fast APIs and SDKs (REST, GraphQL, webhooks, streaming) for accessing real-time and historical vehicle data across 50+ connected brands."
   },
   "products.access.body.home.name": {
     "message": "Home"
@@ -3695,6 +3797,9 @@
   "products.components.meta.ogDescription": {
     "message": "The building blocks of vehicle ownership on the DIMO Network."
   },
+  "products.components.schema.description": {
+    "message": "Embeddable UI components for DIMO — drop-in consent flows, Login with DIMO, and vehicle connection widgets."
+  },
   "products.components.body.home.name": {
     "message": "Home"
   },
@@ -3794,6 +3899,9 @@
   "products.consent.meta.ogDescription": {
     "message": "Privacy-first consent management with cryptographic verification and regulatory compliance."
   },
+  "products.consent.schema.description": {
+    "message": "Privacy-preserving, user-owned consent management for vehicle data — session-scoped permissions with atomic grant and revocation (SACD)."
+  },
   "products.consent.body.home.name": {
     "message": "Home"
   },
@@ -3883,6 +3991,9 @@
   },
   "products.ingest.meta.ogDescription": {
     "message": "Unified vehicle data ingestion from any source with real-time streaming and enterprise reliability."
+  },
+  "products.ingest.schema.description": {
+    "message": "Bring-your-own telematics ingestion via the DIMO Ingest Server (DIS) into a unified vehicle data pipeline."
   },
   "products.ingest.body.home.name": {
     "message": "Home"
@@ -3983,6 +4094,9 @@
   "products.pay.meta.ogDescription": {
     "message": "Enable payments from inside the vehicle with customizable rewards."
   },
+  "products.pay.schema.description": {
+    "message": "Session-scoped stablecoin payment rails for mobility — in-vehicle payments, reimbursements, and per-session spend controls."
+  },
   "products.pay.body.home.name": {
     "message": "Home"
   },
@@ -4081,6 +4195,9 @@
   },
   "products.storage.meta.ogDescription": {
     "message": "Scalable storage infrastructure built for vehicle telemetry data at any scale."
+  },
+  "products.storage.schema.description": {
+    "message": "Normalized, queryable storage for connected-vehicle telemetry — time-series vehicle data, cloud or on-prem."
   },
   "products.storage.body.home.name": {
     "message": "Home"
@@ -4304,6 +4421,12 @@
   "solutions.agenticExperiences.meta.ogDescription": {
     "message": "Deploy intelligent vehicle agents with built-in consent management, secured compute, and 50+ integrations. Privacy-first infrastructure for AI."
   },
+  "solutions.agenticExperiences.schema.dimoAgenticExperiences.name": {
+    "message": "DIMO Agentic Experiences Platform"
+  },
+  "solutions.agenticExperiences.schema.dimoAgenticExperiences.description": {
+    "message": "Build trustworthy AI vehicle agents with consent management, secured compute, and pre-built integrations."
+  },
   "solutions.agenticExperiences.body.home.name": {
     "message": "Home"
   },
@@ -4525,6 +4648,12 @@
   },
   "solutions.consumerApplications.meta.ogDescription": {
     "message": "Production-ready mobile apps for iOS and Android. Fully customizable, multi-language support, and global reach out of the box."
+  },
+  "solutions.consumerApplications.schema.dimoMobileApp.name": {
+    "message": "DIMO Mobile App Platform"
+  },
+  "solutions.consumerApplications.schema.dimoMobileApp.description": {
+    "message": "White-label mobile application platform for vehicle data. iOS and Android apps with customization and localization."
   },
   "solutions.consumerApplications.body.home.name": {
     "message": "Home"
@@ -4774,6 +4903,12 @@
   },
   "solutions.fleetIntelligence.meta.ogDescription": {
     "message": "Comprehensive fleet management platform with SDKs, real-time telemetry, and AI-powered insights. Build custom fleet solutions or use our dashboard (coming soon)."
+  },
+  "solutions.fleetIntelligence.schema.dimoFleetIntelligence.name": {
+    "message": "DIMO Fleet Intelligence Platform"
+  },
+  "solutions.fleetIntelligence.schema.dimoFleetIntelligence.description": {
+    "message": "Fleet management platform with SDKs, APIs, and AI-powered insights. Build custom fleet solutions with real-time vehicle telemetry."
   },
   "solutions.fleetIntelligence.body.home.name": {
     "message": "Home"
@@ -5114,6 +5249,12 @@
   "solutions.vehicleCommerce.meta.ogDescription": {
     "message": "Accept stablecoin payments and enable automated vehicle transactions with x402 protocol. Low fees, instant settlement, and global reach."
   },
+  "solutions.vehicleCommerce.schema.dimoVehicleCommerce.name": {
+    "message": "DIMO Vehicle Commerce Platform"
+  },
+  "solutions.vehicleCommerce.schema.dimoVehicleCommerce.description": {
+    "message": "Vehicle payment platform with stablecoin support and x402 protocol. Enable automated, low-fee payments for mobility services."
+  },
   "solutions.vehicleCommerce.body.home.name": {
     "message": "Home"
   },
@@ -5220,6 +5361,10 @@
     "message": "Older post",
     "description": "The blog post button label to navigate to the older/next post"
   },
+  "theme.tags.tagsPageLink": {
+    "message": "View all tags",
+    "description": "The label of the link targeting the tag list page"
+  },
   "theme.colorToggle.ariaLabel.mode.system": {
     "message": "system mode",
     "description": "The name for the system color mode"
@@ -5236,17 +5381,13 @@
     "message": "Switch between dark and light mode (currently {mode})",
     "description": "The ARIA label for the color mode toggle"
   },
-  "theme.tags.tagsPageLink": {
-    "message": "View all tags",
-    "description": "The label of the link targeting the tag list page"
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 item|{count} items",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
     "message": "Breadcrumbs",
     "description": "The ARIA label for the breadcrumbs"
-  },
-  "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 item|{count} items",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
     "message": "Docs pages",
@@ -5319,6 +5460,10 @@
     "message": "Tags:",
     "description": "The label alongside a tag list"
   },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Close",
+    "description": "The ARIA label for close button of announcement bar"
+  },
   "theme.admonition.caution": {
     "message": "caution",
     "description": "The default label used for the Caution admonition (:::caution)"
@@ -5342,10 +5487,6 @@
   "theme.admonition.warning": {
     "message": "warning",
     "description": "The default label used for the Warning admonition (:::warning)"
-  },
-  "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "Close",
-    "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
     "message": "Blog recent posts navigation",
@@ -5383,6 +5524,10 @@
     "message": "On this page",
     "description": "The label used by the button on the collapsible TOC component"
   },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "One min read|{readingTime} min read",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
   "theme.blog.post.readMore": {
     "message": "Read more",
     "description": "The label used in blog post item excerpts to link to full blog posts"
@@ -5390,10 +5535,6 @@
   "theme.blog.post.readMoreLabel": {
     "message": "Read more about {title}",
     "description": "The ARIA label for the link to full blog posts from excerpts"
-  },
-  "theme.blog.post.readingTime.plurals": {
-    "message": "One min read|{readingTime} min read",
-    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.CodeBlock.copy": {
     "message": "Copy",
@@ -5435,10 +5576,6 @@
     "message": "← Back to main menu",
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
   },
-  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
-    "message": "Toggle navigation bar",
-    "description": "The ARIA label for hamburger menu button of mobile navigation"
-  },
   "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
     "message": "Expand the dropdown",
     "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
@@ -5446,6 +5583,10 @@
   "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
     "message": "Collapse the dropdown",
     "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Toggle navigation bar",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.sidebar.expandButtonTitle": {
     "message": "Expand sidebar",

@@ -273,8 +273,11 @@ export default function AccessPage(): ReactNode {
                 '@type': 'SoftwareApplication',
                 '@id': 'https://dimo.org/products/access#software',
                 name: 'DIMO Access',
-                description:
-                  'Clean, fast APIs and SDKs (REST, GraphQL, webhooks, streaming) for accessing real-time and historical vehicle data across 50+ connected brands.',
+                description: translate({
+                  id: 'products.access.schema.description',
+                  message:
+                    'Clean, fast APIs and SDKs (REST, GraphQL, webhooks, streaming) for accessing real-time and historical vehicle data across 50+ connected brands.',
+                }),
                 url: 'https://dimo.org/products/access',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',

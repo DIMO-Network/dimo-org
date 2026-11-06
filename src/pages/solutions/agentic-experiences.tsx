@@ -613,9 +613,15 @@ export default function AgenticExperiencesPage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'DIMO Agentic Experiences Platform',
-                description:
-                  'Build trustworthy AI vehicle agents with consent management, secured compute, and pre-built integrations.',
+                name: translate({
+                  id: 'solutions.agenticExperiences.schema.dimoAgenticExperiences.name',
+                  message: 'DIMO Agentic Experiences Platform',
+                }),
+                description: translate({
+                  id: 'solutions.agenticExperiences.schema.dimoAgenticExperiences.description',
+                  message:
+                    'Build trustworthy AI vehicle agents with consent management, secured compute, and pre-built integrations.',
+                }),
                 applicationCategory: 'DeveloperApplication',
                 offers: {
                   '@type': 'Offer',

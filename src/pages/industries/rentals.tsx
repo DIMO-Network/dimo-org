@@ -620,17 +620,29 @@ export default function RentalsPage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'Product',
-                name: 'DIMO for Rentals',
-                description:
-                  'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',
+                name: translate({
+                  id: 'industries.rentals.schema.dimoForRentals.name',
+                  message: 'DIMO for Rentals',
+                }),
+                description: translate({
+                  id: 'industries.rentals.schema.dimoForRentals.description',
+                  message:
+                    'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',
+                }),
                 brand: {
                   '@type': 'Brand',
                   name: 'DIMO',
                 },
-                category: 'Fleet Management Software',
+                category: translate({
+                  id: 'industries.rentals.schema.dimoForRentals.category',
+                  message: 'Fleet Management Software',
+                }),
                 audience: {
                   '@type': 'Audience',
-                  audienceType: 'Car Rental Companies',
+                  audienceType: translate({
+                    id: 'industries.rentals.schema.audienceType',
+                    message: 'Car Rental Companies',
+                  }),
                 },
               },
               locale,

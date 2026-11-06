@@ -566,17 +566,29 @@ export default function MaintenancePage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'Product',
-                name: 'DIMO for Automotive Maintenance',
-                description:
-                  'AI-powered diagnostics and customer support for automotive maintenance shops. Faster diagnosis, better training, more bookings.',
+                name: translate({
+                  id: 'industries.maintenance.schema.dimoForAutomotive.name',
+                  message: 'DIMO for Automotive Maintenance',
+                }),
+                description: translate({
+                  id: 'industries.maintenance.schema.dimoForAutomotive.description',
+                  message:
+                    'AI-powered diagnostics and customer support for automotive maintenance shops. Faster diagnosis, better training, more bookings.',
+                }),
                 brand: {
                   '@type': 'Brand',
                   name: 'DIMO',
                 },
-                category: 'Automotive Software',
+                category: translate({
+                  id: 'industries.maintenance.schema.dimoForAutomotive.category',
+                  message: 'Automotive Software',
+                }),
                 audience: {
                   '@type': 'Audience',
-                  audienceType: 'Automotive Repair Shops',
+                  audienceType: translate({
+                    id: 'industries.maintenance.schema.audienceType',
+                    message: 'Automotive Repair Shops',
+                  }),
                 },
               },
               locale,

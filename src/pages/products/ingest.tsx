@@ -265,8 +265,11 @@ export default function IngestPage(): ReactNode {
                 '@type': 'SoftwareApplication',
                 '@id': 'https://dimo.org/products/ingest#software',
                 name: 'DIMO Ingest',
-                description:
-                  'Bring-your-own telematics ingestion via the DIMO Ingest Server (DIS) into a unified vehicle data pipeline.',
+                description: translate({
+                  id: 'products.ingest.schema.description',
+                  message:
+                    'Bring-your-own telematics ingestion via the DIMO Ingest Server (DIS) into a unified vehicle data pipeline.',
+                }),
                 url: 'https://dimo.org/products/ingest',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'Web',

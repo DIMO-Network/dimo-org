@@ -673,9 +673,15 @@ export default function VehicleCommercePage(): ReactNode {
               {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'DIMO Vehicle Commerce Platform',
-                description:
-                  'Vehicle payment platform with stablecoin support and x402 protocol. Enable automated, low-fee payments for mobility services.',
+                name: translate({
+                  id: 'solutions.vehicleCommerce.schema.dimoVehicleCommerce.name',
+                  message: 'DIMO Vehicle Commerce Platform',
+                }),
+                description: translate({
+                  id: 'solutions.vehicleCommerce.schema.dimoVehicleCommerce.description',
+                  message:
+                    'Vehicle payment platform with stablecoin support and x402 protocol. Enable automated, low-fee payments for mobility services.',
+                }),
                 applicationCategory: 'FinanceApplication',
                 offers: {
                   '@type': 'Offer',
