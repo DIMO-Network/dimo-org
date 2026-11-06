@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import { Highlight, themes } from 'prism-react-renderer';
 import ContentPageLayout from '../ContentPageLayout';
 import type { VehiclePageData } from '../../../plugins/vehicle-pages';
 import {
@@ -7,8 +8,8 @@ import {
   EVENT_LABELS,
   allFaq,
   connectionTypes,
-  coverageOf,
   directAnswer,
+  displayCoverage,
   eventConnections,
   events,
   formatYears,
@@ -57,38 +58,50 @@ function SignalTables({ record }: { record: VehiclePageData['record'] }) {
   return (
     <>
       <h2>Signals by connection type</h2>
-      {record.coverage.map((c, i) => {
+      {displayCoverage(record).map(({ coverage: c, collapsed }, i) => {
         // Records generated from network data have no frequency, so the
         // column only appears when some signal in the table has one.
         const hasFrequency = c.signals.some(s => s.typicalFrequency);
+        const heading = `${CONNECTION_LABELS[c.type]}${c.provider ? ` — ${c.provider}` : ''} (${sinceYear(c.years.from)})`;
+        const table = (
+          <table>
+            <thead>
+              <tr>
+                <th>Signal</th>
+                <th>DIMO name</th>
+                <th>Unit</th>
+                {hasFrequency && <th>Typical frequency</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {c.signals.map(s => (
+                <tr key={s.name}>
+                  <td>{s.label}</td>
+                  <td>
+                    <code>{s.name}</code>
+                  </td>
+                  <td>{s.unit ?? '—'}</td>
+                  {hasFrequency && <td>{s.typicalFrequency ?? '—'}</td>}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
         return (
           <section key={i}>
-            <h3>
-              {CONNECTION_LABELS[c.type]}
-              {c.provider ? ` — ${c.provider}` : ''} ({sinceYear(c.years.from)})
-            </h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Signal</th>
-                  <th>DIMO name</th>
-                  <th>Unit</th>
-                  {hasFrequency && <th>Typical frequency</th>}
-                </tr>
-              </thead>
-              <tbody>
-                {c.signals.map(s => (
-                  <tr key={s.name}>
-                    <td>{s.label}</td>
-                    <td>
-                      <code>{s.name}</code>
-                    </td>
-                    <td>{s.unit ?? '—'}</td>
-                    {hasFrequency && <td>{s.typicalFrequency ?? '—'}</td>}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {collapsed ? (
+              <details className={styles.collapsible}>
+                <summary>
+                  <h3>{heading}</h3>
+                </summary>
+                {table}
+              </details>
+            ) : (
+              <>
+                <h3>{heading}</h3>
+                {table}
+              </>
+            )}
             {c.notes && <p>Known gaps: {c.notes}</p>}
           </section>
         );
@@ -106,7 +119,9 @@ function NoFactoryConnectivity({
   if (gaps.length === 0) return null;
   const name = vehicleName(record);
   const span = yearSpan(record.coverage);
-  const devices = coverageOf(record, 'dimo_device');
+  const devices = displayCoverage(record)
+    .map(d => d.coverage)
+    .filter(c => c.type === 'dimo_device');
   const device = devices[0];
   const providers = devices.flatMap(d => (d.provider ? [d.provider] : []));
   return (
@@ -240,11 +255,28 @@ export default function VehiclePage({
           vehicle owner must first share access with your app through DIMO
           Connect.
         </p>
-        {/* Plain <pre>: ContentPageLayout sits outside the theme Layout, so
-            @theme/CodeBlock has no color-mode context during SSG. */}
-        <pre className={styles.snippet}>
-          <code className="language-ts">{buildSnippet(record)}</code>
-        </pre>
+        {/* prism-react-renderer directly: ContentPageLayout sits outside the
+            theme Layout, so @theme/CodeBlock has no color-mode context during
+            SSG. Dracula matches the site's dark code theme. */}
+        <Highlight
+          theme={themes.dracula}
+          code={buildSnippet(record).trimEnd()}
+          language="tsx"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={`${styles.snippet} ${className}`} style={style}>
+              <code>
+                {tokens.map((line, l) => (
+                  <div key={l} {...getLineProps({ line })}>
+                    {line.map((token, t) => (
+                      <span key={t} {...getTokenProps({ token })} />
+                    ))}
+                  </div>
+                ))}
+              </code>
+            </pre>
+          )}
+        </Highlight>
         <p>
           Full walkthrough:{' '}
           <Link to="/docs/quickstart">Developer quickstart</Link>.

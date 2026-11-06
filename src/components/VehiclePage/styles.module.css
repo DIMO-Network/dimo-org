@@ -29,6 +29,18 @@
 
 .snippet {
   font-size: 0.85rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.collapsible summary {
+  cursor: pointer;
+  list-style: revert;
+}
+
+.collapsible summary h3 {
+  display: inline;
 }
 
 .methodology {

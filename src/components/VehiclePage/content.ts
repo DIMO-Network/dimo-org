@@ -20,6 +20,27 @@ export const EVENT_LABELS: Record<EventType, string> = {
   dtc: 'New diagnostic trouble code',
 };
 
+// Secondary devices: their signal tables start collapsed so the DIMO LTE R1
+// table reads first.
+const SECONDARY_PROVIDERS = new Set(['AutoPi']);
+
+// Display order: primary coverage first, secondary devices last. A secondary
+// table only collapses when something else is shown open above it.
+export function displayCoverage(
+  r: VehicleRecord
+): { coverage: Coverage; collapsed: boolean }[] {
+  const secondary = (c: Coverage) =>
+    c.provider !== undefined && SECONDARY_PROVIDERS.has(c.provider);
+  const hasPrimary = r.coverage.some(c => !secondary(c));
+  return [
+    ...r.coverage.filter(c => !secondary(c)),
+    ...r.coverage.filter(secondary),
+  ].map(coverage => ({
+    coverage,
+    collapsed: hasPrimary && secondary(coverage),
+  }));
+}
+
 export const vehicleName = (r: VehicleRecord) => `${r.make} ${r.model}`;
 
 export const formatYears = ({ from, to }: Years) =>
@@ -37,8 +58,9 @@ type ConnectionGroup = {
 
 // One entry per connection type, so two DIMO devices read as one clause.
 export function connectionGroups(r: VehicleRecord): ConnectionGroup[] {
+  const ordered = displayCoverage(r).map(d => d.coverage);
   return connectionTypes(r).map(type => {
-    const cs = coverageOf(r, type);
+    const cs = ordered.filter(c => c.type === type);
     return {
       type,
       from: Math.min(...cs.map(c => c.years.from)),
