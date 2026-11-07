@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 export const ConnectionType = z.enum(['oem_cloud', 'dimo_device', 'phone']);
 

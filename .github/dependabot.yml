@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+    open-pull-requests-limit: 5
+    # Titles like "chore(deps): bump ..." / "chore(deps-dev): bump ...".
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      # All security fixes in one PR rather than one per advisory.
+      security:
+        applies-to: security-updates
+        patterns: ['*']
+      # Docusaurus packages pin each other's exact version, so they only
+      # install cleanly when bumped together.
+      docusaurus:
+        patterns: ['@docusaurus/*']
+      minor-and-patch:
+        update-types: [minor, patch]

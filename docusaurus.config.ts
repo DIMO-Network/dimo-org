@@ -16,7 +16,18 @@ const config: Config = {
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    // All Docusaurus v4 behavior: Rspack/SWC/Lightning CSS via
+    // @docusaurus/faster, SSG worker threads, namespaced localStorage keys,
+    // and no MDX 1 compatibility. Content must use MDX syntax:
+    // `:::tip[Title]` for admonition titles, `{/* comment */}` not `<!-- -->`.
+    v4: true,
+    faster: {
+      // Docusaurus 3.10.2 bug: the eager Git strategy keys file history by
+      // absolute path, but pages and blog routes look up their sitemap
+      // lastmod with a site-relative path, so those URLs lose <lastmod>.
+      // Docs are unaffected. Re-enable once that lookup is fixed upstream.
+      gitEagerVcs: false,
+    },
   },
 
   // Set the production url of your site here
@@ -101,6 +112,10 @@ const config: Config = {
         path: 'resources',
         routeBasePath: 'resources',
         blogTitle: 'Resources',
+        // Guides use the same layout as the vehicle pages; /blog keeps the
+        // theme's post layout.
+        blogPostComponent: '@site/src/components/ResourcePage',
+        blogListComponent: '@site/src/components/ResourcePage/ResourceList',
         blogDescription:
           'Guides for building with DIMO vehicle data: signals, events, connection options and the DIMO API.',
         blogSidebarTitle: 'Recent guides',

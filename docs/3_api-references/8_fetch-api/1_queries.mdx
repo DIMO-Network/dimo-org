@@ -20,7 +20,7 @@ The Fetch API exposes five root queries:
 
 All queries require a <code>did</code> (Decentralized Identifier). The <code>did</code> parameter accepts any DID in the DIMO system (e.g. <code>did:erc721:1:0xContractAddress:tokenId</code>). List queries accept an optional <code>limit</code> (default 10) and <code>filter</code> (CloudEventFilter).
 
-:::tip Large or binary payloads
+:::tip[Large or binary payloads]
 Some event types are too big to inline as JSON. Uploaded documents (`dimo.document.*`) and raw blobs are the common ones. When you select <code>data</code> or <code>dataBase64</code> on these events, the Fetch API gives you a presigned S3 URL on <code>dataUrl</code> instead. Always request <code>dataUrl</code> alongside <code>data</code> if there is any chance you are querying a document or raw-blob type, otherwise you will get back a response with no payload.
 :::
 

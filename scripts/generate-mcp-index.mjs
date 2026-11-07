@@ -45,7 +45,7 @@ async function main() {
       process.exit(1);
     }
     console.error(
-      '[mcp-index] OPENAI_API_KEY not set — skipping docs-index generation (this is required for real deploys, see docs/superpowers/specs/2026-08-17-docs-mcp-server-design.md)'
+      '[mcp-index] OPENAI_API_KEY not set — skipping docs-index generation (required for real deploys)'
     );
     process.exit(0);
   }
