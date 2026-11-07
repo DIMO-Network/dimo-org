@@ -2,13 +2,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { checkPage } from './seo-check.mjs';
 import {
+  LOCALES,
+  isEnglishBuild,
   isTranslatedPath,
   localeUrl,
   localizeSchema,
+  localizeSiteUrl,
   pagePath,
 } from '../../src/lib/seo.ts';
-
-const LOCALES = ['en', 'es', 'ja', 'zh-Hans', 'zh-Hant'];
 
 function head({ canonical, ogUrl, hreflangs = {}, robots, jsonLd = [] }) {
   return [
@@ -118,7 +119,9 @@ test('checkPage returns [] for a correct translated page', () => {
       {
         '@graph': [
           { '@type': 'WebPage', url: 'https://dimo.org/zh-Hant/pricing' },
-          { '@type': 'Product', url: 'https://dimo.org/pricing' },
+          { '@type': 'Product', url: 'https://dimo.org/zh-Hant/pricing' },
+          { '@type': 'Organization', url: 'https://dimo.org/' },
+          { '@type': 'WebSite', url: 'https://dimo.org/' },
         ],
       },
     ],
@@ -170,6 +173,41 @@ test('pagePath strips the locale baseUrl and any trailing slash', () => {
   assert.equal(pagePath('/pricing/', '/'), '/pricing');
 });
 
+test('checkPage reports a translated page with no alternates', () => {
+  const html = head({
+    canonical: 'https://dimo.org/es/pricing',
+    ogUrl: 'https://dimo.org/es/pricing',
+  });
+  const reports = checkPage(html, 'es/pricing.html', allPricingPages);
+  assert.deepEqual(reports, [
+    'es/pricing.html: hreflang alternates missing: en, es, ja, zh-Hans, zh-Hant, x-default',
+  ]);
+});
+
+test('checkPage reports an alternate that points at the wrong URL', () => {
+  const html = head({
+    canonical: 'https://dimo.org/pricing',
+    ogUrl: 'https://dimo.org/pricing',
+    hreflangs: { ...pricingAlternates(), es: 'https://dimo.org/pricing' },
+  });
+  const reports = checkPage(html, 'pricing.html', allPricingPages);
+  assert.deepEqual(reports, [
+    'pricing.html: hreflang es is https://dimo.org/pricing, expected https://dimo.org/es/pricing',
+  ]);
+});
+
+test('checkPage reports a canonical to another page in the same locale', () => {
+  const html = head({
+    canonical: 'https://dimo.org/ja',
+    ogUrl: 'https://dimo.org/ja/pricing',
+    hreflangs: pricingAlternates(),
+  });
+  const reports = checkPage(html, 'ja/pricing.html', allPricingPages);
+  assert.deepEqual(reports, [
+    'ja/pricing.html: canonical https://dimo.org/ja is not the page URL https://dimo.org/ja/pricing',
+  ]);
+});
+
 test('localizeSchema localizes the page node and keeps shared entity ids', () => {
   const schema = {
     '@context': 'https://schema.org',
@@ -194,7 +232,11 @@ test('localizeSchema localizes the page node and keeps shared entity ids', () =>
   };
   const localized = localizeSchema(schema, 'zh-Hans', '/pricing');
   assert.deepEqual(localized['@graph'][0], schema['@graph'][0]);
-  assert.deepEqual(localized['@graph'][1], schema['@graph'][1]);
+  assert.deepEqual(localized['@graph'][1], {
+    '@type': 'Product',
+    '@id': 'https://dimo.org/pricing#product',
+    url: 'https://dimo.org/zh-Hans/pricing',
+  });
   assert.deepEqual(localized['@graph'][2], {
     '@type': 'WebPage',
     '@id': 'https://dimo.org/zh-Hans/pricing#webpage',
@@ -205,22 +247,104 @@ test('localizeSchema localizes the page node and keeps shared entity ids', () =>
   assert.equal(schema['@graph'][2].url, 'https://dimo.org/pricing');
 });
 
-test('localizeSchema handles a single node and the home page', () => {
-  const localized = localizeSchema(
+test('localizeSchema keeps shared ids on the home page', () => {
+  const nodes = [
     {
       '@type': 'SoftwareApplication',
       '@id': 'https://dimo.org/#software',
       url: 'https://dimo.org/',
       publisher: { '@id': 'https://dimo.org/#organization' },
     },
-    'ja',
-    '/'
+    {
+      '@type': 'WebSite',
+      '@id': 'https://dimo.org/#website',
+      url: 'https://dimo.org/',
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://dimo.org/#organization',
+      url: 'https://dimo.org/',
+    },
+  ];
+  assert.deepEqual(
+    nodes.map(n => localizeSchema(n, 'ja', '/')),
+    [{ ...nodes[0], url: 'https://dimo.org/ja' }, nodes[1], nodes[2]]
   );
-  assert.deepEqual(localized, {
-    '@type': 'SoftwareApplication',
-    '@id': 'https://dimo.org/ja#software',
-    url: 'https://dimo.org/ja',
-    publisher: { '@id': 'https://dimo.org/#organization' },
-    inLanguage: 'ja',
-  });
+});
+
+test('localizeSchema leaves English unchanged apart from inLanguage', () => {
+  const article = {
+    '@type': 'TechArticle',
+    '@id': 'https://dimo.org/compare/smartcar-alternative#article',
+    url: 'https://dimo.org/compare/smartcar-alternative',
+    isPartOf: { '@id': 'https://dimo.org/#website' },
+  };
+  const home = {
+    '@type': 'WebSite',
+    '@id': 'https://dimo.org/#website',
+    url: 'https://dimo.org/',
+  };
+  const crumbs = { '@type': 'BreadcrumbList', itemListElement: [] };
+  assert.deepEqual(
+    localizeSchema(article, 'en', '/compare/smartcar-alternative'),
+    { ...article, inLanguage: 'en' }
+  );
+  assert.deepEqual(localizeSchema(home, 'en', '/'), home);
+  assert.deepEqual(localizeSchema(crumbs, 'en', '/pricing'), crumbs);
+});
+
+test('localizeSiteUrl is a no-op in English and prefixes translated pages', () => {
+  assert.equal(localizeSiteUrl('https://dimo.org/', 'en'), 'https://dimo.org/');
+  assert.equal(
+    localizeSiteUrl('https://dimo.org/products', 'en'),
+    'https://dimo.org/products'
+  );
+  assert.equal(
+    localizeSiteUrl('https://dimo.org/', 'ja'),
+    'https://dimo.org/ja'
+  );
+  assert.equal(
+    localizeSiteUrl('https://dimo.org/#products', 'ja'),
+    'https://dimo.org/ja#products'
+  );
+  assert.equal(
+    localizeSiteUrl('https://dimo.org/blog/x', 'ja'),
+    'https://dimo.org/blog/x'
+  );
+  assert.equal(
+    localizeSiteUrl('https://example.com/a', 'ja'),
+    'https://example.com/a'
+  );
+});
+
+test('isEnglishBuild treats a missing or "undefined" locale as English', () => {
+  assert.equal(isEnglishBuild(undefined), true);
+  assert.equal(isEnglishBuild('undefined'), true);
+  assert.equal(isEnglishBuild('en'), true);
+  assert.equal(isEnglishBuild('zh-Hans'), false);
+  assert.equal(isEnglishBuild('ja'), false);
+});
+
+test('localizeSchema localizes each node of a top-level array', () => {
+  const schema = [
+    {
+      '@type': 'TechArticle',
+      url: 'https://dimo.org/compare/smartcar-alternative',
+    },
+    { '@type': 'FAQPage', mainEntity: [] },
+  ];
+  const localized = localizeSchema(
+    schema,
+    'es',
+    '/compare/smartcar-alternative'
+  );
+  assert.ok(Array.isArray(localized));
+  assert.deepEqual(localized, [
+    {
+      '@type': 'TechArticle',
+      url: 'https://dimo.org/es/compare/smartcar-alternative',
+      inLanguage: 'es',
+    },
+    { '@type': 'FAQPage', mainEntity: [], inLanguage: 'es' },
+  ]);
 });

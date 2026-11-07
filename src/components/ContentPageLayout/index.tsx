@@ -2,14 +2,12 @@ import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import { translate } from '@docusaurus/Translate';
-import { localizeSchema } from '../../lib/seo';
+import { localizeSchema, SITE } from '../../lib/seo';
 import { usePageLocale } from '../../lib/use-page-locale';
 import CustomNavbar from '../CustomNavbar';
 import FooterTheme from '../../theme/Footer';
 import Breadcrumbs from '../Breadcrumbs';
 import styles from './styles.module.css';
-
-const SITE = 'https://dimo.org';
 
 interface ContentPageLayoutProps {
   title: string;

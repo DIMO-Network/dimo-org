@@ -2,10 +2,11 @@
 // Usage: node scripts/check-i18n.mjs
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { LOCALES as ALL_LOCALES } from '../src/lib/seo.ts';
 import { missingTranslations } from './lib/i18n-check.mjs';
 
 const ROOT = join(import.meta.dirname, '..', 'i18n');
-const LOCALES = ['es', 'ja', 'zh-Hans', 'zh-Hant'];
+const LOCALES = ALL_LOCALES.filter(l => l !== 'en');
 const FILES = [
   'code.json',
   'docusaurus-theme-classic/navbar.json',

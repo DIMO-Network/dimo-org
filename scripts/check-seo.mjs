@@ -3,9 +3,9 @@
 // Usage: node scripts/check-seo.mjs build
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { checkPage } from './lib/seo-check.mjs';
+import { LOCALES, ROOT_ONLY_FILES } from '../src/lib/seo.ts';
+import { checkPage, localeOf } from './lib/seo-check.mjs';
 
-const LOCALES = ['es', 'ja', 'zh-Hans', 'zh-Hant'];
 const buildDir = process.argv[2] ?? 'build';
 
 const pages = readdirSync(buildDir, { recursive: true })
@@ -23,13 +23,11 @@ const isNoindex = html =>
 // A partial build (npm run build -- --locale en) can't confirm alternates in
 // locales it didn't build, so those count as present and are reported below.
 const built = new Set(
-  ['en', ...LOCALES].filter(locale =>
+  LOCALES.filter(locale =>
     existsSync(join(buildDir, locale === 'en' ? '' : locale, 'index.html'))
   )
 );
-const unbuilt = ['en', ...LOCALES].filter(locale => !built.has(locale));
-const localeOf = path =>
-  LOCALES.find(l => path === `/${l}` || path.startsWith(`/${l}/`)) ?? 'en';
+const unbuilt = LOCALES.filter(locale => !built.has(locale));
 
 class BuiltPages extends Set {
   has(path) {
@@ -40,9 +38,15 @@ const existing = new BuiltPages(
   pages.filter(p => !isNoindex(p.html)).map(p => toPath(p.file))
 );
 
-const reports = pages.flatMap(({ file, html }) =>
-  checkPage(html, file, existing)
-);
+const reports = [
+  ...pages.flatMap(({ file, html }) => checkPage(html, file, existing)),
+  // llms.txt, llms-full.txt and robots.txt are English and live at the root.
+  ...LOCALES.filter(l => l !== 'en' && built.has(l)).flatMap(locale =>
+    ROOT_ONLY_FILES.filter(f => existsSync(join(buildDir, locale, f))).map(
+      f => `${locale}/${f}: root-only file copied into a locale build`
+    )
+  ),
+];
 
 if (unbuilt.length > 0) {
   console.log(

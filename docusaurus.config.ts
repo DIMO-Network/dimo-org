@@ -1,6 +1,9 @@
 import type * as Preset from '@docusaurus/preset-classic';
+import { rm } from 'node:fs/promises';
+import { join } from 'node:path';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
+import { isEnglishBuild, LOCALES, ROOT_ONLY_FILES } from './src/lib/seo';
 import type { ProcessBlogPostsFn } from '@docusaurus/plugin-content-blog';
 import { isLive } from './plugins/vehicle-pages/publishDate';
 import {
@@ -16,7 +19,7 @@ const dropScheduledPosts: ProcessBlogPostsFn = async ({ blogPosts }) =>
 // Docs, blog, privacy and terms stay English. Docusaurus builds each locale
 // separately, so non-English builds drop them entirely: nothing to index as a
 // duplicate under a locale prefix, and links to them go through englishHref.
-const isEnglishBuild = (process.env.DOCUSAURUS_CURRENT_LOCALE ?? 'en') === 'en';
+const englishBuild = isEnglishBuild(process.env.DOCUSAURUS_CURRENT_LOCALE);
 
 const config: Config = {
   title: 'DIMO Build',
@@ -60,7 +63,7 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'es', 'ja', 'zh-Hans', 'zh-Hant'],
+    locales: LOCALES,
     // baseUrl is what a full build infers anyway. Spelling it out keeps a
     // single-locale build (npm run build -- --locale ja) under /ja/ too,
     // where Docusaurus would otherwise serve it from / and the canonical and
@@ -86,11 +89,11 @@ const config: Config = {
     [
       'classic',
       {
-        docs: isEnglishBuild && {
+        docs: englishBuild && {
           sidebarPath: './sidebars.ts',
           showLastUpdateTime: true,
         },
-        blog: isEnglishBuild && {
+        blog: englishBuild && {
           showReadingTime: true,
           blogSidebarTitle: 'Recent Posts',
           blogSidebarCount: 10,
@@ -98,7 +101,7 @@ const config: Config = {
             'Developer insights on vehicle data APIs, connected-car infrastructure, session-based consent, and mobility engineering from the DIMO team.',
           processBlogPosts: dropScheduledPosts,
         },
-        pages: isEnglishBuild
+        pages: englishBuild
           ? {}
           : {
               exclude: [
@@ -152,8 +155,19 @@ const config: Config = {
 
   themes: ['@docusaurus/theme-mermaid'],
 
-  // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
   plugins: [
+    // static/ is copied into every locale build; llms.txt, llms-full.txt and
+    // robots.txt are English and only mean anything at the root.
+    () => ({
+      name: 'root-only-static-files',
+      async postBuild({ outDir }) {
+        if (englishBuild) return;
+        await Promise.all(
+          ROOT_ONLY_FILES.map(file => rm(join(outDir, file), { force: true }))
+        );
+      },
+    }),
+    // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
     './plugins/vehicle-pages/index.ts',
     // Hand-edited AEO guides (MDX), published on their `date`.
     [
@@ -243,6 +257,11 @@ const config: Config = {
       // Search is English-only (docs and blog); contextual search would
       // filter by the current locale and return nothing on translated pages.
       contextualSearch: false,
+      // Docs and blog hits are English-only pages; on translated builds send
+      // them to the English URL instead of prefixing the locale (a 404).
+      ...(!englishBuild && {
+        externalUrlRegex: 'dimo\\.org/(?:docs|blog|privacy|terms)(?:[/?#]|$)',
+      }),
       searchPagePath: 'search',
 
       // DocSearch v4 features

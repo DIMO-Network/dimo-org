@@ -17,6 +17,14 @@ function LocaleHeaders(): ReactNode {
   const { locale, path } = usePageLocale();
   const url = localeUrl(locale, path);
   const translated = isTranslatedPath(path);
+  // The 404 page is served for unknown URLs; it has no URL of its own.
+  if (path === '/404.html') {
+    return (
+      <Head>
+        <meta property="og:locale" content={OG_LOCALE[locale]} />
+      </Head>
+    );
+  }
   return (
     <Head>
       <link rel="canonical" href={url} />
