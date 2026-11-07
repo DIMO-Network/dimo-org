@@ -241,5 +241,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Escape?",
+      "a": "Yes. A DIMO device reports the Fuel Percentage signal (powertrainFuelSystemRelativeLevel, in %) for the Ford Escape. Query it through the Telemetry API, or use the segments query with the refuel mechanism to find where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Ford Escape with no connected services?",
+      "a": "Use a DIMO device. The record lists the DIMO LTE R1 and AutoPi for the Ford Escape. Once the owner shares the vehicle with your app, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ford Escape?",
+      "a": "Yes. Both DIMO devices listed for the Ford Escape report the dtc event and the Diagnostic Trouble Codes signal. To get pushed notifications instead of polling, configure a webhook in the Vehicle Triggers API, which is in public beta."
+    },
+    {
+      "q": "How do I detect idling on a Ford Escape?",
+      "a": "Use the Telemetry API segments query with the idling mechanism, which requires a DIMO device. It returns contiguous periods where engine RPM stays in the idle range, and you can set the upper bound with maxIdleRpm (default 1000)."
+    },
+    {
+      "q": "How do I verify Ford Escape mileage?",
+      "a": "A DIMO device reports the Odometer signal (powertrainTransmissionTravelledDistance, in km). To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "The Ford Escape connects to DIMO through a DIMO device, and coverage is tested for model years 2008 and newer. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. You read that data through the Telemetry API using a Vehicle JWT for each vehicle the owner has shared with you. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

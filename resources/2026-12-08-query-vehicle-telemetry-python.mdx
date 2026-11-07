@@ -1,0 +1,83 @@
+---
+title: How do I query vehicle telemetry with Python?
+description: Use the DIMO Python SDK to authenticate, exchange a Developer JWT
+  for a Vehicle JWT, and query the Telemetry GraphQL API.
+slug: query-vehicle-telemetry-python
+date: 2026-12-08
+authors:
+  - dimo-team
+tags:
+  - python
+  - telemetry-api
+  - graphql
+  - dimo-sdk
+---
+
+To query vehicle telemetry with Python, install the DIMO Python SDK, get a Developer JWT, exchange it for a Vehicle JWT, and send a GraphQL query to the Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Sign up at the DIMO Developer Console and create a Developer License. You need the `Client ID`, at least one `Redirect URI`, and an `API Key`.
+2. Install the SDK with `pip install dimo-python-sdk`.
+3. Initialize the client with `DIMO("Production")`.
+4. Call `dimo.auth.get_dev_jwt` with your `client_id`, `domain` (your redirect URI), and `private_key` (your API key). Read the Developer JWT from `auth_header["access_token"]`.
+5. Get a vehicle shared with your app through DIMO Connect. When a user shares a vehicle, you receive a `tokenId` for it.
+6. Call `dimo.token_exchange.exchange` with the Developer JWT and the vehicle `token_id`. Read the Vehicle JWT from `get_vehicle_jwt['token']`.
+7. Call `dimo.telemetry.query` with the Vehicle JWT and a GraphQL query. The Telemetry API has a single endpoint, `/query`, and is written in GraphQL.
+
+## Code
+
+This example is adapted from the DIMO quickstart. Replace the placeholders with your own values. It is not tagged `test` because it needs a redirect URI and a vehicle `tokenId` that has been shared with you, in addition to your credentials.
+
+```python
+from dimo import DIMO
+
+dimo = DIMO("Production")
+
+# 1. Get Developer JWT
+auth_header = dimo.auth.get_dev_jwt(
+  client_id = '<client_id>',
+  domain = '<redirect_uri>',
+  private_key = '<api_key>'
+)
+
+dev_jwt = auth_header["access_token"]
+
+# 2. Get Vehicle JWT
+get_vehicle_jwt = dimo.token_exchange.exchange(
+  developer_jwt = dev_jwt,
+  token_id = "<token_id>" # Obtained from DIMO Connect
+)
+vehicle_jwt = get_vehicle_jwt['token']
+
+# 3. Query Telemetry API
+telemetry_data = dimo.telemetry.query(
+  vehicle_jwt = vehicle_jwt,
+  query = """
+    query {
+      signalsLatest(tokenId: <token_id>) {
+        speed {
+          value
+          timestamp
+        }
+      }
+    }
+  """
+)
+```
+
+## FAQ
+
+### What is the difference between a Developer JWT and a Vehicle JWT?
+A Developer JWT gives general access to DIMO APIs for a longer period and has no access to vehicle data. A Vehicle JWT grants access to one specific vehicle's data for a short time.
+
+### Do I need a vehicle shared with me before I can query telemetry?
+Yes. You need a vehicle shared with you to fetch a Vehicle JWT, and sharing is done through DIMO Connect. The permissions the user approves determine what data the Vehicle JWT can access.
+
+### Can I query historical data, not just the latest values?
+The Telemetry API provides realtime and historical vehicle data. The documentation's sample `signals` query takes `tokenId`, `interval`, `from`, and `to` arguments and applies aggregations such as `AVG`, `MAX`, and `LAST` to float signals.
+
+### How do I see which signals are available for a vehicle?
+Send an `availableSignals(tokenId: <vehicleTokenId>)` query to the Telemetry API with your Vehicle JWT in the `Authorization` header.
+
+*Methodology: based on the DIMO documentation for the Developer Quickstart, Authentication, the Server SDK, and the Telemetry API Introduction.*

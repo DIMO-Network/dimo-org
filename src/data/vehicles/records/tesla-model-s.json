@@ -139,5 +139,19 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "How do I detect recharging on a Tesla Model S?",
+      "a": "Tesla's cloud connection provides the charging signals and the recharge event. Query the Telemetry API segments resource with mechanism set to recharge, which uses charging signals and state of charge for detection. The maximum date range per query is 31 days."
+    },
+    {
+      "q": "How do I get notified when a Tesla Model S starts charging?",
+      "a": "Create a webhook with the Vehicle Triggers API on the signal vss.powertrainTractionBatteryChargingIsCharging with a condition such as valueNumber == 1, then subscribe the vehicle to it. DIMO sends a POST request to your targetURL when the condition is met. Webhooks are in public beta."
+    },
+    {
+      "q": "How do I verify Tesla Model S mileage?",
+      "a": "Tesla's cloud connection provides the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API. You need the vehicle shared with your Developer License to get that JWT."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Tesla Model S, 2013 and newer, data comes through Tesla's cloud connection, and this coverage has been tested. The record lists odometer, charge level, remaining range, charging status, tire pressure and door state signals, plus the recharge event. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

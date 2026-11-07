@@ -222,5 +222,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Kia Seltos?",
+      "a": "Yes, with a DIMO device. Fuel Percentage (powertrainFuelSystemRelativeLevel) is listed for both DIMO LTE R1 and AutoPi, and absolute Fuel Level in liters (powertrainFuelSystemAbsoluteLevel) is listed for DIMO LTE R1. Query the signal through the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Kia Seltos with no connected services?",
+      "a": "Use a DIMO device (DIMO LTE R1 or AutoPi). After the owner shares the vehicle with your app, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Kia Seltos?",
+      "a": "Idling is listed as an event for both DIMO devices. Query the Telemetry API segments resource with the idling detection mechanism, which requires a DIMO device. It finds periods where engine RPM stays in the idle range, 1000 RPM or below by default via maxIdleRpm."
+    },
+    {
+      "q": "How do I detect refuel events on a Kia Seltos?",
+      "a": "Refuel is listed as an event for both DIMO devices. Use the segments query with the refuel mechanism, which detects where fuel level rises significantly. The minIncreasePercent setting controls the threshold and defaults to 15."
+    },
+    {
+      "q": "How do I verify Kia Seltos mileage?",
+      "a": "Odometer is listed for both DIMO devices. Call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the resulting verifiable credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Kia Seltos, model years 2021 and newer connect through a DIMO device, and this coverage has been tested rather than assumed. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Once an owner shares a Seltos with your app, you read its data through the Telemetry API using a Vehicle JWT."
 }

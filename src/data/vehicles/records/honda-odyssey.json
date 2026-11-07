@@ -159,5 +159,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Honda Odyssey?",
+      "a": "Yes, through a DIMO device. The DIMO LTE R1 lists fuel level as powertrainFuelSystemRelativeLevel (percent) and powertrainFuelSystemAbsoluteLevel (liters), which you query in the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Honda Odyssey with no connected services?",
+      "a": "Use a DIMO device, which is the connection type listed for this model. Once the vehicle is shared with you, request a Vehicle JWT through the Token Exchange API and pull trips with the segments query in the Telemetry API. A segments range can span at most 31 days."
+    },
+    {
+      "q": "How do I detect idling on a Honda Odyssey?",
+      "a": "Idling is listed as an event for the DIMO LTE R1. Query segments with the idling mechanism, which finds periods where engine RPM stays in the idle range and requires a DIMO device. The maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I verify Honda Odyssey mileage?",
+      "a": "The DIMO LTE R1 reports odometer as powertrainTransmissionTravelledDistance in km. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+    },
+    {
+      "q": "How do I get harsh braking alerts for a Honda Odyssey?",
+      "a": "Harsh braking is listed as an event for the DIMO LTE R1. Create a webhook in the Vehicle Triggers API with service set to events and metricName behavior.harshBraking, then subscribe the vehicle to it. You can also count HarshBraking events per trip by passing eventRequests to the segments query."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Honda Odyssey, that data comes through a DIMO device on 2010 and newer model years, and coverage is tested rather than expected. You read it through the Telemetry API with a Vehicle JWT. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

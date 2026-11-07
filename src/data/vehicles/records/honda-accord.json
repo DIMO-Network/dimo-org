@@ -163,5 +163,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Honda Accord?",
+      "a": "Yes, with a DIMO device. The record lists fuel level as a percentage and in liters, and you query it through the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Honda Accord with no connected services?",
+      "a": "Use a DIMO device, which is the connection type listed for this vehicle. Once the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Honda Accord?",
+      "a": "The record lists a dtc event for the AutoPi DIMO device on this vehicle. To receive events as they happen, configure a webhook in the Vehicle Triggers API, which sends a POST request to your HTTPS target URL when your condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Honda Accord?",
+      "a": "Idling is a listed event for the DIMO LTE R1 device. Query the Telemetry API segments resource with the idling detection mechanism, which the documentation says requires a DIMO device."
+    },
+    {
+      "q": "How do I verify Honda Accord mileage?",
+      "a": "The odometer signal is available through a DIMO device. Request an odometer statement from the Attestation API, then retrieve the resulting verifiable credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Honda Accord, the connection type is a DIMO device, covering model years 2012 and newer, and this coverage has been tested. You read the data through the Telemetry API, a GraphQL API, using a Vehicle JWT for each vehicle the owner has shared with you."
 }

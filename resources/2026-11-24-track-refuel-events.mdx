@@ -1,0 +1,73 @@
+---
+title: How do I detect when a vehicle refuels with DIMO?
+description: Use the DIMO Telemetry API segments query with the refuel detection
+  mechanism to find where a vehicle's fuel level rises significantly.
+slug: track-refuel-events
+date: 2026-11-24
+authors:
+  - dimo-team
+tags:
+  - telemetry-api
+  - segments
+  - refuel
+  - fuel
+---
+
+To detect when a vehicle refuels, query the DIMO Telemetry API `segments` resource with `mechanism: refuel`. Each returned segment marks a window where the fuel level rises significantly. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Get a **Developer JWT** for your DIMO Developer License. You need your `Client ID`, `Redirect URI`, and `API Key`. You can use the system-generated Developer JWT in the Developer Console, or generate a new one with an API key.
+2. Make sure the vehicle is shared with you. You need a vehicle shared with you to fetch a Vehicle JWT, and DIMO Connect handles vehicle sharing.
+3. Exchange your Developer JWT for a **Vehicle JWT** by sending a request to the Token Exchange API (`https://token-exchange-api.dimo.zone/v1/tokens/exchange`) with the vehicle's token ID and the permissions you request.
+4. Send your Vehicle JWT in the `Authorization` header to the Telemetry API at `https://telemetry-api.dimo.zone`.
+5. Run the `segments` query with `tokenId`, `from`, `to`, and `mechanism: refuel`. The maximum date range is 31 days.
+6. Optionally tune sensitivity with `config: { minIncreasePercent: N }`. This setting applies to refuel and recharge detection only, and the default is 15.
+7. Read the results. Each segment has `start` and `end` (timestamp and location), `duration`, `isOngoing`, and `startedBeforeRange`. For refuel segments, the default signal set also includes the level signal at the start and end, returned in `signals`.
+8. Paginate if needed. `limit` defaults to 100 with a max of 200. Pass the start timestamp of the last segment from the previous page as `after` to get the next page.
+
+## Code
+
+This query is adapted from the Telemetry API segments example. Send it with the header `{ "Authorization": "<yourVehicleJwt>" }`.
+
+```graphql
+query GetRefuelSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### What does the refuel detection mechanism do?
+The `refuel` mechanism detects where the fuel level rises significantly. It is one of the values of the `DetectionMechanism` enum on the `segments` query.
+
+### How do I change how large a fuel increase must be?
+Set `minIncreasePercent` in the `config` argument. It is the minimum percent increase within a window to count as a level-increase window, and the default is 15.
+
+### What if a refuel is still in progress at the end of my query range?
+The segment is returned with `isOngoing` set to true and `end` is not included. If a segment began before your query range, `startedBeforeRange` is true and the start may be approximate.
+
+### How do I detect charging for an EV instead?
+Use `mechanism: recharge`. It uses hybrid detection based on charging signals and state of charge, and it also accepts `minIncreasePercent`.
+
+*Methodology: based on the DIMO documentation pages for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

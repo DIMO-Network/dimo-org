@@ -242,5 +242,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Elantra?",
+      "a": "Yes, with a DIMO device. The Telemetry API exposes fuel percentage (powertrainFuelSystemRelativeLevel), and you can request it per trip through the segments query with signalRequests. The refuel segment mechanism detects where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Hyundai Elantra with no connected services?",
+      "a": "Install a DIMO device, then query trips through the Telemetry API segments resource. Segments return start and end location, duration and signal aggregates, with a maximum date range of 31 days per query."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Hyundai Elantra?",
+      "a": "Yes, with a DIMO device that lists the dtc event; the AutoPi entry in the record does, and it also lists the diagnostic trouble code list signal. Use the Vehicle Triggers API (webhooks) to have DIMO push a request to your targetURL when a configured condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Elantra?",
+      "a": "Use a DIMO device and the segments query with the idling mechanism. It returns contiguous periods where engine RPM stays in the idle range, with a default maximum idle RPM of 1000 that you can change through maxIdleRpm in the config."
+    },
+    {
+      "q": "How do I verify Hyundai Elantra mileage?",
+      "a": "With a DIMO device supplying the odometer signal, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Hyundai Elantra vehicle data API, the vehicle connects through a DIMO device, covering model years 2008 and newer. Coverage for this internal combustion model is tested, and it is listed as available globally. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

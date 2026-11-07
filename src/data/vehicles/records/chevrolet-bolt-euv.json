@@ -236,5 +236,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "How do I track a Chevrolet Bolt EUV with no connected services?",
+      "a": "Use a DIMO device. The record lists the DIMO LTE R1 and AutoPi for this vehicle. After the owner shares the vehicle with your Developer License, you read its data through the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Bolt EUV?",
+      "a": "Idling is listed for the AutoPi DIMO device. Query the Telemetry API segments resource with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range and requires a DIMO device."
+    },
+    {
+      "q": "How do I detect recharge on a Chevrolet Bolt EUV?",
+      "a": "Both listed DIMO devices support the recharge event. Query segments with the recharge mechanism, which uses charging signals and state of charge, or subscribe a webhook to a charging signal such as vss.powertrainTractionBatteryChargingIsCharging."
+    },
+    {
+      "q": "How do I detect harsh braking on a Chevrolet Bolt EUV?",
+      "a": "Harsh braking is listed for both DIMO devices. Create a webhook on the behavior.harshBraking event through the Vehicle Triggers API, or request a HarshBraking event count per trip with the eventRequests argument on segments."
+    },
+    {
+      "q": "How do I verify Chevrolet Bolt EUV mileage?",
+      "a": "The DIMO device reports the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO supports the Chevrolet Bolt EUV, an EV, through a DIMO device for model years 2022 and newer, and this coverage has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Once an owner shares the vehicle, you authenticate with a Developer JWT, exchange it for a Vehicle JWT, and read the vehicle's signals through the GraphQL Telemetry API."
 }

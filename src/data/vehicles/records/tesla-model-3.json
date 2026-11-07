@@ -139,5 +139,19 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "How do I detect recharging on a Tesla Model 3?",
+      "a": "Tesla's cloud connection provides the recharge event for the Model 3. Query the Telemetry API segments resource with the recharge mechanism, which uses charging signals and state of charge, or use a Vehicle Triggers webhook on a charging signal such as vss.powertrainTractionBatteryChargingIsCharging."
+    },
+    {
+      "q": "How do I verify Tesla Model 3 mileage?",
+      "a": "Tesla's cloud connection provides the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable attestation, then retrieve it through the Telemetry API."
+    },
+    {
+      "q": "Can I read state of charge remotely on a Tesla Model 3?",
+      "a": "Yes. Tesla's cloud connection provides the Current Charge Level signal (powertrainTractionBatteryStateOfChargeCurrent). Exchange a Developer JWT for a Vehicle JWT, then query the vehicle in the GraphQL Telemetry API; the owner must have shared the vehicle with you."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Tesla Model 3 connects through Tesla's cloud connection, an OEM cloud integration, and covers 2018 and newer model years. This coverage has been tested, not just expected. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

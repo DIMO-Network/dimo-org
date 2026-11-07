@@ -250,5 +250,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Ranger?",
+      "a": "Yes, with a DIMO device. Query the powertrainFuelSystemRelativeLevel signal through the Telemetry API GraphQL endpoint, or use refuel segments to detect where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Ford Ranger with no connected services?",
+      "a": "Connect a DIMO device, either a DIMO LTE R1 or an AutoPi. Once the vehicle is shared with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ford Ranger?",
+      "a": "The AutoPi device lists a dtc event and the obdDTCList signal, which you can read through the Telemetry API. Vehicle Triggers webhooks can push events to your targetURL when the conditions you configure are met."
+    },
+    {
+      "q": "How do I detect idling on a Ford Ranger?",
+      "a": "Use a DIMO device and query segments in the Telemetry API with the idling detection mechanism. It finds contiguous periods where engine RPM stays in the idle range, and maxIdleRpm lets you adjust the upper bound (default 1000)."
+    },
+    {
+      "q": "How do I verify Ford Ranger mileage?",
+      "a": "A DIMO device reports the odometer signal, powertrainTransmissionTravelledDistance, in km. To get a verifiable statement, call the Attestation API odometer-statement endpoint, then retrieve the result through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a Ford Ranger vehicle data API through a DIMO device, with coverage for 2008 and newer model years. This coverage is tested, not just expected. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

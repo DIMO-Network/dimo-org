@@ -260,5 +260,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Tucson?",
+      "a": "Yes, through a DIMO device. It reports Fuel Percentage (powertrainFuelSystemRelativeLevel) and Fuel Level in liters, which you query from the Telemetry API with a Vehicle JWT. The segments query with the refuel mechanism detects where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Hyundai Tucson with no connected services?",
+      "a": "Install a DIMO device. After the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Then query the Telemetry API, using segments for trip data with a maximum date range of 31 days."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Hyundai Tucson?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 lists the dtc event and signals such as Diagnostic Trouble Codes, DTC Count and Distance with MIL On. The Vehicle Triggers API (webhooks) pushes events to your targetURL when conditions you configure are met."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Tucson?",
+      "a": "Use a DIMO device, which is required for idling detection, and query the segments API with the idling mechanism. Segments are contiguous periods where engine RPM stays in the idle range, and maxIdleRpm defaults to 1000."
+    },
+    {
+      "q": "How do I verify Hyundai Tucson mileage?",
+      "a": "A DIMO device reports the odometer signal in km. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Hyundai Tucson, the connection type is a DIMO device, covering 2013 and newer model years. Coverage for this model is tested, not just expected. Once an owner shares a Tucson with your Developer License, you read its data through the Telemetry API, a GraphQL API, using a Vehicle JWT."
 }

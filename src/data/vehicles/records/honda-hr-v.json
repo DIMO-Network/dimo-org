@@ -159,5 +159,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Honda HR-V?",
+      "a": "Yes, with a DIMO LTE R1 device, which reports fuel level in liters and as a percentage. Query it through the Telemetry API with a Vehicle JWT, or use the refuel segment mechanism to find fill-ups."
+    },
+    {
+      "q": "How do I track a Honda HR-V with no connected services?",
+      "a": "Use a DIMO device. Once the owner shares the vehicle with your app, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Honda HR-V?",
+      "a": "Idling is an event on the DIMO LTE R1 device. Query the Telemetry API segments resource with the idling mechanism, which finds periods where engine RPM stays in the idle range. The default idle RPM ceiling is 1000, adjustable with maxIdleRpm in the config."
+    },
+    {
+      "q": "How do I detect harsh braking on a Honda HR-V?",
+      "a": "Harsh braking is an event on the DIMO LTE R1 device. Create a Vehicle Triggers webhook on the events service with the metric behavior.harshBraking to be notified. You can also request HarshBraking event counts per trip through segments."
+    },
+    {
+      "q": "How do I verify Honda HR-V mileage?",
+      "a": "The DIMO LTE R1 device reports odometer in km. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Honda HR-V through a DIMO device, for model years 2017 and newer. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

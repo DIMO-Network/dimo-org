@@ -232,5 +232,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Nissan Qashqai?",
+      "a": "Yes, through a DIMO device. The DIMO LTE R1 lists a fuel level signal in liters. Read it with a Vehicle JWT in the GraphQL Telemetry API."
+    },
+    {
+      "q": "How do I track a Nissan Qashqai with no connected services?",
+      "a": "Use a DIMO device, either AutoPi or DIMO LTE R1. Once the owner shares the vehicle with your app, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Nissan Qashqai?",
+      "a": "Yes, with the DIMO LTE R1 device, which lists the dtc event along with the DTC list and DTC count signals. Create a webhook in the Vehicle Triggers API and subscribe the vehicle to it. DIMO then sends a POST request to your targetURL when your condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Nissan Qashqai?",
+      "a": "Idling is listed for both the AutoPi and DIMO LTE R1 devices. Query the segments resource in the Telemetry API with the idling detection mechanism, which requires a DIMO device. Segments are periods where engine RPM stays in the idle range, and maxIdleRpm defaults to 1000."
+    },
+    {
+      "q": "How do I verify Nissan Qashqai mileage?",
+      "a": "Odometer is listed for the DIMO LTE R1 device. Use the Attestation API odometer statement endpoint to generate a verifiable attestation, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Nissan Qashqai is an ICE vehicle that connects through a DIMO device, with model years 2011 and newer, using AutoPi and DIMO LTE R1 devices. This coverage is tested, not just expected. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

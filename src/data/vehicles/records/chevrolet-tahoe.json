@@ -247,5 +247,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Chevrolet Tahoe?",
+      "a": "Yes, with a DIMO device. The record lists fuel level in liters and fuel percentage on the DIMO LTE R1, and fuel percentage on AutoPi. Use a Vehicle JWT from the Token Exchange API to query the signal in the Telemetry API."
+    },
+    {
+      "q": "How do I track a Chevrolet Tahoe with no connected services?",
+      "a": "Use a DIMO device, either the DIMO LTE R1 or AutoPi per the record. Once the owner shares the vehicle with your Developer License, you exchange your Developer JWT for a Vehicle JWT and read its signals from the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Tahoe?",
+      "a": "Idling is listed as an event on both DIMO device entries. Query the Telemetry API segments resource with the idling detection mechanism, which requires a DIMO device. Idle detection uses engine RPM, with a default maximum idle RPM of 1000 that you can change in the segment config."
+    },
+    {
+      "q": "How do I verify Chevrolet Tahoe mileage?",
+      "a": "The DIMO LTE R1 entry lists the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Chevrolet Tahoe, data comes through a DIMO device, covering model years 2006 and newer. Coverage for this vehicle is tested, and you query it through the Telemetry API using GraphQL. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

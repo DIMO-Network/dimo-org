@@ -205,5 +205,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Volkswagen Jetta?",
+      "a": "Yes, through a DIMO device. The DIMO LTE R1 and AutoPi both report fuel percentage, and the DIMO LTE R1 also reports fuel level in liters. Read it through the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Volkswagen Jetta with no connected services?",
+      "a": "Install a DIMO device, either the DIMO LTE R1 or AutoPi. Once the owner shares the vehicle with your Developer License, you exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Volkswagen Jetta?",
+      "a": "Yes, with the DIMO LTE R1, which lists the dtc event and reports diagnostic trouble codes, DTC count and distance with MIL on. To receive alerts, create a webhook through the Vehicle Triggers API and subscribe the vehicle to it."
+    },
+    {
+      "q": "How do I detect idling on a Volkswagen Jetta?",
+      "a": "Idling is listed as an event for both the DIMO LTE R1 and AutoPi. Query the Telemetry API segments resource with the idling detection mechanism, which requires a DIMO device and detects periods where engine RPM stays in the idle range."
+    },
+    {
+      "q": "How do I verify Volkswagen Jetta mileage?",
+      "a": "Both DIMO devices report the odometer signal. Use the Attestation API odometer-statement endpoint to generate a verifiable odometer attestation, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Volkswagen Jetta connects through a DIMO device, using either the DIMO LTE R1 or AutoPi, for 2010 and newer model years. Coverage for this vehicle has been tested. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

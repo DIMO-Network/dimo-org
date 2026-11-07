@@ -204,5 +204,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on an Acura MDX?",
+      "a": "Yes, through a DIMO device. The record lists Fuel Percentage (powertrainFuelSystemRelativeLevel) on both device entries, and the DIMO LTE R1 entry also lists Fuel Level in liters. Query it in the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track an Acura MDX with no connected services?",
+      "a": "The record lists a DIMO device as the connection for this vehicle. After the owner shares the vehicle, exchange your Developer JWT for a Vehicle JWT and query signals in the Telemetry API. A query for availableSignals shows what a given vehicle reports."
+    },
+    {
+      "q": "How do I detect idling on an Acura MDX?",
+      "a": "Idling is listed as an event for the DIMO device connection. Query the Telemetry API segments resource with the idling mechanism, which requires a DIMO device. It treats periods where engine RPM stays in the idle range as segments, and maxIdleRpm is configurable."
+    },
+    {
+      "q": "How do I verify Acura MDX mileage?",
+      "a": "The DIMO LTE R1 device entry lists the odometer signal. To get a verifiable record, call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT, then retrieve the credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Acura MDX, an ICE vehicle, connects through a DIMO device for model years 2011 and newer, and this coverage has been tested. Once the owner shares the vehicle with your Developer License, you exchange a Vehicle JWT and read its signals through the Telemetry API with GraphQL."
 }

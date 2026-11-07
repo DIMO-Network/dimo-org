@@ -1,0 +1,61 @@
+---
+title: How to detect harsh braking in fleet vehicles with DIMO
+description: Detect harsh braking in fleet vehicles by authenticating with DIMO
+  and querying the Telemetry API for HarshBraking events on supported devices.
+slug: detect-harsh-braking
+date: 2026-12-01
+authors:
+  - dimo-team
+tags:
+  - harsh-braking
+  - telemetry-api
+  - vehicle-events
+  - fleet
+---
+
+Use the DIMO Telemetry API events resource and filter for the `behavior.harshBraking` tag or the `HarshBraking` event type. As of August 2025, DIMO Events are only available on vehicles equipped with R1 LTE devices. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+## Steps
+
+1. Create a Developer License and get your `Client ID`, `Redirect URI` and `API Key` from the [Developer Console](https://console.dimo.org).
+2. Get a **Developer JWT**. In the Developer Console you can use the system-generated one, or generate a new one with your API key using a server SDK.
+3. Get each vehicle shared with you through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
+4. Confirm the vehicle uses an R1 LTE. Events are defined by the data connection, and only the R1 LTE supports them as of August 2025.
+5. Exchange your Developer JWT for a **Vehicle JWT** by sending a `POST` request to `https://token-exchange-api.dimo.zone/v1/tokens/exchange`. The request includes the `nftContractAddress`, the vehicle `tokenId` and the permissions (`privileges`) you are requesting.
+6. Send your Vehicle JWT in the `Authorization` header of requests to the [Telemetry API](https://telemetry-api.dimo.zone/), which is a GraphQL API.
+7. Query the `events` resource and filter by `tags` using `behavior.harshBraking`, or filter by `name` using `HarshBraking`. The tag operators are `containsAny`, `containsAll`, `notContainsAny` and `notContainsAll`. Use `ExtremeBraking` if you also want the more severe deceleration events.
+8. Read the fields on each event: `timestamp`, `name`, `source`, `durationNs` and `metadata`.
+
+## Code
+
+The documentation excerpts include this Telemetry API request for checking which signals a vehicle exposes. Replace `<yourVehicleJwt>` and `<vehicleTokenId>` with your own values. Use it to confirm your Vehicle JWT works before you query events. The excerpts don't include a complete `events` query, so check the Telemetry API schema at https://telemetry-api.dimo.zone/ for its exact shape.
+
+```graphql
+# Request header:
+# { "Authorization": "<yourVehicleJwt>" }
+
+query GetAvailable {
+  availableSignals(
+    tokenId: <vehicleTokenId>
+  )
+}
+```
+
+## FAQ
+
+### Which vehicles support harsh braking events?
+As of August 2025, DIMO Events are only available on vehicles equipped with R1 LTE devices. For additional support, contact Developer Support through the Console.
+
+### Who decides what counts as a harsh braking event?
+Events are pre-defined by each data connection. The data source provider determines the events for the connected vehicle.
+
+### What is the difference between HarshBraking and ExtremeBraking?
+The R1 event glossary describes `HarshBraking` as rapid deceleration detected by the device and `ExtremeBraking` as extreme rapid deceleration detected by the device.
+
+### What other events can I filter for?
+The R1 glossary also lists `HarshAcceleration` and `HarshCornering`. The documented tags are `behavior.harshAcceleration`, `behavior.harshBraking`, `behavior.harshCornering` and `safety.collision`.
+
+### Do I need the owner's permission to read this data?
+Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a vehicle shared with you before you can fetch a Vehicle JWT for it.
+
+*Methodology: based on the DIMO documentation pages Authentication, Building Your First App, and the Telemetry API Vehicle Events reference.*

@@ -251,5 +251,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Mazda CX-5?",
+      "a": "Yes, through a DIMO device, which reports fuel level on this vehicle. Query it with a Vehicle JWT in the Telemetry API, or request refuel segments with the refuel detection mechanism to find where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Mazda CX-5 with no connected services?",
+      "a": "Use a DIMO device. The record lists DIMO LTE R1 and AutoPi for this vehicle. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Mazda CX-5?",
+      "a": "Idling events come from a DIMO device. Call the Telemetry API segments query with the idling mechanism, which finds contiguous periods where engine RPM stays in the idle range. The maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I detect harsh braking on a Mazda CX-5?",
+      "a": "The DIMO LTE R1 device lists harsh braking for this vehicle. Request an eventRequests entry named HarshBraking in the segments query to get counts per trip, or use Vehicle Triggers webhooks to receive a push when it happens."
+    },
+    {
+      "q": "How do I verify Mazda CX-5 mileage?",
+      "a": "A DIMO device reports the odometer signal on this vehicle. To get a verifiable reading, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Mazda CX-5, which connects through a DIMO device on 2013 and newer model years. Coverage for this vehicle has been tested rather than expected. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

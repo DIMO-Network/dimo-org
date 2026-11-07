@@ -251,5 +251,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Kia Soul?",
+      "a": "Yes, with a DIMO device. Both listed devices report fuel percentage, and the DIMO LTE R1 also reports fuel level in liters. Read them through the Telemetry API GraphQL endpoint with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Kia Soul with no connected services?",
+      "a": "Connect a DIMO device. The record lists the DIMO LTE R1 and AutoPi for the Soul. After the owner shares the vehicle with your Developer License, you can pull trip data from the Telemetry API segments query, which covers up to 31 days per request."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Kia Soul?",
+      "a": "Yes, the dtc event is listed for both DIMO devices, and the obdDTCList signal carries the diagnostic trouble codes. To be notified when a condition is met, use the Vehicle Triggers API (webhooks), which sends a POST request to your targetURL."
+    },
+    {
+      "q": "How do I detect idling on a Kia Soul?",
+      "a": "The idling event is listed for both DIMO devices. Query the Telemetry API segments with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range and requires a DIMO device. The default maximum idle RPM is 1000, and you can change it with maxIdleRpm."
+    },
+    {
+      "q": "How do I verify Kia Soul mileage?",
+      "a": "Odometer is listed for both DIMO devices. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Kia Soul, that data comes through a DIMO device, with tested coverage for model years 2011 and newer. The Soul is a combustion-engine (ICE) vehicle, and the record lists no other connection type. Once an owner shares the vehicle, you read it through the Telemetry API with a Vehicle JWT."
 }

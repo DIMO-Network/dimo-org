@@ -229,5 +229,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Volkswagen Golf?",
+      "a": "Yes, with a DIMO device. The Fuel Level signal (powertrainFuelSystemAbsoluteLevel, in liters) is listed on the DIMO LTE R1 coverage entry. Query it in the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Volkswagen Golf with no connected services?",
+      "a": "Use a DIMO device, either the DIMO LTE R1 or AutoPi. After the owner shares the vehicle with your Developer License, request a Vehicle JWT from the Token Exchange API and query the vehicle's signals in the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Volkswagen Golf?",
+      "a": "Idling is a listed event on both DIMO device entries. Query the Telemetry API segments resource with the idling mechanism, which requires a DIMO device. It treats periods where engine RPM stays in the idle range as segments, and maxIdleRpm lets you set the upper RPM bound."
+    },
+    {
+      "q": "How do I verify Volkswagen Golf mileage?",
+      "a": "Both DIMO device entries list the odometer signal. Call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+    },
+    {
+      "q": "Can I get harsh braking alerts for a Volkswagen Golf?",
+      "a": "Harsh braking is a listed event on the DIMO LTE R1 entry. Create a webhook in the Vehicle Triggers API on the events service with metricName behavior.harshBraking, then subscribe the vehicle to it."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Volkswagen Golf connects through a DIMO device, for 2008 and newer model years. Coverage for this model is tested, not just expected. Once an owner shares the vehicle, you exchange a Developer JWT for a Vehicle JWT and read the data through the GraphQL Telemetry API."
 }

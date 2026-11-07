@@ -1,0 +1,60 @@
+---
+title: How do I connect Claude to my car's data?
+description: "Connect Claude Desktop to vehicle data through the DIMO MCP
+  Server: install it, set Developer License credentials, and add it to Claude's
+  config."
+slug: connect-claude-to-car-data
+date: 2026-12-15
+authors:
+  - dimo-team
+tags:
+  - claude
+  - mcp-server
+  - vehicle-data
+  - ai-agents
+---
+
+Connect Claude Desktop to vehicle data by running the DIMO MCP Server and adding it to Claude's MCP configuration. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The MCP server lets an AI assistant query vehicle data, execute vehicle commands, decode VINs, and create verifiable credentials through the DIMO APIs.
+
+## Steps
+
+1. Get your `Client ID`, `Redirect URI`, and `API Key` from the [Developer Console](https://console.dimo.org). Make sure you have Node.js 18 or higher (or the Bun runtime) and Claude Desktop with a Claude Pro Plan or above.
+2. Install the MCP server globally with `npm install -g mcp-dimo`. Alternatively, clone `https://github.com/DIMO-Network/mcp-dimo.git`, then run `bun install` and `bun run build`.
+3. Set your environment variables in the `.env` file: `DIMO_CLIENT_ID`, `DIMO_DOMAIN`, and `DIMO_PRIVATE_KEY` are required. `FLEET_MODE` (skips ownership checks) and `DIMO_LOGIN_BASE_URL` are optional.
+4. In Claude Desktop, open Settings from the bottom left corner, scroll to Developer, and choose to edit your MCP server configs. This opens Claude's config file.
+5. Add the `dimo` entry under `mcpServers` with your credentials, as shown in the code block below, and save the file.
+6. To access a specific vehicle's data, the vehicle must be shared with you. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The documentation describes vehicle sharing through DIMO Connect.
+7. Optionally, load the [DIMO Platform Skill](/docs/build/building-with-ai/dimo-platform-skill) alongside the MCP server. The server lets an agent act on DIMO; the skill helps it understand DIMO.
+
+## Code
+
+```json
+{
+  "mcpServers": {
+    "dimo": {
+      "command": "mcp-dimo",
+      "env": {
+        "DIMO_CLIENT_ID": "your_client_id_here",
+        "DIMO_DOMAIN": "your_domain.com",
+        "DIMO_PRIVATE_KEY": "your_private_key_here"
+      }
+    }
+  }
+}
+```
+
+## FAQ
+
+### What do I need before connecting Claude to DIMO?
+You need a DIMO Developer License with its `Client ID`, `Redirect URI`, and `API Key` from the Developer Console. You also need Node.js 18 or higher (or Bun) and Claude Desktop with a Claude Pro Plan or above.
+
+### Can I use the MCP server with any vehicle?
+The documentation says you need a vehicle shared with you to fetch a Vehicle JWT and access its data. The excerpts provided do not list which vehicles are supported.
+
+### What can Claude do once the MCP server is connected?
+Per the documentation, the server enables AI assistants to query vehicle data, execute vehicle commands, decode VINs, create verifiable credentials, and interact with the DIMO ecosystem.
+
+### What is the difference between the MCP server and the DIMO Platform Skill?
+The MCP server exposes live tools so an agent can act on DIMO at runtime. The Platform Skill is a knowledge pack that helps an agent understand DIMO when it writes code.
+
+*Methodology: based on the DIMO documentation pages for the DIMO MCP Server, the DIMO Platform Skill, Authentication, and Building Your First App.*

@@ -241,5 +241,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Toyota 4Runner?",
+      "a": "Yes, through a DIMO device. The DIMO LTE R1 reports fuel level in liters and AutoPi reports fuel percentage. Query either one through the Telemetry API GraphQL endpoint with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Toyota 4Runner with no connected services?",
+      "a": "Use a DIMO device, either the DIMO LTE R1 or AutoPi. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Toyota 4Runner?",
+      "a": "Both the DIMO LTE R1 and AutoPi list the idling event. Query the Telemetry API `segments` resource with the `idling` detection mechanism, which requires a DIMO device. Idle segments are contiguous periods where engine RPM stays in the idle range, and `maxIdleRpm` defaults to 1000."
+    },
+    {
+      "q": "How do I verify Toyota 4Runner mileage?",
+      "a": "Both DIMO device types report the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the resulting `rawVC` through the Telemetry API."
+    },
+    {
+      "q": "How do I detect harsh braking on a Toyota 4Runner?",
+      "a": "The DIMO LTE R1 lists the harsh braking event. Request a `HarshBraking` count per trip with `eventRequests` in the `segments` query, or set up a webhook on `behavior.harshBraking` through the Vehicle Triggers API. The AutoPi entry lists only idling and refuel."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Toyota 4Runner, 2010 and newer model years connect through a DIMO device, either the DIMO LTE R1 or AutoPi, and this coverage has been tested. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You read the data through the Telemetry API with a Vehicle JWT."
 }

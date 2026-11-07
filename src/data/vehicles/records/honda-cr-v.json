@@ -179,5 +179,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Honda CR-V?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 lists fuel level and fuel percentage signals, which you read through the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Honda CR-V with no connected services?",
+      "a": "Use a DIMO device, which is the connection type listed for the CR-V. Once the owner shares the vehicle, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Honda CR-V?",
+      "a": "Idling is listed as an event for the CR-V's DIMO devices. Query the Telemetry API segments resource with the idling mechanism, which requires a DIMO device and treats engine RPM at or below an idle threshold as idle (default 1000, configurable with maxIdleRpm)."
+    },
+    {
+      "q": "How do I detect refueling on a Honda CR-V?",
+      "a": "Refuel is listed as an event for the DIMO LTE R1. Query segments with the refuel mechanism, which detects where fuel level rises significantly, and tune it with minIncreasePercent (default 15)."
+    },
+    {
+      "q": "How do I verify Honda CR-V mileage?",
+      "a": "A DIMO device provides the odometer signal for the CR-V. Use the Attestation API odometer-statement endpoint to generate a verifiable odometer attestation, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Honda CR-V, that data comes through a DIMO device, with coverage for model years 2008 and newer. You query it through the Telemetry API, a GraphQL API, using a Vehicle JWT for each vehicle the owner has shared with you. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

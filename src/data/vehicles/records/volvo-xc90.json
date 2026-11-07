@@ -158,5 +158,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Volvo XC90?",
+      "a": "Yes, through a DIMO device. The record lists both a Fuel Percentage signal (powertrainFuelSystemRelativeLevel) and a Fuel Level signal in liters (powertrainFuelSystemAbsoluteLevel). Read them from the Telemetry API with a Vehicle JWT, or use refuel segments to detect refuel events."
+    },
+    {
+      "q": "How do I track a Volvo XC90 with no connected services?",
+      "a": "Use a DIMO device. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query signals such as odometer, speed and coordinates in the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Volvo XC90?",
+      "a": "Yes, a DIMO device lists the dtc event and the Diagnostic Trouble Codes signal (obdDTCList). To get pushed alerts, create a webhook with the Vehicle Triggers API and check GET /v1/webhooks/signals for the signal names available to your trigger conditions."
+    },
+    {
+      "q": "How do I detect idling on a Volvo XC90?",
+      "a": "A DIMO device lists the idling event. Query the Telemetry API segments resource with the idling detection mechanism, which finds periods where engine RPM stays in the idle range and requires a DIMO device."
+    },
+    {
+      "q": "How do I verify Volvo XC90 mileage?",
+      "a": "A DIMO device provides the odometer signal in km. To get verifiable proof of the reading, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Volvo XC90 vehicle data API, the connection is a DIMO device, covering model years 2011 and newer, and this coverage has been tested. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }
