@@ -39,9 +39,11 @@
 }
 
 /* Chinese: system CJK fonts after Geist (which has no Han glyphs), never a
-   downloaded CJK webfont, so Largest Contentful Paint doesn't regress. Many
-   module stylesheets hard-code a Geist stack, hence the descendant selector;
-   code keeps its monospace stack. */
+   downloaded CJK webfont, so Largest Contentful Paint doesn't regress. This
+   sets the inherited base font only, so monospace and other explicit font
+   rules are untouched; module stylesheets that hard-code 'Geist Variable',
+   'Geist', sans-serif fall back to the browser's sans-serif for the page
+   language (PingFang/Microsoft YaHei/JhengHei on macOS and Windows). */
 html:lang(zh-Hans) {
   --dimo-font-cjk:
     'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC',
@@ -55,12 +57,6 @@ html:lang(zh-Hant) {
 html:is(:lang(zh-Hans), :lang(zh-Hant)) {
   --ifm-font-family-base: 'Geist Variable', 'Geist', var(--dimo-font-cjk);
 }
-html:is(:lang(zh-Hans), :lang(zh-Hant))
-  body
-  :not(code, pre, kbd, samp, code *, pre *) {
-  font-family: 'Geist Variable', 'Geist', var(--dimo-font-cjk);
-}
-
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --ifm-color-primary: #124bdb;

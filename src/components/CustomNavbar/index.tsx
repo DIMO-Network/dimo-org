@@ -766,6 +766,9 @@ export default function CustomNavbar({ dark = false }: CustomNavbarProps) {
                 </Link>
 
                 <div className={styles.mobileMenuSection}>
+                  <div className={styles.mobileMenuSectionTitle}>
+                    <Translate id="navbar.body.language">Language</Translate>
+                  </div>
                   {localeLinks.links.map(link => (
                     <Link
                       key={link.locale}

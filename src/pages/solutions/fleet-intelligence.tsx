@@ -160,7 +160,10 @@ const USE_CASES = [
 
 const STATS = [
   {
-    number: 'Coming Soon',
+    number: translate({
+      id: 'solutions.fleetIntelligence.stats.fleetDashboard.number',
+      message: 'Coming Soon',
+    }),
     label: translate({
       id: 'solutions.fleetIntelligence.stats.fleetDashboard.label',
       message: 'Fleet Dashboard',

@@ -21,7 +21,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json,css}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,json,css}\"",
     "format:docs": "prettier --write \"docs/**/*.md\" \"blog/**/*.md\"",
-    "check-all": "npm run typecheck && npm run lint && npm run format:check && node scripts/check-i18n.mjs"
+    "check-all": "npm run typecheck && npm run lint && npm run format:check && node scripts/check-i18n-source.mjs && node scripts/check-i18n.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.0",

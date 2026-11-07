@@ -47,7 +47,10 @@ const RESULTS = [
     }),
   },
   {
-    number: 'All',
+    number: translate({
+      id: 'customerStories.emobi.results.teslaVehiclesSupported.number',
+      message: 'All',
+    }),
     label: translate({
       id: 'customerStories.emobi.results.teslaVehiclesSupported.label',
       message: 'Tesla Vehicles Supported',

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { missingTranslations } from './i18n-check.mjs';
+import { missingTranslations, translationDrift } from './i18n-check.mjs';
 
 const en = {
   'home.hero.title': { message: 'The infrastructure built for' },
@@ -35,4 +35,34 @@ test('missingTranslations returns [] for a complete file', () => {
     'pricing.plans.free': { message: '免费' },
   };
   assert.deepEqual(missingTranslations(en, other), []);
+});
+
+const msg = message => ({ message });
+
+test('translationDrift returns [] when i18n/en matches the source', () => {
+  const files = { 'code.json': { 'home.cta': msg('Sign Up') } };
+  assert.deepEqual(translationDrift(files, structuredClone(files)), []);
+});
+
+test('translationDrift reports changed, added and removed ids', () => {
+  const committed = {
+    'code.json': { 'home.cta': msg('Sign up'), 'home.old': msg('Old') },
+  };
+  const fresh = {
+    'code.json': { 'home.cta': msg('Sign Up'), 'home.new': msg('New') },
+  };
+  assert.deepEqual(translationDrift(committed, fresh), [
+    'code.json: home.cta is "Sign up", source says "Sign Up"',
+    'code.json: home.new is missing',
+    'code.json: home.old is no longer in the source',
+  ]);
+});
+
+test('translationDrift reports a missing or extra file', () => {
+  const committed = { 'code.json': {}, 'old.json': {} };
+  const fresh = { 'code.json': {}, 'navbar.json': { a: msg('A') } };
+  assert.deepEqual(translationDrift(committed, fresh), [
+    'navbar.json is missing',
+    'old.json is no longer generated',
+  ]);
 });

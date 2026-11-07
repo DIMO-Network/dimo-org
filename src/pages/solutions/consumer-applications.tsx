@@ -163,7 +163,10 @@ const STATS = [
     }),
   },
   {
-    number: '<1 Week',
+    number: translate({
+      id: 'solutions.consumerApplications.stats.timeToLaunch.number',
+      message: '<1 Week',
+    }),
     label: translate({
       id: 'solutions.consumerApplications.stats.timeToLaunch.label',
       message: 'Time to Launch',

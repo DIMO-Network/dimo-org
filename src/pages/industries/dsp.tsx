@@ -174,7 +174,10 @@ const STATS = [
     }),
   },
   {
-    number: 'Zero',
+    number: translate({
+      id: 'industries.dsp.stats.sqlQueriesRequired.number',
+      message: 'Zero',
+    }),
     label: translate({
       id: 'industries.dsp.stats.sqlQueriesRequired.label',
       message: 'SQL Queries Required',
