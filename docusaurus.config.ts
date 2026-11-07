@@ -112,6 +112,10 @@ const config: Config = {
         path: 'resources',
         routeBasePath: 'resources',
         blogTitle: 'Resources',
+        // Guides use the same layout as the vehicle pages; /blog keeps the
+        // theme's post layout.
+        blogPostComponent: '@site/src/components/ResourcePage',
+        blogListComponent: '@site/src/components/ResourcePage/ResourceList',
         blogDescription:
           'Guides for building with DIMO vehicle data: signals, events, connection options and the DIMO API.',
         blogSidebarTitle: 'Recent guides',

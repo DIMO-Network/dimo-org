@@ -1,0 +1,33 @@
+.meta {
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.more {
+  margin-top: 3rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.list li a {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.list li p {
+  margin: 0.4rem 0;
+}
+
+.list li time {
+  color: #a1a1aa;
+  font-size: 0.85rem;
+}
