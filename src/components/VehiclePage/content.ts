@@ -20,10 +20,61 @@ export const EVENT_LABELS: Record<EventType, string> = {
   dtc: 'New diagnostic trouble code',
 };
 
+// Secondary devices: their signal tables start collapsed so the DIMO LTE R1
+// table reads first.
+const SECONDARY_PROVIDERS = new Set(['AutoPi']);
+
+// Display order: primary coverage first, secondary devices last. A secondary
+// table only collapses when something else is shown open above it.
+export function displayCoverage(
+  r: VehicleRecord
+): { coverage: Coverage; collapsed: boolean }[] {
+  const secondary = (c: Coverage) =>
+    c.provider !== undefined && SECONDARY_PROVIDERS.has(c.provider);
+  const hasPrimary = r.coverage.some(c => !secondary(c));
+  return [
+    ...r.coverage.filter(c => !secondary(c)),
+    ...r.coverage.filter(secondary),
+  ].map(coverage => ({
+    coverage,
+    collapsed: hasPrimary && secondary(coverage),
+  }));
+}
+
 export const vehicleName = (r: VehicleRecord) => `${r.make} ${r.model}`;
 
 export const formatYears = ({ from, to }: Years) =>
   from === to ? `${from}` : `${from}–${to}`;
+
+// Coverage is open-ended: newer model years keep connecting, so pages give the
+// earliest year seen and never an upper bound.
+export const sinceYear = (from: number) => `${from} and newer`;
+
+type ConnectionGroup = {
+  type: ConnectionType;
+  from: number;
+  providers: string[];
+};
+
+// One entry per connection type, so two DIMO devices read as one clause.
+export function connectionGroups(r: VehicleRecord): ConnectionGroup[] {
+  const ordered = displayCoverage(r).map(d => d.coverage);
+  return connectionTypes(r).map(type => {
+    const cs = ordered.filter(c => c.type === type);
+    return {
+      type,
+      from: Math.min(...cs.map(c => c.years.from)),
+      providers: [
+        ...new Set(cs.flatMap(c => (c.provider ? [c.provider] : []))),
+      ],
+    };
+  });
+}
+
+const orList = (items: string[]) =>
+  items.length <= 1
+    ? items.join('')
+    : `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`;
 
 export function yearSpan(coverage: Coverage[]): Years {
   return {
@@ -84,20 +135,20 @@ function list(items: string[]): string {
   return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
 }
 
-function coverageClause(c: Coverage): string {
-  const via = c.provider ? ` (${c.provider})` : '';
+function coverageClause(g: ConnectionGroup): string {
+  const via = g.providers.length ? ` (${orList(g.providers)})` : '';
   const how =
-    c.type === 'oem_cloud'
-      ? `connect through the OEM cloud${via} with no hardware`
-      : c.type === 'dimo_device'
+    g.type === 'oem_cloud'
+      ? `connect through the OEM cloud${via}`
+      : g.type === 'dimo_device'
         ? `connect with a DIMO device${via}`
         : `connect through a phone app${via}`;
-  return `model years ${formatYears(c.years)} ${how}`;
+  return `model years ${sinceYear(g.from)} ${how}`;
 }
 
 export function directAnswer(r: VehicleRecord): string {
   const name = vehicleName(r);
-  const clauses = r.coverage.map(coverageClause);
+  const clauses = connectionGroups(r).map(coverageClause);
   const sentence2 = clauses[0][0].toUpperCase() + clauses[0].slice(1);
   const rest = clauses.slice(1);
   const coverage = rest.length
@@ -123,10 +174,15 @@ export function generatedFaq(r: VehicleRecord): { q: string; a: string }[] {
       : gaps.length === 0
         ? `No. Every listed ${name} model year connects through the OEM cloud without hardware.`
         : `Only for model years ${list(gaps.map(formatYears))}, which have no OEM cloud connection${hasDevice ? ' and need a DIMO device' : ''}. Other listed years connect without hardware.`;
+  const years = connectionGroups(r).map(g =>
+    g.type === 'dimo_device'
+      ? `DIMO devices have been seen working on ${name} model years ${sinceYear(g.from)}.`
+      : `${name} model years ${sinceYear(g.from)} connect through ${g.type === 'oem_cloud' ? 'the OEM cloud' : 'a phone app'}${g.providers.length ? ` (${orList(g.providers)})` : ''}.`
+  );
   return [
     {
       q: `Which ${name} model years work with DIMO?`,
-      a: `${list(r.coverage.map(c => `${formatYears(c.years)} via ${CONNECTION_LABELS[c.type]}`))}.`,
+      a: `${years.join(' ')} For older vehicles, contact DIMO for additional support.`,
     },
     { q: `Do I need hardware to get ${name} data?`, a: hardware },
   ];

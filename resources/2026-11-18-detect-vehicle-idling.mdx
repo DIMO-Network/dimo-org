@@ -1,0 +1,78 @@
+---
+title: How to Detect Vehicle Idling with DIMO
+description: Use the DIMO Telemetry API segments query with the idling detection
+  mechanism to find periods when a vehicle's engine RPM stays in the idle range.
+slug: detect-vehicle-idling
+date: 2026-11-18
+authors:
+  - dimo-team
+tags:
+  - idling
+  - telemetry-api
+  - segments
+  - graphql
+---
+
+Use the `segments` query in the DIMO Telemetry API with `mechanism: idling`. DIMO returns contiguous periods where engine RPM stays in the idle range. This mechanism requires a DIMO device.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Get a Developer JWT for your DIMO Developer License. You need your Client ID, Redirect URI, and API Key. You can use the system-generated Developer JWT in the Developer Console, or generate a new one with an API key through a server SDK.
+2. Make sure the vehicle is shared with you. You can request sharing through DIMO Connect.
+3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API. Include the vehicle token ID and the permissions you are requesting.
+4. Send your query to the Telemetry API at `https://telemetry-api.dimo.zone`. Set the header `{ "Authorization": "<yourVehicleJwt>" }`.
+5. Call `segments` with `tokenId`, `from`, `to`, and `mechanism: idling`. The maximum date range is 31 days.
+6. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `signalCountThreshold` sets the minimum signal count per window (default 10). `minSegmentDurationSeconds` filters out short segments (default 240). `maxGapSeconds` sets the maximum gap before a segment is split (default 300).
+7. Read the response. Each segment has `start`, `end`, and `duration` in seconds. `isOngoing` is true when the segment extends beyond your query range, and `end` is null in that case. `startedBeforeRange` is true when the start may be approximate.
+
+## Code
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      signalCountThreshold: 10
+      minSegmentDurationSeconds: 240
+    }
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+  }
+}
+```
+
+## FAQ
+
+### What counts as idling in DIMO?
+An idling segment is a contiguous period where engine RPM remains in the idle range. Windows with max RPM at or below `maxIdleRpm` are considered idle.
+
+### Does idling detection work on every vehicle?
+The documentation says the `idling` mechanism requires a DIMO device. It does not say anything further about which vehicles or connection types support it.
+
+### How far back can I query?
+The maximum date range for a `segments` query is 31 days.
+
+### How do I page through results?
+Use `limit` (default 100, max 200) and `after`. Pass the start timestamp of the last segment from the previous page as `after` to get segments with a later start time.
+
+### How do I change how sensitive detection is?
+Change `signalCountThreshold`: higher values are more conservative and lower values are more sensitive. You can also change `maxIdleRpm` and `minSegmentDurationSeconds`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

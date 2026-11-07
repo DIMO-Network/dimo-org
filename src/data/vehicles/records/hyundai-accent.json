@@ -1,0 +1,256 @@
+{
+  "make": "Hyundai",
+  "model": "Accent",
+  "slug": "hyundai/accent",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2008,
+        "to": 2018
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceSinceDTCClear",
+          "label": "Distance Since DTC Clear",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainCombustionEngineMAF",
+          "label": "Engine Air Intake",
+          "unit": "grams/second"
+        },
+        {
+          "name": "obdEngineLoad",
+          "label": "Engine Load",
+          "unit": "%"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdIntakeTemp",
+          "label": "Intake temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdLongTermFuelTrim1",
+          "label": "Long Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdMAP",
+          "label": "Manifold Absolute Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "obdShortTermFuelTrim1",
+          "label": "Short Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainFuelSystemSupportedFuelTypes",
+          "label": "Supported Fuel Types"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "obdWarmupsSinceDTCClear",
+          "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["idling", "refuel"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2012,
+        "to": 2022
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "dtc"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Accent?",
+      "a": "Yes. A DIMO device reports fuel percentage as the powertrainFuelSystemRelativeLevel signal, which you read through the Telemetry API with a Vehicle JWT. To find refuel events, query segments with the refuel detection mechanism."
+    },
+    {
+      "q": "How do I track a Hyundai Accent with no connected services?",
+      "a": "Install a DIMO device, which is the connection type listed for the Accent. After the owner shares the vehicle, the Telemetry API segments query returns trip data for it, with a maximum date range of 31 days per query."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Hyundai Accent?",
+      "a": "The DIMO LTE R1 device lists the dtc event and the obdDTCList and obdStatusDTCCount signals for the Accent. You can push events to your own server with the Vehicle Triggers API, which sends webhooks to your HTTPS targetURL instead of making you poll."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Accent?",
+      "a": "Use a DIMO device and query segments with the idling detection mechanism. Idling segments are periods where engine RPM stays in the idle range, and you can set the upper bound with maxIdleRpm (default 1000)."
+    },
+    {
+      "q": "How do I verify Hyundai Accent mileage?",
+      "a": "A DIMO device reports the odometer signal. To get verifiable proof of it, call the Attestation API odometer-statement endpoint for the vehicle, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Hyundai Accent connects through a DIMO device, covering model years 2008 and newer, and this coverage is tested. Once an owner shares a vehicle, you exchange your Developer JWT for a Vehicle JWT and query signals through the Telemetry API in GraphQL. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
+}

@@ -1,0 +1,83 @@
+---
+title: How to Query Vehicle Telemetry with JavaScript
+description: Use the DIMO Data SDK for TypeScript/Node.js to get a Developer
+  JWT, exchange it for a Vehicle JWT, and query the Telemetry API with GraphQL.
+slug: query-vehicle-telemetry-javascript
+date: 2026-12-10
+authors:
+  - dimo-team
+tags:
+  - telemetry-api
+  - javascript
+  - graphql
+  - data-sdk
+---
+
+To query vehicle telemetry with JavaScript, install the DIMO Data SDK (`@dimo-network/data-sdk`), authenticate to get a Developer JWT, exchange it for a Vehicle JWT, and send a GraphQL query to the Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the [DIMO Developer Console](https://console.dimo.org). From it you need your `Client ID`, at least one `Redirect URI`, and an `API Key`.
+2. Install the SDK with `npm install @dimo-network/data-sdk` (or `yarn add @dimo-network/data-sdk`).
+3. Initialize the SDK with `new DIMO('Production')`.
+4. Authenticate with `dimo.auth.getDeveloperJwt`, passing your `client_id`, your redirect URI as `domain`, and your API key as `private_key`. This returns a Developer JWT, which has no access to vehicle data.
+5. Get a vehicle shared with your app through DIMO Connect. When a user connects a vehicle, you receive a `tokenId` for it.
+6. Exchange the Developer JWT for a Vehicle JWT with `dimo.tokenexchange.getVehicleJwt`, passing the vehicle's `tokenId`. A Vehicle JWT grants access to one vehicle for a short time, based on the permissions the user approved.
+7. Query the Telemetry API with `dimo.telemetry.query`, passing the Vehicle JWT and a GraphQL query. The Telemetry API has a single endpoint, `/query`, at `https://telemetry-api.dimo.zone`.
+
+## Code
+
+This example is adapted from the DIMO Quickstart. Replace the placeholders with your own values and the `tokenId` returned by DIMO Connect.
+
+```ts
+import { DIMO } from '@dimo-network/data-sdk';
+
+const dimo = new DIMO('Production');
+
+// 1. Get Developer JWT
+const developerJwt = await dimo.auth.getDeveloperJwt({
+  client_id: '<client_id>',
+  domain: '<redirect_uri>',
+  private_key: '<api_key>',
+});
+
+// 2. Get Vehicle JWT
+const vehicleJwt = await dimo.tokenexchange.getVehicleJwt({
+  ...developerJwt,
+  tokenId: <token_id> // Obtained from DIMO Connect
+});
+
+// 3. Query Telemetry API
+const data = await dimo.telemetry.query({
+  ...vehicleJwt,
+  query: `
+    query {
+      signalsLatest(tokenId: <token_id>) {
+        powertrainTransmissionTemperature {
+          value
+          timestamp
+        }
+        speed {
+          value
+          timestamp
+        }
+      }
+    }`
+});
+```
+
+## FAQ
+
+### What is the difference between a Developer JWT and a Vehicle JWT?
+A Developer JWT allows general access to DIMO APIs for a longer period and has no access to vehicle data. A Vehicle JWT grants access to one specific vehicle's data for a short time.
+
+### Do I need a vehicle shared with me before I can query telemetry?
+Yes. You need a vehicle shared with you to fetch a Vehicle JWT. You can learn more about sharing in the DIMO Connect documentation.
+
+### Which query language does the Telemetry API use?
+The Telemetry API is written in GraphQL and exposes a single endpoint, `/query`, for executing queries.
+
+### Can I aggregate signals over a time range?
+Yes. The `signals` query takes an `interval`, `from`, and `to`, and each signal accepts an aggregation such as `AVG`, `MAX`, `MIN`, `FIRST`, or `LAST` for floats. The Telemetry API documentation includes a sample query.
+
+*Methodology: This guide is based on the DIMO documentation for the Developer Quickstart, Authentication, Server SDK, Building Your First App, and the Telemetry API Introduction.*

@@ -20,6 +20,8 @@ interface ContentPageLayoutProps {
   ctaLabel?: string;
   ctaHref?: string;
   children: ReactNode;
+  // Wider column for data-heavy pages (vehicle signal tables).
+  wide?: boolean;
 }
 
 // Shared layout for SEO content pages (pillars, spokes, comparisons). Supplies
@@ -37,6 +39,7 @@ export default function ContentPageLayout({
   ctaLabel = 'Talk to our team',
   ctaHref = '/contact',
   children,
+  wide = false,
 }: ContentPageLayoutProps): ReactNode {
   const url = `${SITE}${canonicalPath}`;
   return (
@@ -72,10 +75,12 @@ export default function ContentPageLayout({
               {ctaLabel} <span className={styles.arrow}>→</span>
             </Link>
           </header>
-          <div className={styles.breadcrumbs}>
+          <div className={`${styles.breadcrumbs} ${wide ? styles.wide : ''}`}>
             <Breadcrumbs items={breadcrumbs} />
           </div>
-          <article className={styles.article}>{children}</article>
+          <article className={`${styles.article} ${wide ? styles.wide : ''}`}>
+            {children}
+          </article>
         </main>
         <FooterTheme />
       </div>

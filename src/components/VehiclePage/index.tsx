@@ -1,5 +1,6 @@
 import React, { type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
+import { Highlight, themes } from 'prism-react-renderer';
 import ContentPageLayout from '../ContentPageLayout';
 import type { VehiclePageData } from '../../../plugins/vehicle-pages';
 import {
@@ -7,11 +8,12 @@ import {
   EVENT_LABELS,
   allFaq,
   connectionTypes,
-  coverageOf,
   directAnswer,
+  displayCoverage,
   eventConnections,
   events,
   formatYears,
+  sinceYear,
   vehicleName,
   yearSpan,
   yearsWithoutOemCloud,
@@ -19,6 +21,7 @@ import {
 import { articleJsonLd, faqJsonLd } from './jsonld';
 import { buildSnippet } from './snippet';
 import styles from './styles.module.css';
+import VehicleList from './VehicleList';
 
 const SITE = 'https://dimo.org';
 
@@ -27,7 +30,7 @@ function KeyFacts({ record }: { record: VehiclePageData['record'] }) {
     <aside className={styles.facts} aria-label="Key facts">
       <dl>
         <dt>Model years</dt>
-        <dd>{formatYears(yearSpan(record.coverage))}</dd>
+        <dd>{sinceYear(yearSpan(record.coverage).from)}</dd>
         <dt>Connection types</dt>
         <dd>
           {connectionTypes(record)
@@ -36,9 +39,9 @@ function KeyFacts({ record }: { record: VehiclePageData['record'] }) {
         </dd>
         {record.coverage.map((c, i) => (
           <React.Fragment key={i}>
-            <dt>Signals via {CONNECTION_LABELS[c.type]}</dt>
+            <dt>Signals via {c.provider ?? CONNECTION_LABELS[c.type]}</dt>
             <dd>
-              {c.signals.length} ({formatYears(c.years)})
+              {c.signals.length} ({sinceYear(c.years.from)})
             </dd>
           </React.Fragment>
         ))}
@@ -55,19 +58,19 @@ function SignalTables({ record }: { record: VehiclePageData['record'] }) {
   return (
     <>
       <h2>Signals by connection type</h2>
-      {record.coverage.map((c, i) => (
-        <section key={i}>
-          <h3>
-            {CONNECTION_LABELS[c.type]}
-            {c.provider ? ` — ${c.provider}` : ''} ({formatYears(c.years)})
-          </h3>
+      {displayCoverage(record).map(({ coverage: c, collapsed }, i) => {
+        // Records generated from network data have no frequency, so the
+        // column only appears when some signal in the table has one.
+        const hasFrequency = c.signals.some(s => s.typicalFrequency);
+        const heading = `${CONNECTION_LABELS[c.type]}${c.provider ? ` — ${c.provider}` : ''} (${sinceYear(c.years.from)})`;
+        const table = (
           <table>
             <thead>
               <tr>
                 <th>Signal</th>
                 <th>DIMO name</th>
                 <th>Unit</th>
-                <th>Typical frequency</th>
+                {hasFrequency && <th>Typical frequency</th>}
               </tr>
             </thead>
             <tbody>
@@ -78,14 +81,31 @@ function SignalTables({ record }: { record: VehiclePageData['record'] }) {
                     <code>{s.name}</code>
                   </td>
                   <td>{s.unit ?? '—'}</td>
-                  <td>{s.typicalFrequency ?? '—'}</td>
+                  {hasFrequency && <td>{s.typicalFrequency ?? '—'}</td>}
                 </tr>
               ))}
             </tbody>
           </table>
-          {c.notes && <p>Known gaps: {c.notes}</p>}
-        </section>
-      ))}
+        );
+        return (
+          <section key={i}>
+            {collapsed ? (
+              <details className={styles.collapsible}>
+                <summary>
+                  <h3>{heading}</h3>
+                </summary>
+                {table}
+              </details>
+            ) : (
+              <>
+                <h3>{heading}</h3>
+                {table}
+              </>
+            )}
+            {c.notes && <p>Known gaps: {c.notes}</p>}
+          </section>
+        );
+      })}
     </>
   );
 }
@@ -98,19 +118,27 @@ function NoFactoryConnectivity({
   const gaps = yearsWithoutOemCloud(record);
   if (gaps.length === 0) return null;
   const name = vehicleName(record);
-  const device = coverageOf(record, 'dimo_device')[0];
+  const span = yearSpan(record.coverage);
+  const devices = displayCoverage(record)
+    .map(d => d.coverage)
+    .filter(c => c.type === 'dimo_device');
+  const device = devices[0];
+  const providers = devices.flatMap(d => (d.provider ? [d.provider] : []));
   return (
     <>
       <h2>No factory connectivity?</h2>
       <p>
-        {name} model years {gaps.map(formatYears).join(', ')} have no OEM cloud
-        connection listed.{' '}
+        {name} model years{' '}
+        {gaps
+          .map(g => (g.to === span.to ? sinceYear(g.from) : formatYears(g)))
+          .join(', ')}{' '}
+        have no OEM cloud connection listed.{' '}
         {device ? (
           <>
             For these years, a DIMO device
-            {device.provider ? ` (${device.provider})` : ''} plugs into the
-            OBD-II port and streams {device.signals.length} signals once the
-            owner connects it and consents to sharing.
+            {providers.length ? ` (${providers.join(' or ')})` : ''} plugs into
+            the OBD-II port and streams vehicle signals once the owner connects
+            it and consents to sharing.
           </>
         ) : (
           <>No DIMO device coverage is listed for these years yet.</>
@@ -149,6 +177,35 @@ function Events({ record, eventGuides }: VehiclePageData) {
   );
 }
 
+// Outside [data-aeo-body]: shared link lists would make pages look alike to
+// the duplicate check.
+function Related({ record, related }: VehiclePageData) {
+  const makeSlug = record.slug.split('/')[0];
+  if (!related.sameMake.length && !related.similar.length) return null;
+  return (
+    <nav aria-label="Related vehicles">
+      <h2>Related vehicles</h2>
+      {related.sameMake.length > 0 && (
+        <>
+          <h3>More {record.make} vehicles</h3>
+          <VehicleList vehicles={related.sameMake} />
+        </>
+      )}
+      {related.similar.length > 0 && (
+        <>
+          <h3>Similar vehicles</h3>
+          <VehicleList vehicles={related.similar} />
+        </>
+      )}
+      <p>
+        <Link to={`/vehicles/${makeSlug}`}>All {record.make} vehicles</Link>
+        {' · '}
+        <Link to="/vehicles">Browse all vehicles</Link>
+      </p>
+    </nav>
+  );
+}
+
 export default function VehiclePage({
   data,
 }: {
@@ -165,6 +222,7 @@ export default function VehiclePage({
 
   return (
     <ContentPageLayout
+      wide
       title={title}
       description={description}
       canonicalPath={path}
@@ -197,11 +255,28 @@ export default function VehiclePage({
           vehicle owner must first share access with your app through DIMO
           Connect.
         </p>
-        {/* Plain <pre>: ContentPageLayout sits outside the theme Layout, so
-            @theme/CodeBlock has no color-mode context during SSG. */}
-        <pre className={styles.snippet}>
-          <code className="language-ts">{buildSnippet(record)}</code>
-        </pre>
+        {/* prism-react-renderer directly: ContentPageLayout sits outside the
+            theme Layout, so @theme/CodeBlock has no color-mode context during
+            SSG. Dracula matches the site's dark code theme. */}
+        <Highlight
+          theme={themes.dracula}
+          code={buildSnippet(record).trimEnd()}
+          language="tsx"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={`${styles.snippet} ${className}`} style={style}>
+              <code>
+                {tokens.map((line, l) => (
+                  <div key={l} {...getLineProps({ line })}>
+                    {line.map((token, t) => (
+                      <span key={t} {...getTokenProps({ token })} />
+                    ))}
+                  </div>
+                ))}
+              </code>
+            </pre>
+          )}
+        </Highlight>
         <p>
           Full walkthrough:{' '}
           <Link to="/docs/quickstart">Developer quickstart</Link>.
@@ -224,6 +299,7 @@ export default function VehiclePage({
           <time dateTime={record.lastVerified}>{record.lastVerified}</time>.
         </p>
       </div>
+      <Related {...data} />
     </ContentPageLayout>
   );
 }

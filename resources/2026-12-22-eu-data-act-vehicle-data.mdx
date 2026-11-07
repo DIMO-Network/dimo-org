@@ -1,0 +1,57 @@
+---
+title: How does the EU Data Act affect access to vehicle data?
+description: How DIMO handles owner-controlled vehicle data access, and the
+  steps developers follow to request consent and query vehicle data through DIMO
+  APIs.
+slug: eu-data-act-vehicle-data
+date: 2026-12-22
+authors:
+  - dimo-team
+tags:
+  - eu-data-act
+  - vehicle-data
+  - consent
+  - data-access
+---
+
+The DIMO documentation does not set out the legal text of the Data Act. Its FAQ states that DIMO aligns with the EU Data Act on user ownership of vehicle data, freedom to share data with third parties, and no vendor lock-in. For developers, access starts with the vehicle owner's consent. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Create an account in the [Developer Console](https://console.dimo.org/sign-in) and create a Developer License. Each license has a unique `clientId` that starts with `0x`.
+2. Ask the vehicle owner for consent with DIMO Connect, available as an open source Client SDK or a redirect URL. Users sign in with an email address and a passkey or one-time passcode, then grant you permissions. Those permissions are recorded through the Service Access Contract Definition (SACD). If the owner does not share, you cannot access the vehicle's data.
+3. Get a Developer JWT. You need your Client ID, Redirect URI, and API Key. A Developer JWT gives general access to DIMO APIs but no access to vehicle data.
+4. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API. The vehicle must already be shared with you. In the request, choose the permissions you need, such as all-time non-location data, current location, or approximate location. A Vehicle JWT grants access to one vehicle's data for a short time.
+5. Send the Vehicle JWT in the `Authorization` header to the Telemetry API, a GraphQL API. Start by listing the signals available for that vehicle.
+
+## Code
+
+```graphql
+# Request header (replace <yourVehicleJwt>):
+# { "Authorization": "<yourVehicleJwt>" }
+
+query GetAvailable {
+  availableSignals(
+    tokenId: <vehicleTokenId>
+  )
+}
+```
+
+## FAQ
+
+### Who owns vehicle data on DIMO?
+According to the DIMO FAQ, the vehicle owner owns the data, not DIMO and not your application. Owners grant permissions to apps and can revoke access at any time, and DIMO acts as a secure intermediary.
+
+### What happens if an owner declines to share?
+If a user elects not to share their vehicle data with a developer, that developer cannot access it. You also need a vehicle shared with you before you can fetch a Vehicle JWT.
+
+### What does the DIMO FAQ say about the EU Data Act?
+It lists three points: user ownership of vehicle data, freedom to share data with third parties, and no vendor lock-in. It does not describe the Data Act's legal requirements, so check those with your own counsel.
+
+### Can anyone audit who shared what?
+Yes. With SACD, anyone can audit and verify whether a user shared specific data with a specific developer.
+
+### Does DIMO replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+*Methodology: based on the DIMO documentation pages Authentication, Building Your First App, Key Concepts (SACD, DIMO Connect, Developer License), and the Frequently Asked Questions page (compliance and data ownership sections).*

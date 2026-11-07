@@ -1,0 +1,262 @@
+{
+  "make": "Dodge",
+  "model": "Grand Caravan",
+  "slug": "dodge/grand-caravan",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2012,
+        "to": 2018
+      },
+      "signals": [
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceSinceDTCClear",
+          "label": "Distance Since DTC Clear",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdEngineLoad",
+          "label": "Engine Load",
+          "unit": "%"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdIntakeTemp",
+          "label": "Intake temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdLongTermFuelTrim1",
+          "label": "Long Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdMAP",
+          "label": "Manifold Absolute Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdShortTermFuelTrim1",
+          "label": "Short Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "obdWarmupsSinceDTCClear",
+          "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["idling", "refuel", "dtc"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2011,
+        "to": 2019
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "dtc"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Dodge Grand Caravan?",
+      "a": "Yes, through a DIMO device. The record lists the powertrainFuelSystemRelativeLevel signal (Fuel Percentage) for this vehicle, and you read it from the Telemetry API with a Vehicle JWT. The segments resource with the refuel mechanism detects where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Dodge Grand Caravan with no connected services?",
+      "a": "The record lists a DIMO device as the connection for this vehicle. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Dodge Grand Caravan?",
+      "a": "The record lists the dtc event and the obdDTCList signal (Diagnostic Trouble Codes) for this vehicle through a DIMO device. You can read obdDTCList from the Telemetry API, and the Vehicle Triggers API (webhooks, in public beta) sends a POST to your targetURL when a condition you configure is met."
+    },
+    {
+      "q": "How do I detect idling on a Dodge Grand Caravan?",
+      "a": "The record lists the idling event for this vehicle through a DIMO device. Query the segments resource in the Telemetry API with the idling mechanism, which finds contiguous periods where engine RPM stays in the idle range and requires a DIMO device. The default idle RPM ceiling is 1000, adjustable with maxIdleRpm."
+    },
+    {
+      "q": "How do I verify Dodge Grand Caravan mileage?",
+      "a": "The record lists the odometer signal (powertrainTransmissionTravelledDistance) for the DIMO LTE R1 device on this vehicle. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed attestation through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Dodge Grand Caravan through a DIMO device, covering model years 2011 and newer; coverage for this vehicle has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Exchange your Developer JWT for a Vehicle JWT, then query the Telemetry API with GraphQL."
+}

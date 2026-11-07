@@ -1,0 +1,153 @@
+{
+  "make": "Tesla",
+  "model": "Model X",
+  "slug": "tesla/model-x",
+  "powertrains": ["ev"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "oem_cloud",
+      "provider": "Tesla",
+      "years": {
+        "from": 2016,
+        "to": 2026
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainTractionBatteryStateOfChargeCurrent",
+          "label": "Current Charge Level",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainRange",
+          "label": "Range (remaining)",
+          "unit": "km"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeCurrentAC",
+          "label": "AC Current Charge (Alternating Current)",
+          "unit": "amps"
+        },
+        {
+          "name": "cabinDoorRow2DriverSideIsOpen",
+          "label": "Back Driver Side Door"
+        },
+        {
+          "name": "cabinDoorRow2DriverSideWindowIsOpen",
+          "label": "Back Driver Side Window"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "cabinDoorRow2PassengerSideIsOpen",
+          "label": "Back Passenger Side Door"
+        },
+        {
+          "name": "cabinDoorRow2PassengerSideWindowIsOpen",
+          "label": "Back Passenger Side Window"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainTractionBatteryCurrentPower",
+          "label": "Battery Power",
+          "unit": "watts"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeLimit",
+          "label": "Charge Limit",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingIsChargingCableConnected",
+          "label": "Charging Cable Connected"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingIsCharging",
+          "label": "Charging Status"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingChargeVoltageUnknownType",
+          "label": "Charging Voltage",
+          "unit": "volts"
+        },
+        {
+          "name": "cabinDoorRow1DriverSideIsOpen",
+          "label": "Front Driver Side Door"
+        },
+        {
+          "name": "cabinDoorRow1DriverSideWindowIsOpen",
+          "label": "Front Driver Side Window"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "cabinDoorRow1PassengerSideIsOpen",
+          "label": "Front Passenger Side Door"
+        },
+        {
+          "name": "cabinDoorRow1PassengerSideWindowIsOpen",
+          "label": "Front Passenger Side Window"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainTractionBatteryStateOfChargeCurrentEnergy",
+          "label": "Remaining Energy",
+          "unit": "kWh"
+        },
+        {
+          "name": "powertrainTractionBatteryChargingAddedEnergy",
+          "label": "Session Energy",
+          "unit": "kWh"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["recharge"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "How do I verify Tesla Model X mileage?",
+      "a": "Tesla's cloud connection provides the odometer signal (powertrainTransmissionTravelledDistance, in km) for the Model X. To get verifiable proof of it, call the Attestation API's odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API."
+    },
+    {
+      "q": "How do I detect recharging on a Tesla Model X?",
+      "a": "Tesla's cloud connection lists the recharge event for the Model X. Query the Telemetry API segments resource with the recharge detection mechanism, which uses charging signals and state of charge, or create a webhook in the Vehicle Triggers API on a signal such as vss.powertrainTractionBatteryChargingIsCharging."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data for the Tesla Model X through Tesla's cloud connection (oem_cloud), covering model years 2016 and newer. The record lists this coverage as tested, with EV signals such as odometer, charge level, remaining range, tire pressure and coordinates. DIMO is infrastructure for physical AI: real-world vehicle data and APIs that AI agents and models can read and act on. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The record lists no DIMO device connection for this model."
+}

@@ -22,3 +22,6 @@ Geotab
 (?i)webhooks?
 (?i)quickstart
 (?i)provenance
+VINs?
+Configurator
+(?i)passcodes?

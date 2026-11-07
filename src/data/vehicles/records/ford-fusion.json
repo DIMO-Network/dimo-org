@@ -1,0 +1,268 @@
+{
+  "make": "Ford",
+  "model": "Fusion",
+  "slug": "ford/fusion",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2014,
+        "to": 2020
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "dtc"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2013,
+        "to": 2017
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceSinceDTCClear",
+          "label": "Distance Since DTC Clear",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdEngineLoad",
+          "label": "Engine Load",
+          "unit": "%"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdIntakeTemp",
+          "label": "Intake temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdLongTermFuelTrim1",
+          "label": "Long Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdMAP",
+          "label": "Manifold Absolute Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdShortTermFuelTrim1",
+          "label": "Short Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTransmissionTemperature",
+          "label": "Transmission Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdWarmupsSinceDTCClear",
+          "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["idling", "refuel"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Fusion?",
+      "a": "Yes, with a DIMO device. Both DIMO device entries for this model list the powertrainFuelSystemRelativeLevel signal (Fuel Percentage), and you read it through the Telemetry API GraphQL endpoint with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Ford Fusion with no connected services?",
+      "a": "Install a DIMO device. Once the owner shares the vehicle with your Developer License, you exchange a Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API. The Fusion record lists coverage only through DIMO devices."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ford Fusion?",
+      "a": "Yes, with the DIMO LTE R1 device, which lists the dtc event for this model. Use the Vehicle Triggers API (webhooks) so DIMO sends a POST request to your targetURL when your configured condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Ford Fusion?",
+      "a": "Use a DIMO device, since both device entries for this model list the idling event. Query the segments resource in the Telemetry API with the idling detection mechanism, which finds periods where engine RPM stays in the idle range. The maximum date range per query is 31 days."
+    },
+    {
+      "q": "How do I verify Ford Fusion mileage?",
+      "a": "With a DIMO device reporting the odometer signal, call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the resulting verifiable credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a Ford Fusion vehicle data API for model years 2013 and newer, delivered through a DIMO device. Coverage for this model is tested, not just expected, and the signals and events you get depend on which DIMO device is installed. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
+}

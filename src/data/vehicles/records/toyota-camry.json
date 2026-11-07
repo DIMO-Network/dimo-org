@@ -1,0 +1,242 @@
+{
+  "make": "Toyota",
+  "model": "Camry",
+  "slug": "toyota/camry",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2007,
+        "to": 2026
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "powertrainFuelSystemAbsoluteLevel",
+          "label": "Fuel Level",
+          "unit": "liters"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2007,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceSinceDTCClear",
+          "label": "Distance Since DTC Clear",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainCombustionEngineMAF",
+          "label": "Engine Air Intake",
+          "unit": "grams/second"
+        },
+        {
+          "name": "obdEngineLoad",
+          "label": "Engine Load",
+          "unit": "%"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdIntakeTemp",
+          "label": "Intake temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdLongTermFuelTrim1",
+          "label": "Long Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "obdShortTermFuelTrim1",
+          "label": "Short Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainFuelSystemSupportedFuelTypes",
+          "label": "Supported Fuel Types"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "obdWarmupsSinceDTCClear",
+          "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["idling"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Toyota Camry?",
+      "a": "Yes, with a DIMO device. It reports Fuel Level (powertrainFuelSystemAbsoluteLevel) in liters. Once the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT and query the signal through the Telemetry API."
+    },
+    {
+      "q": "How do I track a Toyota Camry with no connected services?",
+      "a": "Use a DIMO device. It supplies the Camry's signals, such as odometer, speed, engine RPM and coolant temperature, without any manufacturer connected services. After the owner shares the vehicle, you read the data through the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Toyota Camry?",
+      "a": "Idling is an event listed for the Camry's DIMO device coverage. Query the Telemetry API segments resource with the idling detection mechanism, which requires a DIMO device. Idle periods are contiguous stretches where engine RPM stays in the idle range (default maximum 1000 RPM, adjustable with maxIdleRpm)."
+    },
+    {
+      "q": "How do I detect harsh braking on a Toyota Camry?",
+      "a": "Harsh braking is listed as an event for the DIMO LTE R1 device on the Camry. Create a webhook through the Vehicle Triggers API with the events service and the metric behavior.harshBraking, then subscribe the vehicle to it. You can also request HarshBraking event counts per trip segment through the segments resource."
+    },
+    {
+      "q": "How do I verify Toyota Camry mileage?",
+      "a": "The Camry's DIMO device reports Odometer (powertrainTransmissionTravelledDistance) in km. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Toyota Camry, a combustion-engine vehicle, that data comes through a DIMO device on 2007 and newer model years. Coverage for this model is tested, not just expected. The signals, events and code example below show what the API returns for it."
+}

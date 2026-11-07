@@ -1,0 +1,255 @@
+{
+  "make": "Ram",
+  "model": "1500",
+  "slug": "ram/1500",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2013,
+        "to": 2026
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "dtc"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2012,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceSinceDTCClear",
+          "label": "Distance Since DTC Clear",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdEngineLoad",
+          "label": "Engine Load",
+          "unit": "%"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdIntakeTemp",
+          "label": "Intake temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdLongTermFuelTrim1",
+          "label": "Long Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdMAP",
+          "label": "Manifold Absolute Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "obdShortTermFuelTrim1",
+          "label": "Short Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainFuelSystemSupportedFuelTypes",
+          "label": "Supported Fuel Types"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "obdWarmupsSinceDTCClear",
+          "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["idling", "refuel", "dtc"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ram 1500?",
+      "a": "Yes, with a DIMO device. It reports Fuel Percentage as the powertrainFuelSystemRelativeLevel signal, which you query through the Telemetry API using a Vehicle JWT. To find fill-ups, request segments with the refuel detection mechanism."
+    },
+    {
+      "q": "How do I track a Ram 1500 with no connected services?",
+      "a": "Install a DIMO device; the record lists DIMO LTE R1 and AutoPi as providers for this truck. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ram 1500?",
+      "a": "Yes, with a DIMO device, which lists the dtc event and the obdDTCList signal for this truck. To get notified without polling, use the Vehicle Triggers API (webhooks), which posts to your targetURL when a condition you configured is met."
+    },
+    {
+      "q": "How do I detect idling on a Ram 1500?",
+      "a": "Use a DIMO device and query the Telemetry API segments resource with the idling detection mechanism. Idling segments are contiguous periods where engine RPM stays in the idle range, and you can adjust the limit with the maxIdleRpm setting, which defaults to 1000."
+    },
+    {
+      "q": "How do I verify Ram 1500 mileage?",
+      "a": "A DIMO device reports the odometer as the powertrainTransmissionTravelledDistance signal in km. For verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ram 1500, that data comes through a DIMO device, covering 2012 and newer model years, and coverage for this truck is tested rather than expected. You read the signals and events listed below through the Telemetry API, which is a GraphQL API. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
+}

@@ -134,3 +134,8 @@
   background: rgba(255, 255, 255, 0.04);
   color: #fff;
 }
+
+.breadcrumbs.wide,
+.article.wide {
+  max-width: 1080px;
+}

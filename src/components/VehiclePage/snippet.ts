@@ -1,8 +1,8 @@
 import type { VehicleRecord } from '../../data/vehicles/schema';
 
-// Object-valued signals need sub-field selections, so they are left out of the
-// generic `{ value timestamp }` example.
-const OBJECT_SIGNALS = new Set(['currentLocationCoordinates']);
+// Location signals are left out: they need a location privilege the reader may
+// not have, and coordinates need sub-field selections besides.
+const isLocation = (name: string) => name.startsWith('currentLocation');
 
 // TypeScript example rendered in the "Build it" section. Kept as a template so
 // the snippet harness (scripts/aeo/snippets.test.mjs) can exercise it too.
@@ -10,7 +10,7 @@ export function buildSnippet(r: VehicleRecord, maxSignals = 3): string {
   const signals = [
     ...new Set(r.coverage.flatMap(c => c.signals.map(s => s.name))),
   ]
-    .filter(name => !OBJECT_SIGNALS.has(name))
+    .filter(name => !isLocation(name))
     .slice(0, maxSignals);
   const fields = signals
     .map(name => `      ${name} {\n        value\n        timestamp\n      }`)

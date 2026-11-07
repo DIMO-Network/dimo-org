@@ -16,6 +16,7 @@ export default function MakeHub({
   const description = `${make} models that connect to DIMO, with model years, connection options and available signals for each.`;
   return (
     <ContentPageLayout
+      wide
       title={`${make} Vehicle Data API: Supported Models | DIMO`}
       description={description}
       canonicalPath={`/vehicles/${makeSlug}`}

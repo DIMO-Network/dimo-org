@@ -1,0 +1,264 @@
+{
+  "make": "Ford",
+  "model": "Explorer",
+  "slug": "ford/explorer",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2013,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2008,
+        "to": 2020
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceSinceDTCClear",
+          "label": "Distance Since DTC Clear",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainCombustionEngineMAF",
+          "label": "Engine Air Intake",
+          "unit": "grams/second"
+        },
+        {
+          "name": "obdEngineLoad",
+          "label": "Engine Load",
+          "unit": "%"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdIntakeTemp",
+          "label": "Intake temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdLongTermFuelTrim1",
+          "label": "Long Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdMAP",
+          "label": "Manifold Absolute Pressure",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdShortTermFuelTrim1",
+          "label": "Short Term Fuel Trim (Bank 1)",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "obdWarmupsSinceDTCClear",
+          "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Explorer?",
+      "a": "Yes, with a DIMO device. It reports Fuel Percentage (powertrainFuelSystemRelativeLevel), which you can read through the Telemetry API using a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Ford Explorer with no connected services?",
+      "a": "Use a DIMO device, either the DIMO LTE R1 or AutoPi. After the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Ford Explorer?",
+      "a": "Idling events come from a DIMO device. Query the Telemetry API segments resource with the idling detection mechanism, which treats periods where engine RPM stays in the idle range as segments. You can tune the upper RPM bound with maxIdleRpm, which defaults to 1000."
+    },
+    {
+      "q": "How do I detect harsh braking on a Ford Explorer?",
+      "a": "Harsh braking events come from a DIMO device. You can count them per trip by adding a HarshBraking entry to eventRequests in a segments query, or have DIMO push them to your server with a Vehicle Triggers API webhook on behavior.harshBraking."
+    },
+    {
+      "q": "How do I verify Ford Explorer mileage?",
+      "a": "A DIMO device reports the odometer signal. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ford Explorer, data comes from a DIMO device, either the DIMO LTE R1 or AutoPi, on model years 2008 and newer. This coverage has been tested rather than expected. Once an owner shares the vehicle, use the Telemetry API with a Vehicle JWT to query the signals it reports."
+}

@@ -4,11 +4,16 @@ import type { LoadContext, Plugin } from '@docusaurus/types';
 import type { VehicleRecord } from '../../src/data/vehicles/schema.ts';
 import { isLive } from './publishDate.ts';
 import { loadRecords } from './records.ts';
+import { relatedVehicles, type RelatedVehicles } from './related.ts';
 
 // Event → guide slug under /resources. A link renders only once that guide is
 // live, so scheduled guides never produce broken links.
 const EVENT_GUIDES: Record<string, string> = {
   idling: 'detect-vehicle-idling',
+  refuel: 'track-refuel-events',
+  recharge: 'track-electric-vehicle-charging',
+  harsh_braking: 'detect-harsh-braking',
+  dtc: 'check-engine-light-alerts',
 };
 
 export type VehicleSummary = Pick<
@@ -19,6 +24,7 @@ export type VehicleSummary = Pick<
 export type VehiclePageData = {
   record: VehicleRecord;
   eventGuides: Record<string, string>;
+  related: RelatedVehicles;
 };
 
 type Content = {
@@ -78,9 +84,18 @@ export default function vehiclePages(context: LoadContext): Plugin<Content> {
     async contentLoaded({ content, actions }) {
       const { createData, addRoute } = actions;
       const { live, eventGuides } = content;
+      const summaries = live
+        .map(summarize)
+        .sort((a, b) =>
+          `${a.make} ${a.model}`.localeCompare(`${b.make} ${b.model}`)
+        );
 
       for (const record of live) {
-        const data: VehiclePageData = { record, eventGuides };
+        const data: VehiclePageData = {
+          record,
+          eventGuides,
+          related: relatedVehicles(record.slug, summaries),
+        };
         const dataPath = await createData(
           `vehicle-${record.slug.replace('/', '-')}.json`,
           JSON.stringify(data)
@@ -95,11 +110,6 @@ export default function vehiclePages(context: LoadContext): Plugin<Content> {
         });
       }
 
-      const summaries = live
-        .map(summarize)
-        .sort((a, b) =>
-          `${a.make} ${a.model}`.localeCompare(`${b.make} ${b.model}`)
-        );
       const indexPath = await createData(
         'vehicles-index.json',
         JSON.stringify(summaries)

@@ -1,0 +1,155 @@
+{
+  "make": "Hyundai",
+  "model": "Palisade",
+  "slug": "hyundai/palisade",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2020,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainFuelSystemAbsoluteLevel",
+          "label": "Fuel Level",
+          "unit": "liters"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Palisade?",
+      "a": "Yes, with a DIMO device. The Telemetry API returns fuel level and fuel percentage, and the segments query with the refuel mechanism detects where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Hyundai Palisade with no connected services?",
+      "a": "Use a DIMO device, the DIMO LTE R1. Once the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Palisade?",
+      "a": "Use the segments query in the Telemetry API with the idling mechanism, which requires a DIMO device. It groups contiguous periods where engine RPM stays in the idle range, and the maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I detect harsh braking on a Hyundai Palisade?",
+      "a": "With a DIMO device, create a webhook with the events service and the metric behavior.harshBraking to get a push when it happens. You can also request HarshBraking event counts per segment through the segments query."
+    },
+    {
+      "q": "How do I verify Hyundai Palisade mileage?",
+      "a": "Using a DIMO device, call the Attestation API odometer statement endpoint at /v2/attestation/odometer-statement/:tokenId. Then retrieve the resulting verifiable credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Hyundai Palisade, that data comes through a DIMO device, the DIMO LTE R1, on 2020 and newer model years. Coverage for this model has been tested, not just expected. You query it through the Telemetry API with GraphQL, and the record also lists idling, refuel and harsh braking events."
+}

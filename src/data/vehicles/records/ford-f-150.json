@@ -33,14 +33,19 @@
           "label": "Vehicle Ignition Status"
         },
         {
-          "name": "exteriorAirTemperature",
-          "label": "Air Temperature",
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
           "unit": "°C"
         },
         {
-          "name": "currentLocationAltitude",
-          "label": "Altitude Level",
-          "unit": "m"
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
         },
         {
           "name": "chassisAxleRow2WheelLeftTirePressure",
@@ -53,15 +58,6 @@
           "unit": "kPa"
         },
         {
-          "name": "powertrainCombustionEngineECT",
-          "label": "Coolant Temperature",
-          "unit": "°C"
-        },
-        {
-          "name": "currentLocationCoordinates",
-          "label": "Coordinates"
-        },
-        {
           "name": "obdDistanceWithMIL",
           "label": "Distance with MIL On",
           "unit": "km"
@@ -69,11 +65,6 @@
         {
           "name": "obdStatusDTCCount",
           "label": "DTC Count"
-        },
-        {
-          "name": "powertrainCombustionEngineSpeed",
-          "label": "Engine RPM",
-          "unit": "rpm"
         },
         {
           "name": "obdRunTime",
@@ -95,11 +86,6 @@
           "label": "Fuel Type"
         },
         {
-          "name": "currentLocationHeading",
-          "label": "Heading",
-          "unit": "degrees"
-        },
-        {
           "name": "lowVoltageBatteryCurrentVoltage",
           "label": "Low Voltage Battery",
           "unit": "volts"
@@ -116,6 +102,20 @@
           "name": "powertrainCombustionEngineTPS",
           "label": "Throttle Position",
           "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
         }
       ],
       "events": ["idling", "refuel", "harsh_braking"]
@@ -144,19 +144,9 @@
           "unit": "km/h"
         },
         {
-          "name": "exteriorAirTemperature",
-          "label": "Air Temperature",
-          "unit": "°C"
-        },
-        {
-          "name": "currentLocationAltitude",
-          "label": "Altitude Level",
-          "unit": "m"
-        },
-        {
-          "name": "obdBarometricPressure",
-          "label": "Barometric Pressure",
-          "unit": "kPa"
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
         },
         {
           "name": "powertrainCombustionEngineECT",
@@ -164,8 +154,14 @@
           "unit": "°C"
         },
         {
-          "name": "currentLocationCoordinates",
-          "label": "Coordinates"
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdBarometricPressure",
+          "label": "Barometric Pressure",
+          "unit": "kPa"
         },
         {
           "name": "obdDTCList",
@@ -185,11 +181,6 @@
           "name": "obdEngineLoad",
           "label": "Engine Load",
           "unit": "%"
-        },
-        {
-          "name": "powertrainCombustionEngineSpeed",
-          "label": "Engine RPM",
-          "unit": "rpm"
         },
         {
           "name": "obdRunTime",
@@ -229,6 +220,15 @@
         {
           "name": "obdWarmupsSinceDTCClear",
           "label": "Warmups Since DTC Clear"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
         }
       ],
       "events": ["idling", "refuel", "dtc"]
@@ -237,5 +237,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford F-150?",
+      "a": "Yes, with a DIMO device. Both listed devices report fuel percentage, which you read through the Telemetry API with a Vehicle JWT obtained from the Token Exchange API. The vehicle must be shared with your developer license."
+    },
+    {
+      "q": "How do I track a Ford F-150 with no connected services?",
+      "a": "Use a DIMO device; the record lists DIMO LTE R1 and AutoPi for the F-150. After the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ford F-150?",
+      "a": "Yes, with the AutoPi DIMO device, which lists the dtc event and the diagnostic trouble codes signal. You can read the codes through the Telemetry API, and the Vehicle Triggers API (webhooks, in public beta) can push matching events to your HTTPS endpoint."
+    },
+    {
+      "q": "How do I detect idling on a Ford F-150?",
+      "a": "Use the segments query in the Telemetry API with the idling detection mechanism, which requires a DIMO device. Both DIMO devices listed for the F-150 list idling as an event."
+    },
+    {
+      "q": "How do I verify Ford F-150 mileage?",
+      "a": "Both DIMO devices report odometer. Use the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO supports the Ford F-150 vehicle data API through a DIMO device, which is the connection type in the record for this truck. Coverage is for 2009 and newer model years, and it has been tested rather than assumed. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

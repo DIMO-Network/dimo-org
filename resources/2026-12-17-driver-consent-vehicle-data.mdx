@@ -1,0 +1,81 @@
+---
+title: How to Get Driver Consent to Access Vehicle Data with DIMO
+description: Use DIMO Connect to request vehicle data permissions from owners,
+  then exchange a Developer JWT for a Vehicle JWT to read the data they shared.
+slug: driver-consent-vehicle-data
+date: 2026-12-17
+authors:
+  - dimo-team
+tags:
+  - consent
+  - dimo-connect
+  - sacd
+  - authentication
+---
+
+To get consent to access vehicle data, use DIMO Connect, the user interface that lets you request specific data from vehicle owners. Users sign in and choose to share their vehicle with your app, and DIMO records that choice through the Service Access Contract Definition (SACD). Once a vehicle is shared with you, you exchange your Developer JWT for a Vehicle JWT to read its data. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the [DIMO Developer Console](https://console.dimo.org). Generate an API key and add your Redirect URIs. Your license has a unique `clientId` that starts with `0x`.
+2. Configure the data you want to request. In the Console, go to **Home** > **License Details** > **Configure Vehicle Sharing** and open the **Login With DIMO Configurator**. Set your component type (`LoginWithDimo` or `ShareVehiclesWithDimo`), redirect URI, permissions, and expiration date. Copy the generated Configuration ID. You can also build the URL manually from your `Client ID` and `Redirect URI`.
+3. Present DIMO Connect to your users. Either use the URL `https://login.dimo.org/?configurationId=YOUR_CONFIGURATION_ID`, or use the React SDK (`@dimo-network/login-with-dimo`) with `initializeDimoSDK({ configurationId })`.
+4. The user signs in with an email address and a passkey or one-time passcode, then grants you permissions to their vehicle data. If a user does not share, you cannot access that vehicle's data.
+5. Check which vehicles have shared with you. Use the Developer Console or query the Identity API, filtering vehicles by `privileged: $clientId`.
+6. Get a Developer JWT, then call the Token Exchange API to get a Vehicle JWT for a specific shared vehicle. Request only the permissions you need, such as all-time non-location data or current location. A Vehicle JWT grants access to one vehicle for a short time.
+7. Use the Vehicle JWT in the Telemetry API to read the data the owner shared.
+
+## Code
+
+This React snippet, adapted from the DIMO Connect documentation, initializes the SDK with a Configuration ID. It shows the login button first, then the vehicle sharing button after the user is authenticated.
+
+```jsx
+import {
+  LoginWithDimo,
+  ShareVehiclesWithDimo,
+  initializeDimoSDK,
+  useDimoAuthState,
+} from "@dimo-network/login-with-dimo";
+
+initializeDimoSDK({ configurationId: process.env.REACT_APP_DIMO_CONFIGURATION_ID });
+
+const { isAuthenticated, getValidJWT, walletAddress } = useDimoAuthState();
+
+useEffect(() => {
+  if (isAuthenticated) {
+    console.log(walletAddress);
+  }
+}, [isAuthenticated]);
+
+// ...
+
+{isAuthenticated ? (
+  <ShareVehiclesWithDimo
+    mode="popup"
+    onSuccess={(authData) => console.log("Success:", authData)}
+    onError={(error) => console.error("Error:", error)}
+  />
+) : (
+  <LoginWithDimo
+    mode="popup"
+    onSuccess={(authData) => console.log("Success:", authData)}
+    onError={(error) => console.error("Error:", error)}
+  />
+)}
+```
+
+## FAQ
+
+### What is SACD?
+The Service Access Contract Definition (SACD) is the permissions contract that lets users publicly declare which data they share with a given developer. It is also how developers request data from a user, and anyone can audit whether a user shared specific data with a developer.
+
+### Do I have to use the React SDK?
+No. DIMO Connect is available as an open source React SDK or as a redirect URL. The SDK supports more features, such as popup mode and onSuccess/onError callbacks, because the URL is limited by query parameter constraints.
+
+### What happens if a user declines to share?
+If a user elects not to share their vehicle data with you, you cannot access it.
+
+### Can I get a Vehicle JWT without a shared vehicle?
+No. You need a vehicle shared with you before you can fetch a Vehicle JWT from the Token Exchange API.
+
+*Methodology: this guide is based on the DIMO documentation pages Key Concepts, Authentication, Building Your First App, and Client SDK (DIMO Connect).*

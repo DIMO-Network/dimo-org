@@ -1,0 +1,138 @@
+{
+  "make": "Hyundai",
+  "model": "IONIQ 5",
+  "slug": "hyundai/ioniq-5",
+  "powertrains": ["ev", "hybrid"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2022,
+        "to": 2026
+      },
+      "signals": [
+        {
+          "name": "powertrainTractionBatteryStateOfChargeCurrent",
+          "label": "Current Charge Level",
+          "unit": "%"
+        },
+        {
+          "name": "powertrainTractionBatteryTemperatureAverage",
+          "label": "Battery Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["recharge"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2024,
+        "to": 2026
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainTractionBatteryStateOfChargeCurrent",
+          "label": "Current Charge Level",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["recharge", "harsh_braking"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "How do I track a Hyundai IONIQ 5 with no connected services?",
+      "a": "Use a DIMO device. The record lists AutoPi and DIMO LTE R1 devices for the IONIQ 5. Once the vehicle owner shares the vehicle with your app, you exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect recharging on a Hyundai IONIQ 5?",
+      "a": "Both devices listed for the IONIQ 5 support the recharge event. Query the Telemetry API segments resource with the recharge mechanism, which uses charging signals and state of charge. You can also set up a webhook through the Vehicle Triggers API."
+    },
+    {
+      "q": "How do I detect harsh braking on a Hyundai IONIQ 5?",
+      "a": "Harsh braking is listed for the DIMO LTE R1 device. Request it per trip by passing a HarshBraking event request to the Telemetry API segments query, which returns event counts for each segment. You can also create a Vehicle Triggers webhook on behavior.harshBraking."
+    },
+    {
+      "q": "How do I verify Hyundai IONIQ 5 mileage?",
+      "a": "The DIMO LTE R1 device reports odometer. To prove it, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API. You can pass an optional timestamp."
+    }
+  ],
+  "intro": "DIMO provides a Hyundai IONIQ 5 vehicle data API that delivers vehicle-state data through a DIMO device. The record lists the IONIQ 5 as connecting this way for 2022 and newer model years, using an AutoPi or a DIMO LTE R1 device, and the coverage has been tested rather than expected. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
+}

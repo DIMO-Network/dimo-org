@@ -1,0 +1,115 @@
+---
+title: How to Track a Vehicle With No Factory Connected Services
+description: Get vehicle-state data from a car without OEM connected services by
+  having the owner share it with your app through DIMO and querying the
+  Telemetry API.
+slug: track-vehicles-without-connected-services
+date: 2026-11-19
+authors:
+  - dimo-team
+tags:
+  - vehicle-data
+  - telemetry-api
+  - dimo-connect
+  - how-to
+---
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. To get data from a vehicle with no factory connected services, the owner connects the vehicle to DIMO and shares it with your app through DIMO Connect. Your backend then exchanges a Developer JWT for a Vehicle JWT and queries the Telemetry API. The documentation excerpts do not describe a specific connection method for vehicles without factory services, so this guide covers the sharing and query flow that applies once a vehicle is connected. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+## Steps
+
+1. Create a Developer License at [DIMO Developer Console](https://console.dimo.org). From it, collect your Client ID, Redirect URI, and API Key, and store them in environment variables.
+2. Install the DIMO Data SDK: `npm install @dimo-network/data-sdk`.
+3. Have the vehicle owner connect the vehicle and share it with your app. Build a DIMO Connect URL with your Client ID and Redirect URI, or use the DIMO Connect React SDK. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The owner can also connect a vehicle in the DIMO Mobile app and grant your app permission under "Connected Apps".
+4. Read the `tokenId` for each vehicle the owner shared with your app.
+5. Get a Developer JWT with your credentials. This token has no access to vehicle data.
+6. Exchange the Developer JWT for a Vehicle JWT through the Token Exchange API, requesting the privileges you need. Privilege 1 is all-time non-location data and privilege 3 is current location. A vehicle must be shared with you before you can fetch a Vehicle JWT.
+7. Query the Telemetry API with the Vehicle JWT. To see which signals a specific vehicle reports, run the `availableSignals` query with its `tokenId` before you request specific signals.
+
+## Code
+
+This example is adapted from the "Connect Your First Vehicle" tutorial. It needs a `tokenId` for a vehicle that has already been shared with your app, and it reads `DIMO_REDIRECT_URI` in addition to `DIMO_CLIENT_ID` and `DIMO_API_KEY`, so it is not tagged as a runnable test.
+
+```typescript
+import { DIMO } from '@dimo-network/data-sdk';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const dimo = new DIMO('Production');
+
+async function getVehicleData(vehicleTokenId: number) {
+  // 1. Get Developer JWT
+  const developerAuth = await dimo.auth.getDeveloperJwt({
+    client_id: process.env.DIMO_CLIENT_ID!,
+    domain: process.env.DIMO_REDIRECT_URI!,
+    private_key: process.env.DIMO_API_KEY!,
+  });
+
+  // 2. Exchange for Vehicle JWT
+  const vehicleAuth = await dimo.tokenexchange.getVehicleJwt({
+    ...developerAuth,
+    tokenId: vehicleTokenId,
+    privileges: [1, 3], // all-time non-location data + current location
+  });
+
+  // 3. Query the Telemetry API
+  const telemetryData = await dimo.telemetry.query({
+    ...vehicleAuth,
+    query: `
+      query GetLatestSignals($tokenId: Int!) {
+        signalsLatest(tokenId: $tokenId) {
+          speed {
+            value
+            timestamp
+          }
+          powertrainRange {
+            value
+            timestamp
+          }
+          powertrainTractionBatteryStateOfChargeCurrent {
+            value
+            timestamp
+          }
+          currentLocationCoordinates {
+            timestamp
+            value {
+              latitude
+              longitude
+              hdop
+            }
+          }
+        }
+      }
+    `,
+    variables: {
+      tokenId: vehicleTokenId,
+    },
+  });
+
+  return telemetryData;
+}
+
+// Replace 12345 with the tokenId of a vehicle shared with your app
+getVehicleData(12345).then((data) => console.log(JSON.stringify(data, null, 2)));
+```
+
+## FAQ
+
+### Does the vehicle need factory connected services to work with DIMO?
+
+The documentation excerpts for this guide do not say how a vehicle without factory connected services is connected. They describe the flow after a vehicle is shared with your app: DIMO Connect, token exchange, and Telemetry API queries.
+
+### Who has to approve access to the vehicle?
+
+The vehicle owner. The owner shares the vehicle with your app through DIMO Connect and can revoke access at any time.
+
+### How do I find out which signals a vehicle reports?
+
+Run the `availableSignals` GraphQL query in the Telemetry API with the vehicle's `tokenId` and a Vehicle JWT in the Authorization header.
+
+### Why do I need both a Developer JWT and a Vehicle JWT?
+
+The Developer JWT proves your identity and has no access to vehicle data. The Vehicle JWT grants short-lived access to one specific vehicle's data, limited to the privileges you requested.
+
+*Methodology: based on the DIMO documentation pages Authentication, Building Your First App, What Can You Build?, the Connect Your First Vehicle tutorial, and the Frequently Asked Questions page.*

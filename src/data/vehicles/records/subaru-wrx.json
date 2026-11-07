@@ -1,0 +1,146 @@
+{
+  "make": "Subaru",
+  "model": "WRX",
+  "slug": "subaru/wrx",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2015,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Subaru WRX?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 reports the Fuel Percentage signal (powertrainFuelSystemRelativeLevel), which you can read through the Telemetry API with a Vehicle JWT. You can also request it as a per-segment aggregate through the segments query."
+    },
+    {
+      "q": "How do I track a Subaru WRX with no connected services?",
+      "a": "Install a DIMO device. The DIMO LTE R1 is the connection type listed for the WRX, and it reports signals such as odometer, speed, engine RPM and coordinates. After the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Subaru WRX?",
+      "a": "Use the DIMO LTE R1 with the segments query in the Telemetry API and set the mechanism to idling. Idling segments are contiguous periods where engine RPM stays in the idle range, and this mechanism requires a DIMO device. You can tune the idle threshold with the maxIdleRpm config option, which defaults to 1000."
+    },
+    {
+      "q": "How do I verify Subaru WRX mileage?",
+      "a": "The DIMO LTE R1 reports the Odometer signal. To get verifiable proof of it, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Subaru WRX, data comes from a DIMO device, the DIMO LTE R1, on model years 2015 and newer. Coverage for this vehicle has been tested. The DIMO LTE R1 reports odometer, fuel percentage, engine RPM, DTC count, tire pressure and more, and supports idling, refuel and harsh braking events. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
+}

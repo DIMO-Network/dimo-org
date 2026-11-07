@@ -3,6 +3,10 @@ import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { ProcessBlogPostsFn } from '@docusaurus/plugin-content-blog';
 import { isLive } from './plugins/vehicle-pages/publishDate';
+import {
+  clampLastmod,
+  publishDates,
+} from './plugins/vehicle-pages/sitemapLastmod';
 
 // Scheduled publishing for blog instances: posts dated after the build date
 // (UTC) are dropped from pages, feeds and the sitemap until a later build.
@@ -94,6 +98,14 @@ const config: Config = {
             '/resources/authors',
             '/resources/tags/**',
           ],
+          createSitemapItems: async ({
+            defaultCreateSitemapItems,
+            ...params
+          }) =>
+            clampLastmod(
+              await defaultCreateSitemapItems(params),
+              publishDates(process.cwd())
+            ),
         },
       } satisfies Preset.Options,
     ],
@@ -112,9 +124,15 @@ const config: Config = {
         path: 'resources',
         routeBasePath: 'resources',
         blogTitle: 'Resources',
+        // Guides use the same layout as the vehicle pages; /blog keeps the
+        // theme's post layout.
+        blogPostComponent: '@site/src/components/ResourcePage',
+        blogListComponent: '@site/src/components/ResourcePage/ResourceList',
         blogDescription:
           'Guides for building with DIMO vehicle data: signals, events, connection options and the DIMO API.',
         blogSidebarTitle: 'Recent guides',
+        // One index page for every guide, so there's no thin /resources/page/2.
+        postsPerPage: 'ALL',
         blogSidebarCount: 10,
         showReadingTime: true,
         processBlogPosts: dropScheduledPosts,

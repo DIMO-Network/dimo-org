@@ -1,0 +1,189 @@
+{
+  "make": "Honda",
+  "model": "Pilot",
+  "slug": "honda/pilot",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "AutoPi",
+      "years": {
+        "from": 2009,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        }
+      ],
+      "events": ["dtc"]
+    },
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2009,
+        "to": 2025
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "chassisAxleRow2WheelLeftTirePressure",
+          "label": "Back Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow2WheelRightTirePressure",
+          "label": "Back Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainTractionBatteryRange",
+          "label": "Battery Range",
+          "unit": "km"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "chassisAxleRow1WheelLeftTirePressure",
+          "label": "Front Left Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "chassisAxleRow1WheelRightTirePressure",
+          "label": "Front Right Wheel",
+          "unit": "kPa"
+        },
+        {
+          "name": "powertrainFuelSystemAbsoluteLevel",
+          "label": "Fuel Level",
+          "unit": "liters"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Honda Pilot?",
+      "a": "Yes. The DIMO LTE R1 device lists both a Fuel Percentage signal and a Fuel Level signal in liters for the Pilot. Once the owner shares the vehicle, use a Vehicle JWT to query the signals through the GraphQL Telemetry API."
+    },
+    {
+      "q": "How do I track a Honda Pilot with no connected services?",
+      "a": "The record lists a DIMO device for the Pilot, with AutoPi and DIMO LTE R1 as the providers. After the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, then query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Honda Pilot?",
+      "a": "The AutoPi DIMO device lists the dtc event and the Diagnostic Trouble Codes signal for the Pilot. The Vehicle Triggers API (webhooks) posts to your targetURL when a condition you configure is met, and its Get webhook signals endpoint returns the signal names you can use."
+    },
+    {
+      "q": "How do I detect idling on a Honda Pilot?",
+      "a": "The DIMO LTE R1 device lists the idling event for the Pilot. Query the Telemetry API segments resource with the idling detection mechanism, which the docs say requires a DIMO device. Idle segments are periods where engine RPM stays in the idle range."
+    },
+    {
+      "q": "How do I verify Honda Pilot mileage?",
+      "a": "The DIMO LTE R1 device lists the odometer signal for the Pilot. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve the rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Honda Pilot, data comes through a DIMO device, for model years 2009 and newer. Coverage for this model has been tested rather than expected. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
+}

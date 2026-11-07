@@ -1,0 +1,134 @@
+{
+  "make": "Ram",
+  "model": "2500",
+  "slug": "ram/2500",
+  "powertrains": ["ice"],
+  "regions": ["Global"],
+  "coverage": [
+    {
+      "type": "dimo_device",
+      "provider": "DIMO LTE R1",
+      "years": {
+        "from": 2018,
+        "to": 2024
+      },
+      "signals": [
+        {
+          "name": "powertrainTransmissionTravelledDistance",
+          "label": "Odometer",
+          "unit": "km"
+        },
+        {
+          "name": "powertrainFuelSystemRelativeLevel",
+          "label": "Fuel Percentage",
+          "unit": "%"
+        },
+        {
+          "name": "speed",
+          "label": "Vehicle Speed",
+          "unit": "km/h"
+        },
+        {
+          "name": "isIgnitionOn",
+          "label": "Vehicle Ignition Status"
+        },
+        {
+          "name": "powertrainCombustionEngineSpeed",
+          "label": "Engine RPM",
+          "unit": "rpm"
+        },
+        {
+          "name": "powertrainCombustionEngineECT",
+          "label": "Coolant Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "exteriorAirTemperature",
+          "label": "Air Temperature",
+          "unit": "°C"
+        },
+        {
+          "name": "obdDTCList",
+          "label": "Diagnostic Trouble Codes"
+        },
+        {
+          "name": "obdDistanceWithMIL",
+          "label": "Distance with MIL On",
+          "unit": "km"
+        },
+        {
+          "name": "obdStatusDTCCount",
+          "label": "DTC Count"
+        },
+        {
+          "name": "obdRunTime",
+          "label": "Engine runtime",
+          "unit": "seconds"
+        },
+        {
+          "name": "obdFuelTypeName",
+          "label": "Fuel Type"
+        },
+        {
+          "name": "lowVoltageBatteryCurrentVoltage",
+          "label": "Low Voltage Battery",
+          "unit": "volts"
+        },
+        {
+          "name": "obdIsPluggedIn",
+          "label": "OBD Device Plugged In"
+        },
+        {
+          "name": "powertrainType",
+          "label": "Powertrain Type"
+        },
+        {
+          "name": "powertrainCombustionEngineTPS",
+          "label": "Throttle Position",
+          "unit": "%"
+        },
+        {
+          "name": "currentLocationAltitude",
+          "label": "Altitude Level",
+          "unit": "m"
+        },
+        {
+          "name": "currentLocationCoordinates",
+          "label": "Coordinates"
+        },
+        {
+          "name": "currentLocationHeading",
+          "label": "Heading",
+          "unit": "degrees"
+        }
+      ],
+      "events": ["idling", "refuel", "harsh_braking", "dtc"]
+    }
+  ],
+  "verification": "tested",
+  "lastVerified": "2026-11-06",
+  "publishDate": "2026-11-10",
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ram 2500?",
+      "a": "Yes. A DIMO device (DIMO LTE R1) reports fuel level as the Fuel Percentage signal (powertrainFuelSystemRelativeLevel). You can read it through the Telemetry API with a Vehicle JWT, or use segments to get the fuel level at the start and end of a refuel segment."
+    },
+    {
+      "q": "How do I track a Ram 2500 with no connected services?",
+      "a": "Install a DIMO device, the DIMO LTE R1, which is the connection type listed for the Ram 2500. Once the owner shares the vehicle with your Developer License, you exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ram 2500?",
+      "a": "Yes. The DIMO device reports the dtc event, along with diagnostic trouble codes, DTC count and distance with MIL on. Create a webhook with the Vehicle Triggers API, subscribe the vehicle, and DIMO sends a POST request to your targetURL when your condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Ram 2500?",
+      "a": "Use the Telemetry API segments query with the idling detection mechanism, which requires a DIMO device. It finds contiguous periods where engine RPM stays in the idle range, and maxIdleRpm in the segment config sets the upper bound (default 1000)."
+    },
+    {
+      "q": "How do I verify Ram 2500 mileage?",
+      "a": "The DIMO device reports the odometer signal (powertrainTransmissionTravelledDistance, in km). To get a verifiable reading, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ram 2500, that data comes from a DIMO device, the DIMO LTE R1, on model years 2018 and newer. Coverage for this vehicle has been tested. Signals include odometer, fuel percentage, engine RPM, coolant temperature and diagnostic trouble codes, and the Telemetry API, webhooks and attestations deliver them. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
+}

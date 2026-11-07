@@ -1,0 +1,79 @@
+---
+title: Get alerts when a fleet vehicle's check-engine light comes on
+description: Use DIMO's Vehicle Triggers API to create a webhook, subscribe
+  fleet vehicles, and receive a POST to your server when a diagnostic signal
+  condition is met.
+slug: check-engine-light-alerts
+date: 2026-11-12
+authors:
+  - dimo-team
+tags:
+  - webhooks
+  - vehicle-triggers
+  - diagnostics
+  - fleet
+---
+
+Use the DIMO Vehicle Triggers API (webhooks) to get notified. You create a webhook with a signal name and a condition, subscribe your vehicles to it, and DIMO sends a `POST` request to your `targetURL` when the condition is met. The documentation excerpts for this guide do not name a specific check-engine signal, so you look up the exact signal name through the API first.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Get a Developer JWT for your Developer License from the [Developer Console](https://console.dimo.org), or generate one with your API key using a server SDK. Webhooks are tied to a specific Developer License, so use the JWT for the license you are building under.
+2. Make sure your fleet vehicles are shared with your Developer License. Sharing is done through DIMO Connect, and vehicle owners consent to and control it.
+3. Call `GET /v1/webhooks/signals` to list the signal names available for webhooks. Pick the diagnostic signal you want to alert on. The Diagnostics category in the Telemetry API signals reference is another place to look.
+4. Create the webhook with `POST /v1/webhooks`. Set `service` to `signals` (or `events`), set `metricName` to the signal name you chose, and write a `condition` as a CEL expression using `>=`, `<=`, `>`, `<`, or `==`. Set `coolDownPeriod` (minimum seconds between firings), `description`, `targetURL` (an HTTPS endpoint), `status` to `enabled`, and a `verificationToken` that your endpoint must echo back during verification.
+5. Subscribe vehicles. Use `POST /v1/webhooks/:webhookId/subscribe/:tokenDID` for one vehicle, or `POST /v1/webhooks/:webhookId/subscribe/all` to subscribe every vehicle that has shared permissions with your Developer License.
+6. Handle the event on your server. When a subscribed vehicle meets your condition, DIMO sends a `POST` to your `targetURL`. The payload includes the vehicle in `subject` and `data.assetDID`, the `metricName`, the `webhookId`, the `condition`, and a `signal` object with its `value`.
+7. Forward the event to your own alerting, such as email, chat, or a ticketing system. DIMO delivers the event to your endpoint; the notification channel is yours to build.
+
+## Code
+
+This adapts the TypeScript SDK examples from the Vehicle Triggers API reference. Replace the placeholders for the Developer JWT, signal name, condition, and URLs. It is not tagged `test` because it needs values you choose for the signal and condition.
+
+```ts
+// 1. List the signal names available for webhooks
+const webhookSignals = await dimo.VehicleTriggers.getWebhookSignalNames({
+  developerJwt: "<DEV_JWT>"
+});
+
+// 2. Create the webhook using the signal you picked from that list
+const newWebhook = await dimo.VehicleTriggers.createWebhook({
+  developerJwt: "<DEV_JWT>",
+  service: "signals",
+  metricName: "<SIGNAL_NAME_FROM_LIST>",
+  condition: "<CEL_CONDITION>",
+  coolDownPeriod: 30,
+  description: "Fires when a subscribed vehicle meets the diagnostic condition",
+  displayName: "Diagnostic alert",
+  targetURL: "https://example.com/webhook-receiver",
+  status: "enabled",
+  verificationToken: "<YOUR_VERIFICATION_TOKEN>",
+});
+
+// 3. Subscribe all vehicles that have shared permissions with your Developer License
+const subscribeAll = await dimo.VehicleTriggers.subscribeAllVehicles({
+  developerJwt: "<DEV_JWT>",
+  webhookId: "<WEBHOOK_ID_FROM_CREATE_RESPONSE>"
+});
+```
+
+## FAQ
+
+### Which signal represents the check-engine light?
+The documentation excerpts used for this guide do not name one. Call `GET /v1/webhooks/signals` to see the signal names available to you, and check the Diagnostics section of the Telemetry API signals reference.
+
+### Do I need to poll the API?
+No. Vehicle Triggers sends a `POST` to your `targetURL` when a subscribed vehicle meets your condition, so you do not need to poll for updates.
+
+### Can I subscribe my whole fleet at once?
+Yes. `POST /v1/webhooks/:webhookId/subscribe/all` subscribes all vehicles that have shared permissions with your Developer License to the webhook.
+
+### How do I limit repeat notifications?
+Set `coolDownPeriod` when you create the webhook. It is the minimum number of seconds between successive firings of the webhook.
+
+### Is the Vehicle Triggers API stable?
+The documentation states that webhooks are currently in public beta. Feedback can be sent to `contact@dimo.org`.
+
+*Methodology: this guide is based on the DIMO documentation for the Vehicle Triggers API, the Telemetry API Vehicle Signals reference, Authentication, and Building Your First App.*
