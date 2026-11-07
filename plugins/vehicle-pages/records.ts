@@ -26,7 +26,8 @@ export function loadRecords(dir: string): LoadedRecord[] {
       raw = JSON.parse(readFileSync(path.join(dir, file), 'utf8'));
     } catch (err) {
       throw new Error(
-        `Invalid JSON in vehicle record ${file}: ${(err as Error).message}`
+        `Invalid JSON in vehicle record ${file}: ${(err as Error).message}`,
+        { cause: err }
       );
     }
     const result = VehicleRecord.safeParse(raw);

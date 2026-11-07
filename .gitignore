@@ -29,3 +29,7 @@ CLAUDE.md
 
 # AEO snippet harness scratch files
 .aeo-snippets/
+
+# Planning docs written by the superpowers skills. Anything under docs/ is published
+# (site, sitemap, llms-full.txt, MCP index), so these stay local.
+/docs/superpowers/

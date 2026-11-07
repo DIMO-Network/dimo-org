@@ -38,7 +38,7 @@ const USE_CASES = [
     description:
       'Fine-grained control over what data your agents can access. Users can grant, revoke, or modify permissions at any time through a unified consent dashboard.',
     example:
-      'Agents request only the permissions they needread location, write commands, access diagnosticsbuilding user trust.',
+      'Agents request only the permissions they need—read location, write commands, access diagnostics—building user trust.',
   },
   {
     icon: <Lock size={28} />,
@@ -65,7 +65,7 @@ const USE_CASES = [
     description:
       'Built-in memory layer for your agents. Maintain conversation history, user preferences, and vehicle context across sessions for personalized experiences.',
     example:
-      'Agents remember past interactions: "Last time we discussed your oil changeready to schedule it?"',
+      'Agents remember past interactions: "Last time we discussed your oil change—ready to schedule it?"',
   },
   {
     icon: <Plug size={28} />,

@@ -45,7 +45,7 @@ Developers can get started using either the [React Component SDK (aka Login with
     />
     Using the `Client ID` and `Redirect URI` from your Developer License, configure your DIMO Connect URL along with the specific vehicle data you want to request from your users.
 
-    :::tip Use a Configuration ID (recommended)
+    :::tip[Use a Configuration ID (recommended)]
     The [DIMO Developer Console](https://console.dimo.org) includes a **Login With DIMO Configurator** — a widget where you set your component type (`LoginWithDimo` or `ShareVehiclesWithDimo`), redirect URI, UTM, expiration date, and permissions (template or custom). It generates a **Configuration ID** and lets you copy the ready-to-use `login.dimo.org` link directly. Pass the `configurationId` in your integration instead of individual query parameters.
     :::
 
@@ -256,7 +256,7 @@ Developers can get started using either the [React Component SDK (aka Login with
 If you are a React developer, you are more than welcome to use the SDK directly and skip using the DIMO Connect URL.
 The SDK is guaranteed to have more functionalities as the DIMO Connect URL is bounded by query parameter limitations.
 
-:::tip Provisioning a Developer License per user
+:::tip[Provisioning a Developer License per user]
 Building a multi-tenant app where each end user needs their own Developer License (their own API key), rather
 than sharing yours? See [Auto-Create a Developer License](../../1_getting-started/2_auto-create-license.mdx)
 for how to mint or reconnect licenses programmatically from this same SDK.

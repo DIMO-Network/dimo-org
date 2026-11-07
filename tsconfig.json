@@ -1,8 +1,20 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
+  // Docusaurus builds the site without reading this file. It is used by
+  // `npm run typecheck`, by editors, and by Vercel's Node builder, which
+  // compiles the functions in api/ with it.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
+    // TypeScript 6 turns strict on by default. Say so here, so editors running
+    // an older TypeScript check the same way.
+    "strict": true,
+    // @docusaurus/tsconfig still sets baseUrl, which TypeScript 6 deprecates.
+    // Unset it and resolve @site/* from this file's directory instead. This
+    // replaces the preset's paths rather than merging with them, so an alias a
+    // future preset adds must be repeated here.
+    "baseUrl": null,
+    "paths": {
+      "@site/*": ["./*"]
+    },
     "allowImportingTsExtensions": true
   },
   "exclude": [".docusaurus", "build"]
