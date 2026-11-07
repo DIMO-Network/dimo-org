@@ -10,7 +10,7 @@ description:
 image: /img/vehicle_simulator.png
 ---
 
-<!-- truncate -->
+{/* truncate */}
 
 ### 🚗 You shouldn't need a car to build a car app
 

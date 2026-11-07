@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import type { Map as LeafletMap } from 'leaflet';
 
 // Fix for default markers in React Leaflet (will only run client-side)
 const fixLeafletIcons = () => {
@@ -61,6 +62,9 @@ const MapComponent: React.FC<MapWidgetProps> = ({
 
   // Load Leaflet components dynamically
   useEffect(() => {
+    // The imports are async; if the page is left before they finish, don't
+    // set state on an unmounted component.
+    let cancelled = false;
     const loadMapComponents = async () => {
       if (typeof window !== 'undefined') {
         try {
@@ -78,15 +82,10 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           // Import Leaflet CSS
           await import('leaflet/dist/leaflet.css');
 
+          if (cancelled) return;
+
           // Fix Leaflet icons
           fixLeafletIcons();
-
-          // Force map to invalidate size after load
-          setTimeout(() => {
-            if (window.dispatchEvent) {
-              window.dispatchEvent(new Event('resize'));
-            }
-          }, 100);
 
           // Create MapClickHandler component
           const MapClickHandler: React.FC<{
@@ -116,6 +115,9 @@ const MapComponent: React.FC<MapWidgetProps> = ({
     };
 
     loadMapComponents();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const handleMapClick = useCallback(
@@ -402,10 +404,13 @@ const MapComponent: React.FC<MapWidgetProps> = ({
           zoom={initialZoom}
           style={{ height: '100%', width: '100%' }}
           scrollWheelZoom={true}
-          whenCreated={mapInstance => {
-            // Force map to invalidate size when created
+          whenReady={(e: { target: LeafletMap }) => {
+            // Re-measure once the container has its final size, so tiles
+            // aren't laid out for a stale width. Skip it if the map has been
+            // unmounted in the meantime.
+            const map = e.target;
             setTimeout(() => {
-              mapInstance.invalidateSize();
+              if (map.getContainer().isConnected) map.invalidateSize();
             }, 100);
           }}
         >

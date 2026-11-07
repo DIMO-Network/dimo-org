@@ -48,7 +48,7 @@ const USE_CASES = [
     description:
       'Stream live vehicle data including location, diagnostics, fuel consumption, and driver behavior. Build custom analytics and reporting on top of clean, normalized data.',
     example:
-      'Access real-time streams via WebSocket or batch data via REST APIchoose what fits your use case.',
+      'Access real-time streams via WebSocket or batch data via REST API—choose what fits your use case.',
   },
   {
     icon: <Zap size={28} />,
@@ -66,7 +66,7 @@ const USE_CASES = [
     description:
       'Monitor driver behavior, track compliance metrics, and ensure safety standards across your fleet. Automated alerts for unsafe driving patterns.',
     example:
-      'Track speeding, harsh braking, rapid acceleration, and idle timeall with configurable thresholds.',
+      'Track speeding, harsh braking, rapid acceleration, and idle time—all with configurable thresholds.',
   },
   {
     icon: <Truck size={28} />,
@@ -199,7 +199,7 @@ function FeatureSection1() {
           <p>
             A comprehensive, production-ready fleet management dashboard is on
             the way. Get real-time visibility into your entire fleet with
-            customizable views, alerts, and reportingall built on DIMO's
+            customizable views, alerts, and reporting—all built on DIMO's
             reliable infrastructure.
           </p>
           <ul className={styles.featureList}>
@@ -278,8 +278,8 @@ function FeatureSection3() {
           <p>
             Leverage machine learning insights to reduce costs, improve safety,
             and maximize efficiency. Predictive maintenance, route optimization,
-            and driver behavior analysisall powered by clean, normalized vehicle
-            data.
+            and driver behavior analysis—all powered by clean, normalized
+            vehicle data.
           </p>
           <ul className={styles.featureList}>
             <li>
@@ -313,7 +313,7 @@ function HowItWorksSection() {
     {
       title: 'Get API Access',
       description:
-        'Sign up for DIMO and get instant API credentials. No approval process or waitingstart building immediately.',
+        'Sign up for DIMO and get instant API credentials. No approval process or waiting—start building immediately.',
     },
     {
       title: 'Integrate with SDKs',

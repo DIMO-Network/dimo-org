@@ -18,7 +18,7 @@ customer brings and manages their own API key rather than sharing yours. For tha
 [Login with DIMO SDK](https://www.npmjs.com/package/@dimo-network/login-with-dimo) can mint (or reconnect) a
 Developer License directly from your app's onboarding flow, without sending anyone to the Console.
 
-:::info Developer Notes
+:::info[Developer Notes]
 Provisioning still creates a real, on-chain Developer License — it's the same object you'd otherwise create
 manually. The SDK just automates account creation, on-chain registration, and key generation on behalf of
 whoever is onboarding into your app.
@@ -132,7 +132,7 @@ so each of them supplies their own API key rather than all traffic flowing throu
     }
     ```
 
-    :::info Terminology
+    :::info[Terminology]
     The Console UI calls this secret an **API Key**; the provisioning response calls the same value
     `privateKey`. They're the same secret — just named differently depending on which flow created it.
     :::
