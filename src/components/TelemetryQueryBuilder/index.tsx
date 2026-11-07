@@ -18,10 +18,7 @@ interface SignalAggregations {
 }
 
 type QueryType =
-  | 'signals'
-  | 'signalsLatest'
-  | 'availableSignals'
-  | 'vinVCLatest';
+  'signals' | 'signalsLatest' | 'availableSignals' | 'vinVCLatest';
 
 const TelemetryQueryBuilder: React.FC = () => {
   // Query configuration state
