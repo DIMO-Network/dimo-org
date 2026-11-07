@@ -254,5 +254,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Jeep Grand Cherokee?",
+      "a": "Yes, with a DIMO device, which reports fuel level as a percentage through the powertrainFuelSystemRelativeLevel signal in the Telemetry API. The segments API can also detect refuel events using the refuel detection mechanism."
+    },
+    {
+      "q": "How do I track a Jeep Grand Cherokee with no connected services?",
+      "a": "Install a DIMO device. It reads vehicle-state signals such as odometer, engine RPM and diagnostic trouble codes, and you query them through the GraphQL Telemetry API using a Vehicle JWT for a vehicle shared with you."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Jeep Grand Cherokee?",
+      "a": "Yes, a DIMO device reports the dtc event along with the obdDTCList signal. The Vehicle Triggers API (webhooks) pushes a POST request to your targetURL when a condition you configure is met, so you don't have to poll."
+    },
+    {
+      "q": "How do I detect idling on a Jeep Grand Cherokee?",
+      "a": "Use the segments query in the Telemetry API with the idling detection mechanism, which requires a DIMO device. Idle segments are periods where engine RPM stays in the idle range, with maxIdleRpm defaulting to 1000."
+    },
+    {
+      "q": "How do I verify Jeep Grand Cherokee mileage?",
+      "a": "A DIMO device reports odometer readings. Request an odometer statement attestation from the Attestation API at POST /v2/attestation/odometer-statement/:tokenId, then retrieve the verifiable credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO offers a Jeep Grand Cherokee vehicle data API for 2012 and newer model years, delivered through a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Coverage for this model is tested, not just expected. The record lists it as a combustion-engine vehicle with global regional coverage."
 }

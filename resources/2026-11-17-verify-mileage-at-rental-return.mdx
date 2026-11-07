@@ -1,0 +1,65 @@
+---
+title: How to Verify Mileage at Rental Return with DIMO
+description: Use the DIMO Attestation API to generate an odometer statement for
+  a shared vehicle and compare it against the checkout reading at rental return.
+slug: verify-mileage-at-rental-return
+date: 2026-11-17
+authors:
+  - dimo-team
+tags:
+  - odometer
+  - attestation
+  - rental
+  - how-to
+---
+
+To verify mileage at rental return, request an odometer statement attestation for the vehicle from the DIMO Attestation API, then retrieve it through the Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The vehicle must be shared with your app first, and you compare the returned reading against the one you recorded at checkout.
+
+## Steps
+
+1. Get the vehicle shared with you. You need a vehicle shared with you before you can fetch a Vehicle JWT, and sharing is done through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+2. Get a Developer JWT. You need your Client ID, Redirect URI, and API Key. You can use the system-generated Developer JWT in the Developer Console, or generate a new one with an API key using a server SDK.
+3. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API (`POST https://token-exchange-api.dimo.zone/v1/tokens/exchange`). Include the vehicle token ID and the permissions (privileges) you are requesting. A Vehicle JWT grants access to one specific vehicle's data for a short time.
+4. At checkout, create an odometer statement by calling `POST /v2/attestation/odometer-statement/:tokenId` on `https://attestation-api.dimo.zone` with the Vehicle JWT. The `timestamp` parameter is optional. Store the result with the rental record.
+5. At return, call the same endpoint again. If an unexpired attestation exists, the API returns that attestation instead of creating a new one.
+6. Retrieve the generated credential using the Telemetry API. After you have the `rawVC` from the response, you can use it to run queries on the Telemetry API, such as getting the odometer of the vehicle.
+7. Compare the return reading against the checkout reading in your own application logic.
+
+## Code
+
+This TypeScript example is adapted from the Attestation API documentation. Replace the placeholder Vehicle JWT and token ID with your own values.
+
+```typescript
+const odometerStatement = await dimo.attestation.createOdometerStatementVC({
+  vehicleJwt: "eyJhbGc...ILlujqw",
+  tokenId: 123456,
+  timestamp: '2023-01-01T00:00:00Z' // Optional
+})
+```
+
+The equivalent cURL request:
+
+```shell
+curl -X POST "https://attestation-api.dimo.zone/v2/attestation/odometer-statement/123456" \
+  -H "Authorization: Bearer <VEHICLE_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "timestamp": "2023-01-01T00:00:00Z"
+  }'
+```
+
+## FAQ
+
+### Do I need the vehicle owner's permission?
+Yes. You need a vehicle shared with you to fetch a Vehicle JWT, and sharing is done through DIMO Connect.
+
+### What does the API return when I create an odometer statement?
+The response message says the VC was generated successfully and that you retrieve it using the Telemetry API. The documentation does not show a separate odometer value in that response.
+
+### Is there a Python or .NET example for odometer statements?
+The documentation lists the Python and .NET examples for odometer statements as coming soon. TypeScript and cURL examples are available.
+
+### Does this replace GPS tracking?
+DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, the Attestation API (odometer statement endpoint), and the Telemetry API vehicle signals reference.*

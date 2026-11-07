@@ -286,5 +286,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Chevrolet Cruze?",
+      "a": "Yes, with a DIMO device. Both listed devices report a Fuel Percentage signal, and the DIMO LTE R1 also reports Fuel Level in liters. Query them through the Telemetry API with a Vehicle JWT, or use refuel segments to find where fuel level rises."
+    },
+    {
+      "q": "How do I track a Chevrolet Cruze with no connected services?",
+      "a": "Use a DIMO device. The record lists AutoPi and DIMO LTE R1 as devices for the Cruze. Once the owner shares the vehicle with your app, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Chevrolet Cruze?",
+      "a": "Yes, with a DIMO device. Both listed devices report the dtc event and the Diagnostic Trouble Codes signal. The Vehicle Triggers API sends webhooks to your HTTPS targetURL when a condition you configure is met."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Cruze?",
+      "a": "Use a DIMO device, which reports the idling event. The Telemetry API segments query supports an idling mechanism that returns contiguous periods where engine RPM stays in the idle range. The maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I verify Chevrolet Cruze mileage?",
+      "a": "Use a DIMO device, which reports the Odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Chevrolet Cruze through a DIMO device, the connection type listed in the record for 2011 and newer model years. Coverage for this vehicle has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

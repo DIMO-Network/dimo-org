@@ -250,5 +250,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Kia Sorento?",
+      "a": "Yes, with a DIMO device. Query the Telemetry API with a Vehicle JWT for the fuel percentage and fuel level signals. Refuel events can also be detected with the segments query using the refuel mechanism."
+    },
+    {
+      "q": "How do I track a Kia Sorento with no connected services?",
+      "a": "Connect a DIMO device to the vehicle. After the vehicle is shared with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, then query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Kia Sorento?",
+      "a": "Yes, with the AutoPi DIMO device, which lists the dtc event and the Diagnostic Trouble Codes signal. The Vehicle Triggers API (webhooks) can then send a POST request to your targetURL when a condition you define is met."
+    },
+    {
+      "q": "How do I detect idling on a Kia Sorento?",
+      "a": "Use the Telemetry API segments query with the idling mechanism, which requires a DIMO device. It treats contiguous periods where engine RPM stays in the idle range as segments, and maxIdleRpm lets you adjust that range."
+    },
+    {
+      "q": "How do I verify Kia Sorento mileage?",
+      "a": "Both DIMO devices report odometer. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Kia Sorento, data comes through a DIMO device, with coverage for model years 2013 and newer. This coverage is tested, not just expected. Once the vehicle is shared with you, you query it through the Telemetry API using a Vehicle JWT."
 }

@@ -1,0 +1,80 @@
+---
+title: How do I get speeding alerts for fleet vehicles?
+description: Create a DIMO Vehicle Triggers webhook on the vss.speed signal,
+  subscribe vehicles, and receive a POST to your endpoint when the speed
+  condition is met.
+slug: speeding-alerts-with-webhooks
+date: 2026-12-03
+authors:
+  - dimo-team
+tags:
+  - webhooks
+  - vehicle-triggers
+  - speed
+  - alerts
+---
+
+Use the DIMO Vehicle Triggers API (webhooks) to create a trigger on the `vss.speed` signal with a condition such as `valueNumber > 95`. Then subscribe vehicles to it. When a subscribed vehicle meets the condition, DIMO sends a `POST` request to the `targetURL` you configured, so you don't have to poll the API.
+
+## Steps
+
+1. **Get a Developer JWT.** Authenticate with your DIMO Developer License. Webhooks are tied to a specific Developer License, so use the Developer JWT for the license you are configuring. You can also set up webhooks in the DIMO Developer Console. Webhooks are currently in public beta.
+2. **Have vehicles shared with your license.** Subscribing all vehicles applies to vehicles that have previously shared permissions with your Developer License.
+3. **Create the webhook.** Send `POST /v1/webhooks` to `https://vehicle-triggers-api.dimo.zone` with these fields:
+   - `service`: `signals`
+   - `metricName`: `vss.speed`
+   - `condition`: a CEL expression, for example `valueNumber > 95`
+   - `coolDownPeriod`: the minimum number of seconds between successive firings
+   - `description`
+   - `targetURL`: the HTTPS endpoint that receives callbacks
+   - `status`: `enabled`
+   - `verificationToken`: the plain-text token your endpoint must echo back during verification
+   - `displayName` (optional)
+4. **Subscribe vehicles.** Call `POST /v1/webhooks/:webhookId/subscribe/:tokenDID` for one vehicle, or `POST /v1/webhooks/:webhookId/subscribe/all` for every vehicle that has shared permissions with your license.
+5. **Handle the callback.** Your `targetURL` receives a `POST` with the event in the body. In the documented example, `data.assetDID` identifies the vehicle, and `data.signal` contains the `name`, `unit` (`km/h`), `valueType` and `value`.
+6. **Adjust or remove the webhook.** Use `PUT /v1/webhooks/:webhookId` to change the condition, for example to `valueNumber > 99`. To delete a webhook, first unsubscribe all vehicles from it, or the deletion fails.
+
+## Code
+
+```bash
+# 1. Create the speeding webhook
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "signals",
+    "metricName": "vss.speed",
+    "condition": "valueNumber > 95",
+    "coolDownPeriod": 30,
+    "description": "Fires whenever a subscribed vehicle travels over 95kph",
+    "displayName": "Speeding check",
+    "targetURL": "https://api.igottafastcar.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "abc123"
+  }'
+
+# 2. Subscribe all vehicles that have shared permissions with your Developer License
+# Replace <WEBHOOK_ID> with the id returned by the create call
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks/<WEBHOOK_ID>/subscribe/all" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json"
+```
+
+## FAQ
+
+### Which signal do I use for speed alerts?
+The documentation examples use `vss.speed` with `service` set to `signals`. You can list the signal names available to webhooks with `GET /v1/webhooks/signals`.
+
+### How do I limit how often an alert fires?
+Set `coolDownPeriod`, which is the minimum number of seconds between successive firings of your webhook. The documentation example uses 30.
+
+### Why do vehicles need to share with my Developer License?
+Vehicle owners consent to and control sharing, so builders get data with clear provenance. The subscribe-all endpoint applies only to vehicles that have shared permissions with your license.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+### Should the condition use `value` or `valueNumber`?
+The parameter description says to include `value`, but the create and update examples use `valueNumber`, for example `valueNumber > 95`. Follow the examples, and check the CEL conditions README linked from the Vehicle Triggers API reference if you need more detail.
+
+*Methodology: based on the DIMO documentation for the Vehicle Triggers API (webhooks), Authentication, Building Your First App, and Telemetry API vehicle signals.*

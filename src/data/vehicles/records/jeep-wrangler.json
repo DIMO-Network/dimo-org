@@ -259,5 +259,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Jeep Wrangler?",
+      "a": "Yes. A DIMO device reports the Fuel Percentage signal (powertrainFuelSystemRelativeLevel), which you query through the GraphQL Telemetry API with a Vehicle JWT. The device also lists a refuel event, which segments can detect."
+    },
+    {
+      "q": "How do I track a Jeep Wrangler with no connected services?",
+      "a": "Use a DIMO device, since the Wrangler's coverage comes from one. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT and pull trips from the segments query in the Telemetry API, which accepts a date range of up to 31 days."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Jeep Wrangler?",
+      "a": "Yes. A DIMO device lists the dtc event and provides Diagnostic Trouble Codes and DTC Count signals. You can read them through the Telemetry API or configure Vehicle Triggers API webhooks to push updates to your endpoint; webhooks are in public beta."
+    },
+    {
+      "q": "How do I detect idling on a Jeep Wrangler?",
+      "a": "Idling is listed as an event on a DIMO device. Query the segments resource in the Telemetry API with the idling detection mechanism, which treats periods where engine RPM stays in the idle range as segments. The maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I verify Jeep Wrangler mileage?",
+      "a": "A DIMO device provides the Odometer signal. To get verifiable proof of it, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Jeep Wrangler, data comes from a DIMO device on model years 2008 and newer. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

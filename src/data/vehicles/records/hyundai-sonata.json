@@ -260,5 +260,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Sonata?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 lists both Fuel Percentage and Fuel Level in liters, and the AutoPi lists Fuel Percentage. Query these through the Telemetry API with a Vehicle JWT, or use the segments query with the refuel mechanism to find where fuel level rises."
+    },
+    {
+      "q": "How do I track a Hyundai Sonata with no connected services?",
+      "a": "Connect a DIMO device. The record lists the DIMO LTE R1 and the AutoPi for the Sonata. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT and read its data through the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Hyundai Sonata?",
+      "a": "Yes, with the DIMO LTE R1, which lists the dtc event along with the Diagnostic Trouble Codes, DTC Count and Distance with MIL On signals. To get alerts pushed to your server, configure a webhook in the Vehicle Triggers API and subscribe the vehicle to it."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Sonata?",
+      "a": "Use a DIMO device, which the segments docs require for idling detection. Both the DIMO LTE R1 and the AutoPi list the idling event. Call the Telemetry API segments query with the idling mechanism; the default idle RPM upper bound is 1000, and you can change it with maxIdleRpm."
+    },
+    {
+      "q": "How do I verify Hyundai Sonata mileage?",
+      "a": "Read the odometer from a DIMO device, which both the DIMO LTE R1 and the AutoPi list. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the attested result through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a Hyundai Sonata vehicle data API for 2011 and newer model years, and the Sonata connects through a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Coverage for this model is tested."
 }

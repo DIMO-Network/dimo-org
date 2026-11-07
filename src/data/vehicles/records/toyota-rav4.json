@@ -228,5 +228,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Toyota RAV4?",
+      "a": "Yes, with the DIMO LTE R1 device, which lists the powertrainFuelSystemAbsoluteLevel signal in liters. Query it through the Telemetry API, a GraphQL API, using a Vehicle JWT for the vehicle."
+    },
+    {
+      "q": "How do I track a Toyota RAV4 with no connected services?",
+      "a": "Use a DIMO device. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Toyota RAV4?",
+      "a": "Idling is listed as an event for the DIMO devices on this vehicle. Query the Telemetry API segments resource with the idling mechanism, which finds periods where engine RPM stays in the idle range and requires a DIMO device."
+    },
+    {
+      "q": "How do I detect refuel events on a Toyota RAV4?",
+      "a": "Refuel is listed as an event for the DIMO LTE R1 device. Use the segments resource with the refuel mechanism, which detects where fuel level rises significantly. The default minimum increase within a window is 15 percent and can be changed with minIncreasePercent."
+    },
+    {
+      "q": "How do I verify Toyota RAV4 mileage?",
+      "a": "The DIMO devices on this vehicle list the odometer signal, powertrainTransmissionTravelledDistance, in km. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO supports a Toyota RAV4 vehicle data API through a DIMO device, for model years 2007 and newer. Coverage for this vehicle is tested, not expected. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

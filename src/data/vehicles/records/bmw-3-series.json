@@ -208,5 +208,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a BMW 3-Series?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 lists a Fuel Percentage signal, powertrainFuelSystemRelativeLevel, which you can query through the Telemetry API. Refuel events are listed for that device and can be detected with the refuel mechanism in the segments query."
+    },
+    {
+      "q": "How do I track a BMW 3-Series with no connected services?",
+      "a": "Install a DIMO device, which is the connection type listed for this vehicle. Once the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query signals in the Telemetry API. Trips are available through the segments query."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a BMW 3-Series?",
+      "a": "Yes, with the AutoPi DIMO device, which lists the dtc event and the obdDTCList signal (Diagnostic Trouble Codes). To get pushed alerts, use the Vehicle Triggers API (webhooks), which sends a POST to your targetURL when a condition you configure is met."
+    },
+    {
+      "q": "How do I detect idling on a BMW 3-Series?",
+      "a": "Idling is listed as an event for both DIMO devices on this vehicle. Query the segments resource in the Telemetry API with the idling mechanism, which finds contiguous periods where engine RPM stays in the idle range and requires a DIMO device."
+    },
+    {
+      "q": "How do I verify BMW 3-Series mileage?",
+      "a": "The DIMO LTE R1 lists an Odometer signal. Call the Attestation API's odometer-statement endpoint with a Vehicle JWT to generate a verifiable odometer attestation, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the BMW 3-Series, the vehicle connects through a DIMO device, for model years 2006 and newer, and this coverage has been tested. You read the data through the Telemetry API with a Vehicle JWT. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

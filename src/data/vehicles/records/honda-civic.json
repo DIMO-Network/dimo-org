@@ -212,5 +212,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Honda Civic?",
+      "a": "Yes, through a DIMO device. Both the DIMO LTE R1 and AutoPi entries list fuel percentage, and the DIMO LTE R1 also lists fuel level in liters. Query these signals with a Vehicle JWT in the GraphQL Telemetry API, or use the segments API with the refuel mechanism to find refuel events."
+    },
+    {
+      "q": "How do I track a Honda Civic with no connected services?",
+      "a": "The record lists a DIMO device as the connection type for the Civic, via the DIMO LTE R1 or AutoPi. After the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Honda Civic?",
+      "a": "Both DIMO device entries list the idling event. Use the segments query in the Telemetry API with the idling mechanism, which requires a DIMO device and treats periods where engine RPM stays in the idle range as idling. The maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I detect harsh braking on a Honda Civic?",
+      "a": "The DIMO LTE R1 entry lists the harsh_braking event. Request HarshBraking in eventRequests on a segments query to get per-trip counts, or create a webhook on behavior.harshBraking in the Vehicle Triggers API to receive events as they happen."
+    },
+    {
+      "q": "How do I verify Honda Civic mileage?",
+      "a": "The DIMO LTE R1 entry lists the odometer signal. Call the Attestation API at POST /v2/attestation/odometer-statement/:tokenId with a Vehicle JWT, then retrieve the signed rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a Honda Civic vehicle data API for model years 2007 and newer, and the Civic connects through a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Coverage for this vehicle is tested, not just expected. The listed signals, events and code snippet on this page show what the DIMO device providers report for the Civic."
 }

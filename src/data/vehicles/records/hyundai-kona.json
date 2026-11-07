@@ -256,5 +256,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Kona?",
+      "a": "Yes, with a DIMO device. Query the fuel signals through the Telemetry API with a Vehicle JWT, or use the refuel segment detection in the segments query to find where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Hyundai Kona with no connected services?",
+      "a": "Install a DIMO device, which is the connection type this Kona uses. After the owner shares the vehicle, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Kona?",
+      "a": "With a DIMO device, call the segments query in the Telemetry API with the idling mechanism. Idling segments are periods where engine RPM stays in the idle range, and you can set the upper bound with maxIdleRpm (default 1000)."
+    },
+    {
+      "q": "How do I verify Hyundai Kona mileage?",
+      "a": "With a DIMO device, call the Attestation API at POST /v2/attestation/odometer-statement/:tokenId using a Vehicle JWT. Then retrieve the resulting rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Hyundai Kona, that data comes from a DIMO device, on 2019 and newer model years. The Kona is an ICE vehicle with global regions, and this coverage has been tested rather than expected. Once the owner shares the vehicle with your Developer License, you query signals through the Telemetry API with a Vehicle JWT."
 }

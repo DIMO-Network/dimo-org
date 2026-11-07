@@ -241,5 +241,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Bronco?",
+      "a": "Yes, through a DIMO device. It reports the Fuel Percentage signal (powertrainFuelSystemRelativeLevel), which you can query through the GraphQL Telemetry API. The refuel event is also listed for this vehicle, and the segments API can detect it with the refuel mechanism."
+    },
+    {
+      "q": "How do I track a Ford Bronco with no connected services?",
+      "a": "Use a DIMO device. The record lists the DIMO LTE R1 and AutoPi for this model. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Ford Bronco?",
+      "a": "Idling is a listed event for this vehicle on a DIMO device. Call the segments query in the Telemetry API with the idling mechanism, which finds periods where engine RPM stays in the idle range. You can adjust the idle ceiling with maxIdleRpm, which defaults to 1000."
+    },
+    {
+      "q": "How do I verify Ford Bronco mileage?",
+      "a": "A DIMO device reports the Odometer signal (powertrainTransmissionTravelledDistance) in km. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    },
+    {
+      "q": "How do I detect harsh braking on a Ford Bronco?",
+      "a": "Harsh braking is a listed event for this vehicle on a DIMO device. You can create a webhook in the Vehicle Triggers API with the events service and the behavior.harshBraking metric, then subscribe the vehicle. Alternatively, request HarshBraking event counts per trip through the segments API."
+    }
+  ],
+  "intro": "DIMO offers a Ford Bronco vehicle data API through a DIMO device, which is the connection type listed for this vehicle. Coverage is for 2021 and newer model years, and it has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. After the owner shares the vehicle with your app, you read its data through the Telemetry API with a Vehicle JWT."
 }

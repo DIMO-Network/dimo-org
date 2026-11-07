@@ -297,5 +297,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Chevrolet Silverado 1500?",
+      "a": "Yes, with a DIMO device. Both the DIMO LTE R1 and AutoPi report Fuel Percentage, and the DIMO LTE R1 also reports Fuel Level in liters. Query them through the Telemetry API, or use segments with the refuel mechanism to find where fuel level rises."
+    },
+    {
+      "q": "How do I track a Chevrolet Silverado 1500 with no connected services?",
+      "a": "Install a DIMO device, either a DIMO LTE R1 or an AutoPi, and have the owner share the vehicle with your Developer License. Then exchange your Developer JWT for a Vehicle JWT and query signals or trip segments through the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Chevrolet Silverado 1500?",
+      "a": "Yes, with the AutoPi device, which lists the dtc event and reports the Diagnostic Trouble Codes signal. The Vehicle Triggers API (webhooks) sends a POST request to your targetURL when a condition you configure is met."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Silverado 1500?",
+      "a": "Use a DIMO device and query segments in the Telemetry API with the idling mechanism. It finds contiguous periods where engine RPM stays in the idle range, and you can adjust the upper bound with maxIdleRpm (default 1000)."
+    },
+    {
+      "q": "How do I verify Chevrolet Silverado 1500 mileage?",
+      "a": "A DIMO device reports the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO supports a Chevrolet Silverado 1500 vehicle data API through a DIMO device, for model years 2007 and newer, and this coverage has been tested rather than expected. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Silverado 1500 is an ICE truck, and you query its data through the Telemetry API with a Vehicle JWT for a vehicle shared with you."
 }

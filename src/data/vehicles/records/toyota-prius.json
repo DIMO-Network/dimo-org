@@ -222,5 +222,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Toyota Prius?",
+      "a": "Yes, with a DIMO device. It reports Fuel Level (powertrainFuelSystemAbsoluteLevel) in liters, which you query through the Telemetry API with a Vehicle JWT. For refuel events, use the segments query with the refuel detection mechanism."
+    },
+    {
+      "q": "How do I track a Toyota Prius with no connected services?",
+      "a": "Use a DIMO device. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Then query signals through the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Toyota Prius?",
+      "a": "Yes, the dtc event is listed for this Prius with a DIMO device. Create a webhook in the Vehicle Triggers API and subscribe the vehicle to it so your server receives a POST when the condition fires. You can also read the Diagnostic Trouble Codes signal (obdDTCList) and DTC Count (obdStatusDTCCount) through the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Toyota Prius?",
+      "a": "Idling is listed as an event for this Prius with a DIMO device. Query segments with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range. You can tune the upper idle RPM bound with maxIdleRpm, which defaults to 1000."
+    },
+    {
+      "q": "How do I verify Toyota Prius mileage?",
+      "a": "A DIMO device reports the Odometer signal (powertrainTransmissionTravelledDistance) in km. To get verifiable proof, call the Attestation API odometer statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Toyota Prius, that data comes from a DIMO device, for model years 2008 and newer. Coverage for this model is tested rather than expected. You read the data through the Telemetry API with a Vehicle JWT, and the signals and events the Prius supports are listed below."
 }

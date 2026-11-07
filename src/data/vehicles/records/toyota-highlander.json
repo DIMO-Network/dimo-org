@@ -246,5 +246,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Toyota Highlander?",
+      "a": "Yes, with a DIMO device. Query the Telemetry API with a Vehicle JWT for the fuel percentage signal, and the DIMO LTE R1 entry also lists fuel level in liters. For refuel events, use the segments query with the refuel mechanism."
+    },
+    {
+      "q": "How do I track a Toyota Highlander with no connected services?",
+      "a": "Connect a DIMO device, since it is the connection type listed for the Highlander. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Toyota Highlander?",
+      "a": "Both Highlander coverage entries list the idling event. Call the Telemetry API segments query with the idling mechanism, which requires a DIMO device. It treats contiguous periods where engine RPM stays in the idle range as a segment, with maxIdleRpm defaulting to 1000."
+    },
+    {
+      "q": "How do I verify Toyota Highlander mileage?",
+      "a": "Both Highlander coverage entries list the odometer signal from a DIMO device. To get a verifiable reading, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Toyota Highlander, which connects through a DIMO device on 2007 and newer model years. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Highlander coverage is tested rather than expected, and the record lists an ICE powertrain. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

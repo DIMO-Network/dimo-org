@@ -236,5 +236,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Subaru Forester?",
+      "a": "Yes, with a DIMO device. The record lists fuel percentage and fuel level in liters, and you read them through the GraphQL Telemetry API using a Vehicle JWT. The segments resource can also detect refuel events where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Subaru Forester with no connected services?",
+      "a": "Use a DIMO device, which is the connection type listed for the Forester. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Subaru Forester?",
+      "a": "Idling is listed as an event for the Forester's DIMO device coverage. Query the Telemetry API segments resource with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range and requires a DIMO device."
+    },
+    {
+      "q": "How do I verify Subaru Forester mileage?",
+      "a": "The Forester's DIMO device coverage lists the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Subaru Forester, that data comes through a DIMO device, for model years 2011 and newer. Coverage for this vehicle has been tested rather than expected. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

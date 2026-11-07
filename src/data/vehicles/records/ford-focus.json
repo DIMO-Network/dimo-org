@@ -242,5 +242,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Focus?",
+      "a": "Yes, through a DIMO device. Both listed devices report fuel percentage as the powertrainFuelSystemRelativeLevel signal. Once the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT and query the Telemetry API's GraphQL endpoint."
+    },
+    {
+      "q": "How do I track a Ford Focus with no connected services?",
+      "a": "Use a DIMO device. The record lists AutoPi and DIMO LTE R1 as devices for the Focus. After the owner shares the vehicle with your Developer License, request a Vehicle JWT from the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Ford Focus?",
+      "a": "Yes, with the DIMO LTE R1 device, which lists the dtc event along with the obdDTCList and obdStatusDTCCount signals. To be notified when conditions are met, configure webhooks through the Vehicle Triggers API, which sends a POST request to your target URL."
+    },
+    {
+      "q": "How do I detect idling on a Ford Focus?",
+      "a": "Idling is listed for both the AutoPi and DIMO LTE R1 devices. Query the Telemetry API segments resource with the idling mechanism, which requires a DIMO device and treats RPM at or below maxIdleRpm as idle (default 1000)."
+    },
+    {
+      "q": "How do I verify Ford Focus mileage?",
+      "a": "Both listed DIMO devices report the odometer signal. To get verifiable proof of it, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ford Focus, that data comes through a DIMO device, with model years 2009 and newer connecting. Coverage for this model has been tested, not just expected. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

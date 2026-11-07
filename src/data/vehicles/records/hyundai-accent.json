@@ -230,5 +230,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Accent?",
+      "a": "Yes. A DIMO device reports fuel percentage as the powertrainFuelSystemRelativeLevel signal, which you read through the Telemetry API with a Vehicle JWT. To find refuel events, query segments with the refuel detection mechanism."
+    },
+    {
+      "q": "How do I track a Hyundai Accent with no connected services?",
+      "a": "Install a DIMO device, which is the connection type listed for the Accent. After the owner shares the vehicle, the Telemetry API segments query returns trip data for it, with a maximum date range of 31 days per query."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Hyundai Accent?",
+      "a": "The DIMO LTE R1 device lists the dtc event and the obdDTCList and obdStatusDTCCount signals for the Accent. You can push events to your own server with the Vehicle Triggers API, which sends webhooks to your HTTPS targetURL instead of making you poll."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Accent?",
+      "a": "Use a DIMO device and query segments with the idling detection mechanism. Idling segments are periods where engine RPM stays in the idle range, and you can set the upper bound with maxIdleRpm (default 1000)."
+    },
+    {
+      "q": "How do I verify Hyundai Accent mileage?",
+      "a": "A DIMO device reports the odometer signal. To get verifiable proof of it, call the Attestation API odometer-statement endpoint for the vehicle, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Hyundai Accent connects through a DIMO device, covering model years 2008 and newer, and this coverage is tested. Once an owner shares a vehicle, you exchange your Developer JWT for a Vehicle JWT and query signals through the Telemetry API in GraphQL. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

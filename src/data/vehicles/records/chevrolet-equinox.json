@@ -291,5 +291,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Chevrolet Equinox?",
+      "a": "Yes, with a DIMO device. Fuel percentage and fuel level in liters are listed signals, and you query them through the Telemetry API with a Vehicle JWT. Refuel segments are also available through the segments query."
+    },
+    {
+      "q": "How do I track a Chevrolet Equinox with no connected services?",
+      "a": "Use a DIMO device. Once the vehicle owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Chevrolet Equinox?",
+      "a": "Yes, with a DIMO device. The record lists the dtc event, plus the DTC list and DTC count signals. Set up a webhook through the Vehicle Triggers API to have DIMO push events to your server instead of polling."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Equinox?",
+      "a": "Use a DIMO device, which the record lists as supporting the idling event. Query the segments resource in the Telemetry API with the idling detection mechanism, which requires a DIMO device. You can tune the idle RPM ceiling with maxIdleRpm, which defaults to 1000."
+    },
+    {
+      "q": "How do I verify Chevrolet Equinox mileage?",
+      "a": "Odometer is a listed signal on a DIMO device. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Chevrolet Equinox connects through a DIMO device, for model years 2008 and newer, and you read its data through the Telemetry API. Coverage for this vehicle has been tested rather than assumed. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

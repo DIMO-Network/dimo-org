@@ -252,5 +252,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a BMW X3?",
+      "a": "Yes, with a DIMO device. It reports fuel percentage, and the DIMO LTE R1 also lists fuel level in liters. Query the Telemetry API with a Vehicle JWT, or use refuel segments to find where the fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a BMW X3 with no connected services?",
+      "a": "Install a DIMO device, then have the owner share the vehicle with your Developer License. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the vehicle in the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a BMW X3?",
+      "a": "Yes, the DIMO LTE R1 device lists the dtc event, along with DTC list and DTC count signals. To get pushed alerts instead of polling, configure a webhook with the Vehicle Triggers API and subscribe the vehicle to it."
+    },
+    {
+      "q": "How do I detect idling on a BMW X3?",
+      "a": "Both DIMO devices listed for this vehicle support the idling event. Query the Telemetry API segments resource with the idling detection mechanism, which finds periods where engine RPM stays in the idle range (the maxIdleRpm default is 1000)."
+    },
+    {
+      "q": "How do I verify BMW X3 mileage?",
+      "a": "A DIMO device reports the odometer signal in km. To get verifiable proof, request an odometer statement through the Attestation API, then retrieve the resulting credential from the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a BMW X3 vehicle data API for 2011 and newer model years, connected through a DIMO device, and this coverage has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Developers read that data through the Telemetry API using a Vehicle JWT. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

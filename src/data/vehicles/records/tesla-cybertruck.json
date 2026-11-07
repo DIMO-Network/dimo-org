@@ -139,5 +139,19 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "How do I detect recharge on a Tesla Cybertruck?",
+      "a": "Use the segments query in the Telemetry API with the recharge detection mechanism, which uses charging signals and state of charge. The data comes from Tesla's cloud connection, and each segment has a start, end and duration. The maximum date range per query is 31 days."
+    },
+    {
+      "q": "How do I get alerted when a Tesla Cybertruck starts charging?",
+      "a": "Create a webhook with the Vehicle Triggers API using service signals and the metric vss.powertrainTractionBatteryChargingIsCharging with the condition valueNumber == 1. Then subscribe the vehicle to it. The Cybertruck's charging status comes from Tesla's cloud connection, and DIMO posts to your targetURL when the condition is met."
+    },
+    {
+      "q": "How do I verify Tesla Cybertruck mileage?",
+      "a": "The odometer signal comes from Tesla's cloud connection. To get verifiable proof, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Tesla Cybertruck, an EV, through Tesla's cloud connection for 2024 and newer model years. Coverage for this connection is tested, not just expected. You read the data with a Vehicle JWT through the GraphQL Telemetry API. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

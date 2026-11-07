@@ -257,5 +257,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Hyundai Santa Fe?",
+      "a": "Yes, with a DIMO device. Both listed devices report fuel percentage as powertrainFuelSystemRelativeLevel, and the DIMO LTE R1 also lists fuel level in liters. Query these signals through the Telemetry API with a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Hyundai Santa Fe with no connected services?",
+      "a": "Install a DIMO device, which is the connection type listed for this vehicle. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Then query the Telemetry API for the vehicle's signals."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Hyundai Santa Fe?",
+      "a": "The AutoPi device entry lists the dtc event, and it also lists the obdDTCList signal for diagnostic trouble codes. Use the Vehicle Triggers API (webhooks) to have DIMO push events to your targetURL when a condition you configured is met."
+    },
+    {
+      "q": "How do I detect idling on a Hyundai Santa Fe?",
+      "a": "Both listed DIMO devices list the idling event. Query the Telemetry API segments resource with the idling mechanism, which requires a DIMO device. It defines idle as periods where engine RPM stays in the idle range, and the maxIdleRpm setting defaults to 1000."
+    },
+    {
+      "q": "How do I verify Hyundai Santa Fe mileage?",
+      "a": "Both listed DIMO devices report the odometer signal. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT. You then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Hyundai Santa Fe in the record is an ICE model that connects through a DIMO device, with coverage for 2012 and newer model years, and that coverage has been tested. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You read the data through the Telemetry API, which is a GraphQL API, using a Vehicle JWT."
 }

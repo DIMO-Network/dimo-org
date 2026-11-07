@@ -238,5 +238,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Transit?",
+      "a": "Yes, with a DIMO device. Both listed devices report the Fuel Percentage signal, and you query it through the Telemetry API with a Vehicle JWT. The refuel event is also listed, and refuel segments include the fuel level at start and end."
+    },
+    {
+      "q": "How do I track a Ford Transit with no connected services?",
+      "a": "Use a DIMO device. The record lists DIMO LTE R1 and AutoPi as tested device types for the Transit. Once the owner shares the vehicle with your Developer License, you exchange your Developer JWT for a Vehicle JWT and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Ford Transit?",
+      "a": "Idling is listed for both DIMO devices. Query the Telemetry API segments resource with the idling detection mechanism, which requires a DIMO device and detects periods where engine RPM stays in the idle range. Segment queries cover a maximum range of 31 days."
+    },
+    {
+      "q": "How do I detect harsh braking on a Ford Transit?",
+      "a": "Harsh braking is listed for the DIMO LTE R1 device. Request a HarshBraking event count per segment through the Telemetry API segments resource, or create a webhook on the behavior.harshBraking metric with the Vehicle Triggers API, which is in public beta."
+    },
+    {
+      "q": "How do I verify Ford Transit mileage?",
+      "a": "The DIMO LTE R1 device lists the Odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API for a verifiable odometer record."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ford Transit, that data comes from a DIMO device, with tested coverage on 2008 and newer model years. The record lists the Transit as an ICE vehicle available in Global regions. Read its signals through the Telemetry API and subscribe to events through the Vehicle Triggers API."
 }

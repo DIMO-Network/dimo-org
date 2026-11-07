@@ -158,5 +158,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Volkswagen Tiguan?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 reports fuel level, and you read it through the Telemetry API with a Vehicle JWT. To catch refuels, use the segments query with the refuel detection mechanism."
+    },
+    {
+      "q": "How do I track a Volkswagen Tiguan with no connected services?",
+      "a": "Use a DIMO device. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Volkswagen Tiguan?",
+      "a": "Yes, with the DIMO LTE R1 device, which lists the DTC event. Create a webhook through the Vehicle Triggers API and subscribe the vehicle to it so your endpoint receives a POST when the condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Volkswagen Tiguan?",
+      "a": "Use a DIMO device and query segments in the Telemetry API with the idling detection mechanism. It groups periods where engine RPM stays in the idle range, and maxIdleRpm lets you adjust that range."
+    },
+    {
+      "q": "How do I verify Volkswagen Tiguan mileage?",
+      "a": "With a DIMO device reporting odometer, request an odometer statement from the Attestation API at /v2/attestation/odometer-statement/:tokenId. Then retrieve the resulting verifiable credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Volkswagen Tiguan, the vehicle data API works through a DIMO device, with coverage for 2011 and newer model years. This coverage has been tested rather than assumed. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

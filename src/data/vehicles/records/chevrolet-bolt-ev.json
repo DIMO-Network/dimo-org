@@ -178,5 +178,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "How do I track a Chevrolet Bolt EV with no connected services?",
+      "a": "Use a DIMO device. Once the owner shares the vehicle with you, exchange your Developer JWT for a Vehicle JWT and query the Telemetry API. The segments query returns trip data for a maximum date range of 31 days."
+    },
+    {
+      "q": "How do I detect recharging on a Chevrolet Bolt EV?",
+      "a": "The recharge event is listed for both the DIMO LTE R1 and AutoPi devices. Query the Telemetry API segments resource with the recharge detection mechanism, which uses charging signals and state of charge."
+    },
+    {
+      "q": "How do I detect harsh braking on a Chevrolet Bolt EV?",
+      "a": "The harsh braking event is listed for the DIMO LTE R1 device. Request HarshBraking in eventRequests on a segments query to get per-trip counts, or create a webhook on behavior.harshBraking in the Vehicle Triggers API to get notified when it happens."
+    },
+    {
+      "q": "How do I verify Chevrolet Bolt EV mileage?",
+      "a": "A DIMO device on the DIMO LTE R1 reports the odometer signal. The Attestation API's odometer-statement endpoint generates a verifiable credential for the vehicle, which you can retrieve through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a vehicle data API for the Chevrolet Bolt EV through a DIMO device, covering model years 2017 and newer. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Coverage for this model is tested rather than expected. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
 }

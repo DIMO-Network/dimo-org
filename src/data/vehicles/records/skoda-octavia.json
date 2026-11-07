@@ -235,5 +235,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Skoda Octavia?",
+      "a": "Yes, with the DIMO LTE R1 device, which lists fuel level signals for the Octavia. Read them through the Telemetry API, or request powertrainFuelSystemRelativeLevel per trip with signalRequests in the segments query."
+    },
+    {
+      "q": "How do I track a Skoda Octavia with no connected services?",
+      "a": "Use a DIMO device, either AutoPi or DIMO LTE R1, since both are listed for the Octavia. Once the owner shares the vehicle, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Skoda Octavia?",
+      "a": "Idling is an event listed for the Octavia on both DIMO devices. Query the segments resource with the idling mechanism, which finds periods where engine RPM stays in the idle range. You can tune the upper bound with maxIdleRpm, which defaults to 1000."
+    },
+    {
+      "q": "How do I verify Skoda Octavia mileage?",
+      "a": "The Octavia reports odometer through a DIMO device. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed credential from the Telemetry API using the returned rawVC."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The Skoda Octavia connects through a DIMO device, for model years 2011 and newer, and this coverage has been tested. You query it through the Telemetry API with a Vehicle JWT issued for a vehicle the owner has shared with you. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

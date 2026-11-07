@@ -250,5 +250,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Nissan Rogue?",
+      "a": "Yes, through a DIMO device. Query the fuel signals through the Telemetry API with a Vehicle JWT. To catch fill-ups, use the segments query with the refuel mechanism, which detects where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Nissan Rogue with no connected services?",
+      "a": "Use a DIMO device. The record lists DIMO LTE R1 and AutoPi as providers for this model. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Nissan Rogue?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 entry lists the dtc event along with the DTC list and DTC count signals. Create a webhook in the Vehicle Triggers API to have DIMO push to your targetURL when your condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Nissan Rogue?",
+      "a": "Use a DIMO device and the segments query in the Telemetry API with the idling mechanism. It returns contiguous periods where engine RPM stays in the idle range, and the idle RPM ceiling is configurable through maxIdleRpm."
+    },
+    {
+      "q": "How do I verify Nissan Rogue mileage?",
+      "a": "The DIMO LTE R1 device reports odometer. For verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Nissan Rogue, data comes from a DIMO device, covering 2010 and newer model years. Coverage for this model has been tested rather than assumed. You read it through the Telemetry API with a Vehicle JWT. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

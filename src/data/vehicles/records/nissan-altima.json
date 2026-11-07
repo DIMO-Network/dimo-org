@@ -222,5 +222,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Nissan Altima?",
+      "a": "Yes. A DIMO device reports fuel level in liters and fuel percentage as signals, and you read them through the Telemetry API with a Vehicle JWT. For per-trip values, request the fuel level signal in a segments query."
+    },
+    {
+      "q": "How do I track a Nissan Altima with no connected services?",
+      "a": "Use a DIMO device. The record lists DIMO LTE R1 and AutoPi as providers for the Altima. Once the owner shares the vehicle with your Developer License, you exchange your Developer JWT for a Vehicle JWT and query the Telemetry API, including trips through segments."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Nissan Altima?",
+      "a": "Yes, with a DIMO device. The DIMO LTE R1 entry lists the dtc event and the diagnostic trouble code signals. You can configure webhooks through the Vehicle Triggers API to push events to your endpoint instead of polling."
+    },
+    {
+      "q": "How do I detect idling on a Nissan Altima?",
+      "a": "Use the segments query in the Telemetry API with the idling detection mechanism, which requires a DIMO device. Idling is listed as an event for the Altima. The maxIdleRpm setting defaults to 1000 and sets the upper bound for idle RPM."
+    },
+    {
+      "q": "How do I verify Nissan Altima mileage?",
+      "a": "A DIMO device reports the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO provides a Nissan Altima vehicle data API for 2006 and newer model years, and the Altima connects through a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Coverage for this ICE vehicle has been tested rather than assumed. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

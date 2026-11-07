@@ -266,5 +266,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Chevrolet Suburban?",
+      "a": "Yes, with a DIMO device. Query the powertrainFuelSystemRelativeLevel signal through the Telemetry API, or use the refuel detection mechanism in segments to find where fuel level rises significantly."
+    },
+    {
+      "q": "How do I track a Chevrolet Suburban with no connected services?",
+      "a": "Plug in a DIMO device, since that is the connection type listed for this model. Once the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Chevrolet Suburban?",
+      "a": "Yes, with a DIMO device, which lists the dtc event for this model. Configure a webhook through the Vehicle Triggers API and subscribe the vehicle, and DIMO sends a POST request to your targetURL when your condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Suburban?",
+      "a": "Use the Telemetry API segments query with the idling detection mechanism, which requires a DIMO device. Segments are contiguous periods where engine RPM stays in the idle range, and maxIdleRpm defaults to 1000."
+    },
+    {
+      "q": "How do I verify Chevrolet Suburban mileage?",
+      "a": "A DIMO device reports the odometer signal for this model. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve it through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO supports the Chevrolet Suburban through a DIMO device, with coverage tested for 2011 and newer model years. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. You query it through the Telemetry API in GraphQL once the vehicle has been shared with your Developer License. Vehicle owners consent to and control sharing, so builders get data with clear provenance."
 }

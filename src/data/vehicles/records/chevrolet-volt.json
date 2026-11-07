@@ -252,5 +252,23 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Chevrolet Volt?",
+      "a": "Yes, with a DIMO device. Both the AutoPi and the DIMO LTE R1 report fuel percentage, and the DIMO LTE R1 also reports fuel level in liters. Query it through the Telemetry API, which is a GraphQL API."
+    },
+    {
+      "q": "Can I get check-engine light alerts for a Chevrolet Volt?",
+      "a": "Yes, with a DIMO device. Both listed devices report the dtc event and the diagnostic trouble code list. You can create a webhook through the Vehicle Triggers API and subscribe the vehicle to it to receive a POST request at your targetURL when your condition is met."
+    },
+    {
+      "q": "How do I detect idling on a Chevrolet Volt?",
+      "a": "Use a DIMO device, which is required for idling detection. Both the AutoPi and the DIMO LTE R1 list the idling event. Query the Telemetry API segments resource with the idling mechanism, which treats contiguous periods where engine RPM stays in the idle range as segments."
+    },
+    {
+      "q": "How do I verify Chevrolet Volt mileage?",
+      "a": "Use a DIMO device, which reports the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential. Then retrieve the odometer from the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Chevrolet Volt, DIMO coverage is tested and comes through DIMO devices, specifically an AutoPi and the DIMO LTE R1, for model years 2013 and newer. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The Volt record lists no OEM or cloud connection."
 }

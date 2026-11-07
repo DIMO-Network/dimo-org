@@ -238,5 +238,27 @@
   "verification": "tested",
   "lastVerified": "2026-11-06",
   "publishDate": "2026-11-10",
-  "faq": []
+  "faq": [
+    {
+      "q": "Can I read fuel level remotely on a Ford Explorer?",
+      "a": "Yes, with a DIMO device. It reports Fuel Percentage (powertrainFuelSystemRelativeLevel), which you can read through the Telemetry API using a Vehicle JWT."
+    },
+    {
+      "q": "How do I track a Ford Explorer with no connected services?",
+      "a": "Use a DIMO device, either the DIMO LTE R1 or AutoPi. After the owner shares the vehicle with your Developer License, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API."
+    },
+    {
+      "q": "How do I detect idling on a Ford Explorer?",
+      "a": "Idling events come from a DIMO device. Query the Telemetry API segments resource with the idling detection mechanism, which treats periods where engine RPM stays in the idle range as segments. You can tune the upper RPM bound with maxIdleRpm, which defaults to 1000."
+    },
+    {
+      "q": "How do I detect harsh braking on a Ford Explorer?",
+      "a": "Harsh braking events come from a DIMO device. You can count them per trip by adding a HarshBraking entry to eventRequests in a segments query, or have DIMO push them to your server with a Vehicle Triggers API webhook on behavior.harshBraking."
+    },
+    {
+      "q": "How do I verify Ford Explorer mileage?",
+      "a": "A DIMO device reports the odometer signal. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting credential through the Telemetry API."
+    }
+  ],
+  "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ford Explorer, data comes from a DIMO device, either the DIMO LTE R1 or AutoPi, on model years 2008 and newer. This coverage has been tested rather than expected. Once an owner shares the vehicle, use the Telemetry API with a Vehicle JWT to query the signals it reports."
 }
