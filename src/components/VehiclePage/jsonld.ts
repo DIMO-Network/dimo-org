@@ -21,7 +21,11 @@ export function articleJsonLd(opts: {
     url: `${SITE}${opts.path}`,
     image: `${SITE}/img/dimo-social-card.png`,
     datePublished: opts.record.publishDate,
-    dateModified: opts.record.lastVerified,
+    // Never earlier than the publish date: the record is verified before launch.
+    dateModified:
+      opts.record.lastVerified > opts.record.publishDate
+        ? opts.record.lastVerified
+        : opts.record.publishDate,
     isPartOf: { '@id': `${SITE}/#website` },
     author: ORG,
     publisher: ORG,
