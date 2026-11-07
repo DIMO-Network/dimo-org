@@ -2,7 +2,7 @@
 // (inside [data-aeo-body], so shared chrome is excluded) of every pair of
 // model pages from the same make using 5-word shingle Jaccard similarity.
 // Usage: node scripts/aeo/dup-check.mjs [buildDir]
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 
 const FAIL = 0.6;
@@ -43,6 +43,8 @@ export function jaccard(a, b) {
 // <model>/index.html); brand hubs at vehicles/<make>.html are skipped.
 function modelPages(vehiclesDir) {
   const pages = [];
+  // No vehicle pages built yet (none live, or none scheduled).
+  if (!existsSync(vehiclesDir)) return pages;
   for (const make of readdirSync(vehiclesDir)) {
     const makeDir = path.join(vehiclesDir, make);
     if (!statSync(makeDir).isDirectory()) continue;

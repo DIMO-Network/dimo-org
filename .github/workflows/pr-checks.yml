@@ -59,8 +59,12 @@ jobs:
           fail_on_error: true
           filter_mode: nofilter
 
+      # Build scheduled pages too, as the Vercel preview does: they go live on
+      # their date without another PR, so every check below must see them now.
       - name: Build
         run: npm run build
+        env:
+          AEO_INCLUDE_FUTURE: '1'
 
       - name: Near-duplicate vehicle pages
         run: node scripts/aeo/dup-check.mjs
