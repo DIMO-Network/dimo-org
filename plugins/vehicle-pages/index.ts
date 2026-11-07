@@ -11,7 +11,7 @@ import { relatedVehicles, type RelatedVehicles } from './related.ts';
 const EVENT_GUIDES: Record<string, string> = {
   idling: 'detect-vehicle-idling',
   refuel: 'track-refuel-events',
-  recharge: 'track-ev-charging-sessions',
+  recharge: 'track-electric-vehicle-charging',
   harsh_braking: 'detect-harsh-braking',
   dtc: 'check-engine-light-alerts',
 };
