@@ -1,0 +1,7 @@
+# Replaces Vale.Spelling so words like "telematics" pass spell-check without
+# being added to the vocabulary, which would exempt them from Pillars.yml.
+extends: spelling
+message: "Did you really mean '%s'?"
+level: error
+ignore:
+  - DIMO/spelling-ignore.txt

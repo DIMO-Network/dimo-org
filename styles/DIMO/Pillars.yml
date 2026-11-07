@@ -1,0 +1,10 @@
+extends: substitution
+message: "Off-pillar phrasing: use pillar wording such as '%s' instead of '%s'."
+link: https://github.com/DIMO-Network/dimo-org/blob/main/README.md#aeo-content-pipeline
+level: error
+ignorecase: true
+swap:
+  'replac(?:e|es|ing) (?:your |existing )?telematics': adds vehicle-state depth on top of GPS tracking
+  'GPS trackers?': vehicle-state data
+  'spy(?:ing)?(?: on)?': owner-consented data sharing
+  'track(?:s|ing)? drivers': owner-consented vehicle data

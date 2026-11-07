@@ -1,0 +1,22 @@
+extends: existence
+message: "'%s' is marketing filler, an unverifiable claim or banned vocabulary on content pages."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  - \bbest-in-class\b
+  - \bthe only\b
+  - '#1\b'
+  - \bguaranteed?\b
+  - \brevolutionary\b
+  - \bindustry-leading\b
+  # Crypto vocabulary is banned outside /docs (enterprise positioning brief).
+  - \bblockchain\b
+  - \bon-chain\b
+  - \bNFTs?\b
+  - \bsmart contracts?\b
+  - \bDePIN\b
+  - \bdecentrali[sz]ed\b
+  - \btrustless\b
+  - \bpermissionless\b
+  - \$DIMO\b

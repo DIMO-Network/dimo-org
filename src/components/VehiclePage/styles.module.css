@@ -1,0 +1,39 @@
+.answer {
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.facts {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0 2rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.facts dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.25rem;
+  margin: 0;
+}
+
+.facts dt {
+  color: #a1a1aa;
+}
+
+.facts dd {
+  margin: 0;
+  color: #fff;
+}
+
+.snippet {
+  font-size: 0.85rem;
+}
+
+.methodology {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  font-style: italic;
+}
