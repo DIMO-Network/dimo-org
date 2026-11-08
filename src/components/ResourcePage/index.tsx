@@ -54,9 +54,11 @@ export default function ResourcePage({ content: Content }: Props): ReactNode {
             <time dateTime={published}>{published}</time>
             {readingTime ? ` · ${Math.ceil(readingTime)} min read` : ''}
           </p>
-          <MDXContent>
-            <Content />
-          </MDXContent>
+          <div data-aeo-body>
+            <MDXContent>
+              <Content />
+            </MDXContent>
+          </div>
           <p className={styles.more}>
             <Link to="/resources">More guides</Link>
             {' · '}
