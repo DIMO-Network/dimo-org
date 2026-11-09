@@ -377,7 +377,7 @@ export default function RentalsPage(): ReactNode {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Product',
+            '@type': 'Service',
             name: 'DIMO for Rentals',
             description:
               'AI-powered fleet intelligence for car rental companies. Customer concierges, fleet monitoring, and automated operations.',

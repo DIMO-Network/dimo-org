@@ -376,7 +376,7 @@ export default function DeliveryPage(): ReactNode {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Product',
+            '@type': 'Service',
             name: 'DIMO for Delivery',
             description:
               'Fleet intelligence platform for delivery service providers. Predictive maintenance, driver coaching, and route optimization.',

@@ -353,7 +353,7 @@ export default function MaintenancePage(): ReactNode {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Product',
+            '@type': 'Service',
             name: 'DIMO for Automotive Maintenance',
             description:
               'AI-powered diagnostics and customer support for automotive maintenance shops. Faster diagnosis, better training, more bookings.',
