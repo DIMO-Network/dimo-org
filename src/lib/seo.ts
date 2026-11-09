@@ -23,9 +23,12 @@ export const OG_LOCALE: Record<string, string> = {
   'zh-Hant': 'zh_TW',
 };
 
-// Docs, blog, privacy and terms exist only in English; search isn't indexed.
+// Docs, blog, vehicle pages, guides, privacy and terms exist only in English;
+// search isn't indexed.
 export function isTranslatedPath(path: string): boolean {
-  return !/^\/(?:docs|blog)(?:\/|$)|^\/(?:privacy|terms|search)$/.test(path);
+  return !/^\/(?:docs|blog|vehicles|resources)(?:\/|$)|^\/(?:privacy|terms|search)$/.test(
+    path
+  );
 }
 
 export function localeUrl(locale: string, path: string): string {

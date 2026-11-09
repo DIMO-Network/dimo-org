@@ -1,7 +1,8 @@
 // Checks one built HTML page for the locale/indexing mistakes that make Google
 // drop a translated page: a canonical, og:url or JSON-LD url pointing at
-// another locale, and hreflang alternates that are missing, noindex or lack
-// x-default.
+// another locale, hreflang alternates that are missing, noindex or lack
+// x-default, and English-only pages that are built in a locale or declare
+// alternates.
 import {
   FIXED_URL_TYPES,
   LOCALES,
@@ -76,6 +77,10 @@ export function checkPage(html, file, existing) {
     }
   };
 
+  if (!translated && locale !== 'en') {
+    report(`English-only page built in locale ${locale}`);
+  }
+
   const links = tags(html, 'link');
   const metas = tags(html, 'meta');
 
@@ -91,6 +96,9 @@ export function checkPage(html, file, existing) {
   }
 
   const alternates = links.filter(l => l.rel === 'alternate' && l.hreflang);
+  if (!translated && alternates.length > 0) {
+    report('English-only page declares hreflang alternates');
+  }
   const robots = metas.find(m => m.name === 'robots')?.content ?? '';
   if (alternates.length > 0 && /noindex/i.test(robots)) {
     report('noindex page declares hreflang alternates');
@@ -106,9 +114,7 @@ export function checkPage(html, file, existing) {
         ...Object.fromEntries(LOCALES.map(l => [l, localeUrl(l, path)])),
         'x-default': localeUrl('en', path),
       }
-    : alternates.length > 0
-      ? { 'x-default': undefined }
-      : {};
+    : {};
   const missing = Object.keys(expected).filter(
     lang => !alternates.some(l => l.hreflang === lang)
   );

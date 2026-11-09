@@ -1,5 +1,7 @@
 // Fails the build when a page's canonical, og:url or JSON-LD url points at
-// another locale, or an hreflang alternate is missing, noindex or incomplete.
+// another locale, an hreflang alternate is missing, noindex or incomplete, or
+// an English-only page (docs, blog, vehicles, guides, legal) is built in a
+// locale or lists alternates.
 // Usage: node scripts/check-seo.mjs build
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';

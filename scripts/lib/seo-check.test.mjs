@@ -69,20 +69,71 @@ test('checkPage reports og:url and JSON-LD url in another locale', () => {
 });
 
 test('checkPage reports an hreflang target that is not in the build', () => {
-  const docs = '/docs/intro';
   const html = head({
-    canonical: 'https://dimo.org/docs/intro',
-    ogUrl: 'https://dimo.org/docs/intro',
-    hreflangs: {
-      en: 'https://dimo.org/docs/intro',
-      ja: 'https://dimo.org/ja/docs/intro',
-      'x-default': 'https://dimo.org/docs/intro',
-    },
+    canonical: 'https://dimo.org/pricing',
+    ogUrl: 'https://dimo.org/pricing',
+    hreflangs: pricingAlternates(),
   });
-  const reports = checkPage(html, 'docs/intro.html', new Set([docs]));
+  const withoutJa = new Set(
+    [...allPricingPages].filter(path => path !== '/ja/pricing')
+  );
+  const reports = checkPage(html, 'pricing.html', withoutJa);
   assert.deepEqual(reports, [
-    'docs/intro.html: hreflang ja target https://dimo.org/ja/docs/intro is missing or noindex',
+    'pricing.html: hreflang ja target https://dimo.org/ja/pricing is missing or noindex',
   ]);
+});
+
+test('checkPage reports alternates on English-only pages', () => {
+  for (const path of [
+    '/docs/intro',
+    '/vehicles/toyota/camry',
+    '/resources/detect-vehicle-idling',
+  ]) {
+    const url = localeUrl('en', path);
+    const html = head({
+      canonical: url,
+      ogUrl: url,
+      hreflangs: { en: url, ja: localeUrl('ja', path), 'x-default': url },
+    });
+    const file = `${path.slice(1)}.html`;
+    const existing = new Set([path, `/ja${path}`]);
+    assert.deepEqual(checkPage(html, file, existing), [
+      `${file}: English-only page declares hreflang alternates`,
+    ]);
+  }
+});
+
+test('checkPage reports an English-only page built in a locale', () => {
+  const url = 'https://dimo.org/zh-Hans/vehicles/toyota/camry';
+  const html = head({ canonical: url, ogUrl: url });
+  assert.deepEqual(
+    checkPage(html, 'zh-Hans/vehicles/toyota/camry.html', new Set()),
+    [
+      'zh-Hans/vehicles/toyota/camry.html: English-only page built in locale zh-Hans',
+    ]
+  );
+});
+
+test('checkPage returns [] for an English-only vehicle page', () => {
+  const url = 'https://dimo.org/vehicles/toyota/camry';
+  const html = head({
+    canonical: url,
+    ogUrl: url,
+    jsonLd: [
+      {
+        '@type': 'Article',
+        url,
+        publisher: {
+          '@type': 'Organization',
+          '@id': 'https://dimo.org/#organization',
+        },
+      },
+    ],
+  });
+  assert.deepEqual(
+    checkPage(html, 'vehicles/toyota/camry.html', new Set()),
+    []
+  );
 });
 
 test('checkPage reports a noindex page that declares alternates', () => {
@@ -152,7 +203,13 @@ test('localeUrl has no trailing slash and no prefix for English', () => {
   assert.equal(localeUrl('en', '/pricing'), 'https://dimo.org/pricing');
 });
 
-test('isTranslatedPath excludes docs, blog, privacy, terms and search', () => {
+test('isTranslatedPath excludes docs, blog, vehicles, resources, privacy, terms and search', () => {
+  assert.equal(isTranslatedPath('/vehicles'), false);
+  assert.equal(isTranslatedPath('/vehicles/toyota'), false);
+  assert.equal(isTranslatedPath('/vehicles/toyota/camry'), false);
+  assert.equal(isTranslatedPath('/resources'), false);
+  assert.equal(isTranslatedPath('/resources/detect-vehicle-idling'), false);
+  assert.equal(isTranslatedPath('/vehicle-data-api'), true);
   assert.equal(isTranslatedPath('/blog/x'), false);
   assert.equal(isTranslatedPath('/blog'), false);
   assert.equal(isTranslatedPath('/docs'), false);

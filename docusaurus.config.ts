@@ -16,9 +16,10 @@ import {
 const dropScheduledPosts: ProcessBlogPostsFn = async ({ blogPosts }) =>
   blogPosts.filter(post => isLive(new Date(post.metadata.date).toISOString()));
 
-// Docs, blog, privacy and terms stay English. Docusaurus builds each locale
-// separately, so non-English builds drop them entirely: nothing to index as a
-// duplicate under a locale prefix, and links to them go through englishHref.
+// Docs, blog, vehicle pages, guides, privacy and terms stay English.
+// Docusaurus builds each locale separately, so non-English builds drop them
+// entirely: nothing to index as a duplicate under a locale prefix, and links
+// to them go through englishHref.
 const englishBuild = isEnglishBuild(process.env.DOCUSAURUS_CURRENT_LOCALE);
 
 const config: Config = {
@@ -168,9 +169,9 @@ const config: Config = {
       },
     }),
     // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
-    './plugins/vehicle-pages/index.ts',
+    englishBuild && './plugins/vehicle-pages/index.ts',
     // Hand-edited AEO guides (MDX), published on their `date`.
-    [
+    englishBuild && [
       '@docusaurus/plugin-content-blog',
       {
         id: 'resources',
@@ -257,10 +258,12 @@ const config: Config = {
       // Search is English-only (docs and blog); contextual search would
       // filter by the current locale and return nothing on translated pages.
       contextualSearch: false,
-      // Docs and blog hits are English-only pages; on translated builds send
-      // them to the English URL instead of prefixing the locale (a 404).
+      // Docs, blog, vehicle and guide hits are English-only pages; on
+      // translated builds send them to the English URL instead of prefixing
+      // the locale (a 404).
       ...(!englishBuild && {
-        externalUrlRegex: 'dimo\\.org/(?:docs|blog|privacy|terms)(?:[/?#]|$)',
+        externalUrlRegex:
+          'dimo\\.org/(?:docs|blog|vehicles|resources|privacy|terms)(?:[/?#]|$)',
       }),
       searchPagePath: 'search',
 
