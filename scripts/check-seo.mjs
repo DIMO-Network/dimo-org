@@ -6,7 +6,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { LOCALES, ROOT_ONLY_FILES } from '../src/lib/seo.ts';
-import { checkPage, localeOf } from './lib/seo-check.mjs';
+import { checkPage, isNoindex, localeOf } from './lib/seo-check.mjs';
 
 const buildDir = process.argv[2] ?? 'build';
 
@@ -19,8 +19,6 @@ const toPath = file =>
     /(.)\/$/,
     '$1'
   );
-const isNoindex = html =>
-  /<meta[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html);
 
 // A partial build (npm run build -- --locale en) can't confirm alternates in
 // locales it didn't build, so those count as present and are reported below.

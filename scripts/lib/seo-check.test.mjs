@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { checkPage } from './seo-check.mjs';
+import { checkPage, isNoindex } from './seo-check.mjs';
 import {
   LOCALES,
   isEnglishBuild,
@@ -404,4 +404,37 @@ test('localizeSchema localizes each node of a top-level array', () => {
     },
     { '@type': 'FAQPage', mainEntity: [], inLanguage: 'es' },
   ]);
+});
+
+test('checkPage reads the minified build output, attribute quotes dropped', () => {
+  const alternates = Object.entries(pricingAlternates())
+    .map(
+      ([lang, href]) =>
+        `<link data-rh=true rel=alternate href=${href} hreflang=${lang} />`
+    )
+    .join('');
+  const html =
+    '<html><head>' +
+    '<meta data-rh=true property=og:url content=https://dimo.org/ja/pricing />' +
+    '<link data-rh=true rel=canonical href=https://dimo.org/pricing />' +
+    alternates +
+    '<script data-rh=true type=application/ld+json>' +
+    JSON.stringify({ '@type': 'WebPage', url: 'https://dimo.org/ja/pricing' }) +
+    '</script></head><body></body></html>';
+  assert.deepEqual(checkPage(html, 'ja/pricing.html', allPricingPages), [
+    'ja/pricing.html: canonical https://dimo.org/pricing is not the page URL https://dimo.org/ja/pricing',
+  ]);
+});
+
+test('isNoindex reads quoted and unquoted robots metas', () => {
+  assert.equal(
+    isNoindex('<meta data-rh=true name=robots content="noindex, follow"/>'),
+    true
+  );
+  assert.equal(isNoindex('<meta name=robots content=noindex>'), true);
+  assert.equal(
+    isNoindex('<meta name="robots" content="index, follow">'),
+    false
+  );
+  assert.equal(isNoindex('<meta name=description content=noindex>'), false);
 });

@@ -31,21 +31,30 @@ function urlPath(url) {
   return new URL(url).pathname.replace(/\/$/, '') || '/';
 }
 
+// The production build's HTML minifier drops attribute quotes where it can
+// (rel=canonical href=https://dimo.org/pricing), so values may be unquoted.
+const ATTRIBUTE = /([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g;
+
 function tags(html, name) {
-  const attrs = /([\w:-]+)="([^"]*)"/g;
   return [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'g'))].map(([tag]) =>
     Object.fromEntries(
-      [...tag.matchAll(attrs)].map(([, k, v]) => [
+      [...tag.matchAll(ATTRIBUTE)].map(([, k, ...values]) => [
         k.toLowerCase(),
-        v.replaceAll('&amp;', '&'),
+        values.find(v => v !== undefined).replaceAll('&amp;', '&'),
       ])
     )
   );
 }
 
+export function isNoindex(html) {
+  return tags(html, 'meta').some(
+    m => m.name === 'robots' && /noindex/i.test(m.content ?? '')
+  );
+}
+
 function jsonLdNodes(html) {
   const scripts = html.matchAll(
-    /<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g
+    /<script[^>]*type=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/g
   );
   return [...scripts].flatMap(([, json]) => {
     const roots = [JSON.parse(json)].flat();
@@ -99,8 +108,7 @@ export function checkPage(html, file, existing) {
   if (!translated && alternates.length > 0) {
     report('English-only page declares hreflang alternates');
   }
-  const robots = metas.find(m => m.name === 'robots')?.content ?? '';
-  if (alternates.length > 0 && /noindex/i.test(robots)) {
+  if (alternates.length > 0 && isNoindex(html)) {
     report('noindex page declares hreflang alternates');
   }
   for (const { hreflang, href } of alternates) {
