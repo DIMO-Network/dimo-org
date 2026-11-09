@@ -4,6 +4,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useAlternatePageUtils } from '@docusaurus/theme-common/internal';
 import { useState } from 'react';
 import { LINKS } from '../../links';
+import { localeSwitchPath } from '../../lib/seo';
+import { usePageLocale } from '../../lib/use-page-locale';
 import {
   Download,
   Database,
@@ -38,13 +40,18 @@ function useLocaleLinks() {
     i18n: { currentLocale, locales, localeConfigs },
   } = useDocusaurusContext();
   const alternatePageUtils = useAlternatePageUtils();
+  const { path } = usePageLocale();
   return {
     currentLabel: localeConfigs[currentLocale].label,
     links: locales.map(locale => ({
       locale,
       label: localeConfigs[locale].label,
       lang: localeConfigs[locale].htmlLang,
-      to: `pathname://${alternatePageUtils.createUrl({ locale, fullyQualified: false })}`,
+      to: `pathname://${localeSwitchPath(
+        locale,
+        path,
+        alternatePageUtils.createUrl({ locale, fullyQualified: false })
+      )}`,
       isCurrent: locale === currentLocale,
     })),
   };

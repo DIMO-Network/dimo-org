@@ -7,6 +7,7 @@ import {
   isTranslatedPath,
   localeUrl,
   localizeSchema,
+  localeSwitchPath,
   localizeSiteUrl,
   pagePath,
 } from '../../src/lib/seo.ts';
@@ -443,4 +444,22 @@ test('isNoindex reads quoted and unquoted robots metas', () => {
     false
   );
   assert.equal(isNoindex('<meta name=description content=noindex>'), false);
+});
+
+test('localeSwitchPath keeps the locale copy on translated pages', () => {
+  assert.equal(
+    localeSwitchPath('ja', '/pricing', '/ja/pricing'),
+    '/ja/pricing'
+  );
+  assert.equal(localeSwitchPath('en', '/pricing', '/pricing'), '/pricing');
+});
+
+test('localeSwitchPath points English-only pages at the locale home', () => {
+  for (const path of ['/vehicles/audi/a3', '/resources', '/docs/x', '/blog']) {
+    assert.equal(localeSwitchPath('en', path, path), '/');
+    assert.equal(
+      localeSwitchPath('zh-Hant', path, `/zh-Hant${path}`),
+      '/zh-Hant/'
+    );
+  }
 });

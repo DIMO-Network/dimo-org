@@ -31,6 +31,17 @@ export function isTranslatedPath(path: string): boolean {
   );
 }
 
+// Where the language menu sends a visitor: the locale's copy of the page, or
+// its home page when the page has no locale copies.
+export function localeSwitchPath(
+  locale: string,
+  path: string,
+  localizedPath: string
+): string {
+  if (isTranslatedPath(path)) return localizedPath;
+  return locale === 'en' ? '/' : `/${locale}/`;
+}
+
 export function localeUrl(locale: string, path: string): string {
   return `${SITE}${locale === 'en' ? '' : '/' + locale}${path === '/' ? '' : path}`;
 }
