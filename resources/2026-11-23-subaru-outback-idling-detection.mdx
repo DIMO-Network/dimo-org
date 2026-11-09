@@ -1,0 +1,80 @@
+---
+title: How to Detect Idling on a Subaru Outback with DIMO
+description: Use DIMO idling segments to find periods when a Subaru Outback's
+  engine runs at idle RPM, using a DIMO LTE R1 or AutoPi.
+slug: subaru-outback-idling-detection
+date: 2026-11-23
+authors:
+  - dimo-team
+tags:
+  - idling
+  - subaru-outback
+  - telemetry-api
+  - segments
+---
+
+To detect idling on a Subaru Outback, query the DIMO Telemetry API for segments with the idling detection mechanism. Each returned segment is a contiguous period where engine RPM stays in the idle range. DIMO supports idling for the Outback on both the DIMO LTE R1 (2010 and newer) and AutoPi (2013 and newer), and idle detection requires a DIMO device.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Subaru Outback page](/vehicles/subaru/outback) for the full signal list.
+
+## Steps
+
+1. Get a Developer License and generate a Developer JWT. You need your Client ID, Redirect URI and API Key. You can use the system-generated Developer JWT in the Developer Console or generate one with your API key.
+2. Get the Outback shared with your app. Vehicle sharing runs through DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Exchange the Developer JWT for a Vehicle JWT through the Token Exchange API. Request a permission that covers non-location data, such as all-time non-location data.
+4. Send a GraphQL query to the Telemetry API `segments` resource with `mechanism: idling`. Pass the vehicle token ID and a `from` and `to` range of at most 31 days.
+5. Tune detection with `config` if needed. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+6. Read `start`, `end` and `duration` from each segment. Idle segments are returned with `isOngoing` and `startedBeforeRange` flags, so handle segments that cross the edges of your query range.
+7. Optionally request per-segment aggregates with `signalRequests`. On the Outback, the DIMO LTE R1 and AutoPi both report `powertrainCombustionEngineSpeed`, so you can request its max or average RPM for each idle segment.
+
+## Code
+
+This GraphQL query is adapted from the Telemetry API segments documentation. Replace the token ID and time range, and send it with your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which hardware detects idling on a Subaru Outback?
+DIMO supports idling for the Outback on the DIMO LTE R1 (2010 and newer) and on AutoPi (2013 and newer). Idling segments require a DIMO device.
+
+### How does DIMO define an idle period?
+An idling segment is a contiguous period where engine RPM remains in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How far back can I query?
+The maximum date range for a segments query is 31 days. Use `limit` and the `after` cursor to page through results.
+
+### Can I also detect harsh braking on the Outback?
+On the Outback, harsh braking is listed for the DIMO LTE R1 but not for AutoPi. You can request `behavior.harshBraking` events only when using the DIMO LTE R1.
+
+*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

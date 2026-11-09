@@ -1,0 +1,77 @@
+---
+title: How to detect idling on a Toyota RAV4 with DIMO
+description: Use the DIMO Telemetry API with a DIMO LTE R1 or AutoPi to pull
+  idling periods for a Toyota RAV4 from engine RPM data.
+slug: toyota-rav4-idling-detection
+date: 2026-11-19
+authors:
+  - dimo-team
+tags:
+  - toyota-rav4
+  - idling
+  - telemetry-api
+  - segments
+---
+
+To detect idling on a Toyota RAV4, query the DIMO Telemetry API for segments using the idling detection mechanism. DIMO finds contiguous periods where engine RPM stays in the idle range, and this detection requires a DIMO device. On a Toyota RAV4, both the DIMO LTE R1 (2007 and newer) and AutoPi (2009 and newer) report engine RPM and idling events. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key. You need your Client ID, Redirect URI and API key.
+2. Get the RAV4 shared with your app. Owners grant access through DIMO Connect, and you need a shared vehicle before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API for that vehicle's token ID. Request the all-time, non-location data permission (privilege 1), which is the non-location privilege listed in the authentication docs.
+4. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
+5. Query `segments` with `mechanism: idling`, a time range of at most 31 days, and your RAV4's token ID.
+6. Tune detection with `config`. `maxIdleRpm` sets the upper RPM bound for idle (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240 seconds). `signalCountThreshold` sets how sensitive activity detection is.
+7. Read `start`, `end`, `duration` and `isOngoing` on each returned segment. Add `signalRequests` to aggregate extra signals per segment, such as `speed` with a MAX aggregation.
+
+## Code
+
+This GraphQL query is adapted from the Telemetry API segments example. Replace the token ID and dates, and send your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "speed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which RAV4 hardware supports idling detection?
+The DIMO LTE R1 and AutoPi both list idling events for the Toyota RAV4, and both report engine RPM. Idling detection requires a DIMO device.
+
+### What counts as idling?
+An idling segment is a contiguous period where engine RPM remains in the idle range. You can adjust the upper bound with `maxIdleRpm`.
+
+### How far back can I query?
+The segments query accepts a maximum date range of 31 days. Use `limit` and `after` to paginate results.
+
+### What does `isOngoing` mean?
+It is true when the segment extends beyond your query time range. In that case `end` is not included in the response.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

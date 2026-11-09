@@ -1,0 +1,77 @@
+---
+title: How to Track Tesla Model X Charging Sessions with DIMO
+description: Detect and measure charging sessions on a Tesla Model X by
+  requesting recharge segments and charging signals through DIMO.
+slug: tesla-model-x-charging-sessions
+date: 2026-11-24
+authors:
+  - dimo-team
+tags:
+  - tesla
+  - model-x
+  - ev-charging
+  - telemetry-api
+---
+
+To track charging sessions on a Tesla Model X, query recharge segments from the DIMO Telemetry API and add the car's charging signals to each segment. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Tesla Model X (2016 and newer), the Tesla connection reports charge level, session energy, charging status and charge limit, and DIMO supports recharge events for it.
+
+Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Tesla Model X vehicle page](/vehicles/tesla/model-x).
+
+## Steps
+
+1. Create a Developer License in the Developer Console and note your `Client ID` and `API Key`.
+2. Get the Model X shared with your app. Sharing is done with DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle through the Token Exchange API. Request the permission "All-time, non-location data" (privilege 1), which covers the signals used here.
+4. Send the Vehicle JWT in the `Authorization` header of the Telemetry API.
+5. Call the `segments` query with `mechanism: recharge` and a range of up to 31 days. Recharge detection uses charging signals and state of charge.
+6. Request extra signal aggregates per segment. For charging, use `powertrainTractionBatteryChargingAddedEnergy` with `LAST` for the energy added in the session, and `powertrainTractionBatteryStateOfChargeCurrent` with `FIRST` and `LAST` for the charge level change. The documentation notes that the level signal at the start and end of a recharge segment is included by default.
+7. Read `start`, `end`, `duration` and `isOngoing` from each segment. If `isOngoing` is true, the session extends past your query range and `end` is not returned.
+8. Optionally, call `signalsLatest` to read the current charging status with `powertrainTractionBatteryChargingIsCharging`.
+
+## Code
+
+This GraphQL query returns recharge segments for one Model X. Replace `<vehicleTokenId>` with the vehicle token ID and send your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetChargingSessions {
+  segments(
+    tokenId: <vehicleTokenId>
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-24T00:00:00Z"
+    mechanism: recharge
+    signalRequests: [
+      { name: "powertrainTractionBatteryChargingAddedEnergy", agg: LAST }
+      { name: "powertrainTractionBatteryStateOfChargeCurrent", agg: FIRST }
+      { name: "powertrainTractionBatteryStateOfChargeCurrent", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Model X signals describe a charging session?
+The Tesla connection reports charging status, charging cable connected, session energy, charge limit, charging voltage, AC charge current and current charge level. Use the exact names from the vehicle page when you request them.
+
+### Can I tune how recharge sessions are detected?
+Yes. The `config` argument accepts `minIncreasePercent` for recharge detection, plus `maxGapSeconds` and `minSegmentDurationSeconds` to control how segments are split and filtered.
+
+### How far back can I query?
+A single `segments` request covers a maximum of 31 days. Return up to 200 segments per request and use the `after` cursor to page through more.
+
+### Do I need a Vehicle JWT?
+Yes. A Developer JWT does not grant access to vehicle data. Exchange it for a short-lived Vehicle JWT for the specific vehicle.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Segments and Signals references.*

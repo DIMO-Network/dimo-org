@@ -1,0 +1,82 @@
+---
+title: How to Track Fuel Level and Refuels on a Subaru Outback
+description: Read fuel level and detect refuel segments on a Subaru Outback with
+  a DIMO device, using a Vehicle JWT and the Telemetry API.
+slug: subaru-outback-fuel-level-tracking
+date: 2026-12-07
+authors:
+  - dimo-team
+tags:
+  - subaru-outback
+  - fuel-level
+  - refuel-detection
+  - telemetry-api
+---
+
+To track fuel level and refuels on a Subaru Outback, connect a DIMO device, share the vehicle with your app, and query the Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Subaru Outback, both the DIMO LTE R1 (model year 2010 and newer) and the AutoPi (model year 2013 and newer) report fuel percentage and support refuel events. See the vehicle page at /vehicles/subaru/outback.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key. You need your Client ID, Redirect URI and API Key.
+2. Get the Outback shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Without a shared vehicle you cannot fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the "All-time, non-location data" permission, which is privilege 1.
+4. Read the current fuel reading with the `signalsLatest` query in the Telemetry API. Request `powertrainFuelSystemRelativeLevel`, which reports fuel percentage on both the DIMO LTE R1 and the AutoPi. The DIMO LTE R1 also reports `powertrainFuelSystemAbsoluteLevel`, in liters.
+5. Find refuels with the `segments` query. Set `mechanism` to `refuel`, which detects where fuel level rises significantly. By default a rise of 15 percent within a window counts, and you can change this with `minIncreasePercent` in `config`. Refuel segments include the level signal at the start and end by default.
+6. Page through results with `limit` and `after`. The maximum date range for one segments query is 31 days.
+
+## Code
+
+This GraphQL example sends the Vehicle JWT in the `Authorization` header to the Telemetry API. Replace `<vehicleTokenId>` with your vehicle's token ID and set the date range for your own use.
+
+```graphql
+query GetLatestFuel {
+  signalsLatest(tokenId: <vehicleTokenId>) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+  }
+}
+
+query GetRefuels {
+  segments(
+    tokenId: <vehicleTokenId>
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Outback connections report fuel level?
+On a Subaru Outback, the DIMO LTE R1 and the AutoPi both report fuel percentage. Only the DIMO LTE R1 also reports fuel level in liters.
+
+### Do I need a device to get fuel data from an Outback?
+Yes. The fuel signals for the Outback come from a DIMO LTE R1 or an AutoPi installed in the vehicle.
+
+### Why does the segments query need a Vehicle JWT?
+A Vehicle JWT grants access to one vehicle's data for a short time. A Developer JWT has no access to vehicle data.
+
+### Can I change how large a fuel rise counts as a refuel?
+Yes. Set `minIncreasePercent` in the `config` argument of the `segments` query. The default is 15.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Vehicle Segments references, plus the DIMO vehicle data for the Subaru Outback.*

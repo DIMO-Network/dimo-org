@@ -1,0 +1,76 @@
+---
+title: How to Track Tesla Model Y Charging Sessions with DIMO
+description: Detect and read Tesla Model Y charging sessions through DIMO by
+  using recharge segments and charging signals from the Tesla connection.
+slug: tesla-model-y-charging-sessions
+date: 2026-11-16
+authors:
+  - dimo-team
+tags:
+  - tesla
+  - model-y
+  - ev-charging
+  - telemetry-api
+---
+
+To track charging sessions on a Tesla Model Y, query recharge segments from the DIMO Telemetry API and read the charging signals for the same time range. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Tesla Model Y (2020 and newer), the Tesla OEM cloud connection reports charging status, session energy, charge limit and state of charge.
+
+For all vehicles supported by DIMO, see [the Tesla Model Y page](/vehicles/tesla/model-y).
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key. You need your Client ID, Redirect URI and API key.
+2. Get a Developer JWT. You can use the system-generated one in the Developer Console, or generate one with your API key through a server SDK.
+3. Get the Model Y shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request the privilege for all-time, non-location data.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
+6. Query `segments` with `mechanism: recharge` over a range of up to 31 days. The documentation describes recharge detection as hybrid: it uses charging signals and state of charge. Each segment returns start and end times, duration, and whether it is ongoing.
+7. Request signal aggregates per segment with `signalRequests`. For the Model Y, `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, %) are listed signals. The `LAST` aggregation gives the value at the end of each session.
+8. To check the live state, call `signalsLatest` and read `powertrainTractionBatteryChargingIsCharging` and `powertrainTractionBatteryChargingIsChargingCableConnected`.
+
+## Code
+
+```graphql
+query GetRechargeSessions {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
+    mechanism: recharge
+    signalRequests: [
+      { name: "powertrainTractionBatteryChargingAddedEnergy", agg: LAST }
+      { name: "powertrainTractionBatteryStateOfChargeCurrent", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Replace `12345` with your vehicle token ID and send the Vehicle JWT as the `Authorization` header.
+
+## FAQ
+
+### Which Model Y connection reports charging data?
+On a Tesla Model Y, the Tesla OEM cloud connection reports charging status, cable connected, session energy, charge limit, charging voltage and AC charge current. It covers model year 2020 and newer.
+
+### How do I know if a charging session is still running?
+Each segment has an `isOngoing` field. It is true when the session extends beyond the end of your query range, and in that case `end` is not included.
+
+### How far back can I query sessions?
+The `segments` query supports a maximum date range of 31 days per request. Use `limit` and `after` to page through results.
+
+### Can I read the current charge state without segments?
+Yes. Query `signalsLatest` for `powertrainTractionBatteryChargingIsCharging` and `powertrainTractionBatteryStateOfChargeCurrent` to get the most recent values.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references.*

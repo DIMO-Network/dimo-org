@@ -1,0 +1,87 @@
+---
+title: How to Track Fuel Level and Refuels on a Volkswagen Golf
+description: Use DIMO to read fuel level and detect refuels on a Volkswagen Golf
+  with a DIMO LTE R1, from vehicle sharing to a refuel segments query.
+slug: volkswagen-golf-fuel-level-tracking
+date: 2026-12-10
+authors:
+  - dimo-team
+tags:
+  - volkswagen-golf
+  - fuel-level
+  - refuel-detection
+  - telemetry-api
+---
+
+On a Volkswagen Golf, the DIMO LTE R1 reports fuel level in liters and supports refuel events, for model year 2009 and newer. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. You read the current fuel level from the Telemetry API and find refuels by querying segments with the refuel detection mechanism.
+
+The AutoPi connection listed for the Golf does not report fuel level or refuel events, so use the DIMO LTE R1 for this job. Full signal coverage is on the vehicle page: [Volkswagen Golf](/vehicles/volkswagen/golf).
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key and redirect URIs. You need your Client ID, Redirect URI and API Key.
+2. Get the Golf shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Use DIMO Connect to request sharing. You need a shared vehicle before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle through the Token Exchange API. Request the privilege for all-time, non-location data.
+4. Query the Telemetry API with the Vehicle JWT in the `Authorization` header. Use `signalsLatest` to read `powertrainFuelSystemAbsoluteLevel`, which reports fuel level in liters on the DIMO LTE R1.
+5. To find refuels, query `segments` with `mechanism: refuel` over a time range of up to 31 days. The refuel mechanism detects where fuel level rises significantly. The default signal set for refuel segments includes the level signal at the start and end of each segment.
+6. Tune detection if needed. The `minIncreasePercent` setting in `config` sets the minimum percent increase within a window to count as a level increase. Its default is 15.
+7. Page through results with `limit` (default 100, max 200) and the `after` cursor.
+
+## Code
+
+The first query reads the latest fuel level. The second finds refuel segments. Replace `<vehicleTokenId>` with your vehicle's token ID and send your Vehicle JWT in the `Authorization` header. This example is not self-contained, so it is not tagged as runnable.
+
+```graphql
+query GetLatestFuelLevel {
+  signalsLatest(tokenId: <vehicleTokenId>) {
+    powertrainFuelSystemAbsoluteLevel {
+      value
+      timestamp
+    }
+  }
+}
+
+query GetRefuels {
+  segments(
+    tokenId: <vehicleTokenId>
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemAbsoluteLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Volkswagen Golf connection reports fuel level?
+The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters, for model year 2009 and newer. The AutoPi connection listed for the Golf does not report it.
+
+### Does the Golf support refuel detection?
+Yes, on the DIMO LTE R1. Query `segments` with the refuel mechanism to get periods where fuel level rises significantly.
+
+### How far back can I query refuels?
+A single `segments` query covers a maximum date range of 31 days. Run several queries with different `from` and `to` values to cover longer periods.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+### Do I need a Vehicle JWT?
+Yes. Telemetry API queries use a Vehicle JWT, which you get by exchanging your Developer JWT after the vehicle owner has shared the Golf with you.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references.*

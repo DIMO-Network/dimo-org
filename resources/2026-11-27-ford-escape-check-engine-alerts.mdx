@@ -1,0 +1,62 @@
+---
+title: How to Get Check-Engine Alerts for a Ford Escape
+description: Set up a DIMO webhook and read trouble codes to get check-engine
+  alerts for a Ford Escape with a DIMO LTE R1 or AutoPi.
+slug: ford-escape-check-engine-alerts
+date: 2026-11-27
+authors:
+  - dimo-team
+tags:
+  - ford-escape
+  - check-engine
+  - diagnostics
+  - webhooks
+---
+
+To get check-engine alerts for a Ford Escape, read its diagnostic trouble codes through DIMO's Telemetry API and use Vehicle Triggers webhooks to get pushed updates. On a Ford Escape, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report diagnostic trouble codes, and the DIMO LTE R1 also reports DTC count. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key. Have the vehicle owner share the Ford Escape with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+2. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle using the Token Exchange API. Request the all-time, non-location data permission, which is the one the documentation lists for non-location history.
+3. Query the Telemetry API with `signalsLatest` to read the latest diagnostic trouble codes. On a Ford Escape, `obdDTCList` is reported by both the DIMO LTE R1 and AutoPi. `obdDistanceWithMIL` is also reported by both, and `obdStatusDTCCount` is reported by the DIMO LTE R1.
+4. To receive pushed updates instead of polling, create a webhook with the Vehicle Triggers API. Register it with a `targetURL`, a `verificationToken`, a `coolDownPeriod` and a CEL `condition`. Use `signals` as the `service`. The documentation excerpts do not include a ready-made check-engine condition, so test your `condition` against real `obdDTCList` values before you rely on it.
+5. Subscribe the vehicle to the webhook, either one vehicle at a time or all vehicles that have shared permissions with your Developer License. When the condition is met, DIMO sends a `POST` request to your `targetURL`.
+
+## Code
+
+This query reads the latest check-engine related signals for a Ford Escape. Replace the token ID and use your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetCheckEngineSignals {
+  signalsLatest(tokenId: 12345) {
+    obdDTCList {
+      value
+      timestamp
+    }
+    obdDistanceWithMIL {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+## FAQ
+
+### Which Ford Escape hardware reports trouble codes?
+The DIMO LTE R1 and AutoPi both report diagnostic trouble codes on a Ford Escape. The DIMO LTE R1 is listed from 2008 and newer, and AutoPi from 2012 and newer.
+
+### Do I need hardware to get these alerts?
+Yes. The signals described here come from a DIMO LTE R1 or an AutoPi connected to the Ford Escape.
+
+### Can I be pushed an alert instead of polling?
+Yes. Vehicle Triggers webhooks send a `POST` request to your endpoint when a vehicle meets the condition you configure, so you don't need to poll the API. Webhooks are in public beta.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+### Where can I see every signal for this car?
+The full list is on the [Ford Escape vehicle page](/vehicles/ford/escape).
+
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API vehicle signals.*

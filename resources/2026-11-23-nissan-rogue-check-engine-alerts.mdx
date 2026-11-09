@@ -1,0 +1,64 @@
+---
+title: How to get check-engine alerts for a Nissan Rogue
+description: "Set up check-engine alerts for a Nissan Rogue with DIMO: read
+  trouble code data from a shared vehicle and send a webhook when the code count
+  rises."
+slug: nissan-rogue-check-engine-alerts
+date: 2026-11-23
+authors:
+  - dimo-team
+tags:
+  - nissan-rogue
+  - check-engine
+  - dtc
+  - webhooks
+---
+
+To get check-engine alerts for a Nissan Rogue, subscribe the vehicle to a DIMO webhook that fires when its trouble code count goes above zero, then read the codes themselves from the Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Nissan Rogue, the DIMO LTE R1 (2010 and newer) reports the trouble code list, the trouble code count and distance with the check-engine light on. See the [Nissan Rogue vehicle page](/vehicles/nissan/rogue) for the full signal list.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key and redirect URIs. Get a Developer JWT, either the system-generated one or one you generate with your API key.
+2. Get the Rogue shared with your app through DIMO Connect. The owner consents to sharing, so you only receive data for vehicles that have been shared with you. Make sure the Rogue is connected with a DIMO LTE R1, which is the device that lists the trouble code signals for this car.
+3. Call the Vehicle Triggers API endpoint that lists webhook signal names (GET /v1/webhooks/signals) with your Developer JWT. Confirm that the trouble code count signal appears in the list before you build on it.
+4. Create a webhook with the service set to signals, the metric name set to the VSS-prefixed trouble code count signal, and a condition such as `valueNumber` > 0. Set a cool-down period, an HTTPS target URL, a status of enabled and a verification token. Webhooks are in public beta.
+5. Subscribe the Rogue to the webhook by its token DID, or subscribe all vehicles that have shared permissions with your Developer License.
+6. When your target URL receives the POST request, use it as the alert. Then exchange your Developer JWT for a Vehicle JWT through the Token Exchange API and query the Telemetry API with `signalsLatest` to read the trouble code list and the distance with the check-engine light on.
+7. If the Rogue uses an AutoPi (2014 and newer), it reports distance with the check-engine light on, distance since trouble codes were cleared and warmups since trouble codes were cleared. Its entry does not list the trouble code list or count, so base alerts for that device on those signals instead.
+
+## Code
+
+This creates the webhook from step 4, adapted from the Vehicle Triggers API documentation. Replace the placeholders with your own values and confirm the metric name against the signals list from step 3.
+
+```shell
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "signals",
+    "metricName": "vss.obdStatusDTCCount",
+    "condition": "valueNumber > 0",
+    "coolDownPeriod": 3600,
+    "description": "Fires when a subscribed Rogue reports one or more trouble codes",
+    "displayName": "Rogue check-engine alert",
+    "targetURL": "https://example.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "<YOUR_VERIFICATION_TOKEN>"
+  }'
+```
+
+## FAQ
+
+### Which Nissan Rogue device reports the trouble codes?
+The DIMO LTE R1 lists the trouble code list, the trouble code count and distance with the check-engine light on for the Rogue, from model year 2010 and newer. The AutoPi lists distance with the check-engine light on, but not the trouble code list or count.
+
+### Can I read the actual trouble codes after an alert?
+Yes, on a Rogue with a DIMO LTE R1. Query `signalsLatest` in the Telemetry API with a Vehicle JWT and request the trouble code list signal, `obdDTCList`.
+
+### Do I need the owner's permission?
+Yes. Your app can only access a vehicle that has been shared with it, and you need a Vehicle JWT for that specific vehicle to query the Telemetry API.
+
+### How do I avoid repeated alerts for the same fault?
+Set the cool-down period on the webhook. It is the minimum number of seconds between successive firings of that webhook.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and the Telemetry API Vehicle Signals reference, and on the DIMO signal and device listings for the Nissan Rogue.*

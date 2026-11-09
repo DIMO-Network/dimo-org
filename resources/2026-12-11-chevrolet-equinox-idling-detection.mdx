@@ -1,0 +1,81 @@
+---
+title: How to detect idling on a Chevrolet Equinox
+description: Detect idling on a Chevrolet Equinox with DIMO by querying idle
+  segments built from engine RPM data, with steps and a GraphQL example.
+slug: chevrolet-equinox-idling-detection
+date: 2026-12-11
+authors:
+  - dimo-team
+tags:
+  - idling
+  - chevrolet-equinox
+  - telemetry-api
+  - segments
+---
+
+To detect idling on a Chevrolet Equinox, use DIMO's Telemetry API to request trip segments with the idling detection mechanism. Idling segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. On an Equinox, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report engine RPM and vehicle speed and support idling events. See the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list.
+
+## Steps
+
+1. Confirm the Equinox has a DIMO device connected: a DIMO LTE R1 (2008 and newer) or an AutoPi (2012 and newer).
+2. Get the vehicle shared with your app through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle with the Token Exchange API. Request the permissions your app needs.
+4. Call the `segments` query in the Telemetry API with your Vehicle JWT in the `Authorization` header. Set `mechanism` to `idling` and keep the date range within 31 days.
+5. Tune detection with `config` if needed: `maxIdleRpm` (default 1000), `minSegmentDurationSeconds` (default 240) and `signalCountThreshold` (default 10).
+6. Read `duration`, `start`, `end` and `isOngoing` from each segment. Request `powertrainCombustionEngineSpeed` and `speed` aggregates to see engine RPM and speed during each idle period.
+
+## Code
+
+Send this query to the Telemetry API with the header `{ "Authorization": "<yourVehicleJwt>" }`. Replace the token ID and dates with your own.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+      { name: "speed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Equinox hardware supports idling detection?
+The DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) both list idling events for the Equinox. The idling mechanism requires a DIMO device.
+
+### How does DIMO decide a period is idling?
+An idling segment is a contiguous period where engine RPM remains in the idle range. You can set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How do I ignore short stops?
+Set `minSegmentDurationSeconds` in `config`. Segments shorter than this are left out, and the default is 240 seconds.
+
+### What if an idling period is still happening?
+The segment is returned with `isOngoing` set to true and no `end`. Its `duration` runs from the start to the `to` time of your query.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

@@ -1,0 +1,63 @@
+---
+title: How do I get check-engine alerts for a Toyota Prius?
+description: Use DIMO to read trouble codes and check-engine lamp distance from
+  a Toyota Prius, then push an alert to your server with a webhook.
+slug: toyota-prius-check-engine-alerts
+date: 2026-11-26
+authors:
+  - dimo-team
+tags:
+  - toyota-prius
+  - check-engine
+  - diagnostic-trouble-codes
+  - webhooks
+---
+
+To get check-engine alerts for a Toyota Prius, read its diagnostic signals through DIMO and set up a webhook that fires when the distance driven with the MIL on rises above zero. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Toyota Prius, the DIMO LTE R1 reports the trouble code list, the DTC count and the distance with the MIL on. The full signal list is on the [Toyota Prius vehicle page](/vehicles/toyota/prius).
+
+## Steps
+
+1. Create a Developer License in the Developer Console and get a Developer JWT. You can use the system-generated one or generate one with your API key.
+2. Get the Prius shared with you. The owner shares it through DIMO Connect, so you only receive data the owner has consented to share.
+3. Exchange your Developer JWT for a Vehicle JWT with the Token Exchange API. Request the "All-time, non-location data" permission for the vehicle.
+4. Check what the vehicle reports. Send the Vehicle JWT in the `Authorization` header to the Telemetry API and run a `signalsLatest` query for `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL`. On a Prius with a DIMO LTE R1, these are the signals that carry trouble codes and check-engine lamp distance. The DIMO LTE R1 also supports an event for new trouble codes.
+5. Create a webhook with the Vehicle Triggers API. Set `service` to `signals`, `metricName` to `vss.obdDistanceWithMIL` and `condition` to `valueNumber > 0`. Point `targetURL` at your HTTPS endpoint and set a `coolDownPeriod` so you are not alerted repeatedly.
+6. Subscribe the Prius to the webhook with its token DID, or subscribe all vehicles that have shared with your Developer License.
+7. Handle the `POST` request your endpoint receives. The body includes the `assetDID` of the vehicle, the `metricName` and the signal `value`. Then use the `signalsLatest` query from step 4 to fetch `obdDTCList` for the specific codes.
+
+## Code
+
+This cURL request creates the webhook from step 5. Replace `<DEV_JWT>`, the target URL and the verification token with your own values.
+
+```shell
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "signals",
+    "metricName": "vss.obdDistanceWithMIL",
+    "condition": "valueNumber > 0",
+    "coolDownPeriod": 3600,
+    "description": "Fires when a subscribed Prius reports distance driven with the MIL on",
+    "displayName": "Prius check-engine alert",
+    "targetURL": "https://example.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "replace-with-your-token"
+  }'
+```
+
+## FAQ
+
+### Which Prius connection reports trouble codes?
+The DIMO LTE R1 reports `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL` on a Toyota Prius. The AutoPi device reports `obdDistanceWithMIL`, `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`.
+
+### Which model years are supported?
+The DIMO LTE R1 is seen on the Prius from model year 2009 and newer. The AutoPi device is seen from model year 2008 and newer.
+
+### Can I poll instead of using a webhook?
+Yes. Run a `signalsLatest` query against the Telemetry API with a Vehicle JWT whenever you need the current `obdDTCList`, `obdStatusDTCCount` or `obdDistanceWithMIL` values.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, plus DIMO's Toyota Prius vehicle record.*

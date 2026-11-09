@@ -1,0 +1,74 @@
+---
+title: How to Track Fuel Level and Refuels on a Honda Odyssey
+description: Use DIMO to read fuel level from a Honda Odyssey and find refuel
+  segments in a date range, with a GraphQL example.
+slug: honda-odyssey-fuel-level-tracking
+date: 2026-12-08
+authors:
+  - dimo-team
+tags:
+  - honda-odyssey
+  - fuel-level
+  - refuel
+  - telemetry-api
+---
+
+To track fuel level and refuels on a Honda Odyssey, connect the car with a DIMO LTE R1, get a Vehicle JWT, then query fuel signals and refuel segments from the Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Honda Odyssey from model year 2011 and newer, the DIMO LTE R1 reports fuel percentage and fuel level in liters, and refuel detection is listed for that device.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key and redirect URIs.
+2. Get the Odyssey shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The car needs a DIMO LTE R1 for the fuel signals and refuel detection described here.
+3. Get a Developer JWT, then exchange it at the Token Exchange API for a Vehicle JWT for that vehicle. The Vehicle JWT is short-lived and scoped to one vehicle. Request the all-time, non-location data permission.
+4. To read the current fuel state, query `signalsLatest` in the Telemetry API for `powertrainFuelSystemRelativeLevel` (fuel percentage, %) and `powertrainFuelSystemAbsoluteLevel` (fuel level, liters). Send the Vehicle JWT in the `Authorization` header.
+5. To find refuels, query `segments` with `mechanism: refuel` over a date range of up to 31 days. Each segment is a period where fuel level rises significantly. By default, a refuel segment also includes the level signal at its start and end.
+6. Optionally tune detection with `minIncreasePercent` in `config`. The default is 15, which is the minimum percent increase within a window to count as a level increase.
+7. Page through results with `limit` (default 100, max 200) and `after`.
+
+## Code
+
+This GraphQL query returns refuel segments for one Odyssey over a week, with the fuel percentage at the start and end of each segment. Replace the token ID and dates with your own, and send your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Honda Odyssey connection reports fuel level?
+The DIMO LTE R1 reports fuel percentage and fuel level in liters, and refuel detection is listed for it. The AutoPi connection listed for the Odyssey reports low voltage battery, altitude and coordinates, not fuel.
+
+### Which model years are supported?
+The DIMO LTE R1 is listed from model year 2011 and newer. AutoPi is listed from 2010 and newer, but it does not report fuel signals for this car.
+
+### How do I get the latest fuel reading instead of refuel segments?
+Use `signalsLatest` with `powertrainFuelSystemRelativeLevel` or `powertrainFuelSystemAbsoluteLevel` and request `value` and, optionally, `timestamp`.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the full signal list on the [Honda Odyssey page](/vehicles/honda/odyssey).
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Vehicle Segments references.*

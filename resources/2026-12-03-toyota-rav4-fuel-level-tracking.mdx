@@ -1,0 +1,82 @@
+---
+title: Track fuel level and refuels on a Toyota RAV4
+description: Read fuel level and detect refuel segments on a Toyota RAV4 using
+  the DIMO LTE R1 and the DIMO Telemetry API.
+slug: toyota-rav4-fuel-level-tracking
+date: 2026-12-03
+authors:
+  - dimo-team
+tags:
+  - toyota-rav4
+  - fuel-level
+  - refuel-detection
+  - telemetry-api
+---
+
+To track fuel level and refuels on a Toyota RAV4, use the DIMO LTE R1, which reports fuel level in liters and supports refuel events. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+The DIMO LTE R1 supports the RAV4 from model year 2007 and newer. AutoPi also supports the RAV4, but it does not report fuel level or refuel events, so this guide uses the DIMO LTE R1. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list.
+
+## Steps
+
+1. Create a Developer License and get a RAV4 shared with your app through DIMO Connect. You need a vehicle shared with you to fetch a Vehicle JWT.
+2. Get a Developer JWT using your Client ID and API key. The Developer JWT gives general API access but no vehicle data.
+3. Exchange the Developer JWT for a Vehicle JWT for that RAV4 using the Token Exchange API. Request the permission for all-time, non-location data, which covers fuel level.
+4. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
+5. Query `signalsLatest` for `powertrainFuelSystemAbsoluteLevel` to read the current fuel level on a RAV4 with a DIMO LTE R1. It reports the value in liters.
+6. Query `segments` with the `refuel` detection mechanism to find periods where the fuel level rises significantly. Refuel detection uses the level signal at the start and end of each segment. Tune `minIncreasePercent` in `config` if you need a different threshold; the default is 15.
+7. Page through results with `limit` and `after`. A single segments query covers at most 31 days.
+
+## Code
+
+```graphql
+# Latest fuel level (send your Vehicle JWT in the Authorization header)
+query GetLatestFuelLevel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemAbsoluteLevel {
+      value
+      timestamp
+    }
+  }
+}
+
+# Refuel segments over a date range (maximum range: 31 days)
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which RAV4 connection reports fuel level?
+The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters. The AutoPi connection listed for the RAV4 does not report fuel level.
+
+### Which model years does this cover?
+The DIMO LTE R1 supports the RAV4 from model year 2007 and newer.
+
+### How does DIMO detect a refuel?
+The `refuel` segment mechanism detects where the fuel level rises significantly. The default minimum increase within a window is 15 percent, which you can change with `minIncreasePercent`.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references.*

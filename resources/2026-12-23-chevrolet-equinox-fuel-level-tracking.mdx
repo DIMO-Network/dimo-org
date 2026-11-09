@@ -1,0 +1,84 @@
+---
+title: How to Track Fuel Level and Refuels on a Chevrolet Equinox
+description: Read fuel percentage and detect refuel segments on a Chevrolet
+  Equinox with DIMO, using a DIMO LTE R1 or AutoPi device and the Telemetry API.
+slug: chevrolet-equinox-fuel-level-tracking
+date: 2026-12-23
+authors:
+  - dimo-team
+tags:
+  - chevrolet-equinox
+  - fuel-level
+  - refuel-detection
+  - telemetry-api
+---
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Chevrolet Equinox, the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) both report fuel percentage and support refuel events, so you can read the current fuel level and query for refuel segments through the Telemetry API. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and note your `Client ID`, `Redirect URI` and `API Key`.
+2. Get the Equinox shared with your app. The documentation points to DIMO Connect for vehicle sharing, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the permission for all-time, non-location data, which covers fuel readings.
+4. Send the Vehicle JWT in the `Authorization` header of the Telemetry API. Optionally run the `availableSignals` query for the vehicle's token ID to confirm which signals it returns.
+5. Query `signalsLatest` for `powertrainFuelSystemRelativeLevel` to read the current fuel percentage. The DIMO LTE R1 also lists `powertrainFuelSystemAbsoluteLevel`, which reports fuel level in liters. The AutoPi entry lists the percentage signal only.
+6. Query `segments` with `mechanism: refuel` over a date range of up to 31 days. The documentation describes this mechanism as detecting where fuel level rises significantly. The default `minIncreasePercent` is 15, and you can change it in `config`.
+7. Request `powertrainFuelSystemRelativeLevel` with `FIRST` and `LAST` aggregations in `signalRequests` to compare the fuel percentage at the start and end of each refuel segment. Refuel segments already include the level signal at start and end by default; adding the request is optional.
+
+## Code
+
+```graphql
+# Header: { "Authorization": "<yourVehicleJwt>" }
+
+query LatestFuel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+  }
+}
+
+query Refuels {
+  segments(
+    tokenId: 12345
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Equinox devices support refuel events?
+The DIMO LTE R1 and the AutoPi both list refuel events for the Chevrolet Equinox. See the vehicle page at /vehicles/chevrolet/equinox for the full list of what each reports.
+
+### Can I read fuel level in liters?
+On a Chevrolet Equinox, the DIMO LTE R1 lists `powertrainFuelSystemAbsoluteLevel` in liters. The AutoPi entry lists fuel percentage only.
+
+### How far back can I search for refuels?
+The `segments` query has a maximum date range of 31 days. For longer histories, run multiple queries over consecutive ranges, and use `limit` and `after` to paginate.
+
+### Can I change how sensitive refuel detection is?
+Yes. Set `minIncreasePercent` in the `config` argument of `segments`. The documented default is 15 percent.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, Telemetry API Signals and Telemetry API Vehicle Segments.*

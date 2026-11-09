@@ -1,0 +1,65 @@
+---
+title: How to get check-engine alerts for a Honda Pilot
+description: Set up a webhook that fires when a Honda Pilot reports trouble
+  codes, then read the codes themselves through the DIMO Telemetry API.
+slug: honda-pilot-check-engine-alerts
+date: 2026-11-25
+authors:
+  - dimo-team
+tags:
+  - check-engine
+  - diagnostics
+  - webhooks
+  - honda-pilot
+---
+
+To get check-engine alerts for a Honda Pilot (2009 and newer), create a DIMO webhook on the trouble-code count that the DIMO LTE R1 reports. Then read the code list from the Telemetry API when the webhook fires. The list of trouble codes comes from the AutoPi connection, so the full flow needs a Pilot connected through the device that provides each signal.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and get a Developer JWT. Webhooks are tied to the license that creates them. See the Authentication docs.
+2. Get the Pilot shared with your app through DIMO Connect. You need a shared vehicle before you can exchange your Developer JWT for a Vehicle JWT.
+3. Call `GET /v1/webhooks/signals` on the Vehicle Triggers API to list the signal names available for webhooks. Confirm that `obdStatusDTCCount` is listed before you build on it.
+4. Create a webhook with `service` set to `signals`, `metricName` set to the VSS-prefixed `vss.obdStatusDTCCount`, and the condition `valueNumber > 0`. On a Honda Pilot, the DIMO LTE R1 reports this DTC count. Set `coolDownPeriod` to limit repeat notifications and set `targetURL` to your HTTPS endpoint.
+5. Subscribe the Pilot to the webhook with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`. To cover every vehicle that has shared with your license, use the subscribe-all endpoint instead.
+6. When your endpoint receives the POST, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request the all-time, non-location data permission.
+7. Query `signalsLatest` in the Telemetry API for `obdDTCList` with `value` and `timestamp`. On a Honda Pilot, the AutoPi reports `obdDTCList`, so the code list is available through that connection. DIMO's page for this car also lists new trouble codes as an event the AutoPi reports.
+
+## Code
+
+This cURL request creates the webhook from step 4. Replace `<DEV_JWT>`, the target URL and the verification token with your own values.
+
+```shell
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "signals",
+    "metricName": "vss.obdStatusDTCCount",
+    "condition": "valueNumber > 0",
+    "coolDownPeriod": 3600,
+    "description": "Fires when a subscribed Honda Pilot reports a DTC count above zero",
+    "displayName": "Pilot check-engine alert",
+    "targetURL": "https://example.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "replace-with-your-token"
+  }'
+```
+
+## FAQ
+
+### Which Honda Pilot connection reports the trouble codes themselves?
+The AutoPi reports the trouble code list (`obdDTCList`). The DIMO LTE R1 reports a DTC count (`obdStatusDTCCount`) and the distance driven with the check-engine light on.
+
+### Do I need hardware in the Pilot?
+Yes. DIMO's data for the Pilot comes from a connected device, either the AutoPi or the DIMO LTE R1. Details are on the [Honda Pilot vehicle page](/vehicles/honda/pilot).
+
+### Can I get the alert without polling?
+Yes. The Vehicle Triggers API sends a POST to your target URL when the condition is met, so your app doesn't need to poll.
+
+### Who controls access to the Pilot's data?
+Vehicle owners consent to and control sharing, so builders get data with clear provenance. Your app can only subscribe and query vehicles that have been shared with your Developer License.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, plus DIMO's tested coverage information for the Honda Pilot.*

@@ -1,0 +1,89 @@
+---
+title: How to Track Fuel Level and Refuels on a Honda Pilot
+description: "Read fuel level and detect refuels on a Honda Pilot using DIMO:
+  get a Vehicle JWT, query the latest fuel signals, and pull refuel segments."
+slug: honda-pilot-fuel-level-tracking
+date: 2026-12-21
+authors:
+  - dimo-team
+tags:
+  - honda-pilot
+  - fuel-level
+  - refuel-detection
+  - telemetry-api
+---
+
+On a Honda Pilot, the DIMO LTE R1 reports fuel percentage and fuel level in liters, and it is the connection that supports refuel events. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. You authenticate, exchange for a Vehicle JWT, then query the Telemetry API for the latest fuel signals and for refuel segments. See the [Honda Pilot vehicle page](/vehicles/honda/pilot) for the full signal list; this guide covers the fuel job only.
+
+## Steps
+
+1. Get a vehicle shared with you. Use DIMO Connect so the vehicle owner can consent to sharing. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The Pilot needs a DIMO LTE R1 for the fuel signals and refuel events described here.
+2. Get a Developer JWT for your Developer License in the Developer Console, or generate one with your API key using a server SDK.
+3. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID. Request the permission for all-time, non-location data.
+4. Read the current fuel state. Call the Telemetry API `signalsLatest` query with the Vehicle JWT in the `Authorization` header, and request `powertrainFuelSystemRelativeLevel` (percent) and `powertrainFuelSystemAbsoluteLevel` (liters).
+5. Find refuels over a time range. Call the `segments` query with `mechanism: refuel`. The documentation says refuel detection finds where fuel level rises significantly, and that refuel segments always include the level signal at the start and end. The maximum date range is 31 days.
+6. Tune detection if needed. The `minIncreasePercent` setting in `config` sets the minimum percent increase in a window for it to count as a level increase. The documented default is 15.
+
+## Code
+
+```graphql
+# Header: { "Authorization": "<yourVehicleJwt>" }
+
+query GetLatestFuel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+    powertrainFuelSystemAbsoluteLevel {
+      value
+      timestamp
+    }
+  }
+}
+
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Honda Pilot connection reports fuel level?
+The DIMO LTE R1 reports fuel percentage and fuel level in liters on a Honda Pilot, and it is the connection listed with refuel events. DIMO supports it for model year 2009 and newer.
+
+### What is the difference between the two fuel signals?
+`powertrainFuelSystemRelativeLevel` is reported as a percentage. `powertrainFuelSystemAbsoluteLevel` is reported in liters.
+
+### Does the AutoPi report fuel level on a Honda Pilot?
+The AutoPi connection for the Pilot lists trouble codes, low voltage battery voltage, altitude and coordinates. It does not list fuel signals, so use the DIMO LTE R1 for this job.
+
+### Can I get location for each refuel?
+Yes. Each segment returns start and end timestamps with latitude and longitude. Location data requires the matching permission on the Vehicle JWT, and DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+### How far back can one refuel query look?
+The `segments` query has a maximum date range of 31 days. Use the `after` argument to paginate when a range returns more segments than the `limit`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, Telemetry API Vehicle Signals and Telemetry API Vehicle Segments.*

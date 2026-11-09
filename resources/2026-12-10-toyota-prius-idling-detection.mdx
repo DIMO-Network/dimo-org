@@ -1,0 +1,79 @@
+---
+title: How to detect idling on a Toyota Prius with DIMO
+description: Detect idling on a Toyota Prius by querying idle segments from a
+  connected DIMO device, with steps, a GraphQL example and tuning options.
+slug: toyota-prius-idling-detection
+date: 2026-12-10
+authors:
+  - dimo-team
+tags:
+  - idling
+  - toyota-prius
+  - telemetry-api
+  - segments
+---
+
+To detect idling on a Toyota Prius, query the DIMO Telemetry API for segments with the idling detection mechanism. Idle segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. On a Toyota Prius, both the AutoPi (2008 and newer) and the DIMO LTE R1 (2009 and newer) report engine RPM and support idling detection. See the [Toyota Prius vehicle page](/vehicles/toyota/prius) for the full signal list.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Get your Developer JWT. You need your Client ID, Redirect URI and API Key. You can use the system-generated Developer JWT in the Developer Console, or generate one with your API key.
+2. Get the Prius shared with you. You need a vehicle shared with you before you can fetch a Vehicle JWT. Sharing is handled through DIMO Connect, so the owner consents to it.
+3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID and the permissions you request.
+4. Send the Vehicle JWT in the `Authorization` header of a request to the Telemetry API.
+5. Query `segments` with the idling detection mechanism. Set `from` and `to` (the maximum range is 31 days) and, if needed, tune the idle thresholds in `config`.
+6. Read each segment's `start`, `end` and `duration`. If `isOngoing` is true, the segment extends beyond your query range and `end` is not included.
+
+## Code
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Replace the `tokenId` with your Prius's vehicle token ID. Send the Vehicle JWT as `{ "Authorization": "<yourVehicleJwt>" }`.
+
+## FAQ
+
+### Which devices support idling detection on a Toyota Prius?
+The AutoPi (2008 and newer) and the DIMO LTE R1 (2009 and newer) both report engine RPM for the Prius and support idling detection. Idle segments require a DIMO device.
+
+### What counts as idle?
+Idle segments are contiguous periods where engine RPM remains in the idle range. By default, windows with a maximum RPM at or below 1000 are considered idle.
+
+### How do I make detection more or less sensitive?
+Adjust `maxIdleRpm` (minimum 300, maximum 3000) and `signalCountThreshold` in `config`. Higher `signalCountThreshold` values are more conservative and lower values are more sensitive.
+
+### How do I filter out very short idle periods?
+Set `minSegmentDurationSeconds` in `config`. It defaults to 240 seconds, with a minimum of 60 and a maximum of 3600.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

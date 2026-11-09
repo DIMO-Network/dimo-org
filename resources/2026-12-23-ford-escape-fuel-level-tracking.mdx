@@ -1,0 +1,85 @@
+---
+title: How to Track Fuel Level and Refuels on a Ford Escape
+description: Read fuel percentage and detect refuel segments on a Ford Escape
+  using DIMO's Telemetry API and a DIMO LTE R1 or AutoPi device.
+slug: ford-escape-fuel-level-tracking
+date: 2026-12-23
+authors:
+  - dimo-team
+tags:
+  - ford-escape
+  - fuel-level
+  - refuel
+  - telemetry-api
+---
+
+To track fuel level and refuels on a Ford Escape, connect a supported DIMO device, get a Vehicle JWT, and query the Telemetry API for fuel percentage and refuel segments. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Ford Escape, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report fuel percentage and support refuel events. See [Ford Escape on DIMO](/vehicles/ford/escape) for the full signal list.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key. You need your Client ID, Redirect URI, and API key.
+2. Get the Escape shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Sharing is done through DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
+4. Exchange the Developer JWT for a Vehicle JWT through the Token Exchange API. Request the all-time, non-location data permission (privilege 1), which covers fuel data.
+5. Call the Telemetry API with the Vehicle JWT in the `Authorization` header. Use `signalsLatest` to read the current `powertrainFuelSystemRelativeLevel` value, or `signals` to read it over a time range with an aggregation.
+6. To find refuels, query `segments` with the `refuel` detection mechanism. Each segment marks a period where fuel level rises significantly. By default the minimum rise is 15 percent, and you can change it with `minIncreasePercent` in `config`. The maximum date range is 31 days.
+7. Request `powertrainFuelSystemRelativeLevel` with `FIRST` and `LAST` aggregations in `signalRequests` if you want the explicit fuel level at the start and end of each refuel. The documentation says the level signal at start and end is part of the default set for refuel segments.
+
+## Code
+
+```graphql
+# Send with header: { "Authorization": "<yourVehicleJwt>" }
+# Replace <vehicleTokenId> with your Escape's token ID.
+
+query LatestFuel {
+  signalsLatest(tokenId: <vehicleTokenId>) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+  }
+}
+
+query FuelRefuels {
+  segments(
+    tokenId: <vehicleTokenId>
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+  ) {
+    start {
+      timestamp
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Ford Escape connections report fuel level?
+The DIMO LTE R1 and AutoPi both report fuel percentage as `powertrainFuelSystemRelativeLevel`. Both also support refuel events.
+
+### Do I need hardware to get fuel data from an Escape?
+Yes. The fuel data described here comes from a DIMO LTE R1 or an AutoPi installed in the vehicle.
+
+### What counts as a refuel?
+A refuel segment is detected where fuel level rises significantly. The default minimum increase is 15 percent, and you can set a different value with `minIncreasePercent`.
+
+### How far back can I query refuels?
+The `segments` query has a maximum date range of 31 days per request. Use `limit` and `after` to page through results.
+
+### Can I read the fuel level over time instead of only the latest value?
+Yes. Use the `signals` query with a `from`, `to`, and `interval`, and include an aggregation type such as `LAST` on the fuel signal.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, plus the Ford Escape vehicle record.*

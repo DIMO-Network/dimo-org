@@ -1,0 +1,69 @@
+---
+title: How to monitor harsh braking on a Toyota Corolla
+description: Pull harsh braking events from a Toyota Corolla with a DIMO LTE R1
+  by authenticating, getting the vehicle shared, and querying the Telemetry API.
+slug: toyota-corolla-harsh-braking-alerts
+date: 2026-12-14
+authors:
+  - dimo-team
+tags:
+  - toyota-corolla
+  - harsh-braking
+  - vehicle-events
+  - telemetry-api
+---
+
+On a Toyota Corolla, the DIMO LTE R1 reports harsh braking events, for model year 2010 and newer. Authenticate with DIMO, get the car shared with your app, then query its events in the Telemetry API filtered to the harsh braking tag. The AutoPi connection for the Corolla lists an idling event only, so harsh braking comes from the DIMO LTE R1. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full signal list.
+
+Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the Developer Console. You need your Client ID, Redirect URI and API Key.
+2. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key through a server SDK.
+3. Get the Corolla shared with your app using DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT. The Corolla needs a DIMO LTE R1 connected, because DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
+4. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID and the permissions you request.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
+6. Query `events` and filter by the `behavior.harshBraking` tag. Each event returns `timestamp`, `name`, `source`, `durationNs` and `metadata`.
+
+## Code
+
+This GraphQL query is adapted from the Telemetry API documentation. Replace `<vehicleTokenId>` with the Corolla's token ID. Send your Vehicle JWT in the header shown first.
+
+```json
+{ "Authorization": "<yourVehicleJwt>" }
+```
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: <vehicleTokenId>
+    tags: { containsAny: ["behavior.harshBraking"] }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+## FAQ
+
+### Which Corolla connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking events on the Corolla. The AutoPi connection lists an idling event only.
+
+### Which model years support this?
+The DIMO LTE R1 is seen on the Corolla from model year 2010 and newer.
+
+### Do I need the owner's permission?
+Yes. The vehicle must be shared with you before you can fetch a Vehicle JWT, and sharing is done through DIMO Connect.
+
+### What does each event contain?
+Each event has a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.
+
+### What other event types does the R1 define?
+The R1 event glossary in the documentation lists ExtremeBraking, HarshAcceleration, HarshBraking and HarshCornering. This guide covers harsh braking only.
+
+*Methodology: based on the DIMO documentation pages Authentication, Building Your First App, and Telemetry API Vehicle Events.*

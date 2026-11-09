@@ -1,0 +1,64 @@
+---
+title: How to monitor harsh braking events on a Honda CR-V
+description: Pull harsh braking events from a Honda CR-V with a DIMO LTE R1 by
+  authenticating, getting a vehicle shared, and querying the Telemetry API for
+  events.
+slug: honda-cr-v-harsh-braking-alerts
+date: 2026-12-16
+authors:
+  - dimo-team
+tags:
+  - harsh-braking
+  - vehicle-events
+  - honda-cr-v
+  - telemetry-api
+---
+
+To monitor harsh braking on a Honda CR-V, connect the car with a DIMO LTE R1 and query its harsh braking events through the DIMO Telemetry API. DIMO supports harsh braking events on the CR-V through the DIMO LTE R1 for model year 2008 and newer. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+The AutoPi connection listed for the CR-V reports an idling event but not harsh braking, so use the DIMO LTE R1 for this job. See the full signal list on the [Honda CR-V vehicle page](/vehicles/honda/cr-v).
+
+## Steps
+
+1. Create a Developer License in the Developer Console and gather your `Client ID`, `Redirect URI` and `API Key`.
+2. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
+3. Get the CR-V shared with your app through DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT.
+4. Send a request to the Token Exchange API with the vehicle's token ID and the permissions you need to exchange your Developer JWT for a Vehicle JWT. The Vehicle JWT is valid for a short time and for one vehicle only.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
+6. Query the `events` resource and filter by the `behavior.harshBraking` tag. Each event returns a timestamp, name, source, duration in nanoseconds and metadata.
+7. Run this from your backend, as the docs recommend a client-server architecture, and send results to your storage or frontend.
+
+## Code
+
+This query uses only the arguments and fields documented for the `events` resource. Send it to the Telemetry API with your Vehicle JWT in the `Authorization` header.
+
+```graphql
+# Header: { "Authorization": "<yourVehicleJwt>" }
+query HarshBrakingEvents {
+  events(
+    tags: { containsAny: ["behavior.harshBraking"] }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+## FAQ
+
+### Which connection reports harsh braking on a Honda CR-V?
+The DIMO LTE R1 does. DIMO Events are only available on vehicles equipped with an R1 LTE.
+
+### What does a harsh braking event mean?
+It is rapid deceleration detected by the device. Events are pre-defined by the data connection, so the source provider determines what counts as a risky event.
+
+### What does each event return?
+Each event has a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.
+
+### Do I need a Vehicle JWT?
+Yes. A Developer JWT does not give access to vehicle data, so you exchange it for a Vehicle JWT for the specific vehicle once the owner has shared it with you.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App and the Telemetry API Vehicle Events reference.*

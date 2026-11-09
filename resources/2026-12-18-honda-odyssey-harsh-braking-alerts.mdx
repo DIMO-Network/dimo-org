@@ -1,0 +1,59 @@
+---
+title: How to monitor harsh braking on a Honda Odyssey
+description: Read harsh braking events from a Honda Odyssey with the DIMO LTE R1
+  by getting the vehicle shared, authenticating, and querying vehicle events.
+slug: honda-odyssey-harsh-braking-alerts
+date: 2026-12-18
+authors:
+  - dimo-team
+tags:
+  - honda-odyssey
+  - harsh-braking
+  - vehicle-events
+  - telemetry-api
+---
+
+On a Honda Odyssey, the DIMO LTE R1 reports harsh braking events for model year 2011 and newer. DIMO gives developers API access to vehicle-state data, and you read these events through the Telemetry API after the owner shares the vehicle with your app. The AutoPi connection listed for the Odyssey does not report events, so harsh braking depends on the DIMO LTE R1. See the [Honda Odyssey vehicle page](/vehicles/honda/odyssey) for full coverage.
+
+## Steps
+
+1. Create a Developer License in the Developer Console, generate an API key, and add your redirect URIs.
+2. Get the Odyssey shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a shared vehicle before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key through a server SDK.
+4. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID and the permissions you request.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request, and query `events` filtered by the `behavior.harshBraking` tag.
+6. Read the `timestamp`, `durationNs`, `source` and `metadata` fields on each returned event.
+
+## Code
+
+```graphql
+# Send to https://telemetry-api.dimo.zone
+# Header: { "Authorization": "<yourVehicleJwt>" }
+query HarshBrakingEvents {
+  events(
+    tags: { containsAny: ["behavior.harshBraking"] }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+## FAQ
+
+### Which Honda Odyssey connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking on the Odyssey, from model year 2011 and newer. The AutoPi connection listed for this car does not report events.
+
+### What does a harsh braking event contain?
+The documented event fields are `timestamp`, `name`, `source`, `durationNs` and `metadata`. The R1 event glossary describes harsh braking as rapid deceleration detected by the device.
+
+### Can I filter for other event types?
+Yes. The `tags` argument also accepts `behavior.harshAcceleration`, `behavior.harshCornering` and `safety.collision`. Which of these the Odyssey reports is listed on its vehicle page, and harsh braking is the event it lists.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Events reference.*

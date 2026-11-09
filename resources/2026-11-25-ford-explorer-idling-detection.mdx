@@ -1,0 +1,75 @@
+---
+title: How to Detect Idling on a Ford Explorer with DIMO
+description: "Query idle periods for a Ford Explorer through DIMO: authenticate,
+  get a vehicle token, and request idling segments with an engine RPM ceiling
+  you choose."
+slug: ford-explorer-idling-detection
+date: 2026-11-25
+authors:
+  - dimo-team
+tags:
+  - idling
+  - ford-explorer
+  - telemetry-api
+  - segments
+---
+
+To detect idling on a Ford Explorer, query the DIMO Telemetry API for trip segments using the idling detection mechanism. Idling segments are contiguous periods where engine RPM stays in the idle range, and this mechanism requires a DIMO device. On a Ford Explorer, the DIMO LTE R1 (2013 and newer) and AutoPi (2008 and newer) both report engine RPM and support idling events. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list.
+
+## Steps
+
+1. Create a Developer License in the Developer Console and generate an API key and redirect URIs.
+2. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
+3. Have the Explorer's owner share the vehicle with your app through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
+4. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID and the permissions your app needs.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request. Call the `segments` query with `mechanism: idling`, a `from` and `to` range of at most 31 days, and the vehicle token ID.
+6. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, minimum 300, maximum 3000). `minSegmentDurationSeconds` drops short segments (default 240). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+7. Read each returned segment's `start`, `end`, `duration` and `isOngoing`. If `isOngoing` is true, the idle period extends past your query range and `end` is not included.
+
+## Code
+
+```graphql
+# Header: { "Authorization": "<yourVehicleJwt>" }
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: AVG }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Do I need hardware to detect idling on an Explorer?
+Yes. The idling mechanism requires a DIMO device. For the Explorer, the DIMO LTE R1 and AutoPi both list idling events.
+
+### Which model years does this cover?
+The DIMO LTE R1 is listed for 2013 and newer Explorers. The AutoPi is listed for 2008 and newer.
+
+### How do I change what counts as idle?
+Set `maxIdleRpm` in `config`. Windows where the maximum RPM is at or below that value are treated as idle.
+
+### How many segments can one request return?
+The default `limit` is 100 and the maximum is 200. Use the `after` argument with the start timestamp of the last segment to page through results.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*

@@ -1,0 +1,74 @@
+---
+title: How to Detect Idling on a Honda CR-V with DIMO
+description: Detect idling on a Honda CR-V by querying idle segments from the
+  DIMO Telemetry API, using a DIMO LTE R1 or AutoPi connected to the vehicle.
+slug: honda-cr-v-idling-detection
+date: 2026-11-20
+authors:
+  - dimo-team
+tags:
+  - idling
+  - honda-cr-v
+  - telemetry-api
+  - segments
+---
+
+To detect idling on a Honda CR-V, query the DIMO Telemetry API for idling segments, which are contiguous periods where engine RPM stays in the idle range. DIMO supports idling on the CR-V through both the DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer), and both report engine RPM. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+
+## Steps
+
+1. Create a Developer License and get a Developer JWT in the Developer Console at the [DIMO Developer Console](https://console.dimo.org). The Developer JWT gives general API access but no vehicle data.
+2. Get the CR-V shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a shared vehicle before you can request a Vehicle JWT.
+3. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request the permission for all-time, non-location data. Segment start and end locations are returned by the segments query, so also request a location permission if you want them.
+4. Call the `segments` query on the Telemetry API with `mechanism: idling`. Idling detection requires a DIMO device. On a CR-V, the DIMO LTE R1 and AutoPi both qualify and report engine RPM (`powertrainCombustionEngineSpeed`).
+5. Tune detection with `config`. `maxIdleRpm` sets the upper RPM bound for idle (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240). `signalCountThreshold` controls sensitivity.
+6. Add `signalRequests` for context per idle period. On a CR-V, `powertrainCombustionEngineSpeed` is reported by both devices. The DIMO LTE R1 also reports `powertrainFuelSystemRelativeLevel`, so you can see fuel level at the start and end of each idle period. The query range is limited to 31 days.
+
+## Code
+
+This GraphQL query returns idle segments for one CR-V over a week. Replace the token ID and dates with your own, and send it to the Telemetry API with your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 117315
+    from: "2025-11-01T09:21:19Z"
+    to: "2025-11-07T09:21:19Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+## FAQ
+
+### Which Honda CR-V connections support idling detection?
+The DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer) both support idling on the CR-V. Idling detection requires a DIMO device. See the full signal list on the vehicle page at /vehicles/honda/cr-v.
+
+### What counts as idling?
+An idling segment is a contiguous period where engine RPM stays in the idle range. By default, windows with a maximum RPM at or below 1000 are treated as idle. You can change this with `maxIdleRpm`.
+
+### How do I ignore very short idle periods?
+Set `minSegmentDurationSeconds` in `config`. The default is 240 seconds, with a minimum of 60 and a maximum of 3600. Use `maxGapSeconds` to control when a gap in data splits one segment into two.
+
+### Does this replace GPS tracking?
+No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. Idling segments come from engine RPM and can sit alongside your existing location data.
+
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*
