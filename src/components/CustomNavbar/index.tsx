@@ -1,7 +1,6 @@
 import Link from '@docusaurus/Link';
 import EnglishLink from '../EnglishLink';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { useAlternatePageUtils } from '@docusaurus/theme-common/internal';
 import { useState } from 'react';
 import { LINKS } from '../../links';
 import { localeSwitchPath } from '../../lib/seo';
@@ -33,13 +32,13 @@ interface CustomNavbarProps {
   dark?: boolean;
 }
 
-// Same URLs as Docusaurus's own locale dropdown: pathname:// plus
-// autoAddBaseUrl={false} so the target locale's baseUrl isn't doubled.
+// pathname:// plus autoAddBaseUrl={false} so Link doesn't prefix the current
+// locale's baseUrl. Docusaurus's createUrl isn't used: on a locale home served
+// without the trailing slash (/ja), it keeps "/ja" in the path (/zh-Hans//ja).
 function useLocaleLinks() {
   const {
     i18n: { currentLocale, locales, localeConfigs },
   } = useDocusaurusContext();
-  const alternatePageUtils = useAlternatePageUtils();
   const { path } = usePageLocale();
   return {
     currentLabel: localeConfigs[currentLocale].label,
@@ -47,11 +46,7 @@ function useLocaleLinks() {
       locale,
       label: localeConfigs[locale].label,
       lang: localeConfigs[locale].htmlLang,
-      to: `pathname://${localeSwitchPath(
-        locale,
-        path,
-        alternatePageUtils.createUrl({ locale, fullyQualified: false })
-      )}`,
+      to: `pathname://${localeSwitchPath(locale, path)}`,
       isCurrent: locale === currentLocale,
     })),
   };

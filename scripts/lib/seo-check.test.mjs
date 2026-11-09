@@ -447,19 +447,25 @@ test('isNoindex reads quoted and unquoted robots metas', () => {
 });
 
 test('localeSwitchPath keeps the locale copy on translated pages', () => {
-  assert.equal(
-    localeSwitchPath('ja', '/pricing', '/ja/pricing'),
-    '/ja/pricing'
-  );
-  assert.equal(localeSwitchPath('en', '/pricing', '/pricing'), '/pricing');
+  assert.equal(localeSwitchPath('ja', '/pricing'), '/ja/pricing');
+  assert.equal(localeSwitchPath('en', '/pricing'), '/pricing');
+  assert.equal(localeSwitchPath('zh-Hans', '/'), '/zh-Hans');
+  assert.equal(localeSwitchPath('en', '/'), '/');
 });
 
 test('localeSwitchPath points English-only pages at the locale home', () => {
   for (const path of ['/vehicles/audi/a3', '/resources', '/docs/x', '/blog']) {
-    assert.equal(localeSwitchPath('en', path, path), '/');
-    assert.equal(
-      localeSwitchPath('zh-Hant', path, `/zh-Hant${path}`),
-      '/zh-Hant/'
-    );
+    assert.equal(localeSwitchPath('en', path), '/');
+    assert.equal(localeSwitchPath('zh-Hant', path), '/zh-Hant');
   }
+});
+
+test('switching from a locale home served without a trailing slash', () => {
+  const path = pagePath('/zh-Hans', '/zh-Hans/');
+  assert.equal(localeSwitchPath('ja', path), '/ja');
+  assert.equal(localeSwitchPath('en', path), '/');
+  assert.equal(
+    localeSwitchPath('es', pagePath('/zh-Hans/pricing', '/zh-Hans/')),
+    '/es/pricing'
+  );
 });
