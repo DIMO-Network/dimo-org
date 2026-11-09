@@ -62,7 +62,7 @@ export function pagePath(pathname: string, baseUrl: string): string {
   const rest = `${pathname}/`.startsWith(baseUrl)
     ? `${pathname}/`.slice(baseUrl.length)
     : pathname.replace(/^\//, '');
-  return `/${rest}`.replace(/\/+$/, '') || '/';
+  return `/${rest}`.replace(/^\/+/, '/').replace(/\/+$/, '') || '/';
 }
 
 // One entity per company, site and product across every locale: these keep

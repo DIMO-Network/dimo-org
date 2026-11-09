@@ -469,3 +469,12 @@ test('switching from a locale home served without a trailing slash', () => {
     '/es/pricing'
   );
 });
+
+test('pagePath collapses leading slashes so menu links stay on dimo.org', () => {
+  assert.equal(pagePath('//evil.com', '/'), '/evil.com');
+  assert.equal(pagePath('/ja//evil.com', '/ja/'), '/evil.com');
+  assert.equal(
+    localeSwitchPath('en', pagePath('//evil.com/x', '/')),
+    '/evil.com/x'
+  );
+});
