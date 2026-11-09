@@ -7,7 +7,12 @@ export const LOCALES = ['en', 'es', 'ja', 'zh-Hans', 'zh-Hant'];
 
 // Static files that are English-only and belong at the site root, not in
 // every build/<locale>/ copy of static/.
-export const ROOT_ONLY_FILES = ['llms.txt', 'llms-full.txt', 'robots.txt'];
+export const ROOT_ONLY_FILES = [
+  'llms.txt',
+  'llms-full.txt',
+  'robots.txt',
+  '76f8c4f00079ad25232b07d92e357b8d.txt',
+];
 
 // Whether this Docusaurus build is for English (the docs/blog locale).
 // `docusaurus start` without --locale sets the env var to "undefined".
