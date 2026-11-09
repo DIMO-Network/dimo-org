@@ -1,6 +1,7 @@
-// Near-duplicate check for built vehicle pages. Compares the AEO body
-// (inside [data-aeo-body], so shared chrome is excluded) of every pair of
-// model pages from the same make using 5-word shingle Jaccard similarity.
+// Near-duplicate check for built vehicle and /resources pages. Compares the AEO
+// body (inside [data-aeo-body], so shared chrome is excluded) of every pair of
+// model pages from the same make, and of every pair of guides, using 5-word
+// shingle Jaccard similarity.
 // Usage: node scripts/aeo/dup-check.mjs [buildDir]
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
@@ -66,6 +67,28 @@ function modelPages(vehiclesDir) {
   return pages;
 }
 
+// Guides under /resources share templates too (one topic across many cars),
+// so every pair is compared. They group as one "make" for comparePairs.
+function resourcePages(resourcesDir) {
+  if (!existsSync(resourcesDir)) return [];
+  return readdirSync(resourcesDir)
+    .filter(f => f.endsWith('.html'))
+    .flatMap(f => {
+      const words = aeoBodyText(
+        readFileSync(path.join(resourcesDir, f), 'utf8')
+      );
+      return words
+        ? [
+            {
+              make: 'resources',
+              page: `resources/${f.replace(/\.html$/, '')}`,
+              shingles: shingles(words),
+            },
+          ]
+        : [];
+    });
+}
+
 export function comparePairs(pages) {
   const pairs = [];
   for (let i = 0; i < pages.length; i++) {
@@ -83,10 +106,13 @@ export function comparePairs(pages) {
 
 function main() {
   const buildDir = process.argv[2] ?? 'build';
-  const pages = modelPages(path.join(buildDir, 'vehicles'));
+  const pages = [
+    ...modelPages(path.join(buildDir, 'vehicles')),
+    ...resourcePages(path.join(buildDir, 'resources')),
+  ];
   const pairs = comparePairs(pages);
   console.log(
-    `dup-check: ${pages.length} vehicle pages, ${pairs.length} same-make pairs`
+    `dup-check: ${pages.length} pages, ${pairs.length} pairs compared`
   );
   for (const p of pairs.slice(0, 10)) {
     const flag = p.score > FAIL ? 'FAIL' : p.score > WARN ? 'warn' : 'ok  ';
