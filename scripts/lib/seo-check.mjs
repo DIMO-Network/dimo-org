@@ -86,7 +86,8 @@ export function checkPage(html, file, existing) {
     }
   };
 
-  if (!translated && locale !== 'en') {
+  // Search is noindex and every locale build has its own.
+  if (!translated && locale !== 'en' && !isNoindex(html)) {
     report(`English-only page built in locale ${locale}`);
   }
 

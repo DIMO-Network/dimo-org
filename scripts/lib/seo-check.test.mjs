@@ -114,6 +114,12 @@ test('checkPage reports an English-only page built in a locale', () => {
   );
 });
 
+test('checkPage allows a noindex search page in a locale build', () => {
+  const url = 'https://dimo.org/zh-Hans/search';
+  const html = head({ canonical: url, ogUrl: url, robots: 'noindex, follow' });
+  assert.deepEqual(checkPage(html, 'zh-Hans/search.html', new Set()), []);
+});
+
 test('checkPage returns [] for an English-only vehicle page', () => {
   const url = 'https://dimo.org/vehicles/toyota/camry';
   const html = head({
