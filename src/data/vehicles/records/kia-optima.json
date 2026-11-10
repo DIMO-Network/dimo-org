@@ -260,7 +260,7 @@
     },
     {
       "q": "How do I verify Kia Optima mileage?",
-      "a": "Use a DIMO device, which reports the Odometer signal. Call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the resulting rawVC through the Telemetry API."
+      "a": "Use a DIMO device, which reports the Odometer signal. Call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO supports the Kia Optima through a DIMO device, for model years 2012 and newer, and this coverage has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Read the data through the Telemetry API using a Vehicle JWT for a vehicle shared with you."

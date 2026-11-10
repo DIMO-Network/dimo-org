@@ -248,7 +248,7 @@
     },
     {
       "q": "How do I verify Ford Edge mileage?",
-      "a": "The Ford Edge reports an Odometer signal in km through a DIMO device. To get verifiable proof, POST to the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API."
+      "a": "The Ford Edge reports an Odometer signal in km through a DIMO device. To get verifiable proof, POST to the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ford Edge, that data comes through a DIMO device, with coverage for model years 2011 and newer. The record lists this coverage as tested, not expected. Query it through the Telemetry API with GraphQL, or receive events through webhooks."

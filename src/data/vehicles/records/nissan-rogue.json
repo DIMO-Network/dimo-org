@@ -269,7 +269,7 @@
     },
     {
       "q": "How do I verify Nissan Rogue mileage?",
-      "a": "The DIMO LTE R1 device reports odometer. For verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+      "a": "The DIMO LTE R1 device reports odometer. For verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Nissan Rogue, data comes from a DIMO device, covering 2010 and newer model years. Coverage for this model has been tested rather than assumed. You read it through the Telemetry API with a Vehicle JWT. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

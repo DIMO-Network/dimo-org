@@ -150,7 +150,7 @@
     },
     {
       "q": "How do I verify Tesla Cybertruck mileage?",
-      "a": "The odometer signal comes from Tesla's cloud connection. To get verifiable proof, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the rawVC through the Telemetry API."
+      "a": "The odometer signal comes from Tesla's cloud connection. To get verifiable proof, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO provides a vehicle data API for the Tesla Cybertruck, an EV, through Tesla's cloud connection for 2024 and newer model years. Coverage for this connection is tested, not just expected. You read the data with a Vehicle JWT through the GraphQL Telemetry API. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

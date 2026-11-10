@@ -142,7 +142,7 @@
   "faq": [
     {
       "q": "How do I verify Tesla Model X mileage?",
-      "a": "Tesla's cloud connection provides the odometer signal (powertrainTransmissionTravelledDistance, in km) for the Model X. To get verifiable proof of it, call the Attestation API's odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API."
+      "a": "Tesla's cloud connection provides the odometer signal (powertrainTransmissionTravelledDistance, in km) for the Model X. To get verifiable proof of it, call the Attestation API's odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect recharging on a Tesla Model X?",

@@ -199,7 +199,7 @@
     },
     {
       "q": "How do I verify Audi A3 mileage?",
-      "a": "Use a DIMO device to supply the odometer signal. Then request an odometer statement attestation with a POST to /v2/attestation/odometer-statement/:tokenId on the Attestation API. Retrieve the rawVC through the Telemetry API."
+      "a": "Use a DIMO device to supply the odometer signal. Then request an odometer statement attestation with a POST to /v2/attestation/odometer-statement/:tokenId on the Attestation API. Retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Audi A3, data comes from a DIMO device, covering model years 2010 and newer. This coverage has been tested rather than assumed, and you query it through the Telemetry API with a Vehicle JWT. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."
