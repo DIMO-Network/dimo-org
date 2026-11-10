@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Subaru Outback via API
-description: Use DIMO Telemetry API idle segments to find when a Subaru Outback idles, with a DIMO LTE R1 (2010 and newer) or AutoPi (2013 and newer).
+description: Use DIMO Telemetry API idle segments to find when a Subaru Outback idles, with a DIMO LTE R1 (2010 and newer) or AutoPi (2013–2024).
 slug: subaru-outback-idling-detection
 date: 2026-11-23
 authors:
@@ -12,7 +12,7 @@ tags:
   - subaru
 ---
 
-To detect idling on a Subaru Outback, query the DIMO Telemetry API for segments with the idling detection mechanism. DIMO supports idling for the Outback on both the DIMO LTE R1 (2010 and newer) and AutoPi (2013 and newer), and both report engine RPM as `powertrainCombustionEngineSpeed`. Each returned segment is a contiguous period where engine RPM stays in the idle range, and idle detection requires a DIMO device.
+To detect idling on a Subaru Outback, query the DIMO Telemetry API for segments with the idling detection mechanism. DIMO supports idling for the Outback on both the DIMO LTE R1 (2010 and newer) and AutoPi (2013–2024), and both report engine RPM as `powertrainCombustionEngineSpeed`. Each returned segment is a contiguous period where engine RPM stays in the idle range, and idle detection requires a DIMO device.
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Subaru Outback vehicle page](/vehicles/subaru/outback) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
@@ -67,7 +67,7 @@ To try this on your own Outback data, get a Developer License in the [Developer 
 ## FAQ
 
 ### Which hardware detects idling on a Subaru Outback?
-DIMO supports idling for the Outback on the DIMO LTE R1 (2010 and newer) and on AutoPi (2013 and newer). Idling segments require a DIMO device.
+DIMO supports idling for the Outback on the DIMO LTE R1 (2010 and newer) and on AutoPi (2013–2024). Idling segments require a DIMO device.
 
 ### How does DIMO define an idle period?
 An idling segment is a contiguous period where engine RPM remains in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.

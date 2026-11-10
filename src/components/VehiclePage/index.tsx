@@ -13,6 +13,7 @@ import {
   eventConnections,
   events,
   formatYears,
+  coverageYears,
   sinceYear,
   vehicleName,
   yearSpan,
@@ -26,11 +27,12 @@ import VehicleList from './VehicleList';
 const SITE = 'https://dimo.org';
 
 function KeyFacts({ record }: { record: VehiclePageData['record'] }) {
+  const span = yearSpan(record.coverage);
   return (
     <aside className={styles.facts} aria-label="Key facts">
       <dl>
         <dt>Model years</dt>
-        <dd>{sinceYear(yearSpan(record.coverage).from)}</dd>
+        <dd>{sinceYear(span.from)}</dd>
         <dt>Connection types</dt>
         <dd>
           {connectionTypes(record)
@@ -41,7 +43,7 @@ function KeyFacts({ record }: { record: VehiclePageData['record'] }) {
           <React.Fragment key={i}>
             <dt>Signals via {c.provider ?? CONNECTION_LABELS[c.type]}</dt>
             <dd>
-              {c.signals.length} ({sinceYear(c.years.from)})
+              {c.signals.length} ({coverageYears(c, span.to)})
             </dd>
           </React.Fragment>
         ))}
@@ -55,6 +57,7 @@ function KeyFacts({ record }: { record: VehiclePageData['record'] }) {
 }
 
 function SignalTables({ record }: { record: VehiclePageData['record'] }) {
+  const latest = yearSpan(record.coverage).to;
   return (
     <>
       <h2>Signals by connection type</h2>
@@ -62,7 +65,7 @@ function SignalTables({ record }: { record: VehiclePageData['record'] }) {
         // Records generated from network data have no frequency, so the
         // column only appears when some signal in the table has one.
         const hasFrequency = c.signals.some(s => s.typicalFrequency);
-        const heading = `${CONNECTION_LABELS[c.type]}${c.provider ? ` — ${c.provider}` : ''} (${sinceYear(c.years.from)})`;
+        const heading = `${CONNECTION_LABELS[c.type]}${c.provider ? ` — ${c.provider}` : ''} (${coverageYears(c, latest)})`;
         const table = (
           <table>
             <thead>

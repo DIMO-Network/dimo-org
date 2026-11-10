@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Ram 1500 via API
-description: Find idling periods on a Ram 1500 with DIMO Telemetry API idle segments. The DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) report idling.
+description: Find idling periods on a Ram 1500 with DIMO Telemetry API idle segments. The DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) report idling.
 slug: ram-1500-idling-detection
 date: 2026-12-04
 authors:
@@ -12,7 +12,7 @@ tags:
   - ram
 ---
 
-To detect idling on a Ram 1500, query the DIMO Telemetry API for segments with the idling detection mechanism. Idling detection requires a DIMO device, and on a Ram 1500 both the DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) support idling and report engine RPM (`powertrainCombustionEngineSpeed`).
+To detect idling on a Ram 1500, query the DIMO Telemetry API for segments with the idling detection mechanism. Idling detection requires a DIMO device, and on a Ram 1500 both the DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) support idling and report engine RPM (`powertrainCombustionEngineSpeed`).
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the full list of signals on this truck, see the [Ram 1500 vehicle page](/vehicles/ram/1500). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
@@ -26,7 +26,7 @@ DIMO gives developers API access to vehicle-state data: diagnostics, fault codes
 6. Read `start`, `end`, `duration` and `isOngoing` from each returned segment. If `isOngoing` is true, the segment extends beyond your query range and `end` is not included.
 7. Optionally request extra aggregates per segment through `signalRequests`, such as the maximum of `powertrainCombustionEngineSpeed` to confirm the engine stayed in the idle range.
 
-The DIMO LTE R1 on a Ram 1500 (2013 and newer) and AutoPi (2012 and newer) both report `powertrainCombustionEngineSpeed`. The DIMO LTE R1 also reports `isIgnitionOn`. You can use that signal to cross-check whether the ignition was on during a segment. The AutoPi does not report it on this truck.
+The DIMO LTE R1 on a Ram 1500 (2013 and newer) and AutoPi (2012–2025) both report `powertrainCombustionEngineSpeed`. The DIMO LTE R1 also reports `isIgnitionOn`. You can use that signal to cross-check whether the ignition was on during a segment. The AutoPi does not report it on this truck.
 
 ## Code
 
@@ -69,7 +69,7 @@ Haven't set up access yet? Create a Developer License in the [Developer Console]
 ## FAQ
 
 ### Which Ram 1500 hardware supports idling detection?
-The DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) both report idling on the Ram 1500. Idling detection requires a DIMO device.
+The DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) both report idling on the Ram 1500. Idling detection requires a DIMO device.
 
 ### How does DIMO decide a period is idling?
 Idling segments are contiguous periods where engine RPM stays in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.

@@ -12,7 +12,7 @@ tags:
   - chevrolet
 ---
 
-To get check-engine alerts on a Chevrolet Equinox, create a DIMO Vehicle Triggers webhook on the distance-with-MIL signal, subscribe the vehicle, and read the trouble codes when the webhook fires. Both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report the trouble code list (`obdDTCList`) and distance with MIL on (`obdDistanceWithMIL`) for this car, and the DIMO LTE R1 also reports the DTC count (`obdStatusDTCCount`). See [the Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list. For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
+To get check-engine alerts on a Chevrolet Equinox, create a DIMO Vehicle Triggers webhook on the distance-with-MIL signal, subscribe the vehicle, and read the trouble codes when the webhook fires. Both the DIMO LTE R1 (2008 and newer) and AutoPi (2012–2025) report the trouble code list (`obdDTCList`) and distance with MIL on (`obdDistanceWithMIL`) for this car, and the DIMO LTE R1 also reports the DTC count (`obdStatusDTCCount`). See [the Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list. For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
 
@@ -67,7 +67,7 @@ Your next step is a Developer License from the [Developer Console](https://conso
 ## FAQ
 
 ### Which Equinox model years are supported?
-The DIMO LTE R1 supports Equinox model years 2008 and newer, and the AutoPi 2012 and newer.
+The DIMO LTE R1 supports Equinox model years 2008 and newer, and the AutoPi 2012–2025.
 
 ### Which device reports a trouble code count?
 The DIMO LTE R1 reports the DTC count. AutoPi does not report it for this car, but it does report distance since DTC clear and warmups since DTC clear.

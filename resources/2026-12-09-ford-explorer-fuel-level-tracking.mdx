@@ -1,6 +1,6 @@
 ---
 title: How to track Ford Explorer fuel level and refuels via API
-description: "Read Ford Explorer fuel level in percent and list refuels with the DIMO Telemetry API, on the DIMO LTE R1 (2013 and newer) or AutoPi (2008 and newer)."
+description: "Read Ford Explorer fuel level in percent and list refuels with the DIMO Telemetry API, on the DIMO LTE R1 (2013 and newer) or AutoPi (2008–2020)."
 slug: ford-explorer-fuel-level-tracking
 date: 2026-12-09
 authors:
@@ -12,7 +12,7 @@ tags:
   - ford
 ---
 
-To track fuel level and refuels on a Ford Explorer, read the current level through the DIMO Telemetry API `signalsLatest` query and find refuels by querying `segments` with refuel detection. On an Explorer, the DIMO LTE R1 (2013 and newer) and AutoPi (2008 and newer) both report fuel as a percentage, `powertrainFuelSystemRelativeLevel`, and both support refuel events. Neither device reports a liters signal for this model.
+To track fuel level and refuels on a Ford Explorer, read the current level through the DIMO Telemetry API `signalsLatest` query and find refuels by querying `segments` with refuel detection. On an Explorer, the DIMO LTE R1 (2013 and newer) and AutoPi (2008–2020) both report fuel as a percentage, `powertrainFuelSystemRelativeLevel`, and both support refuel events. Neither device reports a liters signal for this model.
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ford Explorer vehicle page](/vehicles/ford/explorer). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
@@ -79,7 +79,7 @@ To go further, sign in to the [Developer Console](https://console.dimo.org/sign-
 ## FAQ
 
 ### Which Ford Explorer connections report fuel level?
-The DIMO LTE R1 (2013 and newer) and AutoPi (2008 and newer) both report Fuel Percentage as `powertrainFuelSystemRelativeLevel`. Both also report refuel events on the Explorer.
+The DIMO LTE R1 (2013 and newer) and AutoPi (2008–2020) both report Fuel Percentage as `powertrainFuelSystemRelativeLevel`. Both also report refuel events on the Explorer.
 
 ### How does DIMO detect a refuel?
 Refuel detection looks for places where the fuel level rises significantly. The default threshold is a 15 percent increase within a window, and you can adjust it with `minIncreasePercent`.

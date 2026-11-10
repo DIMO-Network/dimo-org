@@ -1,6 +1,6 @@
 ---
 title: How to track Subaru Outback fuel level and refuels via API
-description: "Read Subaru Outback fuel level with DIMO: percent and liters on the DIMO LTE R1 (2010 and newer), percent on the AutoPi (2013 and newer)."
+description: "Read Subaru Outback fuel level with DIMO: percent and liters on the DIMO LTE R1 (2010 and newer), percent on the AutoPi (2013–2024)."
 slug: subaru-outback-fuel-level-tracking
 date: 2026-12-07
 authors:
@@ -12,7 +12,7 @@ tags:
   - subaru
 ---
 
-To track fuel level and refuels on a Subaru Outback, connect a DIMO device, share the vehicle with your app, and query the Telemetry API with `signalsLatest` for the level and `segments` with `mechanism: refuel` for fill-ups. On a Subaru Outback, both the DIMO LTE R1 (model year 2010 and newer) and the AutoPi (model year 2013 and newer) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. The DIMO LTE R1 also reports liters as `powertrainFuelSystemAbsoluteLevel`.
+To track fuel level and refuels on a Subaru Outback, connect a DIMO device, share the vehicle with your app, and query the Telemetry API with `signalsLatest` for the level and `segments` with `mechanism: refuel` for fill-ups. On a Subaru Outback, both the DIMO LTE R1 (model year 2010 and newer) and the AutoPi (model years 2013–2024) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. The DIMO LTE R1 also reports liters as `powertrainFuelSystemAbsoluteLevel`.
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Device coverage is on the [Subaru Outback vehicle page](/vehicles/subaru/outback). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 

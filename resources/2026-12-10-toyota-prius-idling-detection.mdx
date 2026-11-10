@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Toyota Prius via API
-description: Query DIMO Telemetry API idle segments for a Toyota Prius. The AutoPi (2008 and newer) and DIMO LTE R1 (2009 and newer) both report idling.
+description: Query DIMO Telemetry API idle segments for a Toyota Prius. The AutoPi (2008–2020) and DIMO LTE R1 (2009 and newer) both report idling.
 slug: toyota-prius-idling-detection
 date: 2026-12-10
 authors:
@@ -12,7 +12,7 @@ tags:
   - toyota
 ---
 
-To detect idling on a Toyota Prius, query the DIMO Telemetry API for segments with the idling detection mechanism. On a Toyota Prius, both the AutoPi (2008 and newer) and the DIMO LTE R1 (2009 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and support idling detection. Idle segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. See the [Toyota Prius vehicle page](/vehicles/toyota/prius) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+To detect idling on a Toyota Prius, query the DIMO Telemetry API for segments with the idling detection mechanism. On a Toyota Prius, both the AutoPi (2008–2020) and the DIMO LTE R1 (2009 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and support idling detection. Idle segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. See the [Toyota Prius vehicle page](/vehicles/toyota/prius) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
 
@@ -66,7 +66,7 @@ Need credentials first? The [Developer Console](https://console.dimo.org/sign-in
 ## FAQ
 
 ### Which devices support idling detection on a Toyota Prius?
-The AutoPi (2008 and newer) and the DIMO LTE R1 (2009 and newer) both report engine RPM for the Prius and support idling detection. Idle segments require a DIMO device.
+The AutoPi (2008–2020) and the DIMO LTE R1 (2009 and newer) both report engine RPM for the Prius and support idling detection. Idle segments require a DIMO device.
 
 ### What counts as idle?
 Idle segments are contiguous periods where engine RPM remains in the idle range. By default, windows with a maximum RPM at or below 1000 are considered idle.

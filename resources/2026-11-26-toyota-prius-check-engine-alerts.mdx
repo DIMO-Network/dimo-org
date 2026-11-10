@@ -12,7 +12,7 @@ tags:
   - toyota
 ---
 
-To get check-engine alerts on a Toyota Prius, set up a DIMO Vehicle Triggers webhook that fires when the distance driven with the MIL on is above zero. On a Toyota Prius, the DIMO LTE R1 (2009 and newer) reports the trouble code list, the DTC count and the distance with the MIL on. The AutoPi (2008 and newer) reports the distance with the MIL on, but not the code list or the count. The full signal list is on the [Toyota Prius vehicle page](/vehicles/toyota/prius). For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
+To get check-engine alerts on a Toyota Prius, set up a DIMO Vehicle Triggers webhook that fires when the distance driven with the MIL on is above zero. On a Toyota Prius, the DIMO LTE R1 (2009 and newer) reports the trouble code list, the DTC count and the distance with the MIL on. The AutoPi (2008–2020) reports the distance with the MIL on, but not the code list or the count. The full signal list is on the [Toyota Prius vehicle page](/vehicles/toyota/prius). For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
 
@@ -78,7 +78,7 @@ When you want to run this against a real Prius, create a Developer License in th
 The DIMO LTE R1 reports `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL` on a Toyota Prius. The AutoPi reports `obdDistanceWithMIL`, `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`.
 
 ### Which model years are supported?
-The DIMO LTE R1 supports Toyota Prius model years 2009 and newer, and the AutoPi supports 2008 and newer.
+The DIMO LTE R1 supports Toyota Prius model years 2009 and newer, and the AutoPi supports 2008–2020.
 
 ### Can I poll instead of using a webhook?
 Yes. Run a `signalsLatest` query against the Telemetry API with a Vehicle JWT whenever you need the current `obdDTCList`, `obdStatusDTCCount` or `obdDistanceWithMIL` values on a Prius with a DIMO LTE R1.

@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Honda CR-V via API
-description: Find when a Honda CR-V sits idling. The DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer) feed idle segments in the DIMO Telemetry API.
+description: Find when a Honda CR-V sits idling. The DIMO LTE R1 (2008 and newer) and AutoPi (2010–2025) feed idle segments in the DIMO Telemetry API.
 slug: honda-cr-v-idling-detection
 date: 2026-11-20
 authors:
@@ -12,7 +12,7 @@ tags:
   - honda
 ---
 
-To detect idling on a Honda CR-V, query the DIMO Telemetry API `segments` resource with the idling mechanism, which returns contiguous periods where engine RPM stays in the idle range. DIMO supports idling on the CR-V through both the DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer), and both report engine RPM (`powertrainCombustionEngineSpeed`).
+To detect idling on a Honda CR-V, query the DIMO Telemetry API `segments` resource with the idling mechanism, which returns contiguous periods where engine RPM stays in the idle range. DIMO supports idling on the CR-V through both the DIMO LTE R1 (2008 and newer) and AutoPi (2010–2025), and both report engine RPM (`powertrainCombustionEngineSpeed`).
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The [Honda CR-V vehicle page](/vehicles/honda/cr-v) has the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
@@ -63,7 +63,7 @@ Want to test it? Pick up a Developer License from the [Developer Console](https:
 ## FAQ
 
 ### Which Honda CR-V connections support idling detection?
-The DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer) both support idling on the CR-V. Idling detection requires a DIMO device. See the full signal list on the [Honda CR-V vehicle page](/vehicles/honda/cr-v).
+The DIMO LTE R1 (2008 and newer) and AutoPi (2010–2025) both support idling on the CR-V. Idling detection requires a DIMO device. See the full signal list on the [Honda CR-V vehicle page](/vehicles/honda/cr-v).
 
 ### What counts as idling?
 An idling segment is a contiguous period where engine RPM stays in the idle range. By default, windows with a maximum RPM at or below 1000 are treated as idle. You can change this with `maxIdleRpm`.
