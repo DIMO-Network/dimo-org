@@ -1,7 +1,6 @@
 ---
 title: How to get Toyota Corolla harsh braking events via API
-description: Get harsh braking events for a Toyota Corolla (2010 and newer) with
-  a DIMO LTE R1 through the Telemetry API, or have a webhook push them to your server.
+description: Get harsh braking events for a Toyota Corolla (2010 and newer) with a DIMO LTE R1 from the DIMO Telemetry API, or have a webhook push them to your server.
 slug: toyota-corolla-harsh-braking-alerts
 date: 2026-12-14
 authors:
@@ -13,9 +12,9 @@ tags:
   - toyota
 ---
 
-To get harsh braking events on a Toyota Corolla, query `events` in the DIMO Telemetry API with a Vehicle JWT and filter to the harsh braking tag. On the Corolla, the DIMO LTE R1 reports harsh braking events, for model year 2010 and newer. The AutoPi connection for the Corolla lists an idling event only, so harsh braking comes from the DIMO LTE R1. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full signal list.
+To get harsh braking events on a Toyota Corolla, query `events` in the DIMO Telemetry API with a Vehicle JWT and filter to the harsh braking tag. On the Corolla, the DIMO LTE R1 reports harsh braking events, for model year 2010 and newer. The AutoPi reports an idling event only on the Corolla, so harsh braking comes from the DIMO LTE R1. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full signal list. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
 
-Vehicle owners consent to and control sharing, so builders get data with clear provenance. For the version that applies to any vehicle, see [How to detect harsh braking in fleet vehicles with DIMO](/resources/detect-harsh-braking).
+Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
 ## Steps
 
@@ -57,10 +56,10 @@ Want to run it on your own Corolla? Create a Developer License in the [Developer
 ## FAQ
 
 ### Which Corolla connection reports harsh braking?
-The DIMO LTE R1 reports harsh braking events on the Corolla. The AutoPi connection lists an idling event only.
+The DIMO LTE R1 reports harsh braking events on the Corolla. The AutoPi reports an idling event only.
 
 ### Which model years support this?
-DIMO lists the DIMO LTE R1 for Toyota Corolla model years 2010 and newer.
+The DIMO LTE R1 supports Toyota Corolla model years 2010 and newer.
 
 ### Do I need the owner's permission?
 Yes. The vehicle must be shared with you before you can fetch a Vehicle JWT, and sharing is done through DIMO Connect.
@@ -69,6 +68,6 @@ Yes. The vehicle must be shared with you before you can fetch a Vehicle JWT, and
 Each event has a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.
 
 ### What other event types does the DIMO LTE R1 define?
-Its event glossary has ExtremeBraking, HarshAcceleration, HarshBraking and HarshCornering. This guide covers harsh braking only.
+It defines extreme braking, harsh acceleration, harsh braking and harsh cornering events. This guide covers harsh braking only.
 
 *Methodology: based on the DIMO documentation pages Authentication, Building Your First App, Vehicle Triggers API and Telemetry API Vehicle Events, plus the [Toyota Corolla vehicle page](/vehicles/toyota/corolla).*

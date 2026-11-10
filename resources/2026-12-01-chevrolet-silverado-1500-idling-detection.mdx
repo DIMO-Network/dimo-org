@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Chevrolet Silverado 1500 via API
-description: Idle segments from the Telemetry API show when a Chevrolet Silverado 1500 idles, via the DIMO LTE R1 (2007 and newer) or AutoPi (2011 and newer).
+description: Idle segments from the DIMO Telemetry API show when a Chevrolet Silverado 1500 idles, via the DIMO LTE R1 (2007 and newer) or AutoPi (2011 and newer).
 slug: chevrolet-silverado-1500-idling-detection
 date: 2026-12-01
 authors:
@@ -14,7 +14,7 @@ tags:
 
 To detect idling on a Chevrolet Silverado 1500, query idle segments from the DIMO Telemetry API with the idling detection mechanism. DIMO supports idling for this truck on both the DIMO LTE R1 (2007 and newer) and AutoPi (2011 and newer), and both devices report `powertrainCombustionEngineSpeed`, which is the engine RPM signal.
 
-The idling mechanism returns contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500) for the full signal list. The general guide, [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling), is not specific to this truck.
+The idling mechanism returns contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -67,7 +67,7 @@ To put this to work, open the [Developer Console](https://console.dimo.org/sign-
 ## FAQ
 
 ### Which devices support idling detection on a Chevrolet Silverado 1500?
-Both the DIMO LTE R1 and AutoPi list idling for the Silverado 1500. The idling mechanism requires a DIMO device.
+Both the DIMO LTE R1 and AutoPi report idling on the Silverado 1500. The idling mechanism requires a DIMO device.
 
 ### What counts as idling?
 An idle segment is a contiguous period where engine RPM remains in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.

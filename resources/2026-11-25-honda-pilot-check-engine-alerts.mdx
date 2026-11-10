@@ -1,21 +1,20 @@
 ---
 title: How to get Honda Pilot check-engine alerts by webhook
-description: On a Honda Pilot the DIMO LTE R1 reports a DTC count and distance with MIL
-  on for a Vehicle Triggers webhook; the AutoPi reports the code list.
+description: On a Honda Pilot the DIMO LTE R1 reports a DTC count and check-engine light distance for a DIMO Vehicle Triggers webhook; the AutoPi reports the code list.
 slug: honda-pilot-check-engine-alerts
 date: 2026-11-25
 authors:
   - dimo-team
 tags:
   - honda-pilot
-  - check-engine
+  - diagnostics
   - vehicle-triggers
   - honda
 ---
 
-To get check-engine alerts on a Honda Pilot, create a DIMO Vehicle Triggers webhook on the trouble-code count that the DIMO LTE R1 reports. For the Pilot (2009 and newer), the DIMO LTE R1 lists the DTC count and distance with MIL on, and the AutoPi lists only the trouble code list. A Pilot has one device, so there are two separate paths: a webhook alert on a DIMO LTE R1, or polling the code list on an AutoPi.
+To get check-engine alerts on a Honda Pilot, create a DIMO Vehicle Triggers webhook on the trouble-code count that the DIMO LTE R1 reports. For the Pilot (2009 and newer), the DIMO LTE R1 reports the DTC count and distance with MIL on, and the AutoPi reports only the trouble code list. The two devices list different signals, so there are two separate paths: a webhook alert on a DIMO LTE R1, or polling the code list on an AutoPi. See the [Honda Pilot vehicle page](/vehicles/honda/pilot) for every signal it reports. For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The guide written for all vehicles is [Get alerts when a fleet vehicle's check-engine light comes on](/resources/check-engine-light-alerts).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
 
 ## Steps
 
@@ -24,8 +23,8 @@ DIMO gives developers API access to vehicle-state data: diagnostics, fault codes
 3. Find out which device the Pilot has. Steps 4 to 6 are for a Pilot with a DIMO LTE R1. Step 7 is for a Pilot with an AutoPi.
 4. DIMO LTE R1: call `GET /v1/webhooks/signals` on the Vehicle Triggers API to list the signal names available for webhooks. Confirm that `obdStatusDTCCount` is listed before you build on it.
 5. DIMO LTE R1: create a webhook with `service` set to `signals`, `metricName` set to the VSS-prefixed `vss.obdStatusDTCCount`, and the condition `valueNumber > 0`. You can use `vss.obdDistanceWithMIL` instead, which the DIMO LTE R1 also reports on a Pilot. Set `coolDownPeriod` to limit repeat notifications, set `targetURL` to your HTTPS endpoint, and fill in `description`, `status` and `verificationToken`.
-6. DIMO LTE R1: subscribe the Pilot to the webhook with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`, passing the vehicle's DID (for example `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`). To cover every vehicle that has shared with your license, use the subscribe-all endpoint instead. The DIMO LTE R1 entry for the Pilot does not list `obdDTCList`, so the alert tells you a code is active but the codes themselves are not available on this device.
-7. AutoPi: the entry lists `obdDTCList` but no DTC count or distance-with-MIL signal to trigger on, so poll instead. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, requesting privilege 1 (all-time, non-location data). Then query `signalsLatest` in the Telemetry API for `obdDTCList` with `value` and `timestamp`, and alert from your own backend when the list changes.
+6. DIMO LTE R1: subscribe the Pilot to the webhook with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`, passing the vehicle's DID (for example `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`). To cover every vehicle that has shared with your license, use the subscribe-all endpoint instead. The DIMO LTE R1 does not report `obdDTCList` on the Pilot, so the alert tells you a code is active but the codes themselves are not available on this device.
+7. AutoPi: it reports `obdDTCList` on the Pilot but no DTC count or distance-with-MIL signal to trigger on, so poll instead. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, requesting privilege 1 (all-time, non-location data). Then query `signalsLatest` in the Telemetry API for `obdDTCList` with `value` and `timestamp`, and alert from your own backend when the list changes.
 
 `obdStatusDTCCount` is the number of currently active diagnostic trouble codes. `obdDistanceWithMIL` is the distance travelled with the malfunction indicator lamp (MIL) on, so the two can be used as different alert conditions.
 
@@ -74,7 +73,7 @@ The AutoPi reports the trouble code list (`obdDTCList`). The DIMO LTE R1 reports
 Yes. DIMO's data for the Pilot comes from a connected device, either the AutoPi or the DIMO LTE R1. Details are on the [Honda Pilot vehicle page](/vehicles/honda/pilot).
 
 ### Can I get the alert without polling?
-On a Pilot with a DIMO LTE R1, yes. The Vehicle Triggers API sends a POST to your target URL when the condition is met, so your app doesn't need to poll. On a Pilot with an AutoPi, the code list is the one diagnostic signal listed, so you poll `signalsLatest`.
+On a Pilot with a DIMO LTE R1, yes. The Vehicle Triggers API sends a POST to your target URL when the condition is met, so your app doesn't need to poll. On a Pilot with an AutoPi, the AutoPi reports the code list and no other diagnostic signal, so you poll `signalsLatest`.
 
 ### Who controls access to the Pilot's data?
 Vehicle owners consent to and control sharing, so builders get data with clear provenance. Your app can only subscribe and query vehicles that have been shared with your Developer License.

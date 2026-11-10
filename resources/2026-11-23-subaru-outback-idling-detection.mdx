@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Subaru Outback via API
-description: Use Telemetry API idle segments to find when a Subaru Outback idles, with a DIMO LTE R1 (2010 and newer) or AutoPi (2013 and newer).
+description: Use DIMO Telemetry API idle segments to find when a Subaru Outback idles, with a DIMO LTE R1 (2010 and newer) or AutoPi (2013 and newer).
 slug: subaru-outback-idling-detection
 date: 2026-11-23
 authors:
@@ -14,7 +14,7 @@ tags:
 
 To detect idling on a Subaru Outback, query the DIMO Telemetry API for segments with the idling detection mechanism. DIMO supports idling for the Outback on both the DIMO LTE R1 (2010 and newer) and AutoPi (2013 and newer), and both report engine RPM as `powertrainCombustionEngineSpeed`. Each returned segment is a contiguous period where engine RPM stays in the idle range, and idle detection requires a DIMO device.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Subaru Outback vehicle page](/vehicles/subaru/outback) for the full signal list. A guide that is not tied to one model is at [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Subaru Outback vehicle page](/vehicles/subaru/outback) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -76,6 +76,6 @@ An idling segment is a contiguous period where engine RPM remains in the idle ra
 The maximum date range for a segments query is 31 days. Use `limit` and the `after` cursor to page through results.
 
 ### Can I also detect harsh braking on the Outback?
-On the Outback, harsh braking is listed for the DIMO LTE R1 but not for AutoPi. So `behavior.harshBraking` events are available only with the DIMO LTE R1.
+On the Outback, the DIMO LTE R1 reports harsh braking and the AutoPi does not. So `behavior.harshBraking` events are available only with the DIMO LTE R1.
 
 *Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Subaru Outback vehicle page](/vehicles/subaru/outback).*

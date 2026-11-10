@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Ford Explorer via API
-description: Request idle segments from the Telemetry API for a Ford Explorer fitted with a DIMO LTE R1 (2013 and newer) or an AutoPi (2008 and newer).
+description: Request idle segments from the DIMO Telemetry API for a Ford Explorer fitted with a DIMO LTE R1 (2013 and newer) or an AutoPi (2008 and newer).
 slug: ford-explorer-idling-detection
 date: 2026-11-25
 authors:
@@ -12,7 +12,7 @@ tags:
   - ford
 ---
 
-To detect idling on a Ford Explorer, query the DIMO Telemetry API for trip segments using the idling detection mechanism. On a Ford Explorer, the DIMO LTE R1 (2013 and newer) and AutoPi (2008 and newer) both report engine RPM (`powertrainCombustionEngineSpeed`) and support idling events. Idling segments are contiguous periods where engine RPM stays in the idle range, and this mechanism requires a DIMO device. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list, or [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling) for a guide that covers every supported vehicle.
+To detect idling on a Ford Explorer, query the DIMO Telemetry API for trip segments using the idling detection mechanism. On a Ford Explorer, the DIMO LTE R1 (2013 and newer) and AutoPi (2008 and newer) both report engine RPM (`powertrainCombustionEngineSpeed`) and support idling events. Idling segments are contiguous periods where engine RPM stays in the idle range, and this mechanism requires a DIMO device. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -61,7 +61,7 @@ Replace `12345` with your Explorer's token ID before you run it. From here, get 
 ## FAQ
 
 ### Do I need hardware to detect idling on an Explorer?
-Yes. The idling mechanism requires a DIMO device. For the Explorer, the DIMO LTE R1 and AutoPi both list idling events.
+Yes. The idling mechanism requires a DIMO device. For the Explorer, the DIMO LTE R1 and AutoPi both report idling events.
 
 ### Which model years does this cover?
 The DIMO LTE R1 is listed for 2013 and newer Explorers. The AutoPi is listed for 2008 and newer.

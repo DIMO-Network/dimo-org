@@ -5,8 +5,8 @@ ignorecase: true
 nonword: true
 tokens:
   # Leftovers from drafting: notes about source material and the snippet harness.
-  - \bdocumentation excerpts?\b
-  - \bnot tagged\b
-  - \buntagged\b
+  - \bexcerpts?\b
+  - \bthe documentation does not\b
+  - \bnot tagged (?:as )?(?:`?test`?|a runnable|runnable)
   - \btagged as runnable\b
   - \bnot self-contained\b

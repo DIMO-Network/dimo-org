@@ -1,7 +1,6 @@
 ---
 title: How to get Volkswagen Golf harsh braking events via API
-description: Use the Telemetry API to read harsh braking events from a Volkswagen
-  Golf (2009 and newer) equipped with a DIMO LTE R1, or receive them by webhook.
+description: Use the DIMO Telemetry API to read harsh braking events from a Volkswagen Golf (2009 and newer) equipped with a DIMO LTE R1, or receive them by webhook.
 slug: volkswagen-golf-harsh-braking-alerts
 date: 2026-12-22
 authors:
@@ -13,25 +12,23 @@ tags:
   - volkswagen
 ---
 
-To get harsh braking events on a Volkswagen Golf, query the DIMO Telemetry API for harsh braking events. On a Volkswagen Golf, the DIMO LTE R1 reports harsh braking, for model year 2009 and newer. The AutoPi connection listed for the Golf reports idling only, so it does not provide harsh braking. The full list of signals and connections is on the [Volkswagen Golf vehicle page](/vehicles/volkswagen/golf).
+To get harsh braking events on a Volkswagen Golf, query the DIMO Telemetry API for harsh braking events. On a Volkswagen Golf, the DIMO LTE R1 reports harsh braking, for model year 2009 and newer. The AutoPi reports idling only on the Golf, so it does not provide harsh braking. The full list of signals and connections is on the [Volkswagen Golf vehicle page](/vehicles/volkswagen/golf). For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. For other models, start from [How to detect harsh braking in fleet vehicles with DIMO](/resources/detect-harsh-braking).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
 ## Steps
 
 1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You will need your Client ID, Redirect URI and API Key.
 2. Get the Golf shared with your app through DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT.
-3. Confirm the Golf has a DIMO LTE R1. DIMO Events are only available on vehicles equipped with a DIMO LTE R1, and HarshBraking is one of its events: rapid deceleration detected by the device.
+3. Confirm the Golf has a DIMO LTE R1. DIMO Events are only available on vehicles equipped with a DIMO LTE R1, and harsh braking is one of its events: rapid deceleration detected by the device.
 4. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). Both are required for the `events` query.
 5. Call the `events` resource in the Telemetry API with your Vehicle JWT. Pass `tokenId`, `from` and `to`, which are required, and filter by the tag `behavior.harshBraking` inside `filter` so you only get harsh braking events.
 6. Read `timestamp`, `durationNs`, `source` and `metadata` from each event. Use `source` to see which connection created the event.
 7. Prefer push over polling? The [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api) lets you create a webhook with `service` set to `events` and `metricName` set to `behavior.harshBraking`. Subscribe the Golf and DIMO posts to your endpoint.
 
-DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
-
 ## Code
 
-This GraphQL query returns harsh braking events for one vehicle. Send it to the Telemetry API at https://telemetry-api.dimo.zone with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with your vehicle's token ID.
+This GraphQL query returns harsh braking events for one vehicle. Send it to the Telemetry API at `https://telemetry-api.dimo.zone/query` with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with your vehicle's token ID.
 
 ```graphql
 query HarshBrakingEvents {
@@ -55,10 +52,10 @@ Next, create your Developer License in the [Developer Console](https://console.d
 ## FAQ
 
 ### Which Volkswagen Golf connection reports harsh braking?
-The DIMO LTE R1 reports harsh braking on the Golf, for model year 2009 and newer. The AutoPi connection listed for the Golf reports idling only.
+The DIMO LTE R1 reports harsh braking on the Golf, for model year 2009 and newer. The AutoPi reports idling only on the Golf.
 
 ### What does a harsh braking event describe?
-HarshBraking is rapid deceleration detected by the device. The DIMO LTE R1 also has related event types for extreme braking, harsh acceleration and harsh cornering, but this guide covers harsh braking only.
+Harsh braking is rapid deceleration detected by the device. The DIMO LTE R1 also has related event types for extreme braking, harsh acceleration and harsh cornering, but this guide covers harsh braking only.
 
 ### Do I need a Vehicle JWT to read events?
 Yes. You get a Developer JWT first, then exchange it for a Vehicle JWT for a specific vehicle through the Token Exchange API. The vehicle must be shared with you.

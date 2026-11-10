@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Toyota RAV4 via API
-description: Pull idling periods for a Toyota RAV4 from Telemetry API idle segments, using a DIMO LTE R1 (2007 and newer) or AutoPi (2009 and newer).
+description: Pull idling periods for a Toyota RAV4 from DIMO Telemetry API idle segments, using a DIMO LTE R1 (2007 and newer) or AutoPi (2009 and newer).
 slug: toyota-rav4-idling-detection
 date: 2026-11-19
 authors:
@@ -12,9 +12,9 @@ tags:
   - toyota
 ---
 
-To detect idling on a Toyota RAV4, query the DIMO Telemetry API for segments using the idling detection mechanism. On a Toyota RAV4, both the DIMO LTE R1 (2007 and newer) and AutoPi (2009 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and idling events. DIMO finds contiguous periods where engine RPM stays in the idle range, and this detection requires a DIMO device. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list.
+To detect idling on a Toyota RAV4, query the DIMO Telemetry API for segments using the idling detection mechanism. On a Toyota RAV4, both the DIMO LTE R1 (2007 and newer) and AutoPi (2009 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and idling events. DIMO finds contiguous periods where engine RPM stays in the idle range, and this detection requires a DIMO device. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. If you work with other models too, start from [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
 ## Steps
 
@@ -35,7 +35,7 @@ query GetIdlingSegments {
   segments(
     tokenId: 12345
     from: "2026-11-01T00:00:00Z"
-    to: "2026-11-07T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
     mechanism: idling
     config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
     signalRequests: [
@@ -64,7 +64,7 @@ To run this against a real RAV4, create a Developer License in the [Developer Co
 ## FAQ
 
 ### Which RAV4 hardware supports idling detection?
-The DIMO LTE R1 and AutoPi both list idling events for the Toyota RAV4, and both report engine RPM. Idling detection requires a DIMO device.
+The DIMO LTE R1 and AutoPi both report idling events and engine RPM on the Toyota RAV4. Idling detection requires a DIMO device.
 
 ### What counts as idling?
 An idling segment is a contiguous period where engine RPM remains in the idle range. You can adjust the upper bound with `maxIdleRpm`.

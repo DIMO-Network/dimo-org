@@ -1,6 +1,6 @@
 ---
 title: How to track Honda Pilot fuel level and refuels via API
-description: "The DIMO LTE R1 reports Honda Pilot fuel level in both percent and liters on 2009 and newer model years, and it is the device that lists refuels."
+description: "The DIMO LTE R1 reports Honda Pilot fuel level in percent and liters on 2009 and newer model years, and lists refuels through the DIMO Telemetry API."
 slug: honda-pilot-fuel-level-tracking
 date: 2026-12-21
 authors:
@@ -12,9 +12,9 @@ tags:
   - honda
 ---
 
-To track fuel level and refuels on a Honda Pilot, authenticate, exchange for a Vehicle JWT, then query the Telemetry API: `signalsLatest` for the latest fuel signals and `segments` with `mechanism: refuel` for refuel segments. On a Pilot from model year 2009 and newer, the DIMO LTE R1 reports fuel percentage (`powertrainFuelSystemRelativeLevel`) and fuel level in liters (`powertrainFuelSystemAbsoluteLevel`), and it is the connection that supports refuel events.
+To track fuel level and refuels on a Honda Pilot, authenticate, exchange for a Vehicle JWT, then query the Telemetry API: `signalsLatest` for the latest fuel signals and `segments` with `mechanism: refuel` for refuel segments. On a 2009 and newer Pilot, the DIMO LTE R1 reports fuel percentage (`powertrainFuelSystemRelativeLevel`) and fuel level in liters (`powertrainFuelSystemAbsoluteLevel`), and it also reports refuel events.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Honda Pilot vehicle page](/vehicles/honda/pilot) for the full signal list; this guide covers the fuel job only. The model-independent version is [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Honda Pilot vehicle page](/vehicles/honda/pilot) for the full signal list; this guide covers the fuel job only. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -82,13 +82,13 @@ The next step is a Developer License from the [Developer Console](https://consol
 ## FAQ
 
 ### Which Honda Pilot connection reports fuel level?
-The DIMO LTE R1 reports fuel percentage and fuel level in liters on a Honda Pilot, and it is the connection listed with refuel events. DIMO lists it for model year 2009 and newer.
+The DIMO LTE R1 reports fuel percentage and fuel level in liters on a Honda Pilot, and it also reports refuel events. It supports Pilot model years 2009 and newer.
 
 ### What is the difference between the two fuel signals?
 `powertrainFuelSystemRelativeLevel` is reported as a percentage. `powertrainFuelSystemAbsoluteLevel` is reported in liters.
 
 ### Does the AutoPi report fuel level on a Honda Pilot?
-The AutoPi connection for the Pilot lists trouble codes, low voltage battery voltage, altitude and coordinates. It does not list fuel signals, so use the DIMO LTE R1 for this job.
+On the Pilot, the AutoPi reports trouble codes, low voltage battery voltage, altitude and coordinates. It does not report fuel signals, so use the DIMO LTE R1 for this job.
 
 ### Can I get location for each refuel?
 Yes. Each segment returns start and end timestamps with latitude and longitude. The `segments` query needs the all-time location permission (privilege 4) on the Vehicle JWT in any case, alongside privilege 1. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.

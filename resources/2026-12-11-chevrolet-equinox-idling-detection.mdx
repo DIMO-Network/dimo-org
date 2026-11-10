@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Chevrolet Equinox via API
-description: Measure idling on a Chevrolet Equinox with Telemetry API idle segments, using a DIMO LTE R1 (2008 and newer) or an AutoPi (2012 and newer).
+description: Measure idling on a Chevrolet Equinox with DIMO Telemetry API idle segments, using a DIMO LTE R1 (2008 and newer) or an AutoPi (2012 and newer).
 slug: chevrolet-equinox-idling-detection
 date: 2026-12-11
 authors:
@@ -12,7 +12,7 @@ tags:
   - chevrolet
 ---
 
-To detect idling on a Chevrolet Equinox, use DIMO's Telemetry API to request trip segments with the idling detection mechanism. On an Equinox, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed and support idling events. Idling segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. See the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list. [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling) has the same flow for vehicles in general.
+To detect idling on a Chevrolet Equinox, use DIMO's Telemetry API to request trip segments with the idling detection mechanism. On an Equinox, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed and support idling events. Idling segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. See the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -65,7 +65,7 @@ To go further, sign up for a Developer License in the [Developer Console](https:
 ## FAQ
 
 ### Which Equinox hardware supports idling detection?
-The DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) both list idling events for the Equinox. The idling mechanism requires a DIMO device.
+The DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) both report idling events on the Equinox. The idling mechanism requires a DIMO device.
 
 ### How does DIMO decide a period is idling?
 An idling segment is a contiguous period where engine RPM remains in the idle range. You can set the upper bound with `maxIdleRpm`, which defaults to 1000.

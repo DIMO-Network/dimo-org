@@ -1,6 +1,6 @@
 ---
-title: How to verify a Tesla Model S odometer reading via API
-description: Verify a Tesla Model S (2013 and newer) odometer with a signed odometer statement from DIMO and the odometer signal (km) in the Telemetry API. No hardware.
+title: How to get a signed odometer statement for a Tesla Model S via API
+description: Get a signed odometer statement for a Tesla Model S (2013 and newer) from DIMO, then read the odometer in km with the Telemetry API. No hardware.
 slug: tesla-model-s-verified-mileage
 date: 2026-12-03
 authors:
@@ -8,13 +8,13 @@ authors:
 tags:
   - tesla-model-s
   - odometer
-  - attestation-api
+  - attestation
   - tesla
 ---
 
-To verify an odometer reading on a Tesla Model S, request an odometer statement attestation for the vehicle through the DIMO Attestation API, then read the odometer signal from the Telemetry API. On a Tesla Model S, the Tesla connection (OEM cloud, no hardware) reports the odometer signal `powertrainTransmissionTravelledDistance` in km, for model year 2013 and newer.
+To get a signed odometer statement for a Tesla Model S, request an odometer statement attestation for the vehicle through the DIMO Attestation API, then read the odometer signal from the Telemetry API. On a Tesla Model S, the Tesla connection (OEM cloud, no hardware) reports the odometer signal `powertrainTransmissionTravelledDistance` in km, for model year 2013 and newer.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Tesla Model S vehicle page](/vehicles/tesla/model-s). The make-independent walkthrough is [How to Verify Mileage at Rental Return with DIMO](/resources/verify-mileage-at-rental-return).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Tesla Model S vehicle page](/vehicles/tesla/model-s). For any other vehicle, see [how to verify mileage at rental return](/resources/verify-mileage-at-rental-return).
 
 ## Steps
 
@@ -58,7 +58,7 @@ Next step: sign in to the [Developer Console](https://console.dimo.org/sign-in) 
 The Tesla connection reports `powertrainTransmissionTravelledDistance`, labeled Odometer, in km.
 
 ### Which model years are supported?
-DIMO lists the Tesla connection for Tesla Model S model years 2013 and newer.
+The Tesla connection supports Tesla Model S model years 2013 and newer.
 
 ### Do I need the owner's permission?
 Yes. The vehicle must be shared with your app before you can fetch a Vehicle JWT, and the owner controls what is shared.

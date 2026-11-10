@@ -1,6 +1,6 @@
 ---
 title: How to track Nissan Rogue fuel level and refuels via API
-description: "On a Nissan Rogue, the DIMO LTE R1 (2010 and newer) reports fuel in percent and liters, while the AutoPi (2014 and newer) reports percent only."
+description: "With DIMO, a Nissan Rogue reports fuel in percent and liters on the DIMO LTE R1 (2010 and newer) and in percent only on the AutoPi (2014 and newer)."
 slug: nissan-rogue-fuel-level-tracking
 date: 2026-12-18
 authors:
@@ -14,7 +14,7 @@ tags:
 
 To track fuel level and refuels on a Nissan Rogue, use DIMO to read the fuel percentage signal with the Telemetry API `signalsLatest` query and to list refuel `segments` for the vehicle. Both the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) report fuel percentage, `powertrainFuelSystemRelativeLevel`, and support refuel events on the Rogue. Only the DIMO LTE R1 also reports fuel level in liters, `powertrainFuelSystemAbsoluteLevel`.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Nissan Rogue vehicle page](/vehicles/nissan/rogue) for the full signal list. A guide that covers every supported vehicle lives at [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Nissan Rogue vehicle page](/vehicles/nissan/rogue) for the full signal list. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -35,7 +35,7 @@ query GetRogueRefuels {
   segments(
     tokenId: 12345
     from: "2026-11-01T00:00:00Z"
-    to: "2026-11-07T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
     mechanism: refuel
     config: { minIncreasePercent: 15 }
     signalRequests: [

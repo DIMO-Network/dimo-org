@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Toyota Camry via API
-description: Query Telemetry API idle segments for a Toyota Camry. Both the DIMO LTE R1 and AutoPi report idling for model years 2007 and newer.
+description: Query DIMO Telemetry API idle segments for a Toyota Camry. Both the DIMO LTE R1 and AutoPi report idling for model years 2007 and newer.
 slug: toyota-camry-idling-detection
 date: 2026-11-18
 authors:
@@ -12,9 +12,9 @@ tags:
   - toyota
 ---
 
-To detect idling on a Toyota Camry, query the DIMO Telemetry API for segments using the idling detection mechanism. On a Toyota Camry, both the DIMO LTE R1 and AutoPi (each 2007 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed, and DIMO lists idling as an event for each. The query returns contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device.
+To detect idling on a Toyota Camry, query the DIMO Telemetry API for segments using the idling detection mechanism. On a Toyota Camry, both the DIMO LTE R1 and AutoPi (each 2007 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed, and both support idling events. The query returns contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. The same steps for any make and model are in [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Toyota Camry vehicle page](/vehicles/toyota/camry) for every signal it reports. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -65,7 +65,7 @@ Next step: sign in to the [Developer Console](https://console.dimo.org/sign-in) 
 ## FAQ
 
 ### Which Toyota Camry connections support idling detection?
-The DIMO LTE R1 and AutoPi both list idling for the Camry, for model years 2007 and newer. Both report engine RPM and vehicle speed.
+The DIMO LTE R1 and AutoPi both support idling detection on the Camry, for model years 2007 and newer. Both report engine RPM and vehicle speed.
 
 ### Do I need hardware to detect idling?
 Yes. The idling mechanism requires a DIMO device, so the Camry needs a connected device that reports to DIMO.

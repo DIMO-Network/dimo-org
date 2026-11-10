@@ -1,6 +1,6 @@
 ---
 title: How to track Ford F-150 fuel level and refuels via API
-description: "A Ford F-150 reports fuel level in percent (powertrainFuelSystemRelativeLevel) on the DIMO LTE R1 (2009 and newer) and AutoPi (2010 and newer)."
+description: "See Ford F-150 fuel level in percent and list refuels with the DIMO Telemetry API. Works with the DIMO LTE R1 (2009 and newer) and AutoPi (2010 and newer)."
 slug: ford-f-150-fuel-level-tracking
 date: 2026-12-15
 authors:
@@ -12,9 +12,9 @@ tags:
   - ford
 ---
 
-To track fuel level and refuels on a Ford F-150, authenticate with a Vehicle JWT, then query the Telemetry API: `signalsLatest` for fuel percentage and `segments` with `mechanism: refuel` for refuel segments. On a Ford F-150 from 2009 and newer, the DIMO LTE R1 reports fuel percentage as `powertrainFuelSystemRelativeLevel`, and from 2010 and newer the AutoPi reports it. Both support refuel events, and neither lists a fuel signal in liters for this truck.
+To track fuel level and refuels on a Ford F-150, authenticate with a Vehicle JWT, then query the Telemetry API: `signalsLatest` for fuel percentage and `segments` with `mechanism: refuel` for refuel segments. On a Ford F-150, the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) both report fuel percentage as `powertrainFuelSystemRelativeLevel`. Both support refuel events, and neither reports a fuel signal in liters for this truck.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ford F-150 vehicle page](/vehicles/ford/f-150). The guide for vehicles in general is [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ford F-150 vehicle page](/vehicles/ford/f-150). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 

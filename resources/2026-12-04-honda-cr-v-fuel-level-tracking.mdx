@@ -1,6 +1,6 @@
 ---
 title: How to track Honda CR-V fuel level and refuels via API
-description: "On a Honda CR-V, the DIMO LTE R1 reports fuel level in percent and in liters on model years 2008 and newer. Read both and detect refuels by API."
+description: "On a 2008 and newer Honda CR-V, the DIMO LTE R1 reports fuel level in percent and liters. Read both and detect refuels with the DIMO Telemetry API."
 slug: honda-cr-v-fuel-level-tracking
 date: 2026-12-04
 authors:
@@ -12,9 +12,9 @@ tags:
   - honda
 ---
 
-To track fuel level and refuels on a Honda CR-V, exchange a Developer JWT for a Vehicle JWT, then query the DIMO Telemetry API for the latest fuel signals (`signalsLatest`) and for refuel segments (`segments` with `mechanism: refuel`). On a CR-V from model year 2008 and newer, the DIMO LTE R1 reports fuel both as a percentage (`powertrainFuelSystemRelativeLevel`) and in liters (`powertrainFuelSystemAbsoluteLevel`), and it lists refuel events.
+To track fuel level and refuels on a Honda CR-V, exchange a Developer JWT for a Vehicle JWT, then query the DIMO Telemetry API for the latest fuel signals (`signalsLatest`) and for refuel segments (`segments` with `mechanism: refuel`). On a 2008 and newer CR-V, the DIMO LTE R1 reports fuel both as a percentage (`powertrainFuelSystemRelativeLevel`) and in liters (`powertrainFuelSystemAbsoluteLevel`), and it reports refuel events.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Honda CR-V vehicle page](/vehicles/honda/cr-v) for the full signal list. The AutoPi connection for this car lists different signals and does not include the fuel signals used here, so the steps below assume a DIMO LTE R1. The same flow for any make and model is in [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Honda CR-V vehicle page](/vehicles/honda/cr-v) for the full signal list. The AutoPi reports different signals on the CR-V and not the fuel signals used here, so the steps below assume a DIMO LTE R1. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -71,7 +71,7 @@ Want to try it on a CR-V? Start with a Developer License from the [Developer Con
 Query `signalsLatest` with the vehicle token ID and request `powertrainFuelSystemRelativeLevel` for percent or `powertrainFuelSystemAbsoluteLevel` for liters. Both are reported by the DIMO LTE R1 on this car.
 
 ### Does the AutoPi connection report fuel level or refuels on the CR-V?
-No. For the CR-V, the AutoPi connection lists speed, engine RPM, engine load, low voltage battery, throttle position, altitude, coordinates and idling events. Fuel level and refuel detection come from the DIMO LTE R1.
+No. On the CR-V, the AutoPi reports speed, engine RPM, engine load, low voltage battery, throttle position, altitude, coordinates and idling events. Fuel level and refuel detection come from the DIMO LTE R1.
 
 ### How far back can I query refuel segments?
 The `segments` query has a maximum date range of 31 days. For longer periods, run several queries and use the `after` cursor to page through results.

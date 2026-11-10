@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Honda CR-V via API
-description: Find when a Honda CR-V sits idling. The DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer) feed idle segments in the Telemetry API.
+description: Find when a Honda CR-V sits idling. The DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer) feed idle segments in the DIMO Telemetry API.
 slug: honda-cr-v-idling-detection
 date: 2026-11-20
 authors:
@@ -14,16 +14,16 @@ tags:
 
 To detect idling on a Honda CR-V, query the DIMO Telemetry API `segments` resource with the idling mechanism, which returns contiguous periods where engine RPM stays in the idle range. DIMO supports idling on the CR-V through both the DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer), and both report engine RPM (`powertrainCombustionEngineSpeed`).
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The [Honda CR-V vehicle page](/vehicles/honda/cr-v) has the full signal list, and [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling) covers the same job for any vehicle.
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. The [Honda CR-V vehicle page](/vehicles/honda/cr-v) has the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
 1. Create a Developer License and get a Developer JWT in the [Developer Console](https://console.dimo.org/sign-in). You need the license's Client ID, Redirect URI and API Key. The Developer JWT gives general API access but no vehicle data.
 2. Get the CR-V shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a shared vehicle before you can request a Vehicle JWT.
 3. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). Both are required for the `segments` query, which returns each segment's start and end location.
-4. Call the `segments` query on the Telemetry API with `mechanism: idling`. Idling detection requires a DIMO device. On a CR-V, the DIMO LTE R1 and AutoPi both qualify and report engine RPM (`powertrainCombustionEngineSpeed`).
+4. Call the `segments` query on the Telemetry API with `mechanism: idling`. Idling detection requires a DIMO device. On a CR-V, the DIMO LTE R1 and AutoPi both qualify and report engine RPM (`powertrainCombustionEngineSpeed`). The query range is limited to 31 days.
 5. Tune detection with `config`. `maxIdleRpm` sets the upper RPM bound for idle (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240). `signalCountThreshold` controls sensitivity.
-6. Add `signalRequests` for context per idle period. On a CR-V, `powertrainCombustionEngineSpeed` is reported by both devices. The DIMO LTE R1 also reports `powertrainFuelSystemRelativeLevel`, so on that device you can request it with `FIRST` and `LAST` aggregations to see fuel level at the start and end of each idle period. The query range is limited to 31 days.
+6. Add `signalRequests` for context per idle period. On a CR-V, `powertrainCombustionEngineSpeed` is reported by both devices. The DIMO LTE R1 also reports `powertrainFuelSystemRelativeLevel`, so on that device you can request it with `FIRST` and `LAST` aggregations to see fuel level at the start and end of each idle period.
 
 ## Code
 
@@ -34,7 +34,7 @@ query GetIdlingSegments {
   segments(
     tokenId: 12345
     from: "2026-11-01T00:00:00Z"
-    to: "2026-11-07T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
     mechanism: idling
     config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
     signalRequests: [
@@ -69,6 +69,6 @@ The DIMO LTE R1 (2008 and newer) and AutoPi (2010 and newer) both support idling
 An idling segment is a contiguous period where engine RPM stays in the idle range. By default, windows with a maximum RPM at or below 1000 are treated as idle. You can change this with `maxIdleRpm`.
 
 ### How do I ignore very short idle periods?
-Set `minSegmentDurationSeconds` in `config`. The default is 240 seconds, with a minimum of 60 and a maximum of 3600. Use `maxGapSeconds` to control when a gap in data splits one segment into two.
+Set `minSegmentDurationSeconds` in `config`. The default is 240 seconds, with a minimum of 60 and a maximum of 3600.
 
 *Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, and on the [Honda CR-V vehicle page](/vehicles/honda/cr-v).*

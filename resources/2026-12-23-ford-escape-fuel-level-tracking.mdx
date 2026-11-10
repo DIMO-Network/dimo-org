@@ -1,6 +1,6 @@
 ---
 title: How to track Ford Escape fuel level and refuels via API
-description: "On a Ford Escape, fuel level is a percent value (powertrainFuelSystemRelativeLevel) from the DIMO LTE R1 (2008 and newer) or AutoPi (2012 and newer)."
+description: "Pull Ford Escape fuel level in percent and list refuels from the DIMO Telemetry API, using the DIMO LTE R1 (2008 and newer) or AutoPi (2012 and newer)."
 slug: ford-escape-fuel-level-tracking
 date: 2026-12-23
 authors:
@@ -12,9 +12,9 @@ tags:
   - ford
 ---
 
-To track fuel level and refuels on a Ford Escape, connect a supported DIMO device, get a Vehicle JWT, and query the Telemetry API with `signalsLatest` for fuel percentage and `segments` for refuel segments. On a Ford Escape, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. No liters signal is listed for the Escape on either device.
+To track fuel level and refuels on a Ford Escape, connect a supported DIMO device, get a Vehicle JWT, and query the Telemetry API with `signalsLatest` for fuel percentage and `segments` for refuel segments. On a Ford Escape, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. Neither device reports a liters signal on the Escape.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Ford Escape vehicle page](/vehicles/ford/escape) for the full signal list. The same steps without the Escape specifics are in [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Ford Escape vehicle page](/vehicles/ford/escape) for the full signal list. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 

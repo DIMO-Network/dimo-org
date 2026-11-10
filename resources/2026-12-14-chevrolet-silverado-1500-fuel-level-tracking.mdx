@@ -1,6 +1,6 @@
 ---
 title: How to track Chevrolet Silverado 1500 fuel level and refuels via API
-description: "On a Chevrolet Silverado 1500, the DIMO LTE R1 (2007 and newer) reports fuel in percent and liters. The AutoPi (2011 and newer) reports percent."
+description: "Query Chevrolet Silverado 1500 fuel with DIMO. The DIMO LTE R1 (2007 and newer) reports percent and liters; the AutoPi (2011 and newer) reports percent."
 slug: chevrolet-silverado-1500-fuel-level-tracking
 date: 2026-12-14
 authors:
@@ -14,7 +14,7 @@ tags:
 
 To track fuel level and refuels on a Chevrolet Silverado 1500, read its fuel signals from the DIMO Telemetry API with `signalsLatest` and request refuel segments from the `segments` query. Both the DIMO LTE R1 (2007 and newer) and the AutoPi (2011 and newer) report fuel percentage, `powertrainFuelSystemRelativeLevel`, and support refuel events on this truck. The DIMO LTE R1 adds fuel level in liters, `powertrainFuelSystemAbsoluteLevel`.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Per-device coverage is on the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500), and the same job for any other vehicle is covered in [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Per-device coverage is on the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 

@@ -1,6 +1,6 @@
 ---
 title: How to track Toyota Camry fuel level and refuels via API
-description: "Read Toyota Camry fuel level in liters (powertrainFuelSystemAbsoluteLevel) and list refuels with the DIMO LTE R1, for 2007 and newer models."
+description: "Get Toyota Camry fuel level in liters and a list of refuels from the DIMO Telemetry API, using the DIMO LTE R1 on 2007 and newer models."
 slug: toyota-camry-fuel-level-tracking
 date: 2026-12-02
 authors:
@@ -14,11 +14,11 @@ tags:
 
 To track fuel level and refuels on a Toyota Camry, share the vehicle with your app, get a Vehicle JWT, then read `signalsLatest` and query refuel `segments` through the DIMO Telemetry API. On a Camry (2007 and newer), the DIMO LTE R1 reports fuel level in liters as `powertrainFuelSystemAbsoluteLevel` and supports refuel events. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
-This page is the Camry-specific version of [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+See the [Toyota Camry vehicle page](/vehicles/toyota/camry) for every signal it reports. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
-1. Check the hardware. On a Camry, the DIMO LTE R1 lists fuel level and refuel events. The AutoPi listing for the Camry does not list fuel level or refuel events, so this guide uses the DIMO LTE R1. See the [Toyota Camry vehicle page](/vehicles/toyota/camry) for the full signal list.
+1. Check the hardware. On a Camry, the DIMO LTE R1 reports fuel level and refuel events. The AutoPi does not report fuel level or refuel events on the Camry, so this guide uses the DIMO LTE R1.
 2. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need its Client ID, Redirect URI and API Key.
 3. Get the Camry shared with your app through DIMO Connect. You need a vehicle shared with you to fetch a Vehicle JWT.
 4. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Send the vehicle token ID and ask for privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query needs both.
@@ -36,7 +36,7 @@ query GetRefuels {
   segments(
     tokenId: 12345
     from: "2026-11-01T00:00:00Z"
-    to: "2026-11-07T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
     mechanism: refuel
     signalRequests: [
       { name: "powertrainFuelSystemAbsoluteLevel", agg: FIRST }
@@ -65,7 +65,7 @@ Next, get a Developer License in the [Developer Console](https://console.dimo.or
 ## FAQ
 
 ### Which Camry connection reports fuel level?
-The DIMO LTE R1 lists fuel level for the Camry, reported in liters as `powertrainFuelSystemAbsoluteLevel`. It also lists refuel events. The AutoPi listing for the Camry does not include either.
+The DIMO LTE R1 reports fuel level on the Camry, in liters as `powertrainFuelSystemAbsoluteLevel`. It also reports refuel events. The AutoPi reports neither on the Camry.
 
 ### How does DIMO decide that a refuel happened?
 The refuel detection mechanism looks for places where the fuel level rises significantly. The `minIncreasePercent` setting in the segment config controls the minimum percent increase within a window, and its default is 15.

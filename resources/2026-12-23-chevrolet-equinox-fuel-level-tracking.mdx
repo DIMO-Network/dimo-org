@@ -1,6 +1,6 @@
 ---
 title: How to track Chevrolet Equinox fuel level and refuels via API
-description: "Chevrolet Equinox fuel level is in percent and liters on the DIMO LTE R1 (2008 and newer) and in percent on the AutoPi (2012 and newer)."
+description: "DIMO reports Chevrolet Equinox fuel level in percent and liters on the DIMO LTE R1 (2008 and newer) and in percent on the AutoPi (2012 and newer)."
 slug: chevrolet-equinox-fuel-level-tracking
 date: 2026-12-23
 authors:
@@ -12,9 +12,9 @@ tags:
   - chevrolet
 ---
 
-To track fuel level and refuels on a Chevrolet Equinox, read the current fuel level with `signalsLatest` and query for refuel segments with `segments` through the Telemetry API. On an Equinox, the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) both report fuel percentage (`powertrainFuelSystemRelativeLevel`) and support refuel events. The DIMO LTE R1 also lists fuel level in liters (`powertrainFuelSystemAbsoluteLevel`).
+To track fuel level and refuels on a Chevrolet Equinox, read the current fuel level with `signalsLatest` and query for refuel segments with `segments` through the Telemetry API. On an Equinox, the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) both report fuel percentage (`powertrainFuelSystemRelativeLevel`) and support refuel events. The DIMO LTE R1 also reports fuel level in liters (`powertrainFuelSystemAbsoluteLevel`).
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. What each device reports is on the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox). To do this on a vehicle other than the Equinox, use [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. What each device reports is on the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -22,7 +22,7 @@ DIMO gives developers API access to vehicle-state data: diagnostics, fault codes
 2. Get the Equinox shared with your app. Vehicle sharing goes through DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
 3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data), which covers fuel readings, and privilege 4 (all-time location). The `segments` query requires both.
 4. Send the Vehicle JWT to the Telemetry API as a Bearer token in the `Authorization` header. Optionally run the `availableSignals` query for the vehicle's token ID to confirm which signals it returns.
-5. Query `signalsLatest` for `powertrainFuelSystemRelativeLevel` to read the current fuel percentage. The DIMO LTE R1 also lists `powertrainFuelSystemAbsoluteLevel`, which reports fuel level in liters. The AutoPi entry lists the percentage signal only.
+5. Query `signalsLatest` for `powertrainFuelSystemRelativeLevel` to read the current fuel percentage. The DIMO LTE R1 also reports `powertrainFuelSystemAbsoluteLevel`, the fuel level in liters. The AutoPi reports the percentage signal only.
 6. Query `segments` with `mechanism: refuel` over a date range of up to 31 days. This mechanism detects where fuel level rises significantly. The default `minIncreasePercent` is 15, and you can change it in `config`.
 7. Request `powertrainFuelSystemRelativeLevel` with `FIRST` and `LAST` aggregations in `signalRequests` to compare the fuel percentage at the start and end of each refuel segment. Refuel segments already include the level signal at start and end by default; adding the request is optional.
 
@@ -79,10 +79,10 @@ To build on this, create a Developer License in the [Developer Console](https://
 ## FAQ
 
 ### Which Equinox devices support refuel events?
-The DIMO LTE R1 and the AutoPi both list refuel events for the Chevrolet Equinox. See the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full list of what each reports.
+The DIMO LTE R1 and the AutoPi both report refuel events on the Chevrolet Equinox. See the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full list of what each reports.
 
 ### Can I read fuel level in liters?
-On a Chevrolet Equinox, the DIMO LTE R1 lists `powertrainFuelSystemAbsoluteLevel` in liters. The AutoPi entry lists fuel percentage only.
+On a Chevrolet Equinox, the DIMO LTE R1 reports `powertrainFuelSystemAbsoluteLevel` in liters. The AutoPi reports fuel percentage only.
 
 ### How far back can I search for refuels?
 The `segments` query has a maximum date range of 31 days. For longer histories, run multiple queries over consecutive ranges, and use `limit` and `after` to paginate.

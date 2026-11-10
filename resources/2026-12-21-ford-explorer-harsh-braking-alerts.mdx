@@ -1,7 +1,6 @@
 ---
 title: How to get Ford Explorer harsh braking events via API
-description: Read harsh braking events for a Ford Explorer (2013 and newer) on a
-  DIMO LTE R1 with a Telemetry API query, or let a webhook push them to your server.
+description: Read harsh braking events for a Ford Explorer (2013 and newer) on a DIMO LTE R1 with a DIMO Telemetry API query, or let a webhook push them to you.
 slug: ford-explorer-harsh-braking-alerts
 date: 2026-12-21
 authors:
@@ -13,7 +12,7 @@ tags:
   - ford
 ---
 
-To get harsh braking events on a Ford Explorer, query events in the DIMO Telemetry API with a Vehicle JWT. On a Ford Explorer (2013 and newer), the DIMO LTE R1 reports harsh braking as a vehicle event. The Explorer's AutoPi listing also shows harsh braking, but vehicle events are documented as available only on the DIMO LTE R1. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list. A version of this guide for every vehicle is at [How to detect harsh braking in fleet vehicles with DIMO](/resources/detect-harsh-braking).
+To get harsh braking events on a Ford Explorer, query events in the DIMO Telemetry API with a Vehicle JWT. On a Ford Explorer (2013 and newer), the DIMO LTE R1 reports harsh braking as a vehicle event. Harsh braking events come from the DIMO LTE R1, so this guide uses that device. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
 
 ## Steps
 
@@ -21,8 +20,8 @@ To get harsh braking events on a Ford Explorer, query events in the DIMO Telemet
 2. Get the Explorer shared with your app using DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The Explorer needs a DIMO LTE R1, because DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
 3. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key.
 4. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API. This only works for a vehicle that has been shared with you. The `events` query requires privilege 1 (all-time, non-location data) together with privilege 4 (all-time location), so request both here.
-5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request (`Authorization: Bearer <Vehicle JWT>`, endpoint https://telemetry-api.dimo.zone). Query `events` with the required `tokenId`, `from` and `to`, and filter by the `behavior.harshBraking` tag with the `containsAny` operator inside `filter`.
-6. Read `timestamp`, `name`, `source`, `durationNs` and `metadata` from each returned event. HarshBraking is rapid deceleration detected by the device.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request (`Authorization: Bearer <Vehicle JWT>`, endpoint `https://telemetry-api.dimo.zone/query`). Query `events` with the required `tokenId`, `from` and `to`, and filter by the `behavior.harshBraking` tag with the `containsAny` operator inside `filter`.
+6. Read `timestamp`, `name`, `source`, `durationNs` and `metadata` from each returned event. Harsh braking is rapid deceleration detected by the device.
 7. If your server should receive alerts as they occur, use the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api): create a webhook where `service` is `events` and `metricName` is `behavior.harshBraking`, then subscribe the Explorer to the webhook.
 
 ## Code
@@ -54,7 +53,7 @@ To put this to work, request a Developer License through the [Developer Console]
 The DIMO LTE R1 provides them on the Explorer, for model year 2013 and newer. Vehicle events are only supported on the DIMO LTE R1.
 
 ### Can I filter for other event types?
-The available tags are `behavior.harshAcceleration`, `behavior.harshBraking`, `behavior.harshCornering` and `safety.collision`. The DIMO LTE R1 glossary also defines ExtremeBraking, HarshAcceleration, HarshBraking and HarshCornering.
+The available tags are `behavior.harshAcceleration`, `behavior.harshBraking`, `behavior.harshCornering` and `safety.collision`.
 
 ### What does an event contain?
 Each event has a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.

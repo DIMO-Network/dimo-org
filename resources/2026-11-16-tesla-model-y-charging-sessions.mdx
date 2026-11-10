@@ -9,7 +9,7 @@ authors:
   - dimo-team
 tags:
   - tesla-model-y
-  - ev-charging
+  - ev
   - telemetry-api
   - tesla
 ---
@@ -18,7 +18,7 @@ To track charging sessions on a Tesla Model Y, query recharge segments from the 
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
-See the full signal list on the [Tesla Model Y vehicle page](/vehicles/tesla/model-y). If you work with more than one EV model, start from the general guide, [How do I track EV charging sessions with the DIMO API?](/resources/track-electric-vehicle-charging).
+See the full signal list on the [Tesla Model Y vehicle page](/vehicles/tesla/model-y). For any other vehicle, see [how to track EV charging sessions](/resources/track-electric-vehicle-charging).
 
 ## Steps
 
@@ -28,8 +28,8 @@ See the full signal list on the [Tesla Model Y vehicle page](/vehicles/tesla/mod
 4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location), because the `segments` query needs both.
 5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request, in the form `Authorization: Bearer <Vehicle JWT>`.
 6. Query `segments` with `mechanism: recharge` over a range of up to 31 days. Recharge detection is hybrid: it uses charging signals and state of charge. Each segment returns start and end times, duration, and whether it is ongoing.
-7. Request signal aggregates per segment with `signalRequests`. For the Model Y, `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, %) are listed signals. The `MAX` aggregation gives the highest session energy reading, and `LAST` gives the charge level at the end of each session.
-8. To see how the Model Y was charging, read `powertrainTractionBatteryChargingChargeCurrentAC` (AC Current Charge, amps) and `powertrainTractionBatteryChargingChargeVoltageUnknownType` (Charging Voltage, volts). Both are listed for this car.
+7. Request signal aggregates per segment with `signalRequests`. For the Model Y, `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, %) are signals the Tesla connection reports. The `MAX` aggregation gives the highest session energy reading, and `LAST` gives the charge level at the end of each session.
+8. To see how the Model Y was charging, read `powertrainTractionBatteryChargingChargeCurrentAC` (AC Current Charge, amps) and `powertrainTractionBatteryChargingChargeVoltageUnknownType` (Charging Voltage, volts). The Tesla connection reports both on this car.
 9. To check the live state, call `signalsLatest` and read `powertrainTractionBatteryChargingIsCharging` and `powertrainTractionBatteryChargingIsChargingCableConnected`.
 
 ## Code

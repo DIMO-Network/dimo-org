@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Volkswagen Golf via API
-description: Detect idling on a Volkswagen Golf through Telemetry API idle segments. The DIMO LTE R1 (2009 and newer) and AutoPi (2008 and newer) both report it.
+description: Detect idling on a Volkswagen Golf through DIMO Telemetry API idle segments. The DIMO LTE R1 (2009 and newer) and AutoPi (2008 and newer) both report it.
 slug: volkswagen-golf-idling-detection
 date: 2026-11-26
 authors:
@@ -12,16 +12,16 @@ tags:
   - volkswagen
 ---
 
-To detect idling on a Volkswagen Golf, query the DIMO Telemetry API for segments using the `idling` detection mechanism. On a Volkswagen Golf, both the DIMO LTE R1 (2009 and newer) and AutoPi (2008 and newer) support idling, and both report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed (`speed`). Idle segments are contiguous periods where engine RPM stays in the idle range, and the mechanism requires a DIMO device. See the [Volkswagen Golf vehicle page](/vehicles/volkswagen/golf) for the full list of signals.
+To detect idling on a Volkswagen Golf, query the DIMO Telemetry API for segments using the `idling` detection mechanism. On a Volkswagen Golf, both the DIMO LTE R1 (2009 and newer) and AutoPi (2008 and newer) support idling, and both report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed (`speed`). Idle segments are contiguous periods where engine RPM stays in the idle range, and the mechanism requires a DIMO device. See the [Volkswagen Golf vehicle page](/vehicles/volkswagen/golf) for the full list of signals. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
-DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. Vehicle owners consent to and control sharing, so builders get data with clear provenance. [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling) explains the same query without the Golf specifics.
+DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
 ## Steps
 
 1. Get a Developer JWT. You need the `Client ID`, `Redirect URI` and `API Key` of a Developer License from the [Developer Console](https://console.dimo.org/sign-in). You can use the system-generated Developer JWT, or generate one with your API key through a server SDK.
 2. Get the Golf shared with your app. You need a vehicle shared with you before you can fetch a Vehicle JWT. DIMO Connect handles vehicle sharing.
 3. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API at `https://token-exchange-api.dimo.zone/v1/tokens/exchange`. Include the Golf's token ID and two privileges: `1` (all-time, non-location data) and `4` (all-time location). The `segments` query requires both.
-4. Send the Vehicle JWT in the `Authorization` header of a GraphQL request to the Telemetry API at `https://telemetry-api.dimo.zone`.
+4. Send the Vehicle JWT in the `Authorization` header of a GraphQL request to the Telemetry API at `https://telemetry-api.dimo.zone/query`.
 5. Call the `segments` query with `mechanism: idling`, the Golf's `tokenId`, and a `from`/`to` range of at most 31 days.
 6. Tune detection with `config` if needed. `maxIdleRpm` sets the upper RPM bound for idle (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240). `signalCountThreshold` sets how sensitive activity detection is (default 10).
 7. Read each segment's `duration` (in seconds), `start` and `end`. If `isOngoing` is true, the segment extends past your query range and `end` is not included.
@@ -69,7 +69,7 @@ Next, create a Developer License in the [Developer Console](https://console.dimo
 ## FAQ
 
 ### Does idling detection work without a DIMO device?
-No. The `idling` detection mechanism requires a DIMO device. On a Volkswagen Golf, the DIMO LTE R1 and AutoPi both list idling.
+No. The `idling` detection mechanism requires a DIMO device. On a Volkswagen Golf, the DIMO LTE R1 and AutoPi both report idling.
 
 ### Which Golf signals does idle detection rely on?
 Idle segments are based on engine RPM staying in the idle range. Both the DIMO LTE R1 and AutoPi report engine RPM as `powertrainCombustionEngineSpeed` on a Volkswagen Golf.

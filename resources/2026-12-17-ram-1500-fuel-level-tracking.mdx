@@ -1,6 +1,6 @@
 ---
 title: How to track Ram 1500 fuel level and refuels via API
-description: "Ram 1500 fuel level comes in percent (powertrainFuelSystemRelativeLevel) from the DIMO LTE R1 on 2013 and newer or the AutoPi on 2012 and newer."
+description: "Read Ram 1500 fuel level in percent and find refuels through the DIMO Telemetry API, with a DIMO LTE R1 (2013 and newer) or an AutoPi (2012 and newer)."
 slug: ram-1500-fuel-level-tracking
 date: 2026-12-17
 authors:
@@ -12,9 +12,9 @@ tags:
   - ram
 ---
 
-To track fuel level and refuels on a Ram 1500, read the fuel percentage signal from the Telemetry API with `signalsLatest` and query refuel `segments` for the same vehicle. On a Ram 1500, both the DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. DIMO lists no liters signal for this truck on either device.
+To track fuel level and refuels on a Ram 1500, read the fuel percentage signal from the Telemetry API with `signalsLatest` and query refuel `segments` for the same vehicle. On a Ram 1500, both the DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. This truck reports no liters signal on either device.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ram 1500 vehicle page](/vehicles/ram/1500). If your fleet has other models too, start from [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ram 1500 vehicle page](/vehicles/ram/1500). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 

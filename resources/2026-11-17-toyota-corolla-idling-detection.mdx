@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Toyota Corolla via API
-description: Detect idling on a Toyota Corolla with a DIMO LTE R1 (2010 and newer) or AutoPi (2008 and newer) by querying idle segments from the Telemetry API.
+description: Detect idling on a Toyota Corolla with a DIMO LTE R1 (2010 and newer) or AutoPi (2008 and newer) by querying idle segments from the DIMO Telemetry API.
 slug: toyota-corolla-idling-detection
 date: 2026-11-17
 authors:
@@ -14,7 +14,7 @@ tags:
 
 To detect idling on a Toyota Corolla, query the `segments` resource of the DIMO Telemetry API with `mechanism: idling`, using a vehicle that has a DIMO device. Both the DIMO LTE R1 (2010 and newer) and the AutoPi (2008 and newer) report idling for the Corolla, and both report engine RPM (`powertrainCombustionEngineSpeed`), which is what idle detection is based on.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full list of supported signals. For the version that applies to any vehicle, see [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full list of supported signals. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 

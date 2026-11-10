@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Ford F-150 via API
-description: See how long a Ford F-150 idles using Telemetry API idle segments from a DIMO LTE R1 (2009 and newer) or an AutoPi (2010 and newer).
+description: See how long a Ford F-150 idles using DIMO Telemetry API idle segments from a DIMO LTE R1 (2009 and newer) or an AutoPi (2010 and newer).
 slug: ford-f-150-idling-detection
 date: 2026-12-02
 authors:
@@ -12,7 +12,7 @@ tags:
   - ford
 ---
 
-To detect idling on a Ford F-150, query the DIMO Telemetry API `segments` resource with the idling mechanism, using a Vehicle JWT for that truck. On an F-150, both the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and list idling as an event. Idle detection requires a DIMO device. See the [Ford F-150 vehicle page](/vehicles/ford/f-150) for full coverage. If your fleet mixes models, [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling) is the general version.
+To detect idling on a Ford F-150, query the DIMO Telemetry API `segments` resource with the idling mechanism, using a Vehicle JWT for that truck. On an F-150, both the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and idling events. Idle detection requires a DIMO device. See the [Ford F-150 vehicle page](/vehicles/ford/f-150) for full coverage. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -63,7 +63,7 @@ To get started, set up a Developer License in the [Developer Console](https://co
 ## FAQ
 
 ### Which F-150 devices support idle detection?
-The DIMO LTE R1 and the AutoPi both list idling as an event for the F-150 and report engine RPM. Idle detection requires a DIMO device.
+The DIMO LTE R1 and the AutoPi both report idling events and engine RPM on the F-150. Idle detection requires a DIMO device.
 
 ### What counts as idling?
 An idle segment is a contiguous period where engine RPM stays in the idle range. By default, windows with a maximum RPM at or below 1000 count as idle, and you can change this with `maxIdleRpm`.

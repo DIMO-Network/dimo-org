@@ -1,27 +1,26 @@
 ---
 title: How to get Ford Escape check-engine alerts by webhook
-description: Ford Escape trouble codes and distance with MIL on come from a DIMO LTE R1
-  or AutoPi. A Vehicle Triggers webhook pushes the check-engine alert.
+description: Ford Escape trouble codes and distance with the check-engine light on come from a DIMO LTE R1 or AutoPi. A DIMO Vehicle Triggers webhook pushes the alert.
 slug: ford-escape-check-engine-alerts
 date: 2026-11-27
 authors:
   - dimo-team
 tags:
   - ford-escape
-  - check-engine
+  - diagnostics
   - vehicle-triggers
   - ford
 ---
 
-To get check-engine alerts on a Ford Escape, use a DIMO Vehicle Triggers webhook to get pushed updates and read the diagnostic trouble codes through the Telemetry API. On a Ford Escape, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report diagnostic trouble codes and distance with MIL on, and the DIMO LTE R1 also reports DTC count. Every signal for this car is on the [Ford Escape vehicle page](/vehicles/ford/escape).
+To get check-engine alerts on a Ford Escape, use a DIMO Vehicle Triggers webhook to get pushed updates and read the diagnostic trouble codes through the Telemetry API. On a Ford Escape, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report diagnostic trouble codes and distance with MIL on, and the DIMO LTE R1 also reports DTC count. Every signal for this car is on the [Ford Escape vehicle page](/vehicles/ford/escape). For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. There is also a guide that is not specific to the Escape: [Get alerts when a fleet vehicle's check-engine light comes on](/resources/check-engine-light-alerts).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
 ## Steps
 
 1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note the Client ID, Redirect URI and API Key. Have the vehicle owner share the Ford Escape with your app through DIMO Connect.
 2. Get a Developer JWT. You use it for every webhook call.
-3. To receive pushed updates instead of polling, create a webhook with the Vehicle Triggers API. Confirm the signal name with `GET /v1/webhooks/signals` first. Use `signals` as the `service` and set `metricName` to `vss.obdDistanceWithMIL`, which both Escape devices list, or to `vss.obdStatusDTCCount` on a DIMO LTE R1, with the condition `valueNumber > 0`. Also set a `description` and a `status` of `enabled`, and register a `targetURL`, a `verificationToken` and a `coolDownPeriod`.
+3. To receive pushed updates instead of polling, create a webhook with the Vehicle Triggers API. Confirm the signal name with `GET /v1/webhooks/signals` first. Use `signals` as the `service` and set `metricName` to `vss.obdDistanceWithMIL`, which both Escape devices report, or to `vss.obdStatusDTCCount` on a DIMO LTE R1, with the condition `valueNumber > 0`. Also set a `description` and a `status` of `enabled`, and register a `targetURL`, a `verificationToken` and a `coolDownPeriod`.
 4. Subscribe the vehicle to the webhook, either one vehicle at a time by the vehicle's DID (`did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345` is an example) or all vehicles that have shared permissions with your Developer License. When the condition is met, DIMO sends a `POST` request to your `targetURL`.
 5. Exchange the Developer JWT for a Vehicle JWT for that vehicle using the Token Exchange API. Request privilege 1, the all-time, non-location data permission.
 6. Query the Telemetry API with `signalsLatest` to read the latest diagnostic trouble codes. On a Ford Escape, `obdDTCList` is reported by both the DIMO LTE R1 and AutoPi. `obdDistanceWithMIL` is also reported by both, and `obdStatusDTCCount` is reported by the DIMO LTE R1.
@@ -71,7 +70,7 @@ From here, register for a Developer License in the [Developer Console](https://c
 ## FAQ
 
 ### Which Ford Escape hardware reports trouble codes?
-The DIMO LTE R1 and AutoPi both report diagnostic trouble codes on a Ford Escape. The DIMO LTE R1 is listed from 2008 and newer, and AutoPi from 2012 and newer.
+The DIMO LTE R1 and AutoPi both report diagnostic trouble codes on a Ford Escape. The DIMO LTE R1 supports Escape model years 2008 and newer, and the AutoPi 2012 and newer.
 
 ### Do I need hardware to get these alerts?
 Yes. The signals described here come from a DIMO LTE R1 or an AutoPi connected to the Ford Escape.

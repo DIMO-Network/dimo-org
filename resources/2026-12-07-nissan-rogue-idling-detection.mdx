@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Nissan Rogue via API
-description: Detect idling on a Nissan Rogue with idle segments from the Telemetry API, reported by the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer).
+description: Detect idling on a Nissan Rogue with idle segments from the DIMO Telemetry API, reported by the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer).
 slug: nissan-rogue-idling-detection
 date: 2026-12-07
 authors:
@@ -12,7 +12,7 @@ tags:
   - nissan
 ---
 
-To detect idling on a Nissan Rogue, query trip segments in the DIMO Telemetry API with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range. Both the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) list idling for the Rogue and report engine RPM as `powertrainCombustionEngineSpeed`, and idling detection requires a DIMO device. Vehicle details are on the [Nissan Rogue vehicle page](/vehicles/nissan/rogue). The make-independent guide is [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
+To detect idling on a Nissan Rogue, query trip segments in the DIMO Telemetry API with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range. Both the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) support idling on the Rogue and report engine RPM as `powertrainCombustionEngineSpeed`, and idling detection requires a DIMO device. Vehicle details are on the [Nissan Rogue vehicle page](/vehicles/nissan/rogue). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -61,10 +61,10 @@ Your next step is a Developer License from the [Developer Console](https://conso
 ## FAQ
 
 ### Which devices report idling for the Nissan Rogue?
-The DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) both list idling for the Rogue. Both report Engine RPM.
+The DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) both report idling on the Rogue. Both report Engine RPM.
 
 ### Can I detect idling without a DIMO device?
-No. Idling detection requires a DIMO device, such as the DIMO LTE R1 or AutoPi listed for the Rogue.
+No. Idling detection requires a DIMO device, such as the DIMO LTE R1 or AutoPi.
 
 ### What counts as idling?
 A segment is a contiguous period where engine RPM stays in the idle range. Windows with maximum RPM at or below `maxIdleRpm` count as idle, and the default is 1000.

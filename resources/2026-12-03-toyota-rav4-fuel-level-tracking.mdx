@@ -1,6 +1,6 @@
 ---
 title: How to track Toyota RAV4 fuel level and refuels via API
-description: "The DIMO LTE R1 reports Toyota RAV4 fuel level in liters (powertrainFuelSystemAbsoluteLevel) on model years 2007 and newer."
+description: "Track Toyota RAV4 fuel level in liters and find refuels with the DIMO Telemetry API. Supported by the DIMO LTE R1 on 2007 and newer model years."
 slug: toyota-rav4-fuel-level-tracking
 date: 2026-12-03
 authors:
@@ -14,9 +14,7 @@ tags:
 
 To track fuel level and refuels on a Toyota RAV4, call the DIMO Telemetry API: the `signalsLatest` query for the current reading and the `segments` query with the `refuel` mechanism for fill-ups. Use the DIMO LTE R1, which reports fuel level in liters (`powertrainFuelSystemAbsoluteLevel`) and supports refuel events.
 
-DIMO lists the DIMO LTE R1 for Toyota RAV4 model years 2007 and newer. AutoPi is also listed for the RAV4, but it does not report fuel level or refuel events, so this guide uses the DIMO LTE R1. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
-
-If you want the model-agnostic walkthrough, read [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+The DIMO LTE R1 supports Toyota RAV4 model years 2007 and newer. The AutoPi also supports the RAV4, but it does not report fuel level or refuel events, so this guide uses the DIMO LTE R1. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -79,10 +77,10 @@ When you are ready to build, pick up a Developer License from the [Developer Con
 ## FAQ
 
 ### Which RAV4 connection reports fuel level?
-The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters. The AutoPi connection listed for the RAV4 does not report fuel level.
+The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters. The AutoPi does not report fuel level on the RAV4.
 
 ### Which model years does this cover?
-DIMO lists the DIMO LTE R1 for Toyota RAV4 model years 2007 and newer.
+The DIMO LTE R1 supports Toyota RAV4 model years 2007 and newer.
 
 ### How does DIMO detect a refuel?
 The `refuel` segment mechanism detects where the fuel level rises significantly. The default minimum increase within a window is 15 percent, which you can change with `minIncreasePercent`.

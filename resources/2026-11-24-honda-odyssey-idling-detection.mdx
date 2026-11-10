@@ -1,6 +1,6 @@
 ---
 title: How to detect idling on a Honda Odyssey via API
-description: Idling on a Honda Odyssey is reported by the DIMO LTE R1 only (2011 and newer). Query idle segments from the Telemetry API to find idle periods.
+description: Idling on a Honda Odyssey is reported by the DIMO LTE R1 only (2011 and newer). Query idle segments from the DIMO Telemetry API to find idle periods.
 slug: honda-odyssey-idling-detection
 date: 2026-11-24
 authors:
@@ -12,9 +12,9 @@ tags:
   - honda
 ---
 
-To detect idling on a Honda Odyssey, query the DIMO Telemetry API `segments` resource with `mechanism: idling`. On this car idling is available on the DIMO LTE R1 only: the DIMO LTE R1 (2011 and newer) reports engine RPM (`powertrainCombustionEngineSpeed`), vehicle speed and ignition status, and lists idling and harsh braking events.
+To detect idling on a Honda Odyssey, query the DIMO Telemetry API `segments` resource with `mechanism: idling`. On this car idling is available on the DIMO LTE R1 only: the DIMO LTE R1 (2011 and newer) reports engine RPM (`powertrainCombustionEngineSpeed`), vehicle speed and ignition status, and reports idling and harsh braking events.
 
-The AutoPi listed for the Odyssey reports low voltage battery, altitude and coordinates, with no engine RPM and no events, so use the DIMO LTE R1 for this job. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Details on the car are on the [Honda Odyssey vehicle page](/vehicles/honda/odyssey), and the walkthrough for any vehicle is [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
+On the Odyssey, the AutoPi reports low voltage battery, altitude and coordinates, with no engine RPM and no events, so use the DIMO LTE R1 for this job. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Details on the car are on the [Honda Odyssey vehicle page](/vehicles/honda/odyssey). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
 
 ## Steps
 
@@ -64,12 +64,12 @@ When you are ready to build, register a Developer License in the [Developer Cons
 ## FAQ
 
 ### Which device detects idling on a Honda Odyssey?
-Only the DIMO LTE R1 (2011 and newer). It reports engine RPM and lists idling events on the Odyssey. The AutoPi entry for the Odyssey reports neither engine RPM nor idling.
+Only the DIMO LTE R1 (2011 and newer). It reports engine RPM and idling events on the Odyssey. The AutoPi reports neither engine RPM nor idling on the Odyssey.
 
 ### How does DIMO decide a segment is idling?
 Idling segments are contiguous periods where engine RPM stays in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
 
 ### How far back can I query?
-The `segments` query has a maximum date range of 31 days. Returns default to 100 segments, with a maximum of 200 per request, and you can paginate with `after`.
+The `segments` query has a maximum date range of 31 days. Results default to 100 segments, with a maximum of 200 per request, and you can paginate with `after`.
 
 *Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Honda Odyssey vehicle page](/vehicles/honda/odyssey).*

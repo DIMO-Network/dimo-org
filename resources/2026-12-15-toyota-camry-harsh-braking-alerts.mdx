@@ -1,7 +1,6 @@
 ---
 title: How to get Toyota Camry harsh braking events via API
-description: Read harsh braking events from a Toyota Camry (2007 and newer) that
-  has a DIMO LTE R1, using the Telemetry API or a webhook pushed to your server.
+description: Read harsh braking events from a Toyota Camry (2007 and newer) that has a DIMO LTE R1, using the DIMO Telemetry API or a webhook pushed to your server.
 slug: toyota-camry-harsh-braking-alerts
 date: 2026-12-15
 authors:
@@ -13,7 +12,7 @@ tags:
   - toyota
 ---
 
-To get harsh braking events on a Toyota Camry, query the `events` resource of the DIMO Telemetry API with a Vehicle JWT. The DIMO LTE R1 reports harsh braking events for the car from model year 2007 and newer. The AutoPi connection for the Camry lists idling events only, so harsh braking comes from the DIMO LTE R1. The guide that covers any vehicle is [How to detect harsh braking in fleet vehicles with DIMO](/resources/detect-harsh-braking).
+To get harsh braking events on a Toyota Camry, query the `events` resource of the DIMO Telemetry API with a Vehicle JWT. The DIMO LTE R1 reports harsh braking events for the car from model year 2007 and newer. The AutoPi reports idling events only on the Camry, so harsh braking comes from the DIMO LTE R1. See the [Toyota Camry vehicle page](/vehicles/toyota/camry) for every signal it reports. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
@@ -53,10 +52,10 @@ Next step: get a Developer License in the [Developer Console](https://console.di
 ## FAQ
 
 ### Which Camry connection reports harsh braking?
-The DIMO LTE R1 reports harsh braking events for the Toyota Camry from model year 2007 and newer. The AutoPi connection for the Camry lists idling events only.
+The DIMO LTE R1 reports harsh braking events for the Toyota Camry from model year 2007 and newer. The AutoPi reports idling events only on the Camry.
 
 ### What does a harsh braking event describe?
-HarshBraking is rapid deceleration detected by the device. These are risky events that the data source provider determines for the connected vehicle.
+Harsh braking is rapid deceleration detected by the device. These are risky events that the data source provider determines for the connected vehicle.
 
 ### Can I combine harsh braking events with other Camry signals?
 Yes. The DIMO LTE R1 on the Camry also reports signals such as vehicle speed and coordinates, which you can query separately in the Telemetry API. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the full signal list on [the Toyota Camry vehicle page](/vehicles/toyota/camry).

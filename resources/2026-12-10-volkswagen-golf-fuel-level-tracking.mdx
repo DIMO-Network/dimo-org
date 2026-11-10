@@ -1,6 +1,6 @@
 ---
 title: How to track Volkswagen Golf fuel level and refuels via API
-description: "On a Volkswagen Golf, the DIMO LTE R1 reports fuel level in liters (powertrainFuelSystemAbsoluteLevel) for model years 2009 and newer."
+description: "Query Volkswagen Golf fuel level in liters and detect refuels with the DIMO Telemetry API. Works with the DIMO LTE R1 on model years 2009 and newer."
 slug: volkswagen-golf-fuel-level-tracking
 date: 2026-12-10
 authors:
@@ -14,9 +14,7 @@ tags:
 
 To track fuel level and refuels on a Volkswagen Golf, read the current fuel level from the Telemetry API with `signalsLatest` and find refuels by querying `segments` with the refuel detection mechanism. On a Golf, the DIMO LTE R1 reports fuel level in liters, as `powertrainFuelSystemAbsoluteLevel`, and supports refuel events, for model year 2009 and newer.
 
-The AutoPi connection listed for the Golf does not report fuel level or refuel events, so use the DIMO LTE R1 for this job. Full signal coverage is on the [Volkswagen Golf vehicle page](/vehicles/volkswagen/golf). DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
-
-There is also a version of this guide for any vehicle: [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+The AutoPi does not report fuel level or refuel events on the Golf, so use the DIMO LTE R1 for this job. Full signal coverage is on the [Volkswagen Golf vehicle page](/vehicles/volkswagen/golf). DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -79,7 +77,7 @@ To use this with a real Golf, get a Developer License in the [Developer Console]
 ## FAQ
 
 ### Which Volkswagen Golf connection reports fuel level?
-The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters, for model year 2009 and newer. The AutoPi connection listed for the Golf does not report it.
+The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters, for model year 2009 and newer. The AutoPi does not report it on the Golf.
 
 ### Does the Golf support refuel detection?
 Yes, on the DIMO LTE R1. Query `segments` with the refuel mechanism to get periods where fuel level rises significantly.

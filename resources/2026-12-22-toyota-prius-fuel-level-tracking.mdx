@@ -1,6 +1,6 @@
 ---
 title: How to track Toyota Prius fuel level and refuels via API
-description: "A Toyota Prius reports fuel level in liters (powertrainFuelSystemAbsoluteLevel) via the DIMO LTE R1, for model years 2009 and newer."
+description: "Read Toyota Prius fuel level in liters and list refuel events using the DIMO Telemetry API. The DIMO LTE R1 reports it on 2009 and newer model years."
 slug: toyota-prius-fuel-level-tracking
 date: 2026-12-22
 authors:
@@ -12,9 +12,9 @@ tags:
   - toyota
 ---
 
-To track fuel level and refuels on a Toyota Prius, read the current level with the Telemetry API `signalsLatest` query and find refuels by requesting `segments` detected with the `refuel` mechanism. Use the DIMO LTE R1, which reports fuel level in liters (`powertrainFuelSystemAbsoluteLevel`) on 2009 and newer model years and also lists refuel events for the Prius. The AutoPi listed for the Prius has no fuel level signal.
+To track fuel level and refuels on a Toyota Prius, read the current level with the Telemetry API `signalsLatest` query and find refuels by requesting `segments` detected with the `refuel` mechanism. Use the DIMO LTE R1, which reports fuel level in liters (`powertrainFuelSystemAbsoluteLevel`) on 2009 and newer model years and also reports refuel events on the Prius. The AutoPi has no fuel level signal on the Prius.
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Prius vehicle page](/vehicles/toyota/prius) for the full signal list. The broader guide, not limited to the Prius, is [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Prius vehicle page](/vehicles/toyota/prius) for the full signal list. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
 
 ## Steps
 
@@ -74,10 +74,10 @@ Before you can run either query you need a Developer License, which you create i
 ## FAQ
 
 ### Which Toyota Prius connection reports fuel level?
-The DIMO LTE R1 reports fuel level in liters through the `powertrainFuelSystemAbsoluteLevel` signal, for 2009 model years and newer. The AutoPi connection for this car does not list a fuel level signal.
+The DIMO LTE R1 reports fuel level in liters through the `powertrainFuelSystemAbsoluteLevel` signal, for 2009 model years and newer. The AutoPi does not report a fuel level signal on this car.
 
 ### Does DIMO detect refuels on a Prius?
-Yes. The DIMO LTE R1 lists refuel events for the Prius, and the Telemetry API detects refuel segments where fuel level rises significantly.
+Yes. The DIMO LTE R1 reports refuel events on the Prius, and the Telemetry API detects refuel segments where fuel level rises significantly.
 
 ### Can I change how large a rise counts as a refuel?
 Yes. Set `minIncreasePercent` in the `config` argument of the `segments` query. The default is 15.

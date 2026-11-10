@@ -1,5 +1,5 @@
 ---
-title: How to verify a Tesla Model X odometer reading via API
+title: How to get a signed odometer statement for a Tesla Model X via API
 description: Read the Tesla Model X (2016 and newer) odometer in km and request
   a signed odometer statement from the DIMO Attestation API. Owner-consented, no
   hardware.
@@ -10,15 +10,15 @@ authors:
 tags:
   - tesla-model-x
   - odometer
-  - attestation-api
+  - attestation
   - tesla
 ---
 
-To verify an odometer reading on a Tesla Model X, read the odometer signal with the DIMO Telemetry API and request an odometer statement attestation for the vehicle with the Attestation API. On a Tesla Model X (2016 and newer), the Tesla connection (OEM cloud, no hardware) reports the odometer in kilometers as `powertrainTransmissionTravelledDistance`.
+To get a signed odometer statement for a Tesla Model X, read the odometer signal with the DIMO Telemetry API and request an odometer statement attestation for the vehicle with the Attestation API. On a Tesla Model X (2016 and newer), the Tesla connection (OEM cloud, no hardware) reports the odometer in kilometers as `powertrainTransmissionTravelledDistance`.
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
 
-See the full signal list on the [Tesla Model X vehicle page](/vehicles/tesla/model-x). A version of this guide for any connected vehicle is at [How to Verify Mileage at Rental Return with DIMO](/resources/verify-mileage-at-rental-return).
+See the full signal list on the [Tesla Model X vehicle page](/vehicles/tesla/model-x). For any other vehicle, see [how to verify mileage at rental return](/resources/verify-mileage-at-rental-return).
 
 ## Steps
 
@@ -67,6 +67,6 @@ Yes. A vehicle must be shared with you before you can fetch a Vehicle JWT, and t
 No. `timestamp` is optional for the odometer statement request.
 
 ### Can I read historical odometer values?
-The Telemetry API `signals` query retrieves signal data for a given time period, using `from`, `to` and `interval` arguments.
+Yes. The Telemetry API `signals` query retrieves signal data for a given time period, using `from`, `to` and `interval` arguments.
 
 *Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Attestation API and Telemetry API Vehicle Signals, with car details from the [Tesla Model X vehicle page](/vehicles/tesla/model-x).*
