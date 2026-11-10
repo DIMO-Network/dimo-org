@@ -232,7 +232,7 @@
           "label": "Coordinates"
         }
       ],
-      "events": ["idling", "refuel", "harsh_braking"]
+      "events": ["idling", "refuel"]
     }
   ],
   "verification": "tested",
@@ -253,7 +253,7 @@
     },
     {
       "q": "How do I detect harsh braking on a Ford Explorer?",
-      "a": "Harsh braking events come from a DIMO device. You can count them per trip by adding a HarshBraking entry to eventRequests in a segments query, or have DIMO push them to your server with a Vehicle Triggers API webhook on behavior.harshBraking."
+      "a": "Harsh braking events come from the DIMO LTE R1. You can count them per trip by adding a HarshBraking entry to eventRequests in a segments query, or have DIMO push them to your server with a Vehicle Triggers API webhook on behavior.harshBraking."
     },
     {
       "q": "How do I verify Ford Explorer mileage?",

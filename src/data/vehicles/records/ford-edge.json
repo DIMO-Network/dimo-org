@@ -227,7 +227,7 @@
           "label": "Coordinates"
         }
       ],
-      "events": ["idling", "refuel", "harsh_braking"]
+      "events": ["idling", "refuel"]
     }
   ],
   "verification": "tested",

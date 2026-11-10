@@ -244,7 +244,7 @@
           "label": "Coordinates"
         }
       ],
-      "events": ["idling", "refuel", "harsh_braking", "dtc"]
+      "events": ["idling", "refuel", "dtc"]
     }
   ],
   "verification": "tested",
