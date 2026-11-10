@@ -177,6 +177,23 @@ function Events({ record, eventGuides }: VehiclePageData) {
   );
 }
 
+// Outside [data-aeo-body], like Related: a list of links, not page content.
+function CarGuides({ record, carGuides }: VehiclePageData) {
+  if (carGuides.length === 0) return null;
+  return (
+    <nav aria-label="Guides for this vehicle">
+      <h2>{vehicleName(record)} guides</h2>
+      <ul>
+        {carGuides.map(g => (
+          <li key={g.slug}>
+            <Link to={`/resources/${g.slug}`}>{g.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 // Outside [data-aeo-body]: shared link lists would make pages look alike to
 // the duplicate check.
 function Related({ record, related }: VehiclePageData) {
@@ -299,6 +316,7 @@ export default function VehiclePage({
           <time dateTime={record.lastVerified}>{record.lastVerified}</time>.
         </p>
       </div>
+      <CarGuides {...data} />
       <Related {...data} />
     </ContentPageLayout>
   );

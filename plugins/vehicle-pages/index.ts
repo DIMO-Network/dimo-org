@@ -1,7 +1,7 @@
-import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import type { LoadContext, Plugin } from '@docusaurus/types';
 import type { VehicleRecord } from '../../src/data/vehicles/schema.ts';
+import { guidesByVehicle, liveGuides, type Guide } from './guides.ts';
 import { isLive } from './publishDate.ts';
 import { loadRecords } from './records.ts';
 import { relatedVehicles, type RelatedVehicles } from './related.ts';
@@ -24,6 +24,8 @@ export type VehicleSummary = Pick<
 export type VehiclePageData = {
   record: VehicleRecord;
   eventGuides: Record<string, string>;
+  // Live how-to guides written for this model, oldest first.
+  carGuides: Guide[];
   related: RelatedVehicles;
 };
 
@@ -31,16 +33,8 @@ type Content = {
   live: VehicleRecord[];
   scheduled: number;
   eventGuides: Record<string, string>;
+  carGuides: Record<string, Guide[]>;
 };
-
-function liveGuideSlugs(resourcesDir: string): Set<string> {
-  if (!existsSync(resourcesDir)) return new Set();
-  const slugs = readdirSync(resourcesDir)
-    .map(f => f.match(/^(\d{4}-\d{2}-\d{2})-(.+)\.mdx?$/))
-    .filter((m): m is RegExpMatchArray => m !== null && isLive(m[1]))
-    .map(m => m[2]);
-  return new Set(slugs);
-}
 
 function summarize(record: VehicleRecord): VehicleSummary {
   const years = record.coverage.map(c => c.years);
@@ -65,25 +59,38 @@ export default function vehiclePages(context: LoadContext): Plugin<Content> {
     name: 'vehicle-pages',
 
     getPathsToWatch() {
-      return [path.join(recordsDir, '*.json')];
+      return [
+        path.join(recordsDir, '*.json'),
+        path.join(resourcesDir, '*.{md,mdx}'),
+      ];
     },
 
     async loadContent() {
       const records = loadRecords(recordsDir).map(r => r.record);
       const live = records.filter(r => isLive(r.publishDate));
-      const guides = liveGuideSlugs(resourcesDir);
+      const guides = liveGuides(resourcesDir);
+      const liveSlugs = new Set(guides.map(g => g.slug));
       const eventGuides = Object.fromEntries(
-        Object.entries(EVENT_GUIDES).filter(([, slug]) => guides.has(slug))
+        Object.entries(EVENT_GUIDES).filter(([, slug]) => liveSlugs.has(slug))
+      );
+      const carGuides = guidesByVehicle(
+        guides,
+        live.map(r => r.slug)
       );
       console.log(
         `vehicle-pages: ${live.length} live, ${records.length - live.length} scheduled`
       );
-      return { live, scheduled: records.length - live.length, eventGuides };
+      return {
+        live,
+        scheduled: records.length - live.length,
+        eventGuides,
+        carGuides,
+      };
     },
 
     async contentLoaded({ content, actions }) {
       const { createData, addRoute } = actions;
-      const { live, eventGuides } = content;
+      const { live, eventGuides, carGuides } = content;
       const summaries = live
         .map(summarize)
         .sort((a, b) =>
@@ -94,6 +101,7 @@ export default function vehiclePages(context: LoadContext): Plugin<Content> {
         const data: VehiclePageData = {
           record,
           eventGuides,
+          carGuides: carGuides[record.slug] ?? [],
           related: relatedVehicles(record.slug, summaries),
         };
         const dataPath = await createData(
