@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
@@ -63,4 +63,26 @@ test('liveGuides reads titles and leaves out scheduled guides', t => {
     { slug: 'tesla-model-3-charging-sessions', title: 'Plain title' },
     { slug: 'toyota-corolla-idling-detection', title: 'Quoted: title' },
   ]);
+});
+
+// Vehicle pages decide which guides are live from the filename; the blog
+// plugin builds them from frontmatter. If the two disagree, a vehicle page
+// links to a guide that isn't built and the production build fails on the
+// broken link. PR builds include scheduled pages, so only this test sees it.
+test('guide filenames match their frontmatter date and slug', () => {
+  const dir = path.join(import.meta.dirname, '../../resources');
+  for (const file of readdirSync(dir)) {
+    const m = file.match(/^(\d{4}-\d{2}-\d{2})-(.+)\.mdx?$/);
+    if (!m) continue;
+    const frontmatter =
+      readFileSync(path.join(dir, file), 'utf8').match(
+        /^---\n([\s\S]*?)\n---/
+      )?.[1] ?? '';
+    const field = name =>
+      frontmatter.match(new RegExp(`^${name}:\\s*(.+)$`, 'm'))?.[1].trim();
+    assert.equal(field('date'), m[1], `${file}: date`);
+    assert.equal(field('slug'), m[2], `${file}: slug`);
+    assert.equal(field('draft'), undefined, `${file}: draft`);
+    assert.equal(field('unlisted'), undefined, `${file}: unlisted`);
+  }
 });

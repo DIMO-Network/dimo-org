@@ -177,7 +177,7 @@ function Events({ record, eventGuides }: VehiclePageData) {
   );
 }
 
-// Outside [data-aeo-body], like Related: a list of links, not page content.
+// After the page content, next to Related: a list of links, not prose.
 function CarGuides({ record, carGuides }: VehiclePageData) {
   if (carGuides.length === 0) return null;
   return (

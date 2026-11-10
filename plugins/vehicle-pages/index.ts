@@ -73,9 +73,11 @@ export default function vehiclePages(context: LoadContext): Plugin<Content> {
       const eventGuides = Object.fromEntries(
         Object.entries(EVENT_GUIDES).filter(([, slug]) => liveSlugs.has(slug))
       );
+      // Matched against every record, live or scheduled, so a guide for a
+      // model whose page isn't out yet can't land on a shorter-named sibling.
       const carGuides = guidesByVehicle(
         guides,
-        live.map(r => r.slug)
+        records.map(r => r.slug)
       );
       console.log(
         `vehicle-pages: ${live.length} live, ${records.length - live.length} scheduled`
