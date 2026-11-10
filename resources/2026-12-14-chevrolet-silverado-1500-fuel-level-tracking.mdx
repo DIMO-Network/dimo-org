@@ -1,42 +1,41 @@
 ---
-title: Track Fuel Level and Refuels on a Chevrolet Silverado 1500
-description: "Read fuel level and detect refuels on a Chevrolet Silverado 1500
-  with DIMO: authenticate, get a vehicle JWT, and query fuel signals and refuel
-  segments."
+title: How to track Chevrolet Silverado 1500 fuel level and refuels via API
+description: "On a Chevrolet Silverado 1500, the DIMO LTE R1 (2007 and newer) reports fuel in percent and liters. The AutoPi (2011 and newer) reports percent."
 slug: chevrolet-silverado-1500-fuel-level-tracking
 date: 2026-12-14
 authors:
   - dimo-team
 tags:
-  - fuel-level
+  - chevrolet-silverado-1500
   - refuel
-  - chevrolet
   - telemetry-api
-  - silverado-1500
+  - chevrolet
 ---
 
-To track fuel level and refuels on a Chevrolet Silverado 1500, read its fuel signals from the DIMO Telemetry API and request refuel segments. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Both the DIMO LTE R1 (2007 and newer) and the AutoPi (2011 and newer) report fuel percentage and support refuel events on this truck; see [the Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500).
+To track fuel level and refuels on a Chevrolet Silverado 1500, read its fuel signals from the DIMO Telemetry API with `signalsLatest` and request refuel segments from the `segments` query. Both the DIMO LTE R1 (2007 and newer) and the AutoPi (2011 and newer) report fuel percentage, `powertrainFuelSystemRelativeLevel`, and support refuel events on this truck. The DIMO LTE R1 adds fuel level in liters, `powertrainFuelSystemAbsoluteLevel`.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Per-device coverage is on the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500), and the same job for any other vehicle is covered in [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
 
 ## Steps
 
-1. Create a developer license in the Developer Console and note your Client ID, Redirect URI and API key. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
-2. Get a Developer JWT, either from the Developer Console or by generating one with your API key through a server SDK.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your Client ID, Redirect URI and API Key.
+2. Get a Developer JWT, either from the Developer Console or by generating one with your API Key through a server SDK.
 3. Have the Silverado 1500 shared with your app through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
-4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, requesting the permission for all-time, non-location data.
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, requesting privilege 1 (all-time, non-location data) and privilege 4 (all-time location). Refuel detection runs on the `segments` query, which requires both.
 5. Query the latest fuel reading with `signalsLatest`. On a Silverado 1500, both the DIMO LTE R1 and the AutoPi report `powertrainFuelSystemRelativeLevel` (fuel percentage). The DIMO LTE R1 also reports `powertrainFuelSystemAbsoluteLevel` (fuel level in liters).
 6. Query `segments` with the `refuel` mechanism over a time range of up to 31 days. Refuel detection looks for places where the fuel level rises significantly. By default a window counts as a level increase at 15 percent or more, which you can change with `minIncreasePercent` in `config`.
-7. Read the `start` and `end` timestamps of each returned segment, along with the fuel percentage values, which the default signal set includes at the start and end of refuel segments.
+7. Read the `start` and `end` timestamps of each returned segment, along with the fuel level values, which the default signal set includes at the start and end of refuel segments.
 
 ## Code
 
-This query uses the `refuel` detection mechanism and requests the fuel percentage signal on top of the default set. Send it to the Telemetry API with your Vehicle JWT in the `Authorization` header. Replace the token ID and time range with your own values.
+This query uses the `refuel` detection mechanism and requests the fuel percentage signal on top of the default set. Send it to the Telemetry API with `Authorization: Bearer <Vehicle JWT>`. Replace `12345` with your vehicle's token ID and use your own time range.
 
 ```graphql
 query GetRefuels {
   segments(
-    tokenId: 117315
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: refuel
     config: { minIncreasePercent: 15 }
     signalRequests: [
@@ -63,7 +62,7 @@ For a current reading, use this query:
 
 ```graphql
 query GetLatestFuel {
-  signalsLatest(tokenId: 117315) {
+  signalsLatest(tokenId: 12345) {
     powertrainFuelSystemRelativeLevel {
       value
       timestamp
@@ -71,6 +70,8 @@ query GetLatestFuel {
   }
 }
 ```
+
+To run both on your own truck, create a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication).
 
 ## FAQ
 
@@ -80,13 +81,10 @@ The DIMO LTE R1 reports fuel percentage and fuel level in liters. The AutoPi rep
 ### Do I need hardware to get this data?
 Yes. On the Silverado 1500, fuel data comes from a DIMO LTE R1 or an AutoPi, so a supported device must be connected to the vehicle and shared with your app.
 
-### Does DIMO replace GPS tracking for this truck?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. Refuel segments include start and end locations, but the fuel signals are the core of this guide.
-
 ### Can I change how sensitive refuel detection is?
 Yes. Set `minIncreasePercent` in the `config` argument of the `segments` query. The default is 15 percent.
 
 ### How long a time range can I query for segments?
 The maximum date range for a segments query is 31 days. Use `limit` and `after` to page through results.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Vehicle Segments references.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Vehicle Segments references, plus the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500).*

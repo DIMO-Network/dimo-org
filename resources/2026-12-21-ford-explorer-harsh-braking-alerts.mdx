@@ -1,39 +1,41 @@
 ---
-title: How do I monitor harsh braking on a Ford Explorer?
-description: Read harsh braking events from a Ford Explorer with a DIMO LTE R1
-  by authenticating, getting the vehicle shared, and querying events in the
-  Telemetry API.
+title: How to get Ford Explorer harsh braking events via API
+description: Read harsh braking events for a Ford Explorer (2013 and newer) on a
+  DIMO LTE R1 with a Telemetry API query, or let a webhook push them to your server.
 slug: ford-explorer-harsh-braking-alerts
 date: 2026-12-21
 authors:
   - dimo-team
 tags:
-  - harsh-braking
-  - vehicle-events
   - ford-explorer
+  - harsh-braking
   - telemetry-api
+  - ford
 ---
 
-On a Ford Explorer (2013 and newer), the DIMO LTE R1 reports harsh braking as a vehicle event. You read it by querying events in the DIMO Telemetry API with a Vehicle JWT. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list.
+To get harsh braking events on a Ford Explorer, query events in the DIMO Telemetry API with a Vehicle JWT. On a Ford Explorer (2013 and newer), the DIMO LTE R1 reports harsh braking as a vehicle event. The Explorer's AutoPi listing also shows harsh braking, but vehicle events are documented as available only on the DIMO LTE R1. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Ford Explorer vehicle page](/vehicles/ford/explorer) for the full signal list. A version of this guide for every vehicle is at [How to detect harsh braking in fleet vehicles with DIMO](/resources/detect-harsh-braking).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console. Generate an API key and add your redirect URIs. You need the `Client ID`, `Redirect URI` and `API Key` to authenticate.
-2. Get the Explorer shared with your app using DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The Explorer needs a DIMO LTE R1, because the documentation states that DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need the `Client ID`, `Redirect URI` and `API Key` to authenticate.
+2. Get the Explorer shared with your app using DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The Explorer needs a DIMO LTE R1, because DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
 3. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key.
-4. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API. This only works for a vehicle that has been shared with you.
-5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request. Query `events` and filter by the `behavior.harshBraking` tag with the `containsAny` operator.
-6. Read `timestamp`, `name`, `source`, `durationNs` and `metadata` from each returned event. The documentation defines HarshBraking as rapid deceleration detected by the device.
+4. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API. This only works for a vehicle that has been shared with you. The `events` query requires privilege 1 (all-time, non-location data) together with privilege 4 (all-time location), so request both here.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request (`Authorization: Bearer <Vehicle JWT>`, endpoint https://telemetry-api.dimo.zone). Query `events` with the required `tokenId`, `from` and `to`, and filter by the `behavior.harshBraking` tag with the `containsAny` operator inside `filter`.
+6. Read `timestamp`, `name`, `source`, `durationNs` and `metadata` from each returned event. HarshBraking is rapid deceleration detected by the device.
+7. If your server should receive alerts as they occur, use the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api): create a webhook where `service` is `events` and `metricName` is `behavior.harshBraking`, then subscribe the Explorer to the webhook.
 
 ## Code
 
+Replace `12345` with your vehicle's token ID. The `from` and `to` values are example timestamps.
+
 ```graphql
-# Header: { "Authorization": "<yourVehicleJwt>" }
-# Endpoint: https://telemetry-api.dimo.zone
 query HarshBrakingEvents {
   events(
-    tokenId: <vehicleTokenId>
-    tags: { containsAny: ["behavior.harshBraking"] }
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
   ) {
     timestamp
     name
@@ -44,18 +46,20 @@ query HarshBrakingEvents {
 }
 ```
 
+To put this to work, request a Developer License through the [Developer Console](https://console.dimo.org/sign-in) and go through the [authentication guide](/docs/getting-started/authentication).
+
 ## FAQ
 
 ### Which Explorer connection provides harsh braking events?
-The DIMO LTE R1 provides them on the Explorer, for model year 2013 and newer. The documentation says vehicle events are only supported on the R1 LTE.
+The DIMO LTE R1 provides them on the Explorer, for model year 2013 and newer. Vehicle events are only supported on the DIMO LTE R1.
 
 ### Can I filter for other event types?
-The documentation lists these tags: `behavior.harshAcceleration`, `behavior.harshBraking`, `behavior.harshCornering` and `safety.collision`. Its R1 glossary also defines ExtremeBraking, HarshAcceleration, HarshBraking and HarshCornering.
+The available tags are `behavior.harshAcceleration`, `behavior.harshBraking`, `behavior.harshCornering` and `safety.collision`. The DIMO LTE R1 glossary also defines ExtremeBraking, HarshAcceleration, HarshBraking and HarshCornering.
 
 ### What does an event contain?
 Each event has a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.
 
-### Does this replace GPS tracking?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+### Can DIMO push Explorer harsh braking alerts to my server?
+Yes. Create a Vehicle Triggers webhook with `events` as the `service` and `behavior.harshBraking` as the `metricName`, and subscribe the vehicle. DIMO then sends a `POST` request to the webhook's `targetURL`.
 
-*Methodology: based on the DIMO documentation pages on Authentication, Building Your First App and Telemetry API Vehicle Events.*
+*Methodology: based on the DIMO documentation pages on Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Events, and on the [Ford Explorer vehicle page](/vehicles/ford/explorer).*

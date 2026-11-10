@@ -1,7 +1,6 @@
 ---
-title: How to Detect Idling on a Ford F-150 with DIMO
-description: Detect idling periods on a Ford F-150 by querying idle segments
-  from a DIMO device with engine RPM and duration settings.
+title: How to detect idling on a Ford F-150 via API
+description: See how long a Ford F-150 idles using Telemetry API idle segments from a DIMO LTE R1 (2009 and newer) or an AutoPi (2010 and newer).
 slug: ford-f-150-idling-detection
 date: 2026-12-02
 authors:
@@ -10,16 +9,16 @@ tags:
   - ford-f-150
   - idling
   - telemetry-api
-  - segments
+  - ford
 ---
 
-To detect idling on a Ford F-150, query the DIMO Telemetry API for idling segments using a Vehicle JWT for that truck. On an F-150, both the DIMO LTE R1 (model year 2009 and newer) and the AutoPi (2010 and newer) report engine RPM and list idling as an event. Idle detection requires a DIMO device. See the [Ford F-150 vehicle page](/vehicles/ford/f-150) for full coverage.
+To detect idling on a Ford F-150, query the DIMO Telemetry API `segments` resource with the idling mechanism, using a Vehicle JWT for that truck. On an F-150, both the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and list idling as an event. Idle detection requires a DIMO device. See the [Ford F-150 vehicle page](/vehicles/ford/f-150) for full coverage. If your fleet mixes models, [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling) is the general version.
 
 ## Steps
 
-1. Get a Developer JWT for your Developer License, either system-generated in the Developer Console or generated with your API key.
+1. Get a Developer License from the [Developer Console](https://console.dimo.org/sign-in) with its Client ID, Redirect URI and API Key. Then get a Developer JWT, either system-generated in the console or generated with your API Key.
 2. Have the F-150 shared with your app. You need a shared vehicle to fetch a Vehicle JWT, and DIMO Connect handles vehicle sharing.
-3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API for that vehicle's token ID.
+3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API for that vehicle's token ID. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location), since the `segments` query requires both.
 4. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
 5. Call the `segments` query with the idling detection mechanism and a time range of at most 31 days. Idle segments are contiguous periods where engine RPM stays in the idle range.
 6. Tune detection with `config`. `maxIdleRpm` sets the idle RPM upper bound (default 1000), and `minSegmentDurationSeconds` filters out short segments (default 240).
@@ -28,12 +27,12 @@ To detect idling on a Ford F-150, query the DIMO Telemetry API for idling segmen
 ## Code
 
 ```graphql
-# Header: { "Authorization": "<yourVehicleJwt>" }
+# Header: { "Authorization": "Bearer <yourVehicleJwt>" }
 query GetIdlingSegments {
   segments(
-    tokenId: 117315
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: idling
     config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
     signalRequests: [
@@ -57,7 +56,9 @@ query GetIdlingSegments {
 }
 ```
 
-Replace `117315` with your F-150's vehicle token ID and adjust the time range.
+Replace `12345` with your F-150's vehicle token ID and adjust the time range.
+
+To get started, set up a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and follow the [authentication guide](/docs/getting-started/authentication).
 
 ## FAQ
 
@@ -73,4 +74,4 @@ Segments shorter than `minSegmentDurationSeconds` are filtered out. The default 
 ### How far back can I query?
 The maximum date range for one `segments` query is 31 days. Results return up to 100 segments by default, with a maximum of 200, and you page through them with `after`.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Ford F-150 vehicle page](/vehicles/ford/f-150).*

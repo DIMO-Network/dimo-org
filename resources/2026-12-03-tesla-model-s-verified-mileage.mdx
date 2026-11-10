@@ -1,48 +1,47 @@
 ---
-title: How to Verify Tesla Model S Mileage With DIMO
-description: Verify a Tesla Model S odometer reading by requesting a signed
-  odometer statement from DIMO and reading it back through the Telemetry API.
+title: How to verify a Tesla Model S odometer reading via API
+description: Verify a Tesla Model S (2013 and newer) odometer with a signed odometer statement from DIMO and the odometer signal (km) in the Telemetry API. No hardware.
 slug: tesla-model-s-verified-mileage
 date: 2026-12-03
 authors:
   - dimo-team
 tags:
+  - tesla-model-s
   - odometer
-  - mileage-verification
+  - attestation-api
   - tesla
-  - attestation
 ---
 
-To verify mileage on a Tesla Model S, request an odometer statement attestation for the vehicle through the DIMO Attestation API, then read the signed result from the Telemetry API. On a Tesla Model S, the Tesla OEM cloud connection reports the odometer signal `powertrainTransmissionTravelledDistance` in km, for model year 2013 and newer. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+To verify an odometer reading on a Tesla Model S, request an odometer statement attestation for the vehicle through the DIMO Attestation API, then read the odometer signal from the Telemetry API. On a Tesla Model S, the Tesla connection (OEM cloud, no hardware) reports the odometer signal `powertrainTransmissionTravelledDistance` in km, for model year 2013 and newer.
 
-Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Tesla Model S vehicle page](/vehicles/tesla/model-s).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Tesla Model S vehicle page](/vehicles/tesla/model-s). The make-independent walkthrough is [How to Verify Mileage at Rental Return with DIMO](/resources/verify-mileage-at-rental-return).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and note your `Client ID`, `Redirect URI` and `API Key`.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI` and `API Key`.
 2. Get the Tesla Model S shared with your app. The owner shares the vehicle through DIMO Connect, which is required before you can fetch a Vehicle JWT.
 3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle through the Token Exchange API. Request the all-time, non-location data permission (privilege 1).
 4. Send a POST request to `/v2/attestation/odometer-statement/:tokenId` on the Attestation API with the Vehicle JWT. The `timestamp` parameter is optional.
-5. Read the current odometer value with a `signalsLatest` query on the Telemetry API, requesting `powertrainTransmissionTravelledDistance`. The attestation response says to retrieve the generated credential through the Telemetry API.
-6. Compare the returned value with the mileage you need to verify. The Tesla Model S odometer signal is reported in km, so convert units if your workflow uses miles.
+5. Read the response as a receipt. It is a confirmation message saying the credential was generated and can be retrieved through the Telemetry API. The odometer value itself is not in it.
+6. Read the current odometer value with a `signalsLatest` query on the Telemetry API, requesting `powertrainTransmissionTravelledDistance`. This query also needs the Vehicle JWT.
+7. Compare the returned value with the mileage you need to verify. The Tesla Model S odometer signal is reported in km, so convert units if your workflow uses miles.
 
 ## Code
 
-This example requests the odometer statement attestation with the TypeScript SDK call from the Attestation API documentation. It is not self-contained, because it needs a Vehicle JWT and a vehicle token ID, so it is left untagged.
+This example requests the odometer statement attestation with the TypeScript SDK. Pass your Vehicle JWT and replace `12345` with your vehicle's token ID.
 
 ```typescript
 const odometerVc = await dimo.attestation.createOdometerStatementVC({
   vehicleJwt: "eyJhbGc...ILlujqw",
-  tokenId: 123456,
-  timestamp: '2023-01-01T00:00:00Z' // Optional
+  tokenId: 12345
 })
 ```
 
-Then read the latest odometer value from the Telemetry API:
+Then read the latest odometer value from the Telemetry API. Send the same Vehicle JWT in the header, as `Authorization: Bearer <Vehicle JWT>`:
 
 ```graphql
 query GetLatestOdometer {
-  signalsLatest(tokenId: 123456) {
+  signalsLatest(tokenId: 12345) {
     powertrainTransmissionTravelledDistance {
       value
       timestamp
@@ -51,18 +50,17 @@ query GetLatestOdometer {
 }
 ```
 
+Next step: sign in to the [Developer Console](https://console.dimo.org/sign-in) for a Developer License, then use the [authentication guide](/docs/getting-started/authentication) to get a Vehicle JWT.
+
 ## FAQ
 
 ### Which Tesla Model S signal reports mileage?
-The Tesla OEM cloud connection reports `powertrainTransmissionTravelledDistance`, labeled Odometer, in km.
+The Tesla connection reports `powertrainTransmissionTravelledDistance`, labeled Odometer, in km.
 
 ### Which model years are supported?
-DIMO has seen Tesla Model S data from model year 2013 and newer through the Tesla OEM cloud connection.
+DIMO lists the Tesla connection for Tesla Model S model years 2013 and newer.
 
 ### Do I need the owner's permission?
 Yes. The vehicle must be shared with your app before you can fetch a Vehicle JWT, and the owner controls what is shared.
 
-### Does DIMO replace GPS tracking for this car?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
-
-*Methodology: based on the DIMO Authentication guide, the Building Your First App walkthrough, the Attestation API reference and the Telemetry API Vehicle Signals reference.*
+*Methodology: based on the DIMO Authentication guide, the Building Your First App walkthrough, the Attestation API reference, the Telemetry API Vehicle Signals reference and the [Tesla Model S vehicle page](/vehicles/tesla/model-s).*

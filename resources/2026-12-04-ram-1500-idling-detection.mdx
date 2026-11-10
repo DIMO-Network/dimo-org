@@ -1,7 +1,6 @@
 ---
-title: How to Detect Idling on a Ram 1500 with DIMO
-description: Use the DIMO Telemetry API to find idling periods on a Ram 1500
-  with a DIMO LTE R1 or AutoPi, based on engine speed readings.
+title: How to detect idling on a Ram 1500 via API
+description: Find idling periods on a Ram 1500 with Telemetry API idle segments. The DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) report idling.
 slug: ram-1500-idling-detection
 date: 2026-12-04
 authors:
@@ -10,16 +9,18 @@ tags:
   - ram-1500
   - idling
   - telemetry-api
-  - segments
+  - ram
 ---
 
-To detect idling on a Ram 1500, query the DIMO Telemetry API for segments with the idling detection mechanism. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Idling detection requires a DIMO device, and on a Ram 1500 both the DIMO LTE R1 and AutoPi support idling and report engine RPM.
+To detect idling on a Ram 1500, query the DIMO Telemetry API for segments with the idling detection mechanism. Idling detection requires a DIMO device, and on a Ram 1500 both the DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) support idling and report engine RPM (`powertrainCombustionEngineSpeed`).
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the full list of signals on this truck, see the [Ram 1500 vehicle page](/vehicles/ram/1500). For other makes and models, use [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and generate an API key. You need your `Client ID`, `Redirect URI` and `API Key`.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and generate an API key. You need your `Client ID`, `Redirect URI` and `API Key`.
 2. Get the Ram 1500 shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Sharing is done through DIMO Connect.
-3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the "All-time, non-location data" permission (privilege 1). The start and end locations in each segment are location data, so request the location permission you need as well (for example "All-time location", privilege 4).
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the "All-time, non-location data" permission (privilege 1). Also request the "All-time location" permission (privilege 4). The `segments` query requires both, because each segment includes its start and end location.
 4. Call the `segments` query on the Telemetry API with your Vehicle JWT in the `Authorization` header. Set `mechanism` to `idling`. The date range can be at most 31 days.
 5. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters out very short segments (default 240). `signalCountThreshold` controls sensitivity (default 10).
 6. Read `start`, `end`, `duration` and `isOngoing` from each returned segment. If `isOngoing` is true, the segment extends beyond your query range and `end` is not included.
@@ -29,16 +30,14 @@ The DIMO LTE R1 on a Ram 1500 (2013 and newer) and AutoPi (2012 and newer) both 
 
 DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
 
-For the full list of signals on this truck, see the vehicle page at [/vehicles/ram/1500](/vehicles/ram/1500).
-
 ## Code
 
 ```graphql
 query GetIdlingSegments {
   segments(
-    tokenId: 117315
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: idling
     config: {
       maxIdleRpm: 1000
@@ -65,12 +64,14 @@ query GetIdlingSegments {
 }
 ```
 
-Send this query to https://telemetry-api.dimo.zone with the header `{ "Authorization": "<yourVehicleJwt>" }`. Replace the example `tokenId` and the date range with your own values.
+Send this query to https://telemetry-api.dimo.zone with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with your truck's token ID and set your own date range.
+
+Have not set up access yet? Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then use the [authentication guide](/docs/getting-started/authentication).
 
 ## FAQ
 
 ### Which Ram 1500 hardware supports idling detection?
-The DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) both list idling for the Ram 1500. The documentation states that idling detection requires a DIMO device.
+The DIMO LTE R1 (2013 and newer) and AutoPi (2012 and newer) both list idling for the Ram 1500. Idling detection requires a DIMO device.
 
 ### How does DIMO decide a period is idling?
 Idling segments are contiguous periods where engine RPM stays in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
@@ -81,4 +82,4 @@ Raise `minSegmentDurationSeconds`, which defaults to 240 seconds (4 minutes) and
 ### How far back can I query?
 The maximum date range for a `segments` query is 31 days. For longer periods, run several queries and page through results with `limit` and `after`.
 
-*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Ram 1500 vehicle page](/vehicles/ram/1500).*

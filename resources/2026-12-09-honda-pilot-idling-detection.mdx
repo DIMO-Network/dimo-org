@@ -1,40 +1,39 @@
 ---
-title: How to detect idling on a Honda Pilot with DIMO
-description: Detect idling on a Honda Pilot by querying idle segments from the
-  Telemetry API with a DIMO LTE R1 and a Vehicle JWT.
+title: How to detect idling on a Honda Pilot via API
+description: On a Honda Pilot, only the DIMO LTE R1 (2009 and newer) reports idling. Use idle segments from the Telemetry API to measure each idle period.
 slug: honda-pilot-idling-detection
 date: 2026-12-09
 authors:
   - dimo-team
 tags:
-  - idling
   - honda-pilot
+  - idling
   - telemetry-api
-  - segments
+  - honda
 ---
 
-To detect idling on a Honda Pilot, query the DIMO Telemetry API for idling segments. On a Honda Pilot, the DIMO LTE R1 reports engine RPM and ignition status and supports idling events, so you can request contiguous periods where engine RPM stays in the idle range. This works for model year 2009 and newer.
+To detect idling on a Honda Pilot, query the DIMO Telemetry API for `segments` with `mechanism: idling`. For the Pilot, idling comes from the DIMO LTE R1 only (2009 and newer): it reports engine RPM (`powertrainCombustionEngineSpeed`) and ignition status and supports idling events, while the AutoPi listed for the Pilot has no engine RPM signal. The query returns contiguous periods where engine RPM stays in the idle range.
+
+For the Pilot's full signal list, see the [Honda Pilot vehicle page](/vehicles/honda/pilot). To do this on a different vehicle, read [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and note your `Client ID`, `Redirect URI` and `API Key`.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI` and `API Key`.
 2. Get the Honda Pilot shared with you. Vehicle sharing is handled through DIMO Connect, and the vehicle needs a DIMO LTE R1 to provide the RPM data that idling detection uses.
-3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the permission that covers non-location data.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data) and also privilege 4 (all-time location). Without both, you cannot run the `segments` query.
 4. Send the Vehicle JWT in the `Authorization` header to the Telemetry API, a GraphQL API.
 5. Call the `segments` query with `mechanism: idling`. Idling segments are contiguous periods where engine RPM remains in the idle range, and the mechanism requires a DIMO device.
 6. Optionally tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240 seconds). `maxGapSeconds` controls how brief gaps are handled before a segment is split.
 7. Read `start`, `end`, `duration` and `isOngoing` from each segment. The maximum date range per query is 31 days.
-
-For the Pilot's full signal list, see [Honda Pilot on DIMO](/vehicles/honda/pilot).
 
 ## Code
 
 ```graphql
 query GetPilotIdling {
   segments(
-    tokenId: <vehicleTokenId>
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: idling
     config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
     signalRequests: [
@@ -58,7 +57,9 @@ query GetPilotIdling {
 }
 ```
 
-Send your Vehicle JWT in the request header: `{ "Authorization": "<yourVehicleJwt>" }`. Replace `<vehicleTokenId>` with the Pilot's token ID.
+Send your Vehicle JWT in the request header: `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with the Pilot's token ID.
+
+Once the query looks right, get a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and walk through the [authentication guide](/docs/getting-started/authentication).
 
 ## FAQ
 
@@ -74,4 +75,4 @@ Set `minSegmentDurationSeconds` in `config` to filter out short segments. The de
 ### Can I query more than 31 days at once?
 No. The `segments` query has a maximum date range of 31 days. Split longer periods into multiple queries and page with `limit` and `after`.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Honda Pilot vehicle page](/vehicles/honda/pilot).*

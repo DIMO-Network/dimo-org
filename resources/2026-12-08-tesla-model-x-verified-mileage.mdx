@@ -1,49 +1,50 @@
 ---
-title: How to verify Tesla Model X mileage with DIMO
-description: Verify a Tesla Model X odometer reading with DIMO by reading the
-  odometer signal and requesting a signed odometer statement attestation.
+title: How to verify a Tesla Model X odometer reading via API
+description: Read the Tesla Model X (2016 and newer) odometer in km and request
+  a signed odometer statement from the DIMO Attestation API. Owner-consented, no
+  hardware.
 slug: tesla-model-x-verified-mileage
 date: 2026-12-08
 authors:
   - dimo-team
 tags:
-  - tesla
-  - model-x
+  - tesla-model-x
   - odometer
-  - mileage-verification
-  - attestation
+  - attestation-api
+  - tesla
 ---
 
-To verify Tesla Model X mileage with DIMO, read the odometer signal for the vehicle and request an odometer statement attestation for it. On a Tesla Model X (2016 and newer), the Tesla OEM cloud connection reports the odometer in kilometers. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+To verify an odometer reading on a Tesla Model X, read the odometer signal with the DIMO Telemetry API and request an odometer statement attestation for the vehicle with the Attestation API. On a Tesla Model X (2016 and newer), the Tesla connection (OEM cloud, no hardware) reports the odometer in kilometers as `powertrainTransmissionTravelledDistance`.
 
-See the full signal list on the [Tesla Model X vehicle page](/vehicles/tesla/model-x).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+See the full signal list on the [Tesla Model X vehicle page](/vehicles/tesla/model-x). A version of this guide for any connected vehicle is at [How to Verify Mileage at Rental Return with DIMO](/resources/verify-mileage-at-rental-return).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and generate an API key. You need your Client ID, Redirect URI and API key.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and generate an API Key. You need your Client ID, Redirect URI and API Key.
 2. Get a vehicle shared with your app. The owner shares the Model X through DIMO Connect, and you need the vehicle's token ID.
-3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the permission for all-time, non-location data, which is the permission the odometer signal falls under.
-4. Read the current odometer with the Telemetry API `signalsLatest` query and the `powertrainTransmissionTravelledDistance` signal. On the Model X this signal is reported in km by the Tesla OEM cloud connection.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the permission for all-time, non-location data (privilege 1), which is the permission the odometer signal falls under.
+4. Read the current odometer with the Telemetry API `signalsLatest` query and the `powertrainTransmissionTravelledDistance` signal. On the Model X this signal is reported in km by the Tesla connection.
 5. Request an odometer statement attestation with the Attestation API (`POST /v2/attestation/odometer-statement/:tokenId`), sending the Vehicle JWT. The `timestamp` parameter is optional.
-6. Retrieve the resulting verifiable credential through the Telemetry API, as described in the Attestation API documentation.
+6. Handle the response as a confirmation only. It is a message that the credential was generated for retrieval through the Telemetry API, and it carries no odometer value. Keep the km reading from step 4 to show alongside the signed statement.
 
 ## Code
 
-This example requests an odometer statement attestation for a vehicle. It assumes you already have a Vehicle JWT and the vehicle's token ID, so it is not tagged as runnable.
+This example requests an odometer statement attestation for a vehicle. It assumes you already have a Vehicle JWT. Replace `12345` with the vehicle's token ID.
 
 ```typescript
 const odometerVc = await dimo.attestation.createOdometerStatementVC({
   vehicleJwt: "eyJhbGc...ILlujqw",
-  tokenId: 123456,
-  timestamp: '2023-01-01T00:00:00Z' // Optional
+  tokenId: 12345
 })
 ```
 
-To read the latest odometer value for the same vehicle, send this query to the Telemetry API with the Vehicle JWT in the `Authorization` header:
+To read the latest odometer value for the same vehicle, send this query to the Telemetry API with the Vehicle JWT in the `Authorization` header, in the form `Bearer <Vehicle JWT>`:
 
 ```graphql
 query GetLatestOdometer {
-  signalsLatest(tokenId: 123456) {
+  signalsLatest(tokenId: 12345) {
     powertrainTransmissionTravelledDistance {
       value
       timestamp
@@ -52,18 +53,20 @@ query GetLatestOdometer {
 }
 ```
 
+Want to run it on a real Model X? Start with a Developer License from the [Developer Console](https://console.dimo.org/sign-in), then go through the [authentication guide](/docs/getting-started/authentication).
+
 ## FAQ
 
 ### Which signal gives the Model X odometer?
-The Tesla OEM cloud connection reports `powertrainTransmissionTravelledDistance`, labeled Odometer, in km.
+The Tesla connection reports `powertrainTransmissionTravelledDistance`, labeled Odometer, in km.
 
 ### Do I need the owner's permission?
 Yes. A vehicle must be shared with you before you can fetch a Vehicle JWT, and the owner controls what is shared.
 
 ### Is the timestamp parameter required for the odometer statement?
-No. In the Attestation API documentation, `timestamp` is optional for the odometer statement request.
+No. `timestamp` is optional for the odometer statement request.
 
 ### Can I read historical odometer values?
 The Telemetry API `signals` query retrieves signal data for a given time period, using `from`, `to` and `interval` arguments.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Attestation API and Telemetry API Vehicle Signals.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Attestation API and Telemetry API Vehicle Signals, with car details from the [Tesla Model X vehicle page](/vehicles/tesla/model-x).*

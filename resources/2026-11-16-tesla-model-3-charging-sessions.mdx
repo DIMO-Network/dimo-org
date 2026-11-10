@@ -1,40 +1,43 @@
 ---
-title: How to Track Tesla Model 3 Charging Sessions with DIMO
-description: Use DIMO's Telemetry API to detect recharge sessions on a Tesla
-  Model 3 and read session energy, charge level and charging status.
+title: How to track Tesla Model 3 charging sessions via API
+description: List Tesla Model 3 (2018 and newer) charging sessions with energy
+  added (kWh) and charge level via the DIMO Telemetry API. Tesla connection, no
+  hardware.
 slug: tesla-model-3-charging-sessions
 date: 2026-11-16
 authors:
   - dimo-team
 tags:
-  - tesla
-  - model-3
+  - tesla-model-3
   - ev-charging
   - telemetry-api
+  - tesla
 ---
 
-To track charging sessions on a Tesla Model 3, query the DIMO Telemetry API for recharge segments and request the charge level signal for each one. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Tesla Model 3 (2018 and newer), the Tesla OEM cloud connection reports charging status, session energy and charge level, so you can describe each session in detail. The vehicle page is at /vehicles/tesla/model-3.
+To track charging sessions on a Tesla Model 3, query the DIMO Telemetry API for recharge segments and request the charge level signal for each one. On a Tesla Model 3 (2018 and newer), the Tesla connection (OEM cloud, no hardware) reports charging status, session energy in kWh and charge level in %, so you can describe each session in detail.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. The signals listed for this car are on the [Tesla Model 3 vehicle page](/vehicles/tesla/model-3). For the version that applies to any EV, see [How do I track EV charging sessions with the DIMO API?](/resources/track-electric-vehicle-charging).
 
 ## Steps
 
-1. Create a developer license and get a Developer JWT in the Developer Console at the [DIMO Developer Console](https://console.dimo.org). You can use the system-generated Developer JWT, or generate one with your API key.
-2. Get the Model 3 shared with your app. The owner shares it through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
-3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID and the permissions you need. Charging and battery signals are non-location data, so request the all-time, non-location data permission (privilege 1).
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your Client ID, Redirect URI and API Key. Then get a Developer JWT. You can use the system-generated Developer JWT, or generate one with your API Key.
+2. Get the Model 3 shared with your app. The owner shares it through DIMO Connect.
+3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID and the permissions you need. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query requires both.
 4. Query the `segments` resource of the Telemetry API with `mechanism: recharge`. Pass the vehicle token ID and a time range of at most 31 days. Recharge detection uses charging signals and state of charge. By default it also returns the level signal at the start and end of each segment.
-5. Add `signalRequests` to enrich each session. On the Model 3, the Tesla connection reports `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, %). Use an aggregation such as `MAX` or `LAST`.
+5. Add `signalRequests` to enrich each session. On the Model 3, the Tesla connection reports `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, %). The example uses `MAX` for session energy and `LAST` for charge level.
 6. Read each segment's `start`, `end`, `duration` and `isOngoing` fields. If `isOngoing` is true, the session extends past your query range and `end` is not returned.
-7. For the live state of a session, query `signalsLatest` for `powertrainTractionBatteryChargingIsCharging` and `powertrainTractionBatteryChargingIsChargingCableConnected`.
+7. For the live state of a session, query `signalsLatest` for `powertrainTractionBatteryChargingIsCharging` (Charging Status) and `powertrainTractionBatteryChargingIsChargingCableConnected` (Charging Cable Connected). Both are reported as 0 or 1, so you can tell a plugged-in Model 3 from one that is actively charging.
 
 ## Code
 
-This GraphQL query, adapted from the Telemetry API segments documentation, lists recharge sessions with the highest session energy and the last charge level reading. Send it with your Vehicle JWT in the `Authorization` header. Replace the token ID and dates with your own.
+This GraphQL query lists recharge sessions with the highest session energy reading and the last charge level reading in each one. Send it with the header `Authorization: Bearer <Vehicle JWT>`. Replace `12345` with your vehicle's token ID and the dates with your own.
 
 ```graphql
 query GetRechargeSessions {
   segments(
     tokenId: 12345
     from: "2026-11-01T00:00:00Z"
-    to: "2026-11-15T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: recharge
     signalRequests: [
       { name: "powertrainTractionBatteryChargingAddedEnergy", agg: MAX }
@@ -56,18 +59,20 @@ query GetRechargeSessions {
 }
 ```
 
+Ready to try it? Get a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication).
+
 ## FAQ
 
 ### Which Tesla Model 3 signals describe a charging session?
-The Tesla connection reports Session Energy, Current Charge Level, Charging Status, Charging Cable Connected, Charge Limit, Charging Voltage, AC Current Charge and Battery Power. Their DIMO names are listed on /vehicles/tesla/model-3.
+The Tesla connection reports Session Energy (kWh), Current Charge Level (%), Charging Status, Charging Cable Connected, Charge Limit (%), Charging Voltage (volts), AC Current Charge (amps) and Battery Power (watts). Their DIMO names are listed on the [Tesla Model 3 vehicle page](/vehicles/tesla/model-3).
 
 ### How do I get the current charging status instead of past sessions?
 Use the `signalsLatest` query with the Vehicle JWT and request `powertrainTractionBatteryChargingIsCharging`. Include `value` and optionally `timestamp` in the selection.
 
 ### How far back can I query charging sessions?
-The `segments` resource accepts a maximum date range of 31 days per query. It returns up to 200 segments per request, and you can page with the `after` argument.
+The `segments` resource accepts a maximum date range of 31 days per query. It returns 100 segments by default and up to 200 per request, and you can page with the `after` argument.
 
 ### Do I need the owner's permission?
-Yes. You need the vehicle shared with you to fetch a Vehicle JWT, and you request specific permissions in the token exchange.
+Yes. You need the vehicle shared with you to fetch a Vehicle JWT, and you request specific permissions in the token exchange. For `segments`, those are privileges 1 and 4.
 
-*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Segments and Signals references, plus the DIMO vehicle record for the Tesla Model 3.*
+*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Segments and Signals references, plus the [Tesla Model 3 vehicle page](/vehicles/tesla/model-3).*

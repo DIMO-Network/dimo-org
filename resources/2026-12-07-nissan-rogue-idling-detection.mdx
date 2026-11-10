@@ -1,26 +1,25 @@
 ---
-title: How to detect idling on a Nissan Rogue
-description: Detect idling on a Nissan Rogue by querying trip segments built
-  from engine RPM, using a DIMO device and a vehicle token.
+title: How to detect idling on a Nissan Rogue via API
+description: Detect idling on a Nissan Rogue with idle segments from the Telemetry API, reported by the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer).
 slug: nissan-rogue-idling-detection
 date: 2026-12-07
 authors:
   - dimo-team
 tags:
   - nissan-rogue
-  - idling-detection
+  - idling
   - telemetry-api
-  - segments
+  - nissan
 ---
 
-On a Nissan Rogue, DIMO detects idling by querying trip segments with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range. Both the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) list idling for the Rogue, and the documentation says idling detection requires a DIMO device. Vehicle details are on the [Nissan Rogue page](/vehicles/nissan/rogue).
+To detect idling on a Nissan Rogue, query trip segments in the DIMO Telemetry API with the idling detection mechanism, which finds contiguous periods where engine RPM stays in the idle range. Both the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) list idling for the Rogue and report engine RPM as `powertrainCombustionEngineSpeed`, and idling detection requires a DIMO device. Vehicle details are on the [Nissan Rogue vehicle page](/vehicles/nissan/rogue). The make-independent guide is [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and have your Client ID, Redirect URI and API Key ready.
-2. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and have your Client ID, Redirect URI and API Key ready.
+2. Get a Developer JWT, either the system-generated one in the console or one generated with your API key through a server SDK.
 3. Get the Rogue shared with your app through DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT.
-4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, passing the vehicle token ID and the permissions your app needs.
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, passing the vehicle token ID and privileges 1 (all-time, non-location data) and 4 (all-time location). The `segments` query requires both.
 5. Send a `segments` query to the Telemetry API with your Vehicle JWT in the `Authorization` header. Set the detection mechanism to idling and keep the date range within 31 days.
 6. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000), `minSegmentDurationSeconds` filters short segments (default 240), and `signalCountThreshold` sets how sensitive activity detection is (default 10).
 7. Read `duration`, `start`, `end` and `isOngoing` on each returned segment. The Rogue reports Engine RPM as `powertrainCombustionEngineSpeed` on both the DIMO LTE R1 and AutoPi, so you can also request an RPM aggregate per segment.
@@ -28,12 +27,12 @@ On a Nissan Rogue, DIMO detects idling by querying trip segments with the idling
 ## Code
 
 ```graphql
-# Header: { "Authorization": "<yourVehicleJwt>" }
+# Header: { "Authorization": "Bearer <yourVehicleJwt>" }
 query GetIdlingSegments {
   segments(
-    tokenId: 117315 # replace with your Rogue's vehicle token ID
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345 # replace 12345 with your Rogue's vehicle token ID
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: idling
     config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
     signalRequests: [
@@ -57,13 +56,15 @@ query GetIdlingSegments {
 }
 ```
 
+Your next step is a Developer License from the [Developer Console](https://console.dimo.org/sign-in), followed by the [authentication guide](/docs/getting-started/authentication).
+
 ## FAQ
 
 ### Which devices report idling for the Nissan Rogue?
 The DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) both list idling for the Rogue. Both report Engine RPM.
 
 ### Can I detect idling without a DIMO device?
-No. The documentation states that idling detection requires a DIMO device.
+No. Idling detection requires a DIMO device, such as the DIMO LTE R1 or AutoPi listed for the Rogue.
 
 ### What counts as idling?
 A segment is a contiguous period where engine RPM stays in the idle range. Windows with maximum RPM at or below `maxIdleRpm` count as idle, and the default is 1000.
@@ -74,4 +75,4 @@ The segment returns with `isOngoing` set to true and no `end`. Its `duration` ru
 ### How far back can I query?
 The maximum date range for a segments query is 31 days. Use `limit` and `after` to page through results.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Nissan Rogue vehicle page](/vehicles/nissan/rogue).*

@@ -1,36 +1,39 @@
 ---
-title: How to Track Fuel Level and Refuels on a Toyota Corolla
-description: Read fuel level and detect refuels on a Toyota Corolla with the
-  DIMO LTE R1, using a Vehicle JWT and the Telemetry API.
+title: How to track Toyota Corolla fuel level and refuels via API
+description: "A Toyota Corolla reports fuel level in liters (powertrainFuelSystemAbsoluteLevel) through the DIMO LTE R1 on model years 2010 and newer."
 slug: toyota-corolla-fuel-level-tracking
 date: 2026-12-01
 authors:
   - dimo-team
 tags:
   - toyota-corolla
-  - fuel-level
-  - refuel-detection
+  - refuel
   - telemetry-api
+  - toyota
 ---
 
-To track fuel level and refuels on a Toyota Corolla, use a DIMO LTE R1 and query the Telemetry API with a Vehicle JWT. The DIMO LTE R1 reports fuel level in liters on 2010 and newer Corollas, and it is the connection that lists refuel events. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full signal list.
+To track fuel level and refuels on a Toyota Corolla, query the DIMO Telemetry API with a Vehicle JWT: `signalsLatest` returns the current level, and `segments` with `mechanism: refuel` returns the refuels. The DIMO LTE R1 reports fuel level in liters, as `powertrainFuelSystemAbsoluteLevel`, on 2010 and newer Corollas, and it is the connection that lists refuel events. The AutoPi listed for the Corolla has no fuel level signal.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full signal list. For the version that applies to any vehicle, see [How do I detect when a vehicle refuels with DIMO?](/resources/track-refuel-events)
 
 ## Steps
 
-1. Get a Developer JWT. In the Developer Console, use the system-generated one or generate one with your API key, as described in the authentication docs.
-2. Get the Corolla shared with you. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Sharing happens through DIMO Connect.
-3. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Include the vehicle's token ID and the permissions you need, such as all-time non-location data.
-4. Send the Vehicle JWT in the `Authorization` header of Telemetry API requests.
-5. Read the current fuel level on the Corolla's DIMO LTE R1 with the `signalsLatest` query and the `powertrainFuelSystemAbsoluteLevel` signal.
-6. Detect refuels with the `segments` query and the `refuel` detection mechanism. It finds periods where fuel level rises significantly. The `minIncreasePercent` setting in `config` controls how large a rise counts, and the default is 15.
-7. Request the fuel level signal per segment with `signalRequests`. The documentation says refuel segments also include the level signal at the start and end by default.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note its Client ID, Redirect URI and API Key.
+2. Get a Developer JWT. In the Developer Console, use the system-generated one or generate one with your API Key, as described in the [authentication guide](/docs/getting-started/authentication).
+3. Get the Corolla shared with you. Sharing happens through DIMO Connect.
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Include the vehicle's token ID and request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query requires both.
+5. Send the Vehicle JWT on Telemetry API requests as `Authorization: Bearer <Vehicle JWT>`.
+6. Read the current fuel level on the Corolla's DIMO LTE R1 with the `signalsLatest` query and the `powertrainFuelSystemAbsoluteLevel` signal.
+7. Detect refuels with the `segments` query and the `refuel` detection mechanism. It finds periods where fuel level rises significantly. The `minIncreasePercent` setting in `config` controls how large a rise counts, and the default is 15.
+8. Request the fuel level signal per segment with `signalRequests`. Refuel segments also include the level signal at the start and end by default.
 
 ## Code
 
-The first query reads the latest fuel level. The second finds refuel segments over a date range. Replace the token ID and dates with your own. Run each in the Telemetry API with your Vehicle JWT in the `Authorization` header.
+Run each query against the Telemetry API with your Vehicle JWT in the `Authorization` header. Replace `12345` with your vehicle's token ID and set your own dates.
+
+The first query reads the latest fuel level in liters:
 
 ```graphql
-# Latest fuel level
 query GetLatestFuel {
   signalsLatest(tokenId: 12345) {
     powertrainFuelSystemAbsoluteLevel {
@@ -39,13 +42,16 @@ query GetLatestFuel {
     }
   }
 }
+```
 
-# Refuel segments
+The second finds refuel segments over a date range:
+
+```graphql
 query GetRefuels {
   segments(
     tokenId: 12345
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: refuel
     config: { minIncreasePercent: 15 }
     signalRequests: [
@@ -68,6 +74,8 @@ query GetRefuels {
 }
 ```
 
+To run these against your own Corolla, create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and work through the [authentication guide](/docs/getting-started/authentication).
+
 ## FAQ
 
 ### Which Corolla connection reports fuel level and refuels?
@@ -77,9 +85,6 @@ The DIMO LTE R1 reports fuel level and lists refuel events on a Toyota Corolla, 
 The `powertrainFuelSystemAbsoluteLevel` signal is reported in liters on the DIMO LTE R1.
 
 ### How wide can the refuel query date range be?
-The segments documentation sets a maximum date range of 31 days per query. It returns up to 200 segments per request, with a default of 100, and you can page with the `after` argument.
+A `segments` query has a maximum date range of 31 days. It returns up to 200 segments per request, with a default of 100, and you can page with the `after` argument.
 
-### Does DIMO replace GPS tracking for this?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. Here it supplies fuel level and refuel detection for the Corolla.
-
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, plus the signals and events listed on the [Toyota Corolla vehicle page](/vehicles/toyota/corolla).*

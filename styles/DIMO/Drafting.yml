@@ -1,0 +1,12 @@
+extends: existence
+message: "'%s' describes how the guide was drafted, not what the reader should do. Remove it."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  # Leftovers from drafting: notes about source material and the snippet harness.
+  - \bdocumentation excerpts?\b
+  - \bnot tagged\b
+  - \buntagged\b
+  - \btagged as runnable\b
+  - \bnot self-contained\b

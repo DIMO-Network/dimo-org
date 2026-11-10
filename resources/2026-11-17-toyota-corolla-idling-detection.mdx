@@ -1,29 +1,28 @@
 ---
-title: How to Detect Idling on a Toyota Corolla with DIMO
-description: Detect idling on a Toyota Corolla by querying idle segments from a
-  DIMO device, with the steps and a working query.
+title: How to detect idling on a Toyota Corolla via API
+description: Detect idling on a Toyota Corolla with a DIMO LTE R1 (2010 and newer) or AutoPi (2008 and newer) by querying idle segments from the Telemetry API.
 slug: toyota-corolla-idling-detection
 date: 2026-11-17
 authors:
   - dimo-team
 tags:
-  - idling
   - toyota-corolla
+  - idling
   - telemetry-api
-  - segments
+  - toyota
 ---
 
-To detect idling on a Toyota Corolla, query idle segments from the DIMO Telemetry API using a vehicle that has a DIMO device. Both the DIMO LTE R1 and the AutoPi report idling for the Corolla, and both report engine RPM, which is what idle detection is based on. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+To detect idling on a Toyota Corolla, query the `segments` resource of the DIMO Telemetry API with `mechanism: idling`, using a vehicle that has a DIMO device. Both the DIMO LTE R1 (2010 and newer) and the AutoPi (2008 and newer) report idling for the Corolla, and both report engine RPM (`powertrainCombustionEngineSpeed`), which is what idle detection is based on.
 
-Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full list of supported signals.
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full list of supported signals. For the version that applies to any vehicle, see [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and note your Client ID, Redirect URI and API Key.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your Client ID, Redirect URI and API Key.
 2. Get a Corolla shared with your app. The owner grants access through DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
 3. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
-4. Exchange the Developer JWT for a Vehicle JWT with the Token Exchange API. Request the permissions you need. Idle segments return start and end locations, so include location permission if you want them.
-5. Send the Vehicle JWT in the `Authorization` header to the Telemetry API.
+4. Exchange the Developer JWT for a Vehicle JWT with the Token Exchange API. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query requires both.
+5. Send the Vehicle JWT to the Telemetry API in the header `Authorization: Bearer <Vehicle JWT>`.
 6. Query `segments` with `mechanism: idling`. The idling mechanism finds contiguous periods where engine RPM stays in the idle range and requires a DIMO device. The maximum date range is 31 days.
 7. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` drops short segments (default 240, min 60, max 3600). `signalCountThreshold` sets how sensitive activity detection is (default 10).
 8. Read `duration`, `start`, `end` and `isOngoing` from each segment. If `isOngoing` is true, the segment extends past your query range and `end` is not returned.
@@ -33,9 +32,9 @@ Vehicle owners consent to and control sharing, so builders get data with clear p
 ```graphql
 query GetIdlingSegments {
   segments(
-    tokenId: 117315
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: idling
     config: {
       maxIdleRpm: 1000
@@ -62,7 +61,9 @@ query GetIdlingSegments {
 }
 ```
 
-Send this query to the Telemetry API with the header `{ "Authorization": "<yourVehicleJwt>" }`, replacing `tokenId` with your Corolla's vehicle token ID. The `speed` request adds the maximum speed within each idle segment.
+Send this query to the Telemetry API with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`, replacing `12345` with your Corolla's vehicle token ID. The `speed` request asks for the maximum speed in each idle segment alongside the default signals.
+
+Ready to try it? Get a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication).
 
 ## FAQ
 
@@ -78,4 +79,4 @@ Set `maxIdleRpm` in the `config` argument. Windows where the maximum RPM is at o
 ### How do I filter out very short idle periods?
 Set `minSegmentDurationSeconds` in `config`. The default is 240 seconds, and the allowed range is 60 to 3600.
 
-*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the Toyota Corolla vehicle page.*
+*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Toyota Corolla vehicle page](/vehicles/toyota/corolla).*

@@ -1,8 +1,7 @@
 ---
-title: How to get check-engine alerts for a Chevrolet Equinox
-description: Set up a webhook that fires when a Chevrolet Equinox reports
-  distance driven with the check-engine lamp on, then read its trouble codes
-  through DIMO.
+title: How to get Chevrolet Equinox check-engine alerts by webhook
+description: A Chevrolet Equinox reports its trouble-code list and distance with MIL on
+  via the DIMO LTE R1 or AutoPi. A Vehicle Triggers webhook sends the alert.
 slug: chevrolet-equinox-check-engine-alerts
 date: 2026-11-27
 authors:
@@ -10,25 +9,29 @@ authors:
 tags:
   - chevrolet-equinox
   - check-engine
-  - diagnostic-trouble-codes
-  - webhooks
+  - vehicle-triggers
+  - chevrolet
 ---
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For a Chevrolet Equinox, create a Vehicle Triggers webhook on the distance-with-MIL signal, subscribe the vehicle, and read the trouble codes when the webhook fires. Both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report the trouble code list and distance with MIL on for this car. See [the Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list.
+To get check-engine alerts on a Chevrolet Equinox, create a DIMO Vehicle Triggers webhook on the distance-with-MIL signal, subscribe the vehicle, and read the trouble codes when the webhook fires. Both the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer) report the trouble code list (`obdDTCList`) and distance with MIL on (`obdDistanceWithMIL`) for this car, and the DIMO LTE R1 also reports the DTC count (`obdStatusDTCCount`). See [the Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For vehicles beyond the Equinox, see [Get alerts when a fleet vehicle's check-engine light comes on](/resources/check-engine-light-alerts).
 
 ## Steps
 
-1. Get a Developer JWT for your Developer License in the [Developer Console](https://console.dimo.org), or generate one with your API key using a server SDK. Webhooks are tied to a specific Developer License, so use the JWT for the license you plan to use.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in); it gives you a Client ID, Redirect URI and API Key. Get a Developer JWT there, or generate one with your API key using a server SDK. Webhooks are tied to a specific Developer License, so use the JWT for the license you plan to use.
 2. Have the Equinox shared with your app through DIMO Connect. The owner consents to sharing, and a vehicle must be shared with you before you can fetch a Vehicle JWT.
-3. Call `GET /v1/webhooks/signals` on the Vehicle Triggers API to confirm the exact signal names available for the `metricName` field. Signal names are VSS-prefixed, for example `vss.speed`.
+3. Call `GET /v1/webhooks/signals` on the Vehicle Triggers API to confirm the exact signal names available for the `metricName` field. The endpoint returns bare signal names such as `obdDistanceWithMIL`; prefix them with `vss.` in `metricName`, for example `vss.obdDistanceWithMIL`.
 4. Create a webhook with `POST /v1/webhooks`. Set `service` to `signals`, set `metricName` to the distance-with-MIL signal, and set a `condition` such as `valueNumber > 0`. Also provide a `coolDownPeriod`, a `description`, an HTTPS `targetURL`, a `status` of `enabled`, and a `verificationToken` that your endpoint echoes back during verification. Webhooks are in public beta.
-5. Subscribe the Equinox with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`. To subscribe every vehicle that has shared with your Developer License, use the `subscribe/all` endpoint instead.
+5. Subscribe the Equinox with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`, putting the vehicle's DID (in the form `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`) in place of `:tokenDID`. To subscribe every vehicle that has shared with your Developer License, use the `subscribe/all` endpoint instead.
 6. When the webhook fires, DIMO sends a `POST` request to your `targetURL`. The `subject` and `assetDID` fields identify the vehicle.
-7. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, then query `obdDTCList` with `signalsLatest` in the Telemetry API to read the diagnostic trouble codes.
+7. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API with privilege 1 (all-time, non-location data), then query `obdDTCList` with `signalsLatest` in the Telemetry API to read the diagnostic trouble codes.
+
+On an Equinox with a DIMO LTE R1 you could trigger on `vss.obdStatusDTCCount` instead. That signal is the number of currently active diagnostic trouble codes, which is not the same thing as `obdDistanceWithMIL`, the distance travelled with the malfunction indicator lamp (MIL) on.
 
 ## Code
 
-Create the webhook with cURL, adapted from the Vehicle Triggers API example. Replace the placeholders with your own values. Confirm the signal name with the signals endpoint from step 3 before you run it.
+Create the webhook with cURL and your Developer JWT. Replace the placeholders with your own values. Confirm the signal name with the signals endpoint from step 3 before you run it.
 
 ```shell
 curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
@@ -47,7 +50,7 @@ curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
   }'
 ```
 
-Then read the trouble codes with the Vehicle JWT in the `Authorization` header:
+Then read the trouble codes with the Vehicle JWT in the `Authorization` header, as `Bearer <Vehicle JWT>`. Replace `12345` with your vehicle's token ID.
 
 ```graphql
 query GetTroubleCodes {
@@ -60,10 +63,12 @@ query GetTroubleCodes {
 }
 ```
 
+Your next step is a Developer License from the [Developer Console](https://console.dimo.org/sign-in), followed by the [authentication guide](/docs/getting-started/authentication) and the [Vehicle Triggers API reference](/docs/api-references/vehicle-triggers-api).
+
 ## FAQ
 
 ### Which Equinox model years are supported?
-The DIMO LTE R1 supports the Equinox from 2008 and newer. AutoPi supports it from 2012 and newer.
+DIMO lists the DIMO LTE R1 for the Equinox from 2008 and newer, and the AutoPi from 2012 and newer.
 
 ### Which device reports a trouble code count?
 The DIMO LTE R1 reports the DTC count. AutoPi does not report it for this car, but it does report distance since DTC clear and warmups since DTC clear.
@@ -74,4 +79,4 @@ The webhook payload carries the value of the signal the webhook watches, plus th
 ### Can I avoid polling for check-engine status?
 Yes. Vehicle Triggers pushes a request to your `targetURL` when the condition is met, so you don't need to poll the API. Use `coolDownPeriod` to limit how often it fires.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and Telemetry API Vehicle Signals.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and Telemetry API Vehicle Signals, and on [the Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox).*

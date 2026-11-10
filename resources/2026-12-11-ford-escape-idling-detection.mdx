@@ -1,42 +1,41 @@
 ---
-title: How do I detect idling on a Ford Escape?
-description: Use DIMO's Telemetry API idling segment detection to find periods
-  when a Ford Escape's engine runs at idle RPM, using a DIMO device.
+title: How to detect idling on a Ford Escape via API
+description: Get idle periods for a Ford Escape from Telemetry API idle segments. Idling is reported by the DIMO LTE R1 (2008 and newer) and AutoPi (2012 and newer).
 slug: ford-escape-idling-detection
 date: 2026-12-11
 authors:
   - dimo-team
 tags:
-  - idling
   - ford-escape
+  - idling
   - telemetry-api
-  - segments
+  - ford
 ---
 
-To detect idling on a Ford Escape, query the DIMO Telemetry API for segments with the idling detection mechanism. It finds contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
+To detect idling on a Ford Escape, query the DIMO Telemetry API for segments with the idling detection mechanism. On a Ford Escape, idling is supported on both the DIMO LTE R1 (2008 and newer) and the AutoPi (2012 and newer), and both report engine RPM (`powertrainCombustionEngineSpeed`), vehicle speed and engine runtime. The mechanism finds contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device.
 
-On a Ford Escape, idling is supported on both the DIMO LTE R1 (2008 and newer) and the AutoPi (2012 and newer). Both report engine RPM, vehicle speed and engine runtime. Full details are on the vehicle page at [/vehicles/ford/escape](/vehicles/ford/escape).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Full details are on the [Ford Escape vehicle page](/vehicles/ford/escape). If you need the non-Escape version, it is [How to Detect Vehicle Idling with DIMO](/resources/detect-vehicle-idling).
 
 ## Steps
 
-1. Create a Developer License and get a Developer JWT in the Developer Console. You need your Client ID, Redirect URI and API Key. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
-2. Get the Ford Escape shared with your app. Use DIMO Connect to request the permissions you need. The vehicle must have a DIMO device connected.
-3. Exchange your Developer JWT for a Vehicle JWT for that vehicle by calling the Token Exchange API with the vehicle's token ID and the permissions you need, such as all-time non-location data.
-4. Send the Vehicle JWT in the `Authorization` header to the Telemetry API.
+1. Create a Developer License and get a Developer JWT in the [Developer Console](https://console.dimo.org/sign-in). You need your Client ID, Redirect URI and API Key. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+2. Get the Ford Escape shared with your app. The owner shares it through DIMO Connect. The vehicle must have a DIMO device connected.
+3. Exchange your Developer JWT for a Vehicle JWT for that vehicle by calling the Token Exchange API with the vehicle's token ID. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location), as the `segments` query requires both.
+4. Send the Vehicle JWT to the Telemetry API in the `Authorization` header, in the form `Bearer <Vehicle JWT>`.
 5. Query `segments` with `mechanism: idling`, a `from` and `to` range of at most 31 days, and the vehicle token ID.
 6. Optionally tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters out short segments (default 240 seconds). `maxGapSeconds` controls when a segment is split (default 300 seconds).
 7. Read `start`, `end`, `duration` and `isOngoing` from each segment. If `isOngoing` is true, the segment extends past your query range and `end` is not included.
 
 ## Code
 
-This GraphQL query is adapted from the Telemetry API segments documentation. Replace the token ID and time range with your own, and send your Vehicle JWT in the `Authorization` header. It uses `speed`, a signal the Ford Escape reports on both devices. It is not tagged as runnable because it needs a Vehicle JWT for a shared vehicle.
+This GraphQL query returns idle segments for one Ford Escape. Replace `12345` with the vehicle's token ID and pick your own time range, then send it with your Vehicle JWT. It asks for the maximum `speed` in each segment alongside the default signals, and `speed` is a signal the Ford Escape reports on both devices.
 
 ```graphql
 query GetIdlingSegments {
   segments(
-    tokenId: 117315
-    from: "2025-11-01T09:21:19Z"
-    to: "2025-11-07T09:21:19Z"
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: idling
     config: {
       maxIdleRpm: 1000
@@ -63,6 +62,8 @@ query GetIdlingSegments {
 }
 ```
 
+From here, request a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and complete the [authentication guide](/docs/getting-started/authentication) steps.
+
 ## FAQ
 
 ### Does idling detection on a Ford Escape need hardware?
@@ -77,4 +78,4 @@ The maximum date range for a segments query is 31 days. Use `limit` and the `aft
 ### Can I change what counts as idling?
 Yes. Set `maxIdleRpm` and `minSegmentDurationSeconds` in the `config` argument, within the documented minimum and maximum values.
 
-*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App and the Telemetry API Vehicle Segments reference.*
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App and the Telemetry API Vehicle Segments reference, plus the [Ford Escape vehicle page](/vehicles/ford/escape).*

@@ -1,40 +1,43 @@
 ---
-title: How to track Tesla Model S charging sessions with DIMO
-description: Use DIMO's Telemetry API to find charging sessions on a Tesla Model
-  S and read the energy, charge level and charging status for each one.
+title: How to track Tesla Model S charging sessions via API
+description: Find charging sessions on a Tesla Model S (2013 and newer) and read
+  kWh added and charge level per session via the DIMO Telemetry API. No hardware
+  needed.
 slug: tesla-model-s-charging-sessions
 date: 2026-11-19
 authors:
   - dimo-team
 tags:
-  - tesla
-  - model-s
+  - tesla-model-s
   - ev-charging
   - telemetry-api
+  - tesla
 ---
 
-To track charging sessions on a Tesla Model S, query the DIMO Telemetry API for recharge segments and request the charging signals you want for each one. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Tesla Model S (2013 and newer), the Tesla OEM cloud connection reports charging status, session energy and charge level, and DIMO supports recharge events for it. See the [Tesla Model S vehicle page](/vehicles/tesla/model-s).
+To track charging sessions on a Tesla Model S, query the DIMO Telemetry API for recharge segments and request the charging signals you want for each one. On a Tesla Model S (2013 and newer), the Tesla connection (OEM cloud, no hardware) reports charging status, session energy in kWh and charge level in %, and DIMO can detect recharge segments for it.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Tesla Model S vehicle page](/vehicles/tesla/model-s) for every listed signal. The same approach for other EVs is covered in [How do I track EV charging sessions with the DIMO API?](/resources/track-electric-vehicle-charging).
 
 ## Steps
 
-1. Create a Developer License and get your `Client ID` and `API Key` from the [Developer Console](https://console.dimo.org).
-2. Get the Model S shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a vehicle shared with you to fetch a Vehicle JWT.
-3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle through the Token Exchange API. Request the permission for all-time, non-location data.
+1. Create a Developer License and get your `Client ID`, `Redirect URI` and `API Key` from the [Developer Console](https://console.dimo.org/sign-in).
+2. Get the Model S shared with your app through DIMO Connect. You need a vehicle shared with you to fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle through the Token Exchange API. Request two permissions: privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query does not work without both.
 4. Query the `segments` resource of the Telemetry API with `mechanism: recharge`. This detection mechanism uses charging signals and state of charge to find each session. The query range can be at most 31 days.
-5. In `signalRequests`, ask for the Model S signals you need per session. Two that suit this job are `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, in kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, in %). Other Model S signals, such as `powertrainTractionBatteryChargingIsCharging` (Charging Status) and `powertrainTractionBatteryChargingChargeLimit` (Charge Limit), can be read with `signalsLatest`.
+5. In `signalRequests`, ask for the Model S signals you need per session. Two that suit this job are `powertrainTractionBatteryChargingAddedEnergy` (Session Energy, in kWh) and `powertrainTractionBatteryStateOfChargeCurrent` (Current Charge Level, in %). Other Model S signals, such as `powertrainTractionBatteryChargingChargeLimit` (Charge Limit, in %) and `powertrainTractionBatteryStateOfChargeCurrentEnergy` (Remaining Energy, in kWh), can be read with `signalsLatest`.
 6. Read each segment's `start` and `end` timestamps and `duration`, plus its `signals`. If `isOngoing` is true, the session extends past your query range and `end` is not included.
 7. To tune detection, pass a `config` with `minIncreasePercent`, which sets the minimum percent increase within a window that counts as a level increase for recharge detection. The default is 15.
 
 ## Code
 
-This is a GraphQL query adapted from the Telemetry API segments example. Send it with your Vehicle JWT in the `Authorization` header. Replace the token ID and dates with your own.
+This GraphQL query returns one entry per charging session. Send it with your Vehicle JWT in the `Authorization` header, as `Bearer <Vehicle JWT>`. Replace `12345` with your vehicle's token ID and the dates with your own.
 
 ```graphql
 query GetChargingSessions {
   segments(
     tokenId: 12345
     from: "2026-11-01T00:00:00Z"
-    to: "2026-11-15T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
     mechanism: recharge
     signalRequests: [
       { name: "powertrainTractionBatteryChargingAddedEnergy", agg: MAX }
@@ -56,18 +59,17 @@ query GetChargingSessions {
 }
 ```
 
+Next step: create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and use the [authentication guide](/docs/getting-started/authentication) to get your first Vehicle JWT.
+
 ## FAQ
 
 ### Which Model S connection reports charging data?
-The Tesla OEM cloud connection, for 2013 and newer model years, reports the charging signals used here, including session energy, charging status, charge limit and cable connected. It also supports recharge events.
+The Tesla connection, for 2013 and newer model years, reports the charging signals used here, including session energy, charging status, charge limit and cable connected. Recharge segment detection is also available.
 
 ### How does DIMO detect a charging session?
-The `recharge` detection mechanism is a hybrid method. It uses charging signals and state of charge to find where the charge level rises.
+The `recharge` detection mechanism is a hybrid method. It uses charging signals and state of charge for detection, and `minIncreasePercent` (default 15) sets how large a level increase must be.
 
 ### How far back can I query?
 The `segments` query has a maximum date range of 31 days. It returns 100 segments by default, up to a maximum of 200 per request, and you can paginate with the `after` argument.
 
-### Does this replace GPS tracking?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
-
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments and Vehicle Signals references.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments and Vehicle Signals references, together with the [Tesla Model S vehicle page](/vehicles/tesla/model-s).*

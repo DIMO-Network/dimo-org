@@ -1,7 +1,7 @@
 ---
-title: How to get check-engine alerts for a Ram 1500
-description: Read trouble codes and distance driven with the warning light on
-  from a Ram 1500 through DIMO, and set up push alerts for your backend.
+title: How to get Ram 1500 check-engine alerts by webhook
+description: On a Ram 1500 the DIMO LTE R1 and AutoPi both report the trouble-code list
+  and distance with MIL on. A Vehicle Triggers webhook sends the alert.
 slug: ram-1500-check-engine-alerts
 date: 2026-11-20
 authors:
@@ -9,26 +9,48 @@ authors:
 tags:
   - ram-1500
   - check-engine
-  - diagnostic-trouble-codes
-  - webhooks
+  - vehicle-triggers
+  - ram
 ---
 
-To get check-engine alerts for a Ram 1500, connect a DIMO device, have the owner share the vehicle with your app, and read trouble codes through the DIMO Telemetry API. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Ram 1500, the DIMO LTE R1 (2013 and newer) and the AutoPi (2012 and newer) both report diagnostic trouble codes and distance driven with the warning light on.
+To get check-engine alerts on a Ram 1500, connect a DIMO device, have the owner share the vehicle with your app, and set up a Vehicle Triggers webhook on a diagnostic signal. On a Ram 1500, the DIMO LTE R1 (2013 and newer) and the AutoPi (2012 and newer) both report diagnostic trouble codes (`obdDTCList`) and distance driven with the warning light on (`obdDistanceWithMIL`). The DIMO LTE R1 also reports a DTC count (`obdStatusDTCCount`); the AutoPi entry does not list it.
 
-Vehicle owners consent to and control sharing, so builders get data with clear provenance. Full signal coverage is on the [Ram 1500 vehicle page](/vehicles/ram/1500).
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Full signal coverage is on the [Ram 1500 vehicle page](/vehicles/ram/1500). The same approach for a mixed fleet is covered in [Get alerts when a fleet vehicle's check-engine light comes on](/resources/check-engine-light-alerts).
 
 ## Steps
 
 1. Connect hardware. The Ram 1500 needs a DIMO LTE R1 or an AutoPi to report data. Without one, there is no data to read.
-2. Get the vehicle shared with your app. Use DIMO Connect so the owner can log in and choose to share the vehicle with your Developer License.
+2. Get the vehicle shared with your app. Use DIMO Connect so the owner can log in and choose to share the vehicle with your Developer License. You create the license, with its Client ID, Redirect URI and API Key, in the [Developer Console](https://console.dimo.org/sign-in).
 3. Get a Developer JWT in the Developer Console, either the system-generated one or one generated with your API key.
-4. Exchange it for a Vehicle JWT with the Token Exchange API, sending the vehicle token ID and requesting a permission such as all-time, non-location data. The vehicle must already be shared with you.
-5. Query the Telemetry API with the Vehicle JWT in the `Authorization` header. Use `signalsLatest` to read the most recent `obdDTCList` and `obdDistanceWithMIL` values. Check the list for new codes on each poll.
-6. For push alerts instead of polling, use the Vehicle Triggers API (webhooks, currently in public beta). Call `GET /v1/webhooks/signals` to see which signal names can be used, create a webhook with your `targetURL`, `condition` and `coolDownPeriod`, then subscribe the vehicle. DIMO sends a `POST` to your URL when the condition is met.
+4. For push alerts, use the Vehicle Triggers API (webhooks, currently in public beta) with the Developer JWT. Call `GET /v1/webhooks/signals` to see which signal names can be used. Then create a webhook with `service` set to `signals`, a `metricName` of `vss.obdDistanceWithMIL` (listed for both devices) or `vss.obdStatusDTCCount` (DIMO LTE R1), a `condition` of `valueNumber > 0`, a `coolDownPeriod`, a `description`, your HTTPS `targetURL`, a `status` of `enabled` and a `verificationToken`.
+5. Subscribe the vehicle using the vehicle's DID (for example `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`). DIMO sends a `POST` to your URL when the condition is met.
+6. To read the codes, exchange the Developer JWT for a Vehicle JWT with the Token Exchange API, sending the vehicle token ID and requesting privilege 1 (all-time, non-location data). The vehicle must already be shared with you.
+7. Query the Telemetry API with the Vehicle JWT in the `Authorization` header (`Authorization: Bearer <Vehicle JWT>`). Use `signalsLatest` to read the most recent `obdDTCList` and `obdDistanceWithMIL` values.
+
+Note what each signal tells you. `obdDistanceWithMIL` is distance travelled with the malfunction indicator lamp (MIL) on. `obdStatusDTCCount` is a number of currently active diagnostic trouble codes, which is a different measurement from the lamp distance.
 
 ## Code
 
-This query is adapted from the `signalsLatest` example in the Telemetry API documentation. Replace the token ID with your vehicle's token ID.
+Create the webhook first. The `metricName` here is listed for both Ram 1500 devices.
+
+```shell
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "signals",
+    "metricName": "vss.obdDistanceWithMIL",
+    "condition": "valueNumber > 0",
+    "coolDownPeriod": 3600,
+    "description": "Fires when a subscribed Ram 1500 reports distance travelled with the MIL on",
+    "displayName": "Ram 1500 check-engine alert",
+    "targetURL": "https://example.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "<YOUR_VERIFICATION_TOKEN>"
+  }'
+```
+
+After an alert, read the codes with `signalsLatest`. Replace `12345` with your vehicle's token ID.
 
 ```graphql
 query GetCheckEngineSignals {
@@ -45,10 +67,12 @@ query GetCheckEngineSignals {
 }
 ```
 
+Ready to wire it up? Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication). The [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api) page documents each webhook endpoint.
+
 ## FAQ
 
 ### Which device reports trouble codes on a Ram 1500?
-Both the DIMO LTE R1 and the AutoPi report `obdDTCList` and `obdDistanceWithMIL`, and both list new trouble codes as an event.
+Both the DIMO LTE R1 and the AutoPi report `obdDTCList` and `obdDistanceWithMIL`.
 
 ### Is there a DTC count signal?
 The DIMO LTE R1 reports `obdStatusDTCCount` on a Ram 1500. The AutoPi does not list it, but it does report `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`, which the DIMO LTE R1 does not list.
@@ -59,4 +83,4 @@ No lamp on/off signal is listed for this truck. The distance driven with the war
 ### Do I need the owner's permission?
 Yes. You need a Vehicle JWT, and fetching one requires the vehicle to be shared with your Developer License.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and Telemetry API Vehicle Signals.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and Telemetry API Vehicle Signals, with device and signal coverage from the [Ram 1500 vehicle page](/vehicles/ram/1500).*

@@ -1,37 +1,40 @@
 ---
-title: How to get check-engine alerts for a Chevrolet Silverado 1500
-description: Set up a DIMO webhook for a Chevrolet Silverado 1500 so your server
-  is notified on a trouble-code count change, then read the codes.
+title: How to get Chevrolet Silverado 1500 check-engine alerts by webhook
+description: On a Chevrolet Silverado 1500 the AutoPi reports the trouble-code list and
+  the DIMO LTE R1 the DTC count. A Vehicle Triggers webhook alerts you.
 slug: chevrolet-silverado-1500-check-engine-alerts
 date: 2026-11-17
 authors:
   - dimo-team
 tags:
+  - chevrolet-silverado-1500
   - check-engine
-  - diagnostics
-  - webhooks
+  - vehicle-triggers
   - chevrolet
-  - silverado-1500
 ---
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. To get check-engine alerts for a Chevrolet Silverado 1500, create a Vehicle Triggers webhook on the DIMO LTE R1's trouble code count, then read the codes themselves with the AutoPi's trouble code list. Both connections need a vehicle the owner has shared with your Developer License. Details for this truck are on its [vehicle page](/vehicles/chevrolet/silverado-1500).
+To get check-engine alerts on a Chevrolet Silverado 1500, create a DIMO Vehicle Triggers webhook on a diagnostic signal the truck's device reports, then subscribe the truck to it. On this truck the DIMO LTE R1 (2007 and newer) lists the trouble code count and distance with MIL on, while the AutoPi (2011 and newer) lists the trouble code list and distance with MIL on. A truck has one of the two devices, so which path you follow depends on the device. Details for this truck are on the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500).
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Either device needs a vehicle the owner has shared with your Developer License. The guide for any vehicle is [Get alerts when a fleet vehicle's check-engine light comes on](/resources/check-engine-light-alerts).
 
 ## Steps
 
-1. Create a Developer License in the DIMO Developer Console and get a Developer JWT. You need your Client ID, Redirect URI and API Key.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and get a Developer JWT. You need your Client ID, Redirect URI and API Key.
 2. Get the truck shared with you through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
-3. Pick the connection that reports what you need on a Silverado 1500:
-   - The DIMO LTE R1 (2007 and newer) reports `obdStatusDTCCount` (DTC Count) and `obdDistanceWithMIL` (Distance with MIL On).
-   - The AutoPi (2011 and newer) reports `obdDTCList` (Diagnostic Trouble Codes), `obdDistanceWithMIL`, `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`. DIMO also lists new trouble codes as an event for the AutoPi.
+3. Check which device the Silverado 1500 has, because each one reports different signals:
+   - The DIMO LTE R1 (2007 and newer) reports `obdStatusDTCCount` (DTC Count) and `obdDistanceWithMIL` (Distance with MIL On). Its entry does not list `obdDTCList`, so the codes themselves are not available on that device.
+   - The AutoPi (2011 and newer) reports `obdDTCList` (Diagnostic Trouble Codes), `obdDistanceWithMIL`, `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`. Its entry does not list `obdStatusDTCCount`.
 4. Call `GET /v1/webhooks/signals` with your Developer JWT to confirm the signal name your webhook should use.
-5. Create the webhook with `POST /v1/webhooks`. Set `service` to `signals`, put the signal in `metricName`, and write a condition that compares the value. The condition below fires when the DTC Count is above zero. You also set a `coolDownPeriod`, an HTTPS `targetURL`, a `status` and a `verificationToken`.
-6. Subscribe the truck with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`, or subscribe every vehicle that has shared with your Developer License using the `subscribe/all` endpoint.
+5. Create the webhook with `POST /v1/webhooks`, again with the Developer JWT. Set `service` to `signals`, put the signal in `metricName`, and write a condition that compares the value. Use `vss.obdDistanceWithMIL` for a truck on either device; on a DIMO LTE R1 truck you can use `vss.obdStatusDTCCount` instead. The condition below fires when the distance with MIL on is above zero. You also set a `coolDownPeriod`, a `description`, an HTTPS `targetURL`, a `status` and a `verificationToken`.
+6. Subscribe the truck with `POST /v1/webhooks/:webhookId/subscribe/:tokenDID`, where `:tokenDID` is the vehicle's DID, for example `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`. Or subscribe every vehicle that has shared with your Developer License using the `subscribe/all` endpoint.
 7. When the condition is met, DIMO sends a `POST` request to your `targetURL`. The body includes the `assetDID`, the `metricName` and the signal value.
-8. To see which codes are set on an AutoPi-connected truck, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request the all-time, non-location data permission, then query `signalsLatest` for `obdDTCList` in the Telemetry API.
+8. To see which codes are set on an AutoPi-connected truck, exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data), then query `signalsLatest` for `obdDTCList` in the Telemetry API. On a DIMO LTE R1 truck the alert is all you get: the code list is not listed for that device.
+
+The two trigger signals measure different things. `obdStatusDTCCount` is the number of currently active diagnostic trouble codes, and `obdDistanceWithMIL` is the distance travelled with the malfunction indicator lamp (MIL) on.
 
 ## Code
 
-This cURL request is adapted from the Vehicle Triggers API documentation. Replace the placeholders with your own values.
+Create the webhook with your Developer JWT. Replace the placeholders with your own values.
 
 ```shell
 curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
@@ -39,10 +42,10 @@ curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
   -H "Content-Type: application/json" \
   -d '{
     "service": "signals",
-    "metricName": "vss.obdStatusDTCCount",
+    "metricName": "vss.obdDistanceWithMIL",
     "condition": "valueNumber > 0",
     "coolDownPeriod": 3600,
-    "description": "Fires when a subscribed vehicle reports one or more trouble codes",
+    "description": "Fires when a subscribed vehicle reports distance travelled with the MIL on",
     "displayName": "Check-engine alert",
     "targetURL": "https://your-app.example.com/webhook-receiver",
     "status": "enabled",
@@ -50,10 +53,25 @@ curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
   }'
 ```
 
+On an AutoPi truck, read the code list with a Vehicle JWT sent as `Authorization: Bearer <Vehicle JWT>`. Replace `12345` with your vehicle's token ID.
+
+```graphql
+query GetTroubleCodes {
+  signalsLatest(tokenId: 12345) {
+    obdDTCList {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+To set this up for your trucks, get a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and follow the [authentication guide](/docs/getting-started/authentication). Every webhook field is described in the [Vehicle Triggers API reference](/docs/api-references/vehicle-triggers-api).
+
 ## FAQ
 
 ### Which Silverado 1500 connection should I use for check-engine alerts?
-The DIMO LTE R1 reports a DTC count, which suits a webhook that fires when the count rises. The AutoPi reports the trouble code list, which you can read after an alert fires.
+Both work for the alert. The DIMO LTE R1 reports a DTC count and distance with MIL on, so a webhook on either signal fires when the value is above zero. The AutoPi reports distance with MIL on for the webhook and the trouble code list, which you can read after an alert fires.
 
 ### Can I read the actual trouble codes?
 On the AutoPi, yes: it reports Diagnostic Trouble Codes as `obdDTCList`. Query it with `signalsLatest` using a Vehicle JWT. The DIMO LTE R1 lists a DTC count but not the code list.
@@ -61,7 +79,4 @@ On the AutoPi, yes: it reports Diagnostic Trouble Codes as `obdDTCList`. Query i
 ### Do I need the owner's permission?
 Yes. You can only fetch a Vehicle JWT for a vehicle that has been shared with your Developer License. The owner grants that access through DIMO Connect.
 
-### Does DIMO replace GPS tracking for this truck?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
-
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, plus the Silverado 1500 vehicle page.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, plus the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500).*

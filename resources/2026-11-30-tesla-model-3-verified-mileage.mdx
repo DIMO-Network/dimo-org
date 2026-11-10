@@ -1,48 +1,47 @@
 ---
-title: How to verify Tesla Model 3 mileage with DIMO
-description: Verify a Tesla Model 3 odometer with DIMO by creating an odometer
-  statement attestation and reading it back through the Telemetry API.
+title: How to verify a Tesla Model 3 odometer reading via API
+description: Get a signed odometer statement for a Tesla Model 3 (2018 and newer) from the DIMO Attestation API and read the odometer in km. Owner consent, no hardware.
 slug: tesla-model-3-verified-mileage
 date: 2026-11-30
 authors:
   - dimo-team
 tags:
-  - tesla
-  - model-3
+  - tesla-model-3
   - odometer
-  - attestation
+  - attestation-api
+  - tesla
 ---
 
-To verify mileage on a Tesla Model 3, use DIMO to read the odometer signal and create an odometer statement attestation for the vehicle. On a Tesla Model 3, the Tesla OEM cloud connection reports the odometer in km as `powertrainTransmissionTravelledDistance`, for model year 2018 and newer. The vehicle owner consents to and controls sharing, so builders get data with clear provenance.
+To verify an odometer reading on a Tesla Model 3, create an odometer statement attestation with the DIMO Attestation API and read the odometer signal through the Telemetry API. On a Tesla Model 3, the Tesla connection (OEM cloud, no hardware) reports the odometer in km as `powertrainTransmissionTravelledDistance`, for model year 2018 and newer. The vehicle owner consents to and controls sharing, so builders get data with clear provenance.
+
+For Tesla Model 3 coverage details, see the [Tesla Model 3 vehicle page](/vehicles/tesla/model-3). For the version that applies to any vehicle, see [How to Verify Mileage at Rental Return with DIMO](/resources/verify-mileage-at-rental-return).
 
 ## Steps
 
-1. Create a developer license in the Developer Console and generate an API key. You need your Client ID, Redirect URI and API Key.
-2. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and generate an API Key. You need your Client ID, Redirect URI and API Key.
+2. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API Key through a server SDK.
 3. Get the Model 3 shared with you. The owner shares the vehicle through DIMO Connect, and you need a vehicle shared with you to fetch a Vehicle JWT. Find the vehicle's token ID.
-4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request the permission "All-time, non-location data", which covers the odometer.
-5. Call the Attestation API at `POST /v2/attestation/odometer-statement/:tokenId` with the Vehicle JWT. The optional `timestamp` parameter sets the time for the statement. If an unexpired attestation exists, the API returns it instead of creating a new one.
-6. Read the odometer back through the Telemetry API with the `signalsLatest` query, using `powertrainTransmissionTravelledDistance`. Use the `rawVC` from the attestation response for queries on the Telemetry API, such as getting the odometer of the vehicle.
-
-For Tesla Model 3 coverage details, see [Tesla Model 3 on DIMO](/vehicles/tesla/model-3).
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request privilege 1, "All-time, non-location data", which covers the odometer.
+5. Call the Attestation API at `POST /v2/attestation/odometer-statement/:tokenId` with the Vehicle JWT. The `timestamp` parameter is optional. If an unexpired attestation exists, the API returns it instead of creating a new one.
+6. Check the response. It is a confirmation message that the credential was generated for retrieval through the Telemetry API. It does not contain the odometer value.
+7. Read the current odometer through the Telemetry API with the `signalsLatest` query, using `powertrainTransmissionTravelledDistance`. The value is reported in km, so you can show it alongside the signed statement.
 
 ## Code
 
-This example creates an odometer statement attestation with the TypeScript SDK call from the Attestation API documentation. It is not self-contained, because it needs a Vehicle JWT and a token ID, so it is not tagged as runnable.
+This example creates an odometer statement attestation with the TypeScript SDK. Replace the Vehicle JWT, and replace `12345` with your vehicle's token ID.
 
 ```typescript
 const odometerVc = await dimo.attestation.createOdometerStatementVC({
   vehicleJwt: "eyJhbGc...ILlujqw",
-  tokenId: 123456,
-  timestamp: '2023-01-01T00:00:00Z' // Optional
+  tokenId: 12345
 })
 ```
 
-Then read the latest odometer value from the Telemetry API, sending the Vehicle JWT in the `Authorization` header:
+Then read the latest odometer value from the Telemetry API, sending the header `Authorization: Bearer <Vehicle JWT>`:
 
 ```graphql
 query GetLatestOdometer {
-  signalsLatest(tokenId: 123456) {
+  signalsLatest(tokenId: 12345) {
     powertrainTransmissionTravelledDistance {
       value
       timestamp
@@ -51,10 +50,12 @@ query GetLatestOdometer {
 }
 ```
 
+Ready to try it? Get a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication) and the [Attestation API reference](/docs/api-references/attestation-api).
+
 ## FAQ
 
 ### Which Tesla Model 3 signal reports mileage?
-The Tesla OEM cloud connection reports the odometer as `powertrainTransmissionTravelledDistance`, in km. DIMO lists this for model year 2018 and newer.
+The Tesla connection reports the odometer as `powertrainTransmissionTravelledDistance`, in km. DIMO lists this for model year 2018 and newer.
 
 ### Do I need the owner's consent?
 Yes. You need the vehicle shared with you through DIMO Connect before you can fetch a Vehicle JWT. Vehicle owners consent to and control sharing.
@@ -65,4 +66,4 @@ A Developer JWT gives general access to DIMO APIs and has no access to vehicle d
 ### Does the odometer statement need a timestamp?
 No. The `timestamp` parameter on the odometer statement endpoint is optional.
 
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Attestation API and Telemetry API Vehicle Signals, plus DIMO's tested Tesla Model 3 vehicle record.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Attestation API and Telemetry API Vehicle Signals, plus the [Tesla Model 3 vehicle page](/vehicles/tesla/model-3).*

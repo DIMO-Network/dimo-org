@@ -1,7 +1,7 @@
 ---
-title: How do I get check-engine alerts for a Toyota Prius?
-description: Use DIMO to read trouble codes and check-engine lamp distance from
-  a Toyota Prius, then push an alert to your server with a webhook.
+title: How to get Toyota Prius check-engine alerts by webhook
+description: On a Toyota Prius the DIMO LTE R1 reports the trouble-code list, DTC count
+  and distance with MIL on; the AutoPi the MIL distance. A webhook alerts you.
 slug: toyota-prius-check-engine-alerts
 date: 2026-11-26
 authors:
@@ -9,21 +9,25 @@ authors:
 tags:
   - toyota-prius
   - check-engine
-  - diagnostic-trouble-codes
-  - webhooks
+  - vehicle-triggers
+  - toyota
 ---
 
-To get check-engine alerts for a Toyota Prius, read its diagnostic signals through DIMO and set up a webhook that fires when the distance driven with the MIL on rises above zero. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. On a Toyota Prius, the DIMO LTE R1 reports the trouble code list, the DTC count and the distance with the MIL on. The full signal list is on the [Toyota Prius vehicle page](/vehicles/toyota/prius).
+To get check-engine alerts on a Toyota Prius, set up a DIMO Vehicle Triggers webhook that fires when the distance driven with the MIL on is above zero. On a Toyota Prius, the DIMO LTE R1 (2009 and newer) reports the trouble code list, the DTC count and the distance with the MIL on. The AutoPi (2008 and newer) reports the distance with the MIL on, but not the code list or the count. The full signal list is on the [Toyota Prius vehicle page](/vehicles/toyota/prius).
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. A model-agnostic version of this setup is in [Get alerts when a fleet vehicle's check-engine light comes on](/resources/check-engine-light-alerts).
 
 ## Steps
 
-1. Create a Developer License in the Developer Console and get a Developer JWT. You can use the system-generated one or generate one with your API key.
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and get a Developer JWT. You can use the system-generated one or generate one with your API key. Keep the license's Client ID, Redirect URI and API Key to hand.
 2. Get the Prius shared with you. The owner shares it through DIMO Connect, so you only receive data the owner has consented to share.
-3. Exchange your Developer JWT for a Vehicle JWT with the Token Exchange API. Request the "All-time, non-location data" permission for the vehicle.
-4. Check what the vehicle reports. Send the Vehicle JWT in the `Authorization` header to the Telemetry API and run a `signalsLatest` query for `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL`. On a Prius with a DIMO LTE R1, these are the signals that carry trouble codes and check-engine lamp distance. The DIMO LTE R1 also supports an event for new trouble codes.
-5. Create a webhook with the Vehicle Triggers API. Set `service` to `signals`, `metricName` to `vss.obdDistanceWithMIL` and `condition` to `valueNumber > 0`. Point `targetURL` at your HTTPS endpoint and set a `coolDownPeriod` so you are not alerted repeatedly.
-6. Subscribe the Prius to the webhook with its token DID, or subscribe all vehicles that have shared with your Developer License.
-7. Handle the `POST` request your endpoint receives. The body includes the `assetDID` of the vehicle, the `metricName` and the signal `value`. Then use the `signalsLatest` query from step 4 to fetch `obdDTCList` for the specific codes.
+3. Exchange your Developer JWT for a Vehicle JWT with the Token Exchange API. Request the "All-time, non-location data" permission (privilege 1) for the vehicle.
+4. Check what the vehicle reports. Send the Vehicle JWT as `Authorization: Bearer <Vehicle JWT>` to the Telemetry API and run a `signalsLatest` query for `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL`. On a Prius with a DIMO LTE R1, these are the signals that carry trouble codes and check-engine lamp distance. On a Prius with an AutoPi, only `obdDistanceWithMIL` of the three is listed.
+5. Create a webhook with the Vehicle Triggers API, using your Developer JWT. Set `service` to `signals`, `metricName` to `vss.obdDistanceWithMIL` and `condition` to `valueNumber > 0`. Point `targetURL` at your HTTPS endpoint, set a `coolDownPeriod`, and supply `description`, `status` and `verificationToken`. Both Prius devices list this signal. The webhook keeps firing once per cool-down period for as long as the condition holds.
+6. Subscribe the Prius to the webhook with the vehicle's DID, written like `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`, or subscribe all vehicles that have shared with your Developer License.
+7. Handle the `POST` request your endpoint receives. The body includes the `assetDID` of the vehicle, the `metricName` and the signal `value`. Then, on a Prius with a DIMO LTE R1, use the `signalsLatest` query from step 4 to fetch `obdDTCList` for the specific codes.
+
+This webhook watches the lamp signal, not the count: `obdDistanceWithMIL` is distance travelled with the malfunction indicator lamp (MIL) on, whereas `obdStatusDTCCount` is the number of currently active DTCs.
 
 ## Code
 
@@ -46,18 +50,38 @@ curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
   }'
 ```
 
+The query from step 4, for a Prius with a DIMO LTE R1. Replace `12345` with your vehicle's token ID.
+
+```graphql
+query GetCheckEngineSignals {
+  signalsLatest(tokenId: 12345) {
+    obdDTCList {
+      value
+      timestamp
+    }
+    obdStatusDTCCount {
+      value
+      timestamp
+    }
+    obdDistanceWithMIL {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+When you want to run this against a real Prius, create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and use the [authentication guide](/docs/getting-started/authentication) to get your JWTs. The [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api) page has the full webhook reference.
+
 ## FAQ
 
 ### Which Prius connection reports trouble codes?
-The DIMO LTE R1 reports `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL` on a Toyota Prius. The AutoPi device reports `obdDistanceWithMIL`, `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`.
+The DIMO LTE R1 reports `obdDTCList`, `obdStatusDTCCount` and `obdDistanceWithMIL` on a Toyota Prius. The AutoPi reports `obdDistanceWithMIL`, `obdDistanceSinceDTCClear` and `obdWarmupsSinceDTCClear`.
 
 ### Which model years are supported?
-The DIMO LTE R1 is seen on the Prius from model year 2009 and newer. The AutoPi device is seen from model year 2008 and newer.
+DIMO lists the DIMO LTE R1 for Toyota Prius model years 2009 and newer, and the AutoPi for model years 2008 and newer.
 
 ### Can I poll instead of using a webhook?
-Yes. Run a `signalsLatest` query against the Telemetry API with a Vehicle JWT whenever you need the current `obdDTCList`, `obdStatusDTCCount` or `obdDistanceWithMIL` values.
+Yes. Run a `signalsLatest` query against the Telemetry API with a Vehicle JWT whenever you need the current `obdDTCList`, `obdStatusDTCCount` or `obdDistanceWithMIL` values on a Prius with a DIMO LTE R1.
 
-### Does this replace GPS tracking?
-No. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
-
-*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, plus DIMO's Toyota Prius vehicle record.*
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, plus the [Toyota Prius vehicle page](/vehicles/toyota/prius).*
