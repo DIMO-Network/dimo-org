@@ -287,7 +287,7 @@
     },
     {
       "q": "How do I verify Chevrolet Traverse mileage?",
-      "a": "A DIMO device provides the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate the attestation, then retrieve the rawVC through the Telemetry API."
+      "a": "A DIMO device provides the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate the attestation, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Chevrolet Traverse, an ICE vehicle, that data comes from a DIMO device on 2010 and newer model years, and this coverage has been tested. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. You query the data through the Telemetry API with GraphQL."

@@ -256,7 +256,7 @@
     },
     {
       "q": "How do I verify Toyota 4Runner mileage?",
-      "a": "Both DIMO device types report the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the resulting `rawVC` through the Telemetry API."
+      "a": "Both DIMO device types report the odometer signal. To get verifiable proof, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect harsh braking on a Toyota 4Runner?",

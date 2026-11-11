@@ -22,7 +22,7 @@ DIMO gives developers API access to vehicle-state data: diagnostics, fault codes
 1. Get a Developer JWT for your DIMO Developer License. You need your Client ID, Redirect URI, and API Key. You can use the system-generated Developer JWT in the Developer Console, or generate a new one with an API key through a server SDK.
 2. Make sure the vehicle is shared with you. You can request sharing through DIMO Connect.
 3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API. Include the vehicle token ID and the permissions you are requesting.
-4. Send your query to the Telemetry API at `https://telemetry-api.dimo.zone`. Set the header `{ "Authorization": "<yourVehicleJwt>" }`.
+4. Send your query to the Telemetry API at `https://telemetry-api.dimo.zone/query`. Set the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`.
 5. Call `segments` with `tokenId`, `from`, `to`, and `mechanism: idling`. The maximum date range is 31 days.
 6. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `signalCountThreshold` sets the minimum signal count per window (default 10). `minSegmentDurationSeconds` filters out short segments (default 240). `maxGapSeconds` sets the maximum gap before a segment is split (default 300).
 7. Read the response. Each segment has `start`, `end`, and `duration` in seconds. `isOngoing` is true when the segment extends beyond your query range, and `end` is null in that case. `startedBeforeRange` is true when the start may be approximate.

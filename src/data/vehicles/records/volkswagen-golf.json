@@ -244,7 +244,7 @@
     },
     {
       "q": "How do I verify Volkswagen Golf mileage?",
-      "a": "Both DIMO device entries list the odometer signal. Call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+      "a": "Both DIMO device entries list the odometer signal. Call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "Can I get harsh braking alerts for a Volkswagen Golf?",

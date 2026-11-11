@@ -1,0 +1,83 @@
+---
+title: How to detect idling on a Ram 1500 via API
+description: Find idling periods on a Ram 1500 with DIMO Telemetry API idle segments. The DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) report idling.
+slug: ram-1500-idling-detection
+date: 2026-12-04
+authors:
+  - dimo-team
+tags:
+  - ram-1500
+  - idling
+  - telemetry-api
+  - ram
+---
+
+To detect idling on a Ram 1500, query the DIMO Telemetry API for segments with the idling detection mechanism. Idling detection requires a DIMO device, and on a Ram 1500 both the DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) support idling and report engine RPM (`powertrainCombustionEngineSpeed`).
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the full list of signals on this truck, see the [Ram 1500 vehicle page](/vehicles/ram/1500). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and generate an API key. You need your `Client ID`, `Redirect URI` and `API Key`.
+2. Get the Ram 1500 shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Sharing is done through DIMO Connect.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request the "All-time, non-location data" permission (privilege 1). Also request the "All-time location" permission (privilege 4). The `segments` query requires both, because each segment includes its start and end location.
+4. Call the `segments` query on the Telemetry API with your Vehicle JWT in the `Authorization` header. Set `mechanism` to `idling`. The date range can be at most 31 days.
+5. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters out very short segments (default 240). `signalCountThreshold` controls sensitivity (default 10).
+6. Read `start`, `end`, `duration` and `isOngoing` from each returned segment. If `isOngoing` is true, the segment extends beyond your query range and `end` is not included.
+7. Optionally request extra aggregates per segment through `signalRequests`, such as the maximum of `powertrainCombustionEngineSpeed` to confirm the engine stayed in the idle range.
+
+The DIMO LTE R1 on a Ram 1500 (2013 and newer) and AutoPi (2012–2025) both report `powertrainCombustionEngineSpeed`. The DIMO LTE R1 also reports `isIgnitionOn`. You can use that signal to cross-check whether the ignition was on during a segment. The AutoPi does not report it on this truck.
+
+## Code
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Send this query to `https://telemetry-api.dimo.zone/query` with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with your truck's token ID and set your own date range.
+
+Haven't set up access yet? Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then use the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Ram 1500 hardware supports idling detection?
+The DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) both report idling on the Ram 1500. Idling detection requires a DIMO device.
+
+### How does DIMO decide a period is idling?
+Idling segments are contiguous periods where engine RPM stays in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How do I ignore short stops?
+Raise `minSegmentDurationSeconds`, which defaults to 240 seconds (4 minutes) and accepts values from 60 to 3600. Segments shorter than this are left out of the results.
+
+### How far back can I query?
+The maximum date range for a `segments` query is 31 days. For longer periods, run several queries and page through results with `limit` and `after`.
+
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Ram 1500 vehicle page](/vehicles/ram/1500).*

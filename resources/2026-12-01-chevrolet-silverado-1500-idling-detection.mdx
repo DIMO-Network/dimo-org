@@ -1,0 +1,81 @@
+---
+title: How to detect idling on a Chevrolet Silverado 1500 via API
+description: Idle segments from the DIMO Telemetry API show when a Chevrolet Silverado 1500 idles, via the DIMO LTE R1 (2007 and newer) or AutoPi (2011 and newer).
+slug: chevrolet-silverado-1500-idling-detection
+date: 2026-12-01
+authors:
+  - dimo-team
+tags:
+  - chevrolet-silverado-1500
+  - idling
+  - telemetry-api
+  - chevrolet
+---
+
+To detect idling on a Chevrolet Silverado 1500, query idle segments from the DIMO Telemetry API with the idling detection mechanism. DIMO supports idling for this truck on both the DIMO LTE R1 (2007 and newer) and AutoPi (2011 and newer), and both devices report `powertrainCombustionEngineSpeed`, which is the engine RPM signal.
+
+The idling mechanism returns contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and get your Client ID, Redirect URI and API Key. These are the prerequisites for obtaining a Developer JWT.
+2. Get the Silverado 1500 shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a vehicle shared with you before you can fetch a Vehicle JWT, and DIMO Connect handles the sharing flow.
+3. Get a Developer JWT. You can generate one with your API key using a server SDK.
+4. Exchange the Developer JWT for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query requires both, and each segment carries a start and end location.
+5. Send the Vehicle JWT to the Telemetry API as `Authorization: Bearer <Vehicle JWT>` and query `segments` with `mechanism: idling`. Set `from` and `to` no more than 31 days apart.
+6. Tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters out short segments (default 240 seconds). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+7. Read `start`, `end`, `duration`, `isOngoing` and `startedBeforeRange` on each returned segment. If `isOngoing` is true, the idle period extends past your query range and `end` is not included.
+
+## Code
+
+This GraphQL query returns idle segments with the peak engine RPM for each. Replace `12345` with your truck's token ID, use your own time range, and send your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+To put this to work, open the [Developer Console](https://console.dimo.org/sign-in) to get a Developer License, then go through the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which devices support idling detection on a Chevrolet Silverado 1500?
+Both the DIMO LTE R1 and AutoPi report idling on the Silverado 1500. The idling mechanism requires a DIMO device.
+
+### What counts as idling?
+An idle segment is a contiguous period where engine RPM remains in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How long can my query range be?
+The segments query accepts a maximum date range of 31 days. The default `limit` is 100 segments and the maximum is 200, and you can page with the `after` argument.
+
+### Can I filter out brief stops?
+Yes. Raise `minSegmentDurationSeconds` in `config`. The default is 240 seconds, and the minimum is 60.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Chevrolet Silverado 1500 vehicle page](/vehicles/chevrolet/silverado-1500).*

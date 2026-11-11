@@ -1,0 +1,82 @@
+---
+title: How to track Ram 1500 fuel level and refuels via API
+description: "Read Ram 1500 fuel level in percent and find refuels through the DIMO Telemetry API, with a DIMO LTE R1 (2013 and newer) or an AutoPi (2012–2025)."
+slug: ram-1500-fuel-level-tracking
+date: 2026-12-17
+authors:
+  - dimo-team
+tags:
+  - ram-1500
+  - refuel
+  - telemetry-api
+  - ram
+---
+
+To track fuel level and refuels on a Ram 1500, read the fuel percentage signal from the Telemetry API with `signalsLatest` and query refuel `segments` for the same vehicle. On a Ram 1500, both the DIMO LTE R1 (2013 and newer) and AutoPi (2012–2025) report fuel percentage as `powertrainFuelSystemRelativeLevel` and support refuel events. This truck reports no liters signal on either device.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ram 1500 vehicle page](/vehicles/ram/1500). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and get a Developer JWT. You need your Client ID, Redirect URI and API Key. You can use the system-generated Developer JWT from the Developer Console or generate one with your API Key through a server SDK.
+2. Get the Ram 1500 shared with your app. Sharing happens through DIMO Connect, and you need a shared vehicle before you can fetch a Vehicle JWT.
+3. Exchange your Developer JWT for a Vehicle JWT with the Token Exchange API. Request the all-time, non-location data permission (privilege 1) and the all-time location permission (privilege 4). Fuel level is not location data, but the `segments` query requires both.
+4. Send the Vehicle JWT in the `Authorization` header of Telemetry API requests, prefixed with `Bearer`.
+5. Query `signalsLatest` for `powertrainFuelSystemRelativeLevel` to get the current fuel percentage and its timestamp.
+6. Query `segments` with the `refuel` detection mechanism over the period you care about. Refuel detection finds where fuel level rises significantly. The default `minIncreasePercent` is 15, and you can change it in `config`. The maximum date range is 31 days.
+7. Read each segment's `start`, `end` and `duration`. Segments also include the fuel level signal at the start and end by default, so you can compare the two readings.
+
+## Code
+
+This single query returns the current fuel percentage and the refuel segments in one request. Replace `12345` with your vehicle's token ID and set your own time range.
+
+```graphql
+query GetFuelAndRefuels {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+  }
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+Send this header with the request: `{ "Authorization": "Bearer <yourVehicleJwt>" }`.
+
+If you have not set up access yet, get a Developer License from the [Developer Console](https://console.dimo.org/sign-in) and go through the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which signal gives the fuel level on a Ram 1500?
+The `powertrainFuelSystemRelativeLevel` signal reports fuel as a percentage. Both the DIMO LTE R1 and AutoPi report it on a Ram 1500.
+
+### Do I need hardware to get this data from a Ram 1500?
+Yes. The fuel signal and refuel events for this truck come from a DIMO LTE R1 or an AutoPi, so a connected device is needed.
+
+### How does refuel detection work?
+The `refuel` detection mechanism detects where fuel level rises significantly. By default a rise of at least 15 percent within a window counts, and you can change that threshold with `minIncreasePercent`.
+
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Vehicle Segments references, together with the [Ram 1500 vehicle page](/vehicles/ram/1500).*

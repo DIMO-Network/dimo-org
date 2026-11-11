@@ -261,7 +261,7 @@
     },
     {
       "q": "How do I verify Toyota Highlander mileage?",
-      "a": "Both Highlander coverage entries list the odometer signal from a DIMO device. To get a verifiable reading, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+      "a": "Both Highlander coverage entries list the odometer signal from a DIMO device. To get a verifiable reading, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO provides a vehicle data API for the Toyota Highlander, which connects through a DIMO device on 2007 and newer model years. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Highlander coverage is tested rather than expected, and the record lists an ICE powertrain. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."

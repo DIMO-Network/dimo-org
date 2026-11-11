@@ -1,0 +1,66 @@
+---
+title: How to get Toyota Camry harsh braking events via API
+description: Read harsh braking events from a Toyota Camry (2007 and newer) that has a DIMO LTE R1, using the DIMO Telemetry API or a webhook pushed to your server.
+slug: toyota-camry-harsh-braking-alerts
+date: 2026-12-15
+authors:
+  - dimo-team
+tags:
+  - toyota-camry
+  - harsh-braking
+  - telemetry-api
+  - toyota
+---
+
+To get harsh braking events on a Toyota Camry, query the `events` resource of the DIMO Telemetry API with a Vehicle JWT. The DIMO LTE R1 reports harsh braking events for the car from model year 2007 and newer. The AutoPi reports idling events only on the Camry, so harsh braking comes from the DIMO LTE R1. See the [Toyota Camry vehicle page](/vehicles/toyota/camry) for every signal it reports. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI`, and `API Key`.
+2. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API key through a server SDK.
+3. Have the owner share the Camry with your app through DIMO Connect. The Camry needs a DIMO LTE R1 for harsh braking events, since DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API, using the vehicle's token ID. The `events` query requires two privileges on that token: privilege 1 (all-time, non-location data) and privilege 4 (all-time location).
+5. Send your Vehicle JWT to the Telemetry API as `Authorization: Bearer <Vehicle JWT>` and query the `events` resource. Pass `tokenId`, `from` and `to`, which are required, and filter by the `behavior.harshBraking` tag inside `filter`.
+6. Read each event's `timestamp`, `name`, `source`, `durationNs`, and `metadata` fields in your backend.
+7. For pushed alerts, set up a webhook as described in the [Vehicle Triggers API reference](/docs/api-references/vehicle-triggers-api): use `events` as the `service` and `behavior.harshBraking` as the `metricName`, and subscribe the Camry.
+
+## Code
+
+This GraphQL query goes to the Telemetry API with your Vehicle JWT in the `Authorization` header. Replace `12345` with your vehicle's token ID, and set `from` and `to` to the time range you want.
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+Next step: get a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and follow the [authentication guide](/docs/getting-started/authentication) to obtain your tokens.
+
+## FAQ
+
+### Which Camry connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking events for the Toyota Camry from model year 2007 and newer. The AutoPi reports idling events only on the Camry.
+
+### What does a harsh braking event describe?
+Harsh braking is rapid deceleration detected by the device. These are risky events that the data source provider determines for the connected vehicle.
+
+### Can I combine harsh braking events with other Camry signals?
+Yes. The DIMO LTE R1 on the Camry also reports signals such as vehicle speed and coordinates, which you can query separately in the Telemetry API. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the full signal list on [the Toyota Camry vehicle page](/vehicles/toyota/camry).
+
+### Do I need a vehicle shared with me first?
+Yes. You need a vehicle shared with you to fetch a Vehicle JWT, and sharing happens through DIMO Connect.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and Telemetry API Vehicle Events, and on the [Toyota Camry vehicle page](/vehicles/toyota/camry).*

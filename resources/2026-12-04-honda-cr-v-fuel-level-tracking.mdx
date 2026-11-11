@@ -1,0 +1,82 @@
+---
+title: How to track Honda CR-V fuel level and refuels via API
+description: "On a 2008 and newer Honda CR-V, the DIMO LTE R1 reports fuel level in percent and liters. Read both and detect refuels with the DIMO Telemetry API."
+slug: honda-cr-v-fuel-level-tracking
+date: 2026-12-04
+authors:
+  - dimo-team
+tags:
+  - honda-cr-v
+  - refuel
+  - telemetry-api
+  - honda
+---
+
+To track fuel level and refuels on a Honda CR-V, exchange a Developer JWT for a Vehicle JWT, then query the DIMO Telemetry API for the latest fuel signals (`signalsLatest`) and for refuel segments (`segments` with `mechanism: refuel`). On a 2008 and newer CR-V, the DIMO LTE R1 reports fuel both as a percentage (`powertrainFuelSystemRelativeLevel`) and in liters (`powertrainFuelSystemAbsoluteLevel`), and it reports refuel events.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Honda CR-V vehicle page](/vehicles/honda/cr-v) for the full signal list. The AutoPi reports different signals on the CR-V and not the fuel signals used here, so the steps below assume a DIMO LTE R1. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your Client ID, Redirect URI and API Key.
+2. Get the CR-V shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Use DIMO Connect to request the share.
+3. Get a Developer JWT, either from the Developer Console or with your API Key through a server SDK.
+4. Send the Developer JWT and the vehicle token ID to the Token Exchange API to get a Vehicle JWT. You need a vehicle shared with you first. When you exchange, request privilege 1 (all-time, non-location data) and privilege 4 (all-time location), because the `segments` query requires both.
+5. For the current fuel state, call `signalsLatest` in the Telemetry API with the header `Authorization: Bearer <Vehicle JWT>`. Ask for `powertrainFuelSystemRelativeLevel` (Fuel Percentage, %) and `powertrainFuelSystemAbsoluteLevel` (Fuel Level, liters), each with `value` and `timestamp`.
+6. For refuels, call the `segments` query with `mechanism: refuel`. This detects where fuel level rises significantly. Keep the date range to 31 days or less.
+7. Read each segment's `start`, `end` and `duration`. Refuel segments also include the level signal at the start and end by default. You can add `powertrainFuelSystemRelativeLevel` with `FIRST` and `LAST` aggregations to request them explicitly.
+8. To adjust sensitivity, set `minIncreasePercent` in `config`. It is the minimum percent increase within a window to count as a level increase, and the default is 15.
+
+## Code
+
+The query below returns refuel segments with the fuel percentage before and after each fill. Replace `12345` with your vehicle's token ID.
+
+```graphql
+# Header: { "Authorization": "Bearer <yourVehicleJwt>" }
+
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Want to try it on a CR-V? Start with a Developer License from the [Developer Console](https://console.dimo.org/sign-in), then use the [authentication guide](/docs/getting-started/authentication) to get your tokens.
+
+## FAQ
+
+### How do I read the current fuel level on a Honda CR-V?
+Query `signalsLatest` with the vehicle token ID and request `powertrainFuelSystemRelativeLevel` for percent or `powertrainFuelSystemAbsoluteLevel` for liters. Both are reported by the DIMO LTE R1 on this car.
+
+### Does the AutoPi connection report fuel level or refuels on the CR-V?
+No. On the CR-V, the AutoPi reports speed, engine RPM, engine load, low voltage battery, throttle position, altitude, coordinates and idling events. Fuel level and refuel detection come from the DIMO LTE R1.
+
+### How far back can I query refuel segments?
+The `segments` query has a maximum date range of 31 days. For longer periods, run several queries and use the `after` cursor to page through results.
+
+### Why was a small top-up not detected as a refuel?
+Refuel detection looks for a significant rise in fuel level, and `minIncreasePercent` defaults to 15. Lower that value in `config` to make detection more sensitive.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, with device and signal coverage from the [Honda CR-V vehicle page](/vehicles/honda/cr-v).*

@@ -50,20 +50,43 @@ export const formatYears = ({ from, to }: Years) =>
 // earliest year seen and never an upper bound.
 export const sinceYear = (from: number) => `${from} and newer`;
 
+// Except AutoPi: an AutoPi entry that stops before the vehicle's latest model
+// year shows its last year instead of reading as open-ended.
+const CLOSED_PROVIDERS = new Set(['AutoPi']);
+
+const isClosed = (c: Coverage, latest: number) =>
+  c.provider !== undefined &&
+  CLOSED_PROVIDERS.has(c.provider) &&
+  c.years.to < latest;
+
+export const coverageYears = (c: Coverage, latest: number) =>
+  isClosed(c, latest) ? formatYears(c.years) : sinceYear(c.years.from);
+
 type ConnectionGroup = {
   type: ConnectionType;
   from: number;
+  // Set only when every entry in the group is closed.
+  to?: number;
   providers: string[];
 };
+
+const groupYears = (g: ConnectionGroup) =>
+  g.to === undefined
+    ? sinceYear(g.from)
+    : formatYears({ from: g.from, to: g.to });
 
 // One entry per connection type, so two DIMO devices read as one clause.
 export function connectionGroups(r: VehicleRecord): ConnectionGroup[] {
   const ordered = displayCoverage(r).map(d => d.coverage);
+  const latest = yearSpan(r.coverage).to;
   return connectionTypes(r).map(type => {
     const cs = ordered.filter(c => c.type === type);
     return {
       type,
       from: Math.min(...cs.map(c => c.years.from)),
+      to: cs.every(c => isClosed(c, latest))
+        ? Math.max(...cs.map(c => c.years.to))
+        : undefined,
       providers: [
         ...new Set(cs.flatMap(c => (c.provider ? [c.provider] : []))),
       ],
@@ -143,7 +166,7 @@ function coverageClause(g: ConnectionGroup): string {
       : g.type === 'dimo_device'
         ? `connect with a DIMO device${via}`
         : `connect through a phone app${via}`;
-  return `model years ${sinceYear(g.from)} ${how}`;
+  return `model years ${groupYears(g)} ${how}`;
 }
 
 export function directAnswer(r: VehicleRecord): string {
@@ -176,8 +199,8 @@ export function generatedFaq(r: VehicleRecord): { q: string; a: string }[] {
         : `Only for model years ${list(gaps.map(formatYears))}, which have no OEM cloud connection${hasDevice ? ' and need a DIMO device' : ''}. Other listed years connect without hardware.`;
   const years = connectionGroups(r).map(g =>
     g.type === 'dimo_device'
-      ? `DIMO devices have been seen working on ${name} model years ${sinceYear(g.from)}.`
-      : `${name} model years ${sinceYear(g.from)} connect through ${g.type === 'oem_cloud' ? 'the OEM cloud' : 'a phone app'}${g.providers.length ? ` (${orList(g.providers)})` : ''}.`
+      ? `DIMO devices have been seen working on ${name} model years ${groupYears(g)}.`
+      : `${name} model years ${groupYears(g)} connect through ${g.type === 'oem_cloud' ? 'the OEM cloud' : 'a phone app'}${g.providers.length ? ` (${orList(g.providers)})` : ''}.`
   );
   return [
     {

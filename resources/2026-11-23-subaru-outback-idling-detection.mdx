@@ -1,0 +1,81 @@
+---
+title: How to detect idling on a Subaru Outback via API
+description: Use DIMO Telemetry API idle segments to find when a Subaru Outback idles, with a DIMO LTE R1 (2010 and newer) or AutoPi (2013–2024).
+slug: subaru-outback-idling-detection
+date: 2026-11-23
+authors:
+  - dimo-team
+tags:
+  - subaru-outback
+  - idling
+  - telemetry-api
+  - subaru
+---
+
+To detect idling on a Subaru Outback, query the DIMO Telemetry API for segments with the idling detection mechanism. DIMO supports idling for the Outback on both the DIMO LTE R1 (2010 and newer) and AutoPi (2013–2024), and both report engine RPM as `powertrainCombustionEngineSpeed`. Each returned segment is a contiguous period where engine RPM stays in the idle range, and idle detection requires a DIMO device.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Subaru Outback vehicle page](/vehicles/subaru/outback) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Get a Developer License from the [Developer Console](https://console.dimo.org/sign-in) and generate a Developer JWT. You need your Client ID, Redirect URI and API Key. You can use the system-generated Developer JWT in the console or generate one with your API key.
+2. Get the Outback shared with your app. Vehicle sharing runs through DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Exchange the Developer JWT for a Vehicle JWT through the Token Exchange API. Request two privileges: 1 (all-time, non-location data) and 4 (all-time location). The `segments` query requires both.
+4. Send a GraphQL query to the Telemetry API `segments` resource with `mechanism: idling`. Pass the vehicle token ID and a `from` and `to` range of at most 31 days.
+5. Tune detection with `config` if needed. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+6. Read `start`, `end` and `duration` from each segment. Idle segments are returned with `isOngoing` and `startedBeforeRange` flags, so handle segments that cross the edges of your query range.
+7. Optionally request per-segment aggregates with `signalRequests`. On the Outback, the DIMO LTE R1 and AutoPi both report `powertrainCombustionEngineSpeed`, so you can request its max or average RPM for each idle segment.
+
+## Code
+
+This GraphQL query asks for idle segments and the highest engine RPM in each. Replace `12345` with your Outback's token ID, adjust the time range, and send it with the header `Authorization: Bearer <Vehicle JWT>`.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+To try this on your own Outback data, get a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and continue with the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which hardware detects idling on a Subaru Outback?
+DIMO supports idling for the Outback on the DIMO LTE R1 (2010 and newer) and on AutoPi (2013–2024). Idling segments require a DIMO device.
+
+### How does DIMO define an idle period?
+An idling segment is a contiguous period where engine RPM remains in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How far back can I query?
+The maximum date range for a segments query is 31 days. Use `limit` and the `after` cursor to page through results.
+
+### Can I also detect harsh braking on the Outback?
+On the Outback, the DIMO LTE R1 reports harsh braking and the AutoPi does not. So `behavior.harshBraking` events are available only with the DIMO LTE R1.
+
+*Methodology: This guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Subaru Outback vehicle page](/vehicles/subaru/outback).*

@@ -1,0 +1,71 @@
+---
+title: How to get Subaru Outback harsh braking events via API
+description: Query harsh braking events for a Subaru Outback (2010 and newer) with a DIMO LTE R1 in the DIMO Telemetry API, or have a webhook send them to your server.
+slug: subaru-outback-harsh-braking-alerts
+date: 2026-12-17
+authors:
+  - dimo-team
+tags:
+  - subaru-outback
+  - harsh-braking
+  - telemetry-api
+  - subaru
+---
+
+To get harsh braking events on a Subaru Outback, query the DIMO Telemetry API for events tagged `behavior.harshBraking`, using a Vehicle JWT. On a Subaru Outback (2010 and newer), the DIMO LTE R1 reports harsh braking events. The AutoPi does not report harsh braking on the Outback, so use the DIMO LTE R1.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Subaru Outback vehicle page](/vehicles/subaru/outback) for every signal it reports. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI` and `API Key`.
+2. Get the Outback shared with your app through DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key.
+4. Exchange the Developer JWT for a Vehicle JWT using the Token Exchange API. Send the vehicle's token ID and request both privilege 1 (all-time, non-location data) and privilege 4 (all-time location); the `events` query will not run without both. The exchange request for the Outback's vehicle token ID looks like this:
+
+   `POST https://token-exchange-api.dimo.zone/v1/tokens/exchange`
+
+5. Send your Vehicle JWT as `Authorization: Bearer <Vehicle JWT>` on a request to the Telemetry API at `https://telemetry-api.dimo.zone/query`.
+6. Query `events` for the vehicle. `tokenId`, `from` and `to` are required, and the `behavior.harshBraking` tag goes inside `filter`. Each event returns a timestamp, name, source, duration in nanoseconds and metadata.
+7. For pushed alerts, add a webhook through the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api) with the `service` field set to `events` and `metricName` set to `behavior.harshBraking`. Subscribe the Outback to it once it is created.
+
+DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
+
+## Code
+
+Replace `12345` with your vehicle's token ID and pick your own `from` and `to` values.
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+When you are ready to build, pick up a Developer License from the [Developer Console](https://console.dimo.org/sign-in) and use the [authentication guide](/docs/getting-started/authentication) to get both JWTs.
+
+## FAQ
+
+### Which Subaru Outback connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking on the Outback, for model year 2010 and newer. The AutoPi reports idling and refuel events on this car, not harsh braking.
+
+### What fields does a harsh braking event return?
+Each event returns a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.
+
+### What does the Telemetry API need to return events for my Outback?
+It needs a Vehicle JWT for that specific vehicle, which you get by exchanging your Developer JWT through the Token Exchange API. The vehicle must be shared with you first.
+
+### Does harsh braking mean the same as extreme braking?
+No. They are separate DIMO LTE R1 event types: harsh braking is rapid deceleration and extreme braking is extreme rapid deceleration, both detected by the device.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Events, and the [Subaru Outback vehicle page](/vehicles/subaru/outback).*

@@ -1,0 +1,67 @@
+---
+title: How to get Toyota RAV4 harsh braking events via API
+description: Get Toyota RAV4 (2007 and newer) harsh braking events from a DIMO LTE R1, queried through the DIMO Telemetry API or pushed to your server by webhook.
+slug: toyota-rav4-harsh-braking-alerts
+date: 2026-12-11
+authors:
+  - dimo-team
+tags:
+  - toyota-rav4
+  - harsh-braking
+  - telemetry-api
+  - toyota
+---
+
+To get harsh braking events on a Toyota RAV4, run an `events` query against the DIMO Telemetry API using a Vehicle JWT. Harsh braking events for the RAV4 come from the DIMO LTE R1 (2007 and newer); the AutoPi reports idling events on the RAV4, not harsh braking.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI` and `API Key`. DIMO Events are only available on vehicles equipped with DIMO LTE R1 devices, so the RAV4 needs a DIMO LTE R1.
+2. Get the RAV4 shared with your app using DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+3. Get a Developer JWT, either from the Developer Console or by using your API key with a server SDK.
+4. Exchange the Developer JWT for a Vehicle JWT through the Token Exchange API, and make sure the vehicle has been shared with you first. The token must carry privilege 1 (all-time, non-location data) and privilege 4 (all-time location); `events` requires the two together.
+5. Send the Vehicle JWT to the Telemetry API at `https://telemetry-api.dimo.zone/query`, using the header `Authorization: Bearer <Vehicle JWT>`.
+6. Query `events` with `tokenId` and the required `from` and `to` time range, and put the `behavior.harshBraking` tag in the `filter` argument. Each event returns `timestamp`, `name`, `source`, `durationNs` and `metadata`.
+7. Alert on the events in your backend. For example, check each result's `timestamp` and `source`, and send a notification from your own service.
+8. To skip polling, create a webhook with the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api). Set its `service` to `events` and its `metricName` to `behavior.harshBraking`, then subscribe the RAV4 so DIMO posts to your `targetURL`.
+
+## Code
+
+Replace `12345` with the token ID of the shared RAV4, and set the `Authorization` header to `Bearer` followed by your Vehicle JWT. Change `from` and `to` to cover the days you care about.
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+Ready to try it? Get a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Toyota RAV4 connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking on the RAV4. The AutoPi reports idling events only on the RAV4.
+
+### Which RAV4 model years does this cover?
+The DIMO LTE R1 supports Toyota RAV4 model years 2007 and newer.
+
+### What does a harsh braking event mean?
+Harsh braking is rapid deceleration detected by the device. Extreme braking is a separate event type for extreme rapid deceleration.
+
+### Can I filter events by type?
+Yes. The `events` query accepts a `filter` argument with a `tags` filter that takes operators such as `containsAny`, and `behavior.harshBraking` is one of the available tags.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and Telemetry API Vehicle Events, as well as the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4).*

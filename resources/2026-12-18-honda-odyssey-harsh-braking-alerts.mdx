@@ -1,0 +1,64 @@
+---
+title: How to get Honda Odyssey harsh braking events via API
+description: For a Honda Odyssey (2011 and newer) with a DIMO LTE R1, read harsh braking events from the DIMO Telemetry API or have a webhook deliver them.
+slug: honda-odyssey-harsh-braking-alerts
+date: 2026-12-18
+authors:
+  - dimo-team
+tags:
+  - honda-odyssey
+  - harsh-braking
+  - telemetry-api
+  - honda
+---
+
+To get harsh braking events on a Honda Odyssey, read them from the DIMO Telemetry API `events` query after the owner shares the vehicle with your app. On a Honda Odyssey, the DIMO LTE R1 reports harsh braking events for model year 2011 and newer. The AutoPi does not report events on the Odyssey, so harsh braking depends on the DIMO LTE R1. See the [Honda Odyssey vehicle page](/vehicles/honda/odyssey) for full coverage. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need its Client ID, Redirect URI and API Key.
+2. Get the Odyssey shared with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a shared vehicle before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key through a server SDK.
+4. Exchange the Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID. Include privilege 1 (all-time, non-location data) and privilege 4 (all-time location) in the request, since `events` needs both of them.
+5. Send the Vehicle JWT as `Authorization: Bearer <Vehicle JWT>` on a Telemetry API request to `https://telemetry-api.dimo.zone/query`, and query `events` with `tokenId`, `from` and `to` (all required) and a `filter` on the `behavior.harshBraking` tag.
+6. Read the `timestamp`, `durationNs`, `source` and `metadata` fields on each returned event.
+7. To be notified as events happen, configure a webhook in the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api). Give it the `service` value `events` and the `metricName` value `behavior.harshBraking`, and subscribe the Odyssey.
+
+## Code
+
+In the query below, replace `12345` with your vehicle's token ID and set the two timestamps to your own range.
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+Start by getting a Developer License in the [Developer Console](https://console.dimo.org/sign-in); the [authentication guide](/docs/getting-started/authentication) covers the token steps.
+
+## FAQ
+
+### Which Honda Odyssey connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking on the Odyssey, from model year 2011 and newer. The AutoPi does not report events on this car.
+
+### What does a harsh braking event contain?
+The event fields are `timestamp`, `name`, `source`, `durationNs` and `metadata`. Harsh braking is rapid deceleration detected by the device.
+
+### Can I filter for other event types?
+Yes. The `tags` filter also accepts `behavior.harshAcceleration`, `behavior.harshCornering` and `safety.collision`. Its vehicle page shows which of these the Odyssey reports, and harsh braking is the one it shows.
+
+### Can I get an alert without polling?
+Yes. A Vehicle Triggers webhook with `service` set to `events` and `metricName` set to `behavior.harshBraking` sends a `POST` request to your `targetURL` for subscribed vehicles.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API, and the Telemetry API Vehicle Events reference, plus the [Honda Odyssey vehicle page](/vehicles/honda/odyssey).*

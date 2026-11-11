@@ -1,0 +1,85 @@
+---
+title: How to track Toyota Prius fuel level and refuels via API
+description: "Read Toyota Prius fuel level in liters and list refuel events using the DIMO Telemetry API. The DIMO LTE R1 reports it on 2009 and newer model years."
+slug: toyota-prius-fuel-level-tracking
+date: 2026-12-22
+authors:
+  - dimo-team
+tags:
+  - toyota-prius
+  - refuel
+  - telemetry-api
+  - toyota
+---
+
+To track fuel level and refuels on a Toyota Prius, read the current level with the Telemetry API `signalsLatest` query and find refuels by requesting `segments` detected with the `refuel` mechanism. Use the DIMO LTE R1, which reports fuel level in liters (`powertrainFuelSystemAbsoluteLevel`) on 2009 and newer model years and also reports refuel events on the Prius. The AutoPi has no fuel level signal on the Prius.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Toyota Prius vehicle page](/vehicles/toyota/prius) for the full signal list. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need your Client ID, Redirect URI and API Key to get a Developer JWT.
+2. Get the Prius shared with your app. Sharing happens through DIMO Connect, and you cannot fetch a Vehicle JWT until a vehicle is shared with you.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request "All-time, non-location data" (privilege 1) and "All-time location" (privilege 4). The `segments` query requires both.
+4. Send your Vehicle JWT to the Telemetry API in the header `Authorization: Bearer <Vehicle JWT>`. Read the latest fuel level with a `signalsLatest` query for the `powertrainFuelSystemAbsoluteLevel` signal. On a Toyota Prius, the DIMO LTE R1 reports this signal in liters.
+5. To find refuels, query `segments` with the `refuel` detection mechanism over a date range of up to 31 days. For refuel segments, the default signal requests include the level signal at the start and end of each segment, so you can compare the two values. The `minIncreasePercent` setting in `config` controls how large a rise counts, with a default of 15.
+6. Page through results with `limit` and `after` if a range returns many segments.
+
+## Code
+
+This example requests refuel segments for one vehicle. Replace `12345` with your vehicle's token ID, change the dates, and send your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    signalRequests: [
+      { name: "powertrainFuelSystemAbsoluteLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+For the current level, use this query with the same header:
+
+```graphql
+query GetLatestFuel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemAbsoluteLevel {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+Before you can run either query you need a Developer License, which you create in the [Developer Console](https://console.dimo.org/sign-in). Then see the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Toyota Prius connection reports fuel level?
+The DIMO LTE R1 reports fuel level in liters through the `powertrainFuelSystemAbsoluteLevel` signal, for 2009 model years and newer. The AutoPi does not report a fuel level signal on this car.
+
+### Does DIMO detect refuels on a Prius?
+Yes. The DIMO LTE R1 reports refuel events on the Prius, and the Telemetry API detects refuel segments where fuel level rises significantly.
+
+### Can I change how large a rise counts as a refuel?
+Yes. Set `minIncreasePercent` in the `config` argument of the `segments` query. The default is 15.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, with model coverage from the [Toyota Prius vehicle page](/vehicles/toyota/prius).*

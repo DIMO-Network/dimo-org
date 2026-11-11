@@ -251,7 +251,7 @@
     },
     {
       "q": "How do I verify Toyota Corolla mileage?",
-      "a": "Both DIMO devices listed for this model provide the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential. Then retrieve the rawVC through the Telemetry API."
+      "a": "Both DIMO devices listed for this model provide the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential. Then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect harsh braking on a Toyota Corolla?",

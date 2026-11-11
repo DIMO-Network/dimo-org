@@ -144,7 +144,7 @@
     },
     {
       "q": "How do I verify Nissan Sentra mileage?",
-      "a": "The odometer signal comes from a DIMO device. To get a verifiable reading, call the Attestation API at POST /v2/attestation/odometer-statement/:tokenId with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API."
+      "a": "The odometer signal comes from a DIMO device. To get a verifiable reading, call the Attestation API at POST /v2/attestation/odometer-statement/:tokenId with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect harsh braking on a Nissan Sentra?",

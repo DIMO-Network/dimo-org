@@ -139,7 +139,7 @@
     },
     {
       "q": "How do I verify Subaru WRX mileage?",
-      "a": "The DIMO LTE R1 reports the Odometer signal. To get verifiable proof of it, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the rawVC through the Telemetry API."
+      "a": "The DIMO LTE R1 reports the Odometer signal. To get verifiable proof of it, call the Attestation API odometer-statement endpoint with a Vehicle JWT. Then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Subaru WRX, data comes from a DIMO device, the DIMO LTE R1, on model years 2015 and newer. Coverage for this vehicle has been tested. The DIMO LTE R1 reports odometer, fuel percentage, engine RPM, DTC count, tire pressure and more, and supports idling, refuel and harsh braking events. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

@@ -1,0 +1,90 @@
+---
+title: How to track Ford Explorer fuel level and refuels via API
+description: "Read Ford Explorer fuel level in percent and list refuels with the DIMO Telemetry API, on the DIMO LTE R1 (2013 and newer) or AutoPi (2008–2020)."
+slug: ford-explorer-fuel-level-tracking
+date: 2026-12-09
+authors:
+  - dimo-team
+tags:
+  - ford-explorer
+  - refuel
+  - telemetry-api
+  - ford
+---
+
+To track fuel level and refuels on a Ford Explorer, read the current level through the DIMO Telemetry API `signalsLatest` query and find refuels by querying `segments` with refuel detection. On an Explorer, the DIMO LTE R1 (2013 and newer) and AutoPi (2008–2020) both report fuel as a percentage, `powertrainFuelSystemRelativeLevel`, and both support refuel events. Neither device reports a liters signal for this model.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ford Explorer vehicle page](/vehicles/ford/explorer). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need your Client ID, Redirect URI and API Key.
+2. Get a Developer JWT. You can use the system-generated one in the Developer Console, or generate one with your API Key using a server SDK.
+3. Get the Explorer shared with your app through DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT.
+4. Exchange your Developer JWT for a Vehicle JWT through the Token Exchange API. Request privilege 1, all-time non-location data, which is the permission the fuel level signal falls under, plus privilege 4, all-time location. The `segments` query in step 6 requires both.
+5. Query the Telemetry API with the Vehicle JWT as a Bearer token in the `Authorization` header. Use `signalsLatest` to read the current `powertrainFuelSystemRelativeLevel` (Fuel Percentage) value and timestamp.
+6. To find refuels, query `segments` with `mechanism: refuel`. Refuel detection finds where fuel level rises significantly. By default a rise of at least 15 percent within a window counts, and you can change this with `minIncreasePercent` in `config`. Segments cover a maximum date range of 31 days per query.
+7. Read the fuel level at the start and end of each refuel segment. Refuel segments include the level signal at start and end by default. You can also add `powertrainFuelSystemRelativeLevel` to `signalRequests` with an aggregation such as `FIRST` or `LAST`.
+
+## Code
+
+Replace `12345` with your vehicle's token ID in both queries. The first one returns the current fuel percentage.
+
+```graphql
+# Header: { "Authorization": "Bearer <yourVehicleJwt>" }
+
+query GetLatestFuel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+The second one returns the refuels in the date range.
+
+```graphql
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+To go further, sign in to the [Developer Console](https://console.dimo.org/sign-in) for a Developer License and then read the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Ford Explorer connections report fuel level?
+The DIMO LTE R1 (2013 and newer) and AutoPi (2008–2020) both report Fuel Percentage as `powertrainFuelSystemRelativeLevel`. Both also report refuel events on the Explorer.
+
+### How does DIMO detect a refuel?
+Refuel detection looks for places where the fuel level rises significantly. The default threshold is a 15 percent increase within a window, and you can adjust it with `minIncreasePercent`.
+
+### Do I need the vehicle owner's permission?
+Yes. You need the vehicle shared with your app before you can fetch a Vehicle JWT. The owner controls what is shared.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, plus the DIMO vehicle data on the [Ford Explorer vehicle page](/vehicles/ford/explorer).*

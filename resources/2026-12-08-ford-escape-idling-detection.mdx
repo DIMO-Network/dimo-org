@@ -1,0 +1,81 @@
+---
+title: How to detect idling on a Ford Escape via API
+description: Get idle periods for a Ford Escape from DIMO Telemetry API idle segments, using the DIMO LTE R1 (2008 and newer) or AutoPi (2012 and newer).
+slug: ford-escape-idling-detection
+date: 2026-12-08
+authors:
+  - dimo-team
+tags:
+  - ford-escape
+  - idling
+  - telemetry-api
+  - ford
+---
+
+To detect idling on a Ford Escape, query the DIMO Telemetry API for segments with the idling detection mechanism. On a Ford Escape, idling is supported on both the DIMO LTE R1 (2008 and newer) and the AutoPi (2012 and newer), and both report engine RPM (`powertrainCombustionEngineSpeed`), vehicle speed and engine runtime. The mechanism finds contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Full details are on the [Ford Escape vehicle page](/vehicles/ford/escape). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Create a Developer License and get a Developer JWT in the [Developer Console](https://console.dimo.org/sign-in). You need your Client ID, Redirect URI and API Key.
+2. Get the Ford Escape shared with your app. The owner shares it through DIMO Connect. The vehicle must have a DIMO device connected. Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+3. Exchange your Developer JWT for a Vehicle JWT for that vehicle by calling the Token Exchange API with the vehicle's token ID. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location), as the `segments` query requires both.
+4. Send the Vehicle JWT to the Telemetry API in the `Authorization` header, in the form `Bearer <Vehicle JWT>`.
+5. Query `segments` with `mechanism: idling`, a `from` and `to` range of at most 31 days, and the vehicle token ID.
+6. Optionally tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters out short segments (default 240 seconds). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+7. Read `start`, `end`, `duration` and `isOngoing` from each segment. If `isOngoing` is true, the segment extends past your query range and `end` is not included.
+
+## Code
+
+This GraphQL query returns idle segments for one Ford Escape. Replace `12345` with the vehicle's token ID and pick your own time range, then send it with your Vehicle JWT. It asks for the maximum `speed` in each segment alongside the default signals, and `speed` is a signal the Ford Escape reports on both devices.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "speed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+From here, request a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and complete the [authentication guide](/docs/getting-started/authentication) steps.
+
+## FAQ
+
+### Does idling detection on a Ford Escape need hardware?
+Yes. The idling mechanism requires a DIMO device. For the Ford Escape, the DIMO LTE R1 and the AutoPi both support idling.
+
+### How does DIMO decide a Ford Escape is idling?
+A segment is a contiguous period where engine RPM remains in the idle range. Windows with maximum RPM at or below `maxIdleRpm` count as idle, and the default is 1000.
+
+### How far back can I query?
+The maximum date range for a segments query is 31 days. Use `limit` and the `after` cursor to page through results.
+
+### Can I change what counts as idling?
+Yes. Set `maxIdleRpm` (300 to 3000) and `minSegmentDurationSeconds` (60 to 3600) in the `config` argument.
+
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App and the Telemetry API Vehicle Segments reference, plus the [Ford Escape vehicle page](/vehicles/ford/escape).*
