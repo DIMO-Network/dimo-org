@@ -20,7 +20,7 @@ To detect when a vehicle refuels, query the DIMO Telemetry API `segments` resour
 1. Get a **Developer JWT** for your DIMO Developer License. You need your `Client ID`, `Redirect URI`, and `API Key`. You can use the system-generated Developer JWT in the Developer Console, or generate a new one with an API key.
 2. Make sure the vehicle is shared with you. You need a vehicle shared with you to fetch a Vehicle JWT, and DIMO Connect handles vehicle sharing.
 3. Exchange your Developer JWT for a **Vehicle JWT** by sending a request to the Token Exchange API (`https://token-exchange-api.dimo.zone/v1/tokens/exchange`) with the vehicle's token ID and the permissions you request.
-4. Send your Vehicle JWT in the `Authorization` header to the Telemetry API at `https://telemetry-api.dimo.zone`.
+4. Send your Vehicle JWT in the `Authorization` header to the Telemetry API at `https://telemetry-api.dimo.zone/query`.
 5. Run the `segments` query with `tokenId`, `from`, `to`, and `mechanism: refuel`. The maximum date range is 31 days.
 6. Optionally tune sensitivity with `config: { minIncreasePercent: N }`. This setting applies to refuel and recharge detection only, and the default is 15.
 7. Read the results. Each segment has `start` and `end` (timestamp and location), `duration`, `isOngoing`, and `startedBeforeRange`. For refuel segments, the default signal set also includes the level signal at the start and end, returned in `signals`.
@@ -28,7 +28,7 @@ To detect when a vehicle refuels, query the DIMO Telemetry API `segments` resour
 
 ## Code
 
-This query is adapted from the Telemetry API segments example. Send it with the header `{ "Authorization": "<yourVehicleJwt>" }`.
+This query is adapted from the Telemetry API segments example. Send it with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`.
 
 ```graphql
 query GetRefuelSegments {
