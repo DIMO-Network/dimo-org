@@ -486,7 +486,7 @@ Once you have a **Developer JWT**, you then attempt a Token Exchange to get a **
 
     
       ```json
-      { "Authorization": "<yourVehicleJwt>" }
+      { "Authorization": "Bearer <yourVehicleJwt>" }
       ```
 
       ```graphql
@@ -1464,9 +1464,9 @@ Generate verifiable proof about a vehicle's data.
   id="vin-vc"
   leftColumn={
       Generates the VIN attestation for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired attestation is found, returns the attestation. After
-      you've obtained the <code>rawVC</code> from the response, you can use it to perform
-      queries on the Telemetry API, such as getting the VIN of a vehicle.
+      if it has expired. If an unexpired attestation is found, returns the attestation. The
+      response returns the Telemetry API URL and the <code>vinVCLatest</code> query to run. Send
+      that query with a Vehicle JWT to retrieve the <code>rawVC</code>.
 
         parameters={[
           {
@@ -1536,9 +1536,9 @@ Generate verifiable proof about a vehicle's data.
   id="odometer-vc"
   leftColumn={
       Generates the odometer statement attestation for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired attestation is found, returns the attestation. After
-      you've obtained the <code>rawVC</code> from the response, you can use it to perform
-      queries on the Telemetry API, such as getting the odometer of a vehicle.
+      if it has expired. If an unexpired attestation is found, returns the attestation. The
+      response is a confirmation message and does not contain the attestation. Retrieve the signed
+      attestation through the Telemetry API <a href="/docs/api-references/telemetry-api/additional-queries#attestations"><code>attestations</code></a> query.
 
         parameters={[
           {
@@ -1610,9 +1610,9 @@ Generate verifiable proof about a vehicle's data.
   id="health-vc"
   leftColumn={
       Generates the vehicle health attestation for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired attestation is found, returns the attestation. After
-      you've obtained the <code>rawVC</code> from the response, you can use it to perform
-      queries on the Telemetry API, such as getting the health status of a vehicle.
+      if it has expired. If an unexpired attestation is found, returns the attestation. The
+      response is a confirmation message and does not contain the attestation. Retrieve the signed
+      attestation through the Telemetry API <a href="/docs/api-references/telemetry-api/additional-queries#attestations"><code>attestations</code></a> query.
 
         parameters={[
           {
@@ -1692,9 +1692,9 @@ Generate verifiable proof about a vehicle's data.
   id="position-vc"
   leftColumn={
       Generates the vehicle position attestation for a given vehicle if it has never been created, or
-      if it has expired. If an unexpired attestation is found, returns the attestation. After
-      you've obtained the <code>rawVC</code> from the response, you can use it to perform
-      queries on the Telemetry API, such as getting the position of a vehicle.
+      if it has expired. If an unexpired attestation is found, returns the attestation. The
+      response is a confirmation message and does not contain the attestation. Retrieve the signed
+      attestation through the Telemetry API <a href="/docs/api-references/telemetry-api/additional-queries#attestations"><code>attestations</code></a> query.
 
         parameters={[
           {
@@ -4269,7 +4269,7 @@ Segments can be detected using different mechanisms. This is a crucial part of q
     },
     {
       name: "idling",
-      description: "Idling: Segments are contiguous periods where engine RPM remains in idle range."
+      description: "Idling: Segments are contiguous periods where engine RPM remains in idle range.\n\nRequires a DIMO device."
     },
     {
       name: "refuel",
@@ -4508,12 +4508,12 @@ URL: https://dimo.org/docs/api-references/telemetry-api/events
 Events from DIMO-connected vehicles.
 
 :::info[Notice]
-DIMO Events are only available on vehicles equipped with R1 LTE's. For additional support for DIMO Events, reach out to our Developer Support team via the Console.
+DIMO Events are only available on vehicles equipped with a DIMO LTE R1. For additional support for DIMO Events, reach out to our Developer Support team via the Console.
 :::
 
 ## Overview
 
-DIMO Events are vehicle events pre-defined by each data connection, as of August 2025, only the R1 LTE supports vehicle events. Think of it as **"risky events"** that the data source provider determines for the vehicle connected.
+DIMO Events are vehicle events pre-defined by each data connection. As of August 2025, only the DIMO LTE R1 supports vehicle events. Think of it as **"risky events"** that the data source provider determines for the vehicle connected.
 
 ## R1 Event Glossary
 
@@ -4529,6 +4529,52 @@ DIMO Events are vehicle events pre-defined by each data connection, as of August
 The `events` resource is a collection of vehicle events.
 
   title="Arguments"
+  parameters={[
+    {
+      name: "tokenId",
+      type: "Int!",
+      required: true,
+      description: "The vehicle token ID."
+    },
+    {
+      name: "from",
+      type: "Time!",
+      required: true,
+      description: "Start of the time range."
+    },
+    {
+      name: "to",
+      type: "Time!",
+      required: true,
+      description: "End of the time range."
+    },
+    {
+      name: "filter",
+      type: "EventFilter",
+      required: false,
+      description: "Filter events by name, source or tags."
+    }
+  ]}
+/>
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+  title="EventFilter fields"
   parameters={[
     {
       name: "name",
