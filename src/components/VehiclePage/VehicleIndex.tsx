@@ -31,8 +31,6 @@ export default function VehicleIndex({
       }}
       heroEyebrow="Vehicle data"
       heroTitle={H1}
-      ctaLabel="Get API keys"
-      ctaHref="https://console.dimo.org/sign-in"
     >
       <p>
         DIMO gives developers API access to vehicle-state data: diagnostics,
