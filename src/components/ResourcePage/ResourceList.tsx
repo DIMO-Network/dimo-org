@@ -26,9 +26,8 @@ export default function ResourceList({ metadata, items }: Props): ReactNode {
       }}
       heroEyebrow="Guides"
       heroTitle={blogTitle}
+      salesChat
       heroSubtitle={blogDescription}
-      ctaLabel="Get API keys"
-      ctaHref="https://console.dimo.org/sign-in"
     >
       <ul className={styles.list}>
         {items.map(({ content }) => {

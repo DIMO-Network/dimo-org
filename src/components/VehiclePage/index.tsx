@@ -258,8 +258,7 @@ export default function VehiclePage({
       ]}
       heroEyebrow="Vehicle data"
       heroTitle={h1}
-      ctaLabel="Get API keys"
-      ctaHref="https://console.dimo.org/sign-in"
+      salesChat
     >
       <div data-aeo-body>
         <p className={styles.answer}>{directAnswer(record)}</p>

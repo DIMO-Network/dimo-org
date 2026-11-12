@@ -57,6 +57,13 @@
   text-decoration: none;
 }
 
+button.cta {
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .cta:hover {
   color: #000;
   text-decoration: none;

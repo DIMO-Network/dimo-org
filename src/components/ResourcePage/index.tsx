@@ -47,8 +47,7 @@ export default function ResourcePage({ content: Content }: Props): ReactNode {
           }}
           heroEyebrow="Guide"
           heroTitle={title}
-          ctaLabel="Get API keys"
-          ctaHref="https://console.dimo.org/sign-in"
+          salesChat
         >
           <p className={styles.meta}>
             <time dateTime={published}>{published}</time>

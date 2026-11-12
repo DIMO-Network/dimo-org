@@ -1,9 +1,10 @@
-import React, { type ReactNode } from 'react';
+import React, { useState, type ReactNode } from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import CustomNavbar from '../CustomNavbar';
 import FooterTheme from '../../theme/Footer';
 import Breadcrumbs from '../Breadcrumbs';
+import ChatBot from '../ChatBot/ChatBot';
 import styles from './styles.module.css';
 
 const SITE = 'https://dimo.org';
@@ -19,6 +20,8 @@ interface ContentPageLayoutProps {
   heroSubtitle?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  // The CTA opens the Chat with DIMO lead form instead of linking to ctaHref.
+  salesChat?: boolean;
   children: ReactNode;
   // Wider column for data-heavy pages (vehicle signal tables).
   wide?: boolean;
@@ -36,12 +39,19 @@ export default function ContentPageLayout({
   heroEyebrow,
   heroTitle,
   heroSubtitle,
-  ctaLabel = 'Talk to our team',
+  salesChat = false,
+  ctaLabel = salesChat ? 'Talk to sales' : 'Talk to our team',
   ctaHref = '/contact',
   children,
   wide = false,
 }: ContentPageLayoutProps): ReactNode {
   const url = `${SITE}${canonicalPath}`;
+  const [chatOpen, setChatOpen] = useState(false);
+  const ctaContent = (
+    <>
+      {ctaLabel} <span className={styles.arrow}>→</span>
+    </>
+  );
   return (
     <>
       <Head>
@@ -71,9 +81,19 @@ export default function ContentPageLayout({
             {heroSubtitle && (
               <p className={styles.heroSubtitle}>{heroSubtitle}</p>
             )}
-            <Link className={styles.cta} to={ctaHref}>
-              {ctaLabel} <span className={styles.arrow}>→</span>
-            </Link>
+            {salesChat ? (
+              <button
+                type="button"
+                className={styles.cta}
+                onClick={() => setChatOpen(true)}
+              >
+                {ctaContent}
+              </button>
+            ) : (
+              <Link className={styles.cta} to={ctaHref}>
+                {ctaContent}
+              </Link>
+            )}
           </header>
           <div className={`${styles.breadcrumbs} ${wide ? styles.wide : ''}`}>
             <Breadcrumbs items={breadcrumbs} />
@@ -83,6 +103,7 @@ export default function ContentPageLayout({
           </article>
         </main>
         <FooterTheme />
+        {salesChat && <ChatBot open={chatOpen} onOpenChange={setChatOpen} />}
       </div>
     </>
   );
