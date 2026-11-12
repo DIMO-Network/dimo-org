@@ -31,6 +31,7 @@ export default function VehicleIndex({
       }}
       heroEyebrow="Vehicle data"
       heroTitle={H1}
+      salesChat
     >
       <p>
         DIMO gives developers API access to vehicle-state data: diagnostics,

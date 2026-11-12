@@ -258,6 +258,7 @@ export default function VehiclePage({
       ]}
       heroEyebrow="Vehicle data"
       heroTitle={h1}
+      salesChat
     >
       <div data-aeo-body>
         <p className={styles.answer}>{directAnswer(record)}</p>

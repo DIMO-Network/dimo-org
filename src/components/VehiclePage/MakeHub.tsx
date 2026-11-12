@@ -34,6 +34,7 @@ export default function MakeHub({
       }}
       heroEyebrow="Vehicle data"
       heroTitle={h1}
+      salesChat
     >
       <p>
         DIMO gives developers API access to {make} vehicle-state data. Each

@@ -26,6 +26,7 @@ export default function ResourceList({ metadata, items }: Props): ReactNode {
       }}
       heroEyebrow="Guides"
       heroTitle={blogTitle}
+      salesChat
       heroSubtitle={blogDescription}
     >
       <ul className={styles.list}>

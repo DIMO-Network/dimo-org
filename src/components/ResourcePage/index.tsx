@@ -47,6 +47,7 @@ export default function ResourcePage({ content: Content }: Props): ReactNode {
           }}
           heroEyebrow="Guide"
           heroTitle={title}
+          salesChat
         >
           <p className={styles.meta}>
             <time dateTime={published}>{published}</time>
