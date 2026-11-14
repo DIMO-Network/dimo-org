@@ -1049,11 +1049,17 @@
   "compare.smartcarAlternative.body.ifYouAreEvaluating": {
     "message": "If you are evaluating Smartcar, you are almost certainly trying to do one of two things: read vehicle data across many brands, or build a product that {em} on vehicles: unlock, grant access, cap spend, and cleanly end it all. Smartcar is excellent at the first. DIMO is built for the second. {strong}"
   },
+  "compare.smartcarAlternative.body.acts": {
+    "message": "acts"
+  },
   "compare.smartcarAlternative.body.smartcarIsAWindow": {
     "message": "Smartcar is a window into the car; DIMO is the checkout desk."
   },
   "compare.smartcarAlternative.body.smartcarReadsDataAnd": {
     "message": "Smartcar reads data and issues commands through a clean API. What it does not provide is a {em}: a single object that bundles identity, a digital key, a scoped data grant, a spend cap, and atomic revocation, with a verifiable record when it ends. For a dashboard or an analytics feature, you may never need that. For a rental, a carshare, or any case where a stranger temporarily uses a vehicle, the session is the whole job."
+  },
+  "compare.smartcarAlternative.body.session": {
+    "message": "session"
   },
   "compare.smartcarAlternative.body.theArchitecturalDifferenceUnderneath": {
     "message": "The architectural difference underneath: Smartcar is pass-through with conversion. It translates an OEM feed and hands the result to you. It is not a system of record, it has no data sharing or consent model, and you cannot self-host it. DIMO is data storage with sharing: ingested signals become normalized time-series that vehicle owners can share, scope, and revoke, on infrastructure you can run yourself because the core is open source."
@@ -1124,6 +1130,9 @@
   "compare.smartcarAlternative.body.thisIsThePart": {
     "message": "This is the part most evaluations miss: DIMO and Smartcar are not mutually exclusive. DIMO can ingest data {em} Smartcar (and through Flespi or Volteras) the same way it ingests from OEM oracles or its own hardware. If your Smartcar integration works, keep it as the connectivity layer and put DIMO on top for what Smartcar does not do: storage, owner consent, sharing, sessions, and an audit trail. See the {link} for how ingest sources plug in."
   },
+  "compare.smartcarAlternative.body.through": {
+    "message": "through"
+  },
   "compare.smartcarAlternative.body.oracleExample": {
     "message": "oracle example"
   },
@@ -1175,6 +1184,9 @@
   "compare.smartcarAlternative.body.chooseSmartcarWhenYour": {
     "message": "Choose Smartcar when your product is fundamentally about {em} data: usage analytics, EV charging insights, a service that needs odometer or battery state. Choose DIMO when your product {em2}: unmanned rental, carshare, fleet dispatch, per-session insurance. It needs identity, keys, data, spend, and revocation to behave as one consented, auditable unit."
   },
+  "compare.smartcarAlternative.body.reading": {
+    "message": "reading"
+  },
   "compare.smartcarAlternative.body.governsAccess": {
     "message": "governs access"
   },
@@ -1192,6 +1204,9 @@
   },
   "compare.smartcarAlternative.body.vehicleDataApi": {
     "message": "vehicle data API"
+  },
+  "compare.smartcarAlternative.body.pricing": {
+    "message": "pricing"
   },
   "compare.smartcarAlternative.body.developerDocs": {
     "message": "developer docs"
@@ -1394,6 +1409,9 @@
   "compliance.euDataAct.body.aVehicleIsAn": {
     "message": "A vehicle {em} is an access event with those four properties built in. When a session is created, it carries the user's identity, a defined data scope, and a time limit; when it ends, access revokes atomically and a signed, independently verifiable record is sealed. Consent is part of creating the session, not a policy attached afterward. That is exactly what {link} describes."
   },
+  "compliance.euDataAct.body.session": {
+    "message": "session"
+  },
   "compliance.euDataAct.body.sessionScopedConsent": {
     "message": "session-scoped consent"
   },
@@ -1414,6 +1432,9 @@
   },
   "compliance.euDataAct.body.tensOfBillionsOf": {
     "message": "tens of billions of dollars a year"
+  },
+  "compliance.euDataAct.body.same": {
+    "message": "same"
   },
   "compliance.euDataAct.body.contrastThatWithThe": {
     "message": "Contrast that with the closed path. As the {link} showed, the bulk-data-brokerage model is now a liability rather than an asset. The OEMs that win the next decade of connected-services revenue will be the ones whose data access was consented and auditable from the first session, because that is the only kind regulators, insurers, and increasingly customers will accept."
@@ -1541,6 +1562,9 @@
   "compliance.ftcGmConsent.body.thatIsNotA": {
     "message": "That is not a temporary chill. It is a structural shift: value moves from whoever can {em} the most data to whoever can prove the data was accessed {em2}."
   },
+  "compliance.ftcGmConsent.body.aggregate": {
+    "message": "aggregate"
+  },
   "compliance.ftcGmConsent.body.withConsentForA": {
     "message": "with consent, for a purpose, and on the record"
   },
@@ -1549,6 +1573,9 @@
   },
   "compliance.ftcGmConsent.body.noneOfThisMeans": {
     "message": "None of this means vehicle data loses its worth. Insurers still want it: usage-based pricing works, and fleets that share telematics see better loss ratios. The problem the FTC order exposes is the {em}, not the demand. What insurers and OEMs now need is a way to get driver-authorized data with a verifiable trail, rather than a broker feed that cannot survive a consent audit."
+  },
+  "compliance.ftcGmConsent.body.plumbing": {
+    "message": "plumbing"
   },
   "compliance.ftcGmConsent.body.thatIsExactlyWhat": {
     "message": "That is exactly what a session model provides. {strong} access is created per session, scoped to what the driver authorized, and sealed with a signed, independently verifiable record. Consent is not a checkbox bolted onto a data pipe. It is part of how access is created, as described in {link}, and the resulting {link2} is the artifact an underwriter or regulator can actually accept."
@@ -1570,6 +1597,9 @@
   },
   "compliance.ftcGmConsent.body.54BillionIn2025": {
     "message": "$5.4 billion in 2025"
+  },
+  "compliance.ftcGmConsent.body.mechanism": {
+    "message": "mechanism"
   },
   "compliance.ftcGmConsent.body.thatIsTheShift": {
     "message": "That is the shift to internalize. For a decade the implicit business model was “aggregate as much vehicle data as possible, then find buyers.” After this order, the durable model is “grant access per driver, scope it, and keep the receipt.” The asset is no longer the size of the data lake; it is the strength of the consent trail attached to each access."
@@ -1690,6 +1720,9 @@
   },
   "compliance.body.eachOfTheseRules": {
     "message": "Each of these rules asks for the same four things: explicit authorization, scoped access, atomic revocation, and a verifiable trail. A vehicle {em} bundles exactly those properties. A session is created with a driver's identity, a specific data scope, a spend limit, and a time limit; when the use case ends, everything revokes at once and a cryptographically signed, independently verifiable record is sealed."
+  },
+  "compliance.body.session": {
+    "message": "session"
   },
   "compliance.body.becauseConsentIsPart": {
     "message": "Because consent is part of the session-creation primitive rather than a downstream policy, the same architecture answers GDPR, the EU Data Act, the FTC standard, and SB-1394. See {link} for how that works, and {link2} for the broader model. Operators can read how this applies to fleets in {link3}, and developers can start in the {link4}."
@@ -1924,6 +1957,9 @@
   },
   "compliance.vehicleAccessAuditTrail.body.inForceSinceJuly": {
     "message": "In force since July 2024 for new vehicle types, R155 (cybersecurity) and R156 (software updates) require that vehicle access and its changes be {strong}. A system that grants access but cannot produce a trustworthy record of who had it and when does not meet the bar. DIMO sessions are {strong2}: cryptographically signed and independently verifiable, so the record can be trusted by a party that did not generate it."
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditable": {
+    "message": "auditable"
   },
   "compliance.vehicleAccessAuditTrail.body.signedTimestampedAndImmutable": {
     "message": "signed, timestamped, and immutable"
@@ -3439,6 +3475,9 @@
   },
   "industries.rentals.hero.vehicleSession": {
     "message": "vehicle session"
+  },
+  "industries.rentals.hero.consentCompliant": {
+    "message": "consent-compliant"
   },
   "industries.rentals.hero.getStarted": {
     "message": "Get Started"

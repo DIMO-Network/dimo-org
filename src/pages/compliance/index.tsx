@@ -184,7 +184,13 @@ export default function ComplianceHub(): ReactNode {
       <p>
         <Translate
           id="compliance.body.eachOfTheseRules"
-          values={{ em: <em>session</em> }}
+          values={{
+            em: (
+              <em>
+                <Translate id="compliance.body.session">session</Translate>
+              </em>
+            ),
+          }}
         >
           {
             "Each of these rules asks for the same four things: explicit authorization, scoped access, atomic revocation, and a verifiable trail. A vehicle {em} bundles exactly those properties. A session is created with a driver's identity, a specific data scope, a spend limit, and a time limit; when the use case ends, everything revokes at once and a cryptographically signed, independently verifiable record is sealed."

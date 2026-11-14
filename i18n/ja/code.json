@@ -1049,11 +1049,17 @@
   "compare.smartcarAlternative.body.ifYouAreEvaluating": {
     "message": "Smartcarを検討しているなら、目的はほぼ確実に次の2つのどちらかです。多くのブランドの車両データを読み取ること、または車両に{em}製品を開発すること。つまり、ロック解除、アクセスの付与、支出の上限設定、そしてそのすべてを確実に終了させることです。Smartcarは前者に優れています。DIMOは後者のために作られています。{strong}"
   },
+  "compare.smartcarAlternative.body.acts": {
+    "message": "働きかける"
+  },
   "compare.smartcarAlternative.body.smartcarIsAWindow": {
     "message": "Smartcarは車の中をのぞく窓で、DIMOはチェックアウトカウンターです。"
   },
   "compare.smartcarAlternative.body.smartcarReadsDataAnd": {
     "message": "Smartcarは、すっきりしたAPIでデータを読み取り、コマンドを送信します。ただし、{em}は提供していません。つまり、ID、デジタルキー、範囲を限定したデータの許可、利用上限、一括取り消しを1つにまとめ、終了時に検証可能な記録を残すオブジェクトです。ダッシュボードや分析機能なら、それが必要になることはないかもしれません。しかし、レンタカーやカーシェアなど、他人が一時的に車両を使うケースでは、セッションこそがすべてです。"
+  },
+  "compare.smartcarAlternative.body.session": {
+    "message": "セッション"
   },
   "compare.smartcarAlternative.body.theArchitecturalDifferenceUnderneath": {
     "message": "根本にあるアーキテクチャの違いは次のとおりです。Smartcarは変換機能付きのパススルー型です。OEMのデータを変換し、その結果を渡すだけです。システム・オブ・レコードではなく、データ共有や同意の仕組みもなく、セルフホストもできません。DIMOは共有機能付きのデータストレージです。取り込まれたシグナルは正規化された時系列データとなり、車両オーナーはそれを共有し、範囲を限定し、取り消すことができます。コアがオープンソースなので、そのインフラを自社で運用することもできます。"
@@ -1124,6 +1130,9 @@
   "compare.smartcarAlternative.body.thisIsThePart": {
     "message": "多くの比較検討で見落とされがちな点があります。DIMOとSmartcarは二者択一ではありません。DIMOは、OEMオラクルや自社ハードウェアから取り込むのと同じように、Smartcar{em}（さらにFlespiやVolteras経由でも）データを取り込めます。Smartcarとの統合がうまく機能しているなら、それを接続レイヤーとして残し、Smartcarにできないこと、つまりストレージ、オーナーの同意、共有、セッション、監査証跡のためにDIMOを上に載せましょう。取り込み元の接続方法は{link}をご覧ください。"
   },
+  "compare.smartcarAlternative.body.through": {
+    "message": "経由で"
+  },
   "compare.smartcarAlternative.body.oracleExample": {
     "message": "オラクルの例"
   },
@@ -1175,6 +1184,9 @@
   "compare.smartcarAlternative.body.chooseSmartcarWhenYour": {
     "message": "製品の本質がデータの{em}にあるなら、Smartcarを選びましょう。利用状況の分析、EV充電のインサイト、走行距離やバッテリーの状態を必要とするサービスなどです。製品が{em2}ものなら、DIMOを選びましょう。無人レンタル、カーシェア、フリートの配車、セッション単位の保険などです。ID、キー、データ、支出、取り消しを、同意に基づく監査可能な1つの単位として扱う必要があります。"
   },
+  "compare.smartcarAlternative.body.reading": {
+    "message": "読み取り"
+  },
   "compare.smartcarAlternative.body.governsAccess": {
     "message": "アクセスを管理する"
   },
@@ -1192,6 +1204,9 @@
   },
   "compare.smartcarAlternative.body.vehicleDataApi": {
     "message": "車両データAPI"
+  },
+  "compare.smartcarAlternative.body.pricing": {
+    "message": "料金"
   },
   "compare.smartcarAlternative.body.developerDocs": {
     "message": "開発者向けドキュメント"
@@ -1394,6 +1409,9 @@
   "compliance.euDataAct.body.aVehicleIsAn": {
     "message": "車両の{em}とは、この4つの性質を備えたアクセスイベントです。セッションが作成されると、ユーザーのID、定められたデータの範囲、時間制限が付与されます。終了すると、アクセスは一括で取り消され、署名付きで独立して検証可能な記録が確定します。同意は後から付け加えるポリシーではなく、セッション作成の一部です。それこそが{link}の考え方です。"
   },
+  "compliance.euDataAct.body.session": {
+    "message": "セッション"
+  },
   "compliance.euDataAct.body.sessionScopedConsent": {
     "message": "セッション単位の同意"
   },
@@ -1414,6 +1432,9 @@
   },
   "compliance.euDataAct.body.tensOfBillionsOf": {
     "message": "年間数百億ドル"
+  },
+  "compliance.euDataAct.body.same": {
+    "message": "同じ"
   },
   "compliance.euDataAct.body.contrastThatWithThe": {
     "message": "クローズドな道と比べてみましょう。{link}が示したように、大量データの仲介モデルは今や資産ではなく負債です。今後10年のコネクテッドサービス収益を勝ち取るのは、最初のセッションからデータアクセスが同意に基づき監査可能だったOEMです。規制当局、保険会社、そしてますます顧客も、それしか受け入れなくなるからです。"
@@ -1541,6 +1562,9 @@
   "compliance.ftcGmConsent.body.thatIsNotA": {
     "message": "これは一時的な冷え込みではありません。構造的な変化です。価値は、最も多くのデータを{em}できる者から、データが{em2}アクセスされたことを証明できる者へと移ります。"
   },
+  "compliance.ftcGmConsent.body.aggregate": {
+    "message": "集約"
+  },
   "compliance.ftcGmConsent.body.withConsentForA": {
     "message": "同意を得て、目的に沿って、記録に残る形で"
   },
@@ -1549,6 +1573,9 @@
   },
   "compliance.ftcGmConsent.body.noneOfThisMeans": {
     "message": "これは、車両データの価値が失われるという意味ではありません。保険会社は今もデータを求めています。利用ベースの料金設定は機能しており、テレマティクスを共有するフリートは損害率が改善しています。FTCの命令が明らかにした問題は、需要ではなく{em}です。保険会社とOEMが今必要としているのは、同意の監査に耐えられないブローカーのデータではなく、検証可能な証跡付きでドライバーが認可したデータを取得する方法です。"
+  },
+  "compliance.ftcGmConsent.body.plumbing": {
+    "message": "仕組み"
   },
   "compliance.ftcGmConsent.body.thatIsExactlyWhat": {
     "message": "それこそがセッションモデルが提供するものです。{strong}アクセスはセッションごとに作成され、ドライバーが認可した範囲に限定され、署名付きで独立して検証可能な記録とともに確定します。同意は、データパイプに後付けされたチェックボックスではありません。{link}で説明しているとおり、アクセスの作成の一部です。その結果として残る{link2}こそが、保険の引受担当者や規制当局が実際に受け入れられる証拠となります。"
@@ -1570,6 +1597,9 @@
   },
   "compliance.ftcGmConsent.body.54BillionIn2025": {
     "message": "2025年に約54億ドル"
+  },
+  "compliance.ftcGmConsent.body.mechanism": {
+    "message": "仕組み"
   },
   "compliance.ftcGmConsent.body.thatIsTheShift": {
     "message": "これこそが理解しておくべき変化です。この10年、暗黙のビジネスモデルは「できるだけ多くの車両データを集め、その後で買い手を探す」ことでした。この命令の後、持続可能なモデルは「ドライバーごとにアクセスを許可し、範囲を限定し、証拠を残す」ことです。資産はもはやデータレイクの大きさではなく、一つひとつのアクセスに紐づく同意の証跡の確かさです。"
@@ -1690,6 +1720,9 @@
   },
   "compliance.body.eachOfTheseRules": {
     "message": "これらの規制はいずれも、同じ4つのことを求めています。明示的な認可、範囲を限定したアクセス、一括での取り消し、検証可能な証跡です。車両の{em}は、まさにこれらの性質をひとまとめにしたものです。セッションは、ドライバーのID、特定のデータ範囲、利用上限、時間制限とともに作成されます。用途が終わるとすべてが一度に取り消され、暗号署名された、独立して検証可能な記録が確定します。"
+  },
+  "compliance.body.session": {
+    "message": "セッション"
   },
   "compliance.body.becauseConsentIsPart": {
     "message": "同意は後工程のポリシーではなく、セッション作成という基盤の一部なので、同じアーキテクチャでGDPR、EUデータ法、FTCの基準、SB-1394に対応できます。仕組みについては{link}を、より広いモデルについては{link2}をご覧ください。事業者は{link3}でフリートへの応用を確認でき、開発者は{link4}から始められます。"
@@ -1924,6 +1957,9 @@
   },
   "compliance.vehicleAccessAuditTrail.body.inForceSinceJuly": {
     "message": "2024年7月から新型車に適用されているR155（サイバーセキュリティ）とR156（ソフトウェアアップデート）は、車両へのアクセスとその変更が{strong}であることを求めています。アクセスを付与できても、誰がいつアクセスしていたのかについて信頼できる記録を出せないシステムは、基準を満たしません。DIMOのセッションは{strong2}です。暗号署名され、独立して検証できるため、記録を生成していない第三者でも信頼できます。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditable": {
+    "message": "監査可能"
   },
   "compliance.vehicleAccessAuditTrail.body.signedTimestampedAndImmutable": {
     "message": "署名とタイムスタンプ付きで、改ざん不可能"
@@ -3439,6 +3475,9 @@
   },
   "industries.rentals.hero.vehicleSession": {
     "message": "車両セッション"
+  },
+  "industries.rentals.hero.consentCompliant": {
+    "message": "同意準拠"
   },
   "industries.rentals.hero.getStarted": {
     "message": "はじめる"

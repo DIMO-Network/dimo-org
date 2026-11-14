@@ -250,7 +250,13 @@ export default function EuDataAct(): ReactNode {
         <Translate
           id="compliance.euDataAct.body.aVehicleIsAn"
           values={{
-            em: <em>session</em>,
+            em: (
+              <em>
+                <Translate id="compliance.euDataAct.body.session">
+                  session
+                </Translate>
+              </em>
+            ),
             link: (
               <Link to="/compliance/session-scoped-consent">
                 <Translate id="compliance.euDataAct.body.sessionScopedConsent">
@@ -308,7 +314,11 @@ export default function EuDataAct(): ReactNode {
                 </Translate>
               </strong>
             ),
-            em: <em>same</em>,
+            em: (
+              <em>
+                <Translate id="compliance.euDataAct.body.same">same</Translate>
+              </em>
+            ),
           }}
         >
           {

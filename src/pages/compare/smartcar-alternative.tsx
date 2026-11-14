@@ -135,7 +135,13 @@ export default function SmartcarAlternative(): ReactNode {
         <Translate
           id="compare.smartcarAlternative.body.ifYouAreEvaluating"
           values={{
-            em: <em>acts</em>,
+            em: (
+              <em>
+                <Translate id="compare.smartcarAlternative.body.acts">
+                  acts
+                </Translate>
+              </em>
+            ),
             strong: (
               <strong>
                 <Translate id="compare.smartcarAlternative.body.smartcarIsAWindow">
@@ -153,7 +159,15 @@ export default function SmartcarAlternative(): ReactNode {
       <p>
         <Translate
           id="compare.smartcarAlternative.body.smartcarReadsDataAnd"
-          values={{ em: <em>session</em> }}
+          values={{
+            em: (
+              <em>
+                <Translate id="compare.smartcarAlternative.body.session">
+                  session
+                </Translate>
+              </em>
+            ),
+          }}
         >
           {
             'Smartcar reads data and issues commands through a clean API. What it does not provide is a {em}: a single object that bundles identity, a digital key, a scoped data grant, a spend cap, and atomic revocation, with a verifiable record when it ends. For a dashboard or an analytics feature, you may never need that. For a rental, a carshare, or any case where a stranger temporarily uses a vehicle, the session is the whole job.'
@@ -357,7 +371,13 @@ export default function SmartcarAlternative(): ReactNode {
         <Translate
           id="compare.smartcarAlternative.body.thisIsThePart"
           values={{
-            em: <em>through</em>,
+            em: (
+              <em>
+                <Translate id="compare.smartcarAlternative.body.through">
+                  through
+                </Translate>
+              </em>
+            ),
             link: (
               <Link to="https://github.com/DIMO-Network/oracle-example">
                 <Translate id="compare.smartcarAlternative.body.oracleExample">
@@ -498,7 +518,13 @@ export default function SmartcarAlternative(): ReactNode {
         <Translate
           id="compare.smartcarAlternative.body.chooseSmartcarWhenYour"
           values={{
-            em: <em>reading</em>,
+            em: (
+              <em>
+                <Translate id="compare.smartcarAlternative.body.reading">
+                  reading
+                </Translate>
+              </em>
+            ),
             em2: (
               <em>
                 <Translate id="compare.smartcarAlternative.body.governsAccess">
@@ -545,7 +571,13 @@ export default function SmartcarAlternative(): ReactNode {
                 </Translate>
               </Link>
             ),
-            link5: <Link to="/pricing">pricing</Link>,
+            link5: (
+              <Link to="/pricing">
+                <Translate id="compare.smartcarAlternative.body.pricing">
+                  pricing
+                </Translate>
+              </Link>
+            ),
             link6: (
               <EnglishLink to="/docs">
                 <Translate id="compare.smartcarAlternative.body.developerDocs">

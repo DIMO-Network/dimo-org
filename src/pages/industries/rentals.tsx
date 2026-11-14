@@ -243,7 +243,13 @@ function HeroSection() {
                   </Translate>
                 </Link>
               ),
-              link2: <Link to="/compliance">consent-compliant</Link>,
+              link2: (
+                <Link to="/compliance">
+                  <Translate id="industries.rentals.hero.consentCompliant">
+                    consent-compliant
+                  </Translate>
+                </Link>
+              ),
             }}
           >
             {

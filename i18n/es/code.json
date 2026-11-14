@@ -1049,11 +1049,17 @@
   "compare.smartcarAlternative.body.ifYouAreEvaluating": {
     "message": "Si estás evaluando Smartcar, casi seguro intentas hacer una de dos cosas: leer datos vehiculares de muchas marcas, o crear un producto que {em} sobre los vehículos: desbloquear, otorgar acceso, limitar el gasto y cerrarlo todo limpiamente. Smartcar es excelente en lo primero. DIMO está hecho para lo segundo. {strong}"
   },
+  "compare.smartcarAlternative.body.acts": {
+    "message": "actúe"
+  },
   "compare.smartcarAlternative.body.smartcarIsAWindow": {
     "message": "Smartcar es una ventana al auto; DIMO es el mostrador de entrega."
   },
   "compare.smartcarAlternative.body.smartcarReadsDataAnd": {
     "message": "Smartcar lee datos y envía comandos a través de una API limpia. Lo que no ofrece es una {em}: un solo objeto que reúne identidad, una llave digital, una concesión de datos con alcance definido, un límite de gasto y revocación atómica, con un registro verificable al terminar. Para un panel o una función de analítica, quizás nunca lo necesites. Para un alquiler, un carsharing o cualquier caso en el que un desconocido usa temporalmente un vehículo, la sesión es todo el trabajo."
+  },
+  "compare.smartcarAlternative.body.session": {
+    "message": "sesión"
   },
   "compare.smartcarAlternative.body.theArchitecturalDifferenceUnderneath": {
     "message": "La diferencia de arquitectura de fondo: Smartcar es un servicio de paso con conversión. Traduce el flujo de un OEM y te entrega el resultado. No es un sistema de registro, no tiene un modelo de uso compartido de datos ni de consentimiento, y no puedes alojarlo por tu cuenta. DIMO es almacenamiento de datos con uso compartido: las señales ingeridas se convierten en series temporales normalizadas que los propietarios de vehículos pueden compartir, limitar y revocar, en una infraestructura que puedes ejecutar tú mismo porque el núcleo es de código abierto."
@@ -1124,6 +1130,9 @@
   "compare.smartcarAlternative.body.thisIsThePart": {
     "message": "Esto es lo que la mayoría de las evaluaciones pasan por alto: DIMO y Smartcar no son excluyentes. DIMO puede ingerir datos {em} Smartcar (y de Flespi o Volteras) igual que lo hace desde oráculos de OEM o su propio hardware. Si tu integración con Smartcar funciona, consérvala como capa de conectividad y pon DIMO encima para lo que Smartcar no hace: almacenamiento, consentimiento del propietario, uso compartido, sesiones y un registro de auditoría. Consulta el {link} para ver cómo se conectan las fuentes de ingesta."
   },
+  "compare.smartcarAlternative.body.through": {
+    "message": "a través de"
+  },
   "compare.smartcarAlternative.body.oracleExample": {
     "message": "ejemplo de oráculo"
   },
@@ -1175,6 +1184,9 @@
   "compare.smartcarAlternative.body.chooseSmartcarWhenYour": {
     "message": "Elige Smartcar cuando tu producto se trate fundamentalmente de {em} datos: analítica de uso, información sobre la carga de VE, un servicio que necesita el odómetro o el estado de la batería. Elige DIMO cuando tu producto {em2}: alquiler sin personal, carsharing, despacho de flotas, seguros por sesión. Necesita que la identidad, las llaves, los datos, el gasto y la revocación funcionen como una sola unidad consentida y auditable."
   },
+  "compare.smartcarAlternative.body.reading": {
+    "message": "leer"
+  },
   "compare.smartcarAlternative.body.governsAccess": {
     "message": "gobierna el acceso"
   },
@@ -1192,6 +1204,9 @@
   },
   "compare.smartcarAlternative.body.vehicleDataApi": {
     "message": "API de datos vehiculares"
+  },
+  "compare.smartcarAlternative.body.pricing": {
+    "message": "precios"
   },
   "compare.smartcarAlternative.body.developerDocs": {
     "message": "documentación para desarrolladores"
@@ -1394,6 +1409,9 @@
   "compliance.euDataAct.body.aVehicleIsAn": {
     "message": "Una {em} vehicular es un evento de acceso con esas cuatro propiedades integradas. Cuando se crea una sesión, lleva la identidad del usuario, un alcance de datos definido y un límite de tiempo; cuando termina, el acceso se revoca de forma atómica y se sella un registro firmado y verificable de forma independiente. El consentimiento es parte de la creación de la sesión, no una política añadida después. Eso es exactamente lo que describe el {link}."
   },
+  "compliance.euDataAct.body.session": {
+    "message": "sesión"
+  },
   "compliance.euDataAct.body.sessionScopedConsent": {
     "message": "consentimiento por sesión"
   },
@@ -1414,6 +1432,9 @@
   },
   "compliance.euDataAct.body.tensOfBillionsOf": {
     "message": "decenas de miles de millones de dólares al año"
+  },
+  "compliance.euDataAct.body.same": {
+    "message": "mismo"
   },
   "compliance.euDataAct.body.contrastThatWithThe": {
     "message": "Compáralo con el camino cerrado. Como mostró la {link}, el modelo de intermediación masiva de datos ahora es un riesgo y no un activo. Los OEM que ganen la próxima década de ingresos por servicios conectados serán aquellos cuyo acceso a datos fue consentido y auditable desde la primera sesión, porque es el único tipo que aceptarán los reguladores, las aseguradoras y, cada vez más, los clientes."
@@ -1541,6 +1562,9 @@
   "compliance.ftcGmConsent.body.thatIsNotA": {
     "message": "No es un enfriamiento temporal. Es un cambio estructural: el valor pasa de quien puede {em} la mayor cantidad de datos a quien puede demostrar que se accedió a ellos {em2}."
   },
+  "compliance.ftcGmConsent.body.aggregate": {
+    "message": "acumular"
+  },
   "compliance.ftcGmConsent.body.withConsentForA": {
     "message": "con consentimiento, con un propósito y con registro"
   },
@@ -1549,6 +1573,9 @@
   },
   "compliance.ftcGmConsent.body.noneOfThisMeans": {
     "message": "Nada de esto significa que los datos vehiculares pierdan su valor. Las aseguradoras los siguen queriendo: la tarificación basada en el uso funciona, y las flotas que comparten datos telemáticos obtienen mejores índices de siniestralidad. El problema que expone la orden de la FTC es la {em}, no la demanda. Lo que las aseguradoras y los OEM necesitan ahora es una forma de obtener datos autorizados por el conductor con un registro verificable, en lugar de un flujo de un intermediario que no sobrevive a una auditoría de consentimiento."
+  },
+  "compliance.ftcGmConsent.body.plumbing": {
+    "message": "infraestructura"
   },
   "compliance.ftcGmConsent.body.thatIsExactlyWhat": {
     "message": "Eso es exactamente lo que ofrece un modelo de sesiones. {strong} el acceso se crea por sesión, limitado a lo que autorizó el conductor, y se sella con un registro firmado y verificable de forma independiente. El consentimiento no es una casilla añadida a un flujo de datos. Es parte de cómo se crea el acceso, como se describe en {link}, y el {link2} resultante es el artefacto que un suscriptor de seguros o un regulador realmente puede aceptar."
@@ -1570,6 +1597,9 @@
   },
   "compliance.ftcGmConsent.body.54BillionIn2025": {
     "message": "5,400 millones de dólares en 2025"
+  },
+  "compliance.ftcGmConsent.body.mechanism": {
+    "message": "mecanismo"
   },
   "compliance.ftcGmConsent.body.thatIsTheShift": {
     "message": "Ese es el cambio que hay que asimilar. Durante una década, el modelo de negocio implícito fue “acumular la mayor cantidad posible de datos vehiculares y luego buscar compradores”. Después de esta orden, el modelo duradero es “otorgar el acceso por conductor, limitarlo y guardar el comprobante”. El activo ya no es el tamaño del data lake; es la solidez del registro de consentimiento asociado a cada acceso."
@@ -1690,6 +1720,9 @@
   },
   "compliance.body.eachOfTheseRules": {
     "message": "Cada una de estas reglas pide las mismas cuatro cosas: autorización explícita, acceso limitado, revocación atómica y un registro verificable. Una {em} vehicular reúne exactamente esas propiedades. Una sesión se crea con la identidad del conductor, un alcance de datos específico, un límite de gasto y un límite de tiempo; cuando termina el caso de uso, todo se revoca a la vez y se sella un registro firmado criptográficamente y verificable de forma independiente."
+  },
+  "compliance.body.session": {
+    "message": "sesión"
   },
   "compliance.body.becauseConsentIsPart": {
     "message": "Como el consentimiento es parte del componente que crea la sesión y no una política posterior, la misma arquitectura responde al RGPD, la Ley de Datos de la UE, el estándar de la FTC y la SB-1394. Consulta el {link} para ver cómo funciona, y la {link2} para el modelo más amplio. Los operadores pueden leer cómo se aplica a las flotas en {link3}, y los desarrolladores pueden empezar en la {link4}."
@@ -1924,6 +1957,9 @@
   },
   "compliance.vehicleAccessAuditTrail.body.inForceSinceJuly": {
     "message": "Vigentes desde julio de 2024 para nuevos tipos de vehículos, los reglamentos R155 (ciberseguridad) y R156 (actualizaciones de software) exigen que el acceso al vehículo y sus cambios sean {strong}. Un sistema que otorga acceso pero no puede producir un registro confiable de quién lo tuvo y cuándo no cumple con el estándar. Las sesiones de DIMO son {strong2}: firmadas criptográficamente y verificables de forma independiente, así que una parte que no generó el registro puede confiar en él."
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditable": {
+    "message": "auditables"
   },
   "compliance.vehicleAccessAuditTrail.body.signedTimestampedAndImmutable": {
     "message": "firmadas, con marca de tiempo e inmutables"
@@ -3439,6 +3475,9 @@
   },
   "industries.rentals.hero.vehicleSession": {
     "message": "sesión vehicular"
+  },
+  "industries.rentals.hero.consentCompliant": {
+    "message": "conforme al consentimiento"
   },
   "industries.rentals.hero.getStarted": {
     "message": "Comenzar"

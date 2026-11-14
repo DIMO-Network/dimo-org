@@ -135,7 +135,13 @@ export default function AuditTrail(): ReactNode {
         <Translate
           id="compliance.vehicleAccessAuditTrail.body.inForceSinceJuly"
           values={{
-            strong: <strong>auditable</strong>,
+            strong: (
+              <strong>
+                <Translate id="compliance.vehicleAccessAuditTrail.body.auditable">
+                  auditable
+                </Translate>
+              </strong>
+            ),
             strong2: (
               <strong>
                 <Translate id="compliance.vehicleAccessAuditTrail.body.signedTimestampedAndImmutable">

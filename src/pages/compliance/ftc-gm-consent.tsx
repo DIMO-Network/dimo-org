@@ -210,7 +210,13 @@ export default function FtcGmConsent(): ReactNode {
         <Translate
           id="compliance.ftcGmConsent.body.thatIsNotA"
           values={{
-            em: <em>aggregate</em>,
+            em: (
+              <em>
+                <Translate id="compliance.ftcGmConsent.body.aggregate">
+                  aggregate
+                </Translate>
+              </em>
+            ),
             em2: (
               <em>
                 <Translate id="compliance.ftcGmConsent.body.withConsentForA">
@@ -234,7 +240,15 @@ export default function FtcGmConsent(): ReactNode {
       <p>
         <Translate
           id="compliance.ftcGmConsent.body.noneOfThisMeans"
-          values={{ em: <em>plumbing</em> }}
+          values={{
+            em: (
+              <em>
+                <Translate id="compliance.ftcGmConsent.body.plumbing">
+                  plumbing
+                </Translate>
+              </em>
+            ),
+          }}
         >
           {
             'None of this means vehicle data loses its worth. Insurers still want it: usage-based pricing works, and fleets that share telematics see better loss ratios. The problem the FTC order exposes is the {em}, not the demand. What insurers and OEMs now need is a way to get driver-authorized data with a verifiable trail, rather than a broker feed that cannot survive a consent audit.'
@@ -290,7 +304,13 @@ export default function FtcGmConsent(): ReactNode {
                 </Translate>
               </strong>
             ),
-            em: <em>mechanism</em>,
+            em: (
+              <em>
+                <Translate id="compliance.ftcGmConsent.body.mechanism">
+                  mechanism
+                </Translate>
+              </em>
+            ),
           }}
         >
           {
