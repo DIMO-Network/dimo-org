@@ -1,0 +1,88 @@
+---
+title: How to track Toyota RAV4 fuel level and refuels via API
+description: "Track Toyota RAV4 fuel level in liters and find refuels with the DIMO Telemetry API. Supported by the DIMO LTE R1 on 2007 and newer model years."
+slug: toyota-rav4-fuel-level-tracking
+date: 2026-12-03
+authors:
+  - dimo-team
+tags:
+  - toyota-rav4
+  - refuel
+  - telemetry-api
+  - toyota
+---
+
+To track fuel level and refuels on a Toyota RAV4, call the DIMO Telemetry API: the `signalsLatest` query for the current reading and the `segments` query with the `refuel` mechanism for fill-ups. Use the DIMO LTE R1, which reports fuel level in liters (`powertrainFuelSystemAbsoluteLevel`) and supports refuel events.
+
+The DIMO LTE R1 supports Toyota RAV4 model years 2007 and newer. The AutoPi also supports the RAV4, but it does not report fuel level or refuel events, so this guide uses the DIMO LTE R1. See the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4) for the full signal list. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and get a RAV4 shared with your app through DIMO Connect. You need a vehicle shared with you to fetch a Vehicle JWT.
+2. Get a Developer JWT. You need the Client ID, Redirect URI and API Key from your Developer License. The Developer JWT gives general API access but no vehicle data.
+3. Exchange the Developer JWT for a Vehicle JWT for that RAV4 using the Token Exchange API. Request both privilege 1 (all-time, non-location data), which covers fuel level, and privilege 4 (all-time location). The `segments` query requires the two together.
+4. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request, in the form `Authorization: Bearer <Vehicle JWT>`.
+5. Query `signalsLatest` for `powertrainFuelSystemAbsoluteLevel` to read the current fuel level on a RAV4 with a DIMO LTE R1. It reports the value in liters.
+6. Query `segments` with the `refuel` detection mechanism to find periods where the fuel level rises significantly. Refuel segments include the level signal at the start and end by default. Tune `minIncreasePercent` in `config` if you need a different threshold; the default is 15.
+7. Page through results with `limit` and `after`. A single segments query covers at most 31 days.
+
+## Code
+
+Both queries use `12345` as a placeholder; replace `12345` with your vehicle's token ID.
+
+Latest fuel level:
+
+```graphql
+# Send your Vehicle JWT as a Bearer token in the Authorization header
+query GetLatestFuelLevel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemAbsoluteLevel {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+Refuel segments over a date range:
+
+```graphql
+# Maximum range: 31 days
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+When you are ready to build, pick up a Developer License from the [Developer Console](https://console.dimo.org/sign-in) and read the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which RAV4 connection reports fuel level?
+The DIMO LTE R1 reports fuel level as `powertrainFuelSystemAbsoluteLevel`, in liters. The AutoPi does not report fuel level on the RAV4.
+
+### Which model years does this cover?
+The DIMO LTE R1 supports Toyota RAV4 model years 2007 and newer.
+
+### How does DIMO detect a refuel?
+The `refuel` segment mechanism detects where the fuel level rises significantly. The default minimum increase within a window is 15 percent, which you can change with `minIncreasePercent`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, and on the [Toyota RAV4 vehicle page](/vehicles/toyota/rav4).*

@@ -25,8 +25,19 @@ interface Message {
   text: string;
 }
 
-export default function ChatBot() {
-  const [isOpen, setIsOpen] = useState(false);
+interface ChatBotProps {
+  // Pass both to open the chat from outside, e.g. a page CTA.
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export default function ChatBot({ open, onOpenChange }: ChatBotProps = {}) {
+  const [openState, setOpenState] = useState(false);
+  const isOpen = open ?? openState;
+  const setIsOpen = (next: boolean) => {
+    setOpenState(next);
+    onOpenChange?.(next);
+  };
   const [step, setStep] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -253,7 +264,7 @@ export default function ChatBot() {
 
       <button
         className={styles.toggleButton}
-        onClick={() => setIsOpen(o => !o)}
+        onClick={() => setIsOpen(!isOpen)}
         aria-label="Open chat"
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}

@@ -150,7 +150,7 @@
     },
     {
       "q": "How do I verify Tesla Model S mileage?",
-      "a": "Tesla's cloud connection provides the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API. You need the vehicle shared with your Developer License to get that JWT."
+      "a": "Tesla's cloud connection provides the odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query. You need the vehicle shared with your Developer License to get that JWT."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Tesla Model S, 2013 and newer, data comes through Tesla's cloud connection, and this coverage has been tested. The record lists odometer, charge level, remaining range, charging status, tire pressure and door state signals, plus the recharge event. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

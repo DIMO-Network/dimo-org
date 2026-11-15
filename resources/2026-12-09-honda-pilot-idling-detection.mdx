@@ -1,0 +1,78 @@
+---
+title: How to detect idling on a Honda Pilot via API
+description: On a Honda Pilot, only the DIMO LTE R1 (2009 and newer) reports idling. Use idle segments from the DIMO Telemetry API to measure each idle period.
+slug: honda-pilot-idling-detection
+date: 2026-12-09
+authors:
+  - dimo-team
+tags:
+  - honda-pilot
+  - idling
+  - telemetry-api
+  - honda
+---
+
+To detect idling on a Honda Pilot, query the DIMO Telemetry API for `segments` with `mechanism: idling`. For the Pilot, idling comes from the DIMO LTE R1 only (2009 and newer): it reports engine RPM (`powertrainCombustionEngineSpeed`) and ignition status and supports idling events, while the AutoPi reports no engine RPM signal on the Pilot. The query returns contiguous periods where engine RPM stays in the idle range.
+
+For the Pilot's full signal list, see the [Honda Pilot vehicle page](/vehicles/honda/pilot). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI` and `API Key`.
+2. Get the Honda Pilot shared with you. Vehicle sharing is handled through DIMO Connect, and the vehicle needs a DIMO LTE R1 to provide the RPM data that idling detection uses.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request privilege 1 (all-time, non-location data) and also privilege 4 (all-time location). Without both, you cannot run the `segments` query.
+4. Send the Vehicle JWT in the `Authorization` header to the Telemetry API, a GraphQL API.
+5. Call the `segments` query with `mechanism: idling`. Idling segments are contiguous periods where engine RPM remains in the idle range, and the mechanism requires a DIMO device.
+6. Optionally tune detection with `config`. `maxIdleRpm` sets the upper bound for idle RPM (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240 seconds). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+7. Read `start`, `end`, `duration` and `isOngoing` from each segment. The maximum date range per query is 31 days.
+
+## Code
+
+```graphql
+query GetPilotIdling {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Send your Vehicle JWT in the request header: `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with the Pilot's token ID.
+
+Once the query looks right, get a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and walk through the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Honda Pilot device provides idling detection?
+The DIMO LTE R1 reports engine RPM and supports idling events on the Honda Pilot. The AutoPi does not report engine RPM on the Pilot, so use the DIMO LTE R1 for this job.
+
+### What counts as idling?
+An idling segment is a contiguous period where engine RPM remains in the idle range. You can change the upper RPM bound with `maxIdleRpm`.
+
+### How do I ignore short stops?
+Set `minSegmentDurationSeconds` in `config` to filter out short segments. The default is 240 seconds, with a minimum of 60 and a maximum of 3600.
+
+### Can I query more than 31 days at once?
+No. The `segments` query has a maximum date range of 31 days. Split longer periods into multiple queries and page with `limit` and `after`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Honda Pilot vehicle page](/vehicles/honda/pilot).*

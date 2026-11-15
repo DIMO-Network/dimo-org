@@ -21,23 +21,42 @@ Use the DIMO Telemetry API events resource and filter for the `behavior.harshBra
 2. Get a **Developer JWT**. In the Developer Console you can use the system-generated one, or generate a new one with your API key using a server SDK.
 3. Get each vehicle shared with you through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
 4. Confirm the vehicle uses an R1 LTE. Events are defined by the data connection, and only the R1 LTE supports them as of August 2025.
-5. Exchange your Developer JWT for a **Vehicle JWT** by sending a `POST` request to `https://token-exchange-api.dimo.zone/v1/tokens/exchange`. The request includes the `nftContractAddress`, the vehicle `tokenId` and the permissions (`privileges`) you are requesting.
-6. Send your Vehicle JWT in the `Authorization` header of requests to the [Telemetry API](https://telemetry-api.dimo.zone/), which is a GraphQL API.
-7. Query the `events` resource and filter by `tags` using `behavior.harshBraking`, or filter by `name` using `HarshBraking`. The tag operators are `containsAny`, `containsAll`, `notContainsAny` and `notContainsAll`. Use `ExtremeBraking` if you also want the more severe deceleration events.
+5. Exchange your Developer JWT for a **Vehicle JWT** by sending a `POST` request to `https://token-exchange-api.dimo.zone/v1/tokens/exchange`. The request includes the `nftContractAddress`, the vehicle `tokenId` and the permissions (`privileges`) you are requesting. The `events` query below needs privilege 1 (all-time non-location data) and privilege 4 (all-time location).
+6. Send your Vehicle JWT as `Authorization: Bearer <Vehicle JWT>` on requests to the [Telemetry API](https://telemetry-api.dimo.zone/) at `https://telemetry-api.dimo.zone/query`. It is a GraphQL API.
+7. Query the `events` resource with the vehicle's `tokenId` and a `from` and `to` time range, both of which are required, and filter by `tags` using `behavior.harshBraking`, or filter by `name` using `HarshBraking`. The tag operators are `containsAny`, `containsAll`, `notContainsAny` and `notContainsAll`. Use `ExtremeBraking` if you also want the more severe deceleration events.
 8. Read the fields on each event: `timestamp`, `name`, `source`, `durationNs` and `metadata`.
 
 ## Code
 
-The documentation excerpts include this Telemetry API request for checking which signals a vehicle exposes. Replace `<yourVehicleJwt>` and `<vehicleTokenId>` with your own values. Use it to confirm your Vehicle JWT works before you query events. The excerpts don't include a complete `events` query, so check the Telemetry API schema at https://telemetry-api.dimo.zone/ for its exact shape.
+This Telemetry API request checks which signals a vehicle exposes. Replace `<yourVehicleJwt>` with your Vehicle JWT and `12345` with the vehicle's token ID. Use it to confirm your Vehicle JWT works before you query events.
 
 ```graphql
 # Request header:
-# { "Authorization": "<yourVehicleJwt>" }
+# { "Authorization": "Bearer <yourVehicleJwt>" }
 
 query GetAvailable {
   availableSignals(
-    tokenId: <vehicleTokenId>
+    tokenId: 12345
   )
+}
+```
+
+This query returns the harsh braking events for one vehicle in a time range. Replace `12345` with the vehicle's token ID and set `from` and `to` to the range you want.
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
 }
 ```
 

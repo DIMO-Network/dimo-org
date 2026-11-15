@@ -149,7 +149,7 @@
     },
     {
       "q": "How do I verify Honda Fit mileage?",
-      "a": "With a DIMO device supplying the odometer signal, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId). Then retrieve the resulting rawVC through the Telemetry API."
+      "a": "With a DIMO device supplying the odometer signal, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId). Then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect harsh braking on a Honda Fit?",

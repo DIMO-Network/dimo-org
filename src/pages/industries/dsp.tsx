@@ -610,7 +610,7 @@ export default function DeliveryPage(): ReactNode {
             localizeSchema(
               {
                 '@context': 'https://schema.org',
-                '@type': 'Product',
+                '@type': 'Service',
                 name: translate({
                   id: 'industries.dsp.schema.dimoForDelivery.name',
                   message: 'DIMO for Delivery',

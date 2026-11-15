@@ -1,0 +1,79 @@
+---
+title: How to detect idling on a Chevrolet Equinox via API
+description: Measure idling on a Chevrolet Equinox with DIMO Telemetry API idle segments, using a DIMO LTE R1 (2008 and newer) or an AutoPi (2012–2025).
+slug: chevrolet-equinox-idling-detection
+date: 2026-12-11
+authors:
+  - dimo-team
+tags:
+  - chevrolet-equinox
+  - idling
+  - telemetry-api
+  - chevrolet
+---
+
+To detect idling on a Chevrolet Equinox, use DIMO's Telemetry API to request trip segments with the idling detection mechanism. On an Equinox, both the DIMO LTE R1 (2008 and newer) and AutoPi (2012–2025) report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed and support idling events. Idling segments are contiguous periods where engine RPM stays in the idle range, and they require a DIMO device. See the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox) for the full signal list. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Confirm the Equinox has a DIMO device connected: a DIMO LTE R1 (2008 and newer) or an AutoPi (2012–2025).
+2. Get the vehicle shared with your app through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer License from the [Developer Console](https://console.dimo.org/sign-in) with its Client ID, Redirect URI and API Key, and use it to get a Developer JWT. Exchange that for a Vehicle JWT for the vehicle with the Token Exchange API, requesting privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `segments` query requires both.
+4. Call the `segments` query in the Telemetry API with your Vehicle JWT in the `Authorization` header. Set `mechanism` to `idling` and keep the date range within 31 days.
+5. Tune detection with `config` if needed: `maxIdleRpm` (default 1000), `minSegmentDurationSeconds` (default 240) and `signalCountThreshold` (default 10).
+6. Read `duration`, `start`, `end` and `isOngoing` from each segment. Request `powertrainCombustionEngineSpeed` and `speed` aggregates to see engine RPM and speed during each idle period.
+
+## Code
+
+Send this query to the Telemetry API with the header `{ "Authorization": "Bearer <yourVehicleJwt>" }`. Replace `12345` with your Equinox's token ID and use your own dates. The `speed` and engine RPM requests are returned alongside the default signals.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: {
+      maxIdleRpm: 1000
+      minSegmentDurationSeconds: 240
+    }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+      { name: "speed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+To go further, sign up for a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and then read the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Equinox hardware supports idling detection?
+The DIMO LTE R1 (2008 and newer) and AutoPi (2012–2025) both report idling events on the Equinox. The idling mechanism requires a DIMO device.
+
+### How does DIMO decide a period is idling?
+An idling segment is a contiguous period where engine RPM remains in the idle range. You can set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How do I ignore short stops?
+Set `minSegmentDurationSeconds` in `config`. Segments shorter than this are left out, and the default is 240 seconds.
+
+### What if an idling period is still happening?
+The segment is returned with `isOngoing` set to true and no `end`. Its `duration` runs from the start to the `to` time of your query.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Chevrolet Equinox vehicle page](/vehicles/chevrolet/equinox).*

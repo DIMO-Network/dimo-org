@@ -46,16 +46,17 @@ export default function ResourcePage({ content: Content }: Props): ReactNode {
           }}
           heroEyebrow="Guide"
           heroTitle={title}
-          ctaLabel="Get API keys"
-          ctaHref="https://console.dimo.org/sign-in"
+          salesChat
         >
           <p className={styles.meta}>
             <time dateTime={published}>{published}</time>
             {readingTime ? ` · ${Math.ceil(readingTime)} min read` : ''}
           </p>
-          <MDXContent>
-            <Content />
-          </MDXContent>
+          <div data-aeo-body>
+            <MDXContent>
+              <Content />
+            </MDXContent>
+          </div>
           <p className={styles.more}>
             <Link to="/resources">More guides</Link>
             {' · '}

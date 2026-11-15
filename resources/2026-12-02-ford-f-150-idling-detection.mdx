@@ -1,0 +1,77 @@
+---
+title: How to detect idling on a Ford F-150 via API
+description: See how long a Ford F-150 idles using DIMO Telemetry API idle segments from a DIMO LTE R1 (2009 and newer) or an AutoPi (2010 and newer).
+slug: ford-f-150-idling-detection
+date: 2026-12-02
+authors:
+  - dimo-team
+tags:
+  - ford-f-150
+  - idling
+  - telemetry-api
+  - ford
+---
+
+To detect idling on a Ford F-150, query the DIMO Telemetry API `segments` resource with the idling mechanism, using a Vehicle JWT for that truck. On an F-150, both the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) report engine RPM (`powertrainCombustionEngineSpeed`) and idling events. Idle detection requires a DIMO device. See the [Ford F-150 vehicle page](/vehicles/ford/f-150) for full coverage. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Get a Developer License from the [Developer Console](https://console.dimo.org/sign-in) with its Client ID, Redirect URI and API Key. Then get a Developer JWT, either system-generated in the console or generated with your API Key.
+2. Have the F-150 shared with your app. You need a shared vehicle to fetch a Vehicle JWT, and DIMO Connect handles vehicle sharing.
+3. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API for that vehicle's token ID. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location), since the `segments` query requires both.
+4. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request.
+5. Call the `segments` query with the idling detection mechanism and a time range of at most 31 days. Idle segments are contiguous periods where engine RPM stays in the idle range.
+6. Tune detection with `config`. `maxIdleRpm` sets the idle RPM upper bound (default 1000), and `minSegmentDurationSeconds` filters out short segments (default 240).
+7. Read `start`, `end`, `duration` and `isOngoing` from each segment. Add a `signalRequests` entry such as `powertrainCombustionEngineSpeed` with a MAX aggregation to see the highest engine RPM in each idle period.
+
+## Code
+
+```graphql
+# Header: { "Authorization": "Bearer <yourVehicleJwt>" }
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "powertrainCombustionEngineSpeed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Replace `12345` with your F-150's vehicle token ID and adjust the time range.
+
+To get started, set up a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and follow the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which F-150 devices support idle detection?
+The DIMO LTE R1 and the AutoPi both report idling events and engine RPM on the F-150. Idle detection requires a DIMO device.
+
+### What counts as idling?
+An idle segment is a contiguous period where engine RPM stays in the idle range. By default, windows with a maximum RPM at or below 1000 count as idle, and you can change this with `maxIdleRpm`.
+
+### Why are short idle periods missing from my results?
+Segments shorter than `minSegmentDurationSeconds` are filtered out. The default is 240 seconds, and the minimum you can set is 60.
+
+### How far back can I query?
+The maximum date range for one `segments` query is 31 days. Results return up to 100 segments by default, with a maximum of 200, and you page through them with `after`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Ford F-150 vehicle page](/vehicles/ford/f-150).*

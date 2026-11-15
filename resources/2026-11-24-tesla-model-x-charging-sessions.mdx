@@ -1,0 +1,78 @@
+---
+title: How to track Tesla Model X charging sessions via API
+description: Detect Tesla Model X (2016 and newer) charging sessions and measure kWh added and charge level with the DIMO Telemetry API. Tesla connection, no hardware.
+slug: tesla-model-x-charging-sessions
+date: 2026-11-24
+authors:
+  - dimo-team
+tags:
+  - tesla-model-x
+  - ev
+  - telemetry-api
+  - tesla
+---
+
+To track charging sessions on a Tesla Model X, query recharge segments from the DIMO Telemetry API and add the car's charging signals to each segment. On a Tesla Model X (2016 and newer), the Tesla connection (OEM cloud, no hardware) reports charge level in %, session energy in kWh, charging status and charge limit, and DIMO can detect recharge segments for it.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Tesla Model X vehicle page](/vehicles/tesla/model-x). For any other vehicle, see [how to track EV charging sessions](/resources/track-electric-vehicle-charging).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and note your `Client ID`, `Redirect URI` and `API Key`.
+2. Get the Model X shared with your app. Sharing is done with DIMO Connect, and you need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT for that vehicle through the Token Exchange API. Request "All-time, non-location data" (privilege 1) and "All-time location" (privilege 4). The `segments` query requires both privileges.
+4. Send the Vehicle JWT in the `Authorization` header of the Telemetry API, as `Bearer <Vehicle JWT>`.
+5. Call the `segments` query with `mechanism: recharge` and a range of up to 31 days. Recharge detection uses charging signals and state of charge.
+6. Request extra signal aggregates per segment. For charging, use `powertrainTractionBatteryChargingAddedEnergy` (kWh) with `MAX` for the highest session energy reading, and `powertrainTractionBatteryStateOfChargeCurrent` (%) with `FIRST` and `LAST` for the charge level change. The level signal at the start and end of a recharge segment is also included by default.
+7. Read `start`, `end`, `duration` and `isOngoing` from each segment. If `isOngoing` is true, the session extends past your query range and `end` is not returned.
+8. Optionally, call `signalsLatest` to read the current charging status with `powertrainTractionBatteryChargingIsCharging`, or the power flow with `powertrainTractionBatteryCurrentPower` (Battery Power, watts).
+
+## Code
+
+This GraphQL query returns recharge segments for one Model X. Replace `12345` with the vehicle's token ID and send your Vehicle JWT in the `Authorization` header.
+
+```graphql
+query GetChargingSessions {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: recharge
+    signalRequests: [
+      { name: "powertrainTractionBatteryChargingAddedEnergy", agg: MAX }
+      { name: "powertrainTractionBatteryStateOfChargeCurrent", agg: FIRST }
+      { name: "powertrainTractionBatteryStateOfChargeCurrent", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+    }
+    end {
+      timestamp
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+When you want to test with your own Model X, pick up a Developer License from the [Developer Console](https://console.dimo.org/sign-in) and read the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Model X signals describe a charging session?
+The Tesla connection reports charging status, charging cable connected, session energy (kWh), charge limit (%), charging voltage (volts), AC charge current (amps), battery power (watts) and current charge level (%). Use the exact names from the vehicle page when you request them.
+
+### Can I tune how recharge sessions are detected?
+Yes. The `config` argument accepts `minIncreasePercent` for recharge detection (default 15).
+
+### How far back can I query?
+A single `segments` request covers a maximum of 31 days. It returns up to 200 segments per request (100 by default), and you can use the `after` cursor to page through more.
+
+### Do I need a Vehicle JWT?
+Yes. A Developer JWT does not grant access to vehicle data. Exchange it for a short-lived Vehicle JWT for the specific vehicle.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Segments and Signals references, with car details from the [Tesla Model X vehicle page](/vehicles/tesla/model-x).*

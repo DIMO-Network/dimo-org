@@ -241,7 +241,7 @@
     },
     {
       "q": "How do I verify Kia Telluride mileage?",
-      "a": "With a DIMO device supplying the odometer signal, call the Attestation API endpoint POST /v2/attestation/odometer-statement/:tokenId using a Vehicle JWT. You then retrieve the resulting verifiable credential (rawVC) through the Telemetry API."
+      "a": "With a DIMO device supplying the odometer signal, call the Attestation API endpoint POST /v2/attestation/odometer-statement/:tokenId using a Vehicle JWT. You then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Kia Telluride, 2020 and newer, data comes through a DIMO device, and this coverage has been tested. Vehicle owners consent to and control sharing, so builders get data with clear provenance. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it."

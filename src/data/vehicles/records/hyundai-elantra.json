@@ -261,7 +261,7 @@
     },
     {
       "q": "How do I verify Hyundai Elantra mileage?",
-      "a": "With a DIMO device supplying the odometer signal, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the rawVC through the Telemetry API."
+      "a": "With a DIMO device supplying the odometer signal, call the Attestation API odometer statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT. Then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Hyundai Elantra vehicle data API, the vehicle connects through a DIMO device, covering model years 2008 and newer. Coverage for this internal combustion model is tested, and it is listed as available globally. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

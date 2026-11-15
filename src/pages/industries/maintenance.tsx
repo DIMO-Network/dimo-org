@@ -565,7 +565,7 @@ export default function MaintenancePage(): ReactNode {
             localizeSchema(
               {
                 '@context': 'https://schema.org',
-                '@type': 'Product',
+                '@type': 'Service',
                 name: translate({
                   id: 'industries.maintenance.schema.dimoForAutomotive.name',
                   message: 'DIMO for Automotive Maintenance',

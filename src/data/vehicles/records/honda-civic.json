@@ -231,7 +231,7 @@
     },
     {
       "q": "How do I verify Honda Civic mileage?",
-      "a": "The DIMO LTE R1 entry lists the odometer signal. Call the Attestation API at POST /v2/attestation/odometer-statement/:tokenId with a Vehicle JWT, then retrieve the signed rawVC through the Telemetry API."
+      "a": "The DIMO LTE R1 entry lists the odometer signal. Call the Attestation API at POST /v2/attestation/odometer-statement/:tokenId with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO provides a Honda Civic vehicle data API for model years 2007 and newer, and the Civic connects through a DIMO device. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Coverage for this vehicle is tested, not just expected. The listed signals, events and code snippet on this page show what the DIMO device providers report for the Civic."

@@ -230,7 +230,7 @@
           "label": "Coordinates"
         }
       ],
-      "events": ["idling", "recharge", "harsh_braking"]
+      "events": ["idling", "recharge"]
     }
   ],
   "verification": "tested",
@@ -251,7 +251,7 @@
     },
     {
       "q": "How do I detect harsh braking on a Chevrolet Bolt EUV?",
-      "a": "Harsh braking is listed for both DIMO devices. Create a webhook on the behavior.harshBraking event through the Vehicle Triggers API, or request a HarshBraking event count per trip with the eventRequests argument on segments."
+      "a": "Harsh braking comes from the DIMO LTE R1 only. Create a webhook on the behavior.harshBraking event through the Vehicle Triggers API, or request a HarshBraking event count per trip with the eventRequests argument on segments."
     },
     {
       "q": "How do I verify Chevrolet Bolt EUV mileage?",

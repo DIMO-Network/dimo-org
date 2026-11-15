@@ -14,7 +14,7 @@ tags:
   - how-to
 ---
 
-DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. To get data from a vehicle with no factory connected services, the owner connects the vehicle to DIMO and shares it with your app through DIMO Connect. Your backend then exchanges a Developer JWT for a Vehicle JWT and queries the Telemetry API. The documentation excerpts do not describe a specific connection method for vehicles without factory services, so this guide covers the sharing and query flow that applies once a vehicle is connected. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. To get data from a vehicle with no factory connected services, the owner connects the vehicle to DIMO and shares it with your app through DIMO Connect. Your backend then exchanges a Developer JWT for a Vehicle JWT and queries the Telemetry API. This guide covers the sharing and query flow that applies once a vehicle is connected. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it.
 
 ## Steps
 
@@ -28,7 +28,7 @@ DIMO gives developers API access to vehicle-state data: diagnostics, fault codes
 
 ## Code
 
-This example is adapted from the "Connect Your First Vehicle" tutorial. It needs a `tokenId` for a vehicle that has already been shared with your app, and it reads `DIMO_REDIRECT_URI` in addition to `DIMO_CLIENT_ID` and `DIMO_API_KEY`, so it is not tagged as a runnable test.
+This example is adapted from the "Connect Your First Vehicle" tutorial. It needs a `tokenId` for a vehicle that has already been shared with your app, and it reads `DIMO_REDIRECT_URI` in addition to `DIMO_CLIENT_ID` and `DIMO_API_KEY`.
 
 ```typescript
 import { DIMO } from '@dimo-network/data-sdk';
@@ -98,7 +98,7 @@ getVehicleData(12345).then((data) => console.log(JSON.stringify(data, null, 2)))
 
 ### Does the vehicle need factory connected services to work with DIMO?
 
-The documentation excerpts for this guide do not say how a vehicle without factory connected services is connected. They describe the flow after a vehicle is shared with your app: DIMO Connect, token exchange, and Telemetry API queries.
+The Telemetry API reference lists aftermarket devices (AutoPi, Macaron and R1 LTE) as signal sources alongside the Tesla integration, so vehicle data can come from a device plugged into the vehicle. Once a vehicle is shared with your app, the flow is the same: DIMO Connect, token exchange, and Telemetry API queries.
 
 ### Who has to approve access to the vehicle?
 

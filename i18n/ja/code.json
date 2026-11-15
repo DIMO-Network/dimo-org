@@ -869,6 +869,9 @@
   "vehicleSessionInfrastructure.body.dimoApisAndSdks": {
     "message": "DIMOのAPIとSDK"
   },
+  "contentPage.cta.talkToSales": {
+    "message": "営業担当に相談する"
+  },
   "contentPage.cta.talkToOurTeam": {
     "message": "チームに相談する"
   },

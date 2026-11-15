@@ -14,7 +14,7 @@ tags:
   - fleet
 ---
 
-Use the DIMO Vehicle Triggers API (webhooks) to get notified. You create a webhook with a signal name and a condition, subscribe your vehicles to it, and DIMO sends a `POST` request to your `targetURL` when the condition is met. The documentation excerpts for this guide do not name a specific check-engine signal, so you look up the exact signal name through the API first.
+Use the DIMO Vehicle Triggers API (webhooks) to get notified. You create a webhook with a signal name and a condition, subscribe your vehicles to it, and DIMO sends a `POST` request to your `targetURL` when the condition is met. The trouble-code signals are `obdDTCList` (the list of currently active diagnostic trouble codes), `obdStatusDTCCount` (the number of currently active codes) and `obdDistanceWithMIL` (distance travelled with the malfunction indicator lamp on). Which of them a given vehicle reports depends on the vehicle and its device, so you confirm the signal name through the API first.
 
 DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals.
 
@@ -22,15 +22,15 @@ DIMO gives developers API access to vehicle-state data: diagnostics, fault codes
 
 1. Get a Developer JWT for your Developer License from the [Developer Console](https://console.dimo.org), or generate one with your API key using a server SDK. Webhooks are tied to a specific Developer License, so use the JWT for the license you are building under.
 2. Make sure your fleet vehicles are shared with your Developer License. Sharing is done through DIMO Connect, and vehicle owners consent to and control it.
-3. Call `GET /v1/webhooks/signals` to list the signal names available for webhooks. Pick the diagnostic signal you want to alert on. The Diagnostics category in the Telemetry API signals reference is another place to look.
-4. Create the webhook with `POST /v1/webhooks`. Set `service` to `signals` (or `events`), set `metricName` to the signal name you chose, and write a `condition` as a CEL expression using `>=`, `<=`, `>`, `<`, or `==`. Set `coolDownPeriod` (minimum seconds between firings), `description`, `targetURL` (an HTTPS endpoint), `status` to `enabled`, and a `verificationToken` that your endpoint must echo back during verification.
+3. Call `GET /v1/webhooks/signals` to list the signal names available for webhooks. Pick the diagnostic signal you want to alert on; this guide uses `vss.obdStatusDTCCount`. The Diagnostics category in the Telemetry API signals reference is another place to look.
+4. Create the webhook with `POST /v1/webhooks`. Set `service` to `signals` (or `events`), set `metricName` to the signal name you chose (webhook signal names are VSS-prefixed, such as `vss.obdStatusDTCCount`), and write a `condition` as a CEL expression using `>=`, `<=`, `>`, `<`, or `==`, such as `valueNumber > 0`. Set `coolDownPeriod` (minimum seconds between firings), `description`, `targetURL` (an HTTPS endpoint), `status` to `enabled`, and a `verificationToken` that your endpoint must echo back during verification.
 5. Subscribe vehicles. Use `POST /v1/webhooks/:webhookId/subscribe/:tokenDID` for one vehicle, or `POST /v1/webhooks/:webhookId/subscribe/all` to subscribe every vehicle that has shared permissions with your Developer License.
 6. Handle the event on your server. When a subscribed vehicle meets your condition, DIMO sends a `POST` to your `targetURL`. The payload includes the vehicle in `subject` and `data.assetDID`, the `metricName`, the `webhookId`, the `condition`, and a `signal` object with its `value`.
 7. Forward the event to your own alerting, such as email, chat, or a ticketing system. DIMO delivers the event to your endpoint; the notification channel is yours to build.
 
 ## Code
 
-This adapts the TypeScript SDK examples from the Vehicle Triggers API reference. Replace the placeholders for the Developer JWT, signal name, condition, and URLs. It is not tagged `test` because it needs values you choose for the signal and condition.
+This adapts the TypeScript SDK examples from the Vehicle Triggers API reference. Replace the placeholders for the Developer JWT, verification token, and URLs. It alerts when `obdStatusDTCCount` is greater than zero; confirm the signal name against the list from `GET /v1/webhooks/signals` before you create the webhook.
 
 ```ts
 // 1. List the signal names available for webhooks
@@ -42,10 +42,10 @@ const webhookSignals = await dimo.VehicleTriggers.getWebhookSignalNames({
 const newWebhook = await dimo.VehicleTriggers.createWebhook({
   developerJwt: "<DEV_JWT>",
   service: "signals",
-  metricName: "<SIGNAL_NAME_FROM_LIST>",
-  condition: "<CEL_CONDITION>",
+  metricName: "vss.obdStatusDTCCount",
+  condition: "valueNumber > 0",
   coolDownPeriod: 30,
-  description: "Fires when a subscribed vehicle meets the diagnostic condition",
+  description: "Fires when a subscribed vehicle reports one or more active DTCs",
   displayName: "Diagnostic alert",
   targetURL: "https://example.com/webhook-receiver",
   status: "enabled",
@@ -62,7 +62,7 @@ const subscribeAll = await dimo.VehicleTriggers.subscribeAllVehicles({
 ## FAQ
 
 ### Which signal represents the check-engine light?
-The documentation excerpts used for this guide do not name one. Call `GET /v1/webhooks/signals` to see the signal names available to you, and check the Diagnostics section of the Telemetry API signals reference.
+The Diagnostics section of the Telemetry API signals reference lists three trouble-code signals: `obdDTCList` (currently active DTCs), `obdStatusDTCCount` (the number of currently active DTCs) and `obdDistanceWithMIL` (distance travelled with the malfunction indicator lamp on). Which of them a vehicle reports depends on the vehicle and its device. For a webhook, use `vss.obdStatusDTCCount` with a condition such as `valueNumber > 0`, and call `GET /v1/webhooks/signals` to confirm the signal name is available to you.
 
 ### Do I need to poll the API?
 No. Vehicle Triggers sends a `POST` to your `targetURL` when a subscribed vehicle meets your condition, so you do not need to poll for updates.

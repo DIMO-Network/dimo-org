@@ -1,0 +1,82 @@
+---
+title: How to track Nissan Rogue fuel level and refuels via API
+description: "With DIMO, a Nissan Rogue reports fuel in percent and liters on the DIMO LTE R1 (2010 and newer) and in percent only on the AutoPi (2014 and newer)."
+slug: nissan-rogue-fuel-level-tracking
+date: 2026-12-18
+authors:
+  - dimo-team
+tags:
+  - nissan-rogue
+  - refuel
+  - telemetry-api
+  - nissan
+---
+
+To track fuel level and refuels on a Nissan Rogue, use DIMO to read the fuel percentage signal with the Telemetry API `signalsLatest` query and to list refuel `segments` for the vehicle. Both the DIMO LTE R1 (2010 and newer) and AutoPi (2014 and newer) report fuel percentage, `powertrainFuelSystemRelativeLevel`, and support refuel events on the Rogue. Only the DIMO LTE R1 also reports fuel level in liters, `powertrainFuelSystemAbsoluteLevel`.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. See the [Nissan Rogue vehicle page](/vehicles/nissan/rogue) for the full signal list. For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). It comes with your Client ID, Redirect URI and API Key.
+2. Get the Rogue shared with your app through DIMO Connect. You need a vehicle shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, either the system-generated one in the Developer Console or one generated with your API Key through a server SDK.
+4. Exchange the Developer JWT for a Vehicle JWT for that vehicle by calling the Token Exchange API with the vehicle's token ID. Ask for privilege 1 (all-time, non-location data) and privilege 4 (all-time location), since the `segments` query requires both.
+5. Send the Vehicle JWT to the Telemetry API as `Authorization: Bearer <Vehicle JWT>`. Query `signalsLatest` for `powertrainFuelSystemRelativeLevel` to read the most recent fuel percentage. On a DIMO LTE R1 you can also query `powertrainFuelSystemAbsoluteLevel` for fuel level in liters.
+6. Query `segments` with the `refuel` detection mechanism over a time range of up to 31 days. Each returned segment is a period where the fuel level rose significantly. The default set of signals for a refuel segment includes the level at the start and end.
+7. Adjust sensitivity if needed with `minIncreasePercent` in `config`. The default is 15 percent.
+
+## Code
+
+This query returns the Rogue's refuel segments for one week, with the fuel percentage at each end. Replace `12345` with your vehicle's token ID.
+
+```graphql
+query GetRogueRefuels {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-08T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: FIRST }
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+To start, open the [Developer Console](https://console.dimo.org/sign-in) and create a Developer License. The [authentication guide](/docs/getting-started/authentication) explains how to get both JWTs.
+
+## FAQ
+
+### Which Nissan Rogue device reports fuel level in liters?
+The DIMO LTE R1 reports both fuel percentage and fuel level in liters. AutoPi on the Rogue reports fuel percentage.
+
+### Do both devices support refuel events on the Rogue?
+Yes. The DIMO LTE R1 and AutoPi both support refuel events on the Rogue, and the refuel segment query works from the fuel level signal.
+
+### How far back can I query refuels?
+The `segments` query has a maximum date range of 31 days. Use the `after` cursor to page through results.
+
+### Can I change how large a fuel increase counts as a refuel?
+Yes. Set `minIncreasePercent` in the `config` argument. The default is 15.
+
+### What does an ongoing segment mean?
+If `isOngoing` is true, the segment extends beyond your query range and `end` is not included.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, and the [Nissan Rogue vehicle page](/vehicles/nissan/rogue).*

@@ -207,7 +207,7 @@
     },
     {
       "q": "How do I verify Volkswagen ID.4 mileage?",
-      "a": "Both DIMO device entries list the odometer signal. Use the Attestation API odometer-statement endpoint to generate a verifiable attestation, then retrieve the rawVC through the Telemetry API."
+      "a": "Both DIMO device entries list the odometer signal. Use the Attestation API odometer-statement endpoint to generate a verifiable attestation, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO provides vehicle data for the Volkswagen ID.4 on 2021 and newer model years, and the record is tested rather than expected. The vehicle connects through a DIMO device, with DIMO LTE R1 and AutoPi listed as providers, and no other connection type is listed. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

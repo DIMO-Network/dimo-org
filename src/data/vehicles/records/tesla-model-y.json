@@ -142,7 +142,7 @@
   "faq": [
     {
       "q": "How do I verify Tesla Model Y mileage?",
-      "a": "The Model Y reports the odometer signal over Tesla's cloud connection. To get a verifiable reading, call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+      "a": "The Model Y reports the odometer signal over Tesla's cloud connection. To get a verifiable reading, call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId) with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect recharging on a Tesla Model Y?",

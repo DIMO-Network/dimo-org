@@ -235,7 +235,7 @@
           "label": "Coordinates"
         }
       ],
-      "events": ["idling", "refuel", "harsh_braking"]
+      "events": ["idling", "refuel"]
     }
   ],
   "verification": "tested",
@@ -260,7 +260,7 @@
     },
     {
       "q": "How do I detect harsh braking on a Ford Bronco?",
-      "a": "Harsh braking is a listed event for this vehicle on a DIMO device. You can create a webhook in the Vehicle Triggers API with the events service and the behavior.harshBraking metric, then subscribe the vehicle. Alternatively, request HarshBraking event counts per trip through the segments API."
+      "a": "Harsh braking is a listed event for this vehicle on the DIMO LTE R1. You can create a webhook in the Vehicle Triggers API with the events service and the behavior.harshBraking metric, then subscribe the vehicle. Alternatively, request HarshBraking event counts per trip through the segments API."
     }
   ],
   "intro": "DIMO offers a Ford Bronco vehicle data API through a DIMO device, which is the connection type listed for this vehicle. Coverage is for 2021 and newer model years, and it has been tested. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. After the owner shares the vehicle with your app, you read its data through the Telemetry API with a Vehicle JWT."

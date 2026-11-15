@@ -268,7 +268,7 @@
     },
     {
       "q": "How do I verify Kia Niro mileage?",
-      "a": "The DIMO LTE R1 device reports the odometer signal, powertrainTransmissionTravelledDistance, in km. To get a verifiable record, call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId), then retrieve the rawVC through the Telemetry API."
+      "a": "The DIMO LTE R1 device reports the odometer signal, powertrainTransmissionTravelledDistance, in km. To get a verifiable record, call the Attestation API odometer-statement endpoint (POST /v2/attestation/odometer-statement/:tokenId), then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I detect recharge sessions on a Kia Niro?",

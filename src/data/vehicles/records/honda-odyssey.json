@@ -174,7 +174,7 @@
     },
     {
       "q": "How do I verify Honda Odyssey mileage?",
-      "a": "The DIMO LTE R1 reports odometer as powertrainTransmissionTravelledDistance in km. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the rawVC through the Telemetry API."
+      "a": "The DIMO LTE R1 reports odometer as powertrainTransmissionTravelledDistance in km. To get a verifiable record, call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     },
     {
       "q": "How do I get harsh braking alerts for a Honda Odyssey?",

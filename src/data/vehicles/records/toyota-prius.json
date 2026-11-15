@@ -241,7 +241,7 @@
     },
     {
       "q": "How do I verify Toyota Prius mileage?",
-      "a": "A DIMO device reports the Odometer signal (powertrainTransmissionTravelledDistance) in km. To get verifiable proof, call the Attestation API odometer statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API."
+      "a": "A DIMO device reports the Odometer signal (powertrainTransmissionTravelledDistance) in km. To get verifiable proof, call the Attestation API odometer statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Toyota Prius, that data comes from a DIMO device, for model years 2008 and newer. Coverage for this model is tested rather than expected. You read the data through the Telemetry API with a Vehicle JWT, and the signals and events the Prius supports are listed below."

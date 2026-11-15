@@ -1,0 +1,94 @@
+---
+title: How to track Ford F-150 fuel level and refuels via API
+description: "See Ford F-150 fuel level in percent and list refuels with the DIMO Telemetry API. Works with the DIMO LTE R1 (2009 and newer) and AutoPi (2010 and newer)."
+slug: ford-f-150-fuel-level-tracking
+date: 2026-12-15
+authors:
+  - dimo-team
+tags:
+  - ford-f-150
+  - refuel
+  - telemetry-api
+  - ford
+---
+
+To track fuel level and refuels on a Ford F-150, authenticate with a Vehicle JWT, then query the Telemetry API: `signalsLatest` for fuel percentage and `segments` with `mechanism: refuel` for refuel segments. On a Ford F-150, the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) both report fuel percentage as `powertrainFuelSystemRelativeLevel`. Both support refuel events, and neither reports a fuel signal in liters for this truck.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the full signal list on the [Ford F-150 vehicle page](/vehicles/ford/f-150). For any other vehicle, see [how to detect refuels](/resources/track-refuel-events).
+
+## Steps
+
+1. Create a Developer License and get your `Client ID`, `Redirect URI` and `API Key` from the [Developer Console](https://console.dimo.org/sign-in).
+2. Get the F-150 shared with your app through DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT.
+3. Get a Developer JWT, then exchange it for a Vehicle JWT through the Token Exchange API. Request all-time, non-location data (privilege 1) and all-time location (privilege 4). Privilege 1 alone covers the `signalsLatest` fuel read, but the `segments` refuel query requires both.
+4. Send the Vehicle JWT to the Telemetry API as `Authorization: Bearer <Vehicle JWT>`. On an F-150, `powertrainFuelSystemRelativeLevel` (Fuel Percentage, in %) is reported by both the DIMO LTE R1 and the AutoPi.
+5. Use `signalsLatest` to read the most recent fuel level, or `signals` with a `from`, `to` and `interval` to read it over time.
+6. Use `segments` with `mechanism: refuel` to find periods where fuel level rises significantly. Segments cover a maximum date range of 31 days. Each refuel segment includes the fuel level signal at its start and end by default.
+7. Optionally set `minIncreasePercent` in `config` to change how large a fuel level increase must be to count. The default is 15.
+
+## Code
+
+In both examples, replace `12345` with your vehicle's token ID.
+
+Latest fuel level:
+
+```graphql
+# Header: { "Authorization": "Bearer <yourVehicleJwt>" }
+
+query GetLatestFuel {
+  signalsLatest(tokenId: 12345) {
+    powertrainFuelSystemRelativeLevel {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+Refuel segments over a date range:
+
+```graphql
+query GetRefuels {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: refuel
+    config: { minIncreasePercent: 15 }
+    signalRequests: [
+      { name: "powertrainFuelSystemRelativeLevel", agg: LAST }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    signals { name agg value }
+  }
+}
+```
+
+Ready to connect an F-150? Get a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then follow the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which F-150 hardware reports fuel level?
+On a Ford F-150, the DIMO LTE R1 (2009 and newer) and the AutoPi (2010 and newer) both report Fuel Percentage as `powertrainFuelSystemRelativeLevel`.
+
+### Do I need a DIMO device to get this data?
+Yes. For the F-150, fuel level comes from a DIMO LTE R1 or an AutoPi connected to the truck.
+
+### How does DIMO detect a refuel?
+The `refuel` segment mechanism detects where fuel level rises significantly. You can tune the threshold with `minIncreasePercent`, which defaults to 15.
+
+### How far back can I query refuels?
+The `segments` query has a maximum date range of 31 days. For longer histories, run several queries over consecutive ranges and paginate with `after`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Signals and Segments references, and the device coverage shown on the [Ford F-150 vehicle page](/vehicles/ford/f-150).*

@@ -608,7 +608,7 @@ export default function DealershipsPage(): ReactNode {
             localizeSchema(
               {
                 '@context': 'https://schema.org',
-                '@type': 'Product',
+                '@type': 'Service',
                 name: translate({
                   id: 'industries.dealerships.schema.dimoForDealerships.name',
                   message: 'DIMO for Dealerships',

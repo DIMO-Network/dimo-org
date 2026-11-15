@@ -1,0 +1,75 @@
+---
+title: How to detect idling on a Honda Odyssey via API
+description: Idling on a Honda Odyssey is reported by the DIMO LTE R1 only (2011 and newer). Query idle segments from the DIMO Telemetry API to find idle periods.
+slug: honda-odyssey-idling-detection
+date: 2026-11-24
+authors:
+  - dimo-team
+tags:
+  - honda-odyssey
+  - idling
+  - telemetry-api
+  - honda
+---
+
+To detect idling on a Honda Odyssey, query the DIMO Telemetry API `segments` resource with `mechanism: idling`. On this car idling is available on the DIMO LTE R1 only: the DIMO LTE R1 (2011 and newer) reports engine RPM (`powertrainCombustionEngineSpeed`), vehicle speed and ignition status, and reports idling and harsh braking events.
+
+On the Odyssey, the AutoPi reports low voltage battery, altitude and coordinates, with no engine RPM and no events, so use the DIMO LTE R1 for this job. DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Details on the car are on the [Honda Odyssey vehicle page](/vehicles/honda/odyssey). For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Get your Developer License credentials (`Client ID`, `Redirect URI` and `API Key`) from the [Developer Console](https://console.dimo.org/sign-in), then obtain a Developer JWT.
+2. Have the owner share the Odyssey with your app through DIMO Connect. Vehicle owners consent to and control sharing, so builders get data with clear provenance. You need a shared vehicle to fetch a Vehicle JWT.
+3. Exchange the Developer JWT for a Vehicle JWT using the Token Exchange API. Request privilege 1 (all-time, non-location data) plus privilege 4 (all-time location). You need both for the `segments` query.
+4. Call the Telemetry API `segments` query with the vehicle token ID, a time range of up to 31 days, and `mechanism: idling`. The idling mechanism requires a DIMO device.
+5. Tune detection with `config`. `maxIdleRpm` sets the upper RPM bound for idle (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240 seconds). `signalCountThreshold` sets how sensitive activity detection is (default 10).
+6. Read each returned segment's `start`, `end`, `duration` and `isOngoing` fields. If `isOngoing` is true, the segment extends past your query range and `end` is not returned.
+7. Optionally add `signalRequests` to aggregate signals per segment, such as `speed` with `MAX`. The Odyssey's DIMO LTE R1 reports `speed`.
+
+## Code
+
+This query uses the idling mechanism and asks for the maximum `speed` in each segment alongside the default signals. Replace `12345` with your Odyssey's token ID and send it with the header `Authorization: Bearer <Vehicle JWT>`.
+
+```graphql
+query GetIdlingSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "speed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+When you are ready to build, register a Developer License in the [Developer Console](https://console.dimo.org/sign-in) and read the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which device detects idling on a Honda Odyssey?
+Only the DIMO LTE R1 (2011 and newer). It reports engine RPM and idling events on the Odyssey. The AutoPi reports neither engine RPM nor idling on the Odyssey.
+
+### How does DIMO decide a segment is idling?
+Idling segments are contiguous periods where engine RPM stays in the idle range. You set the upper bound with `maxIdleRpm`, which defaults to 1000.
+
+### How far back can I query?
+The `segments` query has a maximum date range of 31 days. Results default to 100 segments, with a maximum of 200 per request, and you can paginate with `after`.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Honda Odyssey vehicle page](/vehicles/honda/odyssey).*

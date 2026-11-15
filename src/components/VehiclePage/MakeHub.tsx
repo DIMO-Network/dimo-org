@@ -33,8 +33,7 @@ export default function MakeHub({
       }}
       heroEyebrow="Vehicle data"
       heroTitle={h1}
-      ctaLabel="Get API keys"
-      ctaHref="https://console.dimo.org/sign-in"
+      salesChat
     >
       <p>
         DIMO gives developers API access to {make} vehicle-state data. Each

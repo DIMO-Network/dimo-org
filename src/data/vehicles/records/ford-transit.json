@@ -257,7 +257,7 @@
     },
     {
       "q": "How do I verify Ford Transit mileage?",
-      "a": "The DIMO LTE R1 device lists the Odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the resulting rawVC through the Telemetry API for a verifiable odometer record."
+      "a": "The DIMO LTE R1 device lists the Odometer signal. Call the Attestation API odometer-statement endpoint with a Vehicle JWT, then retrieve the signed statement through the Telemetry API attestations query for a verifiable odometer record."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Ford Transit, that data comes from a DIMO device, with tested coverage on 2008 and newer model years. The record lists the Transit as an ICE vehicle available in Global regions. Read its signals through the Telemetry API and subscribe to events through the Vehicle Triggers API."

@@ -1,0 +1,85 @@
+---
+title: How to get Ford F-150 check-engine alerts by webhook
+description: A Ford F-150 on an AutoPi reports the trouble-code list; on a DIMO LTE R1 it reports a DTC count. A DIMO Vehicle Triggers webhook sends the alert.
+slug: ford-f-150-check-engine-alerts
+date: 2026-11-18
+authors:
+  - dimo-team
+tags:
+  - ford-f-150
+  - diagnostics
+  - vehicle-triggers
+  - ford
+---
+
+To get check-engine alerts on a Ford F-150, create a webhook with the DIMO Vehicle Triggers API on a diagnostic signal and subscribe the truck. On an F-150 (2010 and newer), the AutoPi reports the `obdDTCList` signal and `obdDistanceWithMIL`. The DIMO LTE R1 (2009 and newer) reports `obdStatusDTCCount` and `obdDistanceWithMIL` instead, without the code list.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. Vehicle owners consent to and control sharing, so builders get data with clear provenance. See the [Ford F-150 vehicle page](/vehicles/ford/f-150) for the full signal list. For any other vehicle, see [how to get check-engine light alerts](/resources/check-engine-light-alerts).
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need your Client ID, Redirect URI and API Key.
+2. Get the F-150 shared with your app. Use DIMO Connect to have the owner share the vehicle with you.
+3. Get a Developer JWT, either from the Developer Console or by using your API key with a server SDK. The webhook calls below use this token.
+4. To be pushed an alert instead of polling, create a webhook with the Vehicle Triggers API. Use the `signals` service, set `metricName` to a `vss.`-prefixed signal name such as `vss.obdStatusDTCCount`, and write a CEL condition such as `valueNumber > 0`. On an AutoPi F-150 use `vss.obdDistanceWithMIL`; the AutoPi does not report `obdStatusDTCCount` on the F-150. Use `GET /v1/webhooks/signals` to confirm which signal names are available for webhooks.
+5. Subscribe the vehicle to the webhook by the vehicle's DID, which looks like `did:erc721:137:0xbA5738a18d83D41847dfFbDC6101d37C69c9B0cF:12345`. DIMO sends a POST request to your `targetURL` when the condition is met.
+6. To read signal values yourself, exchange the Developer JWT for a Vehicle JWT through the Token Exchange API. Request the "All-time, non-location data" permission (privilege 1), which covers the signals used here.
+7. Query the Telemetry API with the Vehicle JWT. On an F-150 with an AutoPi, request `obdDTCList` and `obdDistanceWithMIL` through `signalsLatest`. On an F-150 with a DIMO LTE R1, request `obdStatusDTCCount` and `obdDistanceWithMIL`. Pick fields to match the device the truck uses.
+
+A count and a lamp distance are not the same reading: `obdStatusDTCCount` gives the number of currently active DTCs, while `obdDistanceWithMIL` gives the distance travelled with the malfunction indicator lamp (MIL) on.
+
+## Code
+
+This request creates the webhook with your Developer JWT. It watches `vss.obdDistanceWithMIL`, which both F-150 devices list. Swap in your own target URL and verification token.
+
+```shell
+curl -X POST "https://vehicle-triggers-api.dimo.zone/v1/webhooks" \
+  -H "Authorization: Bearer <DEV_JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "service": "signals",
+    "metricName": "vss.obdDistanceWithMIL",
+    "condition": "valueNumber > 0",
+    "coolDownPeriod": 3600,
+    "description": "Fires when a subscribed F-150 reports distance travelled with the MIL on",
+    "displayName": "F-150 check-engine alert",
+    "targetURL": "https://example.com/webhook-receiver",
+    "status": "enabled",
+    "verificationToken": "<YOUR_VERIFICATION_TOKEN>"
+  }'
+```
+
+This query reads the latest trouble code list and the distance driven with the malfunction indicator lamp (MIL) on. It targets an F-150 with an AutoPi. Send it to the Telemetry API with your Vehicle JWT in the `Authorization` header, as `Bearer <Vehicle JWT>`. Replace `12345` with your vehicle's token ID.
+
+```graphql
+query GetCheckEngineSignals {
+  signalsLatest(tokenId: 12345) {
+    obdDTCList {
+      value
+      timestamp
+    }
+    obdDistanceWithMIL {
+      value
+      timestamp
+    }
+  }
+}
+```
+
+Next step: pick up a Developer License in the [Developer Console](https://console.dimo.org/sign-in), follow the [authentication guide](/docs/getting-started/authentication), then check the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api) reference for the webhook fields.
+
+## FAQ
+
+### Which F-150 connection reports the trouble code list?
+The AutoPi reports `obdDTCList`. The DIMO LTE R1 reports a trouble code count (`obdStatusDTCCount`) rather than the list.
+
+### Which model years are supported?
+The DIMO LTE R1 supports Ford F-150 model years 2009 and newer, and the AutoPi supports model years 2010 and newer.
+
+### Do I need a vehicle shared with me first?
+Yes. You need a vehicle shared with you before you can fetch a Vehicle JWT. Sharing is done through DIMO Connect, and the owner controls it.
+
+### Can webhooks send me alerts automatically?
+Yes. The Vehicle Triggers API sends a POST request to your HTTPS endpoint when a signal meets your CEL condition. Webhooks are in public beta.
+
+*Methodology: based on the DIMO documentation for Authentication, Building Your First App, the Vehicle Triggers API and Telemetry API Vehicle Signals, and on the [Ford F-150 vehicle page](/vehicles/ford/f-150).*

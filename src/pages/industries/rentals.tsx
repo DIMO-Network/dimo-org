@@ -625,7 +625,7 @@ export default function RentalsPage(): ReactNode {
             localizeSchema(
               {
                 '@context': 'https://schema.org',
-                '@type': 'Product',
+                '@type': 'Service',
                 name: translate({
                   id: 'industries.rentals.schema.dimoForRentals.name',
                   message: 'DIMO for Rentals',

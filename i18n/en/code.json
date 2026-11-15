@@ -869,6 +869,9 @@
   "vehicleSessionInfrastructure.body.dimoApisAndSdks": {
     "message": "DIMO APIs and SDKs"
   },
+  "contentPage.cta.talkToSales": {
+    "message": "Talk to sales"
+  },
   "contentPage.cta.talkToOurTeam": {
     "message": "Talk to our team"
   },

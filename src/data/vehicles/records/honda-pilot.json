@@ -182,7 +182,7 @@
     },
     {
       "q": "How do I verify Honda Pilot mileage?",
-      "a": "The DIMO LTE R1 device lists the odometer signal for the Pilot. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve the rawVC through the Telemetry API."
+      "a": "The DIMO LTE R1 device lists the odometer signal for the Pilot. Call the Attestation API odometer-statement endpoint with a Vehicle JWT to generate a verifiable credential, then retrieve the signed statement through the Telemetry API attestations query."
     }
   ],
   "intro": "DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. For the Honda Pilot, data comes through a DIMO device, for model years 2009 and newer. Coverage for this model has been tested rather than expected. Vehicle owners consent to and control sharing, so builders get data with clear provenance."

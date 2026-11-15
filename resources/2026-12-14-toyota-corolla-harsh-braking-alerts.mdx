@@ -1,0 +1,73 @@
+---
+title: How to get Toyota Corolla harsh braking events via API
+description: Get harsh braking events for a Toyota Corolla (2010 and newer) with a DIMO LTE R1 from the DIMO Telemetry API, or have a webhook push them to your server.
+slug: toyota-corolla-harsh-braking-alerts
+date: 2026-12-14
+authors:
+  - dimo-team
+tags:
+  - toyota-corolla
+  - harsh-braking
+  - telemetry-api
+  - toyota
+---
+
+To get harsh braking events on a Toyota Corolla, query `events` in the DIMO Telemetry API with a Vehicle JWT and filter to the harsh braking tag. On the Corolla, the DIMO LTE R1 reports harsh braking events, for model year 2010 and newer. The AutoPi reports an idling event only on the Corolla, so harsh braking comes from the DIMO LTE R1. See the [Toyota Corolla vehicle page](/vehicles/toyota/corolla) for the full signal list. For any other vehicle, see [how to detect harsh braking](/resources/detect-harsh-braking).
+
+Vehicle owners consent to and control sharing, so builders get data with clear provenance.
+
+## Steps
+
+1. Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in). You need your Client ID, Redirect URI and API Key.
+2. Get a Developer JWT, either the system-generated one in the Developer Console or a new one generated with your API key through a server SDK.
+3. Get the Corolla shared with your app using DIMO Connect. A vehicle must be shared with you before you can fetch a Vehicle JWT. The Corolla needs a DIMO LTE R1 connected, because DIMO Events are only available on vehicles equipped with a DIMO LTE R1.
+4. Exchange your Developer JWT for a Vehicle JWT by sending a request to the Token Exchange API with the vehicle's token ID. Request privilege 1 (all-time, non-location data) and privilege 4 (all-time location). The `events` query requires both.
+5. Send the Vehicle JWT in the `Authorization` header of a Telemetry API request, in the form `Authorization: Bearer <Vehicle JWT>`.
+6. Query `events` with the vehicle's `tokenId` and a `from` and `to` time range, which are all required. Put the `behavior.harshBraking` tag inside the `filter` argument. Each event returns `timestamp`, `name`, `source`, `durationNs` and `metadata`.
+7. To get alerts pushed to your server instead of polling, create a webhook in the [Vehicle Triggers API](/docs/api-references/vehicle-triggers-api) with `service` set to `events` and `metricName` set to `behavior.harshBraking`, then subscribe the Corolla to it.
+
+## Code
+
+Send your Vehicle JWT in the header shown first, then run the query. Replace `12345` with your vehicle's token ID and set `from` and `to` to the period you want.
+
+```json
+{ "Authorization": "Bearer <yourVehicleJwt>" }
+```
+
+```graphql
+query HarshBrakingEvents {
+  events(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    filter: { tags: { containsAny: ["behavior.harshBraking"] } }
+  ) {
+    timestamp
+    name
+    source
+    durationNs
+    metadata
+  }
+}
+```
+
+Want to run it on your own Corolla? Create a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then work through the [authentication guide](/docs/getting-started/authentication).
+
+## FAQ
+
+### Which Corolla connection reports harsh braking?
+The DIMO LTE R1 reports harsh braking events on the Corolla. The AutoPi reports an idling event only.
+
+### Which model years support this?
+The DIMO LTE R1 supports Toyota Corolla model years 2010 and newer.
+
+### Do I need the owner's permission?
+Yes. The vehicle must be shared with you before you can fetch a Vehicle JWT, and sharing is done through DIMO Connect.
+
+### What does each event contain?
+Each event has a timestamp, a name, the source connection that created it, a duration in nanoseconds and optional metadata.
+
+### What other event types does the DIMO LTE R1 define?
+It defines extreme braking, harsh acceleration, harsh braking and harsh cornering events. This guide covers harsh braking only.
+
+*Methodology: based on the DIMO documentation pages Authentication, Building Your First App, Vehicle Triggers API and Telemetry API Vehicle Events, plus the [Toyota Corolla vehicle page](/vehicles/toyota/corolla).*

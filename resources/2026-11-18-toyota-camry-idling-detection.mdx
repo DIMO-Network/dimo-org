@@ -1,0 +1,82 @@
+---
+title: How to detect idling on a Toyota Camry via API
+description: Query DIMO Telemetry API idle segments for a Toyota Camry. The DIMO LTE R1 (2007 and newer) and AutoPi (2007–2025) both report idling.
+slug: toyota-camry-idling-detection
+date: 2026-11-18
+authors:
+  - dimo-team
+tags:
+  - toyota-camry
+  - idling
+  - telemetry-api
+  - toyota
+---
+
+To detect idling on a Toyota Camry, query the DIMO Telemetry API for segments using the idling detection mechanism. On a Toyota Camry, both the DIMO LTE R1 (2007 and newer) and AutoPi (2007–2025) report engine RPM (`powertrainCombustionEngineSpeed`) and vehicle speed, and both support idling events. The query returns contiguous periods where engine RPM stays in the idle range, and it requires a DIMO device.
+
+DIMO gives developers API access to vehicle-state data: diagnostics, fault codes, battery and fuel health, odometer, and maintenance signals. DIMO adds vehicle-state depth on top of GPS tracking; it doesn't replace it. See the [Toyota Camry vehicle page](/vehicles/toyota/camry) for every signal it reports. For any other vehicle, see [how to detect vehicle idling](/resources/detect-vehicle-idling).
+
+## Steps
+
+1. Get your `Client ID`, `Redirect URI` and `API Key` from a Developer License in the [Developer Console](https://console.dimo.org/sign-in), then get a Developer JWT in the console or with a server SDK.
+2. Have the Camry shared with your app. Vehicle owners consent to and control sharing, so builders get data with clear provenance. Sharing is handled through DIMO Connect.
+3. Exchange your Developer JWT for a Vehicle JWT with the Token Exchange API. The Vehicle JWT is scoped to one vehicle and is short-lived. Request both privilege 1 (all-time, non-location data) and privilege 4 (all-time location), because the `segments` query needs the pair.
+4. Send a GraphQL `segments` query to the Telemetry API with `mechanism: idling`, the vehicle's `tokenId`, and a `from` and `to` range of no more than 31 days.
+5. Optionally tune detection with `config`. `maxIdleRpm` sets the upper RPM bound for idle (default 1000, min 300, max 3000). `minSegmentDurationSeconds` filters short segments (default 240). `signalCountThreshold` sets how sensitive detection is (default 10).
+6. Read `start`, `end`, `duration` and `isOngoing` from each segment. If `isOngoing` is true, the idle period extends past your query range and `end` is not included.
+
+The [Toyota Camry vehicle page](/vehicles/toyota/camry) lists the signals each connection reports. Idle detection relies on engine RPM (`powertrainCombustionEngineSpeed`), which both the DIMO LTE R1 and AutoPi report on this car. The DIMO LTE R1 also reports ignition status (`isIgnitionOn`).
+
+## Code
+
+This GraphQL query returns idle segments for one vehicle and asks for the maximum speed in each segment alongside the default signals. Send it to the Telemetry API with the header `Authorization: Bearer <Vehicle JWT>`. Replace `12345` with your Camry's token ID and set your own dates.
+
+```graphql
+query GetIdleSegments {
+  segments(
+    tokenId: 12345
+    from: "2026-11-01T00:00:00Z"
+    to: "2026-11-07T00:00:00Z"
+    mechanism: idling
+    config: { maxIdleRpm: 1000, minSegmentDurationSeconds: 240 }
+    signalRequests: [
+      { name: "speed", agg: MAX }
+    ]
+    limit: 50
+  ) {
+    start {
+      timestamp
+      value { latitude longitude }
+    }
+    end {
+      timestamp
+      value { latitude longitude }
+    }
+    duration
+    isOngoing
+    startedBeforeRange
+    signals { name agg value }
+  }
+}
+```
+
+Next step: sign in to the [Developer Console](https://console.dimo.org/sign-in) for a Developer License, then work through the [authentication guide](/docs/getting-started/authentication) to get your tokens.
+
+## FAQ
+
+### Which Toyota Camry connections support idling detection?
+The DIMO LTE R1 (2007 and newer) and AutoPi (2007–2025) both support idling detection on the Camry. Both report engine RPM and vehicle speed.
+
+### Do I need hardware to detect idling?
+Yes. The idling mechanism requires a DIMO device, so the Camry needs a connected device that reports to DIMO.
+
+### How do I change what counts as idle?
+Set `maxIdleRpm` in the `config` argument. Windows where maximum RPM is at or below that value count as idle. The default is 1000.
+
+### How far back can I query?
+The `segments` query supports a maximum date range of 31 days. Use `limit` and `after` to page through results, with a default limit of 100 and a maximum of 200.
+
+### How do I get access to the vehicle's data?
+The owner must share the vehicle with your app through DIMO Connect. You then exchange your Developer JWT for a Vehicle JWT to query that vehicle.
+
+*Methodology: this guide is based on the DIMO documentation for Authentication, Building Your First App, and the Telemetry API Vehicle Segments reference, plus the [Toyota Camry vehicle page](/vehicles/toyota/camry).*
