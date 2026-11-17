@@ -1,6 +1,9 @@
 import type * as Preset from '@docusaurus/preset-classic';
+import { rm } from 'node:fs/promises';
+import { join } from 'node:path';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
+import { isEnglishBuild, LOCALES, ROOT_ONLY_FILES } from './src/lib/seo';
 import type { ProcessBlogPostsFn } from '@docusaurus/plugin-content-blog';
 import { isLive } from './plugins/vehicle-pages/publishDate';
 import {
@@ -12,6 +15,12 @@ import {
 // (UTC) are dropped from pages, feeds and the sitemap until a later build.
 const dropScheduledPosts: ProcessBlogPostsFn = async ({ blogPosts }) =>
   blogPosts.filter(post => isLive(new Date(post.metadata.date).toISOString()));
+
+// Docs, blog, vehicle pages, guides, privacy and terms stay English.
+// Docusaurus builds each locale separately, so non-English builds drop them
+// entirely: nothing to index as a duplicate under a locale prefix, and links
+// to them go through englishHref.
+const englishBuild = isEnglishBuild(process.env.DOCUSAURUS_CURRENT_LOCALE);
 
 const config: Config = {
   title: 'DIMO Build',
@@ -53,23 +62,39 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: LOCALES,
+    // baseUrl is what a full build infers anyway. Spelling it out keeps a
+    // single-locale build (npm run build -- --locale ja) under /ja/ too,
+    // where Docusaurus would otherwise serve it from / and the canonical and
+    // hreflang URLs would point at paths that build doesn't have.
+    localeConfigs: {
+      en: { label: 'English', htmlLang: 'en' },
+      es: { label: 'Español', htmlLang: 'es', baseUrl: '/es/' },
+      ja: { label: '日本語', htmlLang: 'ja', baseUrl: '/ja/' },
+      'zh-Hans': {
+        label: '简体中文',
+        htmlLang: 'zh-Hans',
+        baseUrl: '/zh-Hans/',
+      },
+      'zh-Hant': {
+        label: '繁體中文',
+        htmlLang: 'zh-Hant',
+        baseUrl: '/zh-Hant/',
+      },
+    },
   },
 
   presets: [
     [
       'classic',
       {
-        docs: {
+        docs: englishBuild && {
           sidebarPath: './sidebars.ts',
           showLastUpdateTime: true,
         },
-        blog: {
+        blog: englishBuild && {
           showReadingTime: true,
           blogSidebarTitle: 'Recent Posts',
           blogSidebarCount: 10,
@@ -77,6 +102,19 @@ const config: Config = {
             'Developer insights on vehicle data APIs, connected-car infrastructure, session-based consent, and mobility engineering from the DIMO team.',
           processBlogPosts: dropScheduledPosts,
         },
+        pages: englishBuild
+          ? {}
+          : {
+              exclude: [
+                // Docusaurus defaults, which a custom exclude replaces
+                '**/_*.{js,jsx,ts,tsx,md,mdx}',
+                '**/_*/**',
+                '**/*.test.{js,jsx,ts,tsx}',
+                '**/__tests__/**',
+                'privacy.md',
+                'terms.md',
+              ],
+            },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -98,6 +136,8 @@ const config: Config = {
             '/resources/authors',
             '/resources/tags/**',
           ],
+          // A locale's home is /zh-Hans/ to Docusaurus but /zh-Hans to the
+          // canonical (trailingSlash: false); list the canonical form.
           createSitemapItems: async ({
             defaultCreateSitemapItems,
             ...params
@@ -105,7 +145,10 @@ const config: Config = {
             clampLastmod(
               await defaultCreateSitemapItems(params),
               publishDates(process.cwd())
-            ),
+            ).map(item => ({
+              ...item,
+              url: item.url.replace(/^(\w+:\/\/[^/]+\/.+)\/$/, '$1'),
+            })),
         },
       } satisfies Preset.Options,
     ],
@@ -113,11 +156,22 @@ const config: Config = {
 
   themes: ['@docusaurus/theme-mermaid'],
 
-  // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
   plugins: [
-    './plugins/vehicle-pages/index.ts',
+    // static/ is copied into every locale build; llms.txt, llms-full.txt and
+    // robots.txt are English and only mean anything at the root.
+    () => ({
+      name: 'root-only-static-files',
+      async postBuild({ outDir }) {
+        if (englishBuild) return;
+        await Promise.all(
+          ROOT_ONLY_FILES.map(file => rm(join(outDir, file), { force: true }))
+        );
+      },
+    }),
+    // AEO vehicle pages (/vehicles/**) generated from src/data/vehicles/records.
+    englishBuild && './plugins/vehicle-pages/index.ts',
     // Hand-edited AEO guides (MDX), published on their `date`.
-    [
+    englishBuild && [
       '@docusaurus/plugin-content-blog',
       {
         id: 'resources',
@@ -201,7 +255,16 @@ const config: Config = {
       appId: '1UPBW4N7NX',
       apiKey: '19eb8461516e41ddb1580e426cd5f92a',
       indexName: 'DIMO Docs Crawler',
-      contextualSearch: true,
+      // Search is English-only (docs and blog); contextual search would
+      // filter by the current locale and return nothing on translated pages.
+      contextualSearch: false,
+      // Docs, blog, vehicle and guide hits are English-only pages; on
+      // translated builds send them to the English URL instead of prefixing
+      // the locale (a 404).
+      ...(!englishBuild && {
+        externalUrlRegex:
+          'dimo\\.org/(?:docs|blog|vehicles|resources|privacy|terms)(?:[/?#]|$)',
+      }),
       searchPagePath: 'search',
 
       // DocSearch v4 features

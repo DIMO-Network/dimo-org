@@ -19,7 +19,6 @@ export default function MakeHub({
       wide
       title={`${make} Vehicle Data API: Supported Models | DIMO`}
       description={description}
-      canonicalPath={`/vehicles/${makeSlug}`}
       breadcrumbs={[
         { name: 'Home', url: `${SITE}/` },
         { name: 'Vehicles', url: `${SITE}/vehicles` },

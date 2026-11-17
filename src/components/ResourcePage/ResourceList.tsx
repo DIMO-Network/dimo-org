@@ -15,7 +15,6 @@ export default function ResourceList({ metadata, items }: Props): ReactNode {
       wide
       title={`${blogTitle} | DIMO`}
       description={blogDescription}
-      canonicalPath={permalink}
       breadcrumbs={[{ name: 'Home', url: `${SITE}/` }, { name: blogTitle }]}
       schema={{
         '@context': 'https://schema.org',

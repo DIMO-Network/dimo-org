@@ -6,6 +6,8 @@ description:
   vehicle brands. Founded in 2021.
 ---
 
+import EnglishLink from '@site/src/components/EnglishLink';
+
 # About DIMO
 
 DIMO is the vehicle data infrastructure that powers the session-based economy.
@@ -73,7 +75,8 @@ that infrastructure real.
 
 ## Get in touch
 
-- **Developers:** start in the [documentation](/docs) or the
+- **Developers:** start in the
+  <EnglishLink to="/docs">documentation</EnglishLink> or the
   [Developer Console](https://console.dimo.org/sign-in).
 - **Partnerships and enterprise:** see our [contact page](/contact).
 - **Community:** join us on [Discord](https://chat.dimo.org) and

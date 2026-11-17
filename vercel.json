@@ -50,6 +50,21 @@
       ]
     },
     {
+      "source": "/:locale(es|ja|zh-Hans|zh-Hant)/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:locale(es|ja|zh-Hans|zh-Hant)/img/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+      ]
+    },
+    {
       "source": "/docs/:path*",
       "headers": [
         {

@@ -20,7 +20,6 @@ export default function VehicleIndex({
       wide
       title="Vehicle Data API Coverage by Make & Model | DIMO"
       description={DESCRIPTION}
-      canonicalPath="/vehicles"
       breadcrumbs={[{ name: 'Home', url: `${SITE}/` }, { name: 'Vehicles' }]}
       schema={{
         '@context': 'https://schema.org',

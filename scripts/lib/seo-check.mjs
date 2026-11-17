@@ -1,0 +1,140 @@
+// Checks one built HTML page for the locale/indexing mistakes that make Google
+// drop a translated page: a canonical, og:url or JSON-LD url pointing at
+// another locale, hreflang alternates that are missing, noindex or lack
+// x-default, and English-only pages that are built in a locale or declare
+// alternates.
+import {
+  FIXED_URL_TYPES,
+  LOCALES,
+  SITE,
+  isTranslatedPath,
+  localeUrl,
+} from '../../src/lib/seo.ts';
+
+const TRANSLATED_LOCALES = LOCALES.filter(l => l !== 'en');
+
+export function localeOf(path) {
+  const first = path.split('/').find(Boolean);
+  return TRANSLATED_LOCALES.includes(first) ? first : 'en';
+}
+
+// "zh-Hans/pricing.html" -> "/pricing", "zh-Hans/index.html" -> "/"
+function pathOfFile(file) {
+  const locale = localeOf(file);
+  const rest = (locale === 'en' ? file : file.slice(locale.length + 1))
+    .replace(/\.html$/, '')
+    .replace(/(^|\/)index$/, '');
+  return `/${rest}`.replace(/(.)\/$/, '$1');
+}
+
+function urlPath(url) {
+  return new URL(url).pathname.replace(/\/$/, '') || '/';
+}
+
+// The production build's HTML minifier drops attribute quotes where it can
+// (rel=canonical href=https://dimo.org/pricing), so values may be unquoted.
+const ATTRIBUTE = /([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g;
+
+function tags(html, name) {
+  return [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'g'))].map(([tag]) =>
+    Object.fromEntries(
+      [...tag.matchAll(ATTRIBUTE)].map(([, k, ...values]) => [
+        k.toLowerCase(),
+        values.find(v => v !== undefined).replaceAll('&amp;', '&'),
+      ])
+    )
+  );
+}
+
+export function isNoindex(html) {
+  return tags(html, 'meta').some(
+    m => m.name === 'robots' && /noindex/i.test(m.content ?? '')
+  );
+}
+
+function jsonLdNodes(html) {
+  const scripts = html.matchAll(
+    /<script[^>]*type=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/g
+  );
+  return [...scripts].flatMap(([, json]) => {
+    const roots = [JSON.parse(json)].flat();
+    return roots.flatMap(root => root['@graph'] ?? [root]);
+  });
+}
+
+function isLocalizedPageUrl(url) {
+  if (typeof url !== 'string' || !url.startsWith(SITE)) return false;
+  const path = urlPath(url);
+  return !/\.\w+$/.test(path) && isTranslatedPath(stripLocale(path));
+}
+
+function stripLocale(path) {
+  const locale = localeOf(path);
+  return locale === 'en' ? path : path.slice(locale.length + 1) || '/';
+}
+
+export function checkPage(html, file, existing) {
+  const locale = localeOf(file);
+  const path = pathOfFile(file);
+  const translated = isTranslatedPath(path);
+  const self = localeUrl(locale, path);
+  const reports = [];
+  const report = message => reports.push(`${file}: ${message}`);
+  const expectLocale = (label, url) => {
+    if (url && localeOf(urlPath(url)) !== locale) {
+      report(`${label} ${url} is not in locale ${locale}`);
+    }
+  };
+
+  // Search is noindex and every locale build has its own.
+  if (!translated && locale !== 'en' && !isNoindex(html)) {
+    report(`English-only page built in locale ${locale}`);
+  }
+
+  const links = tags(html, 'link');
+  const metas = tags(html, 'meta');
+
+  const canonical = links.find(l => l.rel === 'canonical')?.href;
+  if (!translated) expectLocale('canonical', canonical);
+  else if (canonical !== self) {
+    report(`canonical ${canonical} is not the page URL ${self}`);
+  }
+  expectLocale('og:url', metas.find(m => m.property === 'og:url')?.content);
+  for (const node of jsonLdNodes(html)) {
+    if (FIXED_URL_TYPES.has(node['@type'])) continue;
+    if (isLocalizedPageUrl(node.url)) expectLocale('JSON-LD url', node.url);
+  }
+
+  const alternates = links.filter(l => l.rel === 'alternate' && l.hreflang);
+  if (!translated && alternates.length > 0) {
+    report('English-only page declares hreflang alternates');
+  }
+  if (alternates.length > 0 && isNoindex(html)) {
+    report('noindex page declares hreflang alternates');
+  }
+  for (const { hreflang, href } of alternates) {
+    if (!existing.has(urlPath(href))) {
+      report(`hreflang ${hreflang} target ${href} is missing or noindex`);
+    }
+  }
+
+  const expected = translated
+    ? {
+        ...Object.fromEntries(LOCALES.map(l => [l, localeUrl(l, path)])),
+        'x-default': localeUrl('en', path),
+      }
+    : {};
+  const missing = Object.keys(expected).filter(
+    lang => !alternates.some(l => l.hreflang === lang)
+  );
+  if (missing.length > 0) {
+    report(`hreflang alternates missing: ${missing.join(', ')}`);
+  }
+  for (const { hreflang, href } of alternates) {
+    const want = expected[hreflang];
+    if (want && href !== want) {
+      report(`hreflang ${hreflang} is ${href}, expected ${want}`);
+    }
+  }
+  return reports;
+}

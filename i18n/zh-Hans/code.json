@@ -1,0 +1,5381 @@
+{
+  "connectedCarApi.meta.title": {
+    "message": "网联汽车API：一次集成，覆盖50多个品牌 | DIMO"
+  },
+  "connectedCarApi.meta.description": {
+    "message": "DIMO是内置车主同意的网联汽车API：通过一个GraphQL端点，获取50多个品牌的实时遥测、车辆身份和远程指令。提供免费套餐，以及TypeScript、Python和C# SDK。"
+  },
+  "connectedCarApi.meta.h1": {
+    "message": "内置同意机制的网联汽车API"
+  },
+  "connectedCarApi.body.home.name": {
+    "message": "首页"
+  },
+  "connectedCarApi.body.connectedCarApi.name": {
+    "message": "网联汽车API"
+  },
+  "connectedCarApi.body.product": {
+    "message": "产品"
+  },
+  "connectedCarApi.body.readTelemetryVerifyIdentity": {
+    "message": "通过一个基于权限的API，读取遥测数据、验证身份并下发指令，覆盖50多个车辆品牌；车主同意由平台强制执行，无需您的法务团队操心。"
+  },
+  "connectedCarApi.body.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "connectedCarApi.body.aConnectedCarApi": {
+    "message": "网联汽车API让您的软件能与车辆对话：读取电池电量、定位车辆、查看里程、解锁车门。每家汽车制造商都开放了部分此类能力，但各自有不同的合同、认证流程和数据格式。DIMO并不是又一份逐个品牌签订的连接合同，而是构建车辆访问能力的工具包：数据通过您已有或选择的任何连接方式流入（直接的OEM预言机、Smartcar、Flespi或Volteras等服务商，或您自己的车联网硬件），DIMO再将其转化为经过存储、受同意管控、可查询的车辆数据，统一置于一份GraphQL契约之后。"
+  },
+  "connectedCarApi.body.whatYouCanDo": {
+    "message": "您可以用它做什么"
+  },
+  "connectedCarApi.body.capability": {
+    "message": "功能"
+  },
+  "connectedCarApi.body.examples": {
+    "message": "示例"
+  },
+  "connectedCarApi.body.realTimeTelemetry": {
+    "message": "实时遥测"
+  },
+  "connectedCarApi.body.locationSpeedBatteryState": {
+    "message": "位置、速度、电池电量、油量、里程、胎压、诊断故障码"
+  },
+  "connectedCarApi.body.vehicleIdentity": {
+    "message": "车辆身份"
+  },
+  "connectedCarApi.body.vinBackedDigitalIdMakeModelYear": {
+    "message": "基于VIN的数字身份、品牌/车型/年款、所有权证明"
+  },
+  "connectedCarApi.body.commands": {
+    "message": "远程指令"
+  },
+  "connectedCarApi.body.lockAndUnlockDoors": {
+    "message": "锁定和解锁车门，启动和停止电动汽车充电"
+  },
+  "connectedCarApi.body.consentManagement": {
+    "message": "同意管理"
+  },
+  "connectedCarApi.body.ownerGrantedScopedRevocablePermissions": {
+    "message": "车主授予、限定范围、可撤销的权限（SACD），附带签名审计追踪"
+  },
+  "connectedCarApi.body.events": {
+    "message": "事件"
+  },
+  "connectedCarApi.body.webhooksForStateChanges": {
+    "message": "通过Vehicle Triggers为状态变化发送Webhook"
+  },
+  "connectedCarApi.body.ingestSources": {
+    "message": "数据接入源"
+  },
+  "connectedCarApi.body.directOemOraclesProviders": {
+    "message": "直接的OEM预言机、Smartcar、Flespi和Volteras等服务商，或您自己的硬件（BYOD）"
+  },
+  "connectedCarApi.body.connectivityFromAnywhereOne": {
+    "message": "连接来源不限，数据层只有一个"
+  },
+  "connectedCarApi.body.connectivityProvidersSuchAs": {
+    "message": "Smartcar、Flespi和Volteras等连接服务商都是透传API：它们转换OEM的数据格式后交给您，之后的事就得您自己解决。它们不存储数据，没有共享或同意模型，也无法自行部署。DIMO正是这些数据流汇入的那一层。来自任何接入源的信号都会汇入同一个记录系统，内置身份、车主同意和共享功能；而且核心开源，您可以自己运行。您可以保留现有的Smartcar或Flespi集成，在其之上叠加DIMO。这就是驱动会话经济的访问层：将身份、数据和同意打包在一起，让一辆车可以作为一次可审计的会话被租用、共享或维修保养。"
+  },
+  "connectedCarApi.body.oneQueryAnySource": {
+    "message": "一次查询，任意来源"
+  },
+  "connectedCarApi.body.vehiclesAcross50Brands": {
+    "message": "已有50多个品牌的车辆接入DIMO网络，由驾驶者通过OEM预言机、合作服务商和DIMO硬件连接。无论车辆以何种方式接入，都响应同一个GraphQL查询。无需针对各制造商解析数据，无需单位换算，也无需单独的认证流程："
+  },
+  "connectedCarApi.body.officialSdksCoverAnd": {
+    "message": "官方SDK支持{link}，React SDK则负责面向用户的同意流程。大多数开发者在创建密钥后五分钟内，就能完成首次成功的API调用。"
+  },
+  "connectedCarApi.body.typeScriptPythonAndC": {
+    "message": "TypeScript、Python和C#"
+  },
+  "connectedCarApi.body.consentIsTheHard": {
+    "message": "同意是最难的部分，所以我们把它内置了"
+  },
+  "connectedCarApi.body.theExpensiveFailureMode": {
+    "message": "网联汽车产品中代价高昂的失败，往往不是缺少数据，而是访问治理。谁授权了这次读取？车主能否撤销？您能否向监管机构证明这两点？DIMO在协议层回答了这些问题：车主通过SACD同意模型授予限定范围的权限，可随时撤销，每一次授权都记录在带签名、可验证的审计追踪中。GDPR和{link}的要求由架构本身满足，而不是靠文书工作。"
+  },
+  "connectedCarApi.body.euDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "connectedCarApi.body.whatPeopleBuild": {
+    "message": "大家用它构建什么"
+  },
+  "connectedCarApi.body.evChargingAppsThat": {
+    "message": "电动汽车充电应用根据真实电量而非用户的猜测来安排充电。车队工具无需三家车联网供应商，就能追踪多品牌混合车队中的车辆。在{link}中，一次预订就是一次会话：数字钥匙、限定范围的数据、支出上限，以及还车时干净利落的撤销。基于实际驾驶情况定价的按使用付费保险。AI智能体在您开口之前，就已检查好车辆电量并预先调节好车内温度。"
+  },
+  "connectedCarApi.body.rentalAndCarshareOperations": {
+    "message": "租车和汽车共享运营"
+  },
+  "connectedCarApi.body.pricing": {
+    "message": "价格"
+  },
+  "connectedCarApi.body.theHobbyistTierIs": {
+    "message": "Hobbyist套餐免费：包含全部API、一个AI智能体，每辆车每月$1.25。在花任何钱之前，您就可以用自己的车进行开发。Core套餐每月$349，包含100辆车，适用于生产环境应用。{link}。"
+  },
+  "connectedCarApi.body.fullPricingDetails": {
+    "message": "查看完整价格详情"
+  },
+  "connectedCarApi.body.whereToGoNext": {
+    "message": "下一步"
+  },
+  "connectedCarApi.body.ifYouAreComparing": {
+    "message": "如果您正在比较各家服务商，{link}一文深入剖析了两者的差异。如需原始信号规格，请查看{link2}，或直接进入{link3}。一切从在{link4}注册免费账号开始。"
+  },
+  "connectedCarApi.body.dimoVsSmartcar": {
+    "message": "DIMO与Smartcar对比"
+  },
+  "connectedCarApi.body.vehicleDataApiOverview": {
+    "message": "车辆数据API概览"
+  },
+  "connectedCarApi.body.developerDocs": {
+    "message": "开发者文档"
+  },
+  "connectedCarApi.body.consoleDimoOrg": {
+    "message": "console.dimo.org"
+  },
+  "home.rotatingWords.vehicleData": {
+    "message": "车辆数据"
+  },
+  "home.rotatingWords.sessionBasedEconomy": {
+    "message": "会话经济"
+  },
+  "home.rotatingWords.mobility": {
+    "message": "出行"
+  },
+  "home.hero.new": {
+    "message": "新"
+  },
+  "home.hero.checkUsOutOn": {
+    "message": "来ProductHunt看看我们"
+  },
+  "home.hero.theInfrastructureBuiltFor": {
+    "message": "专为{word}{br}打造的基础设施"
+  },
+  "home.hero.dimoIsBuildingThe": {
+    "message": "DIMO正在为会话经济打造基础设施——在这里，车辆、驾驶者与服务按需连接。构建应用，在每一次行程、租赁和交互中释放价值。"
+  },
+  "home.hero.signUp": {
+    "message": "注册"
+  },
+  "home.hero.readTheDocs": {
+    "message": "阅读文档"
+  },
+  "home.featuredIn.pressCoverage": {
+    "message": "媒体报道"
+  },
+  "home.featuredIn.asFeaturedIn": {
+    "message": "曾获以下媒体报道"
+  },
+  "home.featuredIn.readMotorTrendsCoverageOf": {
+    "message": "阅读MotorTrend对DIMO的报道"
+  },
+  "home.featuredIn.anyTrueDataNerd": {
+    "message": "“任何真正的数据控都应该接入DIMO。”——MotorTrend，2026年7月"
+  },
+  "home.featuredIn.allThirdPartyTrademarksAre": {
+    "message": "所有第三方商标均归其各自所有者所有，仅用于标识独立的媒体报道，不代表任何认可或赞助。"
+  },
+  "home.whatIsDimo.whatIsDimo": {
+    "message": "什么是DIMO？"
+  },
+  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
+    "message": "DIMO（Digital Infrastructure for Moving Objects，移动物体数字基础设施）是驱动会话经济的车辆数据基础设施。在会话经济中，车辆、驾驶者与服务按需连接。DIMO通过单一、基于权限的API处理车辆访问，涵盖实时遥测、车辆身份和车主同意（SACD），支持Tesla、Ford、BMW、Toyota、Hyundai等50多个品牌，让开发者无需与每家制造商分别谈判集成，就能构建应用和业务。开发者可在console.dimo.org创建免费账号、生成API密钥，并通过GraphQL和REST端点查询位置、电量和油量、里程、胎压、诊断故障码等实时车辆数据，官方SDK支持TypeScript、Python和C#。车主掌控自己的数据：他们可以通过细粒度、可审计的权限授予或撤销访问，这些权限可随每次会话启用和失效，让应用默认符合GDPR和欧盟《数据法案》。平台核心开源，支持自带设备（BYOD）车联网硬件，免费的Hobbyist套餐让开发者几分钟内就能完成首次API调用。"
+  },
+  "home.whatIsDimo.startWithTheOverview": {
+    "message": "您可以先阅读{link}概览了解功能，查看{link2}页面了解信号目录；如果您正在评估服务商，也可以参阅{link3}。"
+  },
+  "home.whatIsDimo.connectedCarApi": {
+    "message": "网联汽车API"
+  },
+  "home.whatIsDimo.vehicleDataApi": {
+    "message": "车辆数据API"
+  },
+  "home.whatIsDimo.dimoVsSmartcar": {
+    "message": "DIMO与Smartcar对比"
+  },
+  "home.featuresGrid.universalCompatibility.title": {
+    "message": "全面兼容"
+  },
+  "home.featuresGrid.universalCompatibility.desc": {
+    "message": "直接集成Tesla，另有Ford、BMW等50多个品牌已接入DIMO。几乎每天都有新的车辆信号完成解码。"
+  },
+  "home.featuresGrid.privacyByDesign.title": {
+    "message": "隐私始于设计"
+  },
+  "home.featuresGrid.privacyByDesign.desc": {
+    "message": "数据归用户所有的架构。基于可验证凭证的细粒度权限，随时授予和撤销访问。"
+  },
+  "home.featuresGrid.aiReadyContext.title": {
+    "message": "AI就绪的上下文"
+  },
+  "home.featuresGrid.aiReadyContext.desc": {
+    "message": "干净、标准化的数据流，可直接用于开发智能体工作流。"
+  },
+  "home.featuresGrid.plugPlayHardware.title": {
+    "message": "即插即用硬件"
+  },
+  "home.featuresGrid.plugPlayHardware.desc": {
+    "message": "借助DIMO LTE R1等可选硬件即时接入车辆，用户无需任何配置即可完成安装。"
+  },
+  "home.featuresGrid.openSourceCore.title": {
+    "message": "开源核心"
+  },
+  "home.featuresGrid.openSourceCore.desc": {
+    "message": "基于开放协议构建。审计代码、为网络贡献力量，掌控您自己的基础设施。"
+  },
+  "home.featuresGrid.secureCompliant.title": {
+    "message": "安全合规"
+  },
+  "home.featuresGrid.secureCompliant.desc": {
+    "message": "DIMO将访问记录在经加密签名、可独立验证的账本上，在保障安全的同时，确保符合GDPR和欧盟《数据法案》。"
+  },
+  "home.featuresGrid.builtForTheSessionBased": {
+    "message": "为会话经济而生"
+  },
+  "home.featuresGrid.theFutureOfMobility": {
+    "message": "出行的未来在于会话，而非拥有。DIMO为您提供构建服务所需的基础组件，让服务在行程开始时启用、在行程结束时结算：数据同意、实时遥测、支付和AI驱动的自动化——全部集于一个平台。"
+  },
+  "home.automateOperations.automateOperations": {
+    "message": "自动化运营"
+  },
+  "home.automateOperations.powerEverySessionEnd": {
+    "message": "端到端赋能每一次会话"
+  },
+  "home.automateOperations.fromTheMomentA": {
+    "message": "从驾驶者解锁车辆的那一刻，到交还车辆的那一瞬，DIMO编排整个会话生命周期。借助能在每次交互中延续上下文的AI智能体实现工作流自动化——让您的团队专注于增长，而非运维。适用于："
+  },
+  "home.automateOperations.rentalsFleetTurnover": {
+    "message": "租车与车队周转"
+  },
+  "home.automateOperations.payPerUseSubscriptionServices": {
+    "message": "按使用付费与订阅服务"
+  },
+  "home.automateOperations.sessionBasedInsuranceRisk": {
+    "message": "按会话计费的保险与风控"
+  },
+  "home.automateOperations.bookingCheckInReturns": {
+    "message": "预订、取车与还车"
+  },
+  "home.automateOperations.maintenanceTriggeredByUsage": {
+    "message": "按用量触发的维修保养"
+  },
+  "home.bigFeature.connectAnyVehicleStart": {
+    "message": "连接任意车辆，开启任意会话。"
+  },
+  "home.bigFeature.theSessionBasedEconomyRuns": {
+    "message": "会话经济依托实时车辆数据运转。DIMO支持网络上已有的50多个品牌的车辆——您也可以通过{link}接入自有数据。每次会话都具备经过验证的身份、实时遥测和由用户掌控的同意授权，让您可以放心地向驾驶者收费、提供保险和服务。"
+  },
+  "home.bigFeature.verifiedVehicleDriverIdentity": {
+    "message": "每次会话均验证车辆和驾驶者身份"
+  },
+  "home.bigFeature.realTimeTelemetryFromIgnition": {
+    "message": "从点火到停车的实时遥测"
+  },
+  "home.bigFeature.granularConsentThatActivates": {
+    "message": "随每次会话启用和失效的细粒度同意"
+  },
+  "home.bigFeature.telematicsArchitecture": {
+    "message": "车联网架构"
+  },
+  "home.testimonials.maximilianoIpinza.text": {
+    "message": "太喜欢了。我们刚开始用这套工具开发，越用越顺手。实际上，我们在拉美地区使用DIMO，通过API把所有数据接入我们自己的车联网解决方案。另一个真正让集成变得更轻松的，是James团队的支持力度和交付效率。"
+  },
+  "home.testimonials.collinMcCloskey.text": {
+    "message": "DIMO团队做得非常出色，在他们的平台上开发特别轻松。有问题时，我就用他们的GPT。用CC或Cursor写代码时，一键就能复制文档。他们的团队支持响应很快，产品发布的速度快到我都跟不上。说实话，体验真的非常愉快！"
+  },
+  "home.testimonials.danielWedding.text": {
+    "message": "作为一名电动汽车的忠实用户和软件工程师，DIMO为我提供的平台不仅让我能深入了解自己想要的车辆指标，还集成了简单易用的开发者API，让我能把一切完美地整合进自己的技术栈。"
+  },
+  "home.testimonials.robSolomon.text": {
+    "message": "我已经在DIMO上构建了好几个应用。简单得难以置信。作为一个非开发者，我借助Replit、n8n和Bubble上线了真正好用的产品。文档清晰，平台表现和宣传的一样。比其他平台上手容易多了！也许我有点偏心……但谁在乎呢！它真的很棒。"
+  },
+  "home.testimonials.whatDevsAreSaying": {
+    "message": "开发者怎么说"
+  },
+  "home.hardware.compatibleHardware": {
+    "message": "兼容硬件"
+  },
+  "home.hardware.accessHighFrequencyVehicleData": {
+    "message": "借助DIMO LTE R1获取高频车辆数据。几秒钟即可安装完成，几乎适配所有汽车，并将数据直接传输到网络。"
+  },
+  "home.hardware.buyDimoLteR1": {
+    "message": "购买DIMO LTE R1"
+  },
+  "home.hardware.needACustomHardware": {
+    "message": "需要定制硬件集成？"
+  },
+  "home.hardware.letsChat": {
+    "message": "聊一聊"
+  },
+  "home.cta.readyToBuildFor": {
+    "message": "准备好构建会话服务了吗？"
+  },
+  "home.cta.joinDevelopersBuildingThe": {
+    "message": "加入开发者行列，共同打造下一代会话式出行服务。立即获取API密钥，上线您的第一个会话。"
+  },
+  "home.cta.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "home.cta.joinDiscord": {
+    "message": "加入Discord"
+  },
+  "home.meta.title": {
+    "message": "DIMO | 面向会话经济的车辆平台"
+  },
+  "home.meta.description": {
+    "message": "DIMO驱动会话经济：为50多个品牌提供车辆访问、遥测、身份和同意（SACD）能力，助您构建应用和业务。"
+  },
+  "home.meta.keywords": {
+    "message": "会话经济, 车辆数据API, 网联汽车平台, 汽车开发者平台, 车辆智能, 汽车API, 车联网API, OEM API, 出行即服务, 车辆SDK, DIMO"
+  },
+  "home.meta.ogTitle": {
+    "message": "DIMO | 面向会话经济的车辆平台"
+  },
+  "home.meta.ogDescription": {
+    "message": "DIMO驱动会话经济：为50多个品牌提供车辆访问、遥测、身份和同意（SACD）能力，助您构建应用和业务。"
+  },
+  "home.meta.twitterTitle": {
+    "message": "DIMO | 面向会话经济的车辆平台"
+  },
+  "home.meta.twitterDescription": {
+    "message": "DIMO驱动会话经济——基于实时车辆数据构建租车、按使用付费和出行服务。免费开始。"
+  },
+  "home.schema.description": {
+    "message": "DIMO是驱动会话经济的车辆数据基础设施。它通过单一、基于权限的API处理车辆访问，涵盖50多个品牌的实时遥测、身份和车主同意（SACD），让开发者能够基于网联汽车构建应用和业务。核心平台开源。"
+  },
+  "home.schema.description2": {
+    "message": "提供免费套餐，付费套餐解锁高级功能"
+  },
+  "home.schema.featureList.worksWithAny": {
+    "message": "适配任意品牌（已接入50多个车辆品牌）"
+  },
+  "home.schema.featureList.aiReadyDataStreams": {
+    "message": "AI就绪的数据流"
+  },
+  "home.schema.featureList.privacyPreservingArchitecture": {
+    "message": "隐私保护架构"
+  },
+  "home.schema.featureList.plugAndPlayHardwareSupport": {
+    "message": "即插即用硬件支持"
+  },
+  "home.schema.featureList.openSourceCore": {
+    "message": "开源核心"
+  },
+  "home.schema.featureList.realTimeVehicleTelemetry": {
+    "message": "实时车辆遥测"
+  },
+  "home.schema.featureList.agenticWorkflowDevelopment": {
+    "message": "智能体工作流开发"
+  },
+  "pricing.tiers.hobbyist.price": {
+    "message": "免费"
+  },
+  "pricing.tiers.subPrice": {
+    "message": "+ 每辆车$1.25/月"
+  },
+  "pricing.tiers.hobbyist.description": {
+    "message": "适合为自己的车辆进行开发的爱好者。"
+  },
+  "pricing.tiers.hobbyist.features.accessVehicleData": {
+    "message": "安全访问车辆数据"
+  },
+  "pricing.tiers.hobbyist.features.oneAiAgent": {
+    "message": "仅限1个AI智能体"
+  },
+  "pricing.tiers.hobbyist.features.payAsYouGoAi": {
+    "message": "AI按需付费"
+  },
+  "pricing.tiers.hobbyist.features.builtInMcps": {
+    "message": "使用内置MCP"
+  },
+  "pricing.tiers.getStarted": {
+    "message": "开始使用"
+  },
+  "pricing.tiers.perMonth": {
+    "message": "/月"
+  },
+  "pricing.tiers.core.description": {
+    "message": "适合为车队或用户群构建应用的开发者。"
+  },
+  "pricing.tiers.everythingIn": {
+    "message": "包含{plan}的全部功能"
+  },
+  "pricing.tiers.core.features.vehiclesIncluded": {
+    "message": "包含100辆车"
+  },
+  "pricing.tiers.core.features.moreRequestLimits": {
+    "message": "更高的请求限额"
+  },
+  "pricing.tiers.core.features.bringYourOwnData": {
+    "message": "自带数据"
+  },
+  "pricing.tiers.core.features.dataStorage": {
+    "message": "包含数据存储"
+  },
+  "pricing.tiers.startBuilding": {
+    "message": "开始构建"
+  },
+  "pricing.tiers.mostPopular": {
+    "message": "最受欢迎"
+  },
+  "pricing.tiers.enterprise.price": {
+    "message": "定制"
+  },
+  "pricing.tiers.enterprise.description": {
+    "message": "为大规模部署量身定制的解决方案。"
+  },
+  "pricing.tiers.enterprise.features.customRequestLimits": {
+    "message": "定制请求限额"
+  },
+  "pricing.tiers.enterprise.features.moreAiAgents": {
+    "message": "包含更多AI智能体"
+  },
+  "pricing.tiers.enterprise.features.bringYourOwnAiKeys": {
+    "message": "自带AI密钥"
+  },
+  "pricing.tiers.enterprise.features.dedicatedSupport": {
+    "message": "专属支持渠道"
+  },
+  "pricing.tiers.enterprise.features.customSla": {
+    "message": "定制SLA与合同"
+  },
+  "pricing.tiers.enterprise.features.onPremise": {
+    "message": "本地部署选项"
+  },
+  "pricing.tiers.contactUs": {
+    "message": "联系我们"
+  },
+  "pricing.hero.earlyBirdPricing": {
+    "message": "🎉 早鸟价"
+  },
+  "pricing.hero.chooseYourPlan": {
+    "message": "选择您的套餐"
+  },
+  "pricing.hero.selectThePerfectPlan": {
+    "message": "选择最适合您需求的套餐。从爱好者到企业，灵活的价格方案随您扩展。"
+  },
+  "pricing.hero.aiVehicleData": {
+    "message": "AI + 车辆数据"
+  },
+  "pricing.hero.vehicleDataOnly": {
+    "message": "仅车辆数据"
+  },
+  "pricing.hero.annual": {
+    "message": "按年"
+  },
+  "pricing.hero.monthly": {
+    "message": "按月"
+  },
+  "pricing.pricingGrid.allPlansIncludeAccess": {
+    "message": "所有套餐均可接入DIMO网络。需要了解更多？{link}"
+  },
+  "pricing.pricingGrid.viewDetailedComparison": {
+    "message": "查看详细对比"
+  },
+  "pricing.pricingGrid.earlyBirdPricingIs": {
+    "message": "* 早鸟价限时提供。价格和功能可能会有调整。"
+  },
+  "pricing.enterpriseModal.close": {
+    "message": "关闭"
+  },
+  "pricing.enterpriseModal.thanks": {
+    "message": "谢谢，{name}！"
+  },
+  "pricing.enterpriseModal.wellReachOutTo": {
+    "message": "我们会尽快通过{strong}与您联系，沟通您的企业需求。"
+  },
+  "pricing.enterpriseModal.contactUsForEnterprise": {
+    "message": "联系我们获取企业方案"
+  },
+  "pricing.enterpriseModal.tellUsAboutYour": {
+    "message": "请介绍一下您的项目，我们将为您量身定制方案。"
+  },
+  "pricing.enterpriseModal.yourName": {
+    "message": "您的姓名"
+  },
+  "pricing.enterpriseModal.workEmail": {
+    "message": "工作邮箱"
+  },
+  "pricing.enterpriseModal.companyName": {
+    "message": "公司名称"
+  },
+  "pricing.enterpriseModal.fleetSize": {
+    "message": "车队规模"
+  },
+  "pricing.enterpriseModal.100500Vehicles": {
+    "message": "100 – 500辆车"
+  },
+  "pricing.enterpriseModal.5005000Vehicles": {
+    "message": "500 – 5,000辆车"
+  },
+  "pricing.enterpriseModal.500050000Vehicles": {
+    "message": "5,000 – 50,000辆车"
+  },
+  "pricing.enterpriseModal.50000Vehicles": {
+    "message": "50,000辆以上"
+  },
+  "pricing.enterpriseModal.tellUsAboutYour2": {
+    "message": "请介绍您的使用场景和需求……"
+  },
+  "pricing.enterpriseModal.error": {
+    "message": "出了点问题，请重试。"
+  },
+  "pricing.enterpriseModal.invalidEmail": {
+    "message": "请输入有效的邮箱地址。"
+  },
+  "pricing.enterpriseModal.sending": {
+    "message": "发送中……"
+  },
+  "pricing.enterpriseModal.getInTouch": {
+    "message": "联系我们"
+  },
+  "pricing.meta.title": {
+    "message": "DIMO价格 | 车辆数据API与AI智能体套餐 - 免费开始"
+  },
+  "pricing.meta.description": {
+    "message": "灵活的车辆数据API和AI智能体定价。免费的Hobbyist套餐，每月$349的开发者套餐，可定制的企业方案。一个平台即可访问50多个品牌的车辆数据。立即开始构建。"
+  },
+  "pricing.meta.keywords": {
+    "message": "车辆API价格, DIMO价格, 汽车数据成本, 汽车API套餐, 车辆智能价格, 车队管理价格, 车联网API费用"
+  },
+  "pricing.meta.ogTitle": {
+    "message": "DIMO价格 | 车辆数据API与AI智能体套餐"
+  },
+  "pricing.meta.ogDescription": {
+    "message": "透明的网联汽车开发定价。免费起步，随业务增长扩展。车辆数据API、AI智能体和企业级解决方案。"
+  },
+  "pricing.meta.twitterTitle": {
+    "message": "DIMO价格 | 免费开始"
+  },
+  "pricing.meta.twitterDescription": {
+    "message": "免费Hobbyist套餐 • 每月$349开发者套餐 • 定制企业解决方案。基于50多个品牌的车辆数据进行开发。"
+  },
+  "pricing.schema.description": {
+    "message": "DIMO是驱动会话经济的车辆数据基础设施。为基于实时、受同意管控的车辆数据和AI智能体进行开发的开发者提供多种套餐。"
+  },
+  "pricing.schema.0.description": {
+    "message": "面向为自己车辆进行开发的爱好者的免费套餐。包含1个AI智能体，按需付费。"
+  },
+  "pricing.schema.1.description": {
+    "message": "适合为车队或用户群构建应用的开发者。包含100辆车、更高的请求限额和数据存储。"
+  },
+  "vehicleDataApi.meta.title": {
+    "message": "车辆数据API：实时遥测，覆盖50多个品牌 | DIMO"
+  },
+  "vehicleDataApi.meta.description": {
+    "message": "通过一个GraphQL API，查询50多个品牌的实时和历史车辆数据（位置、电量、油量、里程、胎压、诊断信息）。经车主同意，满足GDPR要求，提供免费套餐。"
+  },
+  "vehicleDataApi.meta.h1": {
+    "message": "车辆数据API：所有信号，一个端点"
+  },
+  "vehicleDataApi.body.home.name": {
+    "message": "首页"
+  },
+  "vehicleDataApi.body.vehicleDataApi.name": {
+    "message": "车辆数据API"
+  },
+  "vehicleDataApi.body.product": {
+    "message": "产品"
+  },
+  "vehicleDataApi.body.normalizedRealTimeAndHistorical": {
+    "message": "覆盖50多个品牌的标准化实时与历史车辆遥测数据，通过GraphQL交付，并在协议层强制执行车主同意。大约五分钟即可完成首次API调用。"
+  },
+  "vehicleDataApi.body.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "vehicleDataApi.body.vehicleDataIsFragmented": {
+    "message": "车辆数据的碎片化是有意为之：每家制造商都有自己的云、数据结构、单位和准入门槛。车辆数据API的价值，就在于把这团乱麻统一成一份您的代码可以信赖的契约。DIMO在全网范围内一次性完成标准化。信号通过您选择的连接来源流入：直接的OEM预言机、Smartcar、Flespi或Volteras等透传服务商，或DIMO硬件。无论来源如何，您都通过单一GraphQL端点查询所有数据，名称和单位始终一致。"
+  },
+  "vehicleDataApi.body.oneScopingNoteIf": {
+    "message": "关于范围的一点说明：如果您需要静态参考数据（VIN解码、品牌/车型/配置规格、市场价值），那属于查询型数据库，而本API并非如此。本API提供的是道路上行驶车辆的实时和历史传感器数据，并附带车主同意。它是DIMO为会话经济提供的数据层。"
+  },
+  "vehicleDataApi.body.signalsYouCanQuery": {
+    "message": "可查询的信号"
+  },
+  "vehicleDataApi.body.category": {
+    "message": "类别"
+  },
+  "vehicleDataApi.body.signals": {
+    "message": "信号"
+  },
+  "vehicleDataApi.body.locationMotion": {
+    "message": "位置与运动"
+  },
+  "vehicleDataApi.body.gpsCoordinatesSpeedHeading": {
+    "message": "GPS坐标、速度、航向、海拔"
+  },
+  "vehicleDataApi.body.energy": {
+    "message": "能源"
+  },
+  "vehicleDataApi.body.batteryStateOfCharge": {
+    "message": "电池电量、充电状态、续航里程、油量"
+  },
+  "vehicleDataApi.body.usage": {
+    "message": "使用情况"
+  },
+  "vehicleDataApi.body.odometerIgnitionStateTrip": {
+    "message": "里程、点火状态、行程数据"
+  },
+  "vehicleDataApi.body.health": {
+    "message": "车况"
+  },
+  "vehicleDataApi.body.tirePressurePerWheel": {
+    "message": "胎压（每个车轮）、发动机温度、机油寿命、诊断故障码（DTC）"
+  },
+  "vehicleDataApi.body.state": {
+    "message": "状态"
+  },
+  "vehicleDataApi.body.doorLockStatusWindow": {
+    "message": "车门锁状态、车窗位置、引擎盖/后备箱状态"
+  },
+  "vehicleDataApi.body.signalNamesFollowThe": {
+    "message": "信号名称遵循COVESA车辆信号规范（Vehicle Signal Specification），因此{code}对Tesla和Ford而言含义完全相同。可用信号因品牌和连接类型而异，完整目录请参阅{link}。更新频率从OEM云连接的30秒，到搭配可选DIMO LTE R1适配器时的亚秒级不等。"
+  },
+  "vehicleDataApi.body.telemetryApiReference": {
+    "message": "遥测API参考文档"
+  },
+  "vehicleDataApi.body.storageWithSharingNot": {
+    "message": "存储并共享，而非透传"
+  },
+  "vehicleDataApi.body.thisIsTheDifference": {
+    "message": "这正是DIMO与连接服务商的区别所在。Smartcar、Flespi和Volteras转换OEM数据流后透传给您；它们不是记录系统，没有同意或共享模型，也无法自行部署。DIMO从这些服务商（或OEM预言机和硬件）接入数据，并将信号存储为标准化的时序数据，车主可以对其共享、限定范围和撤销。开源核心意味着整个技术栈都可以运行在您自己的基础设施上。"
+  },
+  "vehicleDataApi.body.historicalDataWithAggregation": {
+    "message": "支持聚合的历史数据"
+  },
+  "vehicleDataApi.body.becauseDimoStoresThe": {
+    "message": "由于DIMO会存储数据，同一个端点还能提供带服务端聚合的时序历史数据，一周的驾驶数据只需一次查询，无需搭建数据管道："
+  },
+  "vehicleDataApi.body.consentAndComplianceAre": {
+    "message": "同意与合规是API的一部分"
+  },
+  "vehicleDataApi.body.everyQueryRunsAgainst": {
+    "message": "每次查询都基于车主明确授予的权限运行。授权限定范围（您只能看到用户共享的信号组），可随时撤销，并记录在带签名的审计追踪中。正是这一架构，让GDPR、{link}和CCPA合规成为平台的内在属性，而不是您团队的一项工程。如果您关注过美国联邦贸易委员会（FTC）近期针对车辆数据经纪商的行动，就会明白这正是关键所在。"
+  },
+  "vehicleDataApi.body.euDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "vehicleDataApi.body.gettingToAFirst": {
+    "message": "完成首次API调用"
+  },
+  "vehicleDataApi.body.createAFreeAccount": {
+    "message": "在{link}创建免费账号，生成许可证和API密钥，即可开始查询。适用于{link2}的SDK会处理身份验证和令牌交换。手边没有车？{link3}可以生成逼真的遥测数据，让您在连接真实硬件之前就能开始开发。"
+  },
+  "vehicleDataApi.body.consoleDimoOrg": {
+    "message": "console.dimo.org"
+  },
+  "vehicleDataApi.body.typeScriptPythonAndC": {
+    "message": "TypeScript、Python和C#"
+  },
+  "vehicleDataApi.body.vehicleSimulator": {
+    "message": "车辆模拟器"
+  },
+  "vehicleDataApi.body.pricing": {
+    "message": "价格"
+  },
+  "vehicleDataApi.body.hobbyistIsFreeAll": {
+    "message": "Hobbyist套餐免费：包含全部API、一个AI智能体，每辆车每月$1.25。Core套餐每月$349，包含100辆车、更高的速率限制和数据存储。Enterprise套餐提供定制限额和本地部署选项。{link}。"
+  },
+  "vehicleDataApi.body.fullPricing": {
+    "message": "查看完整价格"
+  },
+  "vehicleDataApi.body.relatedReading": {
+    "message": "延伸阅读"
+  },
+  "vehicleDataApi.body.forTheBroaderPlatform": {
+    "message": "如需了解更完整的平台全貌（数据之上的指令、身份和同意），请参阅{link}。如需与其他服务商的正面对比，请阅读{link2}。其余所有内容，{link3}都有介绍。"
+  },
+  "vehicleDataApi.body.connectedCarApiOverview": {
+    "message": "网联汽车API概览"
+  },
+  "vehicleDataApi.body.dimoVsSmartcar": {
+    "message": "DIMO与Smartcar对比"
+  },
+  "vehicleDataApi.body.developerDocs": {
+    "message": "开发者文档"
+  },
+  "vehicleSessionInfrastructure.meta.title": {
+    "message": "车辆会话基础设施：车辆界的OAuth | DIMO"
+  },
+  "vehicleSessionInfrastructure.meta.description": {
+    "message": "Smartcar读取数据，Geotab追踪车辆——但两者都不管控会话。DIMO是访问层：创建车辆会话，限定数据和支出范围，并以原子方式将其撤销。"
+  },
+  "vehicleSessionInfrastructure.meta.h1": {
+    "message": "车辆会话基础设施：验证、钥匙、范围、支出——以及撤销"
+  },
+  "vehicleSessionInfrastructure.body.home.name": {
+    "message": "首页"
+  },
+  "vehicleSessionInfrastructure.body.vehicleSessionInfrastructure.name": {
+    "message": "车辆会话基础设施"
+  },
+  "vehicleSessionInfrastructure.body.platform": {
+    "message": "平台"
+  },
+  "vehicleSessionInfrastructure.body.aRentalACarshare": {
+    "message": "一次租车、一次汽车共享、一次Robotaxi乘车、一次车队调度：每当有人使用一辆不属于自己的车，这就是一次会话。DIMO就是管控会话的基础设施。"
+  },
+  "vehicleSessionInfrastructure.body.isTheSoftwareLayer": {
+    "message": "{strong}是一个软件层：它通过一次操作为共享用例配置好车辆，并在用例结束时撤销一切。它是DIMO的核心概念，而DIMO是驱动会话经济的车辆数据基础设施。它位于汽车与需要临时、受管控访问权限的应用、车队和服务之间。最容易理解的方式，是把它类比为早已支撑起互联网的那些底层管道："
+  },
+  "vehicleSessionInfrastructure.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "vehicleSessionInfrastructure.body.authorizesCapturesAndRefunds": {
+    "message": "{strong}负责一笔支付的授权、扣款和退款。"
+  },
+  "vehicleSessionInfrastructure.body.stripe": {
+    "message": "Stripe"
+  },
+  "vehicleSessionInfrastructure.body.createsScopesAndRevokes": {
+    "message": "{strong}负责一个身份会话的创建、范围限定和撤销。"
+  },
+  "vehicleSessionInfrastructure.body.auth0": {
+    "message": "Auth0"
+  },
+  "vehicleSessionInfrastructure.body.createsAVehicleSession": {
+    "message": "{strong}负责创建车辆会话，限定其中的数据、访问权限和支出，并在还车时将其撤销。"
+  },
+  "vehicleSessionInfrastructure.body.putAnotherWayIt": {
+    "message": "换句话说，它就是{strong}。如今，每家车队运营商、租车应用和OEM都在手动对接各自的身份、钥匙、数据和支付集成。这和OAuth出现之前每个网站面临的混乱如出一辙，那时每个网站都要自建登录系统。DIMO就是取而代之的共享基础组件。"
+  },
+  "vehicleSessionInfrastructure.body.oauthForVehicles": {
+    "message": "车辆界的OAuth"
+  },
+  "vehicleSessionInfrastructure.body.theRowNotThe": {
+    "message": "是整行，而非单列"
+  },
+  "vehicleSessionInfrastructure.body.itIsEasyTo": {
+    "message": "人们很容易把DIMO误认为车联网服务商或数字钥匙供应商。它两者都不是。它不在任何单独一列上竞争，而是把整行组合起来。以下是行业格局："
+  },
+  "vehicleSessionInfrastructure.body.layer": {
+    "message": "层级"
+  },
+  "vehicleSessionInfrastructure.body.whoOwnsIt": {
+    "message": "代表厂商"
+  },
+  "vehicleSessionInfrastructure.body.whatItDoesAnd": {
+    "message": "能做什么，缺什么"
+  },
+  "vehicleSessionInfrastructure.body.fleetTelematics": {
+    "message": "车队车联网"
+  },
+  "vehicleSessionInfrastructure.body.geotabSamsaraVerizonConnect": {
+    "message": "Geotab、Samsara、Verizon Connect、Motive"
+  },
+  "vehicleSessionInfrastructure.body.monitoringOnlyNothingTo": {
+    "message": "仅限监控；使用结束时没有可撤销的东西"
+  },
+  "vehicleSessionInfrastructure.body.connectedDataApiReadOnly": {
+    "message": "网联数据API（只读）"
+  },
+  "vehicleSessionInfrastructure.body.smartcarMotorqHighMobility": {
+    "message": "Smartcar、Motorq、High Mobility"
+  },
+  "vehicleSessionInfrastructure.body.aWindowIntoThe": {
+    "message": "观察汽车的窗口，但没有会话对象"
+  },
+  "vehicleSessionInfrastructure.body.digitalKeyAccess": {
+    "message": "数字钥匙/访问"
+  },
+  "vehicleSessionInfrastructure.body.cccDigitalKeyStandard": {
+    "message": "CCC Digital Key、Standard Fleet"
+  },
+  "vehicleSessionInfrastructure.body.accessButNotComposed": {
+    "message": "提供访问，但未与数据、支出和撤销组合在一起"
+  },
+  "vehicleSessionInfrastructure.body.sessionInfrastructure": {
+    "message": "会话基础设施"
+  },
+  "vehicleSessionInfrastructure.body.oneSessionThatBundles": {
+    "message": "一个会话，打包并管控以上全部"
+  },
+  "vehicleSessionInfrastructure.body.orInOneLine": {
+    "message": "或者，各用一句话概括：{em}其他方案都无法管控会话。这正是DIMO填补的空白。"
+  },
+  "vehicleSessionInfrastructure.body.smartcarIsAWindow": {
+    "message": "Smartcar是观察汽车的窗口，DIMO则是租还车柜台。Samsara告诉您正在发生什么，DIMO则掌控允许发生什么。"
+  },
+  "vehicleSessionInfrastructure.body.whatOneSessionBundles": {
+    "message": "一个会话打包了什么"
+  },
+  "vehicleSessionInfrastructure.body.aSingleDimoSession": {
+    "message": "一个DIMO会话即可开启（并在之后撤销）一组明确的能力。运营商只需集成一次，而无需拼接五家供应商："
+  },
+  "vehicleSessionInfrastructure.body.verifyWhoIsBeing": {
+    "message": "{strong}验证获得访问权限的是谁。"
+  },
+  "vehicleSessionInfrastructure.body.identity": {
+    "message": "身份："
+  },
+  "vehicleSessionInfrastructure.body.grantAndRevokePhysical": {
+    "message": "{strong}授予和撤销实体访问权限，不再有遥控钥匙可丢。"
+  },
+  "vehicleSessionInfrastructure.body.digitalKey": {
+    "message": "数字钥匙："
+  },
+  "vehicleSessionInfrastructure.body.normalizedTelemetryLimitedTo": {
+    "message": "{strong}标准化遥测数据，仅限用例所需的范围。"
+  },
+  "vehicleSessionInfrastructure.body.dataScope": {
+    "message": "数据范围："
+  },
+  "vehicleSessionInfrastructure.body.seatMirrorAndProfile": {
+    "message": "{strong}座椅、后视镜和个人配置的个性化设置，让租来的车不再像陌生人的车。"
+  },
+  "vehicleSessionInfrastructure.body.comfortAndMedia": {
+    "message": "舒适与娱乐："
+  },
+  "vehicleSessionInfrastructure.body.chargingTollsAndFuel": {
+    "message": "{strong}充电、过路费和燃油费用在结账时即设定上限（参见{link}）。"
+  },
+  "vehicleSessionInfrastructure.body.spendCap": {
+    "message": "支出上限："
+  },
+  "vehicleSessionInfrastructure.body.perSessionSpend": {
+    "message": "单次会话支出"
+  },
+  "vehicleSessionInfrastructure.body.whenTheSessionEnds": {
+    "message": "{strong}会话结束时，所有权限一并终止，并封存一份可验证的记录。"
+  },
+  "vehicleSessionInfrastructure.body.atomicRevocation": {
+    "message": "原子化撤销："
+  },
+  "vehicleSessionInfrastructure.body.whyNow": {
+    "message": "为什么是现在"
+  },
+  "vehicleSessionInfrastructure.body.thereAreEveryRental": {
+    "message": "{strong}：每一次租车、汽车共享出行、Robotaxi乘车和车队调度都算在内。然而没有一次运行在共享协议之上。与此同时，监管机构正在强制要求的，恰恰是会话所具备的特性：经同意、限定范围、可撤销、可审计的访问（参见{link}）。需求与规则正同时到来。"
+  },
+  "vehicleSessionInfrastructure.body.hundredsOfMillionsOf": {
+    "message": "美国每年有数亿次车辆会话"
+  },
+  "vehicleSessionInfrastructure.body.connectedVehicleDataCompliance": {
+    "message": "网联汽车数据合规"
+  },
+  "vehicleSessionInfrastructure.body.whoBuildsOnIt": {
+    "message": "谁在基于它构建"
+  },
+  "vehicleSessionInfrastructure.body.rentalAndCarshareOperators": {
+    "message": "租车和汽车共享运营商借助它实现{link}；OEM网联服务团队借助它满足{link2}的要求，并开拓会话后的收入；开发者则基于{link3}进行开发。同一个会话基础组件，服务众多调用方，其中也包括业界尚未遇见的那些。"
+  },
+  "vehicleSessionInfrastructure.body.unmannedMixedFleetOperations": {
+    "message": "无人值守的混合车队运营"
+  },
+  "vehicleSessionInfrastructure.body.euDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "vehicleSessionInfrastructure.body.dimoApisAndSdks": {
+    "message": "DIMO API和SDK"
+  },
+  "contentPage.cta.talkToSales": {
+    "message": "咨询销售"
+  },
+  "contentPage.cta.talkToOurTeam": {
+    "message": "联系我们的团队"
+  },
+  "navbar.body.toggleNavigationMenu": {
+    "message": "切换导航菜单"
+  },
+  "navbar.body.products": {
+    "message": "产品"
+  },
+  "navbar.body.components": {
+    "message": "Components"
+  },
+  "navbar.body.wallet": {
+    "message": "钱包"
+  },
+  "navbar.body.selfCustodiedVehicleIdentityAnd": {
+    "message": "自托管的车辆身份与资产管理"
+  },
+  "navbar.body.digitalKeyCcc": {
+    "message": "数字钥匙（CCC）"
+  },
+  "navbar.body.phoneAsKeyVehicleAccessVia": {
+    "message": "通过NFC和BLE，用手机作为车钥匙"
+  },
+  "navbar.body.agents": {
+    "message": "智能体"
+  },
+  "navbar.body.autonomousVehicleIntelligenceAnd": {
+    "message": "自主运行的车辆智能与工作流自动化"
+  },
+  "navbar.body.developerTools": {
+    "message": "开发者工具"
+  },
+  "navbar.body.sdksApisConsoleAnd": {
+    "message": "SDK、API、控制台和AI原生集成"
+  },
+  "navbar.body.vehicleSimulator": {
+    "message": "车辆模拟器"
+  },
+  "navbar.body.simulateVehicleDataFor": {
+    "message": "模拟车辆数据，用于开发和测试"
+  },
+  "navbar.body.platform": {
+    "message": "平台"
+  },
+  "navbar.body.ingest": {
+    "message": "Ingest"
+  },
+  "navbar.body.bringYourOwnData": {
+    "message": "自带数据（BYOD）或与车联网合作伙伴集成"
+  },
+  "navbar.body.storage": {
+    "message": "Storage"
+  },
+  "navbar.body.normalizedCleanAiReadyData": {
+    "message": "标准化、干净、AI就绪的数据，支持托管或本地部署"
+  },
+  "navbar.body.consent": {
+    "message": "Consent"
+  },
+  "navbar.body.offTheShelfDataPrivacyAnd": {
+    "message": "开箱即用的数据隐私与权限管理"
+  },
+  "navbar.body.access": {
+    "message": "Access"
+  },
+  "navbar.body.consumeGovernedDataVia": {
+    "message": "通过API、SDK和AI智能体使用受管控的数据"
+  },
+  "navbar.body.pay": {
+    "message": "Pay"
+  },
+  "navbar.body.paymentRewardRailsFor": {
+    "message": "面向车辆商务的支付与奖励通道"
+  },
+  "navbar.body.solutions": {
+    "message": "解决方案"
+  },
+  "navbar.body.byExperience": {
+    "message": "按体验"
+  },
+  "navbar.body.agenticExperiences": {
+    "message": "智能体体验"
+  },
+  "navbar.body.consumerApplications": {
+    "message": "消费者应用"
+  },
+  "navbar.body.fleetIntelligence": {
+    "message": "车队智能"
+  },
+  "navbar.body.vehicleCommerce": {
+    "message": "车辆商务"
+  },
+  "navbar.body.byIndustry": {
+    "message": "按行业"
+  },
+  "navbar.body.autoOems": {
+    "message": "汽车OEM"
+  },
+  "navbar.body.dealerships": {
+    "message": "汽车经销商"
+  },
+  "navbar.body.deliveryServiceProviders": {
+    "message": "配送服务商"
+  },
+  "navbar.body.rentalsP2pCarSharing": {
+    "message": "租车与P2P汽车共享"
+  },
+  "navbar.body.resources": {
+    "message": "资源"
+  },
+  "navbar.body.learn": {
+    "message": "学习"
+  },
+  "navbar.body.documentation": {
+    "message": "文档"
+  },
+  "navbar.body.developerBlog": {
+    "message": "开发者博客"
+  },
+  "navbar.body.customerStories": {
+    "message": "客户案例"
+  },
+  "navbar.body.pricing": {
+    "message": "价格"
+  },
+  "navbar.body.console": {
+    "message": "控制台"
+  },
+  "navbar.body.industries": {
+    "message": "行业"
+  },
+  "navbar.body.language": {
+    "message": "语言"
+  },
+  "compare.smartcarAlternative.meta.title": {
+    "message": "DIMO与Smartcar对比：掌控会话，而不只是数据 | DIMO"
+  },
+  "compare.smartcarAlternative.meta.description": {
+    "message": "Smartcar提供带格式转换的透传车辆数据。DIMO则是可共享的存储：身份、同意、数字钥匙、支出上限和原子化撤销。可自行部署，甚至能通过Smartcar接入数据。"
+  },
+  "compare.smartcarAlternative.meta.h1": {
+    "message": "DIMO与Smartcar对比：从读取车辆数据到管控访问"
+  },
+  "compare.smartcarAlternative.faqSchema.doINeed.name": {
+    "message": "用DIMO替代Smartcar需要硬件吗？"
+  },
+  "compare.smartcarAlternative.faqSchema.text": {
+    "message": "不需要。在支持的50多个品牌中，大多数通过软件集成接入。可选的DIMO LTE R1适配器可为没有可用云API的车辆提供高频数据。"
+  },
+  "compare.smartcarAlternative.faqSchema.canAVehicle.name": {
+    "message": "车主可以在会话中途撤销访问吗？"
+  },
+  "compare.smartcarAlternative.faqSchema.text2": {
+    "message": "可以。撤销是原子化的：钥匙、数据授权和支出授权会同时终止，会话记录则保留在审计追踪中。"
+  },
+  "compare.smartcarAlternative.faqSchema.isDimoCompliant.name": {
+    "message": "DIMO在欧洲合规吗？"
+  },
+  "compare.smartcarAlternative.faqSchema.text3": {
+    "message": "SACD同意模型专为GDPR和欧盟《数据法案》而设计。每次查询都基于车主授予、限定范围、可撤销的权限运行，并记录在带签名的审计追踪中。"
+  },
+  "compare.smartcarAlternative.body.home.name": {
+    "message": "首页"
+  },
+  "compare.smartcarAlternative.body.smartcarAlternative.name": {
+    "message": "Smartcar替代方案"
+  },
+  "compare.smartcarAlternative.body.compare": {
+    "message": "对比"
+  },
+  "compare.smartcarAlternative.body.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "compare.smartcarAlternative.body.smartcarConvertsAnOem": {
+    "message": "Smartcar转换OEM数据流后透传给您。DIMO则存储车辆数据，并内置车主同意、共享和会话功能，甚至可以直接通过Smartcar接入数据。下面介绍如何理解两者的区别。"
+  },
+  "compare.smartcarAlternative.body.ifYouAreEvaluating": {
+    "message": "如果您正在评估Smartcar，您几乎肯定是想做以下两件事之一：跨多个品牌读取车辆数据，或者打造一款能{em}车辆的产品：解锁、授予访问权限、限制支出，并干净利落地结束这一切。Smartcar擅长前者，DIMO则为后者而生。{strong}"
+  },
+  "compare.smartcarAlternative.body.acts": {
+    "message": "操控"
+  },
+  "compare.smartcarAlternative.body.smartcarIsAWindow": {
+    "message": "Smartcar是观察汽车的窗口，DIMO则是租还车柜台。"
+  },
+  "compare.smartcarAlternative.body.smartcarReadsDataAnd": {
+    "message": "Smartcar通过简洁的API读取数据并下发指令。它没有提供的是{em}：一个将身份、数字钥匙、限定范围的数据授权、支出上限和原子化撤销打包在一起的单一对象，并在结束时留下可验证的记录。对于仪表盘或分析功能，您可能永远用不到它。但对于租车、汽车共享，或任何由陌生人临时使用车辆的场景，会话就是全部。"
+  },
+  "compare.smartcarAlternative.body.session": {
+    "message": "会话"
+  },
+  "compare.smartcarAlternative.body.theArchitecturalDifferenceUnderneath": {
+    "message": "底层的架构差异在于：Smartcar是带格式转换的透传。它转换OEM数据流，再把结果交给您。它不是记录系统，没有数据共享或同意模型，也无法自行部署。DIMO是带共享功能的数据存储：接入的信号会成为标准化时序数据，车主可以对其共享、限定范围和撤销；而且由于核心开源，这一切都可以运行在您自己的基础设施上。"
+  },
+  "compare.smartcarAlternative.body.sideBySide": {
+    "message": "并排对比"
+  },
+  "compare.smartcarAlternative.body.capability": {
+    "message": "功能"
+  },
+  "compare.smartcarAlternative.body.readVehicleDataAcross": {
+    "message": "跨品牌读取车辆数据"
+  },
+  "compare.smartcarAlternative.body.yes": {
+    "message": "是"
+  },
+  "compare.smartcarAlternative.body.yes50BrandsAlready": {
+    "message": "是（已接入50多个品牌）"
+  },
+  "compare.smartcarAlternative.body.issueCommandsLockUnlock": {
+    "message": "下发指令（锁定/解锁）"
+  },
+  "compare.smartcarAlternative.body.storesDataAsA": {
+    "message": "将数据存储为可共享的记录系统"
+  },
+  "compare.smartcarAlternative.body.passThroughWithConversion": {
+    "message": "—（带格式转换的透传）"
+  },
+  "compare.smartcarAlternative.body.yesConsentGovernedTimeSeries": {
+    "message": "是（受同意管控的时序数据）"
+  },
+  "compare.smartcarAlternative.body.selfHostable": {
+    "message": "可自行部署"
+  },
+  "compare.smartcarAlternative.body.yesOpenSourceCore": {
+    "message": "是（开源核心）"
+  },
+  "compare.smartcarAlternative.body.ingestsFromOtherConnectivity": {
+    "message": "可从其他连接服务商接入数据"
+  },
+  "compare.smartcarAlternative.body.yesIncludingSmartcarFlespi": {
+    "message": "是（包括Smartcar、Flespi、Volteras）"
+  },
+  "compare.smartcarAlternative.body.digitalKeyAsPart": {
+    "message": "数字钥匙作为会话的一部分"
+  },
+  "compare.smartcarAlternative.body.perSessionSpendCap": {
+    "message": "单次会话支出上限"
+  },
+  "compare.smartcarAlternative.body.atomicRevocationOfA": {
+    "message": "原子化撤销整个会话"
+  },
+  "compare.smartcarAlternative.body.verifiableSignedAccessAudit": {
+    "message": "可验证、带签名的访问审计追踪"
+  },
+  "compare.smartcarAlternative.body.howThePricingModels": {
+    "message": "定价模式有何不同"
+  },
+  "compare.smartcarAlternative.body.smartcarPricesPerConnected": {
+    "message": "Smartcar按联网车辆计价，并设有套餐最低消费，这适合每辆联网汽车都对应一位付费终端用户的场景。DIMO则将这两项决策分开。Hobbyist套餐免费，每辆车每月$1.25，您可以在做出任何承诺之前，先用自己的车验证想法。Core套餐每月$349，包含100辆车，并为生产环境应用提供更高的速率限制。Enterprise套餐增加定制SLA、本地部署和批量定价。同意与会话层本身不收费，每个套餐都包含。"
+  },
+  "compare.smartcarAlternative.body.oneStructuralDifferenceMatters": {
+    "message": "有一项结构性差异比数字更重要：DIMO的核心协议是开源的。如果价格或条款不再适合您，您的退路是自己运行这套基础设施，而不是针对一个新的专有API重写产品。"
+  },
+  "compare.smartcarAlternative.body.youMayNotNeed": {
+    "message": "您可能根本无需迁移"
+  },
+  "compare.smartcarAlternative.body.thisIsThePart": {
+    "message": "这是大多数评估都会忽略的一点：DIMO与Smartcar并不互斥。DIMO可以{em}Smartcar（以及Flespi或Volteras）接入数据，方式与从OEM预言机或自有硬件接入完全相同。如果您的Smartcar集成运行良好，就保留它作为连接层，再在其上叠加DIMO，补足Smartcar不具备的能力：存储、车主同意、共享、会话和审计追踪。请参阅{link}，了解各类数据接入源如何对接。"
+  },
+  "compare.smartcarAlternative.body.through": {
+    "message": "通过"
+  },
+  "compare.smartcarAlternative.body.oracleExample": {
+    "message": "预言机示例"
+  },
+  "compare.smartcarAlternative.body.migratingFromSmartcar": {
+    "message": "从Smartcar迁移"
+  },
+  "compare.smartcarAlternative.body.ifYouDoWant": {
+    "message": "如果您确实想彻底替换Smartcar，大多数迁移只是端点映射，而非重新架构。Smartcar的REST读取（里程、位置、电池、燃油）对应DIMO的GraphQL遥测API，车辆授权则对应SACD同意授权。实际步骤如下：在console.dimo.org创建免费账号，生成API密钥，将{link}对接到您现有的数据模型，并在用户重新授权同意期间并行运行两家服务商。{link2}包含逐字段的迁移指南和代码示例。"
+  },
+  "compare.smartcarAlternative.body.typeScriptPythonOrC": {
+    "message": "TypeScript、Python或C# SDK"
+  },
+  "compare.smartcarAlternative.body.platformComparisonInThe": {
+    "message": "文档中的平台对比"
+  },
+  "compare.smartcarAlternative.body.whereSmartcarIsStill": {
+    "message": "Smartcar仍是正确选择的场景"
+  },
+  "compare.smartcarAlternative.body.honestAnswerIfYour": {
+    "message": "坦白说：如果您的产品只读取数据，从不涉及访问控制，而且用户都在Smartcar的覆盖范围内，那么Smartcar是一个成熟、文档完善的选择，切换带来的收益不大。开发者转向DIMO，几乎总是因为他们的路线图已经超出了只读：他们需要钥匙、限定范围的授权、按会话计费，或监管机构认可的审计追踪；而把这些功能硬加到只读API上，就意味着最难的部分得自己构建。"
+  },
+  "compare.smartcarAlternative.body.commonQuestions": {
+    "message": "常见问题"
+  },
+  "compare.smartcarAlternative.body.noMostOfThe": {
+    "message": "{strong}不需要。在支持的50多个品牌中，大多数通过软件集成接入。可选的DIMO LTE R1适配器可为没有可用云API的车辆提供高频数据。"
+  },
+  "compare.smartcarAlternative.body.doINeedHardware": {
+    "message": "我需要硬件吗？"
+  },
+  "compare.smartcarAlternative.body.yesRevocationIsAtomic": {
+    "message": "{strong}可以。撤销是原子化的：钥匙、数据授权和支出授权会同时终止，会话记录则保留在审计追踪中。"
+  },
+  "compare.smartcarAlternative.body.canAVehicleOwner": {
+    "message": "车主可以在会话中途撤销访问吗？"
+  },
+  "compare.smartcarAlternative.body.theSacdConsentModel": {
+    "message": "{strong}SACD同意模型专为GDPR和欧盟《数据法案》而设计，具体细节请参阅{link}。"
+  },
+  "compare.smartcarAlternative.body.isThisCompliantIn": {
+    "message": "这在欧洲合规吗？"
+  },
+  "compare.smartcarAlternative.body.euDataActGuide": {
+    "message": "欧盟《数据法案》指南"
+  },
+  "compare.smartcarAlternative.body.whenToChooseWhich": {
+    "message": "如何选择"
+  },
+  "compare.smartcarAlternative.body.chooseSmartcarWhenYour": {
+    "message": "当您的产品本质上围绕{em}数据展开时，选择Smartcar：使用情况分析、电动汽车充电洞察、需要里程或电池状态的服务。当您的产品要{em2}时，选择DIMO：无人值守租车、汽车共享、车队调度、按会话计费的保险。这类产品需要身份、钥匙、数据、支出和撤销作为一个经同意、可审计的整体协同运作。"
+  },
+  "compare.smartcarAlternative.body.reading": {
+    "message": "读取"
+  },
+  "compare.smartcarAlternative.body.governsAccess": {
+    "message": "管控访问权限"
+  },
+  "compare.smartcarAlternative.body.theModelBehindThat": {
+    "message": "其背后的模型是{link}；可以看看它在{link2}中的应用。至于产品本身，{link3}和{link4}页面介绍了功能和信号，{link5}已公开（Hobbyist套餐免费，Core套餐每月$349），{link6}则带您完成首次API调用。"
+  },
+  "compare.smartcarAlternative.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "compare.smartcarAlternative.body.rentalOperations": {
+    "message": "租车运营"
+  },
+  "compare.smartcarAlternative.body.connectedCarApiOverview": {
+    "message": "网联汽车API概览"
+  },
+  "compare.smartcarAlternative.body.vehicleDataApi": {
+    "message": "车辆数据API"
+  },
+  "compare.smartcarAlternative.body.pricing": {
+    "message": "价格"
+  },
+  "compare.smartcarAlternative.body.developerDocs": {
+    "message": "开发者文档"
+  },
+  "compare.standardFleetAlternative.meta.title": {
+    "message": "DIMO与Standard Fleet对比：开放、多OEM的会话基础设施 | DIMO"
+  },
+  "compare.standardFleetAlternative.meta.description": {
+    "message": "Standard Fleet证明了车队需要网联控制。DIMO以开放、与品牌无关的协议实现这一点，具备可验证的审计追踪和单次会话支出控制，覆盖已接入DIMO的50多个车辆品牌。"
+  },
+  "compare.standardFleetAlternative.meta.h1": {
+    "message": "DIMO与Standard Fleet对比：开放协议、任意品牌、可验证的审计追踪"
+  },
+  "compare.standardFleetAlternative.body.home.name": {
+    "message": "首页"
+  },
+  "compare.standardFleetAlternative.body.compare.name": {
+    "message": "对比"
+  },
+  "compare.standardFleetAlternative.body.compare": {
+    "message": "对比"
+  },
+  "compare.standardFleetAlternative.body.standardFleetProvedThat": {
+    "message": "Standard Fleet证明了车队运营商需要网联化、软件定义的车辆控制。问题在于，您得到的是一个封闭产品，还是一个开放协议。"
+  },
+  "compare.standardFleetAlternative.body.itShowedThatOperators": {
+    "message": "{strong}它表明，运营商（租车、汽车共享、企业出行）希望通过软件来管理车辆，而不是靠一抽屉钥匙和五个互不相通的工具。这一需求真实存在；如果您正在比较DIMO和Standard Fleet，说明您已经认识到了它的价值。区别在于架构，而不在于谁的功能清单更长。"
+  },
+  "compare.standardFleetAlternative.body.standardFleetProvedThe": {
+    "message": "Standard Fleet证明了市场的存在。"
+  },
+  "compare.standardFleetAlternative.body.whereDimoDiffers": {
+    "message": "DIMO的不同之处"
+  },
+  "compare.standardFleetAlternative.body.dimension": {
+    "message": "维度"
+  },
+  "compare.standardFleetAlternative.body.closedProduct": {
+    "message": "封闭产品"
+  },
+  "compare.standardFleetAlternative.body.brandCoverage": {
+    "message": "品牌覆盖"
+  },
+  "compare.standardFleetAlternative.body.aFocusedSetOf": {
+    "message": "聚焦少数品牌"
+  },
+  "compare.standardFleetAlternative.body.makeAgnostic50BrandsAlready": {
+    "message": "不限品牌；已接入50多个品牌"
+  },
+  "compare.standardFleetAlternative.body.architecture": {
+    "message": "架构"
+  },
+  "compare.standardFleetAlternative.body.proprietarySaaS": {
+    "message": "专有SaaS"
+  },
+  "compare.standardFleetAlternative.body.openVendorNeutralProtocol": {
+    "message": "开放、厂商中立的协议"
+  },
+  "compare.standardFleetAlternative.body.auditTrail": {
+    "message": "审计追踪"
+  },
+  "compare.standardFleetAlternative.body.applicationLayerLogs": {
+    "message": "应用层日志"
+  },
+  "compare.standardFleetAlternative.body.cryptographicallySignedIndependentlyVerifiable": {
+    "message": "经加密签名，可独立验证"
+  },
+  "compare.standardFleetAlternative.body.spend": {
+    "message": "支出"
+  },
+  "compare.standardFleetAlternative.body.addOnExternal": {
+    "message": "附加组件/外部"
+  },
+  "compare.standardFleetAlternative.body.perSessionSpendCapBuilt": {
+    "message": "内置单次会话支出上限"
+  },
+  "compare.standardFleetAlternative.body.lockIn": {
+    "message": "厂商锁定"
+  },
+  "compare.standardFleetAlternative.body.singleVendor": {
+    "message": "单一厂商"
+  },
+  "compare.standardFleetAlternative.body.buildOnTheProtocol": {
+    "message": "基于协议构建，无厂商锁定"
+  },
+  "compare.standardFleetAlternative.body.whyTheArchitectureMatters": {
+    "message": "架构为何重要"
+  },
+  "compare.standardFleetAlternative.body.twoDifferencesCompoundOver": {
+    "message": "有两点差异会随着时间推移不断放大。第一是{strong}：混合车队新增一个品牌时不应需要新的集成，而与品牌无关的协议意味着确实不需要。第二是{strong2}：在保险公司或监管机构需要一份无需听信您一面之词就能信任的记录之前，应用层日志都够用。到了那一步，一份{link}的价值远超内部日志。"
+  },
+  "compare.standardFleetAlternative.body.oemBreadth": {
+    "message": "OEM覆盖广度"
+  },
+  "compare.standardFleetAlternative.body.verifiableAuditTrail": {
+    "message": "可验证的审计追踪"
+  },
+  "compare.standardFleetAlternative.body.cryptographicallySignedSessionRecord": {
+    "message": "经加密签名的会话记录"
+  },
+  "compare.standardFleetAlternative.body.bothFallOutOf": {
+    "message": "两者都源于同一设计理念：把{link}做成开放的原语，而不是封闭的应用。看看它如何应用于{link2}，以及更全面的{link3}。"
+  },
+  "compare.standardFleetAlternative.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "compare.standardFleetAlternative.body.unmannedRentalOperations": {
+    "message": "无人值守租车运营"
+  },
+  "compare.standardFleetAlternative.body.compliancePicture": {
+    "message": "合规全景"
+  },
+  "compliance.euDataAct.meta.title": {
+    "message": "欧盟《数据法案》与车辆数据：OEM和车队必须做什么 | DIMO"
+  },
+  "compliance.euDataAct.meta.description": {
+    "message": "欧盟《数据法案》要求OEM向经授权的第三方开放车辆数据。本文介绍合规时间表、具体要求，以及会话级同意如何满足这些要求。"
+  },
+  "compliance.euDataAct.meta.h1": {
+    "message": "欧盟《数据法案》与车辆数据：OEM和车队将迎来哪些变化"
+  },
+  "compliance.euDataAct.body.home.name": {
+    "message": "首页"
+  },
+  "compliance.euDataAct.body.compliance.name": {
+    "message": "合规"
+  },
+  "compliance.euDataAct.body.euDataAct.name": {
+    "message": "欧盟《数据法案》"
+  },
+  "compliance.euDataAct.body.complianceEuDataAct": {
+    "message": "合规 · 欧盟《数据法案》"
+  },
+  "compliance.euDataAct.body.theEuDataAct": {
+    "message": "欧盟《数据法案》让网联汽车数据从专有资产变成受监管、可共享的资产。下面介绍它的要求，以及如何及时做好准备。"
+  },
+  "compliance.euDataAct.body.theRequiresVehicleManufacturers": {
+    "message": "{strong}要求汽车制造商将其网联产品生成的数据提供给用户，并在用户提出请求时，以可用、实时且无差别对待的方式提供给经授权的第三方。对OEM以及运营其车辆的车队而言，这意味着汽车产生的网联数据不能再锁在封闭的自有门户之后，而必须在车主同意的前提下，向车主选择的服务开放。"
+  },
+  "compliance.euDataAct.body.euDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "compliance.euDataAct.body.inShortTheCar": {
+    "message": "简而言之：法律正在让汽车成为开放的数据源。那些现在就把它当作架构问题来解决、而不是日后在法律层面仓促应对的OEM，才能把它变成收入，而不是负担。"
+  },
+  "compliance.euDataAct.body.theTimelineThatIs": {
+    "message": "不会推迟的时间表"
+  },
+  "compliance.euDataAct.body.theDataActBecame": {
+    "message": "《数据法案》已于{strong}开始适用，其中对网联汽车影响最大的义务，即应用户请求向第三方开放数据访问，将于{strong2}前后对OEM逐步进入执法阶段。截止日期已经确定。"
+  },
+  "compliance.euDataAct.body.september2025": {
+    "message": "2025年9月"
+  },
+  "compliance.euDataAct.body.september2026": {
+    "message": "2026年9月"
+  },
+  "compliance.euDataAct.body.thatMattersBecauseOf": {
+    "message": "这一点之所以重要，道理很简单。{strong}决定从零开始自建同意、访问和审计层的OEM，在大多数情况下，第一个迭代周期还没结束，就已经落后于法规要求了。"
+  },
+  "compliance.euDataAct.body.a1218MonthInHouse": {
+    "message": "如果今天启动一个需要12至18个月的内部开发项目，交付时就会晚6至12个月。合规时钟不会停下来等您。"
+  },
+  "compliance.euDataAct.body.whatCompliantAccessActually": {
+    "message": "“合规访问”究竟要求什么"
+  },
+  "compliance.euDataAct.body.strippedToItsEssentials": {
+    "message": "抛开细节、结合GDPR来看，《数据法案》要求围绕车辆数据具备四项能力："
+  },
+  "compliance.euDataAct.body.theUserMustExplicitly": {
+    "message": "{strong}用户必须明确授予访问权限；默示同意或捆绑式同意均不符合标准。"
+  },
+  "compliance.euDataAct.body.authorization": {
+    "message": "授权。"
+  },
+  "compliance.euDataAct.body.thirdPartiesReceiveOnly": {
+    "message": "{strong}第三方只能获得用户授权的特定数据，且只能用于授权的用途，而不是源源不断地获取全部数据。"
+  },
+  "compliance.euDataAct.body.scoping": {
+    "message": "范围限定。"
+  },
+  "compliance.euDataAct.body.theUserCanWithdraw": {
+    "message": "{strong}用户可以撤回访问权限，而且撤回后数据流必须真正停止。"
+  },
+  "compliance.euDataAct.body.revocation": {
+    "message": "撤销。"
+  },
+  "compliance.euDataAct.body.thereMustBeA": {
+    "message": "{strong}必须留有记录，说明谁在何时、基于谁的授权访问了哪些数据。"
+  },
+  "compliance.euDataAct.body.auditability": {
+    "message": "可审计性。"
+  },
+  "compliance.euDataAct.body.mostExistingConnectedServicesStacks": {
+    "message": "现有的大多数网联服务技术栈在设计时从未考虑过这四项能力。它们原本是为提供自有功能而构建的，之后才补上一个同意复选框。《数据法案》之所以难以满足，正是因为它要求这些特性必须是结构性的，而不是表面功夫。"
+  },
+  "compliance.euDataAct.body.howASessionModel": {
+    "message": "会话模型如何满足这些要求"
+  },
+  "compliance.euDataAct.body.aVehicleIsAn": {
+    "message": "车辆{em}是一种内置上述四项特性的访问事件。会话创建时就携带用户身份、明确的数据范围和时间限制；会话结束时，访问权限会被原子性地撤销，并封存一份经过签名、可独立验证的记录。同意是创建会话的一部分，而不是事后附加的政策。这正是{link}所描述的内容。"
+  },
+  "compliance.euDataAct.body.session": {
+    "message": "会话"
+  },
+  "compliance.euDataAct.body.sessionScopedConsent": {
+    "message": "会话级同意"
+  },
+  "compliance.euDataAct.body.becauseTheAccessPrimitive": {
+    "message": "由于访问原语本身就会产生授权、范围限定、撤销和审计追踪，{strong}OEM只需集成一个访问层，就能在所有车型和市场中获得合规能力，而无需为每个项目重新实现同意机制。同一模型还能统一{link}的数据，这对运营混合车型的车队尤为重要。"
+  },
+  "compliance.euDataAct.body.euDataActCompliance": {
+    "message": "欧盟《数据法案》合规是架构的自然产物，而不是事后补救。"
+  },
+  "compliance.euDataAct.body.50VehicleBrandsAlready": {
+    "message": "已接入DIMO的50多个汽车品牌"
+  },
+  "compliance.euDataAct.body.fromComplianceCostTo": {
+    "message": "从合规成本到营收来源"
+  },
+  "compliance.euDataAct.body.itIsTemptingTo": {
+    "message": "人们很容易把《数据法案》看作纯粹的成本，但事实并非如此。满足法规要求的同一套经过同意、限定范围的访问能力，也正是OEM一直在追逐的软件收入的基础。到2030年，OEM们合计希望从软件和网联服务中获得{strong}的收入。不同之处在于，合规之路和营收之路如今是{em}条路。能够授予驾驶员授权会话的OEM，也可以在此基础上合法地提供按会话计费的保险、即插即充或维修保养服务，因为同意早已获取。"
+  },
+  "compliance.euDataAct.body.tensOfBillionsOf": {
+    "message": "每年数百亿美元"
+  },
+  "compliance.euDataAct.body.same": {
+    "message": "同一"
+  },
+  "compliance.euDataAct.body.contrastThatWithThe": {
+    "message": "再看看封闭路线。正如{link}所表明的，批量数据经纪模式如今已是负担而非资产。能够赢得未来十年网联服务收入的OEM，将是那些从第一个会话起，数据访问就经过同意且可审计的厂商，因为只有这样的数据访问才会被监管机构、保险公司以及越来越多的客户所接受。"
+  },
+  "compliance.euDataAct.body.ftcsGmOnstarOrder": {
+    "message": "FTC对GM/OnStar的命令"
+  },
+  "compliance.euDataAct.body.commonQuestions": {
+    "message": "常见问题"
+  },
+  "compliance.euDataAct.body.doesThisOnlyMatter": {
+    "message": "这是否只关系到在欧盟销售的车辆？"
+  },
+  "compliance.euDataAct.body.theDataActIs": {
+    "message": "《数据法案》是欧盟法规，但其影响是全球性的。OEM为欧盟构建的同一套架构，也能满足美国的FTC标准和加州的SB-1394，因此大多数制造商不会为一个市场维护一套“合规”技术栈、为另一个市场维护一套旧技术栈。从经济角度看，在所有市场统一采用一个基于同意的访问层才是合理选择。"
+  },
+  "compliance.euDataAct.body.weAlreadyHaveA": {
+    "message": "我们已经有网联服务项目了，这样够吗？"
+  },
+  "compliance.euDataAct.body.usuallyNotMostExisting": {
+    "message": "通常不够。现有的大多数项目原本是为提供自有功能而设计的，之后才补上一个同意复选框。《数据法案》要求应用户请求开放第三方访问，并将范围限定、撤销和审计追踪作为结构性特性。如果这四项能力没有内置于访问授予的方式中，仅靠一个复选框无法弥补差距。"
+  },
+  "compliance.euDataAct.body.whatOemsAndFleets": {
+    "message": "OEM和车队现在应该做什么"
+  },
+  "compliance.euDataAct.body.treatThirdPartyAccessAs": {
+    "message": "{strong}把第三方访问当作平台能力，而不是单个项目的功能。在自建还是集成之间做决定时，要以2026年9月为期限，而不是参照一份没有终点的路线图。"
+  },
+  "compliance.euDataAct.body.oems": {
+    "message": "OEM："
+  },
+  "compliance.euDataAct.body.ifYouOperateVehicles": {
+    "message": "{strong}如果您在欧盟运营车辆，请确认您现在的数据访问路径以同意为依据且可以撤销。参见{link}。"
+  },
+  "compliance.euDataAct.body.fleets": {
+    "message": "车队："
+  },
+  "compliance.euDataAct.body.auditReadyVehicleAccess": {
+    "message": "可随时审计的车辆访问"
+  },
+  "compliance.euDataAct.body.thisPageIsEducational": {
+    "message": "本页内容仅供学习参考，不构成法律建议。在欧洲OEM采购中使用合规相关表述之前，应先完成正式的认证审查。"
+  },
+  "compliance.euDataAct.body.related": {
+    "message": "相关内容：{link} · {link2} · {link3}"
+  },
+  "compliance.euDataAct.body.theFtcGmOnStarOrder": {
+    "message": "FTC对GM/OnStar的命令"
+  },
+  "compliance.euDataAct.body.allComplianceTopics": {
+    "message": "所有合规主题"
+  },
+  "compliance.euDataAct.body.dimoForOems": {
+    "message": "面向OEM的DIMO"
+  },
+  "compliance.ftcGmConsent.meta.title": {
+    "message": "FTC对GM/OnStar的命令与批量车联网数据的终结 | DIMO"
+  },
+  "compliance.ftcGmConsent.meta.description": {
+    "message": "FTC针对GM/OnStar的命令禁止未经同意共享驾驶员数据。本文解读它对OEM和保险公司意味着什么，以及为何批量车联网数据经纪已成为死路一条的商业模式。"
+  },
+  "compliance.ftcGmConsent.meta.h1": {
+    "message": "FTC对GM OnStar的命令让同意优先的车辆数据成为法律要求"
+  },
+  "compliance.ftcGmConsent.body.home.name": {
+    "message": "首页"
+  },
+  "compliance.ftcGmConsent.body.compliance.name": {
+    "message": "合规"
+  },
+  "compliance.ftcGmConsent.body.ftcGmOnStarOrder.name": {
+    "message": "FTC对GM/OnStar的命令"
+  },
+  "compliance.ftcGmConsent.body.complianceFtc": {
+    "message": "合规 · FTC"
+  },
+  "compliance.ftcGmConsent.body.theFtcsOrderAgainst": {
+    "message": "FTC针对GM和OnStar的命令不只是惩罚了一家公司——它宣告旧的车辆数据商业模式违法，并让同意优先的访问成为新的基准。"
+  },
+  "compliance.ftcGmConsent.body.inEarly2026The": {
+    "message": "2026年初，美国联邦贸易委员会（FTC）就通用汽车及其OnStar部门在未获得适当同意的情况下收集和出售网联汽车数据一事，最终敲定了一项命令。该命令禁止GM在未获得{strong}的情况下共享驾驶行为和精确地理位置数据，期限为{strong2}。它向整个行业传递的信息直截了当：{strong3}"
+  },
+  "compliance.ftcGmConsent.body.affirmativeOptIn": {
+    "message": "用户明确的选择加入同意"
+  },
+  "compliance.ftcGmConsent.body.fiveYears": {
+    "message": "五年"
+  },
+  "compliance.ftcGmConsent.body.gmJustProvedThat": {
+    "message": "GM的案例刚刚证明，旧模式是违法的，同意优先的车辆数据访问如今已是监管机构期望的基准。"
+  },
+  "compliance.ftcGmConsent.body.whatTheOrderActually": {
+    "message": "命令的实际内容"
+  },
+  "compliance.ftcGmConsent.body.aOnSharingDriverBehavior": {
+    "message": "对共享未经明确知情同意而收集的驾驶行为数据实施{strong}。"
+  },
+  "compliance.ftcGmConsent.body.fiveYearBan": {
+    "message": "为期五年的禁令"
+  },
+  "compliance.ftcGmConsent.body.aRequirementForBefore": {
+    "message": "要求今后在收集或共享网联汽车数据之前，必须获得{strong}。"
+  },
+  "compliance.ftcGmConsent.body.theConductAffectedRoughly": {
+    "message": "这一行为波及约{strong}，他们的数据被转给了包括{strong2}在内的数据经纪商，并可能被用于保险风险评分。"
+  },
+  "compliance.ftcGmConsent.body.18MillionGmCustomers": {
+    "message": "180万名GM客户"
+  },
+  "compliance.ftcGmConsent.body.lexisNexisAndVerisk": {
+    "message": "LexisNexis和Verisk"
+  },
+  "compliance.ftcGmConsent.body.whyThisKillsBulk": {
+    "message": "为什么这宣告了批量车联网数据经纪的终结"
+  },
+  "compliance.ftcGmConsent.body.theDownstreamEffectWas": {
+    "message": "连锁反应立竿见影。{strong}当批量车辆数据的最大买家不再碰缺乏严密同意来源证明的OEM数据源时，数据经纪模式的经济基础便随之崩塌。{strong2}"
+  },
+  "compliance.ftcGmConsent.body.veriskStoppedAcceptingOemSourced": {
+    "message": "就在该命令最终敲定的同一周，Verisk停止接收源自OEM的车联网数据。"
+  },
+  "compliance.ftcGmConsent.body.bulkOemTelematicsData": {
+    "message": "批量OEM车联网数据经纪作为一种商业模式，在法律上已经走到尽头。"
+  },
+  "compliance.ftcGmConsent.body.thatIsNotA": {
+    "message": "这不是暂时的寒意，而是结构性转变：价值正从能{em}最多数据的一方，转向能证明数据访问{em2}的一方。"
+  },
+  "compliance.ftcGmConsent.body.aggregate": {
+    "message": "汇集"
+  },
+  "compliance.ftcGmConsent.body.withConsentForA": {
+    "message": "经过同意、目的明确且有据可查"
+  },
+  "compliance.ftcGmConsent.body.theNewModelStill": {
+    "message": "只要经过同意，新模式依然蕴藏巨大价值"
+  },
+  "compliance.ftcGmConsent.body.noneOfThisMeans": {
+    "message": "这并不意味着车辆数据失去了价值。保险公司仍然需要它：基于使用情况的定价行之有效，共享车联网数据的车队赔付率也更低。FTC命令暴露的问题在于{em}，而不是需求。保险公司和OEM现在需要的，是一种能获取驾驶员授权数据并附带可验证记录的方式，而不是经不起同意审计的经纪商数据源。"
+  },
+  "compliance.ftcGmConsent.body.plumbing": {
+    "message": "底层管道"
+  },
+  "compliance.ftcGmConsent.body.thatIsExactlyWhat": {
+    "message": "这正是会话模型所提供的。{strong}访问按会话创建，范围限定在驾驶员授权的内容之内，并以一份经过签名、可独立验证的记录封存。同意不是硬加在数据管道上的复选框，而是访问创建方式的一部分（详见{link}），由此生成的{link2}正是核保方或监管机构真正能够接受的凭证。"
+  },
+  "compliance.ftcGmConsent.body.dimoIsTheInfrastructure": {
+    "message": "DIMO正是让新模式运转起来的基础设施："
+  },
+  "compliance.ftcGmConsent.body.sessionScopedConsent": {
+    "message": "会话级同意"
+  },
+  "compliance.ftcGmConsent.body.auditTrail": {
+    "message": "审计追踪"
+  },
+  "compliance.ftcGmConsent.body.theBiggerPatternValue": {
+    "message": "更大的趋势：价值转向同意来源证明"
+  },
+  "compliance.ftcGmConsent.body.connectedServicesRevenueIsReal": {
+    "message": "网联服务收入真实存在，而且规模庞大。据报道，GM旗下的OnStar业务{strong}，订阅用户约1200万。FTC命令并没有说这些收入不正当，而是指出关键在于{em}：来自经不起同意审计的数据的收入如今面临风险，而来自具备清晰的、逐个驾驶员同意来源证明的数据的收入才能长久。"
+  },
+  "compliance.ftcGmConsent.body.54BillionIn2025": {
+    "message": "2025年营收约达54亿美元"
+  },
+  "compliance.ftcGmConsent.body.mechanism": {
+    "message": "机制"
+  },
+  "compliance.ftcGmConsent.body.thatIsTheShift": {
+    "message": "这正是需要深刻理解的转变。十年来，行业默认的商业模式是“尽可能多地汇集车辆数据，再去找买家”。在这项命令之后，能够长久的模式是“按驾驶员授予访问权限、限定范围，并保留凭证”。核心资产不再是数据湖的规模，而是每次访问所附带的同意记录有多可靠。"
+  },
+  "compliance.ftcGmConsent.body.commonQuestions": {
+    "message": "常见问题"
+  },
+  "compliance.ftcGmConsent.body.isThisJustA": {
+    "message": "这只是GM一家的问题吗？"
+  },
+  "compliance.ftcGmConsent.body.noTheFtcFramed": {
+    "message": "不是。FTC将其定性为行业标准，而不是一次性处罚。任何依赖未经同意的驾驶行为数据的制造商或经纪商，都面临同样的法律风险。请把这项命令视为整个市场都将遵循的基准，而不是只针对GM的个案。"
+  },
+  "compliance.ftcGmConsent.body.canInsurersStillUse": {
+    "message": "保险公司还能用车辆数据来定价吗？"
+  },
+  "compliance.ftcGmConsent.body.yesUsageBasedPricingWorks": {
+    "message": "可以。基于使用情况的定价行之有效，也不会消失。变化的是数据来源。保险公司现在需要的是驾驶员授权、带有可验证记录的数据，这正是{link}所提供的，而不是刚刚失去最大买家的经纪商数据源。"
+  },
+  "compliance.ftcGmConsent.body.sessionAuditTrail": {
+    "message": "会话审计追踪"
+  },
+  "compliance.ftcGmConsent.body.whatOemsAndInsurers": {
+    "message": "OEM和保险公司应从中得到什么启示"
+  },
+  "compliance.ftcGmConsent.body.anyDataMonetizationPlanThat": {
+    "message": "{strong}任何依赖批量、经由经纪商转手的车联网数据的数据变现计划，如今都已成为负担。请将其重新建立在逐个驾驶员同意和审计追踪的基础之上。"
+  },
+  "compliance.ftcGmConsent.body.oems": {
+    "message": "OEM："
+  },
+  "compliance.ftcGmConsent.body.thePathToUsageBased": {
+    "message": "{strong}通往基于使用情况的定价和车队车联网定价的道路，要靠经过同意、可验证的访问来铺就，而不是刚刚被切断的经纪商数据源。"
+  },
+  "compliance.ftcGmConsent.body.insurers": {
+    "message": "保险公司："
+  },
+  "compliance.ftcGmConsent.body.related": {
+    "message": "相关内容：{link} · {link2} · {link3}"
+  },
+  "compliance.ftcGmConsent.body.theEuDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "compliance.ftcGmConsent.body.mixedFleetTelematicsForInsurers": {
+    "message": "面向保险公司的混合车队车联网数据"
+  },
+  "compliance.ftcGmConsent.body.allComplianceTopics": {
+    "message": "所有合规主题"
+  },
+  "compliance.ftcGmConsent.body.thisPageIsEducational": {
+    "message": "本页内容仅供学习参考，不构成法律建议。"
+  },
+  "compliance.meta.title": {
+    "message": "网联汽车数据合规：欧盟《数据法案》、FTC、GDPR | DIMO"
+  },
+  "compliance.meta.description": {
+    "message": "车队和OEM如何借助会话级同意与可验证的审计追踪，满足欧盟《数据法案》、FTC同意标准、GDPR和SB-1394对网联汽车数据的要求。"
+  },
+  "compliance.body.home.name": {
+    "message": "首页"
+  },
+  "compliance.body.compliance.name": {
+    "message": "合规"
+  },
+  "compliance.body.compliance": {
+    "message": "合规"
+  },
+  "compliance.body.compliantConnectedVehicleDataAccess": {
+    "message": "从架构层面实现合规的网联汽车数据访问"
+  },
+  "compliance.body.regulatorsOnThreeContinents": {
+    "message": "三大洲的监管机构如今都要求车辆数据访问做到同意优先、可撤销、可审计。DIMO从一开始就是按这种方式构建的——合规是架构的自然产物，而不是事后补救。"
+  },
+  "compliance.body.talkToOurTeam": {
+    "message": "联系我们的团队"
+  },
+  "compliance.body.connectedVehicleDataCompliance": {
+    "message": "网联汽车数据合规，是指让驾驶员和车主以同意优先、可撤销的方式掌控共享哪些数据、与谁共享、共享多久，并为每一次访问生成可验证的记录。到2026年，这已不再只是最佳实践，而是美国和欧盟的法律要求，{strong}"
+  },
+  "compliance.body.consentFirstVehicleDataAccess": {
+    "message": "同意优先的车辆数据访问如今是法律义务，而不只是道德层面的选择。"
+  },
+  "compliance.body.thisPageMapsThe": {
+    "message": "本页梳理了正在重塑网联汽车市场的各项法规，并说明基于会话的访问模型如何一次性满足所有这些法规，而无需耗时数年的内部开发。"
+  },
+  "compliance.body.theRegulatoryWave": {
+    "message": "监管浪潮"
+  },
+  "compliance.body.fourMovingPiecesAre": {
+    "message": "四股力量正在汇聚到同一项要求上：车辆数据的访问必须经过明确同意、限定范围、可撤销且可审计。"
+  },
+  "compliance.body.theRequiresOemsTo": {
+    "message": "{link}要求OEM向经授权的第三方开放车辆数据。该法案已于2025年9月生效，针对OEM的执法将于2026年9月跟进。"
+  },
+  "compliance.body.euDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "compliance.body.theBansNonConsentedSharing": {
+    "message": "{link}禁止未经同意共享驾驶行为数据，实际上宣告了批量车联网数据经纪这一商业模式的终结。"
+  },
+  "compliance.body.ftcGmOnStarConsentOrder": {
+    "message": "FTC对GM/OnStar的同意令"
+  },
+  "compliance.body.makeConsentStructurallyPart": {
+    "message": "{link}让同意在结构上成为访问事件的一部分，而不是事后附加的独立政策。"
+  },
+  "compliance.body.gdprAndSessionScopedConsent": {
+    "message": "GDPR与会话级同意"
+  },
+  "compliance.body.requireVehicleAccessTo": {
+    "message": "{link}要求车辆访问可由车主撤销，并在设计上可审计。"
+  },
+  "compliance.body.californiaSb1394AndUnece": {
+    "message": "加州SB-1394和UNECE R155"
+  },
+  "compliance.body.whyASessionModel": {
+    "message": "为什么会话模型能一次性满足所有这些法规"
+  },
+  "compliance.body.eachOfTheseRules": {
+    "message": "这些规则都要求同样的四件事：明确授权、限定范围的访问、原子性撤销，以及可验证的记录。车辆{em}恰好集成了这些特性。会话在创建时就带有驾驶员身份、特定的数据范围、支出限额和时间限制；用例结束时，所有权限会同时撤销，并封存一份经过加密签名、可独立验证的记录。"
+  },
+  "compliance.body.session": {
+    "message": "会话"
+  },
+  "compliance.body.becauseConsentIsPart": {
+    "message": "由于同意是会话创建原语的一部分，而不是下游政策，同一套架构就能同时满足GDPR、欧盟《数据法案》、FTC标准和SB-1394。参见{link}了解其工作原理，参见{link2}了解更全面的模型。运营方可以阅读它在{link3}中如何应用于车队，开发者可以从{link4}入手。"
+  },
+  "compliance.body.sessionScopedConsent": {
+    "message": "会话级同意"
+  },
+  "compliance.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "compliance.body.rentalOperations": {
+    "message": "租车运营"
+  },
+  "compliance.body.consentProductDocs": {
+    "message": "Consent产品文档"
+  },
+  "compliance.body.noteFormalCertificationReview": {
+    "message": "注意：在欧洲OEM采购中使用合规相关表述之前，应先完成正式的认证审查；本页内容仅供学习参考，不构成法律建议。"
+  },
+  "compliance.sessionScopedConsent.meta.title": {
+    "message": "车辆数据的会话级同意详解 | DIMO"
+  },
+  "compliance.sessionScopedConsent.meta.description": {
+    "message": "什么是会话级同意，为什么“先授权、后撤销”优于一揽子数据共享，以及它如何从架构层面满足GDPR、欧盟《数据法案》和加州SB-1394的要求。"
+  },
+  "compliance.sessionScopedConsent.meta.h1": {
+    "message": "会话级同意：内置于访问原语中的同意"
+  },
+  "compliance.sessionScopedConsent.body.home.name": {
+    "message": "首页"
+  },
+  "compliance.sessionScopedConsent.body.compliance.name": {
+    "message": "合规"
+  },
+  "compliance.sessionScopedConsent.body.sessionScopedConsent.name": {
+    "message": "会话级同意"
+  },
+  "compliance.sessionScopedConsent.body.complianceConsent": {
+    "message": "合规 · 同意"
+  },
+  "compliance.sessionScopedConsent.body.mostVehicleDataSystems": {
+    "message": "大多数车辆数据系统把同意当作硬加在数据管道上的一项政策。会话级同意则让它成为访问创建方式的一部分——撤销也是如此。"
+  },
+  "compliance.sessionScopedConsent.body.meansTheUsersPermission": {
+    "message": "{strong}是指用户的许可在结构上就是创建访问会话的一部分，而不是事后套用的独立政策。车主不再向某项服务授予对车辆数据的一揽子、永久访问权限，而是授权一个特定的会话：限定的数据和功能范围、明确的用途、确定的时长，到期后所有权限同时撤销。这样的同意{em}"
+  },
+  "compliance.sessionScopedConsent.body.sessionScopedConsent": {
+    "message": "会话级同意"
+  },
+  "compliance.sessionScopedConsent.body.compliantByArchitectureNot": {
+    "message": "凭架构实现合规，而不是靠政策。"
+  },
+  "compliance.sessionScopedConsent.body.theProblemWithBlanket": {
+    "message": "一揽子同意的问题"
+  },
+  "compliance.sessionScopedConsent.body.thinkAboutLoggingInto": {
+    "message": "想想两年前您在酒店登录的流媒体账号。很可能至今仍有陌生人在用它，因为您当初授予的访问权限从未被干净地终止。现在设想一下，那不是流媒体登录，而是您的汽车、您的数字钥匙、您的支付方式和您的位置。这就是车辆领域一揽子、永久数据共享的样子：访问权限授予得宽泛，范围定得松散，而且几乎从来不会以您能够验证的方式被撤销。"
+  },
+  "compliance.sessionScopedConsent.body.regulatorsHaveDecidedThat": {
+    "message": "监管机构已经认定这种模式不再可以接受。GDPR要求目的限制和撤回权；{link}要求限定范围、由用户主导的访问；{link2}要求用户明确选择加入。实际上，每一项法规都在要求同意必须具体、可撤销且可证明。"
+  },
+  "compliance.sessionScopedConsent.body.euDataAct": {
+    "message": "欧盟《数据法案》"
+  },
+  "compliance.sessionScopedConsent.body.ftcsGmOnstarOrder": {
+    "message": "FTC对GM/OnStar的命令"
+  },
+  "compliance.sessionScopedConsent.body.howSessionScopedConsentWorks": {
+    "message": "会话级同意如何运作"
+  },
+  "compliance.sessionScopedConsent.body.aVehicleSessionIs": {
+    "message": "车辆会话通过一次操作创建，并携带访问所需的一切："
+  },
+  "compliance.sessionScopedConsent.body.whoIsBeingGranted": {
+    "message": "{strong}被授予访问权限的是谁，且身份经过验证。"
+  },
+  "compliance.sessionScopedConsent.body.identity": {
+    "message": "身份："
+  },
+  "compliance.sessionScopedConsent.body.exactlyWhichDataAnd": {
+    "message": "{strong}具体包含哪些数据和功能，仅此而已。"
+  },
+  "compliance.sessionScopedConsent.body.scope": {
+    "message": "范围："
+  },
+  "compliance.sessionScopedConsent.body.aCapAndAn": {
+    "message": "{strong}设定上限和到期时间，让访问在设计上就有边界。"
+  },
+  "compliance.sessionScopedConsent.body.spendAndTimeLimits": {
+    "message": "支出限额和时间限制："
+  },
+  "compliance.sessionScopedConsent.body.whenTheSessionEnds": {
+    "message": "{strong}会话结束时，其中的所有权限会一并撤回，而不是一个系统一个系统地逐一处理。"
+  },
+  "compliance.sessionScopedConsent.body.atomicRevocation": {
+    "message": "原子性撤销："
+  },
+  "compliance.sessionScopedConsent.body.whenTheSessionCloses": {
+    "message": "会话关闭时，会封存一份{strong}记录，载明授权了哪些内容以及何时结束。由于同意是会话创建的一部分，没有同意凭证就不可能获得访问权限，撤销之后也不可能残留访问权限。监管机构要求的合规特性并不是后来添加的，而是系统唯一的运作方式。"
+  },
+  "compliance.sessionScopedConsent.body.cryptographicallySignedIndependentlyVerifiable": {
+    "message": "经过加密签名、可独立验证的"
+  },
+  "compliance.sessionScopedConsent.body.aConcreteExampleA": {
+    "message": "具体示例：为期三天的租车"
+  },
+  "compliance.sessionScopedConsent.body.pictureADriverRenting": {
+    "message": "设想一位驾驶员在周末租用一辆网联汽车。借助会话级同意，租车流程会在结账时创建一个会话：验证驾驶员身份，发放数字钥匙，将数据访问范围限定为租期内的位置和行程遥测数据，为充电和过路费设定支出上限，并设置72小时的有效期。驾驶员可以清楚地看到自己授予了哪些权限。还车时，会话结束：钥匙失效，数据访问停止，整个安排的签名记录随即封存。"
+  },
+  "compliance.sessionScopedConsent.body.nothingLingersThereIs": {
+    "message": "没有任何残留。还车后不再有开放的数据流，不会有仍能在陌生人手中使用的钥匙，也不需要有人手动去停用五个独立的系统。同意及其边界本身就是访问，因此访问一结束，同意也随之结束，干净利落，有据可查。"
+  },
+  "compliance.sessionScopedConsent.body.blanketConsentVsSessionScoped": {
+    "message": "一揽子同意与会话级同意对比"
+  },
+  "compliance.sessionScopedConsent.body.property": {
+    "message": "特性"
+  },
+  "compliance.sessionScopedConsent.body.blanketConsent": {
+    "message": "一揽子同意"
+  },
+  "compliance.sessionScopedConsent.body.whenConsentIsCaptured": {
+    "message": "何时获取同意"
+  },
+  "compliance.sessionScopedConsent.body.onceUpFrontBroadly": {
+    "message": "一次性、预先、宽泛地获取"
+  },
+  "compliance.sessionScopedConsent.body.perAccessEventAs": {
+    "message": "每次访问事件时获取，是创建访问的一部分"
+  },
+  "compliance.sessionScopedConsent.body.scopeOfData": {
+    "message": "数据范围"
+  },
+  "compliance.sessionScopedConsent.body.looselyDefinedOftenEverything": {
+    "message": "定义松散，往往涵盖一切"
+  },
+  "compliance.sessionScopedConsent.body.exactlyWhatThePurpose": {
+    "message": "严格限于用途所需"
+  },
+  "compliance.sessionScopedConsent.body.revocation": {
+    "message": "撤销"
+  },
+  "compliance.sessionScopedConsent.body.manualPartialOftenNever": {
+    "message": "手动、不彻底，往往从不撤销"
+  },
+  "compliance.sessionScopedConsent.body.atomicAllPermissionsEnd": {
+    "message": "原子性撤销；所有权限同时终止"
+  },
+  "compliance.sessionScopedConsent.body.proof": {
+    "message": "证明"
+  },
+  "compliance.sessionScopedConsent.body.aPolicyDocument": {
+    "message": "一份政策文件"
+  },
+  "compliance.sessionScopedConsent.body.aSignedVerifiablePerSession": {
+    "message": "每个会话一份经过签名、可验证的记录"
+  },
+  "compliance.sessionScopedConsent.body.whyThisSatisfiesMultiple": {
+    "message": "为什么这能同时满足多项法规"
+  },
+  "compliance.sessionScopedConsent.body.theReasonASingle": {
+    "message": "单一模型之所以能同时满足GDPR、欧盟《数据法案》和加州SB-1394，是因为它们都可以归结为同一个原语：授权、限定范围、撤销和证明。一揽子同意系统必须分别补上这几项能力，再设法让它们相互协调；而会话模型只要授予访问权限，就会自然产生这四项能力。所谓同意{em}，而不是一层附加政策，指的正是这一点。"
+  },
+  "compliance.sessionScopedConsent.body.structurallyPartOfThe": {
+    "message": "在结构上就是会话创建原语的一部分"
+  },
+  "compliance.sessionScopedConsent.body.forTheTechnicalImplementation": {
+    "message": "关于撤销的具体技术实现（它直接对应SB-1394“可由车主撤销”的要求），请参见{link}。关于这些会话所属的更全面模型，请参见{link2}；开发者可以从{link3}入手。"
+  },
+  "compliance.sessionScopedConsent.body.auditReadyVehicleAccess": {
+    "message": "可随时审计的车辆访问"
+  },
+  "compliance.sessionScopedConsent.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "compliance.sessionScopedConsent.body.consentProduct": {
+    "message": "Consent产品"
+  },
+  "compliance.sessionScopedConsent.body.related": {
+    "message": "相关内容：{link} · {link2}"
+  },
+  "compliance.sessionScopedConsent.body.allComplianceTopics": {
+    "message": "所有合规主题"
+  },
+  "compliance.sessionScopedConsent.body.thisPageIsEducational": {
+    "message": "本页内容仅供学习参考，不构成法律建议。"
+  },
+  "compliance.vehicleAccessAuditTrail.meta.title": {
+    "message": "可验证的车辆访问审计追踪（SB-1394、UNECE R155） | DIMO"
+  },
+  "compliance.vehicleAccessAuditTrail.meta.description": {
+    "message": "可撤销、经过签名、带时间戳的车辆访问记录，满足加州SB-1394和UNECE R155的要求——还能为保险公司处理纠纷和核保提供可验证的记录。"
+  },
+  "compliance.vehicleAccessAuditTrail.meta.h1": {
+    "message": "可随时审计的车辆访问：谁在驾驶、能做什么、何时结束"
+  },
+  "compliance.vehicleAccessAuditTrail.body.home.name": {
+    "message": "首页"
+  },
+  "compliance.vehicleAccessAuditTrail.body.compliance.name": {
+    "message": "合规"
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditTrails.name": {
+    "message": "审计追踪"
+  },
+  "compliance.vehicleAccessAuditTrail.body.complianceAudit": {
+    "message": "合规 · 审计"
+  },
+  "compliance.vehicleAccessAuditTrail.body.newRulesRequireVehicle": {
+    "message": "新规要求车辆访问可撤销、可审计。会话模型会自动生成这样的记录——而保险公司理赔所需要的，正是同一份记录。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.aVehicleAccessAudit": {
+    "message": "车辆访问审计追踪是一份可验证的记录，载明谁获得了车辆的访问权限、被允许做什么，以及该访问权限具体在何时结束。如今有两项法规让它从可选项变成了必选项：{strong}要求车辆访问控制可由车主撤销，{strong2}要求车辆访问系统可审计。会话模型在每次授予和撤销访问权限时，都会生成一份经过签名、带时间戳的记录，从而同时满足这两项要求。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.californiaSb1394": {
+    "message": "加州SB-1394"
+  },
+  "compliance.vehicleAccessAuditTrail.body.uneceR155R156": {
+    "message": "UNECE R155/R156"
+  },
+  "compliance.vehicleAccessAuditTrail.body.whatTheRulesRequire": {
+    "message": "法规要求什么"
+  },
+  "compliance.vehicleAccessAuditTrail.body.signedIn2024And": {
+    "message": "SB-1394于2024年签署、2025年生效，要求网联汽车的访问控制必须{strong}。其立法意图是保护消费者，尤其是防范跟踪和遗留访问，但对工程的影响非常具体：必须有一个真正的“关闭”开关，而且一旦关闭，访问必须真正停止。会话撤销正是这一要求的技术实现。结束一个会话，就会同时撤回其中包含的所有权限。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.revocableByTheVehicle": {
+    "message": "可由车主撤销"
+  },
+  "compliance.vehicleAccessAuditTrail.body.uneceR155R1562": {
+    "message": "UNECE R155 / R156"
+  },
+  "compliance.vehicleAccessAuditTrail.body.inForceSinceJuly": {
+    "message": "自2024年7月起，R155（网络安全）和R156（软件更新）对新车型生效，要求车辆访问及其变更必须{strong}。一个能够授予访问权限、却无法提供可信记录来说明谁在何时拥有访问权限的系统，是达不到标准的。DIMO会话{strong2}：经过加密签名且可独立验证，因此即使不是记录的生成方，也可以信任这份记录。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditable": {
+    "message": "可审计"
+  },
+  "compliance.vehicleAccessAuditTrail.body.signedTimestampedAndImmutable": {
+    "message": "经过签名、带时间戳且不可篡改"
+  },
+  "compliance.vehicleAccessAuditTrail.body.oneRecordTwoJobs": {
+    "message": "一份记录，两种用途：合规与理赔"
+  },
+  "compliance.vehicleAccessAuditTrail.body.theSameAuditTrail": {
+    "message": "满足监管机构要求的同一份审计追踪，也正是保险公司核保和解决纠纷所需的凭证。商业价值由此凸显。如今，这些数据根本没有流动起来："
+  },
+  "compliance.vehicleAccessAuditTrail.body.despiteTheLowerLoss": {
+    "message": "{strong}，尽管这些数据足以支撑更低的赔付率，主要原因是缺乏一种干净、经过同意且可验证的数据交付方式。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.70OfFleetsDont": {
+    "message": "70%的车队不与保险公司共享车联网数据"
+  },
+  "compliance.vehicleAccessAuditTrail.body.drivenByBatteryUnderwritingUncertainty": {
+    "message": "{strong}，原因在于电池核保存在不确定性，而更完善的单车数据可以直接降低这种不确定性。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.evInsurancePremiumsRun": {
+    "message": "电动汽车保费比燃油车高出约49%"
+  },
+  "compliance.vehicleAccessAuditTrail.body.aVerifiableSessionRecord": {
+    "message": "一份可验证的会话记录就能弥补这一缺口：它以核保人员可以接受的形式，说明谁在驾驶、授权了哪些遥测数据，以及会话何时结束。车队获得更优惠的价格，保险公司获得更准确的风险信号，任何人都不必再信任无法验证的导出数据。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.settlingADisputeWithout": {
+    "message": "解决纠纷，无需取证调查"
+  },
+  "compliance.vehicleAccessAuditTrail.body.considerADamageClaim": {
+    "message": "以租车还车时的车损索赔为例。如果没有会话记录，运营方只能从一个系统调取预订数据，从另一个系统调取车联网数据，从第三个系统调取钥匙事件，再从第四个系统调取充电记录，以此还原事情经过，然后寄希望于这些时间戳足够吻合，能说服理赔员。这个过程很慢，而且还原出的经过是否可信，完全取决于提出主张的运营方。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.withASessionRecord": {
+    "message": "有了会话记录，同样的问题只需一次查询：经过验证的驾驶员、其拥有访问权限的时间段、范围内的遥测数据，以及访问结束的时刻，全部经过签名，理赔员无需单凭运营方的一面之词。纠纷可以依据双方都能独立验证的证据解决，运营方处理得更快，保险公司承担的风险也更低。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.commonQuestions": {
+    "message": "常见问题"
+  },
+  "compliance.vehicleAccessAuditTrail.body.isSignedAndImmutable": {
+    "message": "“经过签名且不可篡改”只是营销说辞吗？"
+  },
+  "compliance.vehicleAccessAuditTrail.body.noItIsThe": {
+    "message": "不是。正是这一特性让记录对第三方有用。供应商可以悄悄修改的日志，在纠纷或审计中几乎毫无价值。而经过加密签名的记录，可以由并非其创建方的一方进行核验，这正是UNECE R155的可审计性要求和保险公司的举证需求所要求的。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.doesThisConflictWith": {
+    "message": "这会与驾驶员隐私相冲突吗？"
+  },
+  "compliance.vehicleAccessAuditTrail.body.theOppositeTheSame": {
+    "message": "恰恰相反。生成审计追踪的同一个会话，也限定了共享的范围，并在还车时撤销访问权限，因此这份记录所记载的，本就是经过同意且有边界的访问。可审计性与{link}是同一原语的两个方面，而不是此消彼长的取舍。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.sessionScopedConsent": {
+    "message": "会话级同意"
+  },
+  "compliance.vehicleAccessAuditTrail.body.whatAuditReadyAccessLooks": {
+    "message": "可随时审计的访问在实践中是什么样子"
+  },
+  "compliance.vehicleAccessAuditTrail.body.forEveryUseOf": {
+    "message": "每次使用车辆时，会话都会生成一份记录，包含驾驶员经过验证的身份、范围内的数据和功能、支出限额、开始和结束时间以及撤销事件，并经过签名，事后无法篡改。为纠纷提供“谁在驾驶、有哪些遥测数据”，只需一次查询，而不再是横跨五个互不相通的系统的取证工程。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.thisIsTheAuditability": {
+    "message": "这是{link}中关于可审计性的那一半。同意与审计是同一原语的两面。了解它如何融入{link2}这一更全面的模型，以及车队如何在{link3}中加以运用。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "compliance.vehicleAccessAuditTrail.body.fleetIntelligence": {
+    "message": "车队智能"
+  },
+  "compliance.vehicleAccessAuditTrail.body.related": {
+    "message": "相关内容：{link} · {link2}"
+  },
+  "compliance.vehicleAccessAuditTrail.body.theFtcGmOnStarOrder": {
+    "message": "FTC对GM/OnStar的命令"
+  },
+  "compliance.vehicleAccessAuditTrail.body.allComplianceTopics": {
+    "message": "所有合规主题"
+  },
+  "compliance.vehicleAccessAuditTrail.body.thisPageIsEducational": {
+    "message": "本页内容仅供学习参考，不构成法律建议。"
+  },
+  "customerStories.emobi.results.chargingNetworks.label": {
+    "message": "充电网络"
+  },
+  "customerStories.emobi.results.plugCharge.label": {
+    "message": "Plug & Charge"
+  },
+  "customerStories.emobi.results.chargersAccessible.label": {
+    "message": "可用充电桩"
+  },
+  "customerStories.emobi.results.teslaVehiclesSupported.number": {
+    "message": "全部"
+  },
+  "customerStories.emobi.results.teslaVehiclesSupported.label": {
+    "message": "支持的Tesla车辆"
+  },
+  "customerStories.emobi.challenges.automakerDependency.title": {
+    "message": "依赖汽车制造商"
+  },
+  "customerStories.emobi.challenges.automakerDependency.description": {
+    "message": "现有的Plug & Charge方案依赖汽车制造商签发的证书，只有特定车辆才能使用，而且需要与OEM建立成本高昂的合作关系。"
+  },
+  "customerStories.emobi.challenges.limitedVehicleSupport.title": {
+    "message": "支持的车辆有限"
+  },
+  "customerStories.emobi.challenges.limitedVehicleSupport.description": {
+    "message": "拥有多品牌混合车辆和老款电动汽车的车队无法享受Plug & Charge带来的便利，驾驶员不得不使用多个应用和多种支付方式。"
+  },
+  "customerStories.emobi.challenges.complexInfrastructure.title": {
+    "message": "基础设施复杂"
+  },
+  "customerStories.emobi.challenges.complexInfrastructure.description": {
+    "message": "过去，启用Plug & Charge需要固件更新、硬件升级，以及与充电网络进行复杂的集成。"
+  },
+  "customerStories.emobi.solutions.deviceBasedDigitalCertificates.title": {
+    "message": "基于设备的数字证书"
+  },
+  "customerStories.emobi.solutions.deviceBasedDigitalCertificates.description": {
+    "message": "Emobi的JustPlug™技术通过DIMO的OBD-II设备或虚拟接入，直接向车队车辆签发ISO 15118数字证书——无需汽车制造商参与。"
+  },
+  "customerStories.emobi.solutions.deviceBasedDigitalCertificates.result": {
+    "message": "现在，任何车队都能为任何车辆启用Plug & Charge，包括老款电动汽车，无需等待OEM支持。"
+  },
+  "customerStories.emobi.solutions.secureIdentityBridge.title": {
+    "message": "安全的身份桥梁"
+  },
+  "customerStories.emobi.solutions.secureIdentityBridge.description": {
+    "message": "DIMO的设备安全托管电动汽车的数字充电身份，作为Plug & Charge的桥梁，无需对车辆本身做任何改动。"
+  },
+  "customerStories.emobi.solutions.secureIdentityBridge.result": {
+    "message": "车队凭借企业级的安全与合规能力，完全掌控自己的充电凭证。"
+  },
+  "customerStories.emobi.solutions.universalChargingAccess.title": {
+    "message": "通用充电接入"
+  },
+  "customerStories.emobi.solutions.universalChargingAccess.description": {
+    "message": "此次合作将DIMO的车队智能平台与Emobi覆盖美国和加拿大超过140,000个充电桩的接入能力结合在一起。"
+  },
+  "customerStories.emobi.solutions.universalChargingAccess.result": {
+    "message": "无论是新式还是老旧的充电基础设施，驾驶员都能享受无需应用的无缝充电体验。"
+  },
+  "customerStories.emobi.hero.customerStory": {
+    "message": "客户案例"
+  },
+  "customerStories.emobi.hero.andDimoDeliverThe": {
+    "message": "{link}与DIMO推出首款{span}"
+  },
+  "customerStories.emobi.hero.fleetReadyPlugChargeDevice": {
+    "message": "车队级Plug & Charge设备"
+  },
+  "customerStories.emobi.hero.aGroundbreakingPartnershipThat": {
+    "message": "一项开创性的合作，为任何车队车辆带来安全、无缝的ISO 15118 Plug & Charge——无需依赖汽车制造商，无需固件更新，也无需硬件升级。"
+  },
+  "customerStories.emobi.hero.enableYourFleet": {
+    "message": "为您的车队启用"
+  },
+  "customerStories.emobi.hero.readOurDocumentation": {
+    "message": "阅读我们的文档"
+  },
+  "customerStories.emobi.results.theInnovation": {
+    "message": "创新成果"
+  },
+  "customerStories.emobi.challenges.theIndustryChallenge": {
+    "message": "行业挑战"
+  },
+  "customerStories.emobi.challenges.plugChargePromiseVs": {
+    "message": "Plug & Charge：承诺与现实"
+  },
+  "customerStories.emobi.challenges.plugChargeHasLong": {
+    "message": "Plug & Charge早就承诺让电动汽车充电无需应用，但整个行业一直难以大规模落地。成本、复杂性以及由汽车制造商主导的实施方式，让大多数车队始终享受不到这种便利。"
+  },
+  "customerStories.emobi.solutions.theDimoEmobiSolution": {
+    "message": "DIMO + Emobi解决方案"
+  },
+  "customerStories.emobi.solutions.fleetLevelPlugChargeEnablement": {
+    "message": "车队级Plug & Charge启用"
+  },
+  "customerStories.emobi.solutions.byShiftingPlugCharge": {
+    "message": "通过将Plug & Charge的启用权从汽车制造商转移到车队，此次合作让任何车辆的任何驾驶员都能享受安全、基于标准的充电。"
+  },
+  "customerStories.emobi.solutions.impact": {
+    "message": "成效："
+  },
+  "customerStories.emobi.quote.thisPartnershipRepresentsA": {
+    "message": "“此次合作是电动汽车普及进程中的一个重要里程碑。多年来，电动汽车一直被许诺能获得无缝的Plug & Charge体验，却因为行业难以大规模落地而只能一再等待。通过DIMO的设备直接向车队签发ISO 15118数字证书，把控制权交还给了真正该掌握它的人，并让任何车辆从今天起都能使用Plug & Charge功能。”"
+  },
+  "customerStories.emobi.quote.linSunFa": {
+    "message": "Lin Sun Fa"
+  },
+  "customerStories.emobi.quote.ceoEmobi": {
+    "message": "Emobi首席执行官"
+  },
+  "customerStories.emobi.secondQuote.withEmobiWereExtending": {
+    "message": "“携手Emobi，我们正把DIMO推动更智能、更安全出行的使命延伸到车队充电运营中。我们将共同帮助车队少花时间应对复杂的基础设施管理，把更多时间用在让车辆持续上路、交付成果上。”"
+  },
+  "customerStories.emobi.secondQuote.yevgenyKhessin": {
+    "message": "Yevgeny Khessin"
+  },
+  "customerStories.emobi.secondQuote.coFounderDimo": {
+    "message": "DIMO联合创始人"
+  },
+  "customerStories.emobi.howItWorks.connectWithDimo.phase": {
+    "message": "第1步"
+  },
+  "customerStories.emobi.howItWorks.connectWithDimo.title": {
+    "message": "连接DIMO"
+  },
+  "customerStories.emobi.howItWorks.connectWithDimo.description": {
+    "message": "车队使用DIMO经济实惠的OBD-II设备或虚拟接入方式连接车辆，无需昂贵的升级即可获得先进的车辆智能。"
+  },
+  "customerStories.emobi.howItWorks.certificateIssuance.phase": {
+    "message": "第2步"
+  },
+  "customerStories.emobi.howItWorks.certificateIssuance.title": {
+    "message": "签发证书"
+  },
+  "customerStories.emobi.howItWorks.certificateIssuance.description": {
+    "message": "Emobi的JustPlug™通过DIMO的设备，在车队层面签发和管理ISO 15118数字证书——无需汽车制造商参与，也无需固件更新。"
+  },
+  "customerStories.emobi.howItWorks.secureIdentityHosting.phase": {
+    "message": "第3步"
+  },
+  "customerStories.emobi.howItWorks.secureIdentityHosting.title": {
+    "message": "安全托管身份"
+  },
+  "customerStories.emobi.howItWorks.secureIdentityHosting.description": {
+    "message": "DIMO设备或云端安全托管电动汽车的数字充电身份，作为Plug & Charge的桥梁，无需对车辆做任何改动。"
+  },
+  "customerStories.emobi.howItWorks.seamlessCharging.phase": {
+    "message": "第4步"
+  },
+  "customerStories.emobi.howItWorks.seamlessCharging.title": {
+    "message": "无缝充电"
+  },
+  "customerStories.emobi.howItWorks.seamlessCharging.description": {
+    "message": "驾驶员只需在美国和加拿大140,000多个兼容充电桩中的任意一个插上充电枪，认证和支付便会自动完成。"
+  },
+  "customerStories.emobi.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "customerStories.emobi.howItWorks.fromConnectionToCharging": {
+    "message": "从连接到充电"
+  },
+  "customerStories.emobi.howItWorks.aSimpleFourStepProcess": {
+    "message": "简单的四步流程，终于带来车队和驾驶员期待已久的通用Plug & Charge体验。"
+  },
+  "customerStories.emobi.keyTakeaways.firstFleetReadyDevice": {
+    "message": "首款无需汽车制造商参与即可启用安全ISO 15118 Plug & Charge的车队级设备"
+  },
+  "customerStories.emobi.keyTakeaways.worksWithAny": {
+    "message": "适用于所有Tesla车型——通过DIMO的OBD-II设备还可支持更多电动汽车"
+  },
+  "customerStories.emobi.keyTakeaways.noFirmwareUpdates": {
+    "message": "无需固件更新、硬件升级或改动充电基础设施"
+  },
+  "customerStories.emobi.keyTakeaways.accessTo140000": {
+    "message": "通过Emobi的漫游网络，接入美国和加拿大140,000多个充电桩"
+  },
+  "customerStories.emobi.keyTakeaways.fleetLevelCertificateManagement": {
+    "message": "车队级证书管理，把控制权交还给真正该掌握它的车队运营方"
+  },
+  "customerStories.emobi.keyTakeaways.trustedByThe": {
+    "message": "深受美国能源部和交通部信赖"
+  },
+  "customerStories.emobi.keyTakeaways.keyTakeaways": {
+    "message": "要点总结"
+  },
+  "customerStories.emobi.keyTakeaways.whyThisMatters": {
+    "message": "为什么这很重要"
+  },
+  "customerStories.emobi.cta.readyToEnablePlug": {
+    "message": "准备好为您的车队启用Plug & Charge了吗？"
+  },
+  "customerStories.emobi.cta.joinTheFleetsAlready": {
+    "message": "加入已经享受无缝、免应用电动汽车充电的车队行列。立即开始使用DIMO和Emobi的JustPlug™技术。"
+  },
+  "customerStories.emobi.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "customerStories.emobi.cta.readTheDocs": {
+    "message": "阅读文档"
+  },
+  "customerStories.emobi.meta.title": {
+    "message": "Emobi合作案例 | DIMO车队Plug & Charge成功案例"
+  },
+  "customerStories.emobi.meta.description": {
+    "message": "了解Emobi与DIMO如何携手，基于ISO 15118标准推出首款车队级Plug & Charge设备——无需依赖汽车制造商，即可为任何车辆实现无缝电动汽车充电。"
+  },
+  "customerStories.emobi.meta.keywords": {
+    "message": "Emobi, DIMO合作, Plug and Charge, ISO 15118, 车队电动汽车充电, JustPlug, 电动汽车充电, 车队管理"
+  },
+  "customerStories.emobi.meta.ogTitle": {
+    "message": "Emobi + DIMO合作 | 车队Plug & Charge"
+  },
+  "customerStories.emobi.meta.ogDescription": {
+    "message": "Emobi与DIMO如何推出首款车队级Plug & Charge设备：符合ISO 15118标准，兼容任何车辆，可使用14万多个充电桩。"
+  },
+  "customerStories.emobi.schema.emobiAndDimo.headline": {
+    "message": "Emobi与DIMO携手推出首款车队级Plug & Charge设备"
+  },
+  "customerStories.emobi.schema.emobiAndDimo.description": {
+    "message": "此次合作将Emobi的JustPlug™技术与DIMO的车辆智能平台相结合，首次为车队带来安全、无缝的ISO 15118 Plug & Charge。"
+  },
+  "customerStories.emobi.body.home.name": {
+    "message": "首页"
+  },
+  "customerStories.emobi.body.customerStories.name": {
+    "message": "客户案例"
+  },
+  "customerStories.grupoKaufmann.results.oemConnectivityAchieved.label": {
+    "message": "已实现OEM连接"
+  },
+  "customerStories.grupoKaufmann.results.reductionInTheft.label": {
+    "message": "盗窃事件减少"
+  },
+  "customerStories.grupoKaufmann.results.increaseInCustomer.label": {
+    "message": "客户忠诚度提升"
+  },
+  "customerStories.grupoKaufmann.results.realTimeVehicleMonitoring.label": {
+    "message": "实时车辆监控"
+  },
+  "customerStories.grupoKaufmann.challenges.noDataAccess.title": {
+    "message": "无法访问数据"
+  },
+  "customerStories.grupoKaufmann.challenges.noDataAccess.description": {
+    "message": "Grupo Kaufmann无法直接从OEM获取车辆数据，难以通过主动服务或实时洞察有效服务客户。"
+  },
+  "customerStories.grupoKaufmann.challenges.vehicleTheftConcerns.title": {
+    "message": "车辆失窃隐患"
+  },
+  "customerStories.grupoKaufmann.challenges.vehicleTheftConcerns.description": {
+    "message": "由于无法追踪车辆，被盗库存车辆难以定位和追回，造成重大经济损失和保险纠纷。"
+  },
+  "customerStories.grupoKaufmann.challenges.lowEndUserEngagement.title": {
+    "message": "终端用户参与度低"
+  },
+  "customerStories.grupoKaufmann.challenges.lowEndUserEngagement.description": {
+    "message": "由于缺乏数据洞察，售后客户关系难以维护，错失了服务收入和提升客户忠诚度的机会。"
+  },
+  "customerStories.grupoKaufmann.solutions.universalIntegration.title": {
+    "message": "通用集成"
+  },
+  "customerStories.grupoKaufmann.solutions.universalIntegration.description": {
+    "message": "DIMO提供与多个OEM和后装市场数据源的无缝连接，无需逐一进行集成。"
+  },
+  "customerStories.grupoKaufmann.solutions.universalIntegration.result": {
+    "message": "Grupo Kaufmann即刻获得了其多品牌库存车辆的实时遥测数据，涵盖Mercedes-Benz、Maxus和Jetour等品牌。"
+  },
+  "customerStories.grupoKaufmann.solutions.realTimeTheftPrevention.title": {
+    "message": "实时防盗"
+  },
+  "customerStories.grupoKaufmann.solutions.realTimeTheftPrevention.description": {
+    "message": "DIMO提供实时位置追踪和发动机锁止功能，帮助建立车辆监控和即时干预系统，应对未经授权的车辆移动。"
+  },
+  "customerStories.grupoKaufmann.solutions.realTimeTheftPrevention.result": {
+    "message": "Grupo Kaufmann的车辆失窃事件随即减少，事件发生后的追回速度也更快。"
+  },
+  "customerStories.grupoKaufmann.solutions.customPortalAi.title": {
+    "message": "定制门户与AI洞察"
+  },
+  "customerStories.grupoKaufmann.solutions.customPortalAi.description": {
+    "message": "DIMO提供对开发者友好的API和SDK，可构建任何定制门户并内置AI能力，还提供白标移动应用，打造端到端的客户体验。"
+  },
+  "customerStories.grupoKaufmann.solutions.customPortalAi.result": {
+    "message": "Grupo Kaufmann表示，客户参与度提升至3倍，服务周转时间缩短，客户满意度评分也有所提高。"
+  },
+  "customerStories.grupoKaufmann.hero.customerStory": {
+    "message": "客户案例"
+  },
+  "customerStories.grupoKaufmann.hero.transformedTheirDealershipNetwork": {
+    "message": "{link}借助{span}重塑经销商网络"
+  },
+  "customerStories.grupoKaufmann.hero.connectedVehicleIntelligence": {
+    "message": "网联汽车智能"
+  },
+  "customerStories.grupoKaufmann.hero.fromZeroConnectivityTo": {
+    "message": "从零连接到100% OEM覆盖，从实时防盗到客户参与度提升至3倍——看拉丁美洲领先的汽车集团如何彻底革新运营。"
+  },
+  "customerStories.grupoKaufmann.hero.startYourOwnJourney": {
+    "message": "开启您的转型之旅"
+  },
+  "customerStories.grupoKaufmann.hero.readOurDocumentation": {
+    "message": "阅读我们的文档"
+  },
+  "customerStories.grupoKaufmann.results.theOutcome": {
+    "message": "成果"
+  },
+  "customerStories.grupoKaufmann.challenges.theKaufmannStory": {
+    "message": "Kaufmann的故事"
+  },
+  "customerStories.grupoKaufmann.challenges.theChallenges": {
+    "message": "面临的挑战"
+  },
+  "customerStories.grupoKaufmann.challenges.asOneOfLatin": {
+    "message": "作为拉丁美洲最大的汽车集团之一，Grupo Kaufmann面临严峻的运营挑战，无法为其经销商网络和终端客户提供现代化的网联体验。"
+  },
+  "customerStories.grupoKaufmann.solutions.theDimoSolution": {
+    "message": "DIMO解决方案"
+  },
+  "customerStories.grupoKaufmann.solutions.connectedVehicleIntelligence": {
+    "message": "网联汽车智能"
+  },
+  "customerStories.grupoKaufmann.solutions.grupoKaufmannPartneredWith": {
+    "message": "Grupo Kaufmann与DIMO合作，构建了一个全面的网联汽车生态系统，同时解决了全部四大挑战——而且无需应对管理多个OEM集成的复杂性。"
+  },
+  "customerStories.grupoKaufmann.solutions.impact": {
+    "message": "成效："
+  },
+  "customerStories.grupoKaufmann.testimonial.dimoTransformedOurEntire": {
+    "message": "“DIMO改变了我们的整个运营。原本需要我们花费数年时间和数百万美元做定制集成的工作，几周内就部署完成了。现在，我们的经销商能获得实时车辆洞察，客户喜爱网联体验，库存车辆失窃也几乎绝迹。这就是汽车零售的未来。”"
+  },
+  "customerStories.grupoKaufmann.testimonial.maximilianoIpinza": {
+    "message": "Maximiliano Ipinza"
+  },
+  "customerStories.grupoKaufmann.testimonial.headOfDigitalInnovation": {
+    "message": "Grupo Kaufmann数字创新负责人"
+  },
+  "customerStories.grupoKaufmann.implementation.platformSetupIntegration.phase": {
+    "message": "第1周"
+  },
+  "customerStories.grupoKaufmann.implementation.platformSetupIntegration.title": {
+    "message": "平台搭建与集成"
+  },
+  "customerStories.grupoKaufmann.implementation.platformSetupIntegration.description": {
+    "message": "DIMO团队与Grupo Kaufmann的数字化转型部门合作，配置API访问权限、设置身份验证，并建立测试数据流。"
+  },
+  "customerStories.grupoKaufmann.implementation.dealerPortalDevelopment.phase": {
+    "message": "第2周"
+  },
+  "customerStories.grupoKaufmann.implementation.dealerPortalDevelopment.title": {
+    "message": "经销商门户开发"
+  },
+  "customerStories.grupoKaufmann.implementation.dealerPortalDevelopment.description": {
+    "message": "借助DIMO对开发者友好的SDK和详尽的文档，内部团队构建了一个可访问实时车辆数据的定制经销商门户。"
+  },
+  "customerStories.grupoKaufmann.implementation.deviceDeploymentFeature.phase": {
+    "message": "第4周"
+  },
+  "customerStories.grupoKaufmann.implementation.deviceDeploymentFeature.title": {
+    "message": "设备部署与功能上线"
+  },
+  "customerStories.grupoKaufmann.implementation.deviceDeploymentFeature.description": {
+    "message": "在整个经销商网络中部署联网设备，并上线实时追踪和远程诊断等关键功能。"
+  },
+  "customerStories.grupoKaufmann.implementation.customerAppLaunch.phase": {
+    "message": "第8周"
+  },
+  "customerStories.grupoKaufmann.implementation.customerAppLaunch.title": {
+    "message": "客户应用发布"
+  },
+  "customerStories.grupoKaufmann.implementation.customerAppLaunch.description": {
+    "message": "面向终端用户推出西班牙语版客户移动应用，提供网联汽车功能、保养提醒和远程诊断。"
+  },
+  "customerStories.grupoKaufmann.implementation.implementation": {
+    "message": "实施过程"
+  },
+  "customerStories.grupoKaufmann.implementation.8WeekDeploymentTimeline": {
+    "message": "8周部署时间线"
+  },
+  "customerStories.grupoKaufmann.implementation.fromKickoffToFull": {
+    "message": "从项目启动到全面投产仅用两个月——没有漫长的集成，也没有复杂的基础设施建设。"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.singleApiReplaced": {
+    "message": "单一API取代了多个复杂的OEM集成，开发时间缩短90%"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.realTimeTheftMonitoring": {
+    "message": "实时防盗监控和地理围栏消除了80%的库存车辆失窃事件"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.dealersGainedInstant": {
+    "message": "经销商可即时查看车辆诊断和维修记录，服务效率提升50%"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.customerEngagementTripled": {
+    "message": "借助网联汽车功能和主动保养提醒，客户参与度提升至3倍"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.platformScaledSeamlessly": {
+    "message": "平台无缝扩展到多个品牌和车型，无需额外的集成工作"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.privacyFirstArchitectureEnsured": {
+    "message": "隐私优先的架构确保了GDPR合规，并保障客户的数据所有权"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.keyTakeaways": {
+    "message": "要点总结"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.whyThisWorked": {
+    "message": "为什么能够成功"
+  },
+  "customerStories.grupoKaufmann.cta.readyToTransformYour": {
+    "message": "准备好革新您的运营了吗？"
+  },
+  "customerStories.grupoKaufmann.cta.joinGrupoKaufmannAnd": {
+    "message": "与Grupo Kaufmann以及数百家创新企业一起，使用DIMO打造网联汽车体验。立即通过我们的免费开发者套餐开始使用。"
+  },
+  "customerStories.grupoKaufmann.cta.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "customerStories.grupoKaufmann.cta.readTheDocs": {
+    "message": "阅读文档"
+  },
+  "customerStories.grupoKaufmann.meta.title": {
+    "message": "Grupo Kaufmann案例研究 | DIMO网联汽车成功案例"
+  },
+  "customerStories.grupoKaufmann.meta.description": {
+    "message": "了解Grupo Kaufmann如何借助DIMO网联汽车平台实现100% OEM连接、盗窃减少80%、客户参与度提升至3倍。8周即见真实成效。"
+  },
+  "customerStories.grupoKaufmann.meta.keywords": {
+    "message": "Grupo Kaufmann, DIMO案例研究, 网联汽车, 经销商技术, 车辆防盗, OEM集成, 汽车创新"
+  },
+  "customerStories.grupoKaufmann.meta.ogTitle": {
+    "message": "Grupo Kaufmann案例研究 | DIMO成功案例"
+  },
+  "customerStories.grupoKaufmann.meta.ogDescription": {
+    "message": "拉丁美洲领先的汽车集团如何借助DIMO革新运营：100% OEM连接，盗窃减少80%，客户参与度提升至3倍。"
+  },
+  "customerStories.grupoKaufmann.schema.howGrupoKaufmann.headline": {
+    "message": "Grupo Kaufmann如何借助DIMO重塑经销商网络"
+  },
+  "customerStories.grupoKaufmann.schema.howGrupoKaufmann.description": {
+    "message": "案例研究：Grupo Kaufmann借助DIMO网联汽车平台，实现100% OEM连接，车辆失窃减少80%，客户参与度提升至3倍。"
+  },
+  "customerStories.grupoKaufmann.body.home.name": {
+    "message": "首页"
+  },
+  "customerStories.grupoKaufmann.body.customerStories.name": {
+    "message": "客户案例"
+  },
+  "industries.dealerships.meta.industryName": {
+    "message": "汽车经销商"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.type": {
+    "message": "消费者"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.title": {
+    "message": "虚拟服务顾问"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.description": {
+    "message": "部署对话式AI智能体，客户可全天候通过短信或聊天咨询自己车辆的情况，并在需要时预约服务。"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.example": {
+    "message": "“我的发动机故障灯刚亮了，需要担心吗？”"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.type": {
+    "message": "混合"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.title": {
+    "message": "二手车购前检测报告"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.description": {
+    "message": "在线提供全面的车况报告供客户查阅，或在店内由经销商顾问当面讲解，从而建立信任，加快成交。"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.example": {
+    "message": "“给我一份这辆2019款Toyota Camry的完整车况报告”"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.type": {
+    "message": "混合"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.title": {
+    "message": "置换估价助手"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.description": {
+    "message": "为销售团队配备AI智能体，在置换过程中提供有数据支撑的估价，提高透明度，增强客户信心。"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.example": {
+    "message": "智能体分析实时车辆数据，给出准确、有据可依的置换估价。"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.type": {
+    "message": "混合"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.title": {
+    "message": "主动预约智能体"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.description": {
+    "message": "自动检测车辆是否达到保养里程节点、出现故障码或到了定期保养时间，并主动联系客户预约。"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.example": {
+    "message": "“该来做保养啦！我们注意到您的机油更换已经逾期。以下是可预约的时间段……”"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.type": {
+    "message": "车队"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.title": {
+    "message": "售后关系管家"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.description": {
+    "message": "借助智能体监测车辆健康状况并主动推荐服务，与车队客户保持长期关系。"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.example": {
+    "message": "智能体跟踪车队车辆状况，并自动安排预防性保养。"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.type": {
+    "message": "车队"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.title": {
+    "message": "租赁车队管理"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.description": {
+    "message": "借助智能体处理保养排期、使用情况追踪和租期结束检查，简化租赁车辆的车队管理。"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.example": {
+    "message": "车队经理可实时了解整个租赁车队的车辆状况。"
+  },
+  "industries.dealerships.stats.customerAvailability.label": {
+    "message": "随时响应客户"
+  },
+  "industries.dealerships.stats.improvedCustomerEngagement.label": {
+    "message": "客户参与度提升"
+  },
+  "industries.dealerships.stats.fasterServiceBooking.label": {
+    "message": "服务预约更快"
+  },
+  "industries.dealerships.stats.connectedVehicles.label": {
+    "message": "网联汽车"
+  },
+  "industries.dealerships.hero.transformYourDealershipWith": {
+    "message": "借助{span}，重塑您的经销店"
+  },
+  "industries.dealerships.hero.intelligentVehicleAgents": {
+    "message": "车辆AI智能体"
+  },
+  "industries.dealerships.hero.fromVirtualServiceAdvisors": {
+    "message": "从虚拟服务顾问到AI驱动的置换估价，DIMO帮助经销商提供卓越的客户体验，同时简化销售、服务和车队管理等各环节的运营。"
+  },
+  "industries.dealerships.hero.getStarted": {
+    "message": "开始使用"
+  },
+  "industries.dealerships.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "industries.dealerships.useCases.useCases": {
+    "message": "应用场景"
+  },
+  "industries.dealerships.useCases.builtForEveryPart": {
+    "message": "覆盖经销店的每个环节"
+  },
+  "industries.dealerships.useCases.whetherYoureServingIndividual": {
+    "message": "无论您是服务个人客户还是管理企业车队，DIMO的智能体都能灵活适应您的需求，并与您现有的系统无缝集成。"
+  },
+  "industries.dealerships.featureSection1.worksInLatamAnd": {
+    "message": "拉美与美国通用——按您的方式来"
+  },
+  "industries.dealerships.featureSection1.dimoOffersFlexibleDeployment": {
+    "message": "DIMO提供针对您所在市场设计的灵活部署方案。在拉丁美洲，我们支持专业安装的硬件，并提供完整的集成和移动应用体验。在美国，您可以采用我们的BYOD（自带设备）方式快速部署。"
+  },
+  "industries.dealerships.featureSection1.professionalInstallationSupportIn": {
+    "message": "在拉美市场提供专业安装支持"
+  },
+  "industries.dealerships.featureSection1.byodIntegrationForUs": {
+    "message": "为美国经销商提供BYOD集成"
+  },
+  "industries.dealerships.featureSection1.whiteLabelMobileAppOptions": {
+    "message": "提供白标移动应用选项"
+  },
+  "industries.dealerships.featureSection1.fullApiAccessFor": {
+    "message": "提供完整的API访问权限，支持定制集成"
+  },
+  "industries.dealerships.featureSection1.happyDealershipCustomersInteracting": {
+    "message": "经销店顾客与AI智能体愉快互动"
+  },
+  "industries.dealerships.featureSection2.aiAgentsThatKnow": {
+    "message": "懂您客户的AI智能体"
+  },
+  "industries.dealerships.featureSection2.everyVehicleAgentHas": {
+    "message": "每个车辆智能体都内置记忆和情境感知能力，带来如真人般贴心的个性化体验。客户可以即时获得有关其车辆、维修记录和即将到来的保养需求的解答。"
+  },
+  "industries.dealerships.featureSection2.persistentMemoryAcrossAll": {
+    "message": "持久记忆，贯穿每一次客户互动"
+  },
+  "industries.dealerships.featureSection2.realTimeVehicleDiagnosticsAnd": {
+    "message": "实时车辆诊断与车况数据"
+  },
+  "industries.dealerships.featureSection2.seamlessHandoffToHuman": {
+    "message": "必要时无缝转接人工客服"
+  },
+  "industries.dealerships.featureSection2.multiChannelSupportSmsChat": {
+    "message": "多渠道支持：短信、在线聊天、语音"
+  },
+  "industries.dealerships.featureSection2.aiMechanicAssistingCustomer": {
+    "message": "AI技师正在协助客户"
+  },
+  "industries.dealerships.howItWorks.connectYourInventory.title": {
+    "message": "连接您的库存"
+  },
+  "industries.dealerships.howItWorks.connectYourInventory.description": {
+    "message": "将DIMO与您现有的DMS和库存管理系统集成。我们的API兼容所有主流平台。"
+  },
+  "industries.dealerships.howItWorks.deployIntelligentAgents.title": {
+    "message": "部署智能体"
+  },
+  "industries.dealerships.howItWorks.deployIntelligentAgents.description": {
+    "message": "从预置的服务、销售和车队管理智能体模板中任选，或针对您的特定工作流程定制智能体。"
+  },
+  "industries.dealerships.howItWorks.engageCustomersAutomatically.title": {
+    "message": "自动触达客户"
+  },
+  "industries.dealerships.howItWorks.engageCustomersAutomatically.description": {
+    "message": "车辆需要保养时，智能体会主动联系客户，全天候解答问题，助您达成更多交易。"
+  },
+  "industries.dealerships.howItWorks.measureAndOptimize.title": {
+    "message": "衡量与优化"
+  },
+  "industries.dealerships.howItWorks.measureAndOptimize.description": {
+    "message": "通过我们全面的分析仪表盘，追踪智能体表现、客户满意度和营收影响。"
+  },
+  "industries.dealerships.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "industries.dealerships.howItWorks.upAndRunningIn": {
+    "message": "数天即可上线，无需数月"
+  },
+  "industries.dealerships.howItWorks.dimoIntegratesWithYour": {
+    "message": "DIMO与您的现有系统无缝集成，即刻创造价值，无需复杂的实施过程。"
+  },
+  "industries.dealerships.cta.readyToTransformYour": {
+    "message": "准备好变革您的经销店了吗？"
+  },
+  "industries.dealerships.cta.joinForwardThinkingDealershipsAlready": {
+    "message": "加入已在使用DIMO的前瞻型经销商行列，打造卓越的客户体验，创造更多营收。"
+  },
+  "industries.dealerships.cta.startBuildingToday": {
+    "message": "立即开始构建"
+  },
+  "industries.dealerships.cta.contactSales": {
+    "message": "联系销售"
+  },
+  "industries.dealerships.meta.title": {
+    "message": "DIMO经销商解决方案 | 汽车经销商专属车辆智能体"
+  },
+  "industries.dealerships.meta.description": {
+    "message": "借助DIMO的车辆智能体，全面升级您的经销店。虚拟服务顾问、AI以旧换新估价、主动预约服务以及车队管理解决方案。"
+  },
+  "industries.dealerships.meta.keywords": {
+    "message": "经销商软件, 汽车经销商AI, 虚拟服务顾问, 以旧换新估价, 车队管理, 汽车技术, 车辆智能体"
+  },
+  "industries.dealerships.meta.ogTitle": {
+    "message": "DIMO经销商解决方案 | 车辆智能体"
+  },
+  "industries.dealerships.meta.ogDescription": {
+    "message": "部署AI驱动的车辆智能体，覆盖服务、销售和车队管理。全天候客户支持、有数据支撑的估价以及主动的保养预约。"
+  },
+  "industries.dealerships.schema.dimoForDealerships.name": {
+    "message": "DIMO经销商解决方案"
+  },
+  "industries.dealerships.schema.dimoForDealerships.description": {
+    "message": "面向汽车经销商的车辆智能体。虚拟服务顾问、以旧换新估价与车队管理。"
+  },
+  "industries.dealerships.schema.dimoForDealerships.category": {
+    "message": "汽车软件"
+  },
+  "industries.dealerships.schema.audienceType": {
+    "message": "汽车经销商"
+  },
+  "industries.dealerships.body.home.name": {
+    "message": "首页"
+  },
+  "industries.dealerships.body.industries.name": {
+    "message": "行业"
+  },
+  "industries.dealerships.body.dealerships.name": {
+    "message": "汽车经销商"
+  },
+  "industries.dsp.meta.industryName": {
+    "message": "配送服务商"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.type": {
+    "message": "车队"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.title": {
+    "message": "车队运营指挥中心"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.description": {
+    "message": "借助全面的仪表盘实时掌握整个车队的状况，车辆可用性、车况、保养需求和驾驶员状态一目了然。"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.example": {
+    "message": "“列出当前所有可用车辆及其最近一次保养日期。”"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.type": {
+    "message": "车队"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.title": {
+    "message": "预测性维护助手"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.description": {
+    "message": "AI驱动的维护预测，通过分析车辆数据在故障发生前发现问题，减少停运时间和维修成本。"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.example": {
+    "message": "“车辆F-2847出现刹车早期磨损迹象。请在接下来的500英里内安排保养。”"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.type": {
+    "message": "车队"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.title": {
+    "message": "驾驶行为辅导"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.description": {
+    "message": "监测驾驶模式，针对激进驾驶、急刹车等危险行为自动提供辅导和纠正措施。"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.example": {
+    "message": "智能体发送辅导消息：“今日检测到3次急刹车。平稳刹车可延长轮胎寿命，并提升燃油经济性。”"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.type": {
+    "message": "车队"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.title": {
+    "message": "路线表现分析"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.description": {
+    "message": "分析历史路线数据，找出最快、最安全、最高效的配送路线。标记事故率高的路线。"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.example": {
+    "message": "“7A路线的完成时间比7B路线快40%，激进驾驶事件也更少。”"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.type": {
+    "message": "车队"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.title": {
+    "message": "损伤检测与事故响应"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.description": {
+    "message": "自动检测车辆损伤、碰撞和事故。生成报告、触发通知，并协调响应流程。"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.example": {
+    "message": "即时警报：“车辆D-1923于下午2:34检测到碰撞。位置：5th & Main。驾驶员状态：正常。”"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.type": {
+    "message": "车队"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.title": {
+    "message": "实时车队健康仪表盘"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.description": {
+    "message": "在统一视图中监测整个车队的燃油量、胎压、发动机诊断和整体车况。"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.example": {
+    "message": "“5辆车需要关注：2辆燃油不足，2辆胎压警报，1辆发动机故障灯亮起。”"
+  },
+  "industries.dsp.stats.reductionInVehicle.label": {
+    "message": "车辆停运时间减少"
+  },
+  "industries.dsp.stats.fuelCostSavings.label": {
+    "message": "燃油成本节省"
+  },
+  "industries.dsp.stats.sqlQueriesRequired.number": {
+    "message": "零"
+  },
+  "industries.dsp.stats.sqlQueriesRequired.label": {
+    "message": "所需SQL查询"
+  },
+  "industries.dsp.stats.qualityOfLife.label": {
+    "message": "生活质量提升"
+  },
+  "industries.dsp.hero.commandYourFleetWith": {
+    "message": "以{span}掌控您的车队"
+  },
+  "industries.dsp.hero.intelligentOperations": {
+    "message": "智能运营"
+  },
+  "industries.dsp.hero.fromPredictiveMaintenanceTo": {
+    "message": "从预测性维护到驾驶员辅导和路线优化，DIMO为配送服务商提供所需的实时智能，助其最大限度提高车辆出勤率、降低成本，兑现每一个承诺。"
+  },
+  "industries.dsp.hero.getStarted": {
+    "message": "开始使用"
+  },
+  "industries.dsp.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "industries.dsp.useCases.useCases": {
+    "message": "应用场景"
+  },
+  "industries.dsp.useCases.builtForHighPerformanceDelivery": {
+    "message": "专为高效配送运营打造"
+  },
+  "industries.dsp.useCases.dimosFleetIntelligencePlatform": {
+    "message": "DIMO的车队智能平台帮助配送服务商优化运营的方方面面，从车辆健康、驾驶员表现到路线效率。"
+  },
+  "industries.dsp.featureSection1.predictProblemsBeforeThey": {
+    "message": "防患于未然，提前预测问题"
+  },
+  "industries.dsp.featureSection1.dimosPredictiveMaintenanceCopilot": {
+    "message": "DIMO的预测性维护助手持续分析车辆数据，包括发动机诊断、使用模式、环境条件和历史维护记录，在问题造成高昂的故障损失或配送延误之前将其识别出来。"
+  },
+  "industries.dsp.featureSection1.aiPoweredFailurePredictionBased": {
+    "message": "基于真实车辆数据的AI故障预测"
+  },
+  "industries.dsp.featureSection1.automaticMaintenanceSchedulingWhen": {
+    "message": "发现问题时自动安排维护"
+  },
+  "industries.dsp.featureSection1.integrationWithYourExisting": {
+    "message": "与您现有的维护系统集成"
+  },
+  "industries.dsp.featureSection1.reduceEmergencyRepairsAnd": {
+    "message": "减少紧急维修和道路抛锚"
+  },
+  "industries.dsp.featureSection1.mechanicInspectingDeliveryVehicle": {
+    "message": "技师正在检查配送车辆"
+  },
+  "industries.dsp.featureSection2.optimizeRoutesMaximizeDeliveries": {
+    "message": "优化路线，配送更多"
+  },
+  "industries.dsp.featureSection2.goBeyondBasicGps": {
+    "message": "不止于基础GPS追踪。DIMO的路线分析智能深入研究历史表现数据，找出哪些路线最快、问题出在哪里，以及如何优化您的配送网络以实现最高效率。"
+  },
+  "industries.dsp.featureSection2.identifyHighPerformingVsProblem": {
+    "message": "识别高效路线与问题路线"
+  },
+  "industries.dsp.featureSection2.correlateRoutesWithDriver": {
+    "message": "将路线与驾驶行为和事故关联分析"
+  },
+  "industries.dsp.featureSection2.suggestOptimizedAlternativesBased": {
+    "message": "基于真实数据推荐更优方案"
+  },
+  "industries.dsp.featureSection2.trackImprovementsOverTime": {
+    "message": "通过分析持续追踪改进成效"
+  },
+  "industries.dsp.featureSection2.deliveryTrucksOnRoute": {
+    "message": "行驶中的配送卡车"
+  },
+  "industries.dsp.howItWorks.connectYourFleet.title": {
+    "message": "连接您的车队"
+  },
+  "industries.dsp.howItWorks.connectYourFleet.description": {
+    "message": "通过DIMO硬件或原生OEM连接接入您的配送车辆，与现有车队管理工具无缝集成。"
+  },
+  "industries.dsp.howItWorks.configureYourCommand.title": {
+    "message": "配置您的指挥中心"
+  },
+  "industries.dsp.howItWorks.configureYourCommand.description": {
+    "message": "设置实时监控、维护阈值、驾驶员辅导参数，以及为您的运营量身定制的警报。"
+  },
+  "industries.dsp.howItWorks.deployIntelligentAgents.title": {
+    "message": "部署智能体"
+  },
+  "industries.dsp.howItWorks.deployIntelligentAgents.description": {
+    "message": "启用AI驱动的助手，用于维护预测、路线分析、驾驶员辅导和事故响应。"
+  },
+  "industries.dsp.howItWorks.optimizeContinuously.title": {
+    "message": "持续优化"
+  },
+  "industries.dsp.howItWorks.optimizeContinuously.description": {
+    "message": "利用实时数据和分析持续提升车队表现、降低成本，最大限度提高准时交付率。"
+  },
+  "industries.dsp.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "industries.dsp.howItWorks.fromSetupToOptimization": {
+    "message": "数天内完成从部署到优化"
+  },
+  "industries.dsp.howItWorks.dimoIntegratesWithYour": {
+    "message": "DIMO与您的现有系统无缝集成，即刻提供可付诸行动的洞察。"
+  },
+  "industries.dsp.cta.readyToTransformYour": {
+    "message": "准备好变革您的配送运营了吗？"
+  },
+  "industries.dsp.cta.joinLeadingDeliveryService": {
+    "message": "加入领先配送服务商的行列，借助DIMO降低成本、提升可靠性，兑现每一个承诺。"
+  },
+  "industries.dsp.cta.startBuildingToday": {
+    "message": "立即开始构建"
+  },
+  "industries.dsp.cta.contactSales": {
+    "message": "联系销售"
+  },
+  "industries.dsp.meta.title": {
+    "message": "DIMO配送解决方案 | 面向配送服务商的车队智能"
+  },
+  "industries.dsp.meta.description": {
+    "message": "借助DIMO的智能车队平台优化配送运营。预测性维护、驾驶员辅导、路线分析和实时车队监控。"
+  },
+  "industries.dsp.meta.keywords": {
+    "message": "配送车队管理, 预测性维护, 驾驶员辅导, 路线优化, 车队监控, 物流技术, 配送运营"
+  },
+  "industries.dsp.meta.ogTitle": {
+    "message": "DIMO配送解决方案 | 车队智能平台"
+  },
+  "industries.dsp.meta.ogDescription": {
+    "message": "借助AI驱动的预测性维护、驾驶员辅导、路线分析和实时监控，全面掌控您的配送车队。"
+  },
+  "industries.dsp.schema.dimoForDelivery.name": {
+    "message": "DIMO配送解决方案"
+  },
+  "industries.dsp.schema.dimoForDelivery.description": {
+    "message": "面向配送服务商的车队智能平台。预测性维护、驾驶员辅导与路线优化。"
+  },
+  "industries.dsp.schema.dimoForDelivery.category": {
+    "message": "车队管理软件"
+  },
+  "industries.dsp.schema.audienceType": {
+    "message": "配送服务商"
+  },
+  "industries.dsp.body.home.name": {
+    "message": "首页"
+  },
+  "industries.dsp.body.industries.name": {
+    "message": "行业"
+  },
+  "industries.dsp.body.dataServiceProviders.name": {
+    "message": "数据服务商"
+  },
+  "industries.maintenance.meta.industryName": {
+    "message": "汽车维修保养"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.type": {
+    "message": "消费者"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.title": {
+    "message": "客户支持智能体"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.description": {
+    "message": "让客户在到店前分享车辆数据并描述问题。AI智能体会收集详细信息，帮助技师提前准备、更快诊断。"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.example": {
+    "message": "客户：“我刹车时车子有摩擦异响。”智能体：“我看到您的刹车片还剩15%。我来查看您的保养记录，为您安排预约。”"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.type": {
+    "message": "车队"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.title": {
+    "message": "诊断辅助"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.description": {
+    "message": "基于实时车辆数据，为每位技师配备一位随时可请教的资深专家。技师描述症状，智能体即可调取相关OBD数据并给出诊断建议。"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.example": {
+    "message": "“发动机冷启动时缺火。OBD数据显示了什么？”智能体实时分析故障码和传感器数据。"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.type": {
+    "message": "车队"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.title": {
+    "message": "主动客户关怀"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.description": {
+    "message": "根据里程、时间或检测到的问题，自动识别车辆需要保养的客户，主动联系预约。"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.example": {
+    "message": "“John您好，您的2021款Honda已到30,000英里保养时间。您想在本周预约吗？”"
+  },
+  "industries.maintenance.useCases.trainingAssistant.type": {
+    "message": "车队"
+  },
+  "industries.maintenance.useCases.trainingAssistant.title": {
+    "message": "培训助手"
+  },
+  "industries.maintenance.useCases.trainingAssistant.description": {
+    "message": "借助AI培训助手，加速初级技师成长。实时获取车辆数据、维修流程和专家指导，帮助新技师更快上手。"
+  },
+  "industries.maintenance.useCases.trainingAssistant.example": {
+    "message": "初级技师：“这个P0420故障码该怎么诊断？”智能体：“我来一步步带您完成催化转化器效率测试。”"
+  },
+  "industries.maintenance.stats.fasterDiagnosis.label": {
+    "message": "诊断速度提升"
+  },
+  "industries.maintenance.stats.increaseInBookings.label": {
+    "message": "预约量增长"
+  },
+  "industries.maintenance.stats.moreAccurateEstimates.label": {
+    "message": "报价准确度提升"
+  },
+  "industries.maintenance.stats.connectedVehicles.label": {
+    "message": "网联汽车"
+  },
+  "industries.maintenance.hero.superchargeYourShopWith": {
+    "message": "以{span}为您的维修店全面提速"
+  },
+  "industries.maintenance.hero.aiPoweredDiagnostics": {
+    "message": "AI驱动的诊断"
+  },
+  "industries.maintenance.hero.fromCustomerIntakeTo": {
+    "message": "从客户接待到技师培训，DIMO的智能车辆智能体帮助汽车维修店更快诊断、获得更多预约，并培养出技术过硬的技师。"
+  },
+  "industries.maintenance.hero.getStarted": {
+    "message": "开始使用"
+  },
+  "industries.maintenance.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "industries.maintenance.useCases.useCases": {
+    "message": "应用场景"
+  },
+  "industries.maintenance.useCases.builtForModernAutomotive": {
+    "message": "专为现代汽车维修店打造"
+  },
+  "industries.maintenance.useCases.dimosIntelligentAgentsHelp": {
+    "message": "DIMO的智能体帮助汽车维修保养企业改善客户体验、加快诊断速度、提升团队能力，一切都基于真实车辆数据。"
+  },
+  "industries.maintenance.featureSection1.knowWhatsWrongBefore": {
+    "message": "车未到店，故障先知"
+  },
+  "industries.maintenance.featureSection1.dimosCustomerSupportAgent": {
+    "message": "客户刚发现问题时，DIMO的客户支持智能体就会与其沟通。等客户到店时，您已掌握其车辆数据、症状描述和初步诊断，技师可以直接开工。"
+  },
+  "industries.maintenance.featureSection1.customersDescribeIssuesIn": {
+    "message": "客户用日常语言描述问题"
+  },
+  "industries.maintenance.featureSection1.agentAccessesRealTimeVehicle": {
+    "message": "智能体访问实时车辆诊断数据"
+  },
+  "industries.maintenance.featureSection1.preliminaryDiagnosisReadyBefore": {
+    "message": "到店前即完成初步诊断"
+  },
+  "industries.maintenance.featureSection1.partsCanBeOrdered": {
+    "message": "可提前订购配件"
+  },
+  "industries.maintenance.featureSection1.customerIntakeFlow": {
+    "message": "客户接待流程"
+  },
+  "industries.maintenance.featureSection2.aMasterTechnicianIn": {
+    "message": "每个工位都有一位大师级技师"
+  },
+  "industries.maintenance.featureSection2.giveEveryTechnicianFromApprentice": {
+    "message": "让每位技师，从学徒到老手，都能使用AI驱动的诊断助手。智能体可调取实时OBD数据、建议诊断步骤、讲解维修流程，并为复杂问题提供专家指导。"
+  },
+  "industries.maintenance.featureSection2.realTimeAccessToVehicle": {
+    "message": "实时访问车辆传感器数据"
+  },
+  "industries.maintenance.featureSection2.contextAwareDiagnosticSuggestions": {
+    "message": "结合情境的诊断建议"
+  },
+  "industries.maintenance.featureSection2.stepByStepRepairGuidance": {
+    "message": "分步维修指导"
+  },
+  "industries.maintenance.featureSection2.accelerateJuniorTechnicianDevelopment": {
+    "message": "加速初级技师成长"
+  },
+  "industries.maintenance.featureSection2.mechanicUsingDiagnosticsAssistance": {
+    "message": "使用诊断辅助的技师"
+  },
+  "industries.maintenance.howItWorks.connectCustomerVehicles.title": {
+    "message": "连接客户车辆"
+  },
+  "industries.maintenance.howItWorks.connectCustomerVehicles.description": {
+    "message": "客户通过DIMO连接车辆，为您的维修店授予诊断数据的访问权限，并提供完整的同意管理。"
+  },
+  "industries.maintenance.howItWorks.deploySupportAgents.title": {
+    "message": "部署支持智能体"
+  },
+  "industries.maintenance.howItWorks.deploySupportAgents.description": {
+    "message": "设置面向客户的支持智能体，处理咨询、收集症状信息并安排预约。"
+  },
+  "industries.maintenance.howItWorks.empowerYourTechnicians.title": {
+    "message": "赋能您的技师"
+  },
+  "industries.maintenance.howItWorks.empowerYourTechnicians.description": {
+    "message": "让您的团队使用结合实时车辆数据的AI诊断辅助。"
+  },
+  "industries.maintenance.howItWorks.growYourBusiness.title": {
+    "message": "发展您的业务"
+  },
+  "industries.maintenance.howItWorks.growYourBusiness.description": {
+    "message": "通过主动联系与客户保持紧密互动，并自动发现保养服务机会。"
+  },
+  "industries.maintenance.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "industries.maintenance.howItWorks.simpleSetupPowerfulResults": {
+    "message": "设置简单，效果出众"
+  },
+  "industries.maintenance.howItWorks.dimoIntegratesWithYour": {
+    "message": "DIMO与您现有的维修店管理系统集成，从第一天起就创造价值。"
+  },
+  "industries.maintenance.cta.readyToTransformYour": {
+    "message": "准备好变革您的维修店了吗？"
+  },
+  "industries.maintenance.cta.joinForwardThinkingAutomotiveMaintenance": {
+    "message": "加入已在使用DIMO的前瞻型汽车维修店行列，更快诊断、获得更多预约，打造更出色的团队。"
+  },
+  "industries.maintenance.cta.startBuildingToday": {
+    "message": "立即开始构建"
+  },
+  "industries.maintenance.cta.contactSales": {
+    "message": "联系销售"
+  },
+  "industries.maintenance.meta.title": {
+    "message": "DIMO汽车维修保养解决方案 | 面向汽修店的AI诊断"
+  },
+  "industries.maintenance.meta.description": {
+    "message": "借助DIMO的智能诊断，全面升级您的汽修店。客户支持智能体、技师辅助、主动客户联系和培训工具。"
+  },
+  "industries.maintenance.meta.keywords": {
+    "message": "汽修店软件, 汽车诊断, 技师培训, 维修店管理, 车辆维修, 汽车技术, 技师工具"
+  },
+  "industries.maintenance.meta.ogTitle": {
+    "message": "DIMO汽车维修保养解决方案 | AI驱动的诊断"
+  },
+  "industries.maintenance.meta.ogDescription": {
+    "message": "借助基于真实车辆数据的AI诊断辅助、客户支持智能体和技师培训工具，为您的维修店全面提速。"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.name": {
+    "message": "DIMO汽车维修保养解决方案"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.description": {
+    "message": "面向汽车维修保养店的AI诊断与客户支持。诊断更快，培训更好，预约更多。"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.category": {
+    "message": "汽车软件"
+  },
+  "industries.maintenance.schema.audienceType": {
+    "message": "汽车维修店"
+  },
+  "industries.maintenance.body.home.name": {
+    "message": "首页"
+  },
+  "industries.maintenance.body.industries.name": {
+    "message": "行业"
+  },
+  "industries.maintenance.body.maintenance.name": {
+    "message": "维修保养"
+  },
+  "industries.oem.meta.industryName": {
+    "message": "汽车OEM"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.type": {
+    "message": "车辆数据平台"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.title": {
+    "message": "统一数据基础设施"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.description": {
+    "message": "实时遥测数据接入、处理、存储与查询接口。无需再为数据结构、API设计、基础设施或技术支持操心。"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.example": {
+    "message": "通过简洁、标准化的接口，让第三方开发者访问您的实时诊断、位置、电池状态等数据。"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.type": {
+    "message": "端到端开发者平台"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.title": {
+    "message": "简单易用的SDK与工具"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.description": {
+    "message": "行业领先、对开发者友好的现代语言SDK。附带可直接用于生产环境的代码示例、开发者控制台和完善的文档。"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.example": {
+    "message": "用令人愉悦的工具和SDK赋能第三方开发者，让他们在几分钟内而非几个月内看到您车辆数据的价值。"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.type": {
+    "message": "安全与隐私"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.title": {
+    "message": "隐私优先架构"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.description": {
+    "message": "以用户同意和数据所有权为核心，并且开源。开箱即符合GDPR和欧盟《数据法案》要求，提供精细的权限控制和可验证凭证。"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.example": {
+    "message": "低责任风险：由车主决定共享哪些数据、何时共享、与谁共享，在您与客户之间建立信任。无供应商锁定。"
+  },
+  "industries.oem.useCases.multiOemCompatibility.type": {
+    "message": "全平台覆盖"
+  },
+  "industries.oem.useCases.multiOemCompatibility.title": {
+    "message": "多OEM兼容"
+  },
+  "industries.oem.useCases.multiOemCompatibility.description": {
+    "message": "已支持50多个汽车品牌，凭借成熟的架构和模式，轻松支持您的品牌。"
+  },
+  "industries.oem.useCases.multiOemCompatibility.example": {
+    "message": "一次构建，处处部署：任何OEM都能以同样出色的体验完成集成。"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.type": {
+    "message": "奖励、支付与变现"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.title": {
+    "message": "可扩展的货币系统"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.description": {
+    "message": "为下一代车辆商务应用打造的稳定币支付与奖励基础设施。企业级架构，专为规模化而设计。"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.example": {
+    "message": "内置支付通道，让您专注于打造出色体验，推动营收增长，提升客户忠诚度与参与度。"
+  },
+  "industries.oem.useCases.aiReady.type": {
+    "message": "AI与机器学习"
+  },
+  "industries.oem.useCases.aiReady.title": {
+    "message": "AI就绪"
+  },
+  "industries.oem.useCases.aiReady.description": {
+    "message": "经过清洗、标准化和情境化处理的车辆数据，可直接用于AI/ML应用。借助DIMO的智能体技能和可通过MCP访问的数据流，构建智能体体验。"
+  },
+  "industries.oem.useCases.aiReady.example": {
+    "message": "AI/ML开发者现在即可访问干净的数据，无需您费心周旋。在AI浪潮中实现数据变现。"
+  },
+  "industries.oem.stats.covesaStandards.label": {
+    "message": "COVESA标准"
+  },
+  "industries.oem.stats.developerSatisfaction.label": {
+    "message": "开发者满意度"
+  },
+  "industries.oem.stats.apiUptime.label": {
+    "message": "API正常运行时间"
+  },
+  "industries.oem.stats.averageLatency.label": {
+    "message": "平均延迟"
+  },
+  "industries.oem.hero.buildTheFutureOf": {
+    "message": "以{span}构建出行的未来"
+  },
+  "industries.oem.hero.oneUnifiedPlatform": {
+    "message": "一个统一平台"
+  },
+  "industries.oem.hero.turnkeyDataInfrastructureHosted": {
+    "message": "交钥匙式数据基础设施，按您的条件托管。借助对开发者友好的SDK、文档、AI集成和工具，让合作伙伴更快交付。不必再担心自己是否具备相应技术。"
+  },
+  "industries.oem.hero.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "industries.oem.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "industries.oem.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "industries.oem.useCases.everythingYouNeedFor": {
+    "message": "车辆商务所需的一切"
+  },
+  "industries.oem.useCases.fromUnifiedApiAccess": {
+    "message": "从统一的API访问到AI就绪的数据流，DIMO提供完整的开发者平台，助您构建面向车辆商务的下一代出行应用。借助DIMO，为您的车辆数据战略全面提速。"
+  },
+  "industries.oem.featureSection1.developerFirstPrivacyFirst": {
+    "message": "开发者优先，隐私优先"
+  },
+  "industries.oem.featureSection1.dimoIsBuiltFrom": {
+    "message": "DIMO从一开始就以开发者和用户为中心而构建。我们的隐私优先架构保障用户同意和数据所有权，对开发者友好的工具让集成简单顺畅，让您专注于建立能够推动营收、忠诚度和参与度的客户关系。"
+  },
+  "industries.oem.featureSection1.openApisSdksAnd": {
+    "message": "开放的API、SDK和全面的开发者工具"
+  },
+  "industries.oem.featureSection1.interactiveDeveloperDocsWith": {
+    "message": "附带代码示例和样板代码的交互式开发者文档"
+  },
+  "industries.oem.featureSection1.consentManagementInA": {
+    "message": "开箱即用的同意管理，由用户掌控自己的数据共享体验"
+  },
+  "industries.oem.featureSection1.dimoSdkCodeExample": {
+    "message": "DIMO SDK代码示例"
+  },
+  "industries.oem.featureSection2.verticallyIntegratedExperience": {
+    "message": "垂直整合的体验"
+  },
+  "industries.oem.featureSection2.youUnderstandAutoBut": {
+    "message": "您懂汽车，我们懂开发者。DIMO处理复杂的技术细节，让您专注于打造好车。我们垂直整合的数据栈让您能为应用开发者提供无缝体验，进而让他们为您的客户提供创新服务。"
+  },
+  "industries.oem.featureSection2.standardizedDataModelsAcross": {
+    "message": "所有OEM采用标准化数据模型，无需再为设计车辆数据战略操心"
+  },
+  "industries.oem.featureSection2.cleanDataForAiMl": {
+    "message": "为AI/ML应用提供带情境的干净数据流，专注打造AI体验，而非AI基础设施"
+  },
+  "industries.oem.featureSection2.autoStablecoinPaymentsFor": {
+    "message": "稳定币自动支付，适用于电动车充电、停车、通行费等场景。轻松实现下一代车辆商务"
+  },
+  "industries.oem.featureSection2.carRentalFleetManagement": {
+    "message": "租车车队管理"
+  },
+  "industries.oem.howItWorks.signUpGet.title": {
+    "message": "注册并获取API密钥"
+  },
+  "industries.oem.howItWorks.signUpGet.description": {
+    "message": "创建您的DIMO开发者账号，即刻获取API凭证。无需等待，无需审批。"
+  },
+  "industries.oem.howItWorks.bringYourOwn.title": {
+    "message": "自带数据"
+  },
+  "industries.oem.howItWorks.bringYourOwn.description": {
+    "message": "通过设置Kafka数据流或同类方案来接入DIMO Ingest。告别数据重新设计、复杂的ETL和数据仓库基础设施。"
+  },
+  "industries.oem.howItWorks.buildScale.title": {
+    "message": "构建与扩展"
+  },
+  "industries.oem.howItWorks.buildScale.description": {
+    "message": "数据流一经打通，开发者平台、API和SDK即可直接使用。依托DIMO，放心扩展至数百万开发者。"
+  },
+  "industries.oem.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "industries.oem.howItWorks.getStartedInMinutes": {
+    "message": "几分钟即可上手"
+  },
+  "industries.oem.howItWorks.simplyBringYourOwn": {
+    "message": "只需将您自己的数据接入DIMO即插即用的基础设施，构建与扩展轻而易举。"
+  },
+  "industries.oem.cta.readyToStartMonetizing": {
+    "message": "准备好开始变现了吗？"
+  },
+  "industries.oem.cta.accessDevelopersBuildingThe": {
+    "message": "立即对接正在为您的车辆构建未来出行的开发者。今天就获取API密钥，为明天谋篇布局。"
+  },
+  "industries.oem.cta.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "industries.oem.cta.readTheDocs": {
+    "message": "阅读文档"
+  },
+  "industries.oem.meta.title": {
+    "message": "DIMO汽车OEM解决方案 | 面向开发者的统一车辆数据平台"
+  },
+  "industries.oem.meta.description": {
+    "message": "借助DIMO的统一API，更快构建车辆应用。通过一个对开发者友好的平台访问50多个汽车品牌的数据。隐私优先、企业级、可直接投入生产。"
+  },
+  "industries.oem.meta.keywords": {
+    "message": "车辆API, 车辆数据集成, 汽车开发者, 车辆数据平台, Tesla API, Ford API, BMW API, 网联汽车平台, 车联网API"
+  },
+  "industries.oem.meta.ogTitle": {
+    "message": "DIMO汽车OEM解决方案 | 统一车辆数据平台"
+  },
+  "industries.oem.meta.ogDescription": {
+    "message": "一个API即可访问50多个品牌的车辆数据。对开发者友好的SDK、隐私优先的架构和企业级基础设施。"
+  },
+  "industries.oem.schema.description": {
+    "message": "统一API平台，可访问50多个品牌的车辆数据。对开发者友好的SDK、隐私优先的架构和企业级基础设施。"
+  },
+  "industries.oem.body.home.name": {
+    "message": "首页"
+  },
+  "industries.oem.body.industries.name": {
+    "message": "行业"
+  },
+  "industries.oem.body.oem.name": {
+    "message": "OEM"
+  },
+  "industries.rentals.meta.industryName": {
+    "message": "租车"
+  },
+  "industries.rentals.useCases.aiConciergeFor.type": {
+    "message": "混合"
+  },
+  "industries.rentals.useCases.aiConciergeFor.title": {
+    "message": "每一单租车都配备AI礼宾"
+  },
+  "industries.rentals.useCases.aiConciergeFor.description": {
+    "message": "为每位租车客户即时创建专属AI礼宾。贴心的智能体帮助客户寻找加油站、充电站和本地推荐，并解答有关所租车辆的问题。"
+  },
+  "industries.rentals.useCases.aiConciergeFor.example": {
+    "message": "“最近的电动车充电站在哪里？”或“我的手机怎么连接蓝牙？”"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.type": {
+    "message": "混合"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.title": {
+    "message": "智能追加销售机会"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.description": {
+    "message": "当油量不足或客户靠近合作伙伴门店时，智能体会及时察觉，自动推送相关优惠和折扣。"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.example": {
+    "message": "“您的油量不足！我们与Shell合作，在前方加油站使用优惠码RENT20，每加仑立减20美分。”"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.type": {
+    "message": "车队"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.title": {
+    "message": "实时问题监控"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.description": {
+    "message": "监控整个车队的激进驾驶、超速、违反地理围栏和碰撞事件。问题一出现即刻收到警报。"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.example": {
+    "message": "“列出车辆XYZ-1234本周所有的激进驾驶事件。”"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.type": {
+    "message": "车队"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.title": {
+    "message": "地理围栏与安全警报"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.description": {
+    "message": "设置自定义地理围栏，车辆驶出许可区域时立即收到通知。实时追踪碰撞检测和安全事件。"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.example": {
+    "message": "自动警报：“车辆#A2847已于下午3:42驶出许可的租赁区域。”"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.type": {
+    "message": "车队"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.title": {
+    "message": "自动化还车检查"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.description": {
+    "message": "借助AI驱动的检查流程简化还车手续。自动记录车况、标记问题并生成报告。"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.example": {
+    "message": "智能体引导员工逐项完成检查清单，并自动记录任何损伤或隐患。"
+  },
+  "industries.rentals.useCases.rentalDueReminders.type": {
+    "message": "混合"
+  },
+  "industries.rentals.useCases.rentalDueReminders.title": {
+    "message": "租期到期提醒"
+  },
+  "industries.rentals.useCases.rentalDueReminders.description": {
+    "message": "智能体会在租期即将到期时主动提醒客户、建议续租，并协助顺利还车。"
+  },
+  "industries.rentals.useCases.rentalDueReminders.example": {
+    "message": "“您的租车将在2小时后到期。需要续租吗？回复YES即可以$45再续一天。”"
+  },
+  "industries.rentals.stats.perVehiclePer.label": {
+    "message": "每辆车每月"
+  },
+  "industries.rentals.stats.vehicleBrands.label": {
+    "message": "汽车品牌"
+  },
+  "industries.rentals.stats.customerSupport.label": {
+    "message": "客户支持"
+  },
+  "industries.rentals.stats.connectedVehicles.label": {
+    "message": "网联汽车"
+  },
+  "industries.rentals.hero.runUnmannedMixedFleetRental": {
+    "message": "运营无人值守的混合车队租赁——{span}"
+  },
+  "industries.rentals.hero.keysDataAndSpend": {
+    "message": "钥匙、数据与支出一站式管理"
+  },
+  "industries.rentals.hero.stopTogglingFiveTools": {
+    "message": "不必再在五个工具之间来回切换，只为回答“这辆车现在在谁手上、花了多少钱”。一个{link}即可统管您混合车队的身份、数字钥匙、数据和支出，并从设计上确保始终{link2}。"
+  },
+  "industries.rentals.hero.vehicleSession": {
+    "message": "车辆会话"
+  },
+  "industries.rentals.hero.consentCompliant": {
+    "message": "符合用户同意规范"
+  },
+  "industries.rentals.hero.getStarted": {
+    "message": "开始使用"
+  },
+  "industries.rentals.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "industries.rentals.useCases.useCases": {
+    "message": "应用场景"
+  },
+  "industries.rentals.useCases.smartSolutionsForModern": {
+    "message": "面向现代租车业务的智能解决方案"
+  },
+  "industries.rentals.useCases.dimosIntelligentAgentsWork": {
+    "message": "DIMO的智能体全天候工作，从取车到还车，全程提升客户体验、保护您的车队并简化运营。"
+  },
+  "industries.rentals.featureSection1.aPersonalConciergeFor": {
+    "message": "为每位客户配备专属礼宾"
+  },
+  "industries.rentals.featureSection1.theMomentACustomer": {
+    "message": "客户取车的那一刻，DIMO就会为其创建一位专属AI礼宾。这位智能体熟悉车辆、了解当地情况，随时提供各种帮助，从寻找最近的加油站到排查车载信息娱乐系统故障，无所不能。"
+  },
+  "industries.rentals.featureSection1.instantAnswersToVehicleSpecific": {
+    "message": "即时解答车辆相关问题"
+  },
+  "industries.rentals.featureSection1.localRecommendationsAndNavigation": {
+    "message": "本地推荐与导航协助"
+  },
+  "industries.rentals.featureSection1.partnerOffersAndUpsell": {
+    "message": "合作伙伴优惠与追加销售机会"
+  },
+  "industries.rentals.featureSection1.seamlessExtensionAndReturn": {
+    "message": "无缝协调续租与还车"
+  },
+  "industries.rentals.featureSection1.aiConciergeChat": {
+    "message": "AI礼宾对话"
+  },
+  "industries.rentals.featureSection2.protectYourFleetIn": {
+    "message": "实时保护您的车队"
+  },
+  "industries.rentals.featureSection2.knowExactlyWhatsHappening": {
+    "message": "每时每刻准确掌握车队中每辆车的动态。DIMO持续监测激进驾驶、超速、违反地理围栏和潜在事故，一旦有情况需要处理，立即向您发出警报。"
+  },
+  "industries.rentals.featureSection2.realTimeSpeedAndDriving": {
+    "message": "实时监测车速与驾驶行为"
+  },
+  "industries.rentals.featureSection2.customGeofenceZonesWith": {
+    "message": "自定义地理围栏区域，即时警报"
+  },
+  "industries.rentals.featureSection2.crashDetectionAndAutomatic": {
+    "message": "碰撞检测与事故自动上报"
+  },
+  "industries.rentals.featureSection2.historicalDataForDispute": {
+    "message": "历史数据助力纠纷处理"
+  },
+  "industries.rentals.featureSection2.fleetMonitoringDashboard": {
+    "message": "车队监控仪表盘"
+  },
+  "industries.rentals.howItWorks.connectYourFleet.title": {
+    "message": "连接您的车队"
+  },
+  "industries.rentals.howItWorks.connectYourFleet.description": {
+    "message": "将DIMO与您的车队管理系统集成，并通过我们的硬件或原生OEM连接接入车辆。"
+  },
+  "industries.rentals.howItWorks.configureIntelligentAgents.title": {
+    "message": "配置智能体"
+  },
+  "industries.rentals.howItWorks.configureIntelligentAgents.description": {
+    "message": "设置AI礼宾、监控规则、地理围栏和自动化流程，为您的运营量身定制。"
+  },
+  "industries.rentals.howItWorks.delightEveryCustomer.title": {
+    "message": "让每位客户都满意"
+  },
+  "industries.rentals.howItWorks.delightEveryCustomer.description": {
+    "message": "每一单租车都会自动配备个性化AI礼宾，在整个行程中为客户提供帮助。"
+  },
+  "industries.rentals.howItWorks.monitorAndOptimize.title": {
+    "message": "监控与优化"
+  },
+  "industries.rentals.howItWorks.monitorAndOptimize.description": {
+    "message": "通过仪表盘实时追踪车队健康、客户满意度和运营指标。"
+  },
+  "industries.rentals.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "industries.rentals.howItWorks.seamlessIntegrationInstantValue": {
+    "message": "无缝集成，即刻见效"
+  },
+  "industries.rentals.howItWorks.dimoWorksWithYour": {
+    "message": "DIMO与您现有的车队管理基础设施协同工作，从第一天起就创造价值。"
+  },
+  "industries.rentals.cta.readyToModernizeYour": {
+    "message": "准备好让您的租车运营焕然一新了吗？"
+  },
+  "industries.rentals.cta.joinInnovativeRentalCompanies": {
+    "message": "加入创新租车公司的行列，借助DIMO打造卓越体验，守护车队安全。"
+  },
+  "industries.rentals.cta.startBuildingToday": {
+    "message": "立即开始构建"
+  },
+  "industries.rentals.cta.contactSales": {
+    "message": "联系销售"
+  },
+  "industries.rentals.meta.title": {
+    "message": "无人值守混合车队租赁运营软件 | DIMO"
+  },
+  "industries.rentals.meta.description": {
+    "message": "在一个仪表盘中运营Tesla、Ford、GM等50多个品牌的租赁车辆。签发数字钥匙、限定数据范围、设置支出上限，并在还车时撤销权限，全程无需现场人员。"
+  },
+  "industries.rentals.meta.keywords": {
+    "message": "租车软件, 车队管理, AI礼宾, 租赁车队监控, 地理围栏, 车辆追踪, 租车技术"
+  },
+  "industries.rentals.meta.ogTitle": {
+    "message": "无人值守混合车队租赁运营软件 | DIMO"
+  },
+  "industries.rentals.meta.ogDescription": {
+    "message": "为每一单租车部署AI礼宾，实时监控车队，并借助智能自动化简化运营。"
+  },
+  "industries.rentals.schema.dimoForRentals.name": {
+    "message": "DIMO租车解决方案"
+  },
+  "industries.rentals.schema.dimoForRentals.description": {
+    "message": "面向租车公司的AI驱动车队智能。客户礼宾、车队监控和自动化运营。"
+  },
+  "industries.rentals.schema.dimoForRentals.category": {
+    "message": "车队管理软件"
+  },
+  "industries.rentals.schema.audienceType": {
+    "message": "租车公司"
+  },
+  "industries.rentals.body.home.name": {
+    "message": "首页"
+  },
+  "industries.rentals.body.industries.name": {
+    "message": "行业"
+  },
+  "industries.rentals.body.rentals.name": {
+    "message": "租车"
+  },
+  "products.access.meta.productName": {
+    "message": "Access"
+  },
+  "products.access.features.easyAccessControl.type": {
+    "message": "身份验证"
+  },
+  "products.access.features.easyAccessControl.title": {
+    "message": "借助Developer Console轻松管理访问"
+  },
+  "products.access.features.easyAccessControl.description": {
+    "message": "通过简单易用的界面，轻松管理应用权限和车辆访问权限。"
+  },
+  "products.access.features.easyAccessControl.example": {
+    "message": "一站式平台，界面直观，配备先进的安全功能，用于管理应用访问。"
+  },
+  "products.access.features.unifiedDataAiFirst.type": {
+    "message": "API与SDK"
+  },
+  "products.access.features.unifiedDataAiFirst.title": {
+    "message": "统一数据与AI优先的API"
+  },
+  "products.access.features.unifiedDataAiFirst.description": {
+    "message": "通过简洁、文档完善的API和SDK访问所有车辆数据。支持多种编程语言，亲眼见证智能体AI的实际价值。"
+  },
+  "products.access.features.unifiedDataAiFirst.example": {
+    "message": "向AI智能体询问车况，让智能体替您采取行动：联系技师、预约保养、查找并购买配件。"
+  },
+  "products.access.features.webhooksEventsTrips.type": {
+    "message": "实时"
+  },
+  "products.access.features.webhooksEventsTrips.title": {
+    "message": "Webhook、事件、行程"
+  },
+  "products.access.features.webhooksEventsTrips.description": {
+    "message": "车辆数据一有变化即刻通知。实时的Webhook、事件和行程数据，助您构建事件驱动型应用。"
+  },
+  "products.access.features.webhooksEventsTrips.example": {
+    "message": "车辆进入地理围栏时接收通知，查询急刹车事件，并分析行程。"
+  },
+  "products.access.hero.accessVehicleDataWith": {
+    "message": "轻松访问车辆数据"
+  },
+  "products.access.hero.cleanFastEasyToUseApis": {
+    "message": "简洁、快速、易用的API与SDK，助您轻松访问车辆数据。借助AI智能体与车队进行对话式交互，创造切实成果。"
+  },
+  "products.access.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "products.access.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.access.features.productFeatures": {
+    "message": "产品功能"
+  },
+  "products.access.features.developerFirstApiPlatform": {
+    "message": "开发者优先的API平台"
+  },
+  "products.access.features.builtByDevelopersFor": {
+    "message": "由开发者打造，为开发者服务。简洁的API、全面的SDK，以及真正有用的文档。"
+  },
+  "products.access.cta.readyToAccessVehicle": {
+    "message": "准备好访问车辆数据了吗？"
+  },
+  "products.access.cta.getYourApiKeys": {
+    "message": "获取API密钥，几分钟内即可开始构建。全面的SDK覆盖所有主流编程语言，与我们的REST和GraphQL API无缝配合。"
+  },
+  "products.access.cta.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "products.access.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.access.meta.title": {
+    "message": "Access | DIMO车辆数据API"
+  },
+  "products.access.meta.description": {
+    "message": "快速、可靠的车辆数据访问API。REST、GraphQL、Webhook和流式传输，全球边缘部署。"
+  },
+  "products.access.meta.keywords": {
+    "message": "车辆API, REST API, GraphQL API, Webhook, 实时数据, 车辆遥测API"
+  },
+  "products.access.meta.ogTitle": {
+    "message": "Access | DIMO平台"
+  },
+  "products.access.meta.ogDescription": {
+    "message": "开发者优先的车辆数据API平台，全球边缘部署。"
+  },
+  "products.access.schema.description": {
+    "message": "简洁、快速的API和SDK（REST、GraphQL、Webhook、流式传输），可访问50多个网联品牌的实时和历史车辆数据。"
+  },
+  "products.access.body.home.name": {
+    "message": "首页"
+  },
+  "products.access.body.products.name": {
+    "message": "产品"
+  },
+  "products.access.body.access.name": {
+    "message": "Access"
+  },
+  "products.components.meta.productName": {
+    "message": "Components"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.type": {
+    "message": "钱包"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.title": {
+    "message": "自托管的车辆身份"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.description": {
+    "message": "DIMO Wallet为车主在DIMO网络上提供自托管身份，用于签署交易、管理权限和持有数字资产。"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.example": {
+    "message": "基于通行密钥的身份验证，无需助记词。签署SACD权限授予，并持有数字身份和可验证凭证。"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.type": {
+    "message": "数字钥匙（CCC）"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.title": {
+    "message": "手机即钥匙，轻松用车"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.description": {
+    "message": "数字钥匙让智能手机无需实体钥匙即可锁车、解锁和启动车辆，并与DIMO的身份和权限层深度集成。"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.example": {
+    "message": "基于NFC和BLE的访问。支持限时或按权限范围共享钥匙，并与车辆的可验证身份绑定，便于审计。"
+  },
+  "products.components.components.autonomousVehicleIntelligence.type": {
+    "message": "智能体"
+  },
+  "products.components.components.autonomousVehicleIntelligence.title": {
+    "message": "自主车辆智能"
+  },
+  "products.components.components.autonomousVehicleIntelligence.description": {
+    "message": "构建能够理解车辆数据、采取行动并自动化工作流程的AI智能体，从安排保养到监测车队健康，一应俱全。"
+  },
+  "products.components.components.autonomousVehicleIntelligence.example": {
+    "message": "创建能够响应车辆事件、预约服务、支付服务费用、提醒驾驶员，并与您现有业务系统集成的智能体。立即开始为自动驾驶车辆创建智能体会话。"
+  },
+  "products.components.components.everythingYouNeed.type": {
+    "message": "开发者工具"
+  },
+  "products.components.components.everythingYouNeed.title": {
+    "message": "构建所需的一切"
+  },
+  "products.components.components.everythingYouNeed.description": {
+    "message": "DIMO提供全套开发者工具，包括SDK、开发者控制台、API和AI原生集成，助您快速从零走向生产环境。"
+  },
+  "products.components.components.everythingYouNeed.example": {
+    "message": "客户端与服务端SDK、面向AI智能体的MCP服务器、Webhook、GraphQL Playground，以及用于管理许可证和权限的Developer Console。"
+  },
+  "products.components.hero.theBuildingBlocksOf": {
+    "message": "{span}的基石"
+  },
+  "products.components.hero.vehicleOwnership": {
+    "message": "车辆所有权"
+  },
+  "products.components.hero.walletsDigitalKeyAgents": {
+    "message": "钱包、数字钥匙、智能体和开发者工具：驱动DIMO网络的核心组件。"
+  },
+  "products.components.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "products.components.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.components.components.coreComponents": {
+    "message": "核心组件"
+  },
+  "products.components.components.everythingThatMakesDimo": {
+    "message": "DIMO运转的一切基础"
+  },
+  "products.components.components.fourFoundationalComponentsThat": {
+    "message": "四大基础组件协同工作，实现安全的车辆连接、所有权和数据访问。"
+  },
+  "products.components.vehicleSimulator.startYourEngines": {
+    "message": "发动引擎"
+  },
+  "products.components.vehicleSimulator.vehicleSimulator": {
+    "message": "车辆模拟器"
+  },
+  "products.components.vehicleSimulator.buildAndTestVehicleConnected": {
+    "message": "无需实体车辆，即可构建和测试车联应用。DIMO车辆模拟器让您生成逼真的车辆遥测数据、触发事件，并在完全受控的环境中端到端验证您的集成。"
+  },
+  "products.components.vehicleSimulator.simulateRealTimeTelemetrySignals": {
+    "message": "模拟实时遥测信号，包括车速、位置、电池、发动机数据等"
+  },
+  "products.components.vehicleSimulator.triggerVehicleEventsTo": {
+    "message": "触发车辆事件，测试Webhook、警报和智能体工作流"
+  },
+  "products.components.vehicleSimulator.worksWithAllDimo": {
+    "message": "兼容所有DIMO API和SDK，无需任何硬件"
+  },
+  "products.components.vehicleSimulator.accelerateDevelopmentCyclesAnd": {
+    "message": "加快整个团队的开发周期和质量保证"
+  },
+  "products.components.vehicleSimulator.openConsole": {
+    "message": "打开控制台"
+  },
+  "products.components.vehicleSimulator.readTheDocs": {
+    "message": "阅读文档"
+  },
+  "products.components.cta.readyToBuildOn": {
+    "message": "准备好基于DIMO构建了吗？"
+  },
+  "products.components.cta.integrateVehicleConnectivityIdentity": {
+    "message": "借助DIMO的开放平台，将车辆连接、身份和数据访问集成到您的应用中。"
+  },
+  "products.components.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "products.components.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.components.meta.title": {
+    "message": "Components | DIMO平台"
+  },
+  "products.components.meta.description": {
+    "message": "DIMO网络的核心组件：钱包、数字钥匙、智能体和开发者工具。"
+  },
+  "products.components.meta.keywords": {
+    "message": "DIMO钱包, 开发者工具, 车联网设备, 数字钥匙, 可验证身份, AI智能体, 数字身份, 车辆连接"
+  },
+  "products.components.meta.ogTitle": {
+    "message": "Components | DIMO平台"
+  },
+  "products.components.meta.ogDescription": {
+    "message": "DIMO网络上车辆所有权的基石。"
+  },
+  "products.components.schema.description": {
+    "message": "适用于DIMO的可嵌入UI组件：即插即用的同意流程、Login with DIMO和车辆连接组件。"
+  },
+  "products.components.body.home.name": {
+    "message": "首页"
+  },
+  "products.components.body.products.name": {
+    "message": "产品"
+  },
+  "products.components.body.components.name": {
+    "message": "Components"
+  },
+  "products.consent.meta.productName": {
+    "message": "Consent"
+  },
+  "products.consent.features.granularPermissionScopes.type": {
+    "message": "用户掌控"
+  },
+  "products.consent.features.granularPermissionScopes.title": {
+    "message": "精细的权限范围"
+  },
+  "products.consent.features.granularPermissionScopes.description": {
+    "message": "用户可针对特定数据类型和操作授予访问权限。位置、诊断、指令，每项权限都可单独控制、随时撤销。"
+  },
+  "products.consent.features.granularPermissionScopes.example": {
+    "message": "通过Login with DIMO授予、撤销或延长权限，让用户轻松管理同意偏好。"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.type": {
+    "message": "验证"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.title": {
+    "message": "经加密验证的同意"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.description": {
+    "message": "每一次同意授权都会记录为经过加密签名、可独立验证的条目，形成不可篡改的审计记录。以密码学级别的确定性证明合规。"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.example": {
+    "message": "为审计人员和监管机构即时验证同意状态。"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.type": {
+    "message": "合规"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.title": {
+    "message": "内置合规能力"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.description": {
+    "message": "开箱即符合GDPR和欧盟《数据法案》要求。自动处理数据主体请求、删除权和撤回同意。"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.example": {
+    "message": "一键为任意用户导出和删除GDPR数据，全程自动化。"
+  },
+  "products.consent.hero.userControlledData": {
+    "message": "用户自主掌控的数据{span}"
+  },
+  "products.consent.hero.consent": {
+    "message": "授权同意"
+  },
+  "products.consent.hero.giveUsersCompleteControl": {
+    "message": "让用户全面掌控自己的车辆数据。经加密验证的同意管理，内置合规能力。"
+  },
+  "products.consent.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "products.consent.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.consent.features.productFeatures": {
+    "message": "产品功能"
+  },
+  "products.consent.features.privacyFirstConsentManagement": {
+    "message": "隐私优先的同意管理"
+  },
+  "products.consent.features.buildUserTrustWith": {
+    "message": "以透明、可验证的同意赢得用户信任。在满足监管要求的同时，打造无缝的用户体验。"
+  },
+  "products.consent.cta.readyToBuildTrust": {
+    "message": "准备好赢得用户信任了吗？"
+  },
+  "products.consent.cta.implementConsentManagementThat": {
+    "message": "部署用户信赖、监管认可的同意管理。立即开始使用Login with DIMO。"
+  },
+  "products.consent.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "products.consent.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.consent.meta.title": {
+    "message": "Consent | DIMO用户同意管理"
+  },
+  "products.consent.meta.description": {
+    "message": "由用户掌控的车辆数据同意管理，具备加密验证和内置合规能力。支持GDPR、CCPA和欧盟《数据法案》。"
+  },
+  "products.consent.meta.keywords": {
+    "message": "同意管理, GDPR合规, OAuth 2.0, Login with DIMO, 数据隐私, 加密验证"
+  },
+  "products.consent.meta.ogTitle": {
+    "message": "Consent | DIMO平台"
+  },
+  "products.consent.meta.ogDescription": {
+    "message": "隐私优先的同意管理，具备加密验证和合规能力。"
+  },
+  "products.consent.schema.description": {
+    "message": "保护隐私、由用户自主拥有的车辆数据同意管理：会话级权限，支持原子化授予与撤销（SACD）。"
+  },
+  "products.consent.body.home.name": {
+    "message": "首页"
+  },
+  "products.consent.body.products.name": {
+    "message": "产品"
+  },
+  "products.consent.body.consent.name": {
+    "message": "Consent"
+  },
+  "products.ingest.meta.productName": {
+    "message": "Ingest"
+  },
+  "products.ingest.features.realTimeStreaming.type": {
+    "message": "性能"
+  },
+  "products.ingest.features.realTimeStreaming.title": {
+    "message": "实时流式传输"
+  },
+  "products.ingest.features.realTimeStreaming.description": {
+    "message": "亚秒级延迟的数据流式传输，满足关键任务应用需求。每秒处理数百万个数据点，确保数据送达。"
+  },
+  "products.ingest.features.smartDataNormalization.type": {
+    "message": "处理"
+  },
+  "products.ingest.features.smartDataNormalization.title": {
+    "message": "智能数据标准化"
+  },
+  "products.ingest.features.smartDataNormalization.description": {
+    "message": "自动将不同来源的数据标准化为统一架构。来自Tesla和GM的车辆数据均按同一COVESA标准格式进行标准化。"
+  },
+  "products.ingest.features.enterpriseGradeReliability.type": {
+    "message": "可靠性"
+  },
+  "products.ingest.features.enterpriseGradeReliability.title": {
+    "message": "企业级可靠性"
+  },
+  "products.ingest.features.enterpriseGradeReliability.description": {
+    "message": "内置冗余、自动故障转移和数据完整性校验。依托持久化消息队列架构，绝不丢失任何数据点。"
+  },
+  "products.ingest.hero.collectVehicleDataFrom": {
+    "message": "从{span}采集车辆数据"
+  },
+  "products.ingest.hero.anySource": {
+    "message": "任意来源"
+  },
+  "products.ingest.hero.aUnifiedDataIngestion": {
+    "message": "统一的数据接入管道，连接OEM、后装设备和智能手机应用。实时流式传输，企业级可靠性。"
+  },
+  "products.ingest.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "products.ingest.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.ingest.features.productFeatures": {
+    "message": "产品功能"
+  },
+  "products.ingest.features.enterpriseGradeDataIngestion": {
+    "message": "企业级数据接入"
+  },
+  "products.ingest.features.builtToHandleThe": {
+    "message": "专为应对大规模车辆数据的复杂性而打造。从采集到标准化，DIMO Ingest一手包办。"
+  },
+  "products.ingest.cta.readyToIngestVehicle": {
+    "message": "准备好大规模接入车辆数据了吗？"
+  },
+  "products.ingest.cta.ingestAnyVehicleData": {
+    "message": "通过单一的统一服务，接入任意车辆数据源。"
+  },
+  "products.ingest.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "products.ingest.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.ingest.meta.title": {
+    "message": "Ingest | DIMO车辆数据采集"
+  },
+  "products.ingest.meta.description": {
+    "message": "从任意来源采集车辆数据：OEM、后装设备和智能手机应用。实时流式传输，企业级可靠性。"
+  },
+  "products.ingest.meta.keywords": {
+    "message": "车辆数据接入, OBD-II数据, OEM API, 实时流式传输, 数据采集, 车辆遥测"
+  },
+  "products.ingest.meta.ogTitle": {
+    "message": "Ingest | DIMO平台"
+  },
+  "products.ingest.meta.ogDescription": {
+    "message": "统一采集来自任意来源的车辆数据，支持实时流式传输，具备企业级可靠性。"
+  },
+  "products.ingest.schema.description": {
+    "message": "通过DIMO Ingest Server（DIS）接入您自有的车联网数据，汇入统一的车辆数据管道。"
+  },
+  "products.ingest.body.home.name": {
+    "message": "首页"
+  },
+  "products.ingest.body.products.name": {
+    "message": "产品"
+  },
+  "products.ingest.body.ingest.name": {
+    "message": "Ingest"
+  },
+  "products.pay.meta.productName": {
+    "message": "Pay"
+  },
+  "products.pay.features.inVehiclePayments.type": {
+    "message": "支付"
+  },
+  "products.pay.features.inVehiclePayments.title": {
+    "message": "车内支付"
+  },
+  "products.pay.features.inVehiclePayments.description": {
+    "message": "在车内即可完成无缝支付。加油、停车、通行费、电动车充电，全部在驾驶员同意后自动完成。"
+  },
+  "products.pay.features.inVehiclePayments.example": {
+    "message": "驾驶员插枪或拔枪时自动支付电动车充电费用，那20个应用今天就可以删掉了。"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.type": {
+    "message": "安全"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.title": {
+    "message": "安全优先的车辆商务"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.description": {
+    "message": "内置安全功能，保护用户数据与交易安全。符合行业标准与法规要求。"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.example": {
+    "message": "使用DIMO，驾驶和支付一气呵成，无需担心安全问题。"
+  },
+  "products.pay.features.driverRewardsIncentives.type": {
+    "message": "奖励"
+  },
+  "products.pay.features.driverRewardsIncentives.title": {
+    "message": "驾驶员奖励与激励"
+  },
+  "products.pay.features.driverRewardsIncentives.description": {
+    "message": "为安全驾驶、环保驾驶习惯或长期忠诚的驾驶员提供奖励。可自定义的奖励计划，助您提升参与度和留存率。"
+  },
+  "products.pay.features.driverRewardsIncentives.example": {
+    "message": "为节油驾驶的驾驶员提供现金返还，或提供合作商家的折扣。"
+  },
+  "products.pay.hero.vehicleNative": {
+    "message": "车辆原生{span}"
+  },
+  "products.pay.hero.commerce": {
+    "message": "商务"
+  },
+  "products.pay.hero.incentivizeYourFleetWith": {
+    "message": "用安全驾驶奖励激励您的车队，或鼓励您的客户将车辆开到经销商处"
+  },
+  "products.pay.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "products.pay.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.pay.features.productFeatures": {
+    "message": "产品功能"
+  },
+  "products.pay.features.paymentsBuiltForMobility": {
+    "message": "专为出行打造的支付"
+  },
+  "products.pay.features.fromInVehicleTransactionsTo": {
+    "message": "从车内交易到复杂的多方结算，DIMO Pay满足汽车行业独特的支付需求。"
+  },
+  "products.pay.cta.readyToIncentivizeDrivers": {
+    "message": "准备好激励驾驶员了吗？"
+  },
+  "products.pay.cta.enableVehicleNativePaymentsAnd": {
+    "message": "启用车辆原生支付与奖励。几分钟内即可开始处理支付。"
+  },
+  "products.pay.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "products.pay.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.pay.meta.title": {
+    "message": "Pay | DIMO车辆支付"
+  },
+  "products.pay.meta.description": {
+    "message": "车辆原生支付，覆盖加油、停车、通行费、电动车充电，并可基于驾驶数据自定义奖励。"
+  },
+  "products.pay.meta.keywords": {
+    "message": "车辆支付, 车载支付, 出行支付, 电动车充电支付"
+  },
+  "products.pay.meta.ogTitle": {
+    "message": "Pay | DIMO平台"
+  },
+  "products.pay.meta.ogDescription": {
+    "message": "在车内完成支付，并提供可自定义的奖励。"
+  },
+  "products.pay.schema.description": {
+    "message": "面向出行的会话级稳定币支付通道，支持车内支付、费用报销和按会话的支出控制。"
+  },
+  "products.pay.body.home.name": {
+    "message": "首页"
+  },
+  "products.pay.body.products.name": {
+    "message": "产品"
+  },
+  "products.pay.body.pay.name": {
+    "message": "Pay"
+  },
+  "products.storage.meta.productName": {
+    "message": "Storage"
+  },
+  "products.storage.features.cloudOrOnPrem.type": {
+    "message": "基础设施"
+  },
+  "products.storage.features.cloudOrOnPrem.title": {
+    "message": "云端或本地部署，由您选择"
+  },
+  "products.storage.features.cloudOrOnPrem.description": {
+    "message": "灵活存储车辆数据：可由DIMO托管，也可本地部署在您自己的数据基础设施中。"
+  },
+  "products.storage.features.cloudOrOnPrem.example": {
+    "message": "从我们的免费云存储轻松起步，或部署到您自己的AWS或GCP集群。"
+  },
+  "products.storage.features.lightningFastQueries.type": {
+    "message": "查询引擎"
+  },
+  "products.storage.features.lightningFastQueries.title": {
+    "message": "极速查询"
+  },
+  "products.storage.features.lightningFastQueries.description": {
+    "message": "专为时序车辆数据优化的查询引擎。毫秒级完成跨数十亿条记录的复杂分析。"
+  },
+  "products.storage.features.lightningFastQueries.example": {
+    "message": "不到500毫秒即可查询6个月的平均燃油效率。"
+  },
+  "products.storage.features.flexibilitySecurity.type": {
+    "message": "灵活性"
+  },
+  "products.storage.features.flexibilitySecurity.title": {
+    "message": "灵活 + 安全"
+  },
+  "products.storage.features.flexibilitySecurity.description": {
+    "message": "不再为数据存储合规发愁，我们的存储方案在设计之初就充分考虑了企业级安全与合规。"
+  },
+  "products.storage.features.flexibilitySecurity.example": {
+    "message": "细粒度访问控制与加密，保护敏感数据。"
+  },
+  "products.storage.hero.scalableDataStorage": {
+    "message": "可扩展的数据存储：{span}"
+  },
+  "products.storage.hero.cloudOrOnPrem": {
+    "message": "云端或本地部署"
+  },
+  "products.storage.hero.petabyteScaleStorageOptimizedFor": {
+    "message": "PB级存储，专为车辆遥测数据优化。极速查询、灵活的数据保留策略、企业级安全。"
+  },
+  "products.storage.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "products.storage.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.storage.features.productFeatures": {
+    "message": "产品功能"
+  },
+  "products.storage.features.builtForVehicleData": {
+    "message": "为海量车辆数据而生"
+  },
+  "products.storage.features.purposeBuiltStorageInfrastructureThat": {
+    "message": "专门构建的存储基础设施，从容应对车辆遥测数据的独特挑战。"
+  },
+  "products.storage.cta.readyToDeployVehicle": {
+    "message": "准备好部署车辆数据存储了吗？"
+  },
+  "products.storage.cta.getStartedWithDimo": {
+    "message": "立即开始使用DIMO Storage，这是专为车辆遥测与分析设计的存储方案。"
+  },
+  "products.storage.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "products.storage.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "products.storage.meta.title": {
+    "message": "Storage | DIMO车辆数据存储"
+  },
+  "products.storage.meta.description": {
+    "message": "PB级车辆数据存储，提供极速查询、灵活的数据保留策略和企业级安全。"
+  },
+  "products.storage.meta.keywords": {
+    "message": "车辆数据存储, 时序数据库, 车辆遥测, 数据保留, 加密存储"
+  },
+  "products.storage.meta.ogTitle": {
+    "message": "Storage | DIMO平台"
+  },
+  "products.storage.meta.ogDescription": {
+    "message": "可扩展的存储基础设施，专为任意规模的车辆遥测数据打造。"
+  },
+  "products.storage.schema.description": {
+    "message": "面向网联汽车遥测数据的标准化、可查询存储，支持时序车辆数据，可云端或本地部署。"
+  },
+  "products.storage.body.home.name": {
+    "message": "首页"
+  },
+  "products.storage.body.products.name": {
+    "message": "产品"
+  },
+  "products.storage.body.storage.name": {
+    "message": "Storage"
+  },
+  "solutions.agenticExperiences.meta.solutionName": {
+    "message": "智能体体验"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.type": {
+    "message": "身份验证"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.title": {
+    "message": "Login with DIMO"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.description": {
+    "message": "无缝的OAuth 2.0身份验证流程，让您的用户掌控自己的车辆数据。一键登录，权限控制精细到位。"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.example": {
+    "message": "用户无需共享凭证，即可授权您的应用访问特定数据流（位置、诊断等）。"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.type": {
+    "message": "同意管理"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.title": {
+    "message": "细粒度权限"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.description": {
+    "message": "精细控制您的智能体可以访问哪些数据。用户可随时通过统一的同意管理仪表盘授予、撤销或修改权限。"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.example": {
+    "message": "智能体只请求所需的权限（读取位置、发送指令、访问诊断数据），赢得用户信任。"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.type": {
+    "message": "安全"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.title": {
+    "message": "可验证凭证"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.description": {
+    "message": "经加密签名的凭证确保数据真实、可追溯。每一次数据访问都有记录、可验证，满足最高合规标准。"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.example": {
+    "message": "开箱即符合GDPR、欧盟《数据法案》和SOC 2要求。每次数据访问均有审计日志。"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.type": {
+    "message": "基础设施"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.title": {
+    "message": "安全计算"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.description": {
+    "message": "在安全、隔离的计算环境中运行您的AI智能体并访问车辆数据。执行复杂工作流的同时，保障数据隐私与安全。"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.example": {
+    "message": "部署智能体处理敏感车辆数据，原始信息无需暴露给您的服务器。"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.type": {
+    "message": "AI平台"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.title": {
+    "message": "智能体记忆与上下文"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.description": {
+    "message": "为您的智能体内置记忆层。跨会话保留对话历史、用户偏好和车辆上下文，打造个性化体验。"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.example": {
+    "message": "智能体会记住过往互动：“上次我们聊到您该换机油了，现在帮您预约吗？”"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.type": {
+    "message": "集成"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.title": {
+    "message": "无缝集成"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.description": {
+    "message": "为热门工具和平台预置连接器。开箱即可与CRM、排程系统、支付处理商和通信平台集成。"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.example": {
+    "message": "通过零代码集成，将智能体连接到Calendly、Stripe、Twilio、SendGrid等服务。"
+  },
+  "solutions.agenticExperiences.stats.setupTime.label": {
+    "message": "搭建时间"
+  },
+  "solutions.agenticExperiences.stats.serviceUptime.label": {
+    "message": "服务可用率"
+  },
+  "solutions.agenticExperiences.stats.agentSkills.label": {
+    "message": "智能体技能"
+  },
+  "solutions.agenticExperiences.stats.sDksToBuild.label": {
+    "message": "可用于开发的SDK"
+  },
+  "solutions.agenticExperiences.hero.buildTrustworthyAiAgents": {
+    "message": "借助{span}，构建可信赖的AI智能体"
+  },
+  "solutions.agenticExperiences.hero.privacyFirstInfrastructure": {
+    "message": "隐私优先的基础设施"
+  },
+  "solutions.agenticExperiences.hero.deployIntelligentVehicleAgents": {
+    "message": "部署车辆智能体，内置同意管理、安全计算和无缝集成。在打造强大智能体体验的同时，让用户掌控自己的数据。"
+  },
+  "solutions.agenticExperiences.hero.startBuilding": {
+    "message": "开始构建"
+  },
+  "solutions.agenticExperiences.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.agenticExperiences.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.agenticExperiences.useCases.everythingYouNeedFor": {
+    "message": "构建智能体应用所需的一切"
+  },
+  "solutions.agenticExperiences.useCases.fromUserAuthenticationTo": {
+    "message": "从用户身份验证到安全计算与预置集成，DIMO为构建可信赖的AI智能体提供完整的基础设施。"
+  },
+  "solutions.agenticExperiences.featureSection1.loginWithDimoConsentFirst": {
+    "message": "Login with DIMO：同意优先的身份验证"
+  },
+  "solutions.agenticExperiences.featureSection1.implementOAuth20Authentication": {
+    "message": "几分钟内即可实现带有细粒度权限控制的OAuth 2.0身份验证。用户一键连接车辆，只向您的智能体授予其所需的数据访问权限，不多不少。"
+  },
+  "solutions.agenticExperiences.featureSection1.oauth20CompliantWith": {
+    "message": "符合OAuth 2.0标准，支持PKCE流程"
+  },
+  "solutions.agenticExperiences.featureSection1.granularScopesLocationDiagnostics": {
+    "message": "细粒度授权范围：位置、诊断、指令等"
+  },
+  "solutions.agenticExperiences.featureSection1.usersCanRevokeAccess": {
+    "message": "用户可随时通过统一仪表盘撤销访问权限"
+  },
+  "solutions.agenticExperiences.featureSection1.realTimeConsentStatusUpdates": {
+    "message": "通过Webhook实时推送同意状态更新"
+  },
+  "solutions.agenticExperiences.featureSection1.loginWithDimoFlowchart": {
+    "message": "Login with DIMO流程图"
+  },
+  "solutions.agenticExperiences.featureSection2.securedComputePrivacyPreservingAi": {
+    "message": "安全计算：保护隐私的AI"
+  },
+  "solutions.agenticExperiences.featureSection2.runYourAiAgents": {
+    "message": "在隔离、安全的计算环境中运行您的AI智能体，并访问干净的车辆数据。处理敏感信息时无需将原始数据暴露给您的服务器，满足最严格的合规要求。"
+  },
+  "solutions.agenticExperiences.featureSection2.scaleToAddAgents": {
+    "message": "灵活扩展，添加拥有全新超能力的智能体"
+  },
+  "solutions.agenticExperiences.featureSection2.dataProcessedInSecure": {
+    "message": "数据在安全飞地中处理，也可选择本地部署"
+  },
+  "solutions.agenticExperiences.featureSection2.complianceReadyGdprSoc2": {
+    "message": "合规就绪：GDPR、SOC 2、欧盟《数据法案》"
+  },
+  "solutions.agenticExperiences.featureSection2.auditLogsForEvery": {
+    "message": "每一次数据访问和操作都有审计日志"
+  },
+  "solutions.agenticExperiences.featureSection2.fleetOfConnectedVehicles": {
+    "message": "网联汽车车队"
+  },
+  "solutions.agenticExperiences.howItWorks.implementLoginWith.title": {
+    "message": "接入Login with DIMO"
+  },
+  "solutions.agenticExperiences.howItWorks.implementLoginWith.description": {
+    "message": "为您的应用添加OAuth身份验证。用户几秒内即可连接车辆，并向您的智能体授予权限。"
+  },
+  "solutions.agenticExperiences.howItWorks.deployYourAgents.title": {
+    "message": "部署您的智能体"
+  },
+  "solutions.agenticExperiences.howItWorks.deployYourAgents.description": {
+    "message": "将智能体代码上传到我们的安全计算平台。可选用预置的智能体模板，也可构建自定义工作流。"
+  },
+  "solutions.agenticExperiences.howItWorks.connectIntegrations.title": {
+    "message": "连接集成"
+  },
+  "solutions.agenticExperiences.howItWorks.connectIntegrations.description": {
+    "message": "从我们的应用市场启用智能体所需的集成。配置排程、支付、通信等功能。"
+  },
+  "solutions.agenticExperiences.howItWorks.monitorOptimize.title": {
+    "message": "监控与优化"
+  },
+  "solutions.agenticExperiences.howItWorks.monitorOptimize.description": {
+    "message": "通过我们全面的分析仪表盘，跟踪智能体性能、用户同意状态和系统健康状况。"
+  },
+  "solutions.agenticExperiences.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "solutions.agenticExperiences.howItWorks.deployAgentsInMinutes": {
+    "message": "几分钟内部署智能体"
+  },
+  "solutions.agenticExperiences.howItWorks.fromAuthenticationToDeployment": {
+    "message": "从身份验证到部署，DIMO内置隐私与安全保护，让您轻松构建并扩展智能体体验。"
+  },
+  "solutions.agenticExperiences.cta.readyToBuildAgentic": {
+    "message": "准备好构建智能体体验了吗？"
+  },
+  "solutions.agenticExperiences.cta.joinDevelopersBuildingThe": {
+    "message": "加入开发者的行列，借助隐私优先的基础设施，打造新一代AI驱动的车辆应用。"
+  },
+  "solutions.agenticExperiences.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "solutions.agenticExperiences.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.agenticExperiences.meta.title": {
+    "message": "智能体体验 | 使用DIMO构建AI智能体"
+  },
+  "solutions.agenticExperiences.meta.description": {
+    "message": "借助Login with DIMO、安全计算和无缝集成，构建可信赖的AI车辆智能体。为智能体体验打造的隐私优先基础设施。"
+  },
+  "solutions.agenticExperiences.meta.keywords": {
+    "message": "AI智能体, 车辆AI, 同意管理, OAuth身份验证, 安全计算, 智能体集成, 隐私优先AI, 符合GDPR"
+  },
+  "solutions.agenticExperiences.meta.ogTitle": {
+    "message": "智能体体验 | DIMO平台"
+  },
+  "solutions.agenticExperiences.meta.ogDescription": {
+    "message": "部署车辆智能体，内置同意管理、安全计算和50多项集成。面向AI的隐私优先基础设施。"
+  },
+  "solutions.agenticExperiences.schema.dimoAgenticExperiences.name": {
+    "message": "DIMO智能体体验平台"
+  },
+  "solutions.agenticExperiences.schema.dimoAgenticExperiences.description": {
+    "message": "构建可信赖的AI车辆智能体，提供同意管理、安全计算和预置集成。"
+  },
+  "solutions.agenticExperiences.body.home.name": {
+    "message": "首页"
+  },
+  "solutions.agenticExperiences.body.solutions.name": {
+    "message": "解决方案"
+  },
+  "solutions.agenticExperiences.body.agenticExperiences.name": {
+    "message": "智能体体验"
+  },
+  "solutions.consumerApplications.meta.solutionName": {
+    "message": "消费者应用"
+  },
+  "solutions.consumerApplications.useCases.mobilePlatform.type": {
+    "message": "移动平台"
+  },
+  "solutions.consumerApplications.useCases.mobilePlatform.description": {
+    "message": "可直接投入生产的iOS和Android移动应用。用户可以连接车辆、查看实时数据、管理权限，全部开箱即用。"
+  },
+  "solutions.consumerApplications.useCases.mobilePlatform.example": {
+    "message": "只需几周而非几个月，即可上线您的车辆平台。完整的移动端体验一应俱全。"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.type": {
+    "message": "定制"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.title": {
+    "message": "白标体验"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.description": {
+    "message": "完全可定制的界面，使用您的品牌、配色和标志。无需修改代码，即可让DIMO Mobile App的外观和体验如同您自己的产品。"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.example": {
+    "message": "替换标志、调整配色方案、自定义文案，全部通过配置完成。"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.type": {
+    "message": "本地化"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.title": {
+    "message": "多语言支持"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.description": {
+    "message": "内置支持20多种语言，本地化框架简单易用。无需从头重建应用，即可拓展新市场。"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.example": {
+    "message": "英语、西班牙语、葡萄牙语、法语、德语、日语等，随时可面向全球部署。"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.type": {
+    "message": "功能"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.title": {
+    "message": "实时车辆数据"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.description": {
+    "message": "通过直观的界面访问实时车辆遥测、诊断、位置等数据。所有数据流均已预先集成并经过测试。"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.example": {
+    "message": "电池电量、胎压、位置追踪、行程记录，用户所需的一切尽在其中。"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.type": {
+    "message": "用户管理"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.title": {
+    "message": "账号与权限"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.description": {
+    "message": "完整的用户身份验证、个人资料管理和细粒度权限控制。用户可在完全透明的情况下管理数据共享偏好。"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.example": {
+    "message": "OAuth 2.0身份验证、个人资料设置、已连接应用仪表盘以及同意管理。"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.type": {
+    "message": "分发"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.title": {
+    "message": "应用商店上架就绪"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.description": {
+    "message": "已为提交iOS App Store和Google Play Store预先配置。包含所有必要的合规材料、隐私政策和应用商店素材。"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.example": {
+    "message": "借助随附的素材和合规文档，几天内即可将您的品牌应用提交到应用商店。"
+  },
+  "solutions.consumerApplications.stats.customizableUi.label": {
+    "message": "可定制界面"
+  },
+  "solutions.consumerApplications.stats.timeToLaunch.number": {
+    "message": "<1周"
+  },
+  "solutions.consumerApplications.stats.timeToLaunch.label": {
+    "message": "上线时间"
+  },
+  "solutions.consumerApplications.stats.toOnboardNew.label": {
+    "message": "接入新用户"
+  },
+  "solutions.consumerApplications.stats.toOnboardNew.label2": {
+    "message": "接入新的市场合作伙伴"
+  },
+  "solutions.consumerApplications.hero.launchYourVehicleApp": {
+    "message": "{span}，上线您的车辆应用"
+  },
+  "solutions.consumerApplications.hero.zeroDevelopmentTime": {
+    "message": "零开发时间"
+  },
+  "solutions.consumerApplications.hero.deployAFullyBrandedProductionReady": {
+    "message": "部署完全品牌化、可直接投入生产的iOS和Android移动应用。白标定制、多语言支持和全球覆盖，全部开箱即用。"
+  },
+  "solutions.consumerApplications.hero.getStarted": {
+    "message": "开始使用"
+  },
+  "solutions.consumerApplications.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.consumerApplications.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.consumerApplications.useCases.everythingYouNeedFor": {
+    "message": "构建消费者应用所需的一切"
+  },
+  "solutions.consumerApplications.useCases.fromMobileAppsTo": {
+    "message": "从移动应用到白标定制和全球本地化，DIMO为推出消费者车辆应用提供完整的平台。"
+  },
+  "solutions.consumerApplications.featureSection1.dimoMobileAppProductionReady": {
+    "message": "DIMO Mobile App：可直接投入生产的平台"
+  },
+  "solutions.consumerApplications.featureSection1.launchWithAComplete": {
+    "message": "借助完整的iOS和Android移动应用快速上线。用户所需的每一项功能：车辆连接、实时数据、行程追踪、诊断等，均已测试完毕，可直接投入生产。"
+  },
+  "solutions.consumerApplications.featureSection1.nativeIosAndAndroid": {
+    "message": "采用现代移动框架构建的原生iOS和Android应用"
+  },
+  "solutions.consumerApplications.featureSection1.realTimeVehicleDataLocation": {
+    "message": "实时车辆数据：位置、电池、诊断"
+  },
+  "solutions.consumerApplications.featureSection1.tripTrackingWithDetailed": {
+    "message": "行程追踪，附带详细分析和历史记录"
+  },
+  "solutions.consumerApplications.featureSection1.userProfilesAuthenticationAnd": {
+    "message": "用户资料、身份验证和权限管理，全部内置"
+  },
+  "solutions.consumerApplications.featureSection1.dimoMobileAppOn": {
+    "message": "手机上的DIMO Mobile App"
+  },
+  "solutions.consumerApplications.featureSection2.whiteLabelMakeItYours": {
+    "message": "白标：打造您的专属应用"
+  },
+  "solutions.consumerApplications.featureSection2.customizeEveryAspectOf": {
+    "message": "用您的品牌形象定制DIMO Mobile App的方方面面。替换标志、调整配色、修改文案：全部通过简单配置完成，无需改动一行代码。借助内置的本地化支持，拓展国际市场。"
+  },
+  "solutions.consumerApplications.featureSection2.brandCustomizationLogosColors": {
+    "message": "品牌定制：标志、配色、字体和主题"
+  },
+  "solutions.consumerApplications.featureSection2.customMessagingAndCopy": {
+    "message": "应用内的提示信息和文案均可自定义"
+  },
+  "solutions.consumerApplications.featureSection2.yourAppNameAnd": {
+    "message": "在应用商店中使用您自己的应用名称和品牌形象"
+  },
+  "solutions.consumerApplications.featureSection2.configurationBasedNoCodeChanges": {
+    "message": "基于配置：无需修改代码"
+  },
+  "solutions.consumerApplications.featureSection2.regionalCustomizationForDates": {
+    "message": "按地区定制日期、货币和单位"
+  },
+  "solutions.consumerApplications.featureSection2.dimoInJapan": {
+    "message": "DIMO在日本"
+  },
+  "solutions.consumerApplications.howItWorks.configureYourBrand.title": {
+    "message": "配置您的品牌"
+  },
+  "solutions.consumerApplications.howItWorks.configureYourBrand.description": {
+    "message": "通过我们的配置仪表盘上传标志、选择配色方案并自定义应用文案，无需编写代码。"
+  },
+  "solutions.consumerApplications.howItWorks.selectLanguagesRegions.title": {
+    "message": "选择语言与地区"
+  },
+  "solutions.consumerApplications.howItWorks.selectLanguagesRegions.description": {
+    "message": "选择要启用的语言并配置地区设置。如有需要，可通过我们的本地化框架添加自定义翻译。"
+  },
+  "solutions.consumerApplications.howItWorks.testYourApp.title": {
+    "message": "测试您的应用"
+  },
+  "solutions.consumerApplications.howItWorks.testYourApp.description": {
+    "message": "使用我们的TestFlight和Google Play测试版分发渠道，在公开发布前与内部团队测试您的品牌应用。"
+  },
+  "solutions.consumerApplications.howItWorks.launchToApp.title": {
+    "message": "上架应用商店"
+  },
+  "solutions.consumerApplications.howItWorks.launchToApp.description": {
+    "message": "借助随附的合规文档和应用商店素材，将您的应用提交到iOS App Store和Google Play Store。"
+  },
+  "solutions.consumerApplications.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "solutions.consumerApplications.howItWorks.launchInLessThan": {
+    "message": "不到一周即可上线"
+  },
+  "solutions.consumerApplications.howItWorks.fromConfigurationToApp": {
+    "message": "从配置到提交应用商店，DIMO让您轻松在全球推出品牌车辆应用。"
+  },
+  "solutions.consumerApplications.cta.readyToLaunchYour": {
+    "message": "准备好上线您的车辆应用了吗？"
+  },
+  "solutions.consumerApplications.cta.joinCompaniesLaunchingBranded": {
+    "message": "加入众多企业的行列，借助DIMO的白标移动平台在全球推出品牌车辆应用。"
+  },
+  "solutions.consumerApplications.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "solutions.consumerApplications.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.consumerApplications.meta.title": {
+    "message": "消费者应用 | DIMO白标移动应用"
+  },
+  "solutions.consumerApplications.meta.description": {
+    "message": "几天内即可上线您的品牌车辆移动应用。DIMO提供可直接投入生产的iOS和Android应用，支持白标定制和20多种语言。"
+  },
+  "solutions.consumerApplications.meta.keywords": {
+    "message": "白标移动应用, 车辆应用, iOS Android, 多语言应用, 品牌移动应用, 本地化, DIMO移动应用"
+  },
+  "solutions.consumerApplications.meta.ogTitle": {
+    "message": "消费者应用 | DIMO白标平台"
+  },
+  "solutions.consumerApplications.meta.ogDescription": {
+    "message": "可直接投入生产的iOS和Android移动应用。完全可定制，支持多语言，开箱即可覆盖全球。"
+  },
+  "solutions.consumerApplications.schema.dimoMobileApp.name": {
+    "message": "DIMO Mobile App平台"
+  },
+  "solutions.consumerApplications.schema.dimoMobileApp.description": {
+    "message": "面向车辆数据的白标移动应用平台。提供支持定制和本地化的iOS与Android应用。"
+  },
+  "solutions.consumerApplications.body.home.name": {
+    "message": "首页"
+  },
+  "solutions.consumerApplications.body.solutions.name": {
+    "message": "解决方案"
+  },
+  "solutions.consumerApplications.body.consumerApplications.name": {
+    "message": "消费者应用"
+  },
+  "solutions.fleetIntelligence.meta.solutionName": {
+    "message": "车队智能"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.type": {
+    "message": "仪表盘（即将推出）"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.title": {
+    "message": "统一车队仪表盘"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.description": {
+    "message": "全面的车队管理仪表盘，实时掌握所有车辆动态。在一个集中式平台上监控车况、位置、利用率和维保需求。"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.example": {
+    "message": "跨多个地点追踪成百上千辆车，获取实时更新和预测性洞察。"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.type": {
+    "message": "SDK集成"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.title": {
+    "message": "开发者友好的SDK"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.description": {
+    "message": "使用我们简单易用的JavaScript、Python、Go和C# SDK构建自定义车队应用。完整的API访问权限，附带可直接投入生产的代码示例。"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.example": {
+    "message": "执行npm install @dimo/sdk，借助详尽的文档，几分钟内即可开始查询车队数据。"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.type": {
+    "message": "数据平台"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.title": {
+    "message": "实时车队遥测"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.description": {
+    "message": "实时传输车辆数据，包括位置、诊断、油耗和驾驶行为。基于干净、标准化的数据构建自定义分析和报表。"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.example": {
+    "message": "通过WebSocket获取实时数据流，或通过REST API获取批量数据，按需选择最适合您的方案。"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.type": {
+    "message": "分析"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.title": {
+    "message": "预测性维护"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.description": {
+    "message": "AI驱动的洞察，在故障发生前预测维护需求。借助数据驱动的维保排程，减少停机时间并延长车辆寿命。"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.example": {
+    "message": "根据实际使用模式而不仅是里程，在车辆需要保养时收到提醒。"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.type": {
+    "message": "合规"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.title": {
+    "message": "驾驶员安全与合规"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.description": {
+    "message": "监控驾驶行为、跟踪合规指标，确保整个车队达到安全标准。危险驾驶行为自动预警。"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.example": {
+    "message": "追踪超速、急刹车、急加速和怠速时间，阈值均可配置。"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.type": {
+    "message": "优化"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.title": {
+    "message": "路线与利用率优化"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.description": {
+    "message": "借助智能分析优化路线、降低燃油成本、最大化车辆利用率。识别利用不足的资产和低效路线。"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.example": {
+    "message": "通过数据驱动的路线优化和利用率洞察，将燃油成本降低15-25%。"
+  },
+  "solutions.fleetIntelligence.stats.fleetDashboard.number": {
+    "message": "即将推出"
+  },
+  "solutions.fleetIntelligence.stats.fleetDashboard.label": {
+    "message": "车队仪表盘"
+  },
+  "solutions.fleetIntelligence.stats.sdkLanguages.label": {
+    "message": "SDK语言"
+  },
+  "solutions.fleetIntelligence.stats.apiLatency.label": {
+    "message": "API延迟"
+  },
+  "solutions.fleetIntelligence.stats.uptimeSla.label": {
+    "message": "正常运行时间SLA"
+  },
+  "solutions.fleetIntelligence.hero.seeEveryVehicleEvery": {
+    "message": "尽览{span}的每一辆车、每一次会话"
+  },
+  "solutions.fleetIntelligence.hero.acrossAMixedFleet": {
+    "message": "混合车队中"
+  },
+  "solutions.fleetIntelligence.hero.fleetManagersSpend45": {
+    "message": "车队管理者每周要花4–5小时，在分散的系统之间整合数据。DIMO通过一个API，将已接入的50多个汽车品牌的车联网数据标准化，并转化为{link}。了解它在{link2}中的应用。"
+  },
+  "solutions.fleetIntelligence.hero.verifiableTrailYouCan": {
+    "message": "可与保险公司共享的可验证记录"
+  },
+  "solutions.fleetIntelligence.hero.rentalOperations": {
+    "message": "租车运营"
+  },
+  "solutions.fleetIntelligence.hero.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "solutions.fleetIntelligence.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.fleetIntelligence.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.fleetIntelligence.useCases.everythingYouNeedFor": {
+    "message": "车队管理所需的一切"
+  },
+  "solutions.fleetIntelligence.useCases.fromUnifiedDashboardsTo": {
+    "message": "从统一仪表盘到强大的SDK和预测分析，DIMO为构建智能车队解决方案提供完整的平台。"
+  },
+  "solutions.fleetIntelligence.featureSection1.fleetDashboardComingSoon": {
+    "message": "车队仪表盘：即将推出"
+  },
+  "solutions.fleetIntelligence.featureSection1.aComprehensiveProductionReadyFleet": {
+    "message": "一款全面、可直接投入生产的车队管理仪表盘即将推出。通过可自定义的视图、提醒和报表，实时掌握整个车队，一切都构建在DIMO可靠的基础设施之上。"
+  },
+  "solutions.fleetIntelligence.featureSection1.liveVehicleTrackingWith": {
+    "message": "基于地图可视化的实时车辆追踪"
+  },
+  "solutions.fleetIntelligence.featureSection1.healthMonitoringAndPredictive": {
+    "message": "车况监测与预测性维护提醒"
+  },
+  "solutions.fleetIntelligence.featureSection1.driverBehaviorScoringAnd": {
+    "message": "驾驶行为评分与安全合规"
+  },
+  "solutions.fleetIntelligence.featureSection1.customizableReportsAndAnalytics": {
+    "message": "可自定义的报表和分析仪表盘"
+  },
+  "solutions.fleetIntelligence.featureSection1.fleetOfTrucksOn": {
+    "message": "行驶在路上的卡车车队"
+  },
+  "solutions.fleetIntelligence.featureSection2.buildWithPowerfulSdks": {
+    "message": "借助强大的SDK进行构建"
+  },
+  "solutions.fleetIntelligence.featureSection2.developerFriendlySdksForJavascript": {
+    "message": "面向JavaScript、Python、Go、C#等语言的开发者友好SDK。凭借完整的API访问权限、详尽的文档和可直接投入生产的代码示例，构建自定义车队应用。"
+  },
+  "solutions.fleetIntelligence.featureSection2.sdksForJavascriptPython": {
+    "message": "支持JavaScript、Python、Go、C#等语言的SDK"
+  },
+  "solutions.fleetIntelligence.featureSection2.restfulAndGraphqlApis": {
+    "message": "RESTful和GraphQL API，附带OpenAPI规范"
+  },
+  "solutions.fleetIntelligence.featureSection2.webSocketSupportForRealTime": {
+    "message": "支持WebSocket，实时流式传输遥测数据"
+  },
+  "solutions.fleetIntelligence.featureSection2.interactiveDocumentationWithCode": {
+    "message": "附带代码示例的交互式文档"
+  },
+  "solutions.fleetIntelligence.featureSection2.sdkCodeExamples": {
+    "message": "SDK代码示例"
+  },
+  "solutions.fleetIntelligence.featureSection3.aiPoweredFleetOptimization": {
+    "message": "AI驱动的车队优化"
+  },
+  "solutions.fleetIntelligence.featureSection3.leverageMachineLearningInsights": {
+    "message": "利用机器学习洞察降低成本、提升安全、最大化效率。预测性维护、路线优化和驾驶行为分析，全部基于干净、标准化的车辆数据。"
+  },
+  "solutions.fleetIntelligence.featureSection3.predictiveMaintenanceBasedOn": {
+    "message": "基于实际使用模式的预测性维护"
+  },
+  "solutions.fleetIntelligence.featureSection3.fuelConsumptionTrackingAnd": {
+    "message": "油耗追踪与优化洞察"
+  },
+  "solutions.fleetIntelligence.featureSection3.driverSafetyScoringWith": {
+    "message": "驾驶员安全评分，附带可执行的改进建议"
+  },
+  "solutions.fleetIntelligence.featureSection3.utilizationAnalyticsToIdentify": {
+    "message": "利用率分析，找出闲置资产"
+  },
+  "solutions.fleetIntelligence.featureSection3.deliveryVehicleOnRoute": {
+    "message": "行驶途中的配送车辆"
+  },
+  "solutions.fleetIntelligence.howItWorks.getApiAccess.title": {
+    "message": "获取API访问权限"
+  },
+  "solutions.fleetIntelligence.howItWorks.getApiAccess.description": {
+    "message": "注册DIMO，立即获得API凭证。无需审批、无需等待，马上开始构建。"
+  },
+  "solutions.fleetIntelligence.howItWorks.integrateWithSdks.title": {
+    "message": "集成SDK"
+  },
+  "solutions.fleetIntelligence.howItWorks.integrateWithSdks.description": {
+    "message": "安装您偏好语言的SDK，连接您的车队车辆。参照我们针对常见场景的快速入门指南即可上手。"
+  },
+  "solutions.fleetIntelligence.howItWorks.buildCustomDashboards.title": {
+    "message": "构建自定义仪表盘"
+  },
+  "solutions.fleetIntelligence.howItWorks.buildCustomDashboards.description": {
+    "message": "使用我们的API构建贴合您业务的自定义车队仪表盘。也可以等待我们预置的车队仪表盘（即将推出）。"
+  },
+  "solutions.fleetIntelligence.howItWorks.scaleOptimize.title": {
+    "message": "扩展与优化"
+  },
+  "solutions.fleetIntelligence.howItWorks.scaleOptimize.description": {
+    "message": "利用AI驱动的洞察优化路线、降低成本、提升安全。从容扩展到数千辆车。"
+  },
+  "solutions.fleetIntelligence.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "solutions.fleetIntelligence.howItWorks.startBuildingFleetSolutions": {
+    "message": "开始构建车队解决方案"
+  },
+  "solutions.fleetIntelligence.howItWorks.fromApiAccessTo": {
+    "message": "从API接入到生产部署，DIMO让您轻松构建智能车队管理应用。"
+  },
+  "solutions.fleetIntelligence.cta.readyToBuildFleet": {
+    "message": "准备好构建车队智能了吗？"
+  },
+  "solutions.fleetIntelligence.cta.joinFleetOperatorsBuilding": {
+    "message": "加入车队运营商的行列，借助DIMO平台打造新一代智能交通解决方案。"
+  },
+  "solutions.fleetIntelligence.cta.getApiKeys": {
+    "message": "获取API密钥"
+  },
+  "solutions.fleetIntelligence.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.fleetIntelligence.meta.title": {
+    "message": "混合车队管理与车联网，尽在一个仪表盘 | DIMO"
+  },
+  "solutions.fleetIntelligence.meta.description": {
+    "message": "通过一个API，为已接入的50多个汽车品牌提供标准化的车联网数据和会话控制。与保险公司共享可验证记录，告别在五个系统之间反复对账。"
+  },
+  "solutions.fleetIntelligence.meta.keywords": {
+    "message": "车队管理, 车队追踪, 车联网, 车队API, 车队SDK, 预测性维护, 车队优化, 车辆遥测"
+  },
+  "solutions.fleetIntelligence.meta.ogTitle": {
+    "message": "混合车队管理与车联网，尽在一个仪表盘 | DIMO"
+  },
+  "solutions.fleetIntelligence.meta.ogDescription": {
+    "message": "全面的车队管理平台，提供SDK、实时遥测和AI驱动的洞察。构建自定义车队解决方案，或使用我们的仪表盘（即将推出）。"
+  },
+  "solutions.fleetIntelligence.schema.dimoFleetIntelligence.name": {
+    "message": "DIMO车队智能平台"
+  },
+  "solutions.fleetIntelligence.schema.dimoFleetIntelligence.description": {
+    "message": "提供SDK、API和AI驱动洞察的车队管理平台。基于实时车辆遥测数据构建自定义车队解决方案。"
+  },
+  "solutions.fleetIntelligence.body.home.name": {
+    "message": "首页"
+  },
+  "solutions.fleetIntelligence.body.solutions.name": {
+    "message": "解决方案"
+  },
+  "solutions.fleetIntelligence.body.fleetIntelligence.name": {
+    "message": "车队智能"
+  },
+  "solutions.fleetSpend.meta.title": {
+    "message": "车队支出与电动车充电报销，按会话结算 | DIMO"
+  },
+  "solutions.fleetSpend.meta.description": {
+    "message": "别再等到几天后才核对充电、通行费和燃油费用。DIMO将支出与每一次车辆会话绑定：家庭充电、公共充电和通行费，自动设定上限并完成对账。"
+  },
+  "solutions.fleetSpend.meta.h1": {
+    "message": "出车时即设支出上限：充电、通行费和燃油与会话绑定"
+  },
+  "solutions.fleetSpend.body.home.name": {
+    "message": "首页"
+  },
+  "solutions.fleetSpend.body.solutions.name": {
+    "message": "解决方案"
+  },
+  "solutions.fleetSpend.body.fleetSpend.name": {
+    "message": "车队支出"
+  },
+  "solutions.fleetSpend.body.solutionsSpend": {
+    "message": "解决方案 · 支出"
+  },
+  "solutions.fleetSpend.body.chargingTollsAndFuel": {
+    "message": "充电、通行费和燃油是车队中最容易流失的支出项——因为它们发生在出车之后，要过好几天才能对账。把它们与会话绑定，漏洞就此堵上。"
+  },
+  "solutions.fleetSpend.body.fleetSpendLeaksBecause": {
+    "message": "车队支出之所以流失，是因为没有承载它的容器。驾驶员取走一辆车，给它充电，经过收费站，可能还加了油，而每一笔费用都落在不同的系统里，要在数小时甚至数天后，才拿去和一个谁也无法准确对应的订单进行核对。DIMO将支出与{strong}绑定：出车时设定上限，每一笔费用都归属到产生它的会话，对账自动完成，不必再在周一早上对着电子表格手动处理。"
+  },
+  "solutions.fleetSpend.body.vehicleSession": {
+    "message": "车辆会话"
+  },
+  "solutions.fleetSpend.body.whySpendLeaksToday": {
+    "message": "支出为何会流失"
+  },
+  "solutions.fleetSpend.body.theCoreProblemIs": {
+    "message": "核心问题在于：{strong}。预订在一个工具里，车联网数据在另一个，充电在第三个，通行费在第四个。每出现一笔费用，要追溯到“哪次租赁、哪位驾驶员、哪辆车”，全靠人工排查。放大到整个车队，每周要花好几个小时对账，还有源源不断的费用根本无从归属。"
+  },
+  "solutions.fleetSpend.body.spendIsNotConnected": {
+    "message": "支出与用车事件彼此脱节"
+  },
+  "solutions.fleetSpend.body.theThreeEvReimbursement": {
+    "message": "三大电动车报销难题，同时出现"
+  },
+  "solutions.fleetSpend.body.electrificationMakesThisSharper": {
+    "message": "电动化让这一问题更加突出，因为电动车队要同时应对三种报销难题："
+  },
+  "solutions.fleetSpend.body.aDriverChargesAt": {
+    "message": "{strong}驾驶员在家充电，需要按正确的费率、为正确的充电量（kWh）获得报销。"
+  },
+  "solutions.fleetSpend.body.homeCharging": {
+    "message": "家庭充电："
+  },
+  "solutions.fleetSpend.body.sessionsAcrossADozen": {
+    "message": "{strong}充电会话分布在十几个网络中，每个网络都有各自的应用、收据格式和定价。"
+  },
+  "solutions.fleetSpend.body.publicCharging": {
+    "message": "公共充电："
+  },
+  "solutions.fleetSpend.body.incurredMidSessionBilledLater": {
+    "message": "{strong}在会话中途产生、事后才结算，很少能与产生费用的那次行程对应起来。"
+  },
+  "solutions.fleetSpend.body.tollsAndParking": {
+    "message": "通行费和停车费："
+  },
+  "solutions.fleetSpend.body.handledSeparatelyTheseAre": {
+    "message": "分开处理，就是三套集成、三种对账难题。纳入会话统一处理，就只是一笔有上限、已归属的支出项。"
+  },
+  "solutions.fleetSpend.body.plugAndChargeAsAPerSession": {
+    "message": "即插即充，作为按会话计费的服务"
+  },
+  "solutions.fleetSpend.body.tyingSpendToThe": {
+    "message": "将支出与会话绑定，带来的不只是节省，还有新的收入。想象一下，{strong}，出差时再也不用下载六个应用来充电。如今这只是一笔{strong2}，因为没有可以挂靠的会话。有了会话容器，充电、保险及其他按行程提供的服务，就成了运营商真正可以提供并计费的项目，按会话定价，而不是埋在日租金里。"
+  },
+  "solutions.fleetSpend.body.plugAndChargeOnYourNext": {
+    "message": "下次租车即可享受即插即充"
+  },
+  "solutions.fleetSpend.body.0LineItem": {
+    "message": "$0的账目"
+  },
+  "solutions.fleetSpend.body.howItWorks": {
+    "message": "工作原理"
+  },
+  "solutions.fleetSpend.body.whenAIsCreated": {
+    "message": "创建{link}时，它会携带支出上限，以及身份、数字钥匙和数据范围。会话期间产生的费用会自动归属到该会话，并受上限约束；会话结束时，支出完成对账，并与会话的其他内容一起封存在同一份可验证记录中。运营商看到的是每个会话一个数字，而不是四个需要核对的数据源。"
+  },
+  "solutions.fleetSpend.body.thisIsTheSpend": {
+    "message": "这是更广泛的会话模型中的支出能力。了解{link}、{link2}，以及它如何融入{link3}。"
+  },
+  "solutions.fleetSpend.body.vehicleSessionInfrastructure": {
+    "message": "车辆会话基础设施"
+  },
+  "solutions.fleetSpend.body.payProduct": {
+    "message": "Pay产品"
+  },
+  "solutions.fleetSpend.body.rentalOperations": {
+    "message": "租车运营"
+  },
+  "solutions.vehicleCommerce.meta.solutionName": {
+    "message": "车辆商务"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.type": {
+    "message": "支付"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.title": {
+    "message": "稳定币支付"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.description": {
+    "message": "直接从车辆接受USDC、USDT等稳定币付款。手续费低、即时结算、覆盖全球，无需货币兑换。"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.example": {
+    "message": "通行费、停车、充电和车辆服务，全部使用稳定可靠的加密货币自动支付。"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.type": {
+    "message": "协议"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.title": {
+    "message": "x402支付协议"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.description": {
+    "message": "专为车辆打造的机器对机器支付标准。车辆与服务提供商之间的交易自动化、安全且基于权限。"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.example": {
+    "message": "车辆自动支付服务费用：无需用户干预，没有支付失败，毫无阻碍。"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.type": {
+    "message": "基础设施"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.title": {
+    "message": "即时结算"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.description": {
+    "message": "付款几秒内即可结算，而非数天。借助基于区块链的结算，杜绝拒付、减少欺诈、改善现金流。"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.example": {
+    "message": "服务提供商即时收到资金，无需等待银行转账或支付处理商。"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.type": {
+    "message": "经济性"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.title": {
+    "message": "低交易手续费"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.description": {
+    "message": "只需支付传统支付处理费用的一小部分。没有交换费，没有处理延迟，只有简单、经济的交易。"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.example": {
+    "message": "与传统银行卡网络相比，支付处理成本节省60-80%。"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.type": {
+    "message": "自动化"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.title": {
+    "message": "自动化小额支付"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.description": {
+    "message": "为按使用量计费的服务启用小额支付。按里程计费的保险、按千瓦时计费的充电、按分钟计费的停车，全部自动、无缝完成。"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.example": {
+    "message": "用户只为实际使用付费，交易在后台自动完成。"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.type": {
+    "message": "集成"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.title": {
+    "message": "无缝钱包集成"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.description": {
+    "message": "内置钱包基础设施，界面友好易用。用户可在您的应用内管理余额、查看交易并控制支出。"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.example": {
+    "message": "一键支付、交易记录和支出控制，原生钱包体验一应俱全。"
+  },
+  "solutions.vehicleCommerce.stats.paymentSettlement.label": {
+    "message": "付款结算"
+  },
+  "solutions.vehicleCommerce.stats.lowerFees.label": {
+    "message": "更低手续费"
+  },
+  "solutions.vehicleCommerce.stats.stablecoinsSupported.label": {
+    "message": "支持的稳定币"
+  },
+  "solutions.vehicleCommerce.stats.openProtocol.label": {
+    "message": "开放协议"
+  },
+  "solutions.vehicleCommerce.hero.enableFrictionlessVehiclePayments": {
+    "message": "借助{span}，实现无摩擦的车辆支付"
+  },
+  "solutions.vehicleCommerce.hero.stablecoinsX402": {
+    "message": "稳定币与x402"
+  },
+  "solutions.vehicleCommerce.hero.acceptStablecoinPaymentsEnable": {
+    "message": "接受稳定币付款，启用机器对机器交易，并通过x402协议实现车辆商务自动化。手续费低、即时结算、覆盖全球，专为现代出行打造。"
+  },
+  "solutions.vehicleCommerce.hero.getStarted": {
+    "message": "开始使用"
+  },
+  "solutions.vehicleCommerce.hero.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.vehicleCommerce.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.vehicleCommerce.useCases.everythingYouNeedFor": {
+    "message": "车辆支付所需的一切"
+  },
+  "solutions.vehicleCommerce.useCases.fromStablecoinInfrastructureTo": {
+    "message": "从稳定币基础设施到x402支付协议，DIMO为构建现代车辆商务应用提供完整的平台。"
+  },
+  "solutions.vehicleCommerce.featureSection1.stablecoinPaymentsFastCheap": {
+    "message": "稳定币支付：快速、低成本、全球通用"
+  },
+  "solutions.vehicleCommerce.featureSection1.acceptUsdcUsdtAnd": {
+    "message": "车辆服务可接受USDC、USDT等稳定币付款。即时结算、手续费低、无需货币兑换，支付全球通行，免去传统支付处理商的复杂流程。"
+  },
+  "solutions.vehicleCommerce.featureSection1.usdcAndUsdtSupport": {
+    "message": "支持主流区块链（Polygon、Base等）上的USDC和USDT"
+  },
+  "solutions.vehicleCommerce.featureSection1.settlementInSecondsNot": {
+    "message": "几秒完成结算，而非数天"
+  },
+  "solutions.vehicleCommerce.featureSection1.70LowerTransactionFees": {
+    "message": "交易手续费比银行卡网络低70%"
+  },
+  "solutions.vehicleCommerce.featureSection1.noChargebacksNoFraud": {
+    "message": "无拒付、无欺诈：不可篡改的链上交易"
+  },
+  "solutions.vehicleCommerce.featureSection1.stablecoinTokens": {
+    "message": "稳定币代币"
+  },
+  "solutions.vehicleCommerce.featureSection2.x402ProtocolMachineToMachinePayments": {
+    "message": "x402协议：机器对机器支付"
+  },
+  "solutions.vehicleCommerce.featureSection2.theX402ProtocolEnables": {
+    "message": "x402协议让车辆与服务提供商之间能够进行自动化、基于权限的交易。车辆自动支付通行费、停车费、充电费和各项服务费用，无需用户操作。"
+  },
+  "solutions.vehicleCommerce.featureSection2.openStandardForVehicleToInfrastructure": {
+    "message": "车辆与基础设施之间支付的开放标准"
+  },
+  "solutions.vehicleCommerce.featureSection2.permissionBasedSpendingWithUserDefined": {
+    "message": "基于权限的支出，限额由用户自定义"
+  },
+  "solutions.vehicleCommerce.featureSection2.automatedPaymentsWithoutUser": {
+    "message": "无需用户干预的自动支付"
+  },
+  "solutions.vehicleCommerce.featureSection2.compatibleWithExistingPayment": {
+    "message": "兼容现有支付基础设施"
+  },
+  "solutions.vehicleCommerce.featureSection2.x402ProtocolDiagram": {
+    "message": "x402协议示意图"
+  },
+  "solutions.vehicleCommerce.featureSection3.builtInWalletInfrastructure": {
+    "message": "内置钱包基础设施"
+  },
+  "solutions.vehicleCommerce.featureSection3.completeWalletSolutionWith": {
+    "message": "完整的钱包解决方案，界面友好易用。用户可管理余额、查看交易记录并控制支出，全部集成在您的应用中，无需额外开发。"
+  },
+  "solutions.vehicleCommerce.featureSection3.nonCustodialWalletsWithSecure": {
+    "message": "非托管钱包，安全管理密钥"
+  },
+  "solutions.vehicleCommerce.featureSection3.onOffRampIntegrationsFor": {
+    "message": "集成出入金通道，实现法币兑换"
+  },
+  "solutions.vehicleCommerce.featureSection3.transactionHistoryAndSpending": {
+    "message": "交易记录与支出分析"
+  },
+  "solutions.vehicleCommerce.featureSection3.spendingLimitsAndParental": {
+    "message": "支出限额与家长控制"
+  },
+  "solutions.vehicleCommerce.featureSection3.walletInterface": {
+    "message": "钱包界面"
+  },
+  "solutions.vehicleCommerce.howItWorks.integratePaymentInfrastructure.title": {
+    "message": "集成支付基础设施"
+  },
+  "solutions.vehicleCommerce.howItWorks.integratePaymentInfrastructure.description": {
+    "message": "将DIMO的钱包和支付基础设施添加到您的应用中。用户创建钱包，并通过我们的入金集成用稳定币为钱包充值。"
+  },
+  "solutions.vehicleCommerce.howItWorks.configureX402Permissions.title": {
+    "message": "配置x402权限"
+  },
+  "solutions.vehicleCommerce.howItWorks.configureX402Permissions.description": {
+    "message": "用户向自己的车辆授予支付权限，并设置支出限额和服务类别。所有权限公开透明，可随时撤销。"
+  },
+  "solutions.vehicleCommerce.howItWorks.enableAutomatedPayments.title": {
+    "message": "启用自动支付"
+  },
+  "solutions.vehicleCommerce.howItWorks.enableAutomatedPayments.description": {
+    "message": "车辆通过x402协议自动支付服务费用。通行费、停车、充电，全部无需用户干预。"
+  },
+  "solutions.vehicleCommerce.howItWorks.trackSettleInstantly.title": {
+    "message": "实时追踪，即时结算"
+  },
+  "solutions.vehicleCommerce.howItWorks.trackSettleInstantly.description": {
+    "message": "付款在链上几秒内完成结算。服务提供商即时收款，用户实时查看交易记录。"
+  },
+  "solutions.vehicleCommerce.howItWorks.howItWorks": {
+    "message": "工作原理"
+  },
+  "solutions.vehicleCommerce.howItWorks.enableVehiclePayments": {
+    "message": "启用车辆支付"
+  },
+  "solutions.vehicleCommerce.howItWorks.fromWalletIntegrationTo": {
+    "message": "从钱包集成到自动支付，DIMO让您借助稳定币和x402轻松构建车辆商务应用。"
+  },
+  "solutions.vehicleCommerce.cta.readyToEnableVehicle": {
+    "message": "准备好开启车辆商务了吗？"
+  },
+  "solutions.vehicleCommerce.cta.joinTheCompaniesBuilding": {
+    "message": "加入众多企业的行列，借助稳定币和x402协议，共同打造车辆支付的未来。"
+  },
+  "solutions.vehicleCommerce.cta.getStarted": {
+    "message": "开始使用"
+  },
+  "solutions.vehicleCommerce.cta.viewDocumentation": {
+    "message": "查看文档"
+  },
+  "solutions.vehicleCommerce.meta.title": {
+    "message": "车辆商务 | 稳定币支付与x402协议"
+  },
+  "solutions.vehicleCommerce.meta.description": {
+    "message": "借助稳定币（USDC、USDT）和x402协议，实现无摩擦的车辆支付。即时结算、手续费低，支持自动化的机器对机器交易。"
+  },
+  "solutions.vehicleCommerce.meta.keywords": {
+    "message": "车辆支付, 稳定币支付, USDC, USDT, x402协议, 加密货币支付, 区块链支付, 车辆商务, 自动支付"
+  },
+  "solutions.vehicleCommerce.meta.ogTitle": {
+    "message": "车辆商务 | DIMO平台"
+  },
+  "solutions.vehicleCommerce.meta.ogDescription": {
+    "message": "接受稳定币付款，并通过x402协议实现车辆交易自动化。手续费低、即时结算、覆盖全球。"
+  },
+  "solutions.vehicleCommerce.schema.dimoVehicleCommerce.name": {
+    "message": "DIMO车辆商务平台"
+  },
+  "solutions.vehicleCommerce.schema.dimoVehicleCommerce.description": {
+    "message": "支持稳定币和x402协议的车辆支付平台。为出行服务实现自动化、低手续费的支付。"
+  },
+  "solutions.vehicleCommerce.body.home.name": {
+    "message": "首页"
+  },
+  "solutions.vehicleCommerce.body.solutions.name": {
+    "message": "解决方案"
+  },
+  "solutions.vehicleCommerce.body.vehicleCommerce.name": {
+    "message": "车辆商务"
+  },
+  "footer.newsletterSignup.youreSubscribedWellBe": {
+    "message": "订阅成功！我们会与您保持联系。"
+  },
+  "footer.newsletterSignup.enterYourEmail": {
+    "message": "输入您的邮箱"
+  },
+  "footer.newsletter.sending": {
+    "message": "发送中…"
+  },
+  "footer.newsletterSignup.pleaseEnterAValid": {
+    "message": "请输入有效的邮箱地址。"
+  },
+  "footer.body.stayUpToDate": {
+    "message": "获取最新动态"
+  },
+  "footer.body.getTheLatestOn": {
+    "message": "获取DIMO开发者工具、API更新和车辆数据洞察的最新资讯。"
+  },
+  "footer.body.learnMore": {
+    "message": "了解更多"
+  },
+  "footer.body.developerDocs": {
+    "message": "开发者文档"
+  },
+  "footer.body.blogs": {
+    "message": "博客"
+  },
+  "footer.body.sdks": {
+    "message": "SDK"
+  },
+  "footer.body.resources": {
+    "message": "资源"
+  },
+  "footer.body.apiStatus": {
+    "message": "API状态"
+  },
+  "footer.body.getSupport": {
+    "message": "获取支持"
+  },
+  "footer.body.company": {
+    "message": "公司"
+  },
+  "footer.body.about": {
+    "message": "关于我们"
+  },
+  "footer.body.contact": {
+    "message": "联系我们"
+  },
+  "footer.body.privacyPolicy": {
+    "message": "隐私政策"
+  },
+  "footer.body.termsOfService": {
+    "message": "服务条款"
+  },
+  "footer.body.copyright": {
+    "message": "© {year} DIMO®保留所有权利"
+  }
+}

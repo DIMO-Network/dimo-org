@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "Resources",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "Guides for building with DIMO vehicle data: signals, events, connection options and the DIMO API.",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": "Recent guides",
+    "description": "The label for the left sidebar"
+  }
+}

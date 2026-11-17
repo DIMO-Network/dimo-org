@@ -1,0 +1,5381 @@
+{
+  "connectedCarApi.meta.title": {
+    "message": "聯網汽車API：一次整合，串接50+個品牌 | DIMO"
+  },
+  "connectedCarApi.meta.description": {
+    "message": "DIMO是內建車主同意機制的聯網汽車API：透過單一GraphQL端點，取得50+個品牌的即時遙測、車輛身分與車輛指令。提供免費方案，以及TypeScript、Python和C# SDK。"
+  },
+  "connectedCarApi.meta.h1": {
+    "message": "內建同意機制的聯網汽車API"
+  },
+  "connectedCarApi.body.home.name": {
+    "message": "首頁"
+  },
+  "connectedCarApi.body.connectedCarApi.name": {
+    "message": "聯網汽車API"
+  },
+  "connectedCarApi.body.product": {
+    "message": "產品"
+  },
+  "connectedCarApi.body.readTelemetryVerifyIdentity": {
+    "message": "透過單一權限控管的API，讀取遙測資料、驗證身分，並對50+個車輛品牌下達指令。車主同意由平台強制執行，不必再靠您的法務團隊把關。"
+  },
+  "connectedCarApi.body.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "connectedCarApi.body.aConnectedCarApi": {
+    "message": "聯網汽車API讓您的軟體能與車輛對話：讀取電池電量、找到車輛位置、查看里程表、解鎖車門。每家車廠多少都開放了部分功能，但各自有不同的合約、驗證流程與資料格式。DIMO不是又一份逐一品牌簽訂的連線合約，而是打造車輛存取能力的工具組：資料可經由您現有或自選的任何連線方式流入（直接的OEM預言機、Smartcar、Flespi或Volteras等供應商，或您自己的車載資通訊硬體），DIMO再將其轉化為已儲存、受同意機制管理、可供查詢的車輛資料，全部透過單一GraphQL介面提供。"
+  },
+  "connectedCarApi.body.whatYouCanDo": {
+    "message": "您能用它做什麼"
+  },
+  "connectedCarApi.body.capability": {
+    "message": "功能"
+  },
+  "connectedCarApi.body.examples": {
+    "message": "範例"
+  },
+  "connectedCarApi.body.realTimeTelemetry": {
+    "message": "即時遙測"
+  },
+  "connectedCarApi.body.locationSpeedBatteryState": {
+    "message": "位置、車速、電池電量、油量、里程表、胎壓、故障診斷碼"
+  },
+  "connectedCarApi.body.vehicleIdentity": {
+    "message": "車輛身分"
+  },
+  "connectedCarApi.body.vinBackedDigitalIdMakeModelYear": {
+    "message": "以VIN為基礎的數位身分、廠牌/車型/年份、擁有權證明"
+  },
+  "connectedCarApi.body.commands": {
+    "message": "車輛指令"
+  },
+  "connectedCarApi.body.lockAndUnlockDoors": {
+    "message": "車門上鎖與解鎖、啟動與停止電動車充電"
+  },
+  "connectedCarApi.body.consentManagement": {
+    "message": "同意管理"
+  },
+  "connectedCarApi.body.ownerGrantedScopedRevocablePermissions": {
+    "message": "由車主授予、限定範圍、可隨時撤銷的權限（SACD），並附有經簽署的稽核軌跡"
+  },
+  "connectedCarApi.body.events": {
+    "message": "事件"
+  },
+  "connectedCarApi.body.webhooksForStateChanges": {
+    "message": "透過Vehicle Triggers以Webhook通知狀態變更"
+  },
+  "connectedCarApi.body.ingestSources": {
+    "message": "資料接入來源"
+  },
+  "connectedCarApi.body.directOemOraclesProviders": {
+    "message": "直接的OEM預言機、Smartcar、Flespi和Volteras等供應商，或您自己的硬體（BYOD）"
+  },
+  "connectedCarApi.body.connectivityFromAnywhereOne": {
+    "message": "連線來源不限，資料層只有一個"
+  },
+  "connectedCarApi.body.connectivityProvidersSuchAs": {
+    "message": "Smartcar、Flespi和Volteras等連線供應商屬於直通式API：它們把OEM的資料格式轉換後交給您，接下來的事就得您自己處理。它們不儲存資料，沒有共享或同意模型，也無法自行架設。DIMO則是這些資料流匯入的那一層。來自任何接入來源的訊號，都會進入同一個權威資料系統，並內建身分、車主同意與共享機制；核心更是開源的，您可以自行運行。您也可以保留既有的Smartcar或Flespi整合，直接在上面加上DIMO。這正是驅動工作階段經濟的存取層：將身分、資料與同意打包在一起，讓一輛車能以單一可稽核的工作階段來出租、共享或維修。"
+  },
+  "connectedCarApi.body.oneQueryAnySource": {
+    "message": "一個查詢，任何來源"
+  },
+  "connectedCarApi.body.vehiclesAcross50Brands": {
+    "message": "DIMO網路上已有涵蓋50+個品牌的車輛，由駕駛人透過OEM預言機、合作供應商與DIMO硬體連接而來。無論車輛從哪裡接入，都能回應同一個GraphQL查詢。不必逐一解析各車廠格式，不必換算單位，也不必處理各自獨立的驗證流程："
+  },
+  "connectedCarApi.body.officialSdksCoverAnd": {
+    "message": "官方SDK支援{link}，另有React SDK負責面向使用者的同意流程。多數開發者在建立金鑰後五分鐘內，就能完成第一次成功的API呼叫。"
+  },
+  "connectedCarApi.body.typeScriptPythonAndC": {
+    "message": "TypeScript、Python和C#"
+  },
+  "connectedCarApi.body.consentIsTheHard": {
+    "message": "同意是最難的部分，所以我們直接內建"
+  },
+  "connectedCarApi.body.theExpensiveFailureMode": {
+    "message": "聯網汽車產品最昂貴的失敗模式不是缺少資料，而是存取治理。這次讀取是誰授權的？車主能撤銷嗎？您能向主管機關證明這兩點嗎？DIMO在協定層級就回答了這些問題：車主透過SACD同意模型授予限定範圍的權限，可隨時撤銷，而且每一筆授權都記錄在經簽署、可驗證的稽核軌跡上。GDPR與{link}的要求由架構本身滿足，而不是靠文書作業。"
+  },
+  "connectedCarApi.body.euDataAct": {
+    "message": "歐盟資料法"
+  },
+  "connectedCarApi.body.whatPeopleBuild": {
+    "message": "大家都在打造什麼"
+  },
+  "connectedCarApi.body.evChargingAppsThat": {
+    "message": "根據真實電量、而非使用者猜測來排程的電動車充電應用。不必動用三家車載資通訊供應商，就能追蹤混合品牌車輛的車隊工具。{link}，讓每筆預約都成為一個工作階段：數位鑰匙、限定範圍的資料、支出上限，並在還車時乾淨俐落地撤銷權限。依實際駕駛行為定價的使用量計費保險。還有能在您開口之前，就先檢查車輛電量並預先調節車內溫度的AI代理。"
+  },
+  "connectedCarApi.body.rentalAndCarshareOperations": {
+    "message": "租車與共享汽車營運服務"
+  },
+  "connectedCarApi.body.pricing": {
+    "message": "價格方案"
+  },
+  "connectedCarApi.body.theHobbyistTierIs": {
+    "message": "Hobbyist方案免費：所有API、一個AI代理，車輛每輛每月$1.25。您可以先用自己的車來開發，不必花任何一毛錢。Core方案每月$349，含100輛車，適用於正式上線的應用程式。{link}。"
+  },
+  "connectedCarApi.body.fullPricingDetails": {
+    "message": "查看完整價格方案"
+  },
+  "connectedCarApi.body.whereToGoNext": {
+    "message": "下一步"
+  },
+  "connectedCarApi.body.ifYouAreComparing": {
+    "message": "如果您正在比較各家供應商，{link}分析會深入說明兩者的差異。如果您想查看原始訊號規格，請參閱{link2}，或直接前往{link3}。一切都從在{link4}建立免費帳號開始。"
+  },
+  "connectedCarApi.body.dimoVsSmartcar": {
+    "message": "DIMO vs Smartcar"
+  },
+  "connectedCarApi.body.vehicleDataApiOverview": {
+    "message": "車輛資料API概覽"
+  },
+  "connectedCarApi.body.developerDocs": {
+    "message": "開發者說明文件"
+  },
+  "connectedCarApi.body.consoleDimoOrg": {
+    "message": "console.dimo.org"
+  },
+  "home.rotatingWords.vehicleData": {
+    "message": "車輛資料"
+  },
+  "home.rotatingWords.sessionBasedEconomy": {
+    "message": "工作階段經濟"
+  },
+  "home.rotatingWords.mobility": {
+    "message": "移動服務"
+  },
+  "home.hero.new": {
+    "message": "全新"
+  },
+  "home.hero.checkUsOutOn": {
+    "message": "歡迎到ProductHunt看看我們"
+  },
+  "home.hero.theInfrastructureBuiltFor": {
+    "message": "專為{br}{word}打造的基礎架構"
+  },
+  "home.hero.dimoIsBuildingThe": {
+    "message": "DIMO正在為工作階段經濟打造基礎架構，讓車輛、駕駛人與各項服務隨需連接。打造能在每一趟行程、每一次租賃、每一次互動中創造價值的應用程式。"
+  },
+  "home.hero.signUp": {
+    "message": "註冊"
+  },
+  "home.hero.readTheDocs": {
+    "message": "閱讀說明文件"
+  },
+  "home.featuredIn.pressCoverage": {
+    "message": "媒體報導"
+  },
+  "home.featuredIn.asFeaturedIn": {
+    "message": "曾獲以下媒體報導"
+  },
+  "home.featuredIn.readMotorTrendsCoverageOf": {
+    "message": "閱讀MotorTrend對DIMO的報導"
+  },
+  "home.featuredIn.anyTrueDataNerd": {
+    "message": "「真正的資料控，都該把車連上DIMO。」— MotorTrend，2026年7月"
+  },
+  "home.featuredIn.allThirdPartyTrademarksAre": {
+    "message": "所有第三方商標均為其各自擁有者之財產，僅用於標示獨立的編輯報導，並不代表任何背書或贊助關係。"
+  },
+  "home.whatIsDimo.whatIsDimo": {
+    "message": "DIMO是什麼？"
+  },
+  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
+    "message": "DIMO（Digital Infrastructure for Moving Objects，移動物件數位基礎架構）是驅動工作階段經濟的車輛資料基礎架構，讓車輛、駕駛人與各項服務隨需連接。DIMO透過單一權限控管的API處理車輛存取，提供涵蓋50+個品牌（包括Tesla、Ford、BMW、Toyota和Hyundai）的即時遙測、車輛身分與車主同意（SACD），讓開發者不必與每家車廠分別洽談整合，就能打造應用程式與事業。開發者可在console.dimo.org建立免費帳號、產生API金鑰，並透過GraphQL與REST端點查詢位置、電池電量與油量、里程表、胎壓、故障診斷碼等即時車輛資料，另有TypeScript、Python和C#官方SDK可用。車主掌控自己的資料：他們可透過精細、可稽核的權限授予或撤銷存取權限，這些權限能隨每個工作階段啟用與到期，讓應用程式預設就符合GDPR與歐盟資料法。平台核心為開源，支援自帶裝置的車載資通訊硬體，而免費的Hobbyist方案讓開發者幾分鐘內就能完成第一次API呼叫。"
+  },
+  "home.whatIsDimo.startWithTheOverview": {
+    "message": "您可以從{link}概覽了解各項功能，到{link2}頁面查看訊號目錄；如果您正在評估供應商，也可以參考{link3}比較。"
+  },
+  "home.whatIsDimo.connectedCarApi": {
+    "message": "聯網汽車API"
+  },
+  "home.whatIsDimo.vehicleDataApi": {
+    "message": "車輛資料API"
+  },
+  "home.whatIsDimo.dimoVsSmartcar": {
+    "message": "DIMO vs Smartcar"
+  },
+  "home.featuresGrid.universalCompatibility.title": {
+    "message": "全面相容"
+  },
+  "home.featuresGrid.universalCompatibility.desc": {
+    "message": "直接整合Tesla，另有Ford、BMW等50+個品牌已在DIMO上。新的車輛訊號幾乎每天都在解碼。"
+  },
+  "home.featuresGrid.privacyByDesign.title": {
+    "message": "隱私從設計開始"
+  },
+  "home.featuresGrid.privacyByDesign.desc": {
+    "message": "資料由使用者擁有的架構。以可驗證憑證為基礎，透過精細權限授予與撤銷存取權限。"
+  },
+  "home.featuresGrid.aiReadyContext.title": {
+    "message": "AI就緒的情境資料"
+  },
+  "home.featuresGrid.aiReadyContext.desc": {
+    "message": "乾淨、標準化的資料串流，隨時可用於開發代理式工作流程。"
+  },
+  "home.featuresGrid.plugPlayHardware.title": {
+    "message": "隨插即用硬體"
+  },
+  "home.featuresGrid.plugPlayHardware.desc": {
+    "message": "搭配DIMO LTE R1等選配硬體，車輛即可立即上線。使用者安裝零設定。"
+  },
+  "home.featuresGrid.openSourceCore.title": {
+    "message": "開源核心"
+  },
+  "home.featuresGrid.openSourceCore.desc": {
+    "message": "建立在開放協定之上。審查程式碼、為網路貢獻心力，真正擁有您的基礎架構。"
+  },
+  "home.featuresGrid.secureCompliant.title": {
+    "message": "安全且合規"
+  },
+  "home.featuresGrid.secureCompliant.desc": {
+    "message": "DIMO將存取紀錄寫入經密碼學簽署、可獨立驗證的帳本，在維護安全的同時，確保符合GDPR與歐盟資料法。"
+  },
+  "home.featuresGrid.builtForTheSessionBased": {
+    "message": "專為工作階段經濟打造"
+  },
+  "home.featuresGrid.theFutureOfMobility": {
+    "message": "移動服務的未來在於工作階段，而非擁有權。DIMO提供您打造服務所需的基礎元件，讓服務在行程開始時啟用、在結束時結算：資料同意、即時遙測、支付與AI驅動的自動化，全都整合在同一個平台。"
+  },
+  "home.automateOperations.automateOperations": {
+    "message": "自動化營運"
+  },
+  "home.automateOperations.powerEverySessionEnd": {
+    "message": "從頭到尾，驅動每一個工作階段"
+  },
+  "home.automateOperations.fromTheMomentA": {
+    "message": "從駕駛人解鎖車輛的那一刻，到交還車輛的那一瞬間，DIMO統籌整個工作階段的生命週期。運用能在每次互動間延續情境的AI代理自動化工作流程，讓您的團隊專注於成長，而不是瑣碎營運。最適合："
+  },
+  "home.automateOperations.rentalsFleetTurnover": {
+    "message": "租賃與車隊周轉"
+  },
+  "home.automateOperations.payPerUseSubscriptionServices": {
+    "message": "按次付費與訂閱服務"
+  },
+  "home.automateOperations.sessionBasedInsuranceRisk": {
+    "message": "以工作階段計費的保險與風險管理"
+  },
+  "home.automateOperations.bookingCheckInReturns": {
+    "message": "預約、取車報到與還車"
+  },
+  "home.automateOperations.maintenanceTriggeredByUsage": {
+    "message": "依使用狀況觸發的維修保養"
+  },
+  "home.bigFeature.connectAnyVehicleStart": {
+    "message": "連接任何車輛，開啟任何工作階段。"
+  },
+  "home.bigFeature.theSessionBasedEconomyRuns": {
+    "message": "工作階段經濟靠即時車輛資料運轉。DIMO支援網路上已有的50+個品牌車輛，您也可以透過{link}接入自己的資料。每個工作階段都具備經驗證的身分、即時遙測與由使用者掌控的同意，讓您能放心地向駕駛人收費、提供保險與服務。"
+  },
+  "home.bigFeature.verifiedVehicleDriverIdentity": {
+    "message": "每個工作階段都經驗證的車輛與駕駛人身分"
+  },
+  "home.bigFeature.realTimeTelemetryFromIgnition": {
+    "message": "從點火到停車的即時遙測"
+  },
+  "home.bigFeature.granularConsentThatActivates": {
+    "message": "隨每個工作階段啟用與到期的精細同意"
+  },
+  "home.bigFeature.telematicsArchitecture": {
+    "message": "車載資通訊架構"
+  },
+  "home.testimonials.maximilianoIpinza.text": {
+    "message": "真的超愛。我們開始用這套工具開發，而且越用越順手。其實我們在拉丁美洲使用DIMO，透過API把所有資料匯入我們自己的車載資通訊解決方案。另一個讓整合變得更容易的，是James團隊的支援水準和交付速度。"
+  },
+  "home.testimonials.collinMcCloskey.text": {
+    "message": "DIMO團隊做得非常出色，讓在他們平台上開發變得很輕鬆。有問題的時候，我就用他們的GPT。用CC或Cursor寫程式時，一鍵就能複製說明文件。他們的團隊支援很迅速，推出新功能的速度快到我都跟不上。老實說，這是非常愉快的體驗！"
+  },
+  "home.testimonials.danielWedding.text": {
+    "message": "身為電動車重度使用者兼軟體工程師，DIMO提供的平台不只讓我深入掌握想要的車輛數據，還整合了好用的開發者API，讓我能把一切完美整合進我的技術堆疊。"
+  },
+  "home.testimonials.robSolomon.text": {
+    "message": "我已經在DIMO上打造了好幾個應用程式，簡單得不可思議。身為非開發者，我用Replit、n8n和Bubble就推出了真正能用的產品。說明文件清楚易懂，平台也確實如宣傳般好用。比其他平台容易上手太多了！也許我有點偏心……但誰在乎呢！它真的很棒。"
+  },
+  "home.testimonials.whatDevsAreSaying": {
+    "message": "開發者怎麼說"
+  },
+  "home.hardware.compatibleHardware": {
+    "message": "相容硬體"
+  },
+  "home.hardware.accessHighFrequencyVehicleData": {
+    "message": "透過DIMO LTE R1取得高頻率車輛資料。幾秒鐘就能安裝完成，幾乎適用於所有車款，並將資料直接串流到網路。"
+  },
+  "home.hardware.buyDimoLteR1": {
+    "message": "購買DIMO LTE R1"
+  },
+  "home.hardware.needACustomHardware": {
+    "message": "需要客製化硬體整合嗎？"
+  },
+  "home.hardware.letsChat": {
+    "message": "與我們聊聊"
+  },
+  "home.cta.readyToBuildFor": {
+    "message": "準備好為工作階段打造服務了嗎？"
+  },
+  "home.cta.joinDevelopersBuildingThe": {
+    "message": "加入開發者的行列，一起打造新一代以工作階段為基礎的移動服務。立即取得您的API金鑰，今天就推出您的第一個工作階段。"
+  },
+  "home.cta.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "home.cta.joinDiscord": {
+    "message": "加入Discord"
+  },
+  "home.meta.title": {
+    "message": "DIMO | 為工作階段經濟打造的車輛平台"
+  },
+  "home.meta.description": {
+    "message": "DIMO驅動工作階段經濟：為50+個品牌處理車輛存取、遙測、身分與同意（SACD），讓您專心打造應用程式與事業。"
+  },
+  "home.meta.keywords": {
+    "message": "工作階段經濟, 車輛資料API, 聯網汽車平台, 汽車開發者平台, 車輛智慧, 汽車API, 車載資通訊API, OEM API, 交通行動服務, 車輛SDK, DIMO"
+  },
+  "home.meta.ogTitle": {
+    "message": "DIMO | 為工作階段經濟打造的車輛平台"
+  },
+  "home.meta.ogDescription": {
+    "message": "DIMO驅動工作階段經濟：為50+個品牌處理車輛存取、遙測、身分與同意（SACD），讓您專心打造應用程式與事業。"
+  },
+  "home.meta.twitterTitle": {
+    "message": "DIMO | 為工作階段經濟打造的車輛平台"
+  },
+  "home.meta.twitterDescription": {
+    "message": "DIMO驅動工作階段經濟：以即時車輛資料打造租賃、按次付費與移動服務。免費開始使用。"
+  },
+  "home.schema.description": {
+    "message": "DIMO是驅動工作階段經濟的車輛資料基礎架構。它透過單一權限控管的API處理車輛存取，提供涵蓋50+個品牌的即時遙測、身分與車主同意（SACD），讓開發者能在聯網汽車上打造應用程式與事業。核心平台為開源。"
+  },
+  "home.schema.description2": {
+    "message": "提供免費方案，進階功能另有付費方案"
+  },
+  "home.schema.featureList.worksWithAny": {
+    "message": "支援所有廠牌（已連接50+個車輛品牌）"
+  },
+  "home.schema.featureList.aiReadyDataStreams": {
+    "message": "AI就緒的資料串流"
+  },
+  "home.schema.featureList.privacyPreservingArchitecture": {
+    "message": "保護隱私的架構"
+  },
+  "home.schema.featureList.plugAndPlayHardwareSupport": {
+    "message": "支援隨插即用硬體"
+  },
+  "home.schema.featureList.openSourceCore": {
+    "message": "開源核心"
+  },
+  "home.schema.featureList.realTimeVehicleTelemetry": {
+    "message": "即時車輛遙測"
+  },
+  "home.schema.featureList.agenticWorkflowDevelopment": {
+    "message": "代理式工作流程開發"
+  },
+  "pricing.tiers.hobbyist.price": {
+    "message": "免費"
+  },
+  "pricing.tiers.subPrice": {
+    "message": "+ 每輛車$1.25/月"
+  },
+  "pricing.tiers.hobbyist.description": {
+    "message": "最適合為自己的車輛動手開發的愛好者。"
+  },
+  "pricing.tiers.hobbyist.features.accessVehicleData": {
+    "message": "安全存取車輛資料"
+  },
+  "pricing.tiers.hobbyist.features.oneAiAgent": {
+    "message": "限1個AI代理"
+  },
+  "pricing.tiers.hobbyist.features.payAsYouGoAi": {
+    "message": "AI用量隨用隨付"
+  },
+  "pricing.tiers.hobbyist.features.builtInMcps": {
+    "message": "可使用內建MCP"
+  },
+  "pricing.tiers.getStarted": {
+    "message": "開始使用"
+  },
+  "pricing.tiers.perMonth": {
+    "message": "/月"
+  },
+  "pricing.tiers.core.description": {
+    "message": "適合為車隊或使用者群打造應用程式的開發者。"
+  },
+  "pricing.tiers.everythingIn": {
+    "message": "包含{plan}的所有功能"
+  },
+  "pricing.tiers.core.features.vehiclesIncluded": {
+    "message": "含100輛車"
+  },
+  "pricing.tiers.core.features.moreRequestLimits": {
+    "message": "更高的請求上限"
+  },
+  "pricing.tiers.core.features.bringYourOwnData": {
+    "message": "可匯入自有資料"
+  },
+  "pricing.tiers.core.features.dataStorage": {
+    "message": "含資料儲存"
+  },
+  "pricing.tiers.startBuilding": {
+    "message": "開始開發"
+  },
+  "pricing.tiers.mostPopular": {
+    "message": "最受歡迎"
+  },
+  "pricing.tiers.enterprise.price": {
+    "message": "客製化"
+  },
+  "pricing.tiers.enterprise.description": {
+    "message": "為大規模部署量身打造的解決方案。"
+  },
+  "pricing.tiers.enterprise.features.customRequestLimits": {
+    "message": "客製化請求上限"
+  },
+  "pricing.tiers.enterprise.features.moreAiAgents": {
+    "message": "含更多AI代理"
+  },
+  "pricing.tiers.enterprise.features.bringYourOwnAiKeys": {
+    "message": "可使用自有AI金鑰"
+  },
+  "pricing.tiers.enterprise.features.dedicatedSupport": {
+    "message": "專屬支援管道"
+  },
+  "pricing.tiers.enterprise.features.customSla": {
+    "message": "客製化SLA與合約"
+  },
+  "pricing.tiers.enterprise.features.onPremise": {
+    "message": "可選擇地端部署"
+  },
+  "pricing.tiers.contactUs": {
+    "message": "聯絡我們"
+  },
+  "pricing.hero.earlyBirdPricing": {
+    "message": "🎉 早鳥優惠價"
+  },
+  "pricing.hero.chooseYourPlan": {
+    "message": "選擇您的方案"
+  },
+  "pricing.hero.selectThePerfectPlan": {
+    "message": "挑選最符合您需求的方案。從愛好者到企業，彈性的價格方案陪您一路擴展。"
+  },
+  "pricing.hero.aiVehicleData": {
+    "message": "AI + 車輛資料"
+  },
+  "pricing.hero.vehicleDataOnly": {
+    "message": "僅車輛資料"
+  },
+  "pricing.hero.annual": {
+    "message": "年繳"
+  },
+  "pricing.hero.monthly": {
+    "message": "月繳"
+  },
+  "pricing.pricingGrid.allPlansIncludeAccess": {
+    "message": "所有方案都能存取DIMO網路。需要更多資訊嗎？{link}"
+  },
+  "pricing.pricingGrid.viewDetailedComparison": {
+    "message": "查看詳細比較"
+  },
+  "pricing.pricingGrid.earlyBirdPricingIs": {
+    "message": "* 早鳥優惠價限時提供。價格與功能可能隨時調整。"
+  },
+  "pricing.enterpriseModal.close": {
+    "message": "關閉"
+  },
+  "pricing.enterpriseModal.thanks": {
+    "message": "謝謝您，{name}！"
+  },
+  "pricing.enterpriseModal.wellReachOutTo": {
+    "message": "我們將盡快透過{strong}與您聯繫，討論您的企業需求。"
+  },
+  "pricing.enterpriseModal.contactUsForEnterprise": {
+    "message": "聯絡我們了解企業方案"
+  },
+  "pricing.enterpriseModal.tellUsAboutYour": {
+    "message": "告訴我們您的專案內容，我們將為您規劃客製化方案。"
+  },
+  "pricing.enterpriseModal.yourName": {
+    "message": "您的姓名"
+  },
+  "pricing.enterpriseModal.workEmail": {
+    "message": "公司電子郵件"
+  },
+  "pricing.enterpriseModal.companyName": {
+    "message": "公司名稱"
+  },
+  "pricing.enterpriseModal.fleetSize": {
+    "message": "車隊規模"
+  },
+  "pricing.enterpriseModal.100500Vehicles": {
+    "message": "100 – 500輛車"
+  },
+  "pricing.enterpriseModal.5005000Vehicles": {
+    "message": "500 – 5,000輛車"
+  },
+  "pricing.enterpriseModal.500050000Vehicles": {
+    "message": "5,000 – 50,000輛車"
+  },
+  "pricing.enterpriseModal.50000Vehicles": {
+    "message": "50,000輛車以上"
+  },
+  "pricing.enterpriseModal.tellUsAboutYour2": {
+    "message": "請告訴我們您的使用案例與需求……"
+  },
+  "pricing.enterpriseModal.error": {
+    "message": "發生錯誤，請再試一次。"
+  },
+  "pricing.enterpriseModal.invalidEmail": {
+    "message": "請輸入有效的電子郵件地址。"
+  },
+  "pricing.enterpriseModal.sending": {
+    "message": "傳送中……"
+  },
+  "pricing.enterpriseModal.getInTouch": {
+    "message": "與我們聯繫"
+  },
+  "pricing.meta.title": {
+    "message": "DIMO價格方案 | 車輛資料API與AI代理方案，免費開始"
+  },
+  "pricing.meta.description": {
+    "message": "車輛資料API與AI代理的彈性價格方案。免費的Hobbyist方案、開發者方案每月$349，以及客製化企業方案。透過單一平台存取50+個品牌的車輛資料。今天就開始開發。"
+  },
+  "pricing.meta.keywords": {
+    "message": "車輛API價格, DIMO價格, 汽車資料費用, 汽車API方案, 車輛智慧價格, 車隊管理價格, 車載資通訊API費用"
+  },
+  "pricing.meta.ogTitle": {
+    "message": "DIMO價格方案 | 車輛資料API與AI代理方案"
+  },
+  "pricing.meta.ogDescription": {
+    "message": "聯網汽車開發的透明價格。免費開始，隨業務成長彈性擴展。提供車輛資料API、AI代理與企業解決方案。"
+  },
+  "pricing.meta.twitterTitle": {
+    "message": "DIMO價格方案 | 免費開始"
+  },
+  "pricing.meta.twitterDescription": {
+    "message": "免費Hobbyist方案 • 開發者方案每月$349 • 客製化企業解決方案。運用50+個品牌的車輛資料開發。"
+  },
+  "pricing.schema.description": {
+    "message": "DIMO是驅動工作階段經濟的車輛資料基礎架構。為運用即時、受同意機制管理的車輛資料與AI代理進行開發的開發者提供多種方案。"
+  },
+  "pricing.schema.0.description": {
+    "message": "適合為自己的車輛動手開發的愛好者的免費方案。含1個AI代理，採隨用隨付計價。"
+  },
+  "pricing.schema.1.description": {
+    "message": "適合為車隊或使用者群打造應用程式的開發者。含100輛車、更高的請求上限與資料儲存。"
+  },
+  "vehicleDataApi.meta.title": {
+    "message": "車輛資料API：即時遙測，支援50+個品牌 | DIMO"
+  },
+  "vehicleDataApi.meta.description": {
+    "message": "透過單一GraphQL API，查詢50+個品牌的即時與歷史車輛資料（位置、電池、油量、里程表、胎壓、診斷）。經車主同意、符合GDPR要求，並提供免費方案。"
+  },
+  "vehicleDataApi.meta.h1": {
+    "message": "車輛資料API：所有訊號，一個端點"
+  },
+  "vehicleDataApi.body.home.name": {
+    "message": "首頁"
+  },
+  "vehicleDataApi.body.vehicleDataApi.name": {
+    "message": "車輛資料API"
+  },
+  "vehicleDataApi.body.product": {
+    "message": "產品"
+  },
+  "vehicleDataApi.body.normalizedRealTimeAndHistorical": {
+    "message": "涵蓋50+個品牌、經標準化的即時與歷史車輛遙測資料，透過GraphQL提供，並在協定層級強制執行車主同意。大約五分鐘就能完成第一次API呼叫。"
+  },
+  "vehicleDataApi.body.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "vehicleDataApi.body.vehicleDataIsFragmented": {
+    "message": "車輛資料的破碎是刻意造成的：每家車廠都有自己的雲端、資料結構、單位與把關機制。車輛資料API的價值，就在於把這團混亂標準化成一份您的程式碼可以信賴的介面。DIMO在整個網路上一次完成標準化。訊號會經由您選擇的連線來源串流進來：直接的OEM預言機、Smartcar、Flespi或Volteras等直通式供應商，或DIMO硬體。無論來源為何，您都能透過單一GraphQL端點，以一致的名稱與單位查詢所有資料。"
+  },
+  "vehicleDataApi.body.oneScopingNoteIf": {
+    "message": "補充說明一下範圍：如果您需要的是靜態參考資料（VIN解碼、廠牌/車型/車款規格、市場價格），那是查詢用的資料庫，而這裡提供的不是那種資料。這個API提供的是路上行駛車輛的即時與歷史感測器資料，並附帶車主同意。這正是DIMO為工作階段經濟提供的資料層。"
+  },
+  "vehicleDataApi.body.signalsYouCanQuery": {
+    "message": "可查詢的訊號"
+  },
+  "vehicleDataApi.body.category": {
+    "message": "類別"
+  },
+  "vehicleDataApi.body.signals": {
+    "message": "訊號"
+  },
+  "vehicleDataApi.body.locationMotion": {
+    "message": "位置與移動"
+  },
+  "vehicleDataApi.body.gpsCoordinatesSpeedHeading": {
+    "message": "GPS座標、車速、行駛方向、海拔"
+  },
+  "vehicleDataApi.body.energy": {
+    "message": "能源"
+  },
+  "vehicleDataApi.body.batteryStateOfCharge": {
+    "message": "電池電量、充電狀態、續航里程、油量"
+  },
+  "vehicleDataApi.body.usage": {
+    "message": "使用狀況"
+  },
+  "vehicleDataApi.body.odometerIgnitionStateTrip": {
+    "message": "里程表、點火狀態、行程資料"
+  },
+  "vehicleDataApi.body.health": {
+    "message": "車況"
+  },
+  "vehicleDataApi.body.tirePressurePerWheel": {
+    "message": "胎壓（各輪）、引擎溫度、機油壽命、故障診斷碼（DTC）"
+  },
+  "vehicleDataApi.body.state": {
+    "message": "狀態"
+  },
+  "vehicleDataApi.body.doorLockStatusWindow": {
+    "message": "車門上鎖狀態、車窗位置、引擎蓋/後車廂狀態"
+  },
+  "vehicleDataApi.body.signalNamesFollowThe": {
+    "message": "訊號名稱遵循COVESA Vehicle Signal Specification，因此{code}對Tesla和Ford代表的意義完全相同。可用性依廠牌與連線類型而異，完整目錄請參閱{link}。更新頻率從透過OEM雲端連線的30秒一次，到搭配選配DIMO LTE R1轉接器的不到一秒一次。"
+  },
+  "vehicleDataApi.body.telemetryApiReference": {
+    "message": "遙測API參考文件"
+  },
+  "vehicleDataApi.body.storageWithSharingNot": {
+    "message": "具備共享功能的儲存，而非直通轉送"
+  },
+  "vehicleDataApi.body.thisIsTheDifference": {
+    "message": "這就是DIMO與連線供應商的差別。Smartcar、Flespi和Volteras將OEM資料流轉換後直接轉送給您；它們不是權威資料系統，沒有同意或共享模型，也無法自行架設。DIMO則從這些供應商（或OEM預言機與硬體）接入資料，並將訊號儲存為標準化的時間序列，讓車主可以共享、限定範圍與撤銷。開源核心意味著整套技術堆疊都能在您自己的基礎架構上運行。"
+  },
+  "vehicleDataApi.body.historicalDataWithAggregation": {
+    "message": "支援彙總的歷史資料"
+  },
+  "vehicleDataApi.body.becauseDimoStoresThe": {
+    "message": "由於DIMO會儲存資料，同一個端點就能提供時間序列歷史資料，並在伺服器端完成彙總，一週的駕駛資料只需一個查詢，不必另建資料管線："
+  },
+  "vehicleDataApi.body.consentAndComplianceAre": {
+    "message": "同意與合規本就是API的一部分"
+  },
+  "vehicleDataApi.body.everyQueryRunsAgainst": {
+    "message": "每一次查詢都以車主明確授予的權限為依據。授權限定範圍（您只能看到使用者共享的訊號群組）、可隨時撤銷，並記錄在經簽署的稽核軌跡上。正是這樣的架構，讓符合GDPR、{link}和CCPA成為平台本身的特性，而不是您團隊必須另外執行的專案。如果您關注過FTC近期對車輛資料仲介的執法行動，就會明白這才是關鍵所在。"
+  },
+  "vehicleDataApi.body.euDataAct": {
+    "message": "歐盟資料法"
+  },
+  "vehicleDataApi.body.gettingToAFirst": {
+    "message": "完成第一次API呼叫"
+  },
+  "vehicleDataApi.body.createAFreeAccount": {
+    "message": "在{link}建立免費帳號，產生開發者授權與API金鑰，就能開始查詢。{link2}的SDK會處理驗證與權杖交換。手邊沒有車？{link3}能產生擬真的遙測資料，讓您在連接真實硬體前就能開始開發。"
+  },
+  "vehicleDataApi.body.consoleDimoOrg": {
+    "message": "console.dimo.org"
+  },
+  "vehicleDataApi.body.typeScriptPythonAndC": {
+    "message": "TypeScript、Python和C#"
+  },
+  "vehicleDataApi.body.vehicleSimulator": {
+    "message": "車輛模擬器"
+  },
+  "vehicleDataApi.body.pricing": {
+    "message": "價格方案"
+  },
+  "vehicleDataApi.body.hobbyistIsFreeAll": {
+    "message": "Hobbyist方案免費：所有API、一個AI代理，車輛每輛每月$1.25。Core方案每月$349，含100輛車、更高的速率限制與資料儲存。Enterprise方案提供客製化限制與地端部署選項。{link}。"
+  },
+  "vehicleDataApi.body.fullPricing": {
+    "message": "查看完整價格"
+  },
+  "vehicleDataApi.body.relatedReading": {
+    "message": "延伸閱讀"
+  },
+  "vehicleDataApi.body.forTheBroaderPlatform": {
+    "message": "想了解更完整的平台全貌（在資料之上的指令、身分與同意），請參閱{link}。想看與其他供應商的正面比較，請閱讀{link2}。其他所有內容，都在{link3}中。"
+  },
+  "vehicleDataApi.body.connectedCarApiOverview": {
+    "message": "聯網汽車API概覽"
+  },
+  "vehicleDataApi.body.dimoVsSmartcar": {
+    "message": "DIMO vs Smartcar"
+  },
+  "vehicleDataApi.body.developerDocs": {
+    "message": "開發者說明文件"
+  },
+  "vehicleSessionInfrastructure.meta.title": {
+    "message": "車輛工作階段基礎架構：車輛專用的OAuth | DIMO"
+  },
+  "vehicleSessionInfrastructure.meta.description": {
+    "message": "Smartcar讀取資料，Geotab追蹤車輛，但兩者都不管理工作階段。DIMO是存取層：建立車輛工作階段、限定資料與支出範圍，並一次性完整撤銷。"
+  },
+  "vehicleSessionInfrastructure.meta.h1": {
+    "message": "車輛工作階段基礎架構：驗證、鑰匙、範圍、支出，以及撤銷"
+  },
+  "vehicleSessionInfrastructure.body.home.name": {
+    "message": "首頁"
+  },
+  "vehicleSessionInfrastructure.body.vehicleSessionInfrastructure.name": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "vehicleSessionInfrastructure.body.platform": {
+    "message": "平台"
+  },
+  "vehicleSessionInfrastructure.body.aRentalACarshare": {
+    "message": "一次租車、一次共享汽車、一趟無人計程車、一次車隊派遣：每當有人使用一輛不屬於自己的車，那就是一個工作階段。DIMO就是管理它的基礎架構。"
+  },
+  "vehicleSessionInfrastructure.body.isTheSoftwareLayer": {
+    "message": "{strong}是一個軟體層，只需一次操作，就能為共享用途完成車輛的佈建，並在用途結束時撤銷一切。這是DIMO的核心概念，而DIMO正是驅動工作階段經濟的車輛資料基礎架構。它位於車輛與需要暫時性、受管控存取權限的應用程式、車隊和服務之間。最容易理解的方式，是拿早已支撐網際網路運作的那些基礎管線來類比："
+  },
+  "vehicleSessionInfrastructure.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "vehicleSessionInfrastructure.body.authorizesCapturesAndRefunds": {
+    "message": "{strong}負責授權、請款與退款。"
+  },
+  "vehicleSessionInfrastructure.body.stripe": {
+    "message": "Stripe"
+  },
+  "vehicleSessionInfrastructure.body.createsScopesAndRevokes": {
+    "message": "{strong}負責建立身分工作階段、限定其範圍並將其撤銷。"
+  },
+  "vehicleSessionInfrastructure.body.auth0": {
+    "message": "Auth0"
+  },
+  "vehicleSessionInfrastructure.body.createsAVehicleSession": {
+    "message": "{strong}負責建立車輛工作階段、限定其中的資料、存取權限與支出範圍，並在還車時將其撤銷。"
+  },
+  "vehicleSessionInfrastructure.body.putAnotherWayIt": {
+    "message": "換句話說，它就是{strong}。目前每家車隊業者、租車應用程式和OEM，都得自己動手串接身分、鑰匙、資料與支付整合。這和OAuth出現之前每個網站各自打造登入功能的混亂局面如出一轍。DIMO就是取代這一切的共用基礎元件。"
+  },
+  "vehicleSessionInfrastructure.body.oauthForVehicles": {
+    "message": "車輛專用的OAuth"
+  },
+  "vehicleSessionInfrastructure.body.theRowNotThe": {
+    "message": "是整列，而不是某一欄"
+  },
+  "vehicleSessionInfrastructure.body.itIsEasyTo": {
+    "message": "人們很容易把DIMO誤認為車載資通訊供應商或數位鑰匙廠商，但它兩者都不是。DIMO不在任何單一欄位上競爭，而是將整列組合起來。產業版圖如下："
+  },
+  "vehicleSessionInfrastructure.body.layer": {
+    "message": "層級"
+  },
+  "vehicleSessionInfrastructure.body.whoOwnsIt": {
+    "message": "主要業者"
+  },
+  "vehicleSessionInfrastructure.body.whatItDoesAnd": {
+    "message": "能做什麼、缺少什麼"
+  },
+  "vehicleSessionInfrastructure.body.fleetTelematics": {
+    "message": "車隊車載資通訊"
+  },
+  "vehicleSessionInfrastructure.body.geotabSamsaraVerizonConnect": {
+    "message": "Geotab、Samsara、Verizon Connect、Motive"
+  },
+  "vehicleSessionInfrastructure.body.monitoringOnlyNothingTo": {
+    "message": "僅限監控；使用結束時沒有可撤銷的東西"
+  },
+  "vehicleSessionInfrastructure.body.connectedDataApiReadOnly": {
+    "message": "聯網資料API（唯讀）"
+  },
+  "vehicleSessionInfrastructure.body.smartcarMotorqHighMobility": {
+    "message": "Smartcar、Motorq、High Mobility"
+  },
+  "vehicleSessionInfrastructure.body.aWindowIntoThe": {
+    "message": "看進車內的一扇窗，但沒有工作階段物件"
+  },
+  "vehicleSessionInfrastructure.body.digitalKeyAccess": {
+    "message": "數位鑰匙／存取"
+  },
+  "vehicleSessionInfrastructure.body.cccDigitalKeyStandard": {
+    "message": "CCC Digital Key、Standard Fleet"
+  },
+  "vehicleSessionInfrastructure.body.accessButNotComposed": {
+    "message": "提供存取，但未與資料、支出和撤銷整合"
+  },
+  "vehicleSessionInfrastructure.body.sessionInfrastructure": {
+    "message": "工作階段基礎架構"
+  },
+  "vehicleSessionInfrastructure.body.oneSessionThatBundles": {
+    "message": "以單一工作階段整合並管理以上所有功能"
+  },
+  "vehicleSessionInfrastructure.body.orInOneLine": {
+    "message": "或者，各用一句話來說：{em}沒有其他人在管理工作階段。這正是DIMO填補的缺口。"
+  },
+  "vehicleSessionInfrastructure.body.smartcarIsAWindow": {
+    "message": "Smartcar是看進車內的一扇窗，DIMO則是租借櫃台。Samsara告訴您正在發生什麼，DIMO則控制什麼可以發生。"
+  },
+  "vehicleSessionInfrastructure.body.whatOneSessionBundles": {
+    "message": "一個工作階段整合了什麼"
+  },
+  "vehicleSessionInfrastructure.body.aSingleDimoSession": {
+    "message": "單一DIMO工作階段會開啟一組明確定義的功能，並在之後將其撤銷。營運商只需整合一次，不必拼湊五家廠商："
+  },
+  "vehicleSessionInfrastructure.body.verifyWhoIsBeing": {
+    "message": "{strong}驗證獲得存取權限的對象。"
+  },
+  "vehicleSessionInfrastructure.body.identity": {
+    "message": "身分："
+  },
+  "vehicleSessionInfrastructure.body.grantAndRevokePhysical": {
+    "message": "{strong}授予與撤銷實體進入權限，再也不怕弄丟遙控鑰匙。"
+  },
+  "vehicleSessionInfrastructure.body.digitalKey": {
+    "message": "數位鑰匙："
+  },
+  "vehicleSessionInfrastructure.body.normalizedTelemetryLimitedTo": {
+    "message": "{strong}標準化的遙測資料，僅限用途所需的範圍。"
+  },
+  "vehicleSessionInfrastructure.body.dataScope": {
+    "message": "資料範圍："
+  },
+  "vehicleSessionInfrastructure.body.seatMirrorAndProfile": {
+    "message": "{strong}座椅、後照鏡與個人設定檔的個人化，讓租來的車不再像是陌生人的車。"
+  },
+  "vehicleSessionInfrastructure.body.comfortAndMedia": {
+    "message": "舒適與影音娛樂："
+  },
+  "vehicleSessionInfrastructure.body.chargingTollsAndFuel": {
+    "message": "{strong}充電、通行費與油資在結帳時就設定上限（請參閱{link}）。"
+  },
+  "vehicleSessionInfrastructure.body.spendCap": {
+    "message": "支出上限："
+  },
+  "vehicleSessionInfrastructure.body.perSessionSpend": {
+    "message": "每個工作階段的支出"
+  },
+  "vehicleSessionInfrastructure.body.whenTheSessionEnds": {
+    "message": "{strong}工作階段結束時，所有權限一併終止，並封存一份可驗證的紀錄。"
+  },
+  "vehicleSessionInfrastructure.body.atomicRevocation": {
+    "message": "一次性完整撤銷："
+  },
+  "vehicleSessionInfrastructure.body.whyNow": {
+    "message": "為什麼是現在"
+  },
+  "vehicleSessionInfrastructure.body.thereAreEveryRental": {
+    "message": "{strong}：每一次租車、每一趟共享汽車行程、每一趟無人計程車、每一次車隊派遣。但沒有任何一個建立在共用的協定上。同時，主管機關正在強制要求的，正是工作階段所提供的特性：經同意、限定範圍、可撤銷、可稽核的存取（請參閱{link}）。需求與法規正同時到來。"
+  },
+  "vehicleSessionInfrastructure.body.hundredsOfMillionsOf": {
+    "message": "光是美國，每年就有數億次車輛工作階段"
+  },
+  "vehicleSessionInfrastructure.body.connectedVehicleDataCompliance": {
+    "message": "聯網汽車資料法規遵循"
+  },
+  "vehicleSessionInfrastructure.body.whoBuildsOnIt": {
+    "message": "誰在使用它開發"
+  },
+  "vehicleSessionInfrastructure.body.rentalAndCarshareOperators": {
+    "message": "租車與共享汽車業者用它來經營{link}；OEM聯網服務團隊用它來符合{link2}的要求，並提供工作階段結束後的營收機會；開發者則在{link3}之上打造服務。單一工作階段基礎元件，服務眾多呼叫端，包括產業還沒遇過的那些。"
+  },
+  "vehicleSessionInfrastructure.body.unmannedMixedFleetOperations": {
+    "message": "無人化、混合車隊營運"
+  },
+  "vehicleSessionInfrastructure.body.euDataAct": {
+    "message": "歐盟資料法"
+  },
+  "vehicleSessionInfrastructure.body.dimoApisAndSdks": {
+    "message": "DIMO API與SDK"
+  },
+  "contentPage.cta.talkToSales": {
+    "message": "洽詢業務團隊"
+  },
+  "contentPage.cta.talkToOurTeam": {
+    "message": "與我們的團隊聊聊"
+  },
+  "navbar.body.toggleNavigationMenu": {
+    "message": "切換導覽選單"
+  },
+  "navbar.body.products": {
+    "message": "產品"
+  },
+  "navbar.body.components": {
+    "message": "Components"
+  },
+  "navbar.body.wallet": {
+    "message": "錢包"
+  },
+  "navbar.body.selfCustodiedVehicleIdentityAnd": {
+    "message": "自主保管的車輛身分與資產管理"
+  },
+  "navbar.body.digitalKeyCcc": {
+    "message": "數位鑰匙（CCC）"
+  },
+  "navbar.body.phoneAsKeyVehicleAccessVia": {
+    "message": "透過NFC與BLE，以手機作為鑰匙進入車輛"
+  },
+  "navbar.body.agents": {
+    "message": "AI代理"
+  },
+  "navbar.body.autonomousVehicleIntelligenceAnd": {
+    "message": "自主運作的車輛智慧與工作流程自動化"
+  },
+  "navbar.body.developerTools": {
+    "message": "開發者工具"
+  },
+  "navbar.body.sdksApisConsoleAnd": {
+    "message": "SDK、API、主控台與AI原生整合"
+  },
+  "navbar.body.vehicleSimulator": {
+    "message": "車輛模擬器"
+  },
+  "navbar.body.simulateVehicleDataFor": {
+    "message": "模擬車輛資料，用於開發與測試"
+  },
+  "navbar.body.platform": {
+    "message": "平台"
+  },
+  "navbar.body.ingest": {
+    "message": "Ingest"
+  },
+  "navbar.body.bringYourOwnData": {
+    "message": "自帶資料（BYOD），或與車載資通訊合作夥伴整合"
+  },
+  "navbar.body.storage": {
+    "message": "Storage"
+  },
+  "navbar.body.normalizedCleanAiReadyData": {
+    "message": "標準化、乾淨、AI就緒的資料，提供代管或地端部署"
+  },
+  "navbar.body.consent": {
+    "message": "Consent"
+  },
+  "navbar.body.offTheShelfDataPrivacyAnd": {
+    "message": "現成可用的資料隱私與權限管理"
+  },
+  "navbar.body.access": {
+    "message": "Access"
+  },
+  "navbar.body.consumeGovernedDataVia": {
+    "message": "透過API、SDK與AI代理使用受管控的資料"
+  },
+  "navbar.body.pay": {
+    "message": "Pay"
+  },
+  "navbar.body.paymentRewardRailsFor": {
+    "message": "以車輛為中心的商務支付與獎勵基礎設施"
+  },
+  "navbar.body.solutions": {
+    "message": "解決方案"
+  },
+  "navbar.body.byExperience": {
+    "message": "依體驗"
+  },
+  "navbar.body.agenticExperiences": {
+    "message": "代理式體驗"
+  },
+  "navbar.body.consumerApplications": {
+    "message": "消費者應用"
+  },
+  "navbar.body.fleetIntelligence": {
+    "message": "車隊智慧"
+  },
+  "navbar.body.vehicleCommerce": {
+    "message": "車輛商務"
+  },
+  "navbar.body.byIndustry": {
+    "message": "依產業"
+  },
+  "navbar.body.autoOems": {
+    "message": "汽車OEM"
+  },
+  "navbar.body.dealerships": {
+    "message": "汽車經銷商"
+  },
+  "navbar.body.deliveryServiceProviders": {
+    "message": "配送服務業者"
+  },
+  "navbar.body.rentalsP2pCarSharing": {
+    "message": "租車與P2P共享汽車"
+  },
+  "navbar.body.resources": {
+    "message": "資源"
+  },
+  "navbar.body.learn": {
+    "message": "學習資源"
+  },
+  "navbar.body.documentation": {
+    "message": "說明文件"
+  },
+  "navbar.body.developerBlog": {
+    "message": "開發者部落格"
+  },
+  "navbar.body.customerStories": {
+    "message": "客戶案例"
+  },
+  "navbar.body.pricing": {
+    "message": "價格方案"
+  },
+  "navbar.body.console": {
+    "message": "主控台"
+  },
+  "navbar.body.industries": {
+    "message": "產業"
+  },
+  "navbar.body.language": {
+    "message": "語言"
+  },
+  "compare.smartcarAlternative.meta.title": {
+    "message": "DIMO vs Smartcar：掌控工作階段，不只是資料 | DIMO"
+  },
+  "compare.smartcarAlternative.meta.description": {
+    "message": "Smartcar是經格式轉換的直通式車輛資料；DIMO則是具備共享功能的儲存：身分、同意、數位鑰匙、支出上限與一次性完整撤銷。可自行架設，甚至能透過Smartcar接入資料。"
+  },
+  "compare.smartcarAlternative.meta.h1": {
+    "message": "DIMO vs Smartcar：從讀取車輛資料到管理存取權限"
+  },
+  "compare.smartcarAlternative.faqSchema.doINeed.name": {
+    "message": "使用DIMO取代Smartcar需要硬體嗎？"
+  },
+  "compare.smartcarAlternative.faqSchema.text": {
+    "message": "不需要。支援的50+個品牌中，大多數都透過軟體整合連接。對於沒有可用雲端API的車輛，選配的DIMO LTE R1轉接器可提供高頻率資料。"
+  },
+  "compare.smartcarAlternative.faqSchema.canAVehicle.name": {
+    "message": "車主能在工作階段進行中撤銷存取權限嗎？"
+  },
+  "compare.smartcarAlternative.faqSchema.text2": {
+    "message": "可以。撤銷是一次性完整完成的：鑰匙、資料授權與支出授權會一併終止，而工作階段紀錄會保留在稽核軌跡上。"
+  },
+  "compare.smartcarAlternative.faqSchema.isDimoCompliant.name": {
+    "message": "DIMO在歐洲合規嗎？"
+  },
+  "compare.smartcarAlternative.faqSchema.text3": {
+    "message": "SACD同意模型是專為GDPR與歐盟資料法打造的。每一次查詢都以車主授予、限定範圍、可撤銷的權限為依據，並記錄在經簽署的稽核軌跡上。"
+  },
+  "compare.smartcarAlternative.body.home.name": {
+    "message": "首頁"
+  },
+  "compare.smartcarAlternative.body.smartcarAlternative.name": {
+    "message": "Smartcar替代方案"
+  },
+  "compare.smartcarAlternative.body.compare": {
+    "message": "比較"
+  },
+  "compare.smartcarAlternative.body.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "compare.smartcarAlternative.body.smartcarConvertsAnOem": {
+    "message": "Smartcar將OEM資料流轉換後直接轉送給您。DIMO則儲存車輛資料，並內建車主同意、共享與工作階段，甚至能透過Smartcar本身接入資料。以下說明該如何看待兩者的差異。"
+  },
+  "compare.smartcarAlternative.body.ifYouAreEvaluating": {
+    "message": "如果您正在評估Smartcar，您想做的幾乎一定是以下兩件事之一：讀取多個品牌的車輛資料，或是打造一個能對車輛{em}的產品：解鎖、授予存取權限、設定支出上限，並乾淨俐落地結束這一切。Smartcar在第一件事上表現出色，DIMO則是為第二件事而生。{strong}"
+  },
+  "compare.smartcarAlternative.body.acts": {
+    "message": "採取行動"
+  },
+  "compare.smartcarAlternative.body.smartcarIsAWindow": {
+    "message": "Smartcar是看進車內的一扇窗，DIMO則是租借櫃台。"
+  },
+  "compare.smartcarAlternative.body.smartcarReadsDataAnd": {
+    "message": "Smartcar透過簡潔的API讀取資料並下達指令。它沒有提供的是{em}：一個整合身分、數位鑰匙、限定範圍的資料授權、支出上限與一次性完整撤銷的單一物件，並在結束時留下可驗證的紀錄。如果您做的是儀表板或分析功能，可能永遠用不到這些。但對於租車、共享汽車，或任何陌生人暫時使用車輛的情境，工作階段就是全部的重點。"
+  },
+  "compare.smartcarAlternative.body.session": {
+    "message": "工作階段"
+  },
+  "compare.smartcarAlternative.body.theArchitecturalDifferenceUnderneath": {
+    "message": "底層的架構差異在於：Smartcar是經格式轉換的直通式轉送。它轉譯OEM資料流，再把結果交給您。它不是權威資料系統，沒有資料共享或同意模型，也無法自行架設。DIMO則是具備共享功能的資料儲存：接入的訊號會成為標準化的時間序列，讓車主可以共享、限定範圍與撤銷；而且由於核心開源，這套基礎架構您可以自行運行。"
+  },
+  "compare.smartcarAlternative.body.sideBySide": {
+    "message": "並列比較"
+  },
+  "compare.smartcarAlternative.body.capability": {
+    "message": "功能"
+  },
+  "compare.smartcarAlternative.body.readVehicleDataAcross": {
+    "message": "讀取跨品牌車輛資料"
+  },
+  "compare.smartcarAlternative.body.yes": {
+    "message": "是"
+  },
+  "compare.smartcarAlternative.body.yes50BrandsAlready": {
+    "message": "是（已連接50+個品牌）"
+  },
+  "compare.smartcarAlternative.body.issueCommandsLockUnlock": {
+    "message": "下達指令（上鎖/解鎖）"
+  },
+  "compare.smartcarAlternative.body.storesDataAsA": {
+    "message": "將資料儲存為可共享的權威資料系統"
+  },
+  "compare.smartcarAlternative.body.passThroughWithConversion": {
+    "message": "—（經格式轉換的直通式轉送）"
+  },
+  "compare.smartcarAlternative.body.yesConsentGovernedTimeSeries": {
+    "message": "是（受同意機制管理的時間序列）"
+  },
+  "compare.smartcarAlternative.body.selfHostable": {
+    "message": "可自行架設"
+  },
+  "compare.smartcarAlternative.body.yesOpenSourceCore": {
+    "message": "是（開源核心）"
+  },
+  "compare.smartcarAlternative.body.ingestsFromOtherConnectivity": {
+    "message": "可從其他連線供應商接入資料"
+  },
+  "compare.smartcarAlternative.body.yesIncludingSmartcarFlespi": {
+    "message": "是（包括Smartcar、Flespi、Volteras）"
+  },
+  "compare.smartcarAlternative.body.digitalKeyAsPart": {
+    "message": "數位鑰匙納入工作階段"
+  },
+  "compare.smartcarAlternative.body.perSessionSpendCap": {
+    "message": "每個工作階段的支出上限"
+  },
+  "compare.smartcarAlternative.body.atomicRevocationOfA": {
+    "message": "一次性完整撤銷整個工作階段"
+  },
+  "compare.smartcarAlternative.body.verifiableSignedAccessAudit": {
+    "message": "可驗證、經簽署的存取稽核軌跡"
+  },
+  "compare.smartcarAlternative.body.howThePricingModels": {
+    "message": "計價模式有何不同"
+  },
+  "compare.smartcarAlternative.body.smartcarPricesPerConnected": {
+    "message": "Smartcar依連接的車輛數計價，並設有方案最低用量，當每輛連接的車都對應一位付費終端使用者時，這種模式很合適。DIMO則把這兩個決定分開。Hobbyist方案免費，車輛每輛每月$1.25，讓您在做出任何承諾之前，就能先用自己的車驗證點子。Core方案每月$349，含100輛車與更高的速率限制，適用於正式上線的應用程式。Enterprise方案另提供客製化SLA、地端部署與量販價格。同意與工作階段層本身不另收費，每個方案都內建。"
+  },
+  "compare.smartcarAlternative.body.oneStructuralDifferenceMatters": {
+    "message": "有一個結構性差異比數字更重要：DIMO的核心協定是開源的。如果哪天價格或條款不再適合您，您的退場方式是自行運行這套基礎架構，而不是針對另一個新的專有API重寫產品。"
+  },
+  "compare.smartcarAlternative.body.youMayNotNeed": {
+    "message": "您可能根本不需要遷移"
+  },
+  "compare.smartcarAlternative.body.thisIsThePart": {
+    "message": "這是多數評估都忽略的一點：DIMO與Smartcar並不互斥。DIMO可以{em}Smartcar（以及Flespi或Volteras）接入資料，就像從OEM預言機或自家硬體接入一樣。如果您的Smartcar整合運作良好，就把它保留為連線層，再加上DIMO來補足Smartcar做不到的部分：儲存、車主同意、共享、工作階段與稽核軌跡。請參閱{link}，了解各種接入來源如何串接。"
+  },
+  "compare.smartcarAlternative.body.through": {
+    "message": "透過"
+  },
+  "compare.smartcarAlternative.body.oracleExample": {
+    "message": "預言機範例"
+  },
+  "compare.smartcarAlternative.body.migratingFromSmartcar": {
+    "message": "從Smartcar遷移"
+  },
+  "compare.smartcarAlternative.body.ifYouDoWant": {
+    "message": "如果您確實想完全取代Smartcar，多數遷移只是端點對應，而不必重新設計架構。Smartcar的REST讀取（里程表、位置、電池、油量）可對應到DIMO的GraphQL Telemetry API，車輛授權則對應到SACD同意授權。實際步驟如下：在console.dimo.org建立免費帳號、產生API金鑰、將{link}對接到您現有的資料模型，並在使用者重新同意期間讓兩個供應商並行運作。{link2}提供逐欄位的遷移指南與程式碼範例。"
+  },
+  "compare.smartcarAlternative.body.typeScriptPythonOrC": {
+    "message": "TypeScript、Python或C# SDK"
+  },
+  "compare.smartcarAlternative.body.platformComparisonInThe": {
+    "message": "說明文件中的平台比較"
+  },
+  "compare.smartcarAlternative.body.whereSmartcarIsStill": {
+    "message": "Smartcar仍是正確選擇的情況"
+  },
+  "compare.smartcarAlternative.body.honestAnswerIfYour": {
+    "message": "老實說：如果您的產品只讀取資料、完全不涉及存取控制，而且您的使用者都在Smartcar的支援範圍內，那麼Smartcar是成熟且文件完善的選擇，換掉它對您幫助不大。開發者轉向DIMO的原因，幾乎都是產品藍圖已經超越唯讀：他們需要鑰匙、限定範圍的授權、以工作階段為單位的計費，或是主管機關認可的稽核軌跡；而要在唯讀API上硬加這些功能，就等於最難的部分得自己打造。"
+  },
+  "compare.smartcarAlternative.body.commonQuestions": {
+    "message": "常見問題"
+  },
+  "compare.smartcarAlternative.body.noMostOfThe": {
+    "message": "{strong}不需要。支援的50+個品牌中，大多數都透過軟體整合連接。對於沒有可用雲端API的車輛，選配的DIMO LTE R1轉接器可提供高頻率資料。"
+  },
+  "compare.smartcarAlternative.body.doINeedHardware": {
+    "message": "需要硬體嗎？"
+  },
+  "compare.smartcarAlternative.body.yesRevocationIsAtomic": {
+    "message": "{strong}可以。撤銷是一次性完整完成的：鑰匙、資料授權與支出授權會一併終止，而工作階段紀錄會保留在稽核軌跡上。"
+  },
+  "compare.smartcarAlternative.body.canAVehicleOwner": {
+    "message": "車主能在工作階段進行中撤銷存取權限嗎？"
+  },
+  "compare.smartcarAlternative.body.theSacdConsentModel": {
+    "message": "{strong}SACD同意模型是專為GDPR與歐盟資料法打造的，詳情請參閱{link}。"
+  },
+  "compare.smartcarAlternative.body.isThisCompliantIn": {
+    "message": "這在歐洲合規嗎？"
+  },
+  "compare.smartcarAlternative.body.euDataActGuide": {
+    "message": "歐盟資料法指南"
+  },
+  "compare.smartcarAlternative.body.whenToChooseWhich": {
+    "message": "該如何選擇"
+  },
+  "compare.smartcarAlternative.body.chooseSmartcarWhenYour": {
+    "message": "如果您的產品本質上是在{em}資料，例如使用狀況分析、電動車充電洞察，或需要里程表或電池狀態的服務，請選擇Smartcar。如果您的產品需要{em2}，例如無人化租車、共享汽車、車隊派遣、按工作階段計費的保險，請選擇DIMO。這類產品需要身分、鑰匙、資料、支出與撤銷，作為一個經同意、可稽核的單位來運作。"
+  },
+  "compare.smartcarAlternative.body.reading": {
+    "message": "讀取"
+  },
+  "compare.smartcarAlternative.body.governsAccess": {
+    "message": "管理存取權限"
+  },
+  "compare.smartcarAlternative.body.theModelBehindThat": {
+    "message": "這背後的模型就是{link}；您可以看看它如何應用在{link2}。至於產品本身，{link3}與{link4}頁面介紹了各項功能與訊號，{link5}也已公開（免費的Hobbyist方案、每月$349的Core方案），而{link6}會帶您完成第一次API呼叫。"
+  },
+  "compare.smartcarAlternative.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "compare.smartcarAlternative.body.rentalOperations": {
+    "message": "租賃營運"
+  },
+  "compare.smartcarAlternative.body.connectedCarApiOverview": {
+    "message": "聯網汽車API概覽"
+  },
+  "compare.smartcarAlternative.body.vehicleDataApi": {
+    "message": "車輛資料API"
+  },
+  "compare.smartcarAlternative.body.pricing": {
+    "message": "價格方案"
+  },
+  "compare.smartcarAlternative.body.developerDocs": {
+    "message": "開發者說明文件"
+  },
+  "compare.standardFleetAlternative.meta.title": {
+    "message": "DIMO vs Standard Fleet：開放、支援多家OEM的工作階段基礎架構 | DIMO"
+  },
+  "compare.standardFleetAlternative.meta.description": {
+    "message": "Standard Fleet證明了車隊需要聯網控制。DIMO以開放、不限廠牌的協定實現這一點，並提供可驗證的稽核軌跡與每個工作階段的支出管理，涵蓋已連接DIMO的50+個車輛品牌。"
+  },
+  "compare.standardFleetAlternative.meta.h1": {
+    "message": "DIMO vs Standard Fleet：開放協定、不限廠牌、可驗證的稽核軌跡"
+  },
+  "compare.standardFleetAlternative.body.home.name": {
+    "message": "首頁"
+  },
+  "compare.standardFleetAlternative.body.compare.name": {
+    "message": "比較"
+  },
+  "compare.standardFleetAlternative.body.compare": {
+    "message": "比較"
+  },
+  "compare.standardFleetAlternative.body.standardFleetProvedThat": {
+    "message": "Standard Fleet證明了車隊業者想要以聯網、軟體定義的方式控制車輛。問題在於，您得到的是封閉的產品，還是開放的協定。"
+  },
+  "compare.standardFleetAlternative.body.itShowedThatOperators": {
+    "message": "{strong}它顯示出業者（租車、共享汽車、企業移動服務）希望透過軟體管理車輛，而不是靠一個鑰匙抽屜加上五套互不相通的工具。這項需求是真實存在的；如果您正在比較DIMO與Standard Fleet，您早已了解其中的價值。兩者的差別在於架構，而不是誰的功能清單比較長。"
+  },
+  "compare.standardFleetAlternative.body.standardFleetProvedThe": {
+    "message": "Standard Fleet證明了市場確實存在。"
+  },
+  "compare.standardFleetAlternative.body.whereDimoDiffers": {
+    "message": "DIMO的不同之處"
+  },
+  "compare.standardFleetAlternative.body.dimension": {
+    "message": "比較面向"
+  },
+  "compare.standardFleetAlternative.body.closedProduct": {
+    "message": "封閉式產品"
+  },
+  "compare.standardFleetAlternative.body.brandCoverage": {
+    "message": "品牌涵蓋範圍"
+  },
+  "compare.standardFleetAlternative.body.aFocusedSetOf": {
+    "message": "聚焦少數品牌"
+  },
+  "compare.standardFleetAlternative.body.makeAgnostic50BrandsAlready": {
+    "message": "不限廠牌；已連接50+個品牌"
+  },
+  "compare.standardFleetAlternative.body.architecture": {
+    "message": "架構"
+  },
+  "compare.standardFleetAlternative.body.proprietarySaaS": {
+    "message": "專有SaaS"
+  },
+  "compare.standardFleetAlternative.body.openVendorNeutralProtocol": {
+    "message": "開放、廠商中立的協定"
+  },
+  "compare.standardFleetAlternative.body.auditTrail": {
+    "message": "稽核軌跡"
+  },
+  "compare.standardFleetAlternative.body.applicationLayerLogs": {
+    "message": "應用層日誌"
+  },
+  "compare.standardFleetAlternative.body.cryptographicallySignedIndependentlyVerifiable": {
+    "message": "經密碼學簽署、可獨立驗證"
+  },
+  "compare.standardFleetAlternative.body.spend": {
+    "message": "支出"
+  },
+  "compare.standardFleetAlternative.body.addOnExternal": {
+    "message": "附加功能／外部服務"
+  },
+  "compare.standardFleetAlternative.body.perSessionSpendCapBuilt": {
+    "message": "內建每個工作階段的支出上限"
+  },
+  "compare.standardFleetAlternative.body.lockIn": {
+    "message": "綁定程度"
+  },
+  "compare.standardFleetAlternative.body.singleVendor": {
+    "message": "單一廠商"
+  },
+  "compare.standardFleetAlternative.body.buildOnTheProtocol": {
+    "message": "建立在協定之上，不受廠商綁定"
+  },
+  "compare.standardFleetAlternative.body.whyTheArchitectureMatters": {
+    "message": "為什麼架構很重要"
+  },
+  "compare.standardFleetAlternative.body.twoDifferencesCompoundOver": {
+    "message": "有兩項差異會隨時間不斷放大。第一是{strong}：混合車隊新增一個品牌時，不應該需要新的整合，而不限廠牌的協定正好能做到這一點。第二是{strong2}：應用層日誌在平時夠用，但當保險公司或主管機關需要一份不必只憑您一面之詞就能信任的紀錄時，{link}的價值就遠遠超過內部日誌。"
+  },
+  "compare.standardFleetAlternative.body.oemBreadth": {
+    "message": "OEM涵蓋廣度"
+  },
+  "compare.standardFleetAlternative.body.verifiableAuditTrail": {
+    "message": "可驗證的稽核軌跡"
+  },
+  "compare.standardFleetAlternative.body.cryptographicallySignedSessionRecord": {
+    "message": "經密碼學簽署的工作階段紀錄"
+  },
+  "compare.standardFleetAlternative.body.bothFallOutOf": {
+    "message": "兩者都源自同一個設計理念：把{link}打造成開放的基礎單元，而不是封閉的應用程式。看看它如何應用在{link2}，以及更全面的{link3}。"
+  },
+  "compare.standardFleetAlternative.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "compare.standardFleetAlternative.body.unmannedRentalOperations": {
+    "message": "無人租賃營運"
+  },
+  "compare.standardFleetAlternative.body.compliancePicture": {
+    "message": "法規遵循全貌"
+  },
+  "compliance.euDataAct.meta.title": {
+    "message": "歐盟資料法下的車輛資料：OEM與車隊必須採取的行動 | DIMO"
+  },
+  "compliance.euDataAct.meta.description": {
+    "message": "歐盟資料法要求OEM向經授權的第三方開放車輛資料。本文說明法規遵循時程、具體要求，以及限定工作階段的同意如何滿足這些規定。"
+  },
+  "compliance.euDataAct.meta.h1": {
+    "message": "歐盟資料法與車輛資料：OEM與車隊將面臨哪些改變"
+  },
+  "compliance.euDataAct.body.home.name": {
+    "message": "首頁"
+  },
+  "compliance.euDataAct.body.compliance.name": {
+    "message": "法規遵循"
+  },
+  "compliance.euDataAct.body.euDataAct.name": {
+    "message": "歐盟資料法"
+  },
+  "compliance.euDataAct.body.complianceEuDataAct": {
+    "message": "法規遵循 · 歐盟資料法"
+  },
+  "compliance.euDataAct.body.theEuDataAct": {
+    "message": "歐盟資料法讓聯網汽車資料從專有資產，轉變為受監管、可共享的資產。以下說明法規的要求，以及如何及時做好準備。"
+  },
+  "compliance.euDataAct.body.theRequiresVehicleManufacturers": {
+    "message": "{strong}要求車廠將其聯網產品所產生的資料提供給使用者，並在使用者要求時，以可用、即時且無差別待遇的方式提供給經授權的第三方。對OEM以及營運這些車輛的車隊而言，這代表汽車產生的聯網資料不能再鎖在封閉的自有入口網站後面。在車主同意下，這些資料必須開放給車主所選擇的服務存取。"
+  },
+  "compliance.euDataAct.body.euDataAct": {
+    "message": "歐盟資料法"
+  },
+  "compliance.euDataAct.body.inShortTheCar": {
+    "message": "簡單來說：法律正讓汽車成為開放的資料來源。現在就把它當成架構問題處理、而不是日後才在法律層面手忙腳亂的OEM，才能將其化為營收，而不是負擔。"
+  },
+  "compliance.euDataAct.body.theTimelineThatIs": {
+    "message": "不會延後的時程"
+  },
+  "compliance.euDataAct.body.theDataActBecame": {
+    "message": "資料法已於{strong}開始適用，其中對聯網汽車衝擊最大的義務，也就是應使用者要求開放第三方資料存取，將於{strong2}前後逐步對OEM執行。期限已經確定。"
+  },
+  "compliance.euDataAct.body.september2025": {
+    "message": "2025年9月"
+  },
+  "compliance.euDataAct.body.september2026": {
+    "message": "2026年9月"
+  },
+  "compliance.euDataAct.body.thatMattersBecauseOf": {
+    "message": "這之所以重要，是因為一道簡單的算術題。{strong}決定從零打造自有同意、存取與稽核層的OEM，在多數情況下，第一個衝刺週期還沒結束，就已經落後於法規。"
+  },
+  "compliance.euDataAct.body.a1218MonthInHouse": {
+    "message": "今天才開始、為期12–18個月的自建專案，交付時將延遲6–12個月。法規遵循的時鐘不會停下來。"
+  },
+  "compliance.euDataAct.body.whatCompliantAccessActually": {
+    "message": "「合規存取」實際上需要什麼"
+  },
+  "compliance.euDataAct.body.strippedToItsEssentials": {
+    "message": "歸結到核心，並與GDPR一併解讀，資料法要求車輛資料具備四項能力："
+  },
+  "compliance.euDataAct.body.theUserMustExplicitly": {
+    "message": "{strong}使用者必須明確授予存取權限；默示或綑綁式的同意不符合標準。"
+  },
+  "compliance.euDataAct.body.authorization": {
+    "message": "授權。"
+  },
+  "compliance.euDataAct.body.thirdPartiesReceiveOnly": {
+    "message": "{strong}第三方只能取得使用者授權的特定資料，且僅限於授權的目的，而不是毫無節制的資料洪流。"
+  },
+  "compliance.euDataAct.body.scoping": {
+    "message": "範圍限定。"
+  },
+  "compliance.euDataAct.body.theUserCanWithdraw": {
+    "message": "{strong}使用者可以撤回存取權限，而且撤回後必須真正停止資料傳輸。"
+  },
+  "compliance.euDataAct.body.revocation": {
+    "message": "撤銷。"
+  },
+  "compliance.euDataAct.body.thereMustBeA": {
+    "message": "{strong}必須留下紀錄，載明誰在何時、依據誰的授權存取了哪些資料。"
+  },
+  "compliance.euDataAct.body.auditability": {
+    "message": "可稽核性。"
+  },
+  "compliance.euDataAct.body.mostExistingConnectedServicesStacks": {
+    "message": "現有的聯網服務技術堆疊，大多從未以這四項能力為核心來設計。它們原本是為了提供自有功能而打造，事後才加上一個同意勾選框。資料法之所以困難，正是因為它要求這些特性必須是結構性的，而不是表面功夫。"
+  },
+  "compliance.euDataAct.body.howASessionModel": {
+    "message": "工作階段模型如何滿足要求"
+  },
+  "compliance.euDataAct.body.aVehicleIsAn": {
+    "message": "車輛{em}是一種內建上述四項特性的存取事件。建立工作階段時，會帶有使用者的身分、明確的資料範圍與時間限制；工作階段結束時，存取權限會一次全部撤銷，並封存一份經簽署、可獨立驗證的紀錄。同意是建立工作階段的一部分，而不是事後附加的政策。這正是{link}所描述的內容。"
+  },
+  "compliance.euDataAct.body.session": {
+    "message": "工作階段"
+  },
+  "compliance.euDataAct.body.sessionScopedConsent": {
+    "message": "限定工作階段的同意"
+  },
+  "compliance.euDataAct.body.becauseTheAccessPrimitive": {
+    "message": "由於存取基礎單元本身就會產生授權、範圍限定、撤銷與稽核軌跡，{strong}OEM只需整合一個存取層，就能在每個車型與市場沿用合規行為，不必為每個專案重新實作同意機制。同一個模型也會統一{link}的資料格式，這對管理多品牌混合車隊的業者來說相當重要。"
+  },
+  "compliance.euDataAct.body.euDataActCompliance": {
+    "message": "歐盟資料法合規是架構自然帶來的成果，而不是事後補強。"
+  },
+  "compliance.euDataAct.body.50VehicleBrandsAlready": {
+    "message": "已連接DIMO的50多個車輛品牌"
+  },
+  "compliance.euDataAct.body.fromComplianceCostTo": {
+    "message": "從法規遵循成本到營收"
+  },
+  "compliance.euDataAct.body.itIsTemptingTo": {
+    "message": "人們很容易把資料法視為純粹的成本，但事實並非如此。滿足法規要求的這套經同意、限定範圍的存取，正是OEM積極追求的軟體營收的基礎。OEM整體的目標是到2030年，從軟體與聯網服務創造{strong}的營收。差別在於，合規之路與營收之路如今是{em}路。能授予經駕駛授權之工作階段的OEM，也能在此基礎上合法提供按工作階段計費的保險、Plug & Charge或維修保養服務，因為同意早已取得。"
+  },
+  "compliance.euDataAct.body.tensOfBillionsOf": {
+    "message": "每年數百億美元"
+  },
+  "compliance.euDataAct.body.same": {
+    "message": "同一條"
+  },
+  "compliance.euDataAct.body.contrastThatWithThe": {
+    "message": "再對照封閉的做法。正如{link}所顯示，大量資料仲介模式如今已是負債，而不是資產。能在下一個十年拿下聯網服務營收的OEM，會是那些從第一個工作階段起，資料存取就經過同意且可稽核的業者，因為這是監管機關、保險業者，以及越來越多客戶唯一願意接受的方式。"
+  },
+  "compliance.euDataAct.body.ftcsGmOnstarOrder": {
+    "message": "FTC對GM/OnStar的命令"
+  },
+  "compliance.euDataAct.body.commonQuestions": {
+    "message": "常見問題"
+  },
+  "compliance.euDataAct.body.doesThisOnlyMatter": {
+    "message": "這只對在歐盟銷售的車輛有影響嗎？"
+  },
+  "compliance.euDataAct.body.theDataActIs": {
+    "message": "資料法雖是歐盟法規，影響力卻遍及全球。OEM為歐盟打造的同一套架構，也能符合美國的FTC標準與加州的SB-1394，因此多數車廠不會為單一市場維護一套「合規」技術堆疊，又為其他市場保留另一套舊有技術堆疊。從經濟效益來看，最終都會走向全球統一、經同意的存取層。"
+  },
+  "compliance.euDataAct.body.weAlreadyHaveA": {
+    "message": "我們已經有聯網服務計畫了，這樣就夠了嗎？"
+  },
+  "compliance.euDataAct.body.usuallyNotMostExisting": {
+    "message": "通常不夠。現有計畫大多是為了提供自有功能而設計，事後才加上同意勾選框。資料法要求應使用者要求開放第三方存取，並將範圍限定、撤銷與稽核軌跡作為結構性特性。如果授予存取的方式並未內建這四項能力，光靠一個勾選框無法彌補落差。"
+  },
+  "compliance.euDataAct.body.whatOemsAndFleets": {
+    "message": "OEM與車隊現在該做什麼"
+  },
+  "compliance.euDataAct.body.treatThirdPartyAccessAs": {
+    "message": "{strong}將第三方存取視為平台能力，而不是個別專案的功能。以2026年9月為期限來評估自建或整合，而不是依照沒有終點的產品路線圖。"
+  },
+  "compliance.euDataAct.body.oems": {
+    "message": "OEM："
+  },
+  "compliance.euDataAct.body.ifYouOperateVehicles": {
+    "message": "{strong}如果您在歐盟營運車輛，請確認您目前的資料存取方式以同意為依據，而且可以撤銷。請參閱{link}。"
+  },
+  "compliance.euDataAct.body.fleets": {
+    "message": "車隊："
+  },
+  "compliance.euDataAct.body.auditReadyVehicleAccess": {
+    "message": "隨時可稽核的車輛存取"
+  },
+  "compliance.euDataAct.body.thisPageIsEducational": {
+    "message": "本頁內容僅供教育參考，不構成法律建議。在歐洲OEM採購中使用法規遵循相關用語前，應先完成正式認證審查。"
+  },
+  "compliance.euDataAct.body.related": {
+    "message": "相關內容：{link} · {link2} · {link3}"
+  },
+  "compliance.euDataAct.body.theFtcGmOnStarOrder": {
+    "message": "FTC對GM/OnStar的命令"
+  },
+  "compliance.euDataAct.body.allComplianceTopics": {
+    "message": "所有法規遵循主題"
+  },
+  "compliance.euDataAct.body.dimoForOems": {
+    "message": "DIMO OEM解決方案"
+  },
+  "compliance.ftcGmConsent.meta.title": {
+    "message": "FTC的GM/OnStar命令：大量車載資通訊仲介的終結 | DIMO"
+  },
+  "compliance.ftcGmConsent.meta.description": {
+    "message": "FTC對GM/OnStar的命令禁止未經同意分享駕駛資料。本文說明這對OEM與保險業者的意義，以及為何大量車載資通訊資料仲介已是走入歷史的商業模式。"
+  },
+  "compliance.ftcGmConsent.meta.h1": {
+    "message": "FTC的GM OnStar命令讓同意優先的車輛資料成為法律要求"
+  },
+  "compliance.ftcGmConsent.body.home.name": {
+    "message": "首頁"
+  },
+  "compliance.ftcGmConsent.body.compliance.name": {
+    "message": "法規遵循"
+  },
+  "compliance.ftcGmConsent.body.ftcGmOnStarOrder.name": {
+    "message": "FTC GM/OnStar命令"
+  },
+  "compliance.ftcGmConsent.body.complianceFtc": {
+    "message": "法規遵循 · FTC"
+  },
+  "compliance.ftcGmConsent.body.theFtcsOrderAgainst": {
+    "message": "FTC對GM與OnStar的命令不只是懲罰一家公司——它宣告舊有的車輛資料商業模式違法，並讓同意優先的存取成為新的基準。"
+  },
+  "compliance.ftcGmConsent.body.inEarly2026The": {
+    "message": "2026年初，美國聯邦貿易委員會（FTC）針對General Motors及其OnStar部門未經適當同意即蒐集並出售聯網汽車資料一事，正式定案一項命令。該命令禁止GM在未取得{strong}的情況下分享駕駛行為與精確地理位置資料，效力長達{strong2}。這向整個產業傳達的訊息非常直接：{strong3}"
+  },
+  "compliance.ftcGmConsent.body.affirmativeOptIn": {
+    "message": "主動選擇加入的同意"
+  },
+  "compliance.ftcGmConsent.body.fiveYears": {
+    "message": "五年"
+  },
+  "compliance.ftcGmConsent.body.gmJustProvedThat": {
+    "message": "GM的案例已證明舊模式違法，同意優先的車輛資料存取如今已是監管機關期待的基準。"
+  },
+  "compliance.ftcGmConsent.body.whatTheOrderActually": {
+    "message": "命令的實際內容"
+  },
+  "compliance.ftcGmConsent.body.aOnSharingDriverBehavior": {
+    "message": "實施{strong}，不得分享未經主動、知情同意而蒐集的駕駛行為資料。"
+  },
+  "compliance.ftcGmConsent.body.fiveYearBan": {
+    "message": "五年禁令"
+  },
+  "compliance.ftcGmConsent.body.aRequirementForBefore": {
+    "message": "日後在蒐集或分享聯網汽車資料前，必須先取得{strong}。"
+  },
+  "compliance.ftcGmConsent.body.theConductAffectedRoughly": {
+    "message": "此行為影響了約{strong}，他們的資料被轉給資料仲介商，其中包括{strong2}，並可能被用於保險風險評分。"
+  },
+  "compliance.ftcGmConsent.body.18MillionGmCustomers": {
+    "message": "180萬名GM客戶"
+  },
+  "compliance.ftcGmConsent.body.lexisNexisAndVerisk": {
+    "message": "LexisNexis與Verisk"
+  },
+  "compliance.ftcGmConsent.body.whyThisKillsBulk": {
+    "message": "為何這終結了大量車載資通訊資料仲介"
+  },
+  "compliance.ftcGmConsent.body.theDownstreamEffectWas": {
+    "message": "下游效應立即浮現。{strong}當大量車輛資料的最大買家，不再接受缺乏嚴謹同意來源證明的OEM資料時，仲介模式的經濟基礎便隨之瓦解。{strong2}"
+  },
+  "compliance.ftcGmConsent.body.veriskStoppedAcceptingOemSourced": {
+    "message": "就在命令定案的同一週，Verisk停止接受來自OEM的車載資通訊資料。"
+  },
+  "compliance.ftcGmConsent.body.bulkOemTelematicsData": {
+    "message": "大量OEM車載資通訊資料仲介，作為一種商業模式，在法律上已經宣告死亡。"
+  },
+  "compliance.ftcGmConsent.body.thatIsNotA": {
+    "message": "這不是暫時的寒蟬效應，而是結構性的轉變：價值正從能{em}最多資料的一方，轉向能證明資料存取{em2}的一方。"
+  },
+  "compliance.ftcGmConsent.body.aggregate": {
+    "message": "彙整"
+  },
+  "compliance.ftcGmConsent.body.withConsentForA": {
+    "message": "經過同意、有明確目的且留有紀錄"
+  },
+  "compliance.ftcGmConsent.body.theNewModelStill": {
+    "message": "只要經過同意，新模式依然蘊藏巨大價值"
+  },
+  "compliance.ftcGmConsent.body.noneOfThisMeans": {
+    "message": "這一切都不代表車輛資料失去了價值。保險業者仍然需要它：以使用量計價的保險行之有效，分享車載資通訊資料的車隊也能獲得更好的損失率。FTC命令所揭露的問題在於{em}，而不是需求。保險業者與OEM如今需要的，是取得經駕駛授權、且具可驗證軌跡的資料，而不是禁不起同意稽核的仲介資料來源。"
+  },
+  "compliance.ftcGmConsent.body.plumbing": {
+    "message": "資料管道"
+  },
+  "compliance.ftcGmConsent.body.thatIsExactlyWhat": {
+    "message": "這正是工作階段模型所提供的。{strong}存取權限依工作階段逐一建立，範圍限定在駕駛授權的內容，並以經簽署、可獨立驗證的紀錄封存。同意不是硬接在資料管道上的勾選框，而是存取建立方式的一部分，詳見{link}；由此產生的{link2}，正是核保人員或監管機關真正能夠接受的憑據。"
+  },
+  "compliance.ftcGmConsent.body.dimoIsTheInfrastructure": {
+    "message": "DIMO正是讓新模式得以運作的基礎架構："
+  },
+  "compliance.ftcGmConsent.body.sessionScopedConsent": {
+    "message": "限定工作階段的同意"
+  },
+  "compliance.ftcGmConsent.body.auditTrail": {
+    "message": "稽核軌跡"
+  },
+  "compliance.ftcGmConsent.body.theBiggerPatternValue": {
+    "message": "更大的趨勢：價值轉向同意來源證明"
+  },
+  "compliance.ftcGmConsent.body.connectedServicesRevenueIsReal": {
+    "message": "聯網服務的營收真實且可觀。據報導，GM自家的OnStar業務創下{strong}，服務約1,200萬名訂閱用戶。FTC命令並未說這些營收不正當，而是指出{em}才是關鍵：來自禁不起同意稽核之資料的收入如今面臨風險，而來自具備清楚、逐一駕駛同意來源證明之資料的收入，才能長久持續。"
+  },
+  "compliance.ftcGmConsent.body.54BillionIn2025": {
+    "message": "2025年約54億美元的營收"
+  },
+  "compliance.ftcGmConsent.body.mechanism": {
+    "message": "機制"
+  },
+  "compliance.ftcGmConsent.body.thatIsTheShift": {
+    "message": "這正是必須內化的轉變。過去十年，隱含的商業模式是「盡可能彙整車輛資料，再尋找買家」。這項命令之後，能長久持續的模式是「逐一為駕駛授予存取權限、限定範圍，並保留收據」。資產不再是資料湖的規模，而是每一次存取所附帶的同意軌跡有多可靠。"
+  },
+  "compliance.ftcGmConsent.body.commonQuestions": {
+    "message": "常見問題"
+  },
+  "compliance.ftcGmConsent.body.isThisJustA": {
+    "message": "這只是GM的問題嗎？"
+  },
+  "compliance.ftcGmConsent.body.noTheFtcFramed": {
+    "message": "不是。FTC將其定調為產業標準，而非一次性的處罰。任何依賴未經同意之駕駛行為資料的車廠或仲介商，都可能面臨相同的法律論點。請將這項命令視為整個市場都將被要求遵守的基準，而不是GM的個別事件。"
+  },
+  "compliance.ftcGmConsent.body.canInsurersStillUse": {
+    "message": "保險業者還能使用車輛資料來定價嗎？"
+  },
+  "compliance.ftcGmConsent.body.yesUsageBasedPricingWorks": {
+    "message": "可以。以使用量計價的模式行之有效，也不會消失。改變的是資料來源。保險業者如今需要經駕駛授權、具可驗證軌跡的資料，這正是{link}所提供的，而不是剛失去最大買家的仲介資料來源。"
+  },
+  "compliance.ftcGmConsent.body.sessionAuditTrail": {
+    "message": "工作階段稽核軌跡"
+  },
+  "compliance.ftcGmConsent.body.whatOemsAndInsurers": {
+    "message": "OEM與保險業者應從中學到什麼"
+  },
+  "compliance.ftcGmConsent.body.anyDataMonetizationPlanThat": {
+    "message": "{strong}任何依賴大量、經仲介轉手之車載資通訊資料的資料變現計畫，如今都是負債。請改以具備稽核軌跡的逐一駕駛同意為基礎。"
+  },
+  "compliance.ftcGmConsent.body.oems": {
+    "message": "OEM："
+  },
+  "compliance.ftcGmConsent.body.thePathToUsageBased": {
+    "message": "{strong}要實現以使用量計價與車隊車載資通訊定價，必須透過經同意、可驗證的存取，而不是剛被切斷的仲介資料來源。"
+  },
+  "compliance.ftcGmConsent.body.insurers": {
+    "message": "保險業者："
+  },
+  "compliance.ftcGmConsent.body.related": {
+    "message": "相關內容：{link} · {link2} · {link3}"
+  },
+  "compliance.ftcGmConsent.body.theEuDataAct": {
+    "message": "歐盟資料法"
+  },
+  "compliance.ftcGmConsent.body.mixedFleetTelematicsForInsurers": {
+    "message": "保險業者適用的混合車隊車載資通訊"
+  },
+  "compliance.ftcGmConsent.body.allComplianceTopics": {
+    "message": "所有法規遵循主題"
+  },
+  "compliance.ftcGmConsent.body.thisPageIsEducational": {
+    "message": "本頁內容僅供教育參考，不構成法律建議。"
+  },
+  "compliance.meta.title": {
+    "message": "聯網汽車資料法規遵循：歐盟資料法、FTC、GDPR | DIMO"
+  },
+  "compliance.meta.description": {
+    "message": "車隊與OEM如何透過限定工作階段的同意與可驗證的稽核軌跡，讓聯網汽車資料符合歐盟資料法、FTC同意標準、GDPR與SB-1394。"
+  },
+  "compliance.body.home.name": {
+    "message": "首頁"
+  },
+  "compliance.body.compliance.name": {
+    "message": "法規遵循"
+  },
+  "compliance.body.compliance": {
+    "message": "法規遵循"
+  },
+  "compliance.body.compliantConnectedVehicleDataAccess": {
+    "message": "從架構層面實現合規的聯網汽車資料存取"
+  },
+  "compliance.body.regulatorsOnThreeContinents": {
+    "message": "三大洲的監管機關如今都要求車輛資料存取必須同意優先、可撤銷且可稽核。DIMO從一開始就是這樣打造的——法規遵循是架構自然帶來的成果，而不是事後補強。"
+  },
+  "compliance.body.talkToOurTeam": {
+    "message": "與我們的團隊聯絡"
+  },
+  "compliance.body.connectedVehicleDataCompliance": {
+    "message": "聯網汽車資料法規遵循，是指讓駕駛與車主以同意優先、可撤銷的方式，掌控分享哪些資料、與誰分享、分享多久，並為每一次存取留下可驗證的紀錄。到了2026年，這已不再只是最佳實務，而是美國與歐盟的法律，而且{strong}"
+  },
+  "compliance.body.consentFirstVehicleDataAccess": {
+    "message": "同意優先的車輛資料存取如今是法律要求，而不只是道德上的選擇。"
+  },
+  "compliance.body.thisPageMapsThe": {
+    "message": "本頁整理正在重塑聯網汽車市場的各項法規，並說明工作階段式存取模型如何一次滿足所有要求，無需耗時多年自行開發。"
+  },
+  "compliance.body.theRegulatoryWave": {
+    "message": "法規浪潮"
+  },
+  "compliance.body.fourMovingPiecesAre": {
+    "message": "四股力量正匯聚於同一項要求：車輛資料的存取必須經過明確同意、限定範圍、可撤銷且可稽核。"
+  },
+  "compliance.body.theRequiresOemsTo": {
+    "message": "{link}要求OEM向經授權的第三方開放車輛資料。該法已於2025年9月生效，對OEM的執法則於2026年9月接著展開。"
+  },
+  "compliance.body.euDataAct": {
+    "message": "歐盟資料法"
+  },
+  "compliance.body.theBansNonConsentedSharing": {
+    "message": "{link}禁止未經同意分享駕駛行為資料，實際上也讓大量車載資通訊資料仲介這種商業模式走入歷史。"
+  },
+  "compliance.body.ftcGmOnStarConsentOrder": {
+    "message": "FTC對GM/OnStar的同意令"
+  },
+  "compliance.body.makeConsentStructurallyPart": {
+    "message": "{link}讓同意在結構上成為存取事件的一部分，而不是事後硬接上去的另一套政策。"
+  },
+  "compliance.body.gdprAndSessionScopedConsent": {
+    "message": "GDPR與限定工作階段的同意"
+  },
+  "compliance.body.requireVehicleAccessTo": {
+    "message": "{link}要求車輛存取權限必須能由車主撤銷，且在設計上即可稽核。"
+  },
+  "compliance.body.californiaSb1394AndUnece": {
+    "message": "加州SB-1394與UNECE R155"
+  },
+  "compliance.body.whyASessionModel": {
+    "message": "為何工作階段模型能一次滿足所有法規"
+  },
+  "compliance.body.eachOfTheseRules": {
+    "message": "這些規定要求的都是同樣四件事：明確授權、限定範圍的存取、一次全部撤銷，以及可驗證的軌跡。車輛{em}正好整合了這些特性。工作階段建立時，會帶有駕駛的身分、特定的資料範圍、支出上限與時間限制；使用情境結束時，所有權限會一次全部撤銷，並封存一份經加密簽署、可獨立驗證的紀錄。"
+  },
+  "compliance.body.session": {
+    "message": "工作階段"
+  },
+  "compliance.body.becauseConsentIsPart": {
+    "message": "由於同意是建立工作階段這個基礎單元的一部分，而非下游的政策，同一套架構就能同時符合GDPR、歐盟資料法、FTC標準與SB-1394。請參閱{link}了解運作方式，並參閱{link2}了解更完整的模型。營運業者可以在{link3}中了解這如何應用於車隊，開發者則可以從{link4}開始。"
+  },
+  "compliance.body.sessionScopedConsent": {
+    "message": "限定工作階段的同意"
+  },
+  "compliance.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "compliance.body.rentalOperations": {
+    "message": "租賃營運"
+  },
+  "compliance.body.consentProductDocs": {
+    "message": "Consent產品說明文件"
+  },
+  "compliance.body.noteFormalCertificationReview": {
+    "message": "注意：在歐洲OEM採購中使用法規遵循相關用語前，應先完成正式認證審查；本頁內容僅供教育參考，不構成法律建議。"
+  },
+  "compliance.sessionScopedConsent.meta.title": {
+    "message": "車輛資料的限定工作階段同意：完整解析 | DIMO"
+  },
+  "compliance.sessionScopedConsent.meta.description": {
+    "message": "說明什麼是限定工作階段的同意、為何「先授予再撤銷」優於全面性的資料分享，以及它如何從架構層面滿足GDPR、歐盟資料法與加州SB-1394。"
+  },
+  "compliance.sessionScopedConsent.meta.h1": {
+    "message": "限定工作階段的同意：內建於存取基礎單元的同意"
+  },
+  "compliance.sessionScopedConsent.body.home.name": {
+    "message": "首頁"
+  },
+  "compliance.sessionScopedConsent.body.compliance.name": {
+    "message": "法規遵循"
+  },
+  "compliance.sessionScopedConsent.body.sessionScopedConsent.name": {
+    "message": "限定工作階段的同意"
+  },
+  "compliance.sessionScopedConsent.body.complianceConsent": {
+    "message": "法規遵循 · 同意"
+  },
+  "compliance.sessionScopedConsent.body.mostVehicleDataSystems": {
+    "message": "多數車輛資料系統把同意當成硬接在資料管道上的政策。限定工作階段的同意則讓它成為存取建立——以及撤銷——方式的一部分。"
+  },
+  "compliance.sessionScopedConsent.body.meansTheUsersPermission": {
+    "message": "{strong}是指使用者的許可在結構上就是建立存取工作階段的一部分，而不是事後套用的另一套政策。車主不必授予服務全面且永久的車輛資料存取權，而是授權一個特定的工作階段：在明確的期間內、為明確的目的，開放明確範圍的資料與功能，期滿後所有權限一次全部撤銷。同意{em}"
+  },
+  "compliance.sessionScopedConsent.body.sessionScopedConsent": {
+    "message": "限定工作階段的同意"
+  },
+  "compliance.sessionScopedConsent.body.compliantByArchitectureNot": {
+    "message": "從架構層面就符合法規，而不是靠政策。"
+  },
+  "compliance.sessionScopedConsent.body.theProblemWithBlanket": {
+    "message": "全面性同意的問題"
+  },
+  "compliance.sessionScopedConsent.body.thinkAboutLoggingInto": {
+    "message": "想像一下，您兩年前在飯店登入了串流帳號。很有可能至今仍有陌生人在使用它，因為您當初授予的存取權限從未乾淨地結束。現在再想像那不是串流帳號，而是您的車、您的數位鑰匙、您的付款方式和您的位置。這就是車輛世界中全面、永久的資料分享：存取權限授予得廣泛、範圍界定得鬆散，而且幾乎從未以可驗證的方式撤銷。"
+  },
+  "compliance.sessionScopedConsent.body.regulatorsHaveDecidedThat": {
+    "message": "監管機關已經認定這種模式不再可接受。GDPR要求目的限制與撤回同意的權利；{link}要求限定範圍、由使用者主導的存取；{link2}則要求主動選擇加入。實際上，每一項法規都在要求具體、可撤銷且可證明的同意。"
+  },
+  "compliance.sessionScopedConsent.body.euDataAct": {
+    "message": "歐盟資料法"
+  },
+  "compliance.sessionScopedConsent.body.ftcsGmOnstarOrder": {
+    "message": "FTC對GM/OnStar的命令"
+  },
+  "compliance.sessionScopedConsent.body.howSessionScopedConsentWorks": {
+    "message": "限定工作階段的同意如何運作"
+  },
+  "compliance.sessionScopedConsent.body.aVehicleSessionIs": {
+    "message": "車輛工作階段以單一操作建立，並帶有存取所需的一切："
+  },
+  "compliance.sessionScopedConsent.body.whoIsBeingGranted": {
+    "message": "{strong}獲授予存取權限的對象，並經過驗證。"
+  },
+  "compliance.sessionScopedConsent.body.identity": {
+    "message": "身分："
+  },
+  "compliance.sessionScopedConsent.body.exactlyWhichDataAnd": {
+    "message": "{strong}明確指定哪些資料與功能，僅此而已。"
+  },
+  "compliance.sessionScopedConsent.body.scope": {
+    "message": "範圍："
+  },
+  "compliance.sessionScopedConsent.body.aCapAndAn": {
+    "message": "{strong}設定上限與到期時間，讓存取在設計上就有邊界。"
+  },
+  "compliance.sessionScopedConsent.body.spendAndTimeLimits": {
+    "message": "支出與時間限制："
+  },
+  "compliance.sessionScopedConsent.body.whenTheSessionEnds": {
+    "message": "{strong}工作階段結束時，其中的所有權限會一併撤回，而不是一個系統接著一個系統處理。"
+  },
+  "compliance.sessionScopedConsent.body.atomicRevocation": {
+    "message": "一次全部撤銷："
+  },
+  "compliance.sessionScopedConsent.body.whenTheSessionCloses": {
+    "message": "工作階段關閉時，會封存一份{strong}紀錄，記載授權內容與結束時間。由於同意是建立工作階段的一部分，沒有同意憑據就不可能取得存取權限，撤銷後也不可能殘留存取權限。監管機關要求的合規特性不是事後才加上去的，而是這套系統唯一的運作方式。"
+  },
+  "compliance.sessionScopedConsent.body.cryptographicallySignedIndependentlyVerifiable": {
+    "message": "經加密簽署、可獨立驗證的"
+  },
+  "compliance.sessionScopedConsent.body.aConcreteExampleA": {
+    "message": "具體範例：為期三天的租車"
+  },
+  "compliance.sessionScopedConsent.body.pictureADriverRenting": {
+    "message": "想像一位駕駛在週末租用一輛聯網汽車。透過限定工作階段的同意，租車在結帳時就會建立一個工作階段：驗證駕駛身分、核發數位鑰匙、將資料存取範圍限定為租期內的位置與行程遙測、設定充電與通行費的支出上限，並標記72小時的到期時間。駕駛能清楚看到自己授予了哪些權限。還車時，工作階段隨即結束：鑰匙失效、資料存取停止，整個安排的簽署紀錄也隨之封存。"
+  },
+  "compliance.sessionScopedConsent.body.nothingLingersThereIs": {
+    "message": "一切都不會殘留。還車後不會有持續開放的資料串流，不會有仍落在陌生人手中且可用的鑰匙，也不需要任何人手動停用五套不同的系統。同意及其界限本身就是存取，因此結束存取就等於結束同意，乾淨俐落且有據可證。"
+  },
+  "compliance.sessionScopedConsent.body.blanketConsentVsSessionScoped": {
+    "message": "全面性同意 vs. 限定工作階段的同意"
+  },
+  "compliance.sessionScopedConsent.body.property": {
+    "message": "特性"
+  },
+  "compliance.sessionScopedConsent.body.blanketConsent": {
+    "message": "全面性同意"
+  },
+  "compliance.sessionScopedConsent.body.whenConsentIsCaptured": {
+    "message": "取得同意的時機"
+  },
+  "compliance.sessionScopedConsent.body.onceUpFrontBroadly": {
+    "message": "事先一次性廣泛取得"
+  },
+  "compliance.sessionScopedConsent.body.perAccessEventAs": {
+    "message": "每次存取事件建立時一併取得"
+  },
+  "compliance.sessionScopedConsent.body.scopeOfData": {
+    "message": "資料範圍"
+  },
+  "compliance.sessionScopedConsent.body.looselyDefinedOftenEverything": {
+    "message": "定義鬆散，常常涵蓋一切"
+  },
+  "compliance.sessionScopedConsent.body.exactlyWhatThePurpose": {
+    "message": "僅限用途所需"
+  },
+  "compliance.sessionScopedConsent.body.revocation": {
+    "message": "撤銷"
+  },
+  "compliance.sessionScopedConsent.body.manualPartialOftenNever": {
+    "message": "手動、不完整，常常從未撤銷"
+  },
+  "compliance.sessionScopedConsent.body.atomicAllPermissionsEnd": {
+    "message": "一次全部撤銷；所有權限同時結束"
+  },
+  "compliance.sessionScopedConsent.body.proof": {
+    "message": "證明"
+  },
+  "compliance.sessionScopedConsent.body.aPolicyDocument": {
+    "message": "一份政策文件"
+  },
+  "compliance.sessionScopedConsent.body.aSignedVerifiablePerSession": {
+    "message": "每個工作階段一份經簽署、可驗證的紀錄"
+  },
+  "compliance.sessionScopedConsent.body.whyThisSatisfiesMultiple": {
+    "message": "為何這能一次滿足多項法規"
+  },
+  "compliance.sessionScopedConsent.body.theReasonASingle": {
+    "message": "單一模型之所以能同時符合GDPR、歐盟資料法與加州SB-1394，是因為它們最終都可歸結為同一個基礎單元：授權、限定範圍、撤銷與證明。全面性同意系統必須分別加上這些機制，再設法讓它們彼此協調。工作階段模型則只要授予存取，就會自然產生這四項成果。這就是同意{em}、而不是一層政策的意義。"
+  },
+  "compliance.sessionScopedConsent.body.structurallyPartOfThe": {
+    "message": "在結構上就是建立工作階段這個基礎單元的一部分"
+  },
+  "compliance.sessionScopedConsent.body.forTheTechnicalImplementation": {
+    "message": "關於撤銷機制的具體技術實作（直接對應SB-1394「可由車主撤銷」的要求），請參閱{link}。關於這些工作階段所屬的更完整模型，請參閱{link2}；開發者則可以從{link3}開始。"
+  },
+  "compliance.sessionScopedConsent.body.auditReadyVehicleAccess": {
+    "message": "隨時可稽核的車輛存取"
+  },
+  "compliance.sessionScopedConsent.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "compliance.sessionScopedConsent.body.consentProduct": {
+    "message": "Consent產品"
+  },
+  "compliance.sessionScopedConsent.body.related": {
+    "message": "相關內容：{link} · {link2}"
+  },
+  "compliance.sessionScopedConsent.body.allComplianceTopics": {
+    "message": "所有法規遵循主題"
+  },
+  "compliance.sessionScopedConsent.body.thisPageIsEducational": {
+    "message": "本頁內容僅供教育參考，不構成法律建議。"
+  },
+  "compliance.vehicleAccessAuditTrail.meta.title": {
+    "message": "可驗證的車輛存取稽核軌跡（SB-1394、UNECE R155） | DIMO"
+  },
+  "compliance.vehicleAccessAuditTrail.meta.description": {
+    "message": "可撤銷、經簽署且附時間戳記的車輛存取紀錄，符合加州SB-1394與UNECE R155——並為保險業者提供可驗證的軌跡，用於爭議處理與核保。"
+  },
+  "compliance.vehicleAccessAuditTrail.meta.h1": {
+    "message": "隨時可稽核的車輛存取：誰開了車、能做什麼、何時結束"
+  },
+  "compliance.vehicleAccessAuditTrail.body.home.name": {
+    "message": "首頁"
+  },
+  "compliance.vehicleAccessAuditTrail.body.compliance.name": {
+    "message": "法規遵循"
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditTrails.name": {
+    "message": "稽核軌跡"
+  },
+  "compliance.vehicleAccessAuditTrail.body.complianceAudit": {
+    "message": "法規遵循 · 稽核"
+  },
+  "compliance.vehicleAccessAuditTrail.body.newRulesRequireVehicle": {
+    "message": "新法規要求車輛存取必須可撤銷且可稽核。工作階段模型會自動產生這份紀錄——而保險業者理賠時需要的，正是同一份紀錄。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.aVehicleAccessAudit": {
+    "message": "車輛存取稽核軌跡是一份可驗證的紀錄，載明誰獲授予車輛的存取權限、被允許做什麼，以及存取權限確切的結束時間。如今有兩項法規讓這成為強制要求，而非選配：{strong}要求車輛存取控制必須能由車主撤銷，{strong2}則要求車輛存取系統必須可稽核。工作階段模型能同時滿足兩者，在每次授予與撤銷存取時，都會產生經簽署、附時間戳記的紀錄。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.californiaSb1394": {
+    "message": "加州SB-1394"
+  },
+  "compliance.vehicleAccessAuditTrail.body.uneceR155R156": {
+    "message": "UNECE R155/R156"
+  },
+  "compliance.vehicleAccessAuditTrail.body.whatTheRulesRequire": {
+    "message": "法規要求什麼"
+  },
+  "compliance.vehicleAccessAuditTrail.body.signedIn2024And": {
+    "message": "SB-1394於2024年簽署、2025年生效，要求聯網汽車的存取控制必須{strong}。其立法目的在於保護消費者，特別是防範跟蹤騷擾與遭棄置的存取權限，但對工程層面的影響非常具體：必須有真正的「關閉」開關，而且按下後必須真的停止存取。工作階段撤銷正是這項要求的技術實作。結束一個工作階段，就會一次撤回其中包含的所有權限。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.revocableByTheVehicle": {
+    "message": "能由車主撤銷"
+  },
+  "compliance.vehicleAccessAuditTrail.body.uneceR155R1562": {
+    "message": "UNECE R155 / R156"
+  },
+  "compliance.vehicleAccessAuditTrail.body.inForceSinceJuly": {
+    "message": "R155（網路安全）與R156（軟體更新）自2024年7月起對新車型生效，要求車輛存取及其變更必須{strong}。能授予存取、卻無法提供可信紀錄說明誰在何時擁有存取權限的系統，就達不到標準。DIMO工作階段{strong2}：經過加密簽署且可獨立驗證，因此即使不是產生紀錄的一方，也能信任這份紀錄。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.auditable": {
+    "message": "可稽核"
+  },
+  "compliance.vehicleAccessAuditTrail.body.signedTimestampedAndImmutable": {
+    "message": "經簽署、附時間戳記且不可竄改"
+  },
+  "compliance.vehicleAccessAuditTrail.body.oneRecordTwoJobs": {
+    "message": "一份紀錄，兩種用途：法規遵循與理賠"
+  },
+  "compliance.vehicleAccessAuditTrail.body.theSameAuditTrail": {
+    "message": "滿足監管機關的同一份稽核軌跡，也正是保險業者核保與處理爭議所需的憑據。商業價值由此更加明確。然而如今，這些資料根本沒有流通："
+  },
+  "compliance.vehicleAccessAuditTrail.body.despiteTheLowerLoss": {
+    "message": "{strong}，儘管這些資料足以證明更低的損失率；主要原因在於缺乏乾淨、經同意且可驗證的資料交付方式。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.70OfFleetsDont": {
+    "message": "70%的車隊未與保險業者分享車載資通訊資料"
+  },
+  "compliance.vehicleAccessAuditTrail.body.drivenByBatteryUnderwritingUncertainty": {
+    "message": "{strong}，原因在於電池核保的不確定性，而更完善的單車資料能直接降低這種不確定性。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.evInsurancePremiumsRun": {
+    "message": "電動車保費比燃油車高出約49%"
+  },
+  "compliance.vehicleAccessAuditTrail.body.aVerifiableSessionRecord": {
+    "message": "可驗證的工作階段紀錄能填補這個缺口：它以核保人員能接受的形式，說明誰在駕駛、哪些遙測資料經過授權，以及工作階段何時結束。車隊得到更好的費率；保險業者得到更好的風險訊號；沒有人需要信任無法驗證的匯出資料。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.settlingADisputeWithout": {
+    "message": "解決爭議，不必再做鑑識調查"
+  },
+  "compliance.vehicleAccessAuditTrail.body.considerADamageClaim": {
+    "message": "以租車還車時的損害理賠為例。若沒有工作階段紀錄，營運業者必須從一個系統調出預約資料、從另一個系統調出車載資通訊資料、從第三個系統調出鑰匙事件、再從第四個系統調出充電紀錄，才能還原事發經過，並寄望各時間戳記足夠吻合，好說服理賠人員。這個過程緩慢，而得出的說法，可信度也只取決於提出主張的營運業者本身。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.withASessionRecord": {
+    "message": "有了工作階段紀錄，同樣的問題只需一次查詢：經驗證的駕駛是誰、擁有存取權限的時段、納入範圍的遙測資料，以及存取結束的時間點，全部經過簽署，理賠人員不必只聽營運業者的一面之詞。爭議能依據雙方都可獨立驗證的證據解決，對營運業者來說更快，對保險業者來說風險更低。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.commonQuestions": {
+    "message": "常見問題"
+  },
+  "compliance.vehicleAccessAuditTrail.body.isSignedAndImmutable": {
+    "message": "「經簽署且不可竄改」只是行銷話術嗎？"
+  },
+  "compliance.vehicleAccessAuditTrail.body.noItIsThe": {
+    "message": "不是。正是這項特性讓紀錄對第三方有用。廠商可以悄悄修改的日誌，在爭議或稽核中幾乎毫無價值。經加密簽署的紀錄，可由並非建立它的一方查核，這正是UNECE R155的可稽核性與保險業者的舉證需求所要求的。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.doesThisConflictWith": {
+    "message": "這會與駕駛隱私衝突嗎？"
+  },
+  "compliance.vehicleAccessAuditTrail.body.theOppositeTheSame": {
+    "message": "恰恰相反。產生稽核軌跡的同一個工作階段，也會限定分享範圍並在還車時撤銷，因此這份紀錄記載的是早已經過同意且有邊界的存取。可稽核性與{link}是同一個基礎單元的一體兩面，而不是彼此取捨。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.sessionScopedConsent": {
+    "message": "限定工作階段的同意"
+  },
+  "compliance.vehicleAccessAuditTrail.body.whatAuditReadyAccessLooks": {
+    "message": "隨時可稽核的存取實際上是什麼樣子"
+  },
+  "compliance.vehicleAccessAuditTrail.body.forEveryUseOf": {
+    "message": "每次使用車輛時，工作階段都會產生一份紀錄，內含駕駛經驗證的身分、納入範圍的資料與功能、支出上限、開始與結束時間，以及撤銷事件，並經過簽署，事後無法竄改。為爭議提供「誰在駕駛、有哪些遙測資料」只需一次查詢，不必跨五套互不相連的系統進行鑑識調查。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.thisIsTheAuditability": {
+    "message": "這是{link}中關於可稽核性的那一半。同意與稽核是同一個基礎單元的兩面。請在{link2}中了解它如何融入更完整的模型，並在{link3}中了解車隊如何實際運用。"
+  },
+  "compliance.vehicleAccessAuditTrail.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "compliance.vehicleAccessAuditTrail.body.fleetIntelligence": {
+    "message": "車隊智慧"
+  },
+  "compliance.vehicleAccessAuditTrail.body.related": {
+    "message": "相關內容：{link} · {link2}"
+  },
+  "compliance.vehicleAccessAuditTrail.body.theFtcGmOnStarOrder": {
+    "message": "FTC對GM/OnStar的命令"
+  },
+  "compliance.vehicleAccessAuditTrail.body.allComplianceTopics": {
+    "message": "所有法規遵循主題"
+  },
+  "compliance.vehicleAccessAuditTrail.body.thisPageIsEducational": {
+    "message": "本頁內容僅供教育參考，不構成法律建議。"
+  },
+  "customerStories.emobi.results.chargingNetworks.label": {
+    "message": "充電網路"
+  },
+  "customerStories.emobi.results.plugCharge.label": {
+    "message": "Plug & Charge"
+  },
+  "customerStories.emobi.results.chargersAccessible.label": {
+    "message": "可使用的充電樁"
+  },
+  "customerStories.emobi.results.teslaVehiclesSupported.number": {
+    "message": "全部"
+  },
+  "customerStories.emobi.results.teslaVehiclesSupported.label": {
+    "message": "支援的Tesla車輛"
+  },
+  "customerStories.emobi.challenges.automakerDependency.title": {
+    "message": "受制於車廠"
+  },
+  "customerStories.emobi.challenges.automakerDependency.description": {
+    "message": "現有的Plug & Charge實作仰賴車廠核發的憑證，導致只有特定車輛能夠採用，而且需要成本高昂的OEM合作。"
+  },
+  "customerStories.emobi.challenges.limitedVehicleSupport.title": {
+    "message": "支援車款有限"
+  },
+  "customerStories.emobi.challenges.limitedVehicleSupport.description": {
+    "message": "擁有多品牌車輛與舊款電動車的車隊，無法享有Plug & Charge的好處，駕駛只能在多個應用程式與付款方式之間切換。"
+  },
+  "customerStories.emobi.challenges.complexInfrastructure.title": {
+    "message": "基礎架構複雜"
+  },
+  "customerStories.emobi.challenges.complexInfrastructure.description": {
+    "message": "過去要啟用Plug & Charge，通常需要更新韌體、升級硬體，並與充電網路進行複雜的整合。"
+  },
+  "customerStories.emobi.solutions.deviceBasedDigitalCertificates.title": {
+    "message": "以裝置為基礎的數位憑證"
+  },
+  "customerStories.emobi.solutions.deviceBasedDigitalCertificates.description": {
+    "message": "Emobi的JustPlug™技術透過DIMO的OBD-II裝置或虛擬導入，直接為車隊車輛核發ISO 15118數位憑證——完全不需要車廠參與。"
+  },
+  "customerStories.emobi.solutions.deviceBasedDigitalCertificates.result": {
+    "message": "任何車隊現在都能為任何車輛啟用Plug & Charge，包括舊款電動車，無需等待OEM支援。"
+  },
+  "customerStories.emobi.solutions.secureIdentityBridge.title": {
+    "message": "安全身分橋接"
+  },
+  "customerStories.emobi.solutions.secureIdentityBridge.description": {
+    "message": "DIMO的裝置安全地託管電動車的數位充電身分，作為Plug & Charge的橋梁，完全不需要變更車輛本身。"
+  },
+  "customerStories.emobi.solutions.secureIdentityBridge.result": {
+    "message": "車隊能完全掌控自己的充電憑證，並享有企業級的安全性與法規遵循。"
+  },
+  "customerStories.emobi.solutions.universalChargingAccess.title": {
+    "message": "通用充電存取"
+  },
+  "customerStories.emobi.solutions.universalChargingAccess.description": {
+    "message": "此次合作結合DIMO的車隊智慧平台，以及Emobi遍布美國與加拿大、超過140,000座充電樁的存取網路。"
+  },
+  "customerStories.emobi.solutions.universalChargingAccess.result": {
+    "message": "無論是新式或舊式充電基礎設施，駕駛都能享受無縫、無需應用程式的充電體驗。"
+  },
+  "customerStories.emobi.hero.customerStory": {
+    "message": "客戶案例"
+  },
+  "customerStories.emobi.hero.andDimoDeliverThe": {
+    "message": "{link}與DIMO推出首款{span}"
+  },
+  "customerStories.emobi.hero.fleetReadyPlugChargeDevice": {
+    "message": "車隊專用Plug & Charge裝置"
+  },
+  "customerStories.emobi.hero.aGroundbreakingPartnershipThat": {
+    "message": "一項突破性的合作，為任何車隊車輛帶來安全、無縫的ISO 15118 Plug & Charge——無需依賴車廠、更新韌體或升級硬體。"
+  },
+  "customerStories.emobi.hero.enableYourFleet": {
+    "message": "為您的車隊啟用"
+  },
+  "customerStories.emobi.hero.readOurDocumentation": {
+    "message": "閱讀說明文件"
+  },
+  "customerStories.emobi.results.theInnovation": {
+    "message": "創新成果"
+  },
+  "customerStories.emobi.challenges.theIndustryChallenge": {
+    "message": "產業挑戰"
+  },
+  "customerStories.emobi.challenges.plugChargePromiseVs": {
+    "message": "Plug & Charge：承諾與現實"
+  },
+  "customerStories.emobi.challenges.plugChargeHasLong": {
+    "message": "Plug & Charge長久以來承諾提供無需應用程式的電動車充電，但產業一直難以大規模實現。成本、複雜度以及由車廠主導的實作方式，讓多數車隊始終無法享有這項便利。"
+  },
+  "customerStories.emobi.solutions.theDimoEmobiSolution": {
+    "message": "DIMO + Emobi解決方案"
+  },
+  "customerStories.emobi.solutions.fleetLevelPlugChargeEnablement": {
+    "message": "車隊層級的Plug & Charge啟用"
+  },
+  "customerStories.emobi.solutions.byShiftingPlugCharge": {
+    "message": "這項合作將Plug & Charge的啟用從車廠轉移到車隊手中，讓任何駕駛、任何車輛都能使用安全且符合標準的充電。"
+  },
+  "customerStories.emobi.solutions.impact": {
+    "message": "成效："
+  },
+  "customerStories.emobi.quote.thisPartnershipRepresentsA": {
+    "message": "「這項合作是電動車普及的重要里程碑。多年來，電動車一直被承諾能享有無縫的Plug & Charge體驗，卻因產業難以大規模實現而不斷等待。透過DIMO的裝置直接為車隊核發ISO 15118數位憑證，讓控制權回到應有的位置，並讓任何車輛現在就能使用Plug & Charge功能。」"
+  },
+  "customerStories.emobi.quote.linSunFa": {
+    "message": "Lin Sun Fa"
+  },
+  "customerStories.emobi.quote.ceoEmobi": {
+    "message": "Emobi執行長"
+  },
+  "customerStories.emobi.secondQuote.withEmobiWereExtending": {
+    "message": "「透過與Emobi合作，我們將DIMO打造更智慧、更安全移動的使命延伸到車隊充電營運。我們攜手幫助車隊少花時間處理複雜的基礎設施管理，把更多時間用在讓車輛持續上路、創造成果。」"
+  },
+  "customerStories.emobi.secondQuote.yevgenyKhessin": {
+    "message": "Yevgeny Khessin"
+  },
+  "customerStories.emobi.secondQuote.coFounderDimo": {
+    "message": "DIMO共同創辦人"
+  },
+  "customerStories.emobi.howItWorks.connectWithDimo.phase": {
+    "message": "步驟1"
+  },
+  "customerStories.emobi.howItWorks.connectWithDimo.title": {
+    "message": "連接DIMO"
+  },
+  "customerStories.emobi.howItWorks.connectWithDimo.description": {
+    "message": "車隊透過DIMO平價的OBD-II裝置或虛擬導入方式連接車輛，無需昂貴的升級即可獲得先進的車輛智慧。"
+  },
+  "customerStories.emobi.howItWorks.certificateIssuance.phase": {
+    "message": "步驟2"
+  },
+  "customerStories.emobi.howItWorks.certificateIssuance.title": {
+    "message": "核發憑證"
+  },
+  "customerStories.emobi.howItWorks.certificateIssuance.description": {
+    "message": "Emobi的JustPlug™透過DIMO的裝置，在車隊層級核發並管理ISO 15118數位憑證——無需車廠參與，也不用更新韌體。"
+  },
+  "customerStories.emobi.howItWorks.secureIdentityHosting.phase": {
+    "message": "步驟3"
+  },
+  "customerStories.emobi.howItWorks.secureIdentityHosting.title": {
+    "message": "安全身分託管"
+  },
+  "customerStories.emobi.howItWorks.secureIdentityHosting.description": {
+    "message": "DIMO裝置或雲端安全地託管電動車的數位充電身分，作為Plug & Charge的橋梁，完全不需要變更車輛。"
+  },
+  "customerStories.emobi.howItWorks.seamlessCharging.phase": {
+    "message": "步驟4"
+  },
+  "customerStories.emobi.howItWorks.seamlessCharging.title": {
+    "message": "無縫充電"
+  },
+  "customerStories.emobi.howItWorks.seamlessCharging.description": {
+    "message": "駕駛只需在美國與加拿大140,000多座相容充電樁中的任一座插上充電槍，驗證與付款都會自動完成。"
+  },
+  "customerStories.emobi.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "customerStories.emobi.howItWorks.fromConnectionToCharging": {
+    "message": "從連接到充電"
+  },
+  "customerStories.emobi.howItWorks.aSimpleFourStepProcess": {
+    "message": "簡單四個步驟，終於實現車隊與駕駛期待已久的通用Plug & Charge體驗。"
+  },
+  "customerStories.emobi.keyTakeaways.firstFleetReadyDevice": {
+    "message": "首款無需車廠參與、即可啟用安全ISO 15118 Plug & Charge的車隊專用裝置"
+  },
+  "customerStories.emobi.keyTakeaways.worksWithAny": {
+    "message": "支援所有Tesla車款——更多電動車可透過DIMO的OBD-II裝置使用"
+  },
+  "customerStories.emobi.keyTakeaways.noFirmwareUpdates": {
+    "message": "無需更新韌體、升級硬體或變更充電基礎設施"
+  },
+  "customerStories.emobi.keyTakeaways.accessTo140000": {
+    "message": "透過Emobi的漫遊網路，使用美國與加拿大140,000多座充電樁"
+  },
+  "customerStories.emobi.keyTakeaways.fleetLevelCertificateManagement": {
+    "message": "車隊層級的憑證管理，讓控制權回到應有的位置——車隊營運業者手中"
+  },
+  "customerStories.emobi.keyTakeaways.trustedByThe": {
+    "message": "獲美國能源部與運輸部信賴"
+  },
+  "customerStories.emobi.keyTakeaways.keyTakeaways": {
+    "message": "重點摘要"
+  },
+  "customerStories.emobi.keyTakeaways.whyThisMatters": {
+    "message": "為何這很重要"
+  },
+  "customerStories.emobi.cta.readyToEnablePlug": {
+    "message": "準備好為您的車隊啟用Plug & Charge了嗎？"
+  },
+  "customerStories.emobi.cta.joinTheFleetsAlready": {
+    "message": "加入已享受無縫、無需應用程式電動車充電的車隊行列。立即開始使用DIMO與Emobi的JustPlug™技術。"
+  },
+  "customerStories.emobi.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "customerStories.emobi.cta.readTheDocs": {
+    "message": "閱讀說明文件"
+  },
+  "customerStories.emobi.meta.title": {
+    "message": "Emobi合作夥伴關係 | DIMO車隊Plug & Charge成功案例"
+  },
+  "customerStories.emobi.meta.description": {
+    "message": "了解Emobi與DIMO如何攜手，採用ISO 15118標準推出首款車隊專用Plug & Charge裝置——讓任何車輛都能享有無縫電動車充電，無需依賴車廠。"
+  },
+  "customerStories.emobi.meta.keywords": {
+    "message": "Emobi, DIMO合作, Plug and Charge, ISO 15118, 車隊電動車充電, JustPlug, 電動車充電, 車隊管理"
+  },
+  "customerStories.emobi.meta.ogTitle": {
+    "message": "Emobi + DIMO合作 | 車隊Plug & Charge"
+  },
+  "customerStories.emobi.meta.ogDescription": {
+    "message": "Emobi與DIMO如何推出首款車隊專用Plug & Charge裝置：符合ISO 15118、相容任何車輛、可使用14萬多座充電樁。"
+  },
+  "customerStories.emobi.schema.emobiAndDimo.headline": {
+    "message": "Emobi與DIMO攜手推出首款車隊專用Plug & Charge裝置"
+  },
+  "customerStories.emobi.schema.emobiAndDimo.description": {
+    "message": "此次合作結合Emobi的JustPlug™技術與DIMO的車輛智慧平台，首度為車隊帶來安全、無縫的ISO 15118 Plug & Charge。"
+  },
+  "customerStories.emobi.body.home.name": {
+    "message": "首頁"
+  },
+  "customerStories.emobi.body.customerStories.name": {
+    "message": "客戶案例"
+  },
+  "customerStories.grupoKaufmann.results.oemConnectivityAchieved.label": {
+    "message": "OEM連線覆蓋率"
+  },
+  "customerStories.grupoKaufmann.results.reductionInTheft.label": {
+    "message": "竊盜事件減少"
+  },
+  "customerStories.grupoKaufmann.results.increaseInCustomer.label": {
+    "message": "客戶忠誠度提升"
+  },
+  "customerStories.grupoKaufmann.results.realTimeVehicleMonitoring.label": {
+    "message": "即時車輛監控"
+  },
+  "customerStories.grupoKaufmann.challenges.noDataAccess.title": {
+    "message": "無法存取資料"
+  },
+  "customerStories.grupoKaufmann.challenges.noDataAccess.description": {
+    "message": "Grupo Kaufmann無法直接存取來自OEM的車輛資料，難以透過主動式服務或即時洞察有效服務客戶。"
+  },
+  "customerStories.grupoKaufmann.challenges.vehicleTheftConcerns.title": {
+    "message": "車輛竊盜隱憂"
+  },
+  "customerStories.grupoKaufmann.challenges.vehicleTheftConcerns.description": {
+    "message": "由於無法追蹤車輛，失竊的庫存車輛難以定位與尋回，造成重大財務損失與保險糾紛。"
+  },
+  "customerStories.grupoKaufmann.challenges.lowEndUserEngagement.title": {
+    "message": "終端使用者互動率低"
+  },
+  "customerStories.grupoKaufmann.challenges.lowEndUserEngagement.description": {
+    "message": "由於缺乏資料洞察，售後客戶關係管理相當困難，錯失了服務營收與提升忠誠度的機會。"
+  },
+  "customerStories.grupoKaufmann.solutions.universalIntegration.title": {
+    "message": "通用整合"
+  },
+  "customerStories.grupoKaufmann.solutions.universalIntegration.description": {
+    "message": "DIMO提供與多個OEM及售後市場資料來源的無縫連線，無需逐一整合。"
+  },
+  "customerStories.grupoKaufmann.solutions.universalIntegration.result": {
+    "message": "Grupo Kaufmann立即取得旗下多品牌庫存車輛的即時遙測資料，包括Mercedez-Benz、Maxus與Jetour。"
+  },
+  "customerStories.grupoKaufmann.solutions.realTimeTheftPrevention.title": {
+    "message": "即時防盜"
+  },
+  "customerStories.grupoKaufmann.solutions.realTimeTheftPrevention.description": {
+    "message": "DIMO提供即時位置追蹤與引擎鎖止功能，用以建置車輛監控與即時介入系統，因應未經授權的移動。"
+  },
+  "customerStories.grupoKaufmann.solutions.realTimeTheftPrevention.result": {
+    "message": "Grupo Kaufmann的車輛竊盜事件立即減少，發生事件時的尋回時間也更短。"
+  },
+  "customerStories.grupoKaufmann.solutions.customPortalAi.title": {
+    "message": "客製化入口網站與AI洞察"
+  },
+  "customerStories.grupoKaufmann.solutions.customPortalAi.description": {
+    "message": "DIMO提供對開發者友善的API與SDK，可打造任何內建AI功能的客製化入口網站，另有白牌行動應用程式，提供端到端的客戶體驗。"
+  },
+  "customerStories.grupoKaufmann.solutions.customPortalAi.result": {
+    "message": "Grupo Kaufmann表示客戶互動提升至3倍、服務週轉時間更短，客戶滿意度分數也隨之提升。"
+  },
+  "customerStories.grupoKaufmann.hero.customerStory": {
+    "message": "客戶案例"
+  },
+  "customerStories.grupoKaufmann.hero.transformedTheirDealershipNetwork": {
+    "message": "{link}以{span}轉型經銷網路"
+  },
+  "customerStories.grupoKaufmann.hero.connectedVehicleIntelligence": {
+    "message": "聯網汽車智慧"
+  },
+  "customerStories.grupoKaufmann.hero.fromZeroConnectivityTo": {
+    "message": "從零連線到100% OEM覆蓋率、即時防盜，以及3倍客戶互動——看拉丁美洲領先的汽車集團如何徹底革新營運。"
+  },
+  "customerStories.grupoKaufmann.hero.startYourOwnJourney": {
+    "message": "展開您的旅程"
+  },
+  "customerStories.grupoKaufmann.hero.readOurDocumentation": {
+    "message": "閱讀說明文件"
+  },
+  "customerStories.grupoKaufmann.results.theOutcome": {
+    "message": "成果"
+  },
+  "customerStories.grupoKaufmann.challenges.theKaufmannStory": {
+    "message": "Kaufmann的故事"
+  },
+  "customerStories.grupoKaufmann.challenges.theChallenges": {
+    "message": "面臨的挑戰"
+  },
+  "customerStories.grupoKaufmann.challenges.asOneOfLatin": {
+    "message": "作為拉丁美洲最大的汽車集團之一，Grupo Kaufmann面臨關鍵的營運挑戰，無法為經銷網路與終端客戶提供現代化的聯網體驗。"
+  },
+  "customerStories.grupoKaufmann.solutions.theDimoSolution": {
+    "message": "DIMO解決方案"
+  },
+  "customerStories.grupoKaufmann.solutions.connectedVehicleIntelligence": {
+    "message": "聯網汽車智慧"
+  },
+  "customerStories.grupoKaufmann.solutions.grupoKaufmannPartneredWith": {
+    "message": "Grupo Kaufmann與DIMO合作，打造完整的聯網汽車生態系，同時解決四大挑戰——無需管理多項OEM整合的複雜工作。"
+  },
+  "customerStories.grupoKaufmann.solutions.impact": {
+    "message": "成效："
+  },
+  "customerStories.grupoKaufmann.testimonial.dimoTransformedOurEntire": {
+    "message": "「DIMO徹底改變了我們的整體營運。原本需要耗費數年和數百萬美元進行客製化整合的工作，只花了幾週就完成部署。我們的經銷商現在擁有即時車輛洞察，客戶也很喜歡聯網體驗，庫存車輛竊盜更是幾乎絕跡。這就是汽車零售的未來。」"
+  },
+  "customerStories.grupoKaufmann.testimonial.maximilianoIpinza": {
+    "message": "Maximiliano Ipinza"
+  },
+  "customerStories.grupoKaufmann.testimonial.headOfDigitalInnovation": {
+    "message": "Grupo Kaufmann數位創新主管"
+  },
+  "customerStories.grupoKaufmann.implementation.platformSetupIntegration.phase": {
+    "message": "第1週"
+  },
+  "customerStories.grupoKaufmann.implementation.platformSetupIntegration.title": {
+    "message": "平台設定與整合"
+  },
+  "customerStories.grupoKaufmann.implementation.platformSetupIntegration.description": {
+    "message": "DIMO團隊與Grupo Kaufmann的數位轉型部門合作，設定API存取權限、建立驗證機制，並建立測試資料流。"
+  },
+  "customerStories.grupoKaufmann.implementation.dealerPortalDevelopment.phase": {
+    "message": "第2週"
+  },
+  "customerStories.grupoKaufmann.implementation.dealerPortalDevelopment.title": {
+    "message": "經銷商入口網站開發"
+  },
+  "customerStories.grupoKaufmann.implementation.dealerPortalDevelopment.description": {
+    "message": "內部團隊運用DIMO對開發者友善的SDK與完整的說明文件，打造可存取即時車輛資料的客製化經銷商入口網站。"
+  },
+  "customerStories.grupoKaufmann.implementation.deviceDeploymentFeature.phase": {
+    "message": "第4週"
+  },
+  "customerStories.grupoKaufmann.implementation.deviceDeploymentFeature.title": {
+    "message": "裝置部署與功能推出"
+  },
+  "customerStories.grupoKaufmann.implementation.deviceDeploymentFeature.description": {
+    "message": "在整個經銷網路部署聯網裝置，並推出即時追蹤與遠端診斷等關鍵功能。"
+  },
+  "customerStories.grupoKaufmann.implementation.customerAppLaunch.phase": {
+    "message": "第8週"
+  },
+  "customerStories.grupoKaufmann.implementation.customerAppLaunch.title": {
+    "message": "客戶應用程式上線"
+  },
+  "customerStories.grupoKaufmann.implementation.customerAppLaunch.description": {
+    "message": "推出西班牙文版的客戶行動應用程式，為終端使用者提供聯網汽車功能、保養提醒與遠端診斷。"
+  },
+  "customerStories.grupoKaufmann.implementation.implementation": {
+    "message": "導入過程"
+  },
+  "customerStories.grupoKaufmann.implementation.8WeekDeploymentTimeline": {
+    "message": "8週部署時程"
+  },
+  "customerStories.grupoKaufmann.implementation.fromKickoffToFull": {
+    "message": "從專案啟動到全面正式上線只花了兩個月——無需冗長的整合，也無需建置複雜的基礎設施。"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.singleApiReplaced": {
+    "message": "單一API取代多項複雜的OEM整合，開發時間縮短90%"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.realTimeTheftMonitoring": {
+    "message": "即時竊盜監控與地理圍欄，杜絕了80%的庫存車輛竊盜事件"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.dealersGainedInstant": {
+    "message": "經銷商可即時取得車輛診斷與維修紀錄，服務效率提升50%"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.customerEngagementTripled": {
+    "message": "憑藉聯網汽車功能與主動式保養提醒，客戶互動成長3倍"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.platformScaledSeamlessly": {
+    "message": "平台無縫擴展至多個品牌與車種，無需額外整合工作"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.privacyFirstArchitectureEnsured": {
+    "message": "隱私優先的架構確保符合GDPR規範，並保障客戶的資料所有權"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.keyTakeaways": {
+    "message": "重點摘要"
+  },
+  "customerStories.grupoKaufmann.keyTakeaways.whyThisWorked": {
+    "message": "成功關鍵"
+  },
+  "customerStories.grupoKaufmann.cta.readyToTransformYour": {
+    "message": "準備好轉型您的營運了嗎？"
+  },
+  "customerStories.grupoKaufmann.cta.joinGrupoKaufmannAnd": {
+    "message": "加入Grupo Kaufmann與數百家創新企業的行列，運用DIMO打造聯網汽車體驗。立即透過我們的免費開發者方案開始使用。"
+  },
+  "customerStories.grupoKaufmann.cta.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "customerStories.grupoKaufmann.cta.readTheDocs": {
+    "message": "閱讀說明文件"
+  },
+  "customerStories.grupoKaufmann.meta.title": {
+    "message": "Grupo Kaufmann案例研究 | DIMO聯網汽車成功案例"
+  },
+  "customerStories.grupoKaufmann.meta.description": {
+    "message": "了解Grupo Kaufmann如何運用DIMO的聯網汽車平台，達成100% OEM連線、減少80%竊盜事件，並讓客戶互動成長3倍。8週內交出實際成果。"
+  },
+  "customerStories.grupoKaufmann.meta.keywords": {
+    "message": "Grupo Kaufmann, DIMO案例研究, 聯網汽車, 經銷商科技, 車輛防盜, OEM整合, 汽車創新"
+  },
+  "customerStories.grupoKaufmann.meta.ogTitle": {
+    "message": "Grupo Kaufmann案例研究 | DIMO成功案例"
+  },
+  "customerStories.grupoKaufmann.meta.ogDescription": {
+    "message": "拉丁美洲領先汽車集團如何運用DIMO轉型營運：100% OEM連線、竊盜減少80%、客戶互動成長3倍。"
+  },
+  "customerStories.grupoKaufmann.schema.howGrupoKaufmann.headline": {
+    "message": "Grupo Kaufmann如何運用DIMO轉型經銷網路"
+  },
+  "customerStories.grupoKaufmann.schema.howGrupoKaufmann.description": {
+    "message": "案例研究：Grupo Kaufmann運用DIMO的聯網汽車平台，達成100% OEM連線、車輛竊盜減少80%，客戶互動成長3倍。"
+  },
+  "customerStories.grupoKaufmann.body.home.name": {
+    "message": "首頁"
+  },
+  "customerStories.grupoKaufmann.body.customerStories.name": {
+    "message": "客戶案例"
+  },
+  "industries.dealerships.meta.industryName": {
+    "message": "汽車經銷商"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.type": {
+    "message": "消費者"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.title": {
+    "message": "虛擬服務顧問"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.description": {
+    "message": "部署對話式AI代理，讓客戶24/7隨時透過簡訊或聊天詢問車輛相關問題，並在需要時預約維修保養。"
+  },
+  "industries.dealerships.useCases.virtualServiceAdvisor.example": {
+    "message": "「我的引擎故障燈剛亮了，需要擔心嗎？」"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.type": {
+    "message": "混合型"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.title": {
+    "message": "中古車購前報告"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.description": {
+    "message": "在線上提供完整的車況報告供客戶研究，或於現場供經銷商業務人員使用，建立信任並加速成交。"
+  },
+  "industries.dealerships.useCases.usedVehiclePrePurchaseReport.example": {
+    "message": "「給我這輛2019 Toyota Camry的完整車況報告」"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.type": {
+    "message": "混合型"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.title": {
+    "message": "舊車折抵估價助理"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.description": {
+    "message": "為您的業務團隊配備AI代理，在舊車折抵過程中提供有資料佐證的估價，提升透明度與客戶信心。"
+  },
+  "industries.dealerships.useCases.tradeInValuationAssistant.example": {
+    "message": "代理分析即時車輛資料，提供準確且站得住腳的折抵價格。"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.type": {
+    "message": "混合型"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.title": {
+    "message": "主動預約代理"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.description": {
+    "message": "自動偵測車輛何時達到保養里程、出現故障碼或到了定期保養時間，並主動聯繫客戶安排預約。"
+  },
+  "industries.dealerships.useCases.proactiveBookingAgent.example": {
+    "message": "「該進廠保養囉！我們注意到您的機油該換了，以下是可預約的時段……」"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.type": {
+    "message": "車隊"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.title": {
+    "message": "售後關係經理"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.description": {
+    "message": "透過監控車況並主動建議服務的智慧代理，與車隊客戶維持長期關係。"
+  },
+  "industries.dealerships.useCases.postSaleRelationshipManager.example": {
+    "message": "代理追蹤車隊車輛狀況，並自動安排預防性保養。"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.type": {
+    "message": "車隊"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.title": {
+    "message": "租賃車隊管理"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.description": {
+    "message": "透過代理處理保養排程、使用追蹤與租約到期檢查，簡化租賃車輛的車隊管理。"
+  },
+  "industries.dealerships.useCases.leasedVehicleFleet.example": {
+    "message": "車隊經理可即時掌握整個租賃車隊的車況。"
+  },
+  "industries.dealerships.stats.customerAvailability.label": {
+    "message": "客戶服務時間"
+  },
+  "industries.dealerships.stats.improvedCustomerEngagement.label": {
+    "message": "客戶互動提升"
+  },
+  "industries.dealerships.stats.fasterServiceBooking.label": {
+    "message": "維修預約更快速"
+  },
+  "industries.dealerships.stats.connectedVehicles.label": {
+    "message": "聯網汽車"
+  },
+  "industries.dealerships.hero.transformYourDealershipWith": {
+    "message": "以{span}轉型您的經銷業務"
+  },
+  "industries.dealerships.hero.intelligentVehicleAgents": {
+    "message": "智慧車輛代理"
+  },
+  "industries.dealerships.hero.fromVirtualServiceAdvisors": {
+    "message": "從虛擬服務顧問到AI驅動的舊車折抵估價，DIMO協助經銷商提供卓越的客戶體驗，同時簡化業務、服務與車隊管理的營運流程。"
+  },
+  "industries.dealerships.hero.getStarted": {
+    "message": "開始使用"
+  },
+  "industries.dealerships.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "industries.dealerships.useCases.useCases": {
+    "message": "使用案例"
+  },
+  "industries.dealerships.useCases.builtForEveryPart": {
+    "message": "為經銷業務的每個環節打造"
+  },
+  "industries.dealerships.useCases.whetherYoureServingIndividual": {
+    "message": "無論您服務的是個人客戶，還是管理企業車隊，DIMO的智慧代理都能因應您的需求調整，並與您現有的系統無縫整合。"
+  },
+  "industries.dealerships.featureSection1.worksInLatamAnd": {
+    "message": "拉丁美洲與美國皆適用——依您的方式運作"
+  },
+  "industries.dealerships.featureSection1.dimoOffersFlexibleDeployment": {
+    "message": "DIMO提供專為您的市場設計的彈性部署選項。在拉丁美洲，我們支援由專業人員安裝的硬體，並提供完整整合與行動應用程式體驗。在美國，您可以運用我們的BYOD（自備裝置）方案快速部署。"
+  },
+  "industries.dealerships.featureSection1.professionalInstallationSupportIn": {
+    "message": "拉丁美洲市場提供專業安裝支援"
+  },
+  "industries.dealerships.featureSection1.byodIntegrationForUs": {
+    "message": "美國經銷商適用的BYOD整合"
+  },
+  "industries.dealerships.featureSection1.whiteLabelMobileAppOptions": {
+    "message": "提供白牌行動應用程式選項"
+  },
+  "industries.dealerships.featureSection1.fullApiAccessFor": {
+    "message": "完整API存取權限，支援客製化整合"
+  },
+  "industries.dealerships.featureSection1.happyDealershipCustomersInteracting": {
+    "message": "滿意的經銷商客戶與AI代理互動"
+  },
+  "industries.dealerships.featureSection2.aiAgentsThatKnow": {
+    "message": "了解您客戶的AI代理"
+  },
+  "industries.dealerships.featureSection2.everyVehicleAgentHas": {
+    "message": "每個車輛代理都內建記憶與情境感知能力，提供如真人般的個人化體驗。客戶能即時獲得關於自家車輛、維修紀錄與即將到來的保養需求的解答。"
+  },
+  "industries.dealerships.featureSection2.persistentMemoryAcrossAll": {
+    "message": "完整記住每一次與顧客的互動"
+  },
+  "industries.dealerships.featureSection2.realTimeVehicleDiagnosticsAnd": {
+    "message": "即時車輛診斷與車況資料"
+  },
+  "industries.dealerships.featureSection2.seamlessHandoffToHuman": {
+    "message": "必要時無縫轉接真人客服"
+  },
+  "industries.dealerships.featureSection2.multiChannelSupportSmsChat": {
+    "message": "多管道支援：簡訊、線上聊天、語音"
+  },
+  "industries.dealerships.featureSection2.aiMechanicAssistingCustomer": {
+    "message": "AI技師為顧客提供協助"
+  },
+  "industries.dealerships.howItWorks.connectYourInventory.title": {
+    "message": "串接您的庫存"
+  },
+  "industries.dealerships.howItWorks.connectYourInventory.description": {
+    "message": "將DIMO整合至您現有的DMS與庫存管理系統。我們的API支援所有主流平台。"
+  },
+  "industries.dealerships.howItWorks.deployIntelligentAgents.title": {
+    "message": "部署智慧代理"
+  },
+  "industries.dealerships.howItWorks.deployIntelligentAgents.description": {
+    "message": "從服務、銷售與車隊管理的預建代理範本中挑選，或依您的專屬工作流程自訂代理。"
+  },
+  "industries.dealerships.howItWorks.engageCustomersAutomatically.title": {
+    "message": "自動與顧客互動"
+  },
+  "industries.dealerships.howItWorks.engageCustomersAutomatically.description": {
+    "message": "車輛需要保養時，代理會主動聯繫顧客，全年無休解答問題，協助您成交更多訂單。"
+  },
+  "industries.dealerships.howItWorks.measureAndOptimize.title": {
+    "message": "評估成效並持續優化"
+  },
+  "industries.dealerships.howItWorks.measureAndOptimize.description": {
+    "message": "透過我們全方位的分析儀表板，追蹤代理表現、顧客滿意度與營收影響。"
+  },
+  "industries.dealerships.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "industries.dealerships.howItWorks.upAndRunningIn": {
+    "message": "幾天就能上線，不必等上好幾個月"
+  },
+  "industries.dealerships.howItWorks.dimoIntegratesWithYour": {
+    "message": "DIMO可與您現有的系統整合，立即創造價值，無須複雜的導入流程。"
+  },
+  "industries.dealerships.cta.readyToTransformYour": {
+    "message": "準備好讓您的經銷據點全面升級了嗎？"
+  },
+  "industries.dealerships.cta.joinForwardThinkingDealershipsAlready": {
+    "message": "許多具前瞻眼光的經銷商已透過DIMO提供卓越的顧客體驗並創造更多營收，立即加入他們的行列。"
+  },
+  "industries.dealerships.cta.startBuildingToday": {
+    "message": "立即開始開發"
+  },
+  "industries.dealerships.cta.contactSales": {
+    "message": "聯絡業務團隊"
+  },
+  "industries.dealerships.meta.title": {
+    "message": "DIMO經銷商方案 | 為汽車經銷商打造的智慧車輛代理"
+  },
+  "industries.dealerships.meta.description": {
+    "message": "以DIMO的智慧車輛代理全面升級您的經銷據點。虛擬服務顧問、AI舊車折價估值、主動預約，以及車隊管理解決方案。"
+  },
+  "industries.dealerships.meta.keywords": {
+    "message": "經銷商軟體, 汽車經銷商AI, 虛擬服務顧問, 舊車折價估值, 車隊管理, 汽車科技, 車輛代理"
+  },
+  "industries.dealerships.meta.ogTitle": {
+    "message": "DIMO經銷商方案 | 智慧車輛代理"
+  },
+  "industries.dealerships.meta.ogDescription": {
+    "message": "為服務、銷售與車隊管理部署AI驅動的車輛代理。全天候顧客支援、以資料為依據的估值，以及主動式保養排程。"
+  },
+  "industries.dealerships.schema.dimoForDealerships.name": {
+    "message": "DIMO經銷商方案"
+  },
+  "industries.dealerships.schema.dimoForDealerships.description": {
+    "message": "為汽車經銷商打造的智慧車輛代理。虛擬服務顧問、舊車折價估值與車隊管理。"
+  },
+  "industries.dealerships.schema.dimoForDealerships.category": {
+    "message": "汽車產業軟體"
+  },
+  "industries.dealerships.schema.audienceType": {
+    "message": "汽車經銷商"
+  },
+  "industries.dealerships.body.home.name": {
+    "message": "首頁"
+  },
+  "industries.dealerships.body.industries.name": {
+    "message": "產業"
+  },
+  "industries.dealerships.body.dealerships.name": {
+    "message": "汽車經銷商"
+  },
+  "industries.dsp.meta.industryName": {
+    "message": "配送服務業者"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.type": {
+    "message": "車隊"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.title": {
+    "message": "車隊營運指揮中心"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.description": {
+    "message": "透過全方位儀表板即時掌握整個車隊，車輛可用狀態、車況、保養需求與駕駛人狀態一目了然。"
+  },
+  "industries.dsp.useCases.fleetOperationsCommand.example": {
+    "message": "「列出目前所有可用的車輛，以及它們最近一次的保養日期。」"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.type": {
+    "message": "車隊"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.title": {
+    "message": "預測性維護助手"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.description": {
+    "message": "AI驅動的維護預測會分析車輛資料，在故障發生前找出問題，減少停駛時間與維修成本。"
+  },
+  "industries.dsp.useCases.predictiveMaintenanceCopilot.example": {
+    "message": "「車輛F-2847出現煞車磨損的早期徵兆。請在接下來500英里內安排保養。」"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.type": {
+    "message": "車隊"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.title": {
+    "message": "駕駛行為指導"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.description": {
+    "message": "監測駕駛模式，針對激進駕駛、急煞車與其他危險行為，自動提供指導與矯正措施。"
+  },
+  "industries.dsp.useCases.driverBehaviorCoaching.example": {
+    "message": "代理傳送指導訊息：「今天偵測到3次急煞車。平穩煞車能延長輪胎壽命，也更省油。」"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.type": {
+    "message": "車隊"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.title": {
+    "message": "路線績效分析"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.description": {
+    "message": "分析歷史路線資料，找出最快、最安全、最有效率的配送路線，並標示事故率偏高的路線。"
+  },
+  "industries.dsp.useCases.routePerformanceAnalysis.example": {
+    "message": "「7A路線的完成時間比7B路線快40%，激進駕駛事件也更少。」"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.type": {
+    "message": "車隊"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.title": {
+    "message": "車損偵測與事故應變"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.description": {
+    "message": "自動偵測車輛損傷、碰撞與各類事故。產生報告、觸發通知，並協調應變流程。"
+  },
+  "industries.dsp.useCases.damageDetectionIncident.example": {
+    "message": "即時警示：「下午2:34，車輛D-1923偵測到碰撞。地點：5th & Main。駕駛人狀態：正常。」"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.type": {
+    "message": "車隊"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.title": {
+    "message": "即時車隊車況儀表板"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.description": {
+    "message": "在單一整合畫面中，監測整個車隊的油量、胎壓、引擎診斷與整體車況。"
+  },
+  "industries.dsp.useCases.realTimeFleetHealth.example": {
+    "message": "「有5輛車需要注意：2輛油量偏低、2則胎壓警示、1輛引擎故障燈亮起。」"
+  },
+  "industries.dsp.stats.reductionInVehicle.label": {
+    "message": "車輛停駛時間減少"
+  },
+  "industries.dsp.stats.fuelCostSavings.label": {
+    "message": "燃料成本節省"
+  },
+  "industries.dsp.stats.sqlQueriesRequired.number": {
+    "message": "零"
+  },
+  "industries.dsp.stats.sqlQueriesRequired.label": {
+    "message": "需要撰寫的SQL查詢"
+  },
+  "industries.dsp.stats.qualityOfLife.label": {
+    "message": "使用體驗大幅提升"
+  },
+  "industries.dsp.hero.commandYourFleetWith": {
+    "message": "以{span}掌控您的車隊"
+  },
+  "industries.dsp.hero.intelligentOperations": {
+    "message": "智慧營運"
+  },
+  "industries.dsp.hero.fromPredictiveMaintenanceTo": {
+    "message": "從預測性維護到駕駛指導與路線優化，DIMO為配送服務業者提供所需的即時智慧，讓車輛妥善率最大化、成本降低，並兌現每一次配送承諾。"
+  },
+  "industries.dsp.hero.getStarted": {
+    "message": "開始使用"
+  },
+  "industries.dsp.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "industries.dsp.useCases.useCases": {
+    "message": "使用案例"
+  },
+  "industries.dsp.useCases.builtForHighPerformanceDelivery": {
+    "message": "專為高效能配送營運打造"
+  },
+  "industries.dsp.useCases.dimosFleetIntelligencePlatform": {
+    "message": "DIMO的車隊智慧平台協助配送服務業者優化營運的每個環節，從車況、駕駛表現到路線效率，面面俱到。"
+  },
+  "industries.dsp.featureSection1.predictProblemsBeforeThey": {
+    "message": "問題發生前就預先掌握"
+  },
+  "industries.dsp.featureSection1.dimosPredictiveMaintenanceCopilot": {
+    "message": "DIMO的預測性維護助手持續分析車輛資料，包括引擎診斷、使用模式、環境條件與歷史保養紀錄，在問題演變成昂貴的故障或延誤配送之前就先找出來。"
+  },
+  "industries.dsp.featureSection1.aiPoweredFailurePredictionBased": {
+    "message": "以真實車輛資料為基礎的AI故障預測"
+  },
+  "industries.dsp.featureSection1.automaticMaintenanceSchedulingWhen": {
+    "message": "偵測到問題時自動安排保養"
+  },
+  "industries.dsp.featureSection1.integrationWithYourExisting": {
+    "message": "與您現有的維護系統整合"
+  },
+  "industries.dsp.featureSection1.reduceEmergencyRepairsAnd": {
+    "message": "減少緊急維修與路上拋錨"
+  },
+  "industries.dsp.featureSection1.mechanicInspectingDeliveryVehicle": {
+    "message": "技師檢查配送車輛"
+  },
+  "industries.dsp.featureSection2.optimizeRoutesMaximizeDeliveries": {
+    "message": "優化路線，讓配送量極大化"
+  },
+  "industries.dsp.featureSection2.goBeyondBasicGps": {
+    "message": "不只是基本的GPS追蹤。DIMO的路線分析智慧會檢視歷史績效資料，找出哪些路線最快、問題出在哪裡，以及如何優化您的配送網路以發揮最高效率。"
+  },
+  "industries.dsp.featureSection2.identifyHighPerformingVsProblem": {
+    "message": "辨識高績效路線與問題路線"
+  },
+  "industries.dsp.featureSection2.correlateRoutesWithDriver": {
+    "message": "將路線與駕駛行為及事故交叉比對"
+  },
+  "industries.dsp.featureSection2.suggestOptimizedAlternativesBased": {
+    "message": "根據真實資料建議更佳的替代路線"
+  },
+  "industries.dsp.featureSection2.trackImprovementsOverTime": {
+    "message": "透過分析長期追蹤改善成效"
+  },
+  "industries.dsp.featureSection2.deliveryTrucksOnRoute": {
+    "message": "行駛中的配送貨車"
+  },
+  "industries.dsp.howItWorks.connectYourFleet.title": {
+    "message": "連接您的車隊"
+  },
+  "industries.dsp.howItWorks.connectYourFleet.description": {
+    "message": "透過DIMO硬體或原廠OEM原生連線，將您的配送車輛接入平台，並與您現有的車隊管理工具無縫整合。"
+  },
+  "industries.dsp.howItWorks.configureYourCommand.title": {
+    "message": "設定您的指揮中心"
+  },
+  "industries.dsp.howItWorks.configureYourCommand.description": {
+    "message": "依您的營運需求，設定即時監控、保養門檻、駕駛指導參數與自訂警示。"
+  },
+  "industries.dsp.howItWorks.deployIntelligentAgents.title": {
+    "message": "部署智慧代理"
+  },
+  "industries.dsp.howItWorks.deployIntelligentAgents.description": {
+    "message": "啟用AI驅動的助手，處理維護預測、路線分析、駕駛指導與事故應變。"
+  },
+  "industries.dsp.howItWorks.optimizeContinuously.title": {
+    "message": "持續優化"
+  },
+  "industries.dsp.howItWorks.optimizeContinuously.description": {
+    "message": "運用即時資料與分析持續提升車隊績效、降低成本，並讓準時配送率最大化。"
+  },
+  "industries.dsp.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "industries.dsp.howItWorks.fromSetupToOptimization": {
+    "message": "從設定到優化，只需幾天"
+  },
+  "industries.dsp.howItWorks.dimoIntegratesWithYour": {
+    "message": "DIMO可與您現有的系統整合，立即提供可據以行動的洞察。"
+  },
+  "industries.dsp.cta.readyToTransformYour": {
+    "message": "準備好全面升級您的配送營運了嗎？"
+  },
+  "industries.dsp.cta.joinLeadingDeliveryService": {
+    "message": "領先的配送服務業者都在使用DIMO降低成本、提升可靠度，並兌現每一次配送承諾，立即加入他們的行列。"
+  },
+  "industries.dsp.cta.startBuildingToday": {
+    "message": "立即開始開發"
+  },
+  "industries.dsp.cta.contactSales": {
+    "message": "聯絡業務團隊"
+  },
+  "industries.dsp.meta.title": {
+    "message": "DIMO配送方案 | 為配送服務業者打造的車隊智慧"
+  },
+  "industries.dsp.meta.description": {
+    "message": "以DIMO的智慧車隊平台優化配送營運。預測性維護、駕駛指導、路線分析與即時車隊監控。"
+  },
+  "industries.dsp.meta.keywords": {
+    "message": "配送車隊管理, 預測性維護, 駕駛指導, 路線優化, 車隊監控, 物流科技, 配送營運"
+  },
+  "industries.dsp.meta.ogTitle": {
+    "message": "DIMO配送方案 | 車隊智慧平台"
+  },
+  "industries.dsp.meta.ogDescription": {
+    "message": "以AI驅動的預測性維護、駕駛指導、路線分析與即時監控，全面掌控您的配送車隊。"
+  },
+  "industries.dsp.schema.dimoForDelivery.name": {
+    "message": "DIMO配送方案"
+  },
+  "industries.dsp.schema.dimoForDelivery.description": {
+    "message": "為配送服務業者打造的車隊智慧平台。預測性維護、駕駛指導與路線優化。"
+  },
+  "industries.dsp.schema.dimoForDelivery.category": {
+    "message": "車隊管理軟體"
+  },
+  "industries.dsp.schema.audienceType": {
+    "message": "配送服務業者"
+  },
+  "industries.dsp.body.home.name": {
+    "message": "首頁"
+  },
+  "industries.dsp.body.industries.name": {
+    "message": "產業"
+  },
+  "industries.dsp.body.dataServiceProviders.name": {
+    "message": "資料服務供應商"
+  },
+  "industries.maintenance.meta.industryName": {
+    "message": "汽車維修保養"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.type": {
+    "message": "消費者"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.title": {
+    "message": "客服代理"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.description": {
+    "message": "讓顧客在抵達保養廠前就先分享車輛資料、描述問題。AI代理會蒐集詳細資訊，協助技師提前準備、更快完成診斷。"
+  },
+  "industries.maintenance.useCases.customerSupportAgent.example": {
+    "message": "顧客：「我踩煞車時車子會發出摩擦聲。」代理：「我看到您的煞車來令片只剩15%。我先查看您的保養紀錄，再幫您安排進廠。」"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.type": {
+    "message": "車隊"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.title": {
+    "message": "診斷協助"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.description": {
+    "message": "以即時車輛資料為後盾，讓每位技師身邊都有一位資深專家可以諮詢。技師描述症狀，代理就會調出相關的OBD資料並提出可能的診斷。"
+  },
+  "industries.maintenance.useCases.diagnosticsAssistance.example": {
+    "message": "「冷車發動時引擎會失火，OBD資料顯示什麼？」代理即時分析故障碼與感測器資料。"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.type": {
+    "message": "車隊"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.title": {
+    "message": "主動聯繫顧客"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.description": {
+    "message": "依據里程、時間或偵測到的問題，自動找出需要保養的顧客車輛，並主動聯繫安排預約。"
+  },
+  "industries.maintenance.useCases.proactiveCustomerOutreach.example": {
+    "message": "「John您好，您的2021 Honda已到30,000英里保養時間。需要幫您預約這週進廠嗎？」"
+  },
+  "industries.maintenance.useCases.trainingAssistant.type": {
+    "message": "車隊"
+  },
+  "industries.maintenance.useCases.trainingAssistant.title": {
+    "message": "培訓助手"
+  },
+  "industries.maintenance.useCases.trainingAssistant.description": {
+    "message": "透過AI培訓助手加速新進技師的養成。即時取得車輛資料、維修程序與專家指引，幫助新手技師學得更快。"
+  },
+  "industries.maintenance.useCases.trainingAssistant.example": {
+    "message": "新進技師：「P0420故障碼要怎麼診斷？」代理：「我一步一步帶您完成觸媒轉換器效率測試。」"
+  },
+  "industries.maintenance.stats.fasterDiagnosis.label": {
+    "message": "診斷速度提升"
+  },
+  "industries.maintenance.stats.increaseInBookings.label": {
+    "message": "預約量成長"
+  },
+  "industries.maintenance.stats.moreAccurateEstimates.label": {
+    "message": "估價準確度提升"
+  },
+  "industries.maintenance.stats.connectedVehicles.label": {
+    "message": "聯網汽車"
+  },
+  "industries.maintenance.hero.superchargeYourShopWith": {
+    "message": "以{span}為您的保養廠全面加速"
+  },
+  "industries.maintenance.hero.aiPoweredDiagnostics": {
+    "message": "AI智慧診斷"
+  },
+  "industries.maintenance.hero.fromCustomerIntakeTo": {
+    "message": "從顧客接待到技師培訓，DIMO的智慧車輛代理協助汽車保養廠更快完成診斷、接到更多預約，並培養出技術純熟的技師。"
+  },
+  "industries.maintenance.hero.getStarted": {
+    "message": "開始使用"
+  },
+  "industries.maintenance.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "industries.maintenance.useCases.useCases": {
+    "message": "使用案例"
+  },
+  "industries.maintenance.useCases.builtForModernAutomotive": {
+    "message": "專為現代汽車保養廠打造"
+  },
+  "industries.maintenance.useCases.dimosIntelligentAgentsHelp": {
+    "message": "DIMO的智慧代理以真實車輛資料為基礎，協助汽車維修保養業者提升顧客體驗、加快診斷速度，並讓團隊持續成長。"
+  },
+  "industries.maintenance.featureSection1.knowWhatsWrongBefore": {
+    "message": "車子還沒進廠，就先知道問題在哪"
+  },
+  "industries.maintenance.featureSection1.dimosCustomerSupportAgent": {
+    "message": "顧客一察覺問題，DIMO的客服代理就會與他們互動。等顧客抵達保養廠時，您已掌握車輛資料、症狀描述與初步診斷，技師可以直接開工。"
+  },
+  "industries.maintenance.featureSection1.customersDescribeIssuesIn": {
+    "message": "顧客可用日常用語描述問題"
+  },
+  "industries.maintenance.featureSection1.agentAccessesRealTimeVehicle": {
+    "message": "代理可即時存取車輛診斷資料"
+  },
+  "industries.maintenance.featureSection1.preliminaryDiagnosisReadyBefore": {
+    "message": "車輛抵達前即完成初步診斷"
+  },
+  "industries.maintenance.featureSection1.partsCanBeOrdered": {
+    "message": "可提前訂購零件"
+  },
+  "industries.maintenance.featureSection1.customerIntakeFlow": {
+    "message": "顧客接待流程"
+  },
+  "industries.maintenance.featureSection2.aMasterTechnicianIn": {
+    "message": "每個工位都有一位資深技師"
+  },
+  "industries.maintenance.featureSection2.giveEveryTechnicianFromApprentice": {
+    "message": "讓每位技師，從學徒到老手，都能使用AI驅動的診斷助手。代理可調出即時OBD資料、建議診斷程序、說明維修步驟，並針對複雜問題提供專家指引。"
+  },
+  "industries.maintenance.featureSection2.realTimeAccessToVehicle": {
+    "message": "即時存取車輛感測器資料"
+  },
+  "industries.maintenance.featureSection2.contextAwareDiagnosticSuggestions": {
+    "message": "依情境提供診斷建議"
+  },
+  "industries.maintenance.featureSection2.stepByStepRepairGuidance": {
+    "message": "逐步維修指引"
+  },
+  "industries.maintenance.featureSection2.accelerateJuniorTechnicianDevelopment": {
+    "message": "加速新進技師養成"
+  },
+  "industries.maintenance.featureSection2.mechanicUsingDiagnosticsAssistance": {
+    "message": "技師使用診斷協助功能"
+  },
+  "industries.maintenance.howItWorks.connectCustomerVehicles.title": {
+    "message": "連接顧客車輛"
+  },
+  "industries.maintenance.howItWorks.connectCustomerVehicles.description": {
+    "message": "顧客透過DIMO連接車輛，讓您的保養廠取得經授權的診斷資料存取權限，並享有完整的同意管理。"
+  },
+  "industries.maintenance.howItWorks.deploySupportAgents.title": {
+    "message": "部署客服代理"
+  },
+  "industries.maintenance.howItWorks.deploySupportAgents.description": {
+    "message": "設定面向顧客的客服代理，負責處理詢問、蒐集症狀資訊並安排預約。"
+  },
+  "industries.maintenance.howItWorks.empowerYourTechnicians.title": {
+    "message": "為您的技師賦能"
+  },
+  "industries.maintenance.howItWorks.empowerYourTechnicians.description": {
+    "message": "讓您的團隊使用結合即時車輛資料的AI診斷協助。"
+  },
+  "industries.maintenance.howItWorks.growYourBusiness.title": {
+    "message": "拓展您的業務"
+  },
+  "industries.maintenance.howItWorks.growYourBusiness.description": {
+    "message": "透過主動聯繫與顧客保持互動，並自動找出保養商機。"
+  },
+  "industries.maintenance.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "industries.maintenance.howItWorks.simpleSetupPowerfulResults": {
+    "message": "設定簡單，成效強大"
+  },
+  "industries.maintenance.howItWorks.dimoIntegratesWithYour": {
+    "message": "DIMO可與您現有的保養廠管理系統整合，從第一天起就創造價值。"
+  },
+  "industries.maintenance.cta.readyToTransformYour": {
+    "message": "準備好讓您的保養廠全面升級了嗎？"
+  },
+  "industries.maintenance.cta.joinForwardThinkingAutomotiveMaintenance": {
+    "message": "許多具前瞻眼光的汽車保養廠已透過DIMO加快診斷、接到更多預約，並打造更優秀的團隊，立即加入他們的行列。"
+  },
+  "industries.maintenance.cta.startBuildingToday": {
+    "message": "立即開始開發"
+  },
+  "industries.maintenance.cta.contactSales": {
+    "message": "聯絡業務團隊"
+  },
+  "industries.maintenance.meta.title": {
+    "message": "DIMO汽車維修保養方案 | 為汽車保養廠打造的AI智慧診斷"
+  },
+  "industries.maintenance.meta.description": {
+    "message": "以DIMO的智慧診斷全面升級您的汽車保養廠。客服代理、技師協助、主動聯繫顧客與培訓工具。"
+  },
+  "industries.maintenance.meta.keywords": {
+    "message": "汽車保養廠軟體, 汽車診斷, 技師培訓, 保養廠管理, 車輛維修, 汽車科技, 技師工具"
+  },
+  "industries.maintenance.meta.ogTitle": {
+    "message": "DIMO汽車維修保養方案 | AI智慧診斷"
+  },
+  "industries.maintenance.meta.ogDescription": {
+    "message": "以真實車輛資料驅動的AI診斷協助、客服代理與技師培訓工具，為您的保養廠全面加速。"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.name": {
+    "message": "DIMO汽車維修保養方案"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.description": {
+    "message": "為汽車保養廠打造的AI智慧診斷與客戶支援。更快的診斷、更好的培訓、更多的預約。"
+  },
+  "industries.maintenance.schema.dimoForAutomotive.category": {
+    "message": "汽車產業軟體"
+  },
+  "industries.maintenance.schema.audienceType": {
+    "message": "汽車維修廠"
+  },
+  "industries.maintenance.body.home.name": {
+    "message": "首頁"
+  },
+  "industries.maintenance.body.industries.name": {
+    "message": "產業"
+  },
+  "industries.maintenance.body.maintenance.name": {
+    "message": "維修保養"
+  },
+  "industries.oem.meta.industryName": {
+    "message": "汽車原廠"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.type": {
+    "message": "車輛資料平台"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.title": {
+    "message": "統一的資料基礎架構"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.description": {
+    "message": "即時遙測資料的接收、處理、儲存與查詢介面一應俱全。不必再煩惱資料結構、API設計、基礎架構或技術支援。"
+  },
+  "industries.oem.useCases.unifiedDataInfrastructure.example": {
+    "message": "透過精簡且標準化的介面，讓第三方開發者存取您的即時診斷、位置、電池狀態等資料。"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.type": {
+    "message": "端對端開發者平台"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.title": {
+    "message": "簡單好用的SDK與工具"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.description": {
+    "message": "業界領先、對開發者友善的現代程式語言SDK，並附上可直接用於正式環境的程式碼範例、開發者主控台與完整說明文件。"
+  },
+  "industries.oem.useCases.easyToUseSdkTools.example": {
+    "message": "以好用的工具與SDK助第三方開發者一臂之力，讓他們在幾分鐘內就看見您車輛資料的價值，而不是好幾個月。"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.type": {
+    "message": "安全與隱私"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.title": {
+    "message": "隱私優先的架構"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.description": {
+    "message": "以使用者同意與資料所有權為核心，並且開放原始碼。開箱即符合GDPR與歐盟資料法，提供細緻的權限控管與可驗證憑證。"
+  },
+  "industries.oem.useCases.privacyFirstArchitecture.example": {
+    "message": "低責任風險：由車主決定分享哪些資料、何時分享、與誰分享，建立您與顧客之間的信任。不受供應商綁定。"
+  },
+  "industries.oem.useCases.multiOemCompatibility.type": {
+    "message": "全平台支援"
+  },
+  "industries.oem.useCases.multiOemCompatibility.title": {
+    "message": "跨OEM相容"
+  },
+  "industries.oem.useCases.multiOemCompatibility.description": {
+    "message": "已支援超過50個汽車品牌，憑藉經過驗證的架構與模式，輕鬆支援您的品牌。"
+  },
+  "industries.oem.useCases.multiOemCompatibility.example": {
+    "message": "一次開發、處處部署：任何OEM都能以同樣出色的體驗完成整合。"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.type": {
+    "message": "獎勵、支付與變現"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.title": {
+    "message": "可擴展的金流系統"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.description": {
+    "message": "為下一代車輛商務應用打造的穩定幣支付與獎勵基礎架構。企業級架構，專為規模化而設計。"
+  },
+  "industries.oem.useCases.scalableMonetarySystems.example": {
+    "message": "內建支付管道，讓您專注打造能帶動營收、忠誠度與互動的優質體驗。"
+  },
+  "industries.oem.useCases.aiReady.type": {
+    "message": "AI與ML"
+  },
+  "industries.oem.useCases.aiReady.title": {
+    "message": "AI就緒"
+  },
+  "industries.oem.useCases.aiReady.description": {
+    "message": "乾淨、標準化且具備情境脈絡的車輛資料，隨時可用於AI/ML應用。運用DIMO的代理技能與可透過MCP存取的資料串流，打造代理式體驗。"
+  },
+  "industries.oem.useCases.aiReady.example": {
+    "message": "AI/ML開發者現在就能存取乾淨的資料，您不必再四處張羅。讓您的資料在AI革命中創造營收。"
+  },
+  "industries.oem.stats.covesaStandards.label": {
+    "message": "COVESA標準"
+  },
+  "industries.oem.stats.developerSatisfaction.label": {
+    "message": "開發者滿意度"
+  },
+  "industries.oem.stats.apiUptime.label": {
+    "message": "API正常運作時間"
+  },
+  "industries.oem.stats.averageLatency.label": {
+    "message": "平均延遲"
+  },
+  "industries.oem.hero.buildTheFutureOf": {
+    "message": "以{span}打造行動出行的未來"
+  },
+  "industries.oem.hero.oneUnifiedPlatform": {
+    "message": "單一整合平台"
+  },
+  "industries.oem.hero.turnkeyDataInfrastructureHosted": {
+    "message": "依您的條件託管的一站式資料基礎架構。透過對開發者友善的SDK、說明文件、AI整合與工具，讓合作夥伴更快推出產品。不必再擔心自己是否具備相應技術。"
+  },
+  "industries.oem.hero.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "industries.oem.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "industries.oem.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "industries.oem.useCases.everythingYouNeedFor": {
+    "message": "車輛商務所需的一切"
+  },
+  "industries.oem.useCases.fromUnifiedApiAccess": {
+    "message": "從統一的API存取到AI就緒的資料串流，DIMO提供完整的開發者平台，助您打造下一代車輛商務行動應用。以DIMO為您的車輛資料策略全面加速。"
+  },
+  "industries.oem.featureSection1.developerFirstPrivacyFirst": {
+    "message": "開發者優先，隱私優先"
+  },
+  "industries.oem.featureSection1.dimoIsBuiltFrom": {
+    "message": "DIMO從零開始就以開發者與使用者為核心打造。我們隱私優先的架構確保使用者同意與資料所有權，而對開發者友善的工具讓整合無縫又直覺，讓您專注經營能帶動營收、忠誠度與互動的客戶關係。"
+  },
+  "industries.oem.featureSection1.openApisSdksAnd": {
+    "message": "開放的API、SDK與完整的開發者工具"
+  },
+  "industries.oem.featureSection1.interactiveDeveloperDocsWith": {
+    "message": "附程式碼範例與樣板的互動式開發者說明文件"
+  },
+  "industries.oem.featureSection1.consentManagementInA": {
+    "message": "開箱即用的同意管理，由使用者掌控自己的資料分享體驗"
+  },
+  "industries.oem.featureSection1.dimoSdkCodeExample": {
+    "message": "DIMO SDK程式碼範例"
+  },
+  "industries.oem.featureSection2.verticallyIntegratedExperience": {
+    "message": "垂直整合的體驗"
+  },
+  "industries.oem.featureSection2.youUnderstandAutoBut": {
+    "message": "您懂汽車，我們懂開發者。DIMO處理複雜的技術細節，讓您專心打造好車。我們垂直整合的資料技術堆疊讓您能為應用程式開發者提供無縫體驗，進而讓他們為您的顧客推出創新服務。"
+  },
+  "industries.oem.featureSection2.standardizedDataModelsAcross": {
+    "message": "所有OEM採用標準化資料模型，不必再費心設計車輛資料策略"
+  },
+  "industries.oem.featureSection2.cleanDataForAiMl": {
+    "message": "具情境脈絡的乾淨資料串流，專供AI/ML應用。專心打造AI體驗，而非AI基礎架構"
+  },
+  "industries.oem.featureSection2.autoStablecoinPaymentsFor": {
+    "message": "電動車充電、停車、通行費等自動以穩定幣支付。輕鬆實現下一代車輛商務"
+  },
+  "industries.oem.featureSection2.carRentalFleetManagement": {
+    "message": "租車車隊管理"
+  },
+  "industries.oem.howItWorks.signUpGet.title": {
+    "message": "註冊並取得API金鑰"
+  },
+  "industries.oem.howItWorks.signUpGet.description": {
+    "message": "建立您的DIMO開發者帳號，立即取得API憑證。無須等待，也無須審核。"
+  },
+  "industries.oem.howItWorks.bringYourOwn.title": {
+    "message": "匯入您自己的資料"
+  },
+  "industries.oem.howItWorks.bringYourOwn.description": {
+    "message": "建立Kafka串流或同等機制即可導入DIMO Ingest。告別資料重新設計、複雜的ETL或資料倉儲基礎架構。"
+  },
+  "industries.oem.howItWorks.buildScale.title": {
+    "message": "開發與擴展"
+  },
+  "industries.oem.howItWorks.buildScale.description": {
+    "message": "資料流一旦建立，開發者平台、API與SDK即可立即使用。在DIMO上放心擴展，服務數以百萬計的開發者。"
+  },
+  "industries.oem.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "industries.oem.howItWorks.getStartedInMinutes": {
+    "message": "幾分鐘內即可開始"
+  },
+  "industries.oem.howItWorks.simplyBringYourOwn": {
+    "message": "只要將您自己的資料匯入DIMO隨插即用的基礎架構，開發與擴展都變得輕而易舉。"
+  },
+  "industries.oem.cta.readyToStartMonetizing": {
+    "message": "準備好開始創造營收了嗎？"
+  },
+  "industries.oem.cta.accessDevelopersBuildingThe": {
+    "message": "今天就接觸正在為您的車輛打造未來行動出行的開發者。立即取得API金鑰，開始為明天布局。"
+  },
+  "industries.oem.cta.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "industries.oem.cta.readTheDocs": {
+    "message": "閱讀說明文件"
+  },
+  "industries.oem.meta.title": {
+    "message": "DIMO汽車原廠方案 | 為開發者打造的統一車輛資料平台"
+  },
+  "industries.oem.meta.description": {
+    "message": "透過DIMO的統一API更快打造車輛應用。在單一開發者友善平台上存取超過50個汽車品牌的資料。隱私優先、企業級、可直接投入正式環境。"
+  },
+  "industries.oem.meta.keywords": {
+    "message": "車輛API, 車輛資料整合, 汽車開發者, 車輛資料平台, Tesla API, Ford API, BMW API, 聯網汽車平台, 車載資通訊API"
+  },
+  "industries.oem.meta.ogTitle": {
+    "message": "DIMO汽車原廠方案 | 統一車輛資料平台"
+  },
+  "industries.oem.meta.ogDescription": {
+    "message": "一個API即可存取超過50個品牌的車輛資料。對開發者友善的SDK、隱私優先的架構與企業級基礎架構。"
+  },
+  "industries.oem.schema.description": {
+    "message": "統一的API平台，可存取超過50個品牌的車輛資料。對開發者友善的SDK、隱私優先的架構與企業級基礎架構。"
+  },
+  "industries.oem.body.home.name": {
+    "message": "首頁"
+  },
+  "industries.oem.body.industries.name": {
+    "message": "產業"
+  },
+  "industries.oem.body.oem.name": {
+    "message": "OEM"
+  },
+  "industries.rentals.meta.industryName": {
+    "message": "租車"
+  },
+  "industries.rentals.useCases.aiConciergeFor.type": {
+    "message": "混合型"
+  },
+  "industries.rentals.useCases.aiConciergeFor.title": {
+    "message": "每筆租約都有專屬AI禮賓"
+  },
+  "industries.rentals.useCases.aiConciergeFor.description": {
+    "message": "為每位租車顧客啟動個人化的AI禮賓。親切的代理協助顧客尋找加油站、充電站與在地推薦，並解答租用車輛的相關問題。"
+  },
+  "industries.rentals.useCases.aiConciergeFor.example": {
+    "message": "「最近的電動車充電站在哪裡？」或「我要怎麼用藍牙連接手機？」"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.type": {
+    "message": "混合型"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.title": {
+    "message": "智慧加購商機"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.description": {
+    "message": "智慧代理會偵測油量偏低或顧客靠近合作據點的時機，自動推送相關優惠與折扣。"
+  },
+  "industries.rentals.useCases.smartUpsellOpportunities.example": {
+    "message": "「您的油量偏低！我們與Shell合作，在前方加油站使用優惠碼RENT20，每加侖現折20¢。」"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.type": {
+    "message": "車隊"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.title": {
+    "message": "即時異常監控"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.description": {
+    "message": "監控整個車隊的激進駕駛、超速、違反地理圍欄與碰撞偵測事件。問題發生時立即收到警示。"
+  },
+  "industries.rentals.useCases.realTimeIssueMonitoring.example": {
+    "message": "「列出車輛XYZ-1234本週所有的激進駕駛事件。」"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.type": {
+    "message": "車隊"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.title": {
+    "message": "地理圍欄與安全警示"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.description": {
+    "message": "設定自訂地理圍欄，車輛一離開核准區域就立即通知您。即時追蹤碰撞偵測與安全事件。"
+  },
+  "industries.rentals.useCases.geofenceSafetyAlerts.example": {
+    "message": "自動警示：「車輛#A2847已於下午3:42駛離核准的租賃區域。」"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.type": {
+    "message": "車隊"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.title": {
+    "message": "自動化還車檢查"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.description": {
+    "message": "以AI驅動的檢查流程簡化還車作業。自動記錄車況、標示問題並產生報告。"
+  },
+  "industries.rentals.useCases.automatedReturnInspections.example": {
+    "message": "代理引導員工逐項完成檢查清單，並自動記錄任何損傷或疑慮。"
+  },
+  "industries.rentals.useCases.rentalDueReminders.type": {
+    "message": "混合型"
+  },
+  "industries.rentals.useCases.rentalDueReminders.title": {
+    "message": "還車到期提醒"
+  },
+  "industries.rentals.useCases.rentalDueReminders.description": {
+    "message": "主動式代理會在租期即將到期時提醒顧客、建議延長租期，並協助安排順暢還車。"
+  },
+  "industries.rentals.useCases.rentalDueReminders.example": {
+    "message": "「您的租車將在2小時後到期。需要延長嗎？回覆YES即可以$45加租一天。」"
+  },
+  "industries.rentals.stats.perVehiclePer.label": {
+    "message": "每車每月"
+  },
+  "industries.rentals.stats.vehicleBrands.label": {
+    "message": "汽車品牌"
+  },
+  "industries.rentals.stats.customerSupport.label": {
+    "message": "客戶支援"
+  },
+  "industries.rentals.stats.connectedVehicles.label": {
+    "message": "聯網汽車"
+  },
+  "industries.rentals.hero.runUnmannedMixedFleetRental": {
+    "message": "無人化經營混合車隊租賃，{span}"
+  },
+  "industries.rentals.hero.keysDataAndSpend": {
+    "message": "鑰匙、資料與支出一站掌握"
+  },
+  "industries.rentals.hero.stopTogglingFiveTools": {
+    "message": "別再為了回答「這輛車現在在誰手上、對方花了多少錢」而在五套工具之間來回切換。單一{link}即可統一管理整個混合車隊的身分、數位鑰匙、資料與支出，而且從設計上就{link2}。"
+  },
+  "industries.rentals.hero.vehicleSession": {
+    "message": "車輛工作階段"
+  },
+  "industries.rentals.hero.consentCompliant": {
+    "message": "符合同意規範"
+  },
+  "industries.rentals.hero.getStarted": {
+    "message": "開始使用"
+  },
+  "industries.rentals.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "industries.rentals.useCases.useCases": {
+    "message": "使用案例"
+  },
+  "industries.rentals.useCases.smartSolutionsForModern": {
+    "message": "為現代租車業打造的智慧解決方案"
+  },
+  "industries.rentals.useCases.dimosIntelligentAgentsWork": {
+    "message": "DIMO的智慧代理全天候運作，從取車到還車，全面提升顧客體驗、保護您的車隊並簡化營運。"
+  },
+  "industries.rentals.featureSection1.aPersonalConciergeFor": {
+    "message": "每位顧客都有專屬禮賓"
+  },
+  "industries.rentals.featureSection1.theMomentACustomer": {
+    "message": "顧客取車的那一刻，DIMO就會為他啟動一位專屬AI禮賓。這位智慧代理熟悉車輛、了解在地環境，隨時準備好提供各種協助，從尋找最近的加油站到排解車上娛樂系統的問題都難不倒它。"
+  },
+  "industries.rentals.featureSection1.instantAnswersToVehicleSpecific": {
+    "message": "即時解答車輛相關問題"
+  },
+  "industries.rentals.featureSection1.localRecommendationsAndNavigation": {
+    "message": "在地推薦與導航協助"
+  },
+  "industries.rentals.featureSection1.partnerOffersAndUpsell": {
+    "message": "合作夥伴優惠與加購商機"
+  },
+  "industries.rentals.featureSection1.seamlessExtensionAndReturn": {
+    "message": "延長租期與還車無縫銜接"
+  },
+  "industries.rentals.featureSection1.aiConciergeChat": {
+    "message": "AI禮賓對話"
+  },
+  "industries.rentals.featureSection2.protectYourFleetIn": {
+    "message": "即時守護您的車隊"
+  },
+  "industries.rentals.featureSection2.knowExactlyWhatsHappening": {
+    "message": "時時刻刻精準掌握車隊中每一輛車的狀況。DIMO監控激進駕駛、超速、違反地理圍欄與潛在事故，一有狀況需要處理就立即通知您。"
+  },
+  "industries.rentals.featureSection2.realTimeSpeedAndDriving": {
+    "message": "即時監控車速與駕駛行為"
+  },
+  "industries.rentals.featureSection2.customGeofenceZonesWith": {
+    "message": "自訂地理圍欄區域並即時警示"
+  },
+  "industries.rentals.featureSection2.crashDetectionAndAutomatic": {
+    "message": "碰撞偵測與自動事故通報"
+  },
+  "industries.rentals.featureSection2.historicalDataForDispute": {
+    "message": "以歷史資料協助解決爭議"
+  },
+  "industries.rentals.featureSection2.fleetMonitoringDashboard": {
+    "message": "車隊監控儀表板"
+  },
+  "industries.rentals.howItWorks.connectYourFleet.title": {
+    "message": "連接您的車隊"
+  },
+  "industries.rentals.howItWorks.connectYourFleet.description": {
+    "message": "將DIMO整合至您的車隊管理系統，並透過我們的硬體或原廠OEM原生連線接入車輛。"
+  },
+  "industries.rentals.howItWorks.configureIntelligentAgents.title": {
+    "message": "設定智慧代理"
+  },
+  "industries.rentals.howItWorks.configureIntelligentAgents.description": {
+    "message": "依您的營運需求，設定AI禮賓、監控規則、地理圍欄與自動化工作流程。"
+  },
+  "industries.rentals.howItWorks.delightEveryCustomer.title": {
+    "message": "讓每位顧客都滿意"
+  },
+  "industries.rentals.howItWorks.delightEveryCustomer.description": {
+    "message": "每筆租約都會自動配有個人化AI禮賓，全程陪伴顧客的旅程。"
+  },
+  "industries.rentals.howItWorks.monitorAndOptimize.title": {
+    "message": "監控並持續優化"
+  },
+  "industries.rentals.howItWorks.monitorAndOptimize.description": {
+    "message": "透過您的儀表板即時追蹤車隊車況、顧客滿意度與營運指標。"
+  },
+  "industries.rentals.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "industries.rentals.howItWorks.seamlessIntegrationInstantValue": {
+    "message": "無縫整合，立即見效"
+  },
+  "industries.rentals.howItWorks.dimoWorksWithYour": {
+    "message": "DIMO可搭配您現有的車隊管理基礎架構運作，從第一天起就創造價值。"
+  },
+  "industries.rentals.cta.readyToModernizeYour": {
+    "message": "準備好讓您的租賃營運全面現代化了嗎？"
+  },
+  "industries.rentals.cta.joinInnovativeRentalCompanies": {
+    "message": "創新的租車業者都在使用DIMO提供卓越體驗並守護車隊，立即加入他們的行列。"
+  },
+  "industries.rentals.cta.startBuildingToday": {
+    "message": "立即開始開發"
+  },
+  "industries.rentals.cta.contactSales": {
+    "message": "聯絡業務團隊"
+  },
+  "industries.rentals.meta.title": {
+    "message": "無人化混合車隊租賃營運軟體 | DIMO"
+  },
+  "industries.rentals.meta.description": {
+    "message": "在單一儀表板上營運Tesla、Ford、GM等超過50個品牌的租賃車輛。核發數位鑰匙、限定資料範圍、設定支出上限，還車時一鍵撤銷，全程無須現場人員。"
+  },
+  "industries.rentals.meta.keywords": {
+    "message": "租車軟體, 車隊管理, AI禮賓, 租賃車隊監控, 地理圍欄, 車輛追蹤, 租賃科技"
+  },
+  "industries.rentals.meta.ogTitle": {
+    "message": "無人化混合車隊租賃營運軟體 | DIMO"
+  },
+  "industries.rentals.meta.ogDescription": {
+    "message": "為每筆租約部署AI禮賓、即時監控您的車隊，並以智慧自動化簡化營運。"
+  },
+  "industries.rentals.schema.dimoForRentals.name": {
+    "message": "DIMO租車方案"
+  },
+  "industries.rentals.schema.dimoForRentals.description": {
+    "message": "為租車業者打造的AI驅動車隊智慧。顧客禮賓、車隊監控與自動化營運。"
+  },
+  "industries.rentals.schema.dimoForRentals.category": {
+    "message": "車隊管理軟體"
+  },
+  "industries.rentals.schema.audienceType": {
+    "message": "租車業者"
+  },
+  "industries.rentals.body.home.name": {
+    "message": "首頁"
+  },
+  "industries.rentals.body.industries.name": {
+    "message": "產業"
+  },
+  "industries.rentals.body.rentals.name": {
+    "message": "租車"
+  },
+  "products.access.meta.productName": {
+    "message": "Access"
+  },
+  "products.access.features.easyAccessControl.type": {
+    "message": "身分驗證"
+  },
+  "products.access.features.easyAccessControl.title": {
+    "message": "透過開發者主控台輕鬆控管存取權限"
+  },
+  "products.access.features.easyAccessControl.description": {
+    "message": "透過簡單易用的介面，輕鬆管理應用程式權限與車輛存取權限。"
+  },
+  "products.access.features.easyAccessControl.example": {
+    "message": "一站式管理應用程式存取權限，介面直覺，並配備最先進的安全功能。"
+  },
+  "products.access.features.unifiedDataAiFirst.type": {
+    "message": "API與SDK"
+  },
+  "products.access.features.unifiedDataAiFirst.title": {
+    "message": "統一資料與AI優先的API"
+  },
+  "products.access.features.unifiedDataAiFirst.description": {
+    "message": "透過簡潔且文件完善的API與SDK存取所有車輛資料。支援多種程式語言，親眼見證代理式AI的實際價值。"
+  },
+  "products.access.features.unifiedDataAiFirst.example": {
+    "message": "向AI代理詢問車況，讓代理替您採取行動：聯絡技師、預約保養、研究並購買零件。"
+  },
+  "products.access.features.webhooksEventsTrips.type": {
+    "message": "即時"
+  },
+  "products.access.features.webhooksEventsTrips.title": {
+    "message": "Webhook、事件、行程"
+  },
+  "products.access.features.webhooksEventsTrips.description": {
+    "message": "車輛資料一有變動就立即通知您。透過即時Webhook、事件與行程資料，打造事件驅動的應用程式。"
+  },
+  "products.access.features.webhooksEventsTrips.example": {
+    "message": "在車輛進入地理圍欄時接收通知、查詢急煞車事件，並分析行程。"
+  },
+  "products.access.hero.accessVehicleDataWith": {
+    "message": "輕鬆存取車輛資料"
+  },
+  "products.access.hero.cleanFastEasyToUseApis": {
+    "message": "簡潔、快速又好用的API與SDK，助您存取車輛資料。運用AI代理以對話方式與您的車隊互動，創造實質成果。"
+  },
+  "products.access.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "products.access.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.access.features.productFeatures": {
+    "message": "產品功能"
+  },
+  "products.access.features.developerFirstApiPlatform": {
+    "message": "開發者優先的API平台"
+  },
+  "products.access.features.builtByDevelopersFor": {
+    "message": "由開發者打造，為開發者而生。簡潔的API、完整的SDK，以及真正派得上用場的說明文件。"
+  },
+  "products.access.cta.readyToAccessVehicle": {
+    "message": "準備好存取車輛資料了嗎？"
+  },
+  "products.access.cta.getYourApiKeys": {
+    "message": "取得API金鑰，幾分鐘內就能開始開發。完整的SDK支援各主流程式語言，並可與我們的REST和GraphQL API無縫搭配。"
+  },
+  "products.access.cta.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "products.access.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.access.meta.title": {
+    "message": "Access | DIMO車輛資料API"
+  },
+  "products.access.meta.description": {
+    "message": "快速、可靠的車輛資料存取API。REST、GraphQL、Webhook與串流，並採用全球邊緣部署。"
+  },
+  "products.access.meta.keywords": {
+    "message": "車輛API, REST API, GraphQL API, Webhook, 即時資料, 車輛遙測API"
+  },
+  "products.access.meta.ogTitle": {
+    "message": "Access | DIMO平台"
+  },
+  "products.access.meta.ogDescription": {
+    "message": "開發者優先的車輛資料API平台，採用全球邊緣部署。"
+  },
+  "products.access.schema.description": {
+    "message": "簡潔、快速的API與SDK（REST、GraphQL、Webhook、串流），可存取超過50個聯網品牌的即時與歷史車輛資料。"
+  },
+  "products.access.body.home.name": {
+    "message": "首頁"
+  },
+  "products.access.body.products.name": {
+    "message": "產品"
+  },
+  "products.access.body.access.name": {
+    "message": "Access"
+  },
+  "products.components.meta.productName": {
+    "message": "Components"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.type": {
+    "message": "錢包"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.title": {
+    "message": "自主託管的車輛身分"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.description": {
+    "message": "DIMO Wallet讓車主在DIMO Network上擁有自主託管的身分，可用於簽署交易、管理權限及持有數位資產。"
+  },
+  "products.components.components.selfCustodiedVehicleIdentity.example": {
+    "message": "以密碼金鑰進行身分驗證，無需助記詞。可簽署SACD權限授予，並持有數位身分與可驗證憑證。"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.type": {
+    "message": "數位鑰匙（CCC）"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.title": {
+    "message": "手機即鑰匙的車輛存取"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.description": {
+    "message": "數位鑰匙讓智慧型手機無須實體遙控鑰匙即可上鎖、解鎖並發動車輛，並整合至DIMO的身分與權限層。"
+  },
+  "products.components.components.phoneAsKeyVehicleAccess.example": {
+    "message": "支援NFC與BLE存取。可依時效或權限範圍分享鑰匙，並綁定車輛的可驗證身分，方便稽核。"
+  },
+  "products.components.components.autonomousVehicleIntelligence.type": {
+    "message": "代理"
+  },
+  "products.components.components.autonomousVehicleIntelligence.title": {
+    "message": "自主車輛智慧"
+  },
+  "products.components.components.autonomousVehicleIntelligence.description": {
+    "message": "打造能理解車輛資料、採取行動並將工作流程自動化的AI代理，從安排保養到監控車隊車況都能勝任。"
+  },
+  "products.components.components.autonomousVehicleIntelligence.example": {
+    "message": "建立能回應車輛事件、預約服務、支付服務費用、提醒駕駛人，並與您現有商業系統整合的代理。今天就開始為自駕車建立代理式工作階段。"
+  },
+  "products.components.components.everythingYouNeed.type": {
+    "message": "開發者工具"
+  },
+  "products.components.components.everythingYouNeed.title": {
+    "message": "開發所需的一切"
+  },
+  "products.components.components.everythingYouNeed.description": {
+    "message": "DIMO提供全套開發者工具，包括SDK、開發者主控台、API與AI原生整合，助您快速從零走到正式上線。"
+  },
+  "products.components.components.everythingYouNeed.example": {
+    "message": "用戶端與伺服器端SDK、供AI代理使用的MCP伺服器、Webhook、GraphQL Playground，以及用來管理授權與權限的開發者主控台。"
+  },
+  "products.components.hero.theBuildingBlocksOf": {
+    "message": "{span}的基礎元件"
+  },
+  "products.components.hero.vehicleOwnership": {
+    "message": "車輛所有權"
+  },
+  "products.components.hero.walletsDigitalKeyAgents": {
+    "message": "錢包、數位鑰匙、代理與開發者工具，驅動DIMO Network的核心元件。"
+  },
+  "products.components.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "products.components.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.components.components.coreComponents": {
+    "message": "核心元件"
+  },
+  "products.components.components.everythingThatMakesDimo": {
+    "message": "讓DIMO運作的一切"
+  },
+  "products.components.components.fourFoundationalComponentsThat": {
+    "message": "四大基礎元件攜手實現安全的車輛連線、所有權與資料存取。"
+  },
+  "products.components.vehicleSimulator.startYourEngines": {
+    "message": "準備發動引擎"
+  },
+  "products.components.vehicleSimulator.vehicleSimulator": {
+    "message": "車輛模擬器"
+  },
+  "products.components.vehicleSimulator.buildAndTestVehicleConnected": {
+    "message": "無需實體車輛，就能開發並測試車聯網應用程式。DIMO車輛模擬器讓您在完全受控的環境中產生逼真的車輛遙測資料、觸發事件，並以端對端方式驗證您的整合。"
+  },
+  "products.components.vehicleSimulator.simulateRealTimeTelemetrySignals": {
+    "message": "模擬即時遙測訊號，包括車速、位置、電池、引擎資料等"
+  },
+  "products.components.vehicleSimulator.triggerVehicleEventsTo": {
+    "message": "觸發車輛事件以測試Webhook、警示與代理式工作流程"
+  },
+  "products.components.vehicleSimulator.worksWithAllDimo": {
+    "message": "支援所有DIMO API與SDK，無需任何硬體"
+  },
+  "products.components.vehicleSimulator.accelerateDevelopmentCyclesAnd": {
+    "message": "加速整個團隊的開發週期與品質測試"
+  },
+  "products.components.vehicleSimulator.openConsole": {
+    "message": "開啟主控台"
+  },
+  "products.components.vehicleSimulator.readTheDocs": {
+    "message": "閱讀說明文件"
+  },
+  "products.components.cta.readyToBuildOn": {
+    "message": "準備好在DIMO上開發了嗎？"
+  },
+  "products.components.cta.integrateVehicleConnectivityIdentity": {
+    "message": "運用DIMO的開放平台，將車輛連線、身分與資料存取整合到您的應用程式中。"
+  },
+  "products.components.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "products.components.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.components.meta.title": {
+    "message": "Components | DIMO平台"
+  },
+  "products.components.meta.description": {
+    "message": "DIMO Network的核心元件：錢包、數位鑰匙、代理與開發者工具。"
+  },
+  "products.components.meta.keywords": {
+    "message": "DIMO錢包, 開發者工具, 車載資通訊裝置, 數位鑰匙, 可驗證身分, AI代理, 數位身分, 車輛連線"
+  },
+  "products.components.meta.ogTitle": {
+    "message": "Components | DIMO平台"
+  },
+  "products.components.meta.ogDescription": {
+    "message": "在DIMO Network上實現車輛所有權的基礎元件。"
+  },
+  "products.components.schema.description": {
+    "message": "DIMO的可嵌入式UI元件：隨插即用的同意流程、Login with DIMO，以及車輛連接小工具。"
+  },
+  "products.components.body.home.name": {
+    "message": "首頁"
+  },
+  "products.components.body.products.name": {
+    "message": "產品"
+  },
+  "products.components.body.components.name": {
+    "message": "Components"
+  },
+  "products.consent.meta.productName": {
+    "message": "Consent"
+  },
+  "products.consent.features.granularPermissionScopes.type": {
+    "message": "使用者掌控"
+  },
+  "products.consent.features.granularPermissionScopes.title": {
+    "message": "細緻的權限範圍"
+  },
+  "products.consent.features.granularPermissionScopes.description": {
+    "message": "使用者可針對特定資料類型與操作授予存取權限。位置、診斷、指令，每一項權限都能個別控管並隨時撤銷。"
+  },
+  "products.consent.features.granularPermissionScopes.example": {
+    "message": "透過Login with DIMO授予、撤銷或延長權限，讓使用者輕鬆管理同意偏好設定。"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.type": {
+    "message": "驗證"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.title": {
+    "message": "經密碼學驗證的同意"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.description": {
+    "message": "每一筆同意授權都會記錄為經密碼學簽署、可獨立驗證的紀錄，形成不可竄改的稽核軌跡。以密碼學的確定性證明法規遵循。"
+  },
+  "products.consent.features.cryptographicallyVerifiedConsent.example": {
+    "message": "稽核人員與主管機關可即時驗證同意狀態。"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.type": {
+    "message": "法規遵循"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.title": {
+    "message": "內建法規遵循"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.description": {
+    "message": "開箱即符合GDPR與歐盟資料法。自動處理資料當事人請求、刪除權與撤回同意。"
+  },
+  "products.consent.features.builtInRegulatoryCompliance.example": {
+    "message": "一鍵為任何使用者匯出及刪除GDPR資料，全程自動化。"
+  },
+  "products.consent.hero.userControlledData": {
+    "message": "由使用者掌控的資料{span}"
+  },
+  "products.consent.hero.consent": {
+    "message": "同意權"
+  },
+  "products.consent.hero.giveUsersCompleteControl": {
+    "message": "讓使用者完全掌控自己的車輛資料。經密碼學驗證的同意管理，並內建法規遵循。"
+  },
+  "products.consent.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "products.consent.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.consent.features.productFeatures": {
+    "message": "產品功能"
+  },
+  "products.consent.features.privacyFirstConsentManagement": {
+    "message": "隱私優先的同意管理"
+  },
+  "products.consent.features.buildUserTrustWith": {
+    "message": "以透明、可驗證的同意建立使用者信任。在符合法規要求的同時，打造流暢的使用者體驗。"
+  },
+  "products.consent.cta.readyToBuildTrust": {
+    "message": "準備好贏得使用者的信任了嗎？"
+  },
+  "products.consent.cta.implementConsentManagementThat": {
+    "message": "導入使用者信賴、主管機關認可的同意管理。今天就從Login with DIMO開始。"
+  },
+  "products.consent.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "products.consent.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.consent.meta.title": {
+    "message": "Consent | DIMO使用者同意管理"
+  },
+  "products.consent.meta.description": {
+    "message": "由使用者掌控的車輛資料同意機制，具備密碼學驗證並內建法規遵循。支援GDPR、CCPA與歐盟資料法。"
+  },
+  "products.consent.meta.keywords": {
+    "message": "同意管理, GDPR法規遵循, OAuth 2.0, Login with DIMO, 資料隱私, 密碼學驗證"
+  },
+  "products.consent.meta.ogTitle": {
+    "message": "Consent | DIMO平台"
+  },
+  "products.consent.meta.ogDescription": {
+    "message": "隱私優先的同意管理，具備密碼學驗證與法規遵循。"
+  },
+  "products.consent.schema.description": {
+    "message": "保護隱私、由使用者擁有的車輛資料同意管理：限定工作階段的權限，並以原子化方式授予與撤銷（SACD）。"
+  },
+  "products.consent.body.home.name": {
+    "message": "首頁"
+  },
+  "products.consent.body.products.name": {
+    "message": "產品"
+  },
+  "products.consent.body.consent.name": {
+    "message": "Consent"
+  },
+  "products.ingest.meta.productName": {
+    "message": "Ingest"
+  },
+  "products.ingest.features.realTimeStreaming.type": {
+    "message": "效能"
+  },
+  "products.ingest.features.realTimeStreaming.title": {
+    "message": "即時串流"
+  },
+  "products.ingest.features.realTimeStreaming.description": {
+    "message": "延遲低於一秒的資料串流，專為關鍵任務應用打造。每秒處理數百萬個資料點，並保證送達。"
+  },
+  "products.ingest.features.smartDataNormalization.type": {
+    "message": "資料處理"
+  },
+  "products.ingest.features.smartDataNormalization.title": {
+    "message": "智慧資料標準化"
+  },
+  "products.ingest.features.smartDataNormalization.description": {
+    "message": "自動將不同來源的資料標準化為統一的結構描述。Tesla與GM的車輛資料都會轉換為相同的COVESA標準格式。"
+  },
+  "products.ingest.features.enterpriseGradeReliability.type": {
+    "message": "可靠性"
+  },
+  "products.ingest.features.enterpriseGradeReliability.title": {
+    "message": "企業級可靠性"
+  },
+  "products.ingest.features.enterpriseGradeReliability.description": {
+    "message": "內建備援、自動容錯移轉與資料完整性驗證。我們耐久的訊息佇列架構確保不遺漏任何一個資料點。"
+  },
+  "products.ingest.hero.collectVehicleDataFrom": {
+    "message": "從{span}收集車輛資料"
+  },
+  "products.ingest.hero.anySource": {
+    "message": "任何來源"
+  },
+  "products.ingest.hero.aUnifiedDataIngestion": {
+    "message": "統一的資料匯入管線，可串接OEM、副廠裝置與智慧型手機應用程式。即時串流，具備企業級可靠性。"
+  },
+  "products.ingest.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "products.ingest.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.ingest.features.productFeatures": {
+    "message": "產品功能"
+  },
+  "products.ingest.features.enterpriseGradeDataIngestion": {
+    "message": "企業級資料匯入"
+  },
+  "products.ingest.features.builtToHandleThe": {
+    "message": "專為處理大規模車輛資料的複雜性而打造。從收集到標準化，DIMO Ingest一手包辦。"
+  },
+  "products.ingest.cta.readyToIngestVehicle": {
+    "message": "準備好大規模匯入車輛資料了嗎？"
+  },
+  "products.ingest.cta.ingestAnyVehicleData": {
+    "message": "透過單一整合服務，匯入任何來源的車輛資料。"
+  },
+  "products.ingest.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "products.ingest.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.ingest.meta.title": {
+    "message": "Ingest | DIMO車輛資料收集"
+  },
+  "products.ingest.meta.description": {
+    "message": "從任何來源收集車輛資料，包括OEM、副廠裝置與智慧型手機應用程式。即時串流，具備企業級可靠性。"
+  },
+  "products.ingest.meta.keywords": {
+    "message": "車輛資料匯入, OBD-II資料, OEM API, 即時串流, 資料收集, 車輛遙測"
+  },
+  "products.ingest.meta.ogTitle": {
+    "message": "Ingest | DIMO平台"
+  },
+  "products.ingest.meta.ogDescription": {
+    "message": "從任何來源統一擷取車輛資料，提供即時串流與企業級的可靠性。"
+  },
+  "products.ingest.schema.description": {
+    "message": "透過DIMO Ingest Server（DIS），將您自有的車載資通訊資料擷取至統一的車輛資料管道。"
+  },
+  "products.ingest.body.home.name": {
+    "message": "首頁"
+  },
+  "products.ingest.body.products.name": {
+    "message": "產品"
+  },
+  "products.ingest.body.ingest.name": {
+    "message": "Ingest"
+  },
+  "products.pay.meta.productName": {
+    "message": "Pay"
+  },
+  "products.pay.features.inVehiclePayments.type": {
+    "message": "支付"
+  },
+  "products.pay.features.inVehiclePayments.title": {
+    "message": "車內支付"
+  },
+  "products.pay.features.inVehiclePayments.description": {
+    "message": "直接在車內完成流暢支付。加油、停車、通行費、電動車充電，全部在駕駛人同意下自動完成。"
+  },
+  "products.pay.features.inVehiclePayments.example": {
+    "message": "駕駛人插上或拔下充電槍，電動車充電費就自動付清。那20個App，今天就可以刪了。"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.type": {
+    "message": "安全"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.title": {
+    "message": "安全優先的車輛商務"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.description": {
+    "message": "內建安全功能，全面保護使用者資料與交易。符合產業標準與相關法規。"
+  },
+  "products.pay.features.securityFirstVehicleCommerce.example": {
+    "message": "使用DIMO，開車、付款一氣呵成，安全無須擔心。"
+  },
+  "products.pay.features.driverRewardsIncentives.type": {
+    "message": "獎勵"
+  },
+  "products.pay.features.driverRewardsIncentives.title": {
+    "message": "駕駛人獎勵與激勵方案"
+  },
+  "products.pay.features.driverRewardsIncentives.description": {
+    "message": "獎勵安全駕駛、環保習慣或顧客忠誠。可自訂的獎勵方案，有效提升參與度與留存率。"
+  },
+  "products.pay.features.driverRewardsIncentives.example": {
+    "message": "為省油駕駛提供現金回饋，或在合作商家享有折扣。"
+  },
+  "products.pay.hero.vehicleNative": {
+    "message": "車輛原生{span}"
+  },
+  "products.pay.hero.commerce": {
+    "message": "商務"
+  },
+  "products.pay.hero.incentivizeYourFleetWith": {
+    "message": "以安全駕駛獎勵激勵您的車隊，或鼓勵您的客戶將車輛開回經銷商"
+  },
+  "products.pay.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "products.pay.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.pay.features.productFeatures": {
+    "message": "產品功能"
+  },
+  "products.pay.features.paymentsBuiltForMobility": {
+    "message": "為移動出行而生的支付方案"
+  },
+  "products.pay.features.fromInVehicleTransactionsTo": {
+    "message": "從車內交易到複雜的多方結算，DIMO Pay全面滿足汽車產業獨特的支付需求。"
+  },
+  "products.pay.cta.readyToIncentivizeDrivers": {
+    "message": "準備好激勵駕駛人了嗎？"
+  },
+  "products.pay.cta.enableVehicleNativePaymentsAnd": {
+    "message": "啟用車輛原生支付與獎勵。幾分鐘內即可開始處理付款。"
+  },
+  "products.pay.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "products.pay.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.pay.meta.title": {
+    "message": "Pay | DIMO車輛支付"
+  },
+  "products.pay.meta.description": {
+    "message": "車輛原生支付，涵蓋加油、停車、通行費與電動車充電，並可依駕駛資料自訂獎勵。"
+  },
+  "products.pay.meta.keywords": {
+    "message": "車輛支付, 車內支付, 移動出行支付, 電動車充電支付"
+  },
+  "products.pay.meta.ogTitle": {
+    "message": "Pay | DIMO平台"
+  },
+  "products.pay.meta.ogDescription": {
+    "message": "直接在車內完成支付，並搭配可自訂的獎勵機制。"
+  },
+  "products.pay.schema.description": {
+    "message": "以工作階段為範圍的穩定幣支付管道，專為移動出行打造，涵蓋車內支付、費用報銷與每個工作階段的支出控管。"
+  },
+  "products.pay.body.home.name": {
+    "message": "首頁"
+  },
+  "products.pay.body.products.name": {
+    "message": "產品"
+  },
+  "products.pay.body.pay.name": {
+    "message": "Pay"
+  },
+  "products.storage.meta.productName": {
+    "message": "Storage"
+  },
+  "products.storage.features.cloudOrOnPrem.type": {
+    "message": "基礎架構"
+  },
+  "products.storage.features.cloudOrOnPrem.title": {
+    "message": "雲端或地端，由您選擇"
+  },
+  "products.storage.features.cloudOrOnPrem.description": {
+    "message": "彈性儲存車輛資料，可交由DIMO代管，或部署在您自有資料基礎架構的地端環境。"
+  },
+  "products.storage.features.cloudOrOnPrem.example": {
+    "message": "從免費的雲端儲存輕鬆起步，或部署至您自己的AWS或GCP叢集。"
+  },
+  "products.storage.features.lightningFastQueries.type": {
+    "message": "查詢引擎"
+  },
+  "products.storage.features.lightningFastQueries.title": {
+    "message": "閃電般快速的查詢"
+  },
+  "products.storage.features.lightningFastQueries.description": {
+    "message": "專為時間序列車輛資料最佳化的查詢引擎。數十億筆記錄的複雜分析，數毫秒內即可完成。"
+  },
+  "products.storage.features.lightningFastQueries.example": {
+    "message": "查詢6個月的平均油耗，不到500毫秒即可完成。"
+  },
+  "products.storage.features.flexibilitySecurity.type": {
+    "message": "彈性"
+  },
+  "products.storage.features.flexibilitySecurity.title": {
+    "message": "彈性 + 安全"
+  },
+  "products.storage.features.flexibilitySecurity.description": {
+    "message": "不必再為資料儲存的法規遵循煩惱，我們的儲存方案從設計之初就以企業級安全與法規遵循為核心。"
+  },
+  "products.storage.features.flexibilitySecurity.example": {
+    "message": "精細的存取控制與加密機制，保護敏感資料。"
+  },
+  "products.storage.hero.scalableDataStorage": {
+    "message": "可擴充的資料儲存，{span}"
+  },
+  "products.storage.hero.cloudOrOnPrem": {
+    "message": "雲端或地端皆可"
+  },
+  "products.storage.hero.petabyteScaleStorageOptimizedFor": {
+    "message": "專為車輛遙測最佳化的PB級儲存。閃電般快速的查詢、彈性的資料保留期限，以及企業級安全。"
+  },
+  "products.storage.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "products.storage.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.storage.features.productFeatures": {
+    "message": "產品功能"
+  },
+  "products.storage.features.builtForVehicleData": {
+    "message": "為大規模車輛資料而生"
+  },
+  "products.storage.features.purposeBuiltStorageInfrastructureThat": {
+    "message": "專門打造的儲存基礎架構，從容應對車輛遙測資料的獨特挑戰。"
+  },
+  "products.storage.cta.readyToDeployVehicle": {
+    "message": "準備好部署車輛資料儲存了嗎？"
+  },
+  "products.storage.cta.getStartedWithDimo": {
+    "message": "立即開始使用DIMO Storage，專為車輛遙測與分析設計的儲存方案。"
+  },
+  "products.storage.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "products.storage.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "products.storage.meta.title": {
+    "message": "Storage | DIMO車輛資料儲存"
+  },
+  "products.storage.meta.description": {
+    "message": "PB級車輛資料儲存，具備閃電般快速的查詢、彈性的資料保留期限與企業級安全。"
+  },
+  "products.storage.meta.keywords": {
+    "message": "車輛資料儲存, 時間序列資料庫, 車輛遙測, 資料保留, 加密儲存"
+  },
+  "products.storage.meta.ogTitle": {
+    "message": "Storage | DIMO平台"
+  },
+  "products.storage.meta.ogDescription": {
+    "message": "可擴充的儲存基礎架構，為任何規模的車輛遙測資料而打造。"
+  },
+  "products.storage.schema.description": {
+    "message": "為聯網車輛遙測打造的標準化、可查詢儲存，支援時間序列車輛資料，雲端或地端皆可部署。"
+  },
+  "products.storage.body.home.name": {
+    "message": "首頁"
+  },
+  "products.storage.body.products.name": {
+    "message": "產品"
+  },
+  "products.storage.body.storage.name": {
+    "message": "Storage"
+  },
+  "solutions.agenticExperiences.meta.solutionName": {
+    "message": "代理式體驗"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.type": {
+    "message": "身分驗證"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.title": {
+    "message": "Login with DIMO"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.description": {
+    "message": "流暢的OAuth 2.0身分驗證流程，讓您的使用者掌控自己的車輛資料。一鍵登入，搭配精細的權限控管。"
+  },
+  "solutions.agenticExperiences.useCases.loginWithDimo.example": {
+    "message": "使用者可授權您的應用程式存取特定資料串流（位置、診斷等），無須提供登入憑證。"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.type": {
+    "message": "同意管理"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.title": {
+    "message": "精細權限"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.description": {
+    "message": "精細控管您的代理能存取哪些資料。使用者可隨時透過統一的同意管理儀表板授予、撤銷或修改權限。"
+  },
+  "solutions.agenticExperiences.useCases.granularPermissions.example": {
+    "message": "代理只請求真正需要的權限，例如讀取位置、傳送指令、存取診斷資料，藉此贏得使用者信任。"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.type": {
+    "message": "安全"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.title": {
+    "message": "可驗證憑證"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.description": {
+    "message": "以密碼學簽署的憑證，確保資料真實可信且可追溯。每一次資料存取都會留下記錄並可驗證，符合最高的法規遵循標準。"
+  },
+  "solutions.agenticExperiences.useCases.verifiableCredentials.example": {
+    "message": "開箱即符合GDPR、歐盟資料法與SOC 2。每一次資料存取皆有稽核記錄。"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.type": {
+    "message": "基礎架構"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.title": {
+    "message": "安全運算"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.description": {
+    "message": "在可存取車輛資料的安全隔離運算環境中執行您的AI代理。執行複雜工作流程的同時，兼顧資料隱私與安全。"
+  },
+  "solutions.agenticExperiences.useCases.securedCompute.example": {
+    "message": "部署可處理敏感車輛資料的代理，原始資訊完全不會暴露給您的伺服器。"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.type": {
+    "message": "AI平台"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.title": {
+    "message": "代理記憶與情境"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.description": {
+    "message": "為您的代理內建記憶層。跨工作階段保留對話記錄、使用者偏好與車輛情境，打造個人化體驗。"
+  },
+  "solutions.agenticExperiences.useCases.agentMemoryContext.example": {
+    "message": "代理會記得過去的互動：「上次我們聊到您的機油該換了，要幫您預約嗎？」"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.type": {
+    "message": "整合"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.title": {
+    "message": "無縫整合"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.description": {
+    "message": "為熱門工具與平台提供預建連接器。開箱即可整合CRM、排程系統、金流服務商與通訊平台。"
+  },
+  "solutions.agenticExperiences.useCases.seamlessIntegrations.example": {
+    "message": "透過零程式碼整合，將代理連接至Calendly、Stripe、Twilio、SendGrid等服務。"
+  },
+  "solutions.agenticExperiences.stats.setupTime.label": {
+    "message": "設定時間"
+  },
+  "solutions.agenticExperiences.stats.serviceUptime.label": {
+    "message": "服務正常運作時間"
+  },
+  "solutions.agenticExperiences.stats.agentSkills.label": {
+    "message": "代理技能"
+  },
+  "solutions.agenticExperiences.stats.sDksToBuild.label": {
+    "message": "可用於開發的SDK"
+  },
+  "solutions.agenticExperiences.hero.buildTrustworthyAiAgents": {
+    "message": "以{span}打造值得信賴的AI代理"
+  },
+  "solutions.agenticExperiences.hero.privacyFirstInfrastructure": {
+    "message": "隱私優先的基礎架構"
+  },
+  "solutions.agenticExperiences.hero.deployIntelligentVehicleAgents": {
+    "message": "部署智慧車輛代理，內建同意管理、安全運算與無縫整合。在打造強大代理式體驗的同時，讓使用者掌控自己的資料。"
+  },
+  "solutions.agenticExperiences.hero.startBuilding": {
+    "message": "開始開發"
+  },
+  "solutions.agenticExperiences.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.agenticExperiences.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.agenticExperiences.useCases.everythingYouNeedFor": {
+    "message": "打造代理式應用所需的一切"
+  },
+  "solutions.agenticExperiences.useCases.fromUserAuthenticationTo": {
+    "message": "從使用者身分驗證、安全運算到預建整合，DIMO提供打造可信賴AI代理的完整基礎架構。"
+  },
+  "solutions.agenticExperiences.featureSection1.loginWithDimoConsentFirst": {
+    "message": "Login with DIMO：同意優先的身分驗證"
+  },
+  "solutions.agenticExperiences.featureSection1.implementOAuth20Authentication": {
+    "message": "幾分鐘內即可導入具備精細權限控管的OAuth 2.0身分驗證。使用者一鍵連接車輛，只授予您的代理所需的資料存取權限，絕不多給。"
+  },
+  "solutions.agenticExperiences.featureSection1.oauth20CompliantWith": {
+    "message": "符合OAuth 2.0標準，支援PKCE流程"
+  },
+  "solutions.agenticExperiences.featureSection1.granularScopesLocationDiagnostics": {
+    "message": "精細的權限範圍：位置、診斷、指令等"
+  },
+  "solutions.agenticExperiences.featureSection1.usersCanRevokeAccess": {
+    "message": "使用者可隨時透過統一儀表板撤銷存取權限"
+  },
+  "solutions.agenticExperiences.featureSection1.realTimeConsentStatusUpdates": {
+    "message": "透過Webhook即時更新同意狀態"
+  },
+  "solutions.agenticExperiences.featureSection1.loginWithDimoFlowchart": {
+    "message": "Login with DIMO流程圖"
+  },
+  "solutions.agenticExperiences.featureSection2.securedComputePrivacyPreservingAi": {
+    "message": "安全運算：保護隱私的AI"
+  },
+  "solutions.agenticExperiences.featureSection2.runYourAiAgents": {
+    "message": "在隔離且安全的運算環境中執行您的AI代理，並存取乾淨的車輛資料。處理敏感資訊時，原始資料不會暴露給您的伺服器，滿足最嚴格的法規遵循要求。"
+  },
+  "solutions.agenticExperiences.featureSection2.scaleToAddAgents": {
+    "message": "彈性擴充，為代理加入全新超能力"
+  },
+  "solutions.agenticExperiences.featureSection2.dataProcessedInSecure": {
+    "message": "資料在安全隔離區中處理，也可選擇地端部署"
+  },
+  "solutions.agenticExperiences.featureSection2.complianceReadyGdprSoc2": {
+    "message": "法規遵循就緒：GDPR、SOC 2、歐盟資料法"
+  },
+  "solutions.agenticExperiences.featureSection2.auditLogsForEvery": {
+    "message": "每一次資料存取與操作皆有稽核記錄"
+  },
+  "solutions.agenticExperiences.featureSection2.fleetOfConnectedVehicles": {
+    "message": "聯網汽車車隊"
+  },
+  "solutions.agenticExperiences.howItWorks.implementLoginWith.title": {
+    "message": "導入Login with DIMO"
+  },
+  "solutions.agenticExperiences.howItWorks.implementLoginWith.description": {
+    "message": "為您的應用程式加入OAuth身分驗證。使用者幾秒內就能連接車輛，並為您的代理授予權限。"
+  },
+  "solutions.agenticExperiences.howItWorks.deployYourAgents.title": {
+    "message": "部署您的代理"
+  },
+  "solutions.agenticExperiences.howItWorks.deployYourAgents.description": {
+    "message": "將代理程式碼上傳至我們的安全運算平台。可選用預建的代理範本，或打造自訂工作流程。"
+  },
+  "solutions.agenticExperiences.howItWorks.connectIntegrations.title": {
+    "message": "連接整合服務"
+  },
+  "solutions.agenticExperiences.howItWorks.connectIntegrations.description": {
+    "message": "從我們的市集啟用代理所需的整合服務。設定排程、支付、通訊等功能。"
+  },
+  "solutions.agenticExperiences.howItWorks.monitorOptimize.title": {
+    "message": "監控與最佳化"
+  },
+  "solutions.agenticExperiences.howItWorks.monitorOptimize.description": {
+    "message": "透過完整的分析儀表板，追蹤代理效能、使用者同意狀態與系統健康狀況。"
+  },
+  "solutions.agenticExperiences.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "solutions.agenticExperiences.howItWorks.deployAgentsInMinutes": {
+    "message": "幾分鐘內部署代理"
+  },
+  "solutions.agenticExperiences.howItWorks.fromAuthenticationToDeployment": {
+    "message": "從身分驗證到部署，DIMO讓您輕鬆打造並擴展代理式體驗，隱私與安全皆內建其中。"
+  },
+  "solutions.agenticExperiences.cta.readyToBuildAgentic": {
+    "message": "準備好打造代理式體驗了嗎？"
+  },
+  "solutions.agenticExperiences.cta.joinDevelopersBuildingThe": {
+    "message": "與眾多開發者一同運用隱私優先的基礎架構，打造新一代AI驅動的車輛應用。"
+  },
+  "solutions.agenticExperiences.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "solutions.agenticExperiences.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.agenticExperiences.meta.title": {
+    "message": "代理式體驗 | 使用DIMO打造AI代理"
+  },
+  "solutions.agenticExperiences.meta.description": {
+    "message": "運用Login with DIMO、安全運算與無縫整合，打造值得信賴的AI車輛代理。為代理式體驗打造的隱私優先基礎架構。"
+  },
+  "solutions.agenticExperiences.meta.keywords": {
+    "message": "AI代理, 車輛AI, 同意管理, OAuth身分驗證, 安全運算, 代理整合, 隱私優先AI, 符合GDPR"
+  },
+  "solutions.agenticExperiences.meta.ogTitle": {
+    "message": "代理式體驗 | DIMO平台"
+  },
+  "solutions.agenticExperiences.meta.ogDescription": {
+    "message": "部署智慧車輛代理，內建同意管理、安全運算與50多種整合。隱私優先的AI基礎架構。"
+  },
+  "solutions.agenticExperiences.schema.dimoAgenticExperiences.name": {
+    "message": "DIMO代理式體驗平台"
+  },
+  "solutions.agenticExperiences.schema.dimoAgenticExperiences.description": {
+    "message": "運用同意管理、安全運算與預建整合，打造值得信賴的AI車輛代理。"
+  },
+  "solutions.agenticExperiences.body.home.name": {
+    "message": "首頁"
+  },
+  "solutions.agenticExperiences.body.solutions.name": {
+    "message": "解決方案"
+  },
+  "solutions.agenticExperiences.body.agenticExperiences.name": {
+    "message": "代理式體驗"
+  },
+  "solutions.consumerApplications.meta.solutionName": {
+    "message": "消費者應用"
+  },
+  "solutions.consumerApplications.useCases.mobilePlatform.type": {
+    "message": "行動平台"
+  },
+  "solutions.consumerApplications.useCases.mobilePlatform.description": {
+    "message": "可直接上線的iOS與Android行動應用程式。使用者可連接車輛、查看即時資料並管理權限，全部開箱即用。"
+  },
+  "solutions.consumerApplications.useCases.mobilePlatform.example": {
+    "message": "幾週內就能推出您的車輛平台，而不是幾個月。完整的行動體驗一應俱全。"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.type": {
+    "message": "客製化"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.title": {
+    "message": "白牌體驗"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.description": {
+    "message": "介面完全可自訂，套用您的品牌、色彩與標誌。無須修改任何程式碼，就能讓DIMO Mobile App的外觀與使用感受如同您自家的產品。"
+  },
+  "solutions.consumerApplications.useCases.whiteLabelExperience.example": {
+    "message": "替換標誌、調整配色、自訂訊息內容，全部透過組態設定完成。"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.type": {
+    "message": "在地化"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.title": {
+    "message": "多語言支援"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.description": {
+    "message": "內建支援20多種語言，搭配簡便的在地化框架。無須從頭重建應用程式，即可拓展新市場。"
+  },
+  "solutions.consumerApplications.useCases.multiLanguageSupport.example": {
+    "message": "英文、西班牙文、葡萄牙文、法文、德文、日文等，隨時可在全球部署。"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.type": {
+    "message": "功能"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.title": {
+    "message": "即時車輛資料"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.description": {
+    "message": "透過直覺的介面存取即時車輛遙測、診斷、位置等資料。所有資料串流皆已預先整合並完成測試。"
+  },
+  "solutions.consumerApplications.useCases.realTimeVehicleData.example": {
+    "message": "電池電量、胎壓、位置追蹤、行程記錄，使用者需要的一應俱全。"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.type": {
+    "message": "使用者管理"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.title": {
+    "message": "帳號與權限"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.description": {
+    "message": "完整的使用者身分驗證、個人資料管理與精細權限控管。使用者可在完全透明的情況下管理資料共享偏好。"
+  },
+  "solutions.consumerApplications.useCases.accountPermissions.example": {
+    "message": "OAuth 2.0身分驗證、個人資料設定、已連結應用程式儀表板與同意管理。"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.type": {
+    "message": "發布"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.title": {
+    "message": "可直接上架應用程式商店"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.description": {
+    "message": "已預先完成iOS App Store與Google Play商店送審所需的設定。包含所有必要的法規遵循文件、隱私權政策與商店素材。"
+  },
+  "solutions.consumerApplications.useCases.appStoreReady.example": {
+    "message": "內附商店素材與法規遵循文件，幾天內就能將您的品牌App送交商店上架。"
+  },
+  "solutions.consumerApplications.stats.customizableUi.label": {
+    "message": "可自訂介面"
+  },
+  "solutions.consumerApplications.stats.timeToLaunch.number": {
+    "message": "<1週"
+  },
+  "solutions.consumerApplications.stats.timeToLaunch.label": {
+    "message": "上線時間"
+  },
+  "solutions.consumerApplications.stats.toOnboardNew.label": {
+    "message": "導入新使用者"
+  },
+  "solutions.consumerApplications.stats.toOnboardNew.label2": {
+    "message": "導入新的市集合作夥伴"
+  },
+  "solutions.consumerApplications.hero.launchYourVehicleApp": {
+    "message": "以{span}推出您的車輛App"
+  },
+  "solutions.consumerApplications.hero.zeroDevelopmentTime": {
+    "message": "零開發時間"
+  },
+  "solutions.consumerApplications.hero.deployAFullyBrandedProductionReady": {
+    "message": "部署完整品牌化、可直接上線的iOS與Android行動App。白牌客製化、多語言支援與全球觸及，全部開箱即用。"
+  },
+  "solutions.consumerApplications.hero.getStarted": {
+    "message": "開始使用"
+  },
+  "solutions.consumerApplications.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.consumerApplications.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.consumerApplications.useCases.everythingYouNeedFor": {
+    "message": "打造消費者App所需的一切"
+  },
+  "solutions.consumerApplications.useCases.fromMobileAppsTo": {
+    "message": "從行動App、白牌客製化到全球在地化，DIMO提供推出消費者車輛應用的完整平台。"
+  },
+  "solutions.consumerApplications.featureSection1.dimoMobileAppProductionReady": {
+    "message": "DIMO Mobile App：可直接上線的平台"
+  },
+  "solutions.consumerApplications.featureSection1.launchWithAComplete": {
+    "message": "以完整的iOS與Android行動應用程式上線。使用者需要的每項功能一應俱全：車輛連線、即時資料、行程追蹤、診斷等，皆已完成測試，可直接投入正式環境。"
+  },
+  "solutions.consumerApplications.featureSection1.nativeIosAndAndroid": {
+    "message": "採用現代行動框架打造的原生iOS與Android App"
+  },
+  "solutions.consumerApplications.featureSection1.realTimeVehicleDataLocation": {
+    "message": "即時車輛資料：位置、電池、診斷"
+  },
+  "solutions.consumerApplications.featureSection1.tripTrackingWithDetailed": {
+    "message": "行程追蹤，提供詳細分析與歷史記錄"
+  },
+  "solutions.consumerApplications.featureSection1.userProfilesAuthenticationAnd": {
+    "message": "內建使用者個人資料、身分驗證與權限管理"
+  },
+  "solutions.consumerApplications.featureSection1.dimoMobileAppOn": {
+    "message": "手機上的DIMO Mobile App"
+  },
+  "solutions.consumerApplications.featureSection2.whiteLabelMakeItYours": {
+    "message": "白牌：打造專屬於您的App"
+  },
+  "solutions.consumerApplications.featureSection2.customizeEveryAspectOf": {
+    "message": "以您的品牌識別自訂DIMO Mobile App的每個細節。替換標誌、調整色彩、修改文案，全部透過簡單的組態設定完成，一行程式碼都不必動。內建在地化支援，助您拓展國際市場。"
+  },
+  "solutions.consumerApplications.featureSection2.brandCustomizationLogosColors": {
+    "message": "品牌客製化：標誌、色彩、字型與主題"
+  },
+  "solutions.consumerApplications.featureSection2.customMessagingAndCopy": {
+    "message": "整個App的訊息與文案皆可自訂"
+  },
+  "solutions.consumerApplications.featureSection2.yourAppNameAnd": {
+    "message": "在應用程式商店中使用您的App名稱與品牌識別"
+  },
+  "solutions.consumerApplications.featureSection2.configurationBasedNoCodeChanges": {
+    "message": "以組態設定為基礎：無須修改程式碼"
+  },
+  "solutions.consumerApplications.featureSection2.regionalCustomizationForDates": {
+    "message": "依地區自訂日期、貨幣與單位"
+  },
+  "solutions.consumerApplications.featureSection2.dimoInJapan": {
+    "message": "DIMO在日本"
+  },
+  "solutions.consumerApplications.howItWorks.configureYourBrand.title": {
+    "message": "設定您的品牌"
+  },
+  "solutions.consumerApplications.howItWorks.configureYourBrand.description": {
+    "message": "透過我們的組態儀表板上傳標誌、選擇配色並自訂App訊息，完全不必寫程式。"
+  },
+  "solutions.consumerApplications.howItWorks.selectLanguagesRegions.title": {
+    "message": "選擇語言與地區"
+  },
+  "solutions.consumerApplications.howItWorks.selectLanguagesRegions.description": {
+    "message": "選擇要啟用的語言並調整地區設定。如有需要，可透過我們的在地化框架加入自訂翻譯。"
+  },
+  "solutions.consumerApplications.howItWorks.testYourApp.title": {
+    "message": "測試您的App"
+  },
+  "solutions.consumerApplications.howItWorks.testYourApp.description": {
+    "message": "透過TestFlight與Google Play測試版發布管道，在公開上線前先與內部團隊測試您的品牌App。"
+  },
+  "solutions.consumerApplications.howItWorks.launchToApp.title": {
+    "message": "上架應用程式商店"
+  },
+  "solutions.consumerApplications.howItWorks.launchToApp.description": {
+    "message": "內附法規遵循文件與商店素材，將您的App送交iOS App Store與Google Play商店。"
+  },
+  "solutions.consumerApplications.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "solutions.consumerApplications.howItWorks.launchInLessThan": {
+    "message": "不到一週即可上線"
+  },
+  "solutions.consumerApplications.howItWorks.fromConfigurationToApp": {
+    "message": "從組態設定到送交商店上架，DIMO讓您輕鬆在全球推出品牌車輛應用程式。"
+  },
+  "solutions.consumerApplications.cta.readyToLaunchYour": {
+    "message": "準備好推出您的車輛App了嗎？"
+  },
+  "solutions.consumerApplications.cta.joinCompaniesLaunchingBranded": {
+    "message": "與眾多企業一同運用DIMO的白牌行動平台，在全球推出品牌車輛應用程式。"
+  },
+  "solutions.consumerApplications.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "solutions.consumerApplications.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.consumerApplications.meta.title": {
+    "message": "消費者應用 | DIMO白牌行動App"
+  },
+  "solutions.consumerApplications.meta.description": {
+    "message": "幾天內推出您的品牌車輛行動App。DIMO提供可直接上線的iOS與Android App，支援白牌客製化與20多種語言。"
+  },
+  "solutions.consumerApplications.meta.keywords": {
+    "message": "白牌行動App, 車輛App, iOS Android, 多語言App, 品牌行動App, 在地化, DIMO行動App"
+  },
+  "solutions.consumerApplications.meta.ogTitle": {
+    "message": "消費者應用 | DIMO白牌平台"
+  },
+  "solutions.consumerApplications.meta.ogDescription": {
+    "message": "可直接上線的iOS與Android行動App。完全可自訂、支援多語言，開箱即可觸及全球。"
+  },
+  "solutions.consumerApplications.schema.dimoMobileApp.name": {
+    "message": "DIMO Mobile App平台"
+  },
+  "solutions.consumerApplications.schema.dimoMobileApp.description": {
+    "message": "車輛資料專用的白牌行動應用程式平台。提供可客製化、可在地化的iOS與Android App。"
+  },
+  "solutions.consumerApplications.body.home.name": {
+    "message": "首頁"
+  },
+  "solutions.consumerApplications.body.solutions.name": {
+    "message": "解決方案"
+  },
+  "solutions.consumerApplications.body.consumerApplications.name": {
+    "message": "消費者應用"
+  },
+  "solutions.fleetIntelligence.meta.solutionName": {
+    "message": "車隊智慧"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.type": {
+    "message": "儀表板（即將推出）"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.title": {
+    "message": "統一車隊儀表板"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.description": {
+    "message": "全方位車隊管理儀表板，即時掌握所有車輛動態。在單一集中平台監控車況、位置、使用率與保養需求。"
+  },
+  "solutions.fleetIntelligence.useCases.unifiedFleetDashboard.example": {
+    "message": "跨多個據點追蹤數百甚至數千輛車，提供即時更新與預測洞察。"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.type": {
+    "message": "SDK整合"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.title": {
+    "message": "開發者友善的SDK"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.description": {
+    "message": "使用我們簡單易用的JavaScript、Python、Go與C# SDK，打造自訂車隊應用程式。提供完整API存取與可直接上線的程式碼範例。"
+  },
+  "solutions.fleetIntelligence.useCases.developerFriendlySdks.example": {
+    "message": "執行npm install @dimo/sdk，搭配詳盡的說明文件，幾分鐘內就能開始查詢車隊資料。"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.type": {
+    "message": "資料平台"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.title": {
+    "message": "即時車隊遙測"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.description": {
+    "message": "串流即時車輛資料，包括位置、診斷、油耗與駕駛行為。在乾淨、標準化的資料上打造自訂分析與報表。"
+  },
+  "solutions.fleetIntelligence.useCases.realTimeFleetTelemetry.example": {
+    "message": "透過WebSocket存取即時串流，或透過REST API取得批次資料，依您的使用情境自由選擇。"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.type": {
+    "message": "分析"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.title": {
+    "message": "預測性維護"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.description": {
+    "message": "AI驅動的洞察，在故障發生前預測保養需求。以資料驅動的保養排程減少停機時間、延長車輛壽命。"
+  },
+  "solutions.fleetIntelligence.useCases.predictiveMaintenance.example": {
+    "message": "依實際使用模式（而不只是里程數），在車輛該保養時發出提醒。"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.type": {
+    "message": "法規遵循"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.title": {
+    "message": "駕駛安全與法規遵循"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.description": {
+    "message": "監控駕駛行為、追蹤法規遵循指標，確保整個車隊符合安全標準。一旦出現不安全的駕駛模式，系統會自動發出警示。"
+  },
+  "solutions.fleetIntelligence.useCases.driverSafetyCompliance.example": {
+    "message": "追蹤超速、急煞、急加速與怠速時間，所有門檻皆可自訂。"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.type": {
+    "message": "最佳化"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.title": {
+    "message": "路線與使用率最佳化"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.description": {
+    "message": "以智慧分析最佳化路線、降低燃料成本，並將車輛使用率最大化。找出使用率偏低的資產與缺乏效率的路線。"
+  },
+  "solutions.fleetIntelligence.useCases.routeUtilizationOptimization.example": {
+    "message": "透過資料驅動的路線最佳化與使用率洞察，降低15-25%的燃料成本。"
+  },
+  "solutions.fleetIntelligence.stats.fleetDashboard.number": {
+    "message": "即將推出"
+  },
+  "solutions.fleetIntelligence.stats.fleetDashboard.label": {
+    "message": "車隊儀表板"
+  },
+  "solutions.fleetIntelligence.stats.sdkLanguages.label": {
+    "message": "SDK語言"
+  },
+  "solutions.fleetIntelligence.stats.apiLatency.label": {
+    "message": "API延遲"
+  },
+  "solutions.fleetIntelligence.stats.uptimeSla.label": {
+    "message": "正常運作時間SLA"
+  },
+  "solutions.fleetIntelligence.hero.seeEveryVehicleEvery": {
+    "message": "掌握每一輛車、每一個工作階段，{span}"
+  },
+  "solutions.fleetIntelligence.hero.acrossAMixedFleet": {
+    "message": "全面涵蓋混合車隊"
+  },
+  "solutions.fleetIntelligence.hero.fleetManagersSpend45": {
+    "message": "車隊管理者每週要花4–5小時，在分散的系統之間彙整資料。DIMO透過單一API，將已連線的50多個車輛品牌的車載資通訊資料標準化，並轉化為{link}。看看它在{link2}中的實際應用。"
+  },
+  "solutions.fleetIntelligence.hero.verifiableTrailYouCan": {
+    "message": "可與保險公司共享的可驗證紀錄"
+  },
+  "solutions.fleetIntelligence.hero.rentalOperations": {
+    "message": "租賃營運"
+  },
+  "solutions.fleetIntelligence.hero.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "solutions.fleetIntelligence.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.fleetIntelligence.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.fleetIntelligence.useCases.everythingYouNeedFor": {
+    "message": "車隊管理所需的一切"
+  },
+  "solutions.fleetIntelligence.useCases.fromUnifiedDashboardsTo": {
+    "message": "從統一儀表板到強大的SDK與預測分析，DIMO提供打造智慧車隊解決方案的完整平台。"
+  },
+  "solutions.fleetIntelligence.featureSection1.fleetDashboardComingSoon": {
+    "message": "車隊儀表板：即將推出"
+  },
+  "solutions.fleetIntelligence.featureSection1.aComprehensiveProductionReadyFleet": {
+    "message": "全方位、可直接上線的車隊管理儀表板即將登場。透過可自訂的檢視、警示與報表，即時掌握整個車隊，全部建構在DIMO可靠的基礎架構之上。"
+  },
+  "solutions.fleetIntelligence.featureSection1.liveVehicleTrackingWith": {
+    "message": "即時車輛追蹤，搭配地圖視覺化"
+  },
+  "solutions.fleetIntelligence.featureSection1.healthMonitoringAndPredictive": {
+    "message": "車況監控與預測性維護警示"
+  },
+  "solutions.fleetIntelligence.featureSection1.driverBehaviorScoringAnd": {
+    "message": "駕駛行為評分與安全法規遵循"
+  },
+  "solutions.fleetIntelligence.featureSection1.customizableReportsAndAnalytics": {
+    "message": "可自訂的報表與分析儀表板"
+  },
+  "solutions.fleetIntelligence.featureSection1.fleetOfTrucksOn": {
+    "message": "行駛中的卡車車隊"
+  },
+  "solutions.fleetIntelligence.featureSection2.buildWithPowerfulSdks": {
+    "message": "以強大的SDK進行開發"
+  },
+  "solutions.fleetIntelligence.featureSection2.developerFriendlySdksForJavascript": {
+    "message": "開發者友善的SDK，支援JavaScript、Python、Go、C#等語言。透過完整的API存取、詳盡的說明文件與可直接上線的程式碼範例，打造自訂車隊應用程式。"
+  },
+  "solutions.fleetIntelligence.featureSection2.sdksForJavascriptPython": {
+    "message": "支援JavaScript、Python、Go、C#等語言的SDK"
+  },
+  "solutions.fleetIntelligence.featureSection2.restfulAndGraphqlApis": {
+    "message": "RESTful與GraphQL API，附OpenAPI規格"
+  },
+  "solutions.fleetIntelligence.featureSection2.webSocketSupportForRealTime": {
+    "message": "支援WebSocket即時遙測串流"
+  },
+  "solutions.fleetIntelligence.featureSection2.interactiveDocumentationWithCode": {
+    "message": "附程式碼範例的互動式說明文件"
+  },
+  "solutions.fleetIntelligence.featureSection2.sdkCodeExamples": {
+    "message": "SDK程式碼範例"
+  },
+  "solutions.fleetIntelligence.featureSection3.aiPoweredFleetOptimization": {
+    "message": "AI驅動的車隊最佳化"
+  },
+  "solutions.fleetIntelligence.featureSection3.leverageMachineLearningInsights": {
+    "message": "運用機器學習洞察降低成本、提升安全並將效率最大化。預測性維護、路線最佳化與駕駛行為分析，全部以乾淨、標準化的車輛資料為基礎。"
+  },
+  "solutions.fleetIntelligence.featureSection3.predictiveMaintenanceBasedOn": {
+    "message": "依實際使用模式進行預測性維護"
+  },
+  "solutions.fleetIntelligence.featureSection3.fuelConsumptionTrackingAnd": {
+    "message": "油耗追蹤與最佳化洞察"
+  },
+  "solutions.fleetIntelligence.featureSection3.driverSafetyScoringWith": {
+    "message": "駕駛安全評分，附可執行的改善建議"
+  },
+  "solutions.fleetIntelligence.featureSection3.utilizationAnalyticsToIdentify": {
+    "message": "使用率分析，找出閒置資產"
+  },
+  "solutions.fleetIntelligence.featureSection3.deliveryVehicleOnRoute": {
+    "message": "行駛中的配送車輛"
+  },
+  "solutions.fleetIntelligence.howItWorks.getApiAccess.title": {
+    "message": "取得API存取權限"
+  },
+  "solutions.fleetIntelligence.howItWorks.getApiAccess.description": {
+    "message": "註冊DIMO即可立即取得API憑證。無須審核、無須等待，馬上開始開發。"
+  },
+  "solutions.fleetIntelligence.howItWorks.integrateWithSdks.title": {
+    "message": "透過SDK整合"
+  },
+  "solutions.fleetIntelligence.howItWorks.integrateWithSdks.description": {
+    "message": "以您偏好的程式語言安裝我們的SDK，並連接您的車隊車輛。參考我們的快速入門指南，輕鬆處理常見使用情境。"
+  },
+  "solutions.fleetIntelligence.howItWorks.buildCustomDashboards.title": {
+    "message": "打造自訂儀表板"
+  },
+  "solutions.fleetIntelligence.howItWorks.buildCustomDashboards.description": {
+    "message": "使用我們的API，打造貼合您營運需求的自訂車隊儀表板。或者，等待我們預建的車隊儀表板（即將推出）。"
+  },
+  "solutions.fleetIntelligence.howItWorks.scaleOptimize.title": {
+    "message": "擴展與最佳化"
+  },
+  "solutions.fleetIntelligence.howItWorks.scaleOptimize.description": {
+    "message": "運用AI驅動的洞察最佳化路線、降低成本並提升安全。放心擴展至數千輛車。"
+  },
+  "solutions.fleetIntelligence.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "solutions.fleetIntelligence.howItWorks.startBuildingFleetSolutions": {
+    "message": "開始打造車隊解決方案"
+  },
+  "solutions.fleetIntelligence.howItWorks.fromApiAccessTo": {
+    "message": "從取得API存取權限到正式部署，DIMO讓您輕鬆打造智慧車隊管理應用程式。"
+  },
+  "solutions.fleetIntelligence.cta.readyToBuildFleet": {
+    "message": "準備好打造車隊智慧了嗎？"
+  },
+  "solutions.fleetIntelligence.cta.joinFleetOperatorsBuilding": {
+    "message": "與眾多車隊營運商一同運用DIMO平台，打造新一代智慧交通解決方案。"
+  },
+  "solutions.fleetIntelligence.cta.getApiKeys": {
+    "message": "取得API金鑰"
+  },
+  "solutions.fleetIntelligence.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.fleetIntelligence.meta.title": {
+    "message": "混合車隊管理與車載資通訊，盡在單一儀表板 | DIMO"
+  },
+  "solutions.fleetIntelligence.meta.description": {
+    "message": "已連線的50多個車輛品牌，透過單一API提供標準化的車載資通訊與工作階段控管。與保險公司共享可驗證紀錄，不必再核對五套系統。"
+  },
+  "solutions.fleetIntelligence.meta.keywords": {
+    "message": "車隊管理, 車隊追蹤, 車載資通訊, 車隊API, 車隊SDK, 預測性維護, 車隊最佳化, 車輛遙測"
+  },
+  "solutions.fleetIntelligence.meta.ogTitle": {
+    "message": "混合車隊管理與車載資通訊，盡在單一儀表板 | DIMO"
+  },
+  "solutions.fleetIntelligence.meta.ogDescription": {
+    "message": "全方位車隊管理平台，提供SDK、即時遙測與AI驅動的洞察。打造自訂車隊解決方案，或使用我們的儀表板（即將推出）。"
+  },
+  "solutions.fleetIntelligence.schema.dimoFleetIntelligence.name": {
+    "message": "DIMO車隊智慧平台"
+  },
+  "solutions.fleetIntelligence.schema.dimoFleetIntelligence.description": {
+    "message": "提供SDK、API與AI驅動洞察的車隊管理平台。運用即時車輛遙測，打造自訂車隊解決方案。"
+  },
+  "solutions.fleetIntelligence.body.home.name": {
+    "message": "首頁"
+  },
+  "solutions.fleetIntelligence.body.solutions.name": {
+    "message": "解決方案"
+  },
+  "solutions.fleetIntelligence.body.fleetIntelligence.name": {
+    "message": "車隊智慧"
+  },
+  "solutions.fleetSpend.meta.title": {
+    "message": "車隊支出與電動車充電報銷，依工作階段結算 | DIMO"
+  },
+  "solutions.fleetSpend.meta.description": {
+    "message": "別再等到幾天後才核對充電、通行費與油費。DIMO將支出綁定至每個車輛工作階段：住家充電、公共充電與通行費，皆自動設定上限並完成對帳。"
+  },
+  "solutions.fleetSpend.meta.h1": {
+    "message": "取車時即設定支出上限：充電、通行費與油費全部綁定工作階段"
+  },
+  "solutions.fleetSpend.body.home.name": {
+    "message": "首頁"
+  },
+  "solutions.fleetSpend.body.solutions.name": {
+    "message": "解決方案"
+  },
+  "solutions.fleetSpend.body.fleetSpend.name": {
+    "message": "車隊支出"
+  },
+  "solutions.fleetSpend.body.solutionsSpend": {
+    "message": "解決方案 · 支出"
+  },
+  "solutions.fleetSpend.body.chargingTollsAndFuel": {
+    "message": "充電、通行費與油費是車隊中最容易漏財的支出項目，因為這些費用發生在取車之後，往往幾天後才對帳。只要將它們綁定至工作階段，漏洞就此堵住。"
+  },
+  "solutions.fleetSpend.body.fleetSpendLeaksBecause": {
+    "message": "車隊支出之所以漏財，是因為缺少一個承載它的容器。駕駛人取車、充電、通過收費站，也許再加滿油，每一筆費用都落在不同的系統裡，數小時甚至數天後才拿去對照一筆誰也無法清楚比對的預約。DIMO將支出綁定至{strong}：取車時設定上限，每筆費用都歸屬於產生它的工作階段，對帳自動完成，不必再靠週一早上的試算表。"
+  },
+  "solutions.fleetSpend.body.vehicleSession": {
+    "message": "車輛工作階段"
+  },
+  "solutions.fleetSpend.body.whySpendLeaksToday": {
+    "message": "支出為何漏財"
+  },
+  "solutions.fleetSpend.body.theCoreProblemIs": {
+    "message": "核心問題在於{strong}。預約在一套工具裡，車載資通訊在另一套，充電在第三套，通行費在第四套。每當出現一筆費用，要回頭比對「哪一筆租賃、哪位駕駛人、哪一輛車」，全得靠人工抽絲剝繭。放大到整個車隊，每週就是好幾個小時的對帳工作，還有源源不絕、始終無法歸屬的費用。"
+  },
+  "solutions.fleetSpend.body.spendIsNotConnected": {
+    "message": "支出並未與車輛存取事件連結"
+  },
+  "solutions.fleetSpend.body.theThreeEvReimbursement": {
+    "message": "三大電動車報銷難題，同時出現"
+  },
+  "solutions.fleetSpend.body.electrificationMakesThisSharper": {
+    "message": "電動化讓問題更加尖銳，因為電動車隊同時面臨三種報銷難題："
+  },
+  "solutions.fleetSpend.body.aDriverChargesAt": {
+    "message": "{strong}駕駛人在家充電，必須以正確費率、依正確的度數（kWh）報銷。"
+  },
+  "solutions.fleetSpend.body.homeCharging": {
+    "message": "住家充電："
+  },
+  "solutions.fleetSpend.body.sessionsAcrossADozen": {
+    "message": "{strong}充電紀錄分散在十幾個充電網路，各有各的App、收據格式與計價方式。"
+  },
+  "solutions.fleetSpend.body.publicCharging": {
+    "message": "公共充電："
+  },
+  "solutions.fleetSpend.body.incurredMidSessionBilledLater": {
+    "message": "{strong}在工作階段中途產生，事後才計費，且很少能對應到產生費用的那趟行程。"
+  },
+  "solutions.fleetSpend.body.tollsAndParking": {
+    "message": "通行費與停車費："
+  },
+  "solutions.fleetSpend.body.handledSeparatelyTheseAre": {
+    "message": "分開處理，就是三套整合與三種對帳難題。納入工作階段一併處理，就只是一筆有上限、歸屬明確的明細項目。"
+  },
+  "solutions.fleetSpend.body.plugAndChargeAsAPerSession": {
+    "message": "隨插即充，按工作階段計費的服務"
+  },
+  "solutions.fleetSpend.body.tyingSpendToThe": {
+    "message": "將支出綁定至工作階段，不只能省錢，還能開創營收。想像一下，{strong}，出差時再也不必為了充電下載六個App。如今這只是{strong2}，因為沒有工作階段可以掛上這筆費用。有了工作階段容器，充電、保險與其他按趟計費的服務，都能成為營運商真正可以提供並收費的項目，按工作階段定價，而不是埋在每日租金裡。"
+  },
+  "solutions.fleetSpend.body.plugAndChargeOnYourNext": {
+    "message": "下次租車就能隨插即充"
+  },
+  "solutions.fleetSpend.body.0LineItem": {
+    "message": "$0的明細項目"
+  },
+  "solutions.fleetSpend.body.howItWorks": {
+    "message": "運作方式"
+  },
+  "solutions.fleetSpend.body.whenAIsCreated": {
+    "message": "建立{link}時，它會連同身分、數位鑰匙與資料範圍，一併帶入支出上限。工作階段期間產生的費用會自動歸屬於該工作階段，並受上限約束；工作階段結束時，支出隨即完成對帳，並與工作階段的其他內容一同封存於同一份可驗證紀錄中。營運商每個工作階段只會看到一個數字，而不是四個需要對帳的資料來源。"
+  },
+  "solutions.fleetSpend.body.thisIsTheSpend": {
+    "message": "這是整體工作階段模型中的支出功能。請參閱{link}、{link2}，以及它如何融入{link3}。"
+  },
+  "solutions.fleetSpend.body.vehicleSessionInfrastructure": {
+    "message": "車輛工作階段基礎架構"
+  },
+  "solutions.fleetSpend.body.payProduct": {
+    "message": "Pay產品"
+  },
+  "solutions.fleetSpend.body.rentalOperations": {
+    "message": "租賃營運"
+  },
+  "solutions.vehicleCommerce.meta.solutionName": {
+    "message": "車輛商務"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.type": {
+    "message": "支付"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.title": {
+    "message": "穩定幣支付"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.description": {
+    "message": "直接從車輛收取USDC、USDT及其他穩定幣付款。手續費低、即時結算，無須貨幣兌換即可觸及全球。"
+  },
+  "solutions.vehicleCommerce.useCases.stablecoinPayments.example": {
+    "message": "通行費、停車、充電與車輛服務，全部以穩定可靠的加密貨幣自動支付。"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.type": {
+    "message": "協定"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.title": {
+    "message": "x402支付協定"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.description": {
+    "message": "專為車輛打造的機器對機器支付標準。讓車輛與服務供應商之間進行自動化、安全且以權限為基礎的交易。"
+  },
+  "solutions.vehicleCommerce.useCases.x402PaymentProtocol.example": {
+    "message": "車輛自動支付服務費用：無須使用者介入、不會付款失敗、毫無阻礙。"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.type": {
+    "message": "基礎架構"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.title": {
+    "message": "即時結算"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.description": {
+    "message": "付款數秒內完成結算，而非數天。以區塊鏈結算杜絕拒付、降低詐欺並改善現金流。"
+  },
+  "solutions.vehicleCommerce.useCases.instantSettlement.example": {
+    "message": "服務供應商立即收到款項，無須等待銀行轉帳或金流服務商處理。"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.type": {
+    "message": "經濟效益"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.title": {
+    "message": "低交易手續費"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.description": {
+    "message": "只需支付傳統金流手續費的一小部分。沒有交換費、沒有處理延遲，只有簡單又划算的交易。"
+  },
+  "solutions.vehicleCommerce.useCases.lowTransactionFees.example": {
+    "message": "相較傳統信用卡網路，支付處理成本可節省60-80%。"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.type": {
+    "message": "自動化"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.title": {
+    "message": "自動化小額支付"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.description": {
+    "message": "為按用量計費的服務啟用小額支付。按里程計費的保險、按度（kWh）計費的充電、按分鐘計費的停車，全部自動且流暢。"
+  },
+  "solutions.vehicleCommerce.useCases.automatedMicropayments.example": {
+    "message": "使用者只需為實際用量付費，交易在背景自動完成。"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.type": {
+    "message": "整合"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.title": {
+    "message": "無縫錢包整合"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.description": {
+    "message": "內建錢包基礎架構，搭配友善易用的介面。使用者可在您的App內管理餘額、查看交易並控管支出。"
+  },
+  "solutions.vehicleCommerce.useCases.seamlessWalletIntegration.example": {
+    "message": "一鍵支付、交易記錄與支出控管，原生錢包體驗一應俱全。"
+  },
+  "solutions.vehicleCommerce.stats.paymentSettlement.label": {
+    "message": "付款結算"
+  },
+  "solutions.vehicleCommerce.stats.lowerFees.label": {
+    "message": "更低手續費"
+  },
+  "solutions.vehicleCommerce.stats.stablecoinsSupported.label": {
+    "message": "支援的穩定幣"
+  },
+  "solutions.vehicleCommerce.stats.openProtocol.label": {
+    "message": "開放協定"
+  },
+  "solutions.vehicleCommerce.hero.enableFrictionlessVehiclePayments": {
+    "message": "以{span}實現零阻礙的車輛支付"
+  },
+  "solutions.vehicleCommerce.hero.stablecoinsX402": {
+    "message": "穩定幣與x402"
+  },
+  "solutions.vehicleCommerce.hero.acceptStablecoinPaymentsEnable": {
+    "message": "收取穩定幣付款、實現機器對機器交易，並以x402協定自動化車輛商務。手續費低、即時結算、全球觸及，專為現代移動出行打造。"
+  },
+  "solutions.vehicleCommerce.hero.getStarted": {
+    "message": "開始使用"
+  },
+  "solutions.vehicleCommerce.hero.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.vehicleCommerce.useCases.platformFeatures": {
+    "message": "平台功能"
+  },
+  "solutions.vehicleCommerce.useCases.everythingYouNeedFor": {
+    "message": "打造車輛支付所需的一切"
+  },
+  "solutions.vehicleCommerce.useCases.fromStablecoinInfrastructureTo": {
+    "message": "從穩定幣基礎架構到x402支付協定，DIMO提供打造現代車輛商務應用的完整平台。"
+  },
+  "solutions.vehicleCommerce.featureSection1.stablecoinPaymentsFastCheap": {
+    "message": "穩定幣支付：快速、低成本、全球通用"
+  },
+  "solutions.vehicleCommerce.featureSection1.acceptUsdcUsdtAnd": {
+    "message": "為車輛服務收取USDC、USDT及其他穩定幣。即時結算、手續費低、無須貨幣兌換，付款全球通用，免去傳統金流服務商的繁瑣。"
+  },
+  "solutions.vehicleCommerce.featureSection1.usdcAndUsdtSupport": {
+    "message": "支援主要區塊鏈（Polygon、Base等）上的USDC與USDT"
+  },
+  "solutions.vehicleCommerce.featureSection1.settlementInSecondsNot": {
+    "message": "數秒內完成結算，而非數天"
+  },
+  "solutions.vehicleCommerce.featureSection1.70LowerTransactionFees": {
+    "message": "交易手續費比信用卡網路低70%"
+  },
+  "solutions.vehicleCommerce.featureSection1.noChargebacksNoFraud": {
+    "message": "沒有拒付、沒有詐欺：不可竄改的鏈上交易"
+  },
+  "solutions.vehicleCommerce.featureSection1.stablecoinTokens": {
+    "message": "穩定幣代幣"
+  },
+  "solutions.vehicleCommerce.featureSection2.x402ProtocolMachineToMachinePayments": {
+    "message": "x402協定：機器對機器支付"
+  },
+  "solutions.vehicleCommerce.featureSection2.theX402ProtocolEnables": {
+    "message": "x402協定讓車輛與服務供應商之間能進行自動化、以權限為基礎的交易。車輛自動支付通行費、停車、充電與各項服務，無須使用者操作。"
+  },
+  "solutions.vehicleCommerce.featureSection2.openStandardForVehicleToInfrastructure": {
+    "message": "車輛對基礎設施支付的開放標準"
+  },
+  "solutions.vehicleCommerce.featureSection2.permissionBasedSpendingWithUserDefined": {
+    "message": "以權限為基礎的支出，搭配使用者自訂上限"
+  },
+  "solutions.vehicleCommerce.featureSection2.automatedPaymentsWithoutUser": {
+    "message": "無須使用者介入的自動付款"
+  },
+  "solutions.vehicleCommerce.featureSection2.compatibleWithExistingPayment": {
+    "message": "相容現有支付基礎架構"
+  },
+  "solutions.vehicleCommerce.featureSection2.x402ProtocolDiagram": {
+    "message": "x402協定示意圖"
+  },
+  "solutions.vehicleCommerce.featureSection3.builtInWalletInfrastructure": {
+    "message": "內建錢包基礎架構"
+  },
+  "solutions.vehicleCommerce.featureSection3.completeWalletSolutionWith": {
+    "message": "完整的錢包解決方案，搭配友善易用的介面。使用者可管理餘額、查看交易記錄並控管支出，全部整合在您的應用程式中，無須額外開發。"
+  },
+  "solutions.vehicleCommerce.featureSection3.nonCustodialWalletsWithSecure": {
+    "message": "非託管錢包，搭配安全的金鑰管理"
+  },
+  "solutions.vehicleCommerce.featureSection3.onOffRampIntegrationsFor": {
+    "message": "出入金整合，支援法幣兌換"
+  },
+  "solutions.vehicleCommerce.featureSection3.transactionHistoryAndSpending": {
+    "message": "交易記錄與支出分析"
+  },
+  "solutions.vehicleCommerce.featureSection3.spendingLimitsAndParental": {
+    "message": "支出上限與家長監護控制"
+  },
+  "solutions.vehicleCommerce.featureSection3.walletInterface": {
+    "message": "錢包介面"
+  },
+  "solutions.vehicleCommerce.howItWorks.integratePaymentInfrastructure.title": {
+    "message": "整合支付基礎架構"
+  },
+  "solutions.vehicleCommerce.howItWorks.integratePaymentInfrastructure.description": {
+    "message": "將DIMO的錢包與支付基礎架構加入您的應用程式。使用者可建立錢包，並透過我們的入金整合以穩定幣儲值。"
+  },
+  "solutions.vehicleCommerce.howItWorks.configureX402Permissions.title": {
+    "message": "設定x402權限"
+  },
+  "solutions.vehicleCommerce.howItWorks.configureX402Permissions.description": {
+    "message": "使用者為車輛授予付款權限，並設定支出上限與服務類別。所有權限皆公開透明，且可隨時撤銷。"
+  },
+  "solutions.vehicleCommerce.howItWorks.enableAutomatedPayments.title": {
+    "message": "啟用自動付款"
+  },
+  "solutions.vehicleCommerce.howItWorks.enableAutomatedPayments.description": {
+    "message": "車輛透過x402協定自動支付服務費用。通行費、停車、充電，全部無須使用者介入。"
+  },
+  "solutions.vehicleCommerce.howItWorks.trackSettleInstantly.title": {
+    "message": "即時追蹤與結算"
+  },
+  "solutions.vehicleCommerce.howItWorks.trackSettleInstantly.description": {
+    "message": "付款在鏈上數秒內完成結算。服務供應商立即收到款項，使用者也能即時查看交易記錄。"
+  },
+  "solutions.vehicleCommerce.howItWorks.howItWorks": {
+    "message": "運作方式"
+  },
+  "solutions.vehicleCommerce.howItWorks.enableVehiclePayments": {
+    "message": "啟用車輛支付"
+  },
+  "solutions.vehicleCommerce.howItWorks.fromWalletIntegrationTo": {
+    "message": "從錢包整合到自動付款，DIMO讓您輕鬆運用穩定幣與x402打造車輛商務應用。"
+  },
+  "solutions.vehicleCommerce.cta.readyToEnableVehicle": {
+    "message": "準備好啟用車輛商務了嗎？"
+  },
+  "solutions.vehicleCommerce.cta.joinTheCompaniesBuilding": {
+    "message": "與眾多企業一同運用穩定幣與x402協定，打造車輛支付的未來。"
+  },
+  "solutions.vehicleCommerce.cta.getStarted": {
+    "message": "開始使用"
+  },
+  "solutions.vehicleCommerce.cta.viewDocumentation": {
+    "message": "查看說明文件"
+  },
+  "solutions.vehicleCommerce.meta.title": {
+    "message": "車輛商務 | 穩定幣支付與x402協定"
+  },
+  "solutions.vehicleCommerce.meta.description": {
+    "message": "以穩定幣（USDC、USDT）與x402協定實現零阻礙的車輛支付。即時結算、手續費低，並支援自動化的機器對機器交易。"
+  },
+  "solutions.vehicleCommerce.meta.keywords": {
+    "message": "車輛支付, 穩定幣支付, USDC, USDT, x402協定, 加密貨幣支付, 區塊鏈支付, 車輛商務, 自動付款"
+  },
+  "solutions.vehicleCommerce.meta.ogTitle": {
+    "message": "車輛商務 | DIMO平台"
+  },
+  "solutions.vehicleCommerce.meta.ogDescription": {
+    "message": "收取穩定幣付款，並以x402協定實現自動化車輛交易。手續費低、即時結算、全球觸及。"
+  },
+  "solutions.vehicleCommerce.schema.dimoVehicleCommerce.name": {
+    "message": "DIMO車輛商務平台"
+  },
+  "solutions.vehicleCommerce.schema.dimoVehicleCommerce.description": {
+    "message": "支援穩定幣與x402協定的車輛支付平台。為移動出行服務實現自動化、低手續費的付款。"
+  },
+  "solutions.vehicleCommerce.body.home.name": {
+    "message": "首頁"
+  },
+  "solutions.vehicleCommerce.body.solutions.name": {
+    "message": "解決方案"
+  },
+  "solutions.vehicleCommerce.body.vehicleCommerce.name": {
+    "message": "車輛商務"
+  },
+  "footer.newsletterSignup.youreSubscribedWellBe": {
+    "message": "訂閱成功！我們會再與您聯繫。"
+  },
+  "footer.newsletterSignup.enterYourEmail": {
+    "message": "輸入您的電子郵件"
+  },
+  "footer.newsletter.sending": {
+    "message": "傳送中..."
+  },
+  "footer.newsletterSignup.pleaseEnterAValid": {
+    "message": "請輸入有效的電子郵件地址。"
+  },
+  "footer.body.stayUpToDate": {
+    "message": "掌握最新消息"
+  },
+  "footer.body.getTheLatestOn": {
+    "message": "搶先取得DIMO開發者工具、API更新與車輛資料洞察的最新消息。"
+  },
+  "footer.body.learnMore": {
+    "message": "了解更多"
+  },
+  "footer.body.developerDocs": {
+    "message": "開發者說明文件"
+  },
+  "footer.body.blogs": {
+    "message": "部落格"
+  },
+  "footer.body.sdks": {
+    "message": "SDK"
+  },
+  "footer.body.resources": {
+    "message": "資源"
+  },
+  "footer.body.apiStatus": {
+    "message": "API狀態"
+  },
+  "footer.body.getSupport": {
+    "message": "取得支援"
+  },
+  "footer.body.company": {
+    "message": "公司"
+  },
+  "footer.body.about": {
+    "message": "關於我們"
+  },
+  "footer.body.contact": {
+    "message": "聯絡我們"
+  },
+  "footer.body.privacyPolicy": {
+    "message": "隱私權政策"
+  },
+  "footer.body.termsOfService": {
+    "message": "服務條款"
+  },
+  "footer.body.copyright": {
+    "message": "© {year} DIMO® 版權所有"
+  }
+}
