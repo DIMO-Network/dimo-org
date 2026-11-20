@@ -10,6 +10,7 @@ import CustomNavbar from '../components/CustomNavbar';
 import { LINKS } from '../links';
 import { Star } from 'lucide-react';
 import ChatBot from '../components/ChatBot/ChatBot';
+import HeroFlow from '../components/HeroFlow';
 import Translate, { translate } from '@docusaurus/Translate';
 
 // Asset imports
@@ -20,7 +21,6 @@ const imgIconSecureCompliant = '/img/icon-secure.svg';
 const imgIconUniversalCompatibility = '/img/icon-universal.svg';
 const imgIconStarsAI = '/img/icon-ai.svg'; // Used as AI icon
 const imgHardware = '/img/dimo_hardware.webp';
-const imgDimoAiPlaceholder = '/img/DIMO-Docs.webp';
 
 // Rotating word for the hero H1. Cross-fades between complete words so the
 // heading is always readable — the old typewriter effect left fragments like
@@ -44,7 +44,7 @@ function useRotatingWord(words: string[], holdMs = 3500, fadeMs = 400) {
     };
   }, [words, holdMs, fadeMs]);
 
-  return { word: words[index], visible };
+  return { index, visible };
 }
 
 // Defers video fetching until the element nears the viewport. `autoplay` in
@@ -106,91 +106,82 @@ function LazyVideo({
 }
 
 const ROTATING_WORDS = [
-  translate({ id: 'home.rotatingWords.vehicleData', message: 'vehicle data' }),
+  translate({
+    id: 'home.rotatingWords.connectedVehicleData',
+    message: 'connected-vehicle data',
+  }),
   translate({
     id: 'home.rotatingWords.sessionBasedEconomy',
     message: 'session-based economy',
   }),
-  translate({ id: 'home.rotatingWords.mobility', message: 'mobility' }),
+  translate({
+    id: 'home.rotatingWords.physicalAiInMobility',
+    message: 'Physical AI in mobility',
+  }),
 ];
 
 function HeroSection() {
-  const { word, visible } = useRotatingWord(ROTATING_WORDS);
+  const { index, visible } = useRotatingWord(ROTATING_WORDS);
 
   return (
     <header className={styles.hero}>
-      <div className={styles.heroGrid} />
-      <div className={styles.heroGlow} />
-
       <div className={styles.heroContent}>
-        <Link
-          className={styles.pill}
-          to="https://www.producthunt.com/products/dimo-build?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-dimo"
-        >
-          <span className={styles.pillNew}>
-            <Translate id="home.hero.new">New</Translate>
-          </span>
-          <span>
-            <Translate id="home.hero.checkUsOutOn">
-              Check us out on ProductHunt
-            </Translate>{' '}
-            <span className={styles.arrow}>→</span>
-          </span>
-        </Link>
+        <div className={styles.heroTop}>
+          <h1 className={styles.heroTitle}>
+            <Translate
+              id="home.hero.theInfrastructureBuiltFor"
+              values={{
+                br: <br />,
+                word: (
+                  <span className={styles.rotator}>
+                    {ROTATING_WORDS.map(w => (
+                      <span
+                        key={w}
+                        aria-hidden="true"
+                        className={styles.rotatorSizer}
+                        data-text={w}
+                      />
+                    ))}
+                    <span
+                      className={`${styles.rotatingWord} ${
+                        visible ? styles.rotatingWordVisible : ''
+                      }`}
+                    >
+                      {ROTATING_WORDS[index]}
+                    </span>
+                  </span>
+                ),
+              }}
+            >
+              {'The infrastructure built for {br}{word}'}
+            </Translate>
+          </h1>
 
-        <h1 className={styles.heroTitle}>
-          <Translate
-            id="home.hero.theInfrastructureBuiltFor"
-            values={{
-              br: <br />,
-              word: (
-                <span
-                  className={`${styles.rotatingWord} ${
-                    visible ? styles.rotatingWordVisible : ''
-                  }`}
-                >
-                  {word}
-                </span>
-              ),
-            }}
-          >
-            {'The infrastructure built for {br}{word}'}
-          </Translate>
-        </h1>
+          <div className={styles.heroAside}>
+            <p className={styles.heroSubtitle}>
+              <Translate id="home.hero.dimoIsBuildingThe">
+                DIMO is building the infrastructure for the session-based
+                economy—where vehicles, drivers, and services connect on-demand.
+                Build apps that unlock value across every trip, rental, and
+                interaction.
+              </Translate>
+            </p>
 
-        <p className={styles.heroSubtitle}>
-          <Translate id="home.hero.dimoIsBuildingThe">
-            DIMO is building the infrastructure for the session-based
-            economy—where vehicles, drivers, and services connect on-demand.
-            Build apps that unlock value across every trip, rental, and
-            interaction.
-          </Translate>
-        </p>
-
-        <div className={styles.heroButtons}>
-          <Link className={styles.primaryBtn} to={LINKS.external.console}>
-            <Translate id="home.hero.signUp">Sign Up</Translate>{' '}
-            <span className={styles.arrow}>→</span>
-          </Link>
-          <EnglishLink className={styles.secondaryBtn} to="/docs">
-            <Translate id="home.hero.readTheDocs">Read the Docs</Translate>{' '}
-            <span className={styles.arrow}>→</span>
-          </EnglishLink>
+            <div className={styles.heroButtons}>
+              <Link className={styles.primaryBtn} to={LINKS.external.console}>
+                <Translate id="home.hero.signUp">Sign Up</Translate>{' '}
+                <span className={styles.arrow}>→</span>
+              </Link>
+              <EnglishLink className={styles.secondaryBtn} to="/docs">
+                <Translate id="home.hero.readTheDocs">Read the Docs</Translate>{' '}
+                <span className={styles.arrow}>→</span>
+              </EnglishLink>
+            </div>
+          </div>
         </div>
 
-        {/* Visual / Code Editor */}
         <div className={styles.heroVisual}>
-          <div className={styles.codeWindow}>
-            <img
-              src={imgDimoAiPlaceholder}
-              alt="DIMO Docs"
-              width={3454}
-              height={1970}
-              fetchPriority="high"
-              decoding="async"
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-            />
-          </div>
+          <HeroFlow />
         </div>
       </div>
     </header>
@@ -247,67 +238,199 @@ function FeaturedInSection() {
   );
 }
 
+const WHAT_IS_DIMO_POINTS = [
+  {
+    title: translate({
+      id: 'home.whatIsDimo.points.brands.title',
+      message: '50+ brands',
+    }),
+    desc: translate({
+      id: 'home.whatIsDimo.points.brands.desc',
+      message:
+        'Tesla, Ford, BMW, Toyota, Hyundai and more through one integration.',
+    }),
+  },
+  {
+    title: translate({
+      id: 'home.whatIsDimo.points.signals.title',
+      message: 'Live signals',
+    }),
+    desc: translate({
+      id: 'home.whatIsDimo.points.signals.desc',
+      message:
+        'Location, battery, fuel, odometer, tire pressure and trouble codes.',
+    }),
+  },
+  {
+    title: translate({
+      id: 'home.whatIsDimo.points.consent.title',
+      message: 'Owner consent',
+    }),
+    desc: translate({
+      id: 'home.whatIsDimo.points.consent.desc',
+      message:
+        'Owners grant and revoke access per session. GDPR and EU Data Act ready.',
+    }),
+  },
+  {
+    title: translate({
+      id: 'home.whatIsDimo.points.free.title',
+      message: 'Free to start',
+    }),
+    desc: translate({
+      id: 'home.whatIsDimo.points.free.desc',
+      message: 'Hobbyist tier with SDKs for TypeScript, Python and C#.',
+    }),
+  },
+];
+
+// The scannable version leads; the full overview stays in the HTML (inside
+// <details>) so search and AI engines still see every fact.
 function WhatIsDimoSection() {
   return (
     <section className={styles.answerSection}>
-      <div className={styles.answerBlock}>
-        <h2>
+      <div className={styles.container}>
+        <h2 className={styles.eyebrow}>
           <Translate id="home.whatIsDimo.whatIsDimo">What is DIMO?</Translate>
         </h2>
-        <p>
-          <Translate id="home.whatIsDimo.dimoDigitalInfrastructureFor">
-            DIMO (Digital Infrastructure for Moving Objects) is the vehicle data
-            infrastructure that powers the session-based economy, where
-            vehicles, drivers, and services connect on-demand. DIMO handles
-            vehicle access through a single, permissioned API for real-time
-            telemetry, vehicle identity, and owner consent (SACD) across 50+
-            brands, including Tesla, Ford, BMW, Toyota, and Hyundai, so
-            developers can build apps and businesses without negotiating
-            separate integrations with each manufacturer. Developers create a
-            free account at console.dimo.org, generate API keys, and query live
-            vehicle data such as location, battery and fuel level, odometer,
-            tire pressure, and diagnostic trouble codes through GraphQL and REST
-            endpoints, with official SDKs for TypeScript, Python, and C#.
-            Vehicle owners control their data: they grant or revoke access with
-            granular, auditable permissions that can activate and expire with
-            each session, which keeps applications compliant with GDPR and the
-            EU Data Act by default. The platform core is open source, supports
-            bring-your-own-device telematics hardware, and the free Hobbyist
-            tier lets developers make their first API call in minutes.
+        <p className={styles.answerHeadline}>
+          <Translate id="home.whatIsDimo.headline">
+            One API for 50+ car brands.
+          </Translate>
+          <br />
+          <span className={styles.muted}>
+            <Translate id="home.whatIsDimo.headlineMuted">
+              Owners stay in control.
+            </Translate>
+          </span>
+        </p>
+        <p className={styles.answerLede}>
+          <Translate id="home.whatIsDimo.lede">
+            DIMO (Digital Infrastructure for Moving Objects) is vehicle data
+            infrastructure: one permissioned API for live telemetry, identity,
+            and owner consent.
           </Translate>
         </p>
-        <p>
-          <Translate
-            id="home.whatIsDimo.startWithTheOverview"
-            values={{
-              link: (
-                <Link to="/connected-car-api">
-                  <Translate id="home.whatIsDimo.connectedCarApi">
-                    connected car API
+        <div className={styles.pointGrid}>
+          {WHAT_IS_DIMO_POINTS.map(point => (
+            <div key={point.title} className={styles.point}>
+              <h3 className={styles.pointTitle}>{point.title}</h3>
+              <p className={styles.pointDesc}>{point.desc}</p>
+            </div>
+          ))}
+        </div>
+        <details className={styles.answerMore}>
+          <summary>
+            <Translate id="home.whatIsDimo.readFullOverview">
+              Read the full overview
+            </Translate>
+          </summary>
+          <div className={styles.overviewGrid}>
+            <div>
+              <h3 className={styles.overviewTitle}>
+                <Translate id="home.whatIsDimo.overview.start.title">
+                  Get started in minutes
+                </Translate>
+              </h3>
+              <ol className={styles.overviewList}>
+                <li>
+                  <Translate
+                    id="home.whatIsDimo.overview.start.account"
+                    values={{
+                      console: (
+                        <Link to={LINKS.external.console}>
+                          console.dimo.org
+                        </Link>
+                      ),
+                    }}
+                  >
+                    {'Create a free account at {console}.'}
                   </Translate>
-                </Link>
-              ),
-              link2: (
-                <Link to="/vehicle-data-api">
-                  <Translate id="home.whatIsDimo.vehicleDataApi">
-                    vehicle data API
+                </li>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.start.keys">
+                    Generate API keys.
                   </Translate>
-                </Link>
-              ),
-              link3: (
-                <Link to="/compare/smartcar-alternative">
-                  <Translate id="home.whatIsDimo.dimoVsSmartcar">
-                    DIMO vs Smartcar
+                </li>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.start.query">
+                    Query live data over GraphQL or REST, or use the SDKs for
+                    TypeScript, Python and C#.
                   </Translate>
-                </Link>
-              ),
-            }}
-          >
-            {
-              'Start with the {link} overview for capabilities, the {link2} page for the signal catalog, or the {link3} comparison if you are evaluating providers.'
-            }
-          </Translate>
-        </p>
+                </li>
+              </ol>
+            </div>
+            <div>
+              <h3 className={styles.overviewTitle}>
+                <Translate id="home.whatIsDimo.overview.owners.title">
+                  Owners control access
+                </Translate>
+              </h3>
+              <ul className={styles.overviewList}>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.owners.grant">
+                    Grant or revoke access with granular, auditable permissions
+                    (SACD).
+                  </Translate>
+                </li>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.owners.session">
+                    Permissions can start and expire with each session.
+                  </Translate>
+                </li>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.owners.compliance">
+                    GDPR and EU Data Act compliant by default.
+                  </Translate>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className={styles.overviewTitle}>
+                <Translate id="home.whatIsDimo.overview.sessions.title">
+                  Built for the session-based economy
+                </Translate>
+              </h3>
+              <ul className={styles.overviewList}>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.sessions.onDemand">
+                    Vehicles, drivers and services connect on demand.
+                  </Translate>
+                </li>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.sessions.noIntegrations">
+                    No separate integration with each manufacturer.
+                  </Translate>
+                </li>
+                <li>
+                  <Translate id="home.whatIsDimo.overview.sessions.open">
+                    Open-source core. Bring your own telematics hardware.
+                  </Translate>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p className={styles.overviewLinks}>
+            <span>
+              <Translate id="home.whatIsDimo.learnMore">Learn more:</Translate>
+            </span>
+            <Link to="/connected-car-api">
+              <Translate id="home.whatIsDimo.connectedCarApi">
+                connected car API
+              </Translate>
+            </Link>
+            <Link to="/vehicle-data-api">
+              <Translate id="home.whatIsDimo.vehicleDataApi">
+                vehicle data API
+              </Translate>
+            </Link>
+            <Link to="/compare/smartcar-alternative">
+              <Translate id="home.whatIsDimo.dimoVsSmartcar">
+                DIMO vs Smartcar
+              </Translate>
+            </Link>
+          </p>
+        </details>
       </div>
     </section>
   );
@@ -410,7 +533,6 @@ function FeaturesGrid() {
       <div className={styles.bentoGrid}>
         {features.map((f, i) => (
           <div key={i} className={styles.card}>
-            <div className={styles.cardGlow} />
             <div className={styles.cardIcon}>
               <img src={f.icon} alt="" width={48} height={48} loading="lazy" />
             </div>
@@ -660,7 +782,7 @@ function HardwareSection() {
     <section className={styles.hardwareSection}>
       <div className={styles.hardwareContainer}>
         <div className={styles.hardwareContent}>
-          <span className={styles.hardwareSubBanner}>DIMO LTE R1</span>
+          <span className={styles.eyebrow}>DIMO LTE R1</span>
           <h2 className={styles.hardwareTitle}>
             <Translate id="home.hardware.compatibleHardware">
               Compatible Hardware

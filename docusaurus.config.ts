@@ -201,8 +201,8 @@ const config: Config = {
     },
   },
 
-  // Geist is self-hosted via @fontsource-variable/geist (imported in
-  // custom.css) — no render-blocking Google Fonts stylesheet, no external
+  // Funnel Display and Funnel Sans are self-hosted via @fontsource-variable
+  // (imported in custom.css) — no render-blocking Google Fonts stylesheet, no external
   // font round-trips. The gtag preset plugin injects its own init snippet,
   // so no manual dataLayer bootstrap is needed here.
   headTags: [],

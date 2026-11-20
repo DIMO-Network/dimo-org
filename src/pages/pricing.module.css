@@ -4,7 +4,7 @@
  */
 
 .pricingPage {
-  background-color: #030303;
+  background-color: #16161a;
   color: #ffffff;
   min-height: 100vh;
   font-family:
@@ -18,12 +18,12 @@
   padding-top: 80px;
 
   /* Local variables matching homepage */
-  --hp-accent: #124bdb;
-  --hp-accent-glow: rgba(18, 75, 219, 0.5);
-  --hp-purple: #8b5cf6;
-  --hp-bg-card: #0a0a0a;
-  --hp-border: rgba(255, 255, 255, 0.1);
-  --hp-text-muted: #a1a1aa;
+  --hp-accent: #8f99ff;
+  --hp-accent-glow: rgba(143, 153, 255, 0.5);
+  --hp-purple: #8f99ff;
+  --hp-bg-card: #1f1f24;
+  --hp-border: #2c2c33;
+  --hp-text-muted: #a09ca6;
 }
 
 /* --- Hero Section --- */
@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #030303 60%);
+  background: #16161a;
   overflow: hidden;
 }
 
@@ -48,43 +48,37 @@
 
 .earlyBirdBadge {
   display: inline-block;
-  background: linear-gradient(135deg, #8b5cf6, #124bdb);
-  color: #fff;
+  background: transparent;
+  color: var(--hp-accent);
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0.5rem 1.25rem;
-  border-radius: 100px;
+  border-radius: 6px;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
-  animation: pulse 2s ease-in-out infinite;
+  border: 1px solid #2c2c33;
 }
 
 @keyframes pulse {
   0%,
   100% {
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
   }
   50% {
-    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.5);
   }
 }
 
 .heroTitle {
   font-size: 3rem;
   line-height: 1.1;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
   color: #fff;
 }
 
 .heroTitleSpan {
-  background: linear-gradient(135deg, #124bdb, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--hp-accent);
 }
 
 .heroSubtitle {
@@ -109,10 +103,10 @@
 
 .toggleGroup {
   background: rgba(255, 255, 255, 0.08);
-  border-radius: 100px;
+  border-radius: 6px;
   padding: 4px;
   display: inline-flex;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #2c2c33;
 }
 
 .toggleButton {
@@ -120,7 +114,7 @@
   border: none;
   color: var(--hp-text-muted);
   padding: 8px 24px;
-  border-radius: 100px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
   font-size: 0.95rem;
@@ -135,7 +129,6 @@
   background: #fff;
   color: #000;
   font-weight: 600;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .toggleButtonActive:hover {
@@ -166,9 +159,9 @@
 }
 
 .pricingCard {
-  background: linear-gradient(145deg, #0a0a0a, #050505);
+  background: #1f1f24;
   border: 1px solid var(--hp-border);
-  border-radius: 16px;
+  border-radius: 6px;
   padding: 2.5rem 2rem;
   transition:
     transform 0.3s,
@@ -182,28 +175,11 @@
 }
 
 .pricingCard:hover {
-  transform: translateY(-5px);
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  border-color: rgba(143, 153, 255, 0.3);
 }
 
 .featuredCard {
-  border-color: #124bdb;
-  box-shadow: 0 0 30px rgba(18, 75, 219, 0.15);
-}
-
-.cardGlow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(
-    circle at 100% 0%,
-    rgba(59, 130, 246, 0.1),
-    transparent 70%
-  );
-  pointer-events: none;
+  border-color: #4b58f5;
 }
 
 .tierName {
@@ -218,8 +194,10 @@
 }
 
 .tierPrice {
+  font-family: var(--ifm-heading-font-family);
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: #fff;
   line-height: 1;
 }
@@ -266,13 +244,13 @@
   align-items: flex-start;
   gap: 0.75rem;
   margin-bottom: 1rem;
-  color: #e2e8f0;
+  color: #d9d6dd;
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
 .checkIcon {
-  color: #22c55e;
+  color: #8f99ff;
   font-weight: bold;
   flex-shrink: 0;
   margin-top: 2px;
@@ -283,12 +261,12 @@
   width: 100%;
   background: transparent;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #2c2c33;
   padding: 0.875rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
@@ -301,26 +279,24 @@
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   text-decoration: none;
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: #a09ca6;
 }
 
 .primaryCardBtn {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  background: #4b58f5;
+  color: #ffffff;
+  border: 1px solid #4b58f5;
   font-weight: 600;
 }
 
 .primaryCardBtn:hover {
   background: #e2e2e2;
   color: #000000;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 /* --- Enterprise Card Special Styles --- */
 .enterpriseCard {
-  background: linear-gradient(145deg, #0a0a0a, #050505);
+  background: #1f1f24;
 }
 
 .mostPopularBadge {
@@ -328,17 +304,16 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  background: #3b82f6;
+  background: #4b58f5;
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.25rem 1rem;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   z-index: 5;
-  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
 }
 
 /* --- Responsive --- */
@@ -350,6 +325,9 @@
   .earlyBirdBadge {
     font-size: 0.75rem;
     padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1px solid #2c2c33;
+    color: var(--hp-accent);
   }
 
   .pricingGrid {
@@ -378,8 +356,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(22, 22, 26, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -388,9 +365,9 @@
 }
 
 .modal {
-  background: #0a0a0a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: #1f1f24;
+  border: 1px solid #2c2c33;
+  border-radius: 6px;
   max-width: 520px;
   width: 100%;
   padding: 2rem;
@@ -454,8 +431,8 @@
   flex: 1;
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+  border: 1px solid #2c2c33;
+  border-radius: 6px;
   color: #ffffff;
   font-size: 0.9rem;
   font-family: inherit;
@@ -472,7 +449,7 @@
 }
 
 .modalInput option {
-  background: #0a0a0a;
+  background: #1f1f24;
   color: #ffffff;
 }
 
@@ -480,8 +457,8 @@
   width: 100%;
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+  border: 1px solid #2c2c33;
+  border-radius: 6px;
   color: #ffffff;
   font-size: 0.9rem;
   font-family: inherit;
@@ -501,10 +478,10 @@
 .modalBtn {
   width: 100%;
   padding: 0.875rem;
-  background: var(--hp-accent);
+  background: #4b58f5;
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   font-family: inherit;
@@ -514,7 +491,7 @@
 }
 
 .modalBtn:hover {
-  background: #0f3fb8;
+  background: #5664ff;
 }
 
 .modalBtn:disabled {
@@ -543,4 +520,13 @@
   font-size: 0.95rem;
   margin: 0 0 1.5rem;
   line-height: 1.5;
+}
+
+/* --- DIMO design system headings (global h1-h3 weights use !important) --- */
+.pricingPage h1,
+.pricingPage h2,
+.pricingPage h3 {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 500 !important;
+  letter-spacing: -0.02em;
 }

@@ -75,7 +75,7 @@
     "message": "連線來源不限，資料層只有一個"
   },
   "connectedCarApi.body.connectivityProvidersSuchAs": {
-    "message": "Smartcar、Flespi和Volteras等連線供應商屬於直通式API：它們把OEM的資料格式轉換後交給您，接下來的事就得您自己處理。它們不儲存資料，沒有共享或同意模型，也無法自行架設。DIMO則是這些資料流匯入的那一層。來自任何接入來源的訊號，都會進入同一個權威資料系統，並內建身分、車主同意與共享機制；核心更是開源的，您可以自行運行。您也可以保留既有的Smartcar或Flespi整合，直接在上面加上DIMO。這正是驅動工作階段經濟的存取層：將身分、資料與同意打包在一起，讓一輛車能以單一可稽核的工作階段來出租、共享或維修。"
+    "message": "Smartcar、Flespi和Volteras等連線供應商屬於直通式API：它們把OEM的資料格式轉換後交給您，接下來的事就得您自己處理。它們不儲存資料，沒有共享或同意模型，也無法自行架設。DIMO則是這些資料流匯入的那一層。來自任何接入來源的訊號，都會進入同一個權威資料系統，並內建身分、車主同意與共享機制；核心更是開源的，您可以自行運行。您也可以保留既有的Smartcar或Flespi整合，直接在上面加上DIMO。這正是驅動會話機制經濟的存取層：將身分、資料與同意打包在一起，讓一輛車能以單一可稽核的會話來出租、共享或維修。"
   },
   "connectedCarApi.body.oneQueryAnySource": {
     "message": "一個查詢，任何來源"
@@ -102,7 +102,7 @@
     "message": "大家都在打造什麼"
   },
   "connectedCarApi.body.evChargingAppsThat": {
-    "message": "根據真實電量、而非使用者猜測來排程的電動車充電應用。不必動用三家車載資通訊供應商，就能追蹤混合品牌車輛的車隊工具。{link}，讓每筆預約都成為一個工作階段：數位鑰匙、限定範圍的資料、支出上限，並在還車時乾淨俐落地撤銷權限。依實際駕駛行為定價的使用量計費保險。還有能在您開口之前，就先檢查車輛電量並預先調節車內溫度的AI代理。"
+    "message": "根據真實電量、而非使用者猜測來排程的電動車充電應用。不必動用三家車載資通訊供應商，就能追蹤混合品牌車輛的車隊工具。{link}，讓每筆預約都成為一個會話：數位鑰匙、限定範圍的資料、支出上限，並在還車時乾淨俐落地撤銷權限。依實際駕駛行為定價的使用量計費保險。還有能在您開口之前，就先檢查車輛電量並預先調節車內溫度的AI代理。"
   },
   "connectedCarApi.body.rentalAndCarshareOperations": {
     "message": "租車與共享汽車營運服務"
@@ -134,26 +134,20 @@
   "connectedCarApi.body.consoleDimoOrg": {
     "message": "console.dimo.org"
   },
-  "home.rotatingWords.vehicleData": {
-    "message": "車輛資料"
+  "home.rotatingWords.connectedVehicleData": {
+    "message": "聯網車輛資料"
   },
   "home.rotatingWords.sessionBasedEconomy": {
-    "message": "工作階段經濟"
+    "message": "會話機制經濟"
   },
-  "home.rotatingWords.mobility": {
-    "message": "移動服務"
-  },
-  "home.hero.new": {
-    "message": "全新"
-  },
-  "home.hero.checkUsOutOn": {
-    "message": "歡迎到ProductHunt看看我們"
+  "home.rotatingWords.physicalAiInMobility": {
+    "message": "移動產業的實體AI"
   },
   "home.hero.theInfrastructureBuiltFor": {
-    "message": "專為{br}{word}打造的基礎架構"
+    "message": "專為{word}{br}打造的基礎架構"
   },
   "home.hero.dimoIsBuildingThe": {
-    "message": "DIMO正在為工作階段經濟打造基礎架構，讓車輛、駕駛人與各項服務隨需連接。打造能在每一趟行程、每一次租賃、每一次互動中創造價值的應用程式。"
+    "message": "DIMO正在為會話機制經濟打造基礎架構，讓車輛、駕駛人與各項服務隨需連接。打造能在每一趟行程、每一次租賃、每一次互動中創造價值的應用程式。"
   },
   "home.hero.signUp": {
     "message": "註冊"
@@ -176,14 +170,83 @@
   "home.featuredIn.allThirdPartyTrademarksAre": {
     "message": "所有第三方商標均為其各自擁有者之財產，僅用於標示獨立的編輯報導，並不代表任何背書或贊助關係。"
   },
+  "home.whatIsDimo.points.brands.title": {
+    "message": "50多個品牌"
+  },
+  "home.whatIsDimo.points.brands.desc": {
+    "message": "Tesla、Ford、BMW、Toyota、Hyundai等，一次整合全部串接。"
+  },
+  "home.whatIsDimo.points.signals.title": {
+    "message": "即時訊號"
+  },
+  "home.whatIsDimo.points.signals.desc": {
+    "message": "位置、電量、油量、里程、胎壓與故障碼。"
+  },
+  "home.whatIsDimo.points.consent.title": {
+    "message": "車主授權"
+  },
+  "home.whatIsDimo.points.consent.desc": {
+    "message": "車主依會話授予與撤銷存取權限。符合GDPR與歐盟《資料法》。"
+  },
+  "home.whatIsDimo.points.free.title": {
+    "message": "免費開始"
+  },
+  "home.whatIsDimo.points.free.desc": {
+    "message": "Hobbyist方案，提供TypeScript、Python與C# SDK。"
+  },
   "home.whatIsDimo.whatIsDimo": {
     "message": "DIMO是什麼？"
   },
-  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
-    "message": "DIMO（Digital Infrastructure for Moving Objects，移動物件數位基礎架構）是驅動工作階段經濟的車輛資料基礎架構，讓車輛、駕駛人與各項服務隨需連接。DIMO透過單一權限控管的API處理車輛存取，提供涵蓋50+個品牌（包括Tesla、Ford、BMW、Toyota和Hyundai）的即時遙測、車輛身分與車主同意（SACD），讓開發者不必與每家車廠分別洽談整合，就能打造應用程式與事業。開發者可在console.dimo.org建立免費帳號、產生API金鑰，並透過GraphQL與REST端點查詢位置、電池電量與油量、里程表、胎壓、故障診斷碼等即時車輛資料，另有TypeScript、Python和C#官方SDK可用。車主掌控自己的資料：他們可透過精細、可稽核的權限授予或撤銷存取權限，這些權限能隨每個工作階段啟用與到期，讓應用程式預設就符合GDPR與歐盟資料法。平台核心為開源，支援自帶裝置的車載資通訊硬體，而免費的Hobbyist方案讓開發者幾分鐘內就能完成第一次API呼叫。"
+  "home.whatIsDimo.headline": {
+    "message": "一個API，串接50多個汽車品牌。"
   },
-  "home.whatIsDimo.startWithTheOverview": {
-    "message": "您可以從{link}概覽了解各項功能，到{link2}頁面查看訊號目錄；如果您正在評估供應商，也可以參考{link3}比較。"
+  "home.whatIsDimo.headlineMuted": {
+    "message": "資料始終由車主掌控。"
+  },
+  "home.whatIsDimo.lede": {
+    "message": "DIMO（Digital Infrastructure for Moving Objects）是車輛資料基礎設施：透過一個以授權為基礎的API取得即時遙測、身分與車主同意。"
+  },
+  "home.whatIsDimo.readFullOverview": {
+    "message": "閱讀完整概述"
+  },
+  "home.whatIsDimo.overview.start.title": {
+    "message": "幾分鐘即可上手"
+  },
+  "home.whatIsDimo.overview.start.account": {
+    "message": "在{console}免費註冊帳戶。"
+  },
+  "home.whatIsDimo.overview.start.keys": {
+    "message": "產生API金鑰。"
+  },
+  "home.whatIsDimo.overview.start.query": {
+    "message": "透過GraphQL或REST查詢即時資料，或使用TypeScript、Python與C# SDK。"
+  },
+  "home.whatIsDimo.overview.owners.title": {
+    "message": "存取權限由車主掌控"
+  },
+  "home.whatIsDimo.overview.owners.grant": {
+    "message": "透過細緻、可稽核的權限（SACD）授予或撤銷存取。"
+  },
+  "home.whatIsDimo.overview.owners.session": {
+    "message": "權限可隨每個會話開始與到期。"
+  },
+  "home.whatIsDimo.overview.owners.compliance": {
+    "message": "預設符合GDPR與歐盟《資料法》。"
+  },
+  "home.whatIsDimo.overview.sessions.title": {
+    "message": "為會話機制經濟而生"
+  },
+  "home.whatIsDimo.overview.sessions.onDemand": {
+    "message": "車輛、駕駛與服務隨需連線。"
+  },
+  "home.whatIsDimo.overview.sessions.noIntegrations": {
+    "message": "不必與每家車廠個別整合。"
+  },
+  "home.whatIsDimo.overview.sessions.open": {
+    "message": "核心開源。支援自備車載硬體。"
+  },
+  "home.whatIsDimo.learnMore": {
+    "message": "了解更多："
   },
   "home.whatIsDimo.connectedCarApi": {
     "message": "聯網汽車API"
@@ -231,19 +294,19 @@
     "message": "DIMO將存取紀錄寫入經密碼學簽署、可獨立驗證的帳本，在維護安全的同時，確保符合GDPR與歐盟資料法。"
   },
   "home.featuresGrid.builtForTheSessionBased": {
-    "message": "專為工作階段經濟打造"
+    "message": "專為會話機制經濟打造"
   },
   "home.featuresGrid.theFutureOfMobility": {
-    "message": "移動服務的未來在於工作階段，而非擁有權。DIMO提供您打造服務所需的基礎元件，讓服務在行程開始時啟用、在結束時結算：資料同意、即時遙測、支付與AI驅動的自動化，全都整合在同一個平台。"
+    "message": "移動服務的未來在於會話，而非擁有權。DIMO提供您打造服務所需的基礎元件，讓服務在行程開始時啟用、在結束時結算：資料同意、即時遙測、支付與AI驅動的自動化，全都整合在同一個平台。"
   },
   "home.automateOperations.automateOperations": {
     "message": "自動化營運"
   },
   "home.automateOperations.powerEverySessionEnd": {
-    "message": "從頭到尾，驅動每一個工作階段"
+    "message": "從頭到尾，驅動每一個會話"
   },
   "home.automateOperations.fromTheMomentA": {
-    "message": "從駕駛人解鎖車輛的那一刻，到交還車輛的那一瞬間，DIMO統籌整個工作階段的生命週期。運用能在每次互動間延續情境的AI代理自動化工作流程，讓您的團隊專注於成長，而不是瑣碎營運。最適合："
+    "message": "從駕駛人解鎖車輛的那一刻，到交還車輛的那一瞬間，DIMO統籌整個會話的生命週期。運用能在每次互動間延續情境的AI代理自動化工作流程，讓您的團隊專注於成長，而不是瑣碎營運。最適合："
   },
   "home.automateOperations.rentalsFleetTurnover": {
     "message": "租賃與車隊周轉"
@@ -252,7 +315,7 @@
     "message": "按次付費與訂閱服務"
   },
   "home.automateOperations.sessionBasedInsuranceRisk": {
-    "message": "以工作階段計費的保險與風險管理"
+    "message": "以會話計費的保險與風險管理"
   },
   "home.automateOperations.bookingCheckInReturns": {
     "message": "預約、取車報到與還車"
@@ -261,19 +324,19 @@
     "message": "依使用狀況觸發的維修保養"
   },
   "home.bigFeature.connectAnyVehicleStart": {
-    "message": "連接任何車輛，開啟任何工作階段。"
+    "message": "連接任何車輛，開啟任何會話。"
   },
   "home.bigFeature.theSessionBasedEconomyRuns": {
-    "message": "工作階段經濟靠即時車輛資料運轉。DIMO支援網路上已有的50+個品牌車輛，您也可以透過{link}接入自己的資料。每個工作階段都具備經驗證的身分、即時遙測與由使用者掌控的同意，讓您能放心地向駕駛人收費、提供保險與服務。"
+    "message": "會話機制經濟靠即時車輛資料運轉。DIMO支援網路上已有的50+個品牌車輛，您也可以透過{link}接入自己的資料。每個會話都具備經驗證的身分、即時遙測與由使用者掌控的同意，讓您能放心地向駕駛人收費、提供保險與服務。"
   },
   "home.bigFeature.verifiedVehicleDriverIdentity": {
-    "message": "每個工作階段都經驗證的車輛與駕駛人身分"
+    "message": "每個會話都經驗證的車輛與駕駛人身分"
   },
   "home.bigFeature.realTimeTelemetryFromIgnition": {
     "message": "從點火到停車的即時遙測"
   },
   "home.bigFeature.granularConsentThatActivates": {
-    "message": "隨每個工作階段啟用與到期的精細同意"
+    "message": "隨每個會話啟用與到期的精細同意"
   },
   "home.bigFeature.telematicsArchitecture": {
     "message": "車載資通訊架構"
@@ -309,10 +372,10 @@
     "message": "與我們聊聊"
   },
   "home.cta.readyToBuildFor": {
-    "message": "準備好為工作階段打造服務了嗎？"
+    "message": "準備好為會話打造服務了嗎？"
   },
   "home.cta.joinDevelopersBuildingThe": {
-    "message": "加入開發者的行列，一起打造新一代以工作階段為基礎的移動服務。立即取得您的API金鑰，今天就推出您的第一個工作階段。"
+    "message": "加入開發者的行列，一起打造新一代以會話為基礎的移動服務。立即取得您的API金鑰，今天就推出您的第一個會話。"
   },
   "home.cta.getApiKeys": {
     "message": "取得API金鑰"
@@ -321,28 +384,28 @@
     "message": "加入Discord"
   },
   "home.meta.title": {
-    "message": "DIMO | 為工作階段經濟打造的車輛平台"
+    "message": "DIMO | 為會話機制經濟打造的車輛平台"
   },
   "home.meta.description": {
-    "message": "DIMO驅動工作階段經濟：為50+個品牌處理車輛存取、遙測、身分與同意（SACD），讓您專心打造應用程式與事業。"
+    "message": "DIMO驅動會話機制經濟：為50+個品牌處理車輛存取、遙測、身分與同意（SACD），讓您專心打造應用程式與事業。"
   },
   "home.meta.keywords": {
-    "message": "工作階段經濟, 車輛資料API, 聯網汽車平台, 汽車開發者平台, 車輛智慧, 汽車API, 車載資通訊API, OEM API, 交通行動服務, 車輛SDK, DIMO"
+    "message": "會話機制經濟, 車輛資料API, 聯網汽車平台, 汽車開發者平台, 車輛智慧, 汽車API, 車載資通訊API, OEM API, 交通行動服務, 車輛SDK, DIMO"
   },
   "home.meta.ogTitle": {
-    "message": "DIMO | 為工作階段經濟打造的車輛平台"
+    "message": "DIMO | 為會話機制經濟打造的車輛平台"
   },
   "home.meta.ogDescription": {
-    "message": "DIMO驅動工作階段經濟：為50+個品牌處理車輛存取、遙測、身分與同意（SACD），讓您專心打造應用程式與事業。"
+    "message": "DIMO驅動會話機制經濟：為50+個品牌處理車輛存取、遙測、身分與同意（SACD），讓您專心打造應用程式與事業。"
   },
   "home.meta.twitterTitle": {
-    "message": "DIMO | 為工作階段經濟打造的車輛平台"
+    "message": "DIMO | 為會話機制經濟打造的車輛平台"
   },
   "home.meta.twitterDescription": {
-    "message": "DIMO驅動工作階段經濟：以即時車輛資料打造租賃、按次付費與移動服務。免費開始使用。"
+    "message": "DIMO驅動會話機制經濟：以即時車輛資料打造租賃、按次付費與移動服務。免費開始使用。"
   },
   "home.schema.description": {
-    "message": "DIMO是驅動工作階段經濟的車輛資料基礎架構。它透過單一權限控管的API處理車輛存取，提供涵蓋50+個品牌的即時遙測、身分與車主同意（SACD），讓開發者能在聯網汽車上打造應用程式與事業。核心平台為開源。"
+    "message": "DIMO是驅動會話機制經濟的車輛資料基礎架構。它透過單一權限控管的API處理車輛存取，提供涵蓋50+個品牌的即時遙測、身分與車主同意（SACD），讓開發者能在聯網汽車上打造應用程式與事業。核心平台為開源。"
   },
   "home.schema.description2": {
     "message": "提供免費方案，進階功能另有付費方案"
@@ -552,7 +615,7 @@
     "message": "免費Hobbyist方案 • 開發者方案每月$349 • 客製化企業解決方案。運用50+個品牌的車輛資料開發。"
   },
   "pricing.schema.description": {
-    "message": "DIMO是驅動工作階段經濟的車輛資料基礎架構。為運用即時、受同意機制管理的車輛資料與AI代理進行開發的開發者提供多種方案。"
+    "message": "DIMO是驅動會話機制經濟的車輛資料基礎架構。為運用即時、受同意機制管理的車輛資料與AI代理進行開發的開發者提供多種方案。"
   },
   "pricing.schema.0.description": {
     "message": "適合為自己的車輛動手開發的愛好者的免費方案。含1個AI代理，採隨用隨付計價。"
@@ -588,7 +651,7 @@
     "message": "車輛資料的破碎是刻意造成的：每家車廠都有自己的雲端、資料結構、單位與把關機制。車輛資料API的價值，就在於把這團混亂標準化成一份您的程式碼可以信賴的介面。DIMO在整個網路上一次完成標準化。訊號會經由您選擇的連線來源串流進來：直接的OEM預言機、Smartcar、Flespi或Volteras等直通式供應商，或DIMO硬體。無論來源為何，您都能透過單一GraphQL端點，以一致的名稱與單位查詢所有資料。"
   },
   "vehicleDataApi.body.oneScopingNoteIf": {
-    "message": "補充說明一下範圍：如果您需要的是靜態參考資料（VIN解碼、廠牌/車型/車款規格、市場價格），那是查詢用的資料庫，而這裡提供的不是那種資料。這個API提供的是路上行駛車輛的即時與歷史感測器資料，並附帶車主同意。這正是DIMO為工作階段經濟提供的資料層。"
+    "message": "補充說明一下範圍：如果您需要的是靜態參考資料（VIN解碼、廠牌/車型/車款規格、市場價格），那是查詢用的資料庫，而這裡提供的不是那種資料。這個API提供的是路上行駛車輛的即時與歷史感測器資料，並附帶車主同意。這正是DIMO為會話機制經濟提供的資料層。"
   },
   "vehicleDataApi.body.signalsYouCanQuery": {
     "message": "可查詢的訊號"
@@ -696,31 +759,31 @@
     "message": "開發者說明文件"
   },
   "vehicleSessionInfrastructure.meta.title": {
-    "message": "車輛工作階段基礎架構：車輛專用的OAuth | DIMO"
+    "message": "車輛會話基礎架構：車輛專用的OAuth | DIMO"
   },
   "vehicleSessionInfrastructure.meta.description": {
-    "message": "Smartcar讀取資料，Geotab追蹤車輛，但兩者都不管理工作階段。DIMO是存取層：建立車輛工作階段、限定資料與支出範圍，並一次性完整撤銷。"
+    "message": "Smartcar讀取資料，Geotab追蹤車輛，但兩者都不管理會話。DIMO是存取層：建立車輛會話、限定資料與支出範圍，並一次性完整撤銷。"
   },
   "vehicleSessionInfrastructure.meta.h1": {
-    "message": "車輛工作階段基礎架構：驗證、鑰匙、範圍、支出，以及撤銷"
+    "message": "車輛會話基礎架構：驗證、鑰匙、範圍、支出，以及撤銷"
   },
   "vehicleSessionInfrastructure.body.home.name": {
     "message": "首頁"
   },
   "vehicleSessionInfrastructure.body.vehicleSessionInfrastructure.name": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "vehicleSessionInfrastructure.body.platform": {
     "message": "平台"
   },
   "vehicleSessionInfrastructure.body.aRentalACarshare": {
-    "message": "一次租車、一次共享汽車、一趟無人計程車、一次車隊派遣：每當有人使用一輛不屬於自己的車，那就是一個工作階段。DIMO就是管理它的基礎架構。"
+    "message": "一次租車、一次共享汽車、一趟無人計程車、一次車隊派遣：每當有人使用一輛不屬於自己的車，那就是一個會話。DIMO就是管理它的基礎架構。"
   },
   "vehicleSessionInfrastructure.body.isTheSoftwareLayer": {
-    "message": "{strong}是一個軟體層，只需一次操作，就能為共享用途完成車輛的佈建，並在用途結束時撤銷一切。這是DIMO的核心概念，而DIMO正是驅動工作階段經濟的車輛資料基礎架構。它位於車輛與需要暫時性、受管控存取權限的應用程式、車隊和服務之間。最容易理解的方式，是拿早已支撐網際網路運作的那些基礎管線來類比："
+    "message": "{strong}是一個軟體層，只需一次操作，就能為共享用途完成車輛的佈建，並在用途結束時撤銷一切。這是DIMO的核心概念，而DIMO正是驅動會話機制經濟的車輛資料基礎架構。它位於車輛與需要暫時性、受管控存取權限的應用程式、車隊和服務之間。最容易理解的方式，是拿早已支撐網際網路運作的那些基礎管線來類比："
   },
   "vehicleSessionInfrastructure.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "vehicleSessionInfrastructure.body.authorizesCapturesAndRefunds": {
     "message": "{strong}負責授權、請款與退款。"
@@ -729,13 +792,13 @@
     "message": "Stripe"
   },
   "vehicleSessionInfrastructure.body.createsScopesAndRevokes": {
-    "message": "{strong}負責建立身分工作階段、限定其範圍並將其撤銷。"
+    "message": "{strong}負責建立身分會話、限定其範圍並將其撤銷。"
   },
   "vehicleSessionInfrastructure.body.auth0": {
     "message": "Auth0"
   },
   "vehicleSessionInfrastructure.body.createsAVehicleSession": {
-    "message": "{strong}負責建立車輛工作階段、限定其中的資料、存取權限與支出範圍，並在還車時將其撤銷。"
+    "message": "{strong}負責建立車輛會話、限定其中的資料、存取權限與支出範圍，並在還車時將其撤銷。"
   },
   "vehicleSessionInfrastructure.body.putAnotherWayIt": {
     "message": "換句話說，它就是{strong}。目前每家車隊業者、租車應用程式和OEM，都得自己動手串接身分、鑰匙、資料與支付整合。這和OAuth出現之前每個網站各自打造登入功能的混亂局面如出一轍。DIMO就是取代這一切的共用基礎元件。"
@@ -774,7 +837,7 @@
     "message": "Smartcar、Motorq、High Mobility"
   },
   "vehicleSessionInfrastructure.body.aWindowIntoThe": {
-    "message": "看進車內的一扇窗，但沒有工作階段物件"
+    "message": "看進車內的一扇窗，但沒有會話物件"
   },
   "vehicleSessionInfrastructure.body.digitalKeyAccess": {
     "message": "數位鑰匙／存取"
@@ -786,22 +849,22 @@
     "message": "提供存取，但未與資料、支出和撤銷整合"
   },
   "vehicleSessionInfrastructure.body.sessionInfrastructure": {
-    "message": "工作階段基礎架構"
+    "message": "會話基礎架構"
   },
   "vehicleSessionInfrastructure.body.oneSessionThatBundles": {
-    "message": "以單一工作階段整合並管理以上所有功能"
+    "message": "以單一會話整合並管理以上所有功能"
   },
   "vehicleSessionInfrastructure.body.orInOneLine": {
-    "message": "或者，各用一句話來說：{em}沒有其他人在管理工作階段。這正是DIMO填補的缺口。"
+    "message": "或者，各用一句話來說：{em}沒有其他人在管理會話。這正是DIMO填補的缺口。"
   },
   "vehicleSessionInfrastructure.body.smartcarIsAWindow": {
     "message": "Smartcar是看進車內的一扇窗，DIMO則是租借櫃台。Samsara告訴您正在發生什麼，DIMO則控制什麼可以發生。"
   },
   "vehicleSessionInfrastructure.body.whatOneSessionBundles": {
-    "message": "一個工作階段整合了什麼"
+    "message": "一個會話整合了什麼"
   },
   "vehicleSessionInfrastructure.body.aSingleDimoSession": {
-    "message": "單一DIMO工作階段會開啟一組明確定義的功能，並在之後將其撤銷。營運商只需整合一次，不必拼湊五家廠商："
+    "message": "單一DIMO會話會開啟一組明確定義的功能，並在之後將其撤銷。營運商只需整合一次，不必拼湊五家廠商："
   },
   "vehicleSessionInfrastructure.body.verifyWhoIsBeing": {
     "message": "{strong}驗證獲得存取權限的對象。"
@@ -834,10 +897,10 @@
     "message": "支出上限："
   },
   "vehicleSessionInfrastructure.body.perSessionSpend": {
-    "message": "每個工作階段的支出"
+    "message": "每個會話的支出"
   },
   "vehicleSessionInfrastructure.body.whenTheSessionEnds": {
-    "message": "{strong}工作階段結束時，所有權限一併終止，並封存一份可驗證的紀錄。"
+    "message": "{strong}會話結束時，所有權限一併終止，並封存一份可驗證的紀錄。"
   },
   "vehicleSessionInfrastructure.body.atomicRevocation": {
     "message": "一次性完整撤銷："
@@ -846,10 +909,10 @@
     "message": "為什麼是現在"
   },
   "vehicleSessionInfrastructure.body.thereAreEveryRental": {
-    "message": "{strong}：每一次租車、每一趟共享汽車行程、每一趟無人計程車、每一次車隊派遣。但沒有任何一個建立在共用的協定上。同時，主管機關正在強制要求的，正是工作階段所提供的特性：經同意、限定範圍、可撤銷、可稽核的存取（請參閱{link}）。需求與法規正同時到來。"
+    "message": "{strong}：每一次租車、每一趟共享汽車行程、每一趟無人計程車、每一次車隊派遣。但沒有任何一個建立在共用的協定上。同時，主管機關正在強制要求的，正是會話所提供的特性：經同意、限定範圍、可撤銷、可稽核的存取（請參閱{link}）。需求與法規正同時到來。"
   },
   "vehicleSessionInfrastructure.body.hundredsOfMillionsOf": {
-    "message": "光是美國，每年就有數億次車輛工作階段"
+    "message": "光是美國，每年就有數億次車輛會話"
   },
   "vehicleSessionInfrastructure.body.connectedVehicleDataCompliance": {
     "message": "聯網汽車資料法規遵循"
@@ -858,7 +921,7 @@
     "message": "誰在使用它開發"
   },
   "vehicleSessionInfrastructure.body.rentalAndCarshareOperators": {
-    "message": "租車與共享汽車業者用它來經營{link}；OEM聯網服務團隊用它來符合{link2}的要求，並提供工作階段結束後的營收機會；開發者則在{link3}之上打造服務。單一工作階段基礎元件，服務眾多呼叫端，包括產業還沒遇過的那些。"
+    "message": "租車與共享汽車業者用它來經營{link}；OEM聯網服務團隊用它來符合{link2}的要求，並提供會話結束後的營收機會；開發者則在{link3}之上打造服務。單一會話基礎元件，服務眾多呼叫端，包括產業還沒遇過的那些。"
   },
   "vehicleSessionInfrastructure.body.unmannedMixedFleetOperations": {
     "message": "無人化、混合車隊營運"
@@ -1007,8 +1070,68 @@
   "navbar.body.language": {
     "message": "語言"
   },
+  "home.heroFlow.title": {
+    "message": "來自Tesla、Ford、BMW、Toyota、Hyundai等50多個品牌的車輛資料匯入DIMO——一個涵蓋身分、遙測與授權的資料層。只有在車主的限時授權有效期間，應用程式才能讀取這些資料。"
+  },
+  "home.heroFlow.anyVehicle": {
+    "message": "任何車輛"
+  },
+  "home.heroFlow.oneDataLayer": {
+    "message": "一個資料層"
+  },
+  "home.heroFlow.anyApp": {
+    "message": "任何應用"
+  },
+  "home.heroFlow.moreBrands": {
+    "message": "+ 其他45個品牌"
+  },
+  "home.heroFlow.hubSubtitle": {
+    "message": "標準化、經授權的車輛資料"
+  },
+  "home.heroFlow.signal.speed": {
+    "message": "車速"
+  },
+  "home.heroFlow.signal.battery": {
+    "message": "電量"
+  },
+  "home.heroFlow.signal.odometer": {
+    "message": "里程"
+  },
+  "home.heroFlow.signal.tirePressure": {
+    "message": "胎壓"
+  },
+  "home.heroFlow.signal.location": {
+    "message": "位置"
+  },
+  "home.heroFlow.pillar.identity": {
+    "message": "身分"
+  },
+  "home.heroFlow.pillar.telemetry": {
+    "message": "遙測"
+  },
+  "home.heroFlow.pillar.consent": {
+    "message": "授權"
+  },
+  "home.heroFlow.app.rental": {
+    "message": "租車應用"
+  },
+  "home.heroFlow.app.insurance": {
+    "message": "保險"
+  },
+  "home.heroFlow.app.fleet": {
+    "message": "車隊管理"
+  },
+  "home.heroFlow.sessionConsent": {
+    "message": "會話授權"
+  },
+  "home.heroFlow.active": {
+    "message": "有效"
+  },
+  "home.heroFlow.expired": {
+    "message": "已到期"
+  },
   "compare.smartcarAlternative.meta.title": {
-    "message": "DIMO vs Smartcar：掌控工作階段，不只是資料 | DIMO"
+    "message": "DIMO vs Smartcar：掌控會話，不只是資料 | DIMO"
   },
   "compare.smartcarAlternative.meta.description": {
     "message": "Smartcar是經格式轉換的直通式車輛資料；DIMO則是具備共享功能的儲存：身分、同意、數位鑰匙、支出上限與一次性完整撤銷。可自行架設，甚至能透過Smartcar接入資料。"
@@ -1023,10 +1146,10 @@
     "message": "不需要。支援的50+個品牌中，大多數都透過軟體整合連接。對於沒有可用雲端API的車輛，選配的DIMO LTE R1轉接器可提供高頻率資料。"
   },
   "compare.smartcarAlternative.faqSchema.canAVehicle.name": {
-    "message": "車主能在工作階段進行中撤銷存取權限嗎？"
+    "message": "車主能在會話進行中撤銷存取權限嗎？"
   },
   "compare.smartcarAlternative.faqSchema.text2": {
-    "message": "可以。撤銷是一次性完整完成的：鑰匙、資料授權與支出授權會一併終止，而工作階段紀錄會保留在稽核軌跡上。"
+    "message": "可以。撤銷是一次性完整完成的：鑰匙、資料授權與支出授權會一併終止，而會話紀錄會保留在稽核軌跡上。"
   },
   "compare.smartcarAlternative.faqSchema.isDimoCompliant.name": {
     "message": "DIMO在歐洲合規嗎？"
@@ -1047,7 +1170,7 @@
     "message": "取得API金鑰"
   },
   "compare.smartcarAlternative.body.smartcarConvertsAnOem": {
-    "message": "Smartcar將OEM資料流轉換後直接轉送給您。DIMO則儲存車輛資料，並內建車主同意、共享與工作階段，甚至能透過Smartcar本身接入資料。以下說明該如何看待兩者的差異。"
+    "message": "Smartcar將OEM資料流轉換後直接轉送給您。DIMO則儲存車輛資料，並內建車主同意、共享與會話，甚至能透過Smartcar本身接入資料。以下說明該如何看待兩者的差異。"
   },
   "compare.smartcarAlternative.body.ifYouAreEvaluating": {
     "message": "如果您正在評估Smartcar，您想做的幾乎一定是以下兩件事之一：讀取多個品牌的車輛資料，或是打造一個能對車輛{em}的產品：解鎖、授予存取權限、設定支出上限，並乾淨俐落地結束這一切。Smartcar在第一件事上表現出色，DIMO則是為第二件事而生。{strong}"
@@ -1059,10 +1182,10 @@
     "message": "Smartcar是看進車內的一扇窗，DIMO則是租借櫃台。"
   },
   "compare.smartcarAlternative.body.smartcarReadsDataAnd": {
-    "message": "Smartcar透過簡潔的API讀取資料並下達指令。它沒有提供的是{em}：一個整合身分、數位鑰匙、限定範圍的資料授權、支出上限與一次性完整撤銷的單一物件，並在結束時留下可驗證的紀錄。如果您做的是儀表板或分析功能，可能永遠用不到這些。但對於租車、共享汽車，或任何陌生人暫時使用車輛的情境，工作階段就是全部的重點。"
+    "message": "Smartcar透過簡潔的API讀取資料並下達指令。它沒有提供的是{em}：一個整合身分、數位鑰匙、限定範圍的資料授權、支出上限與一次性完整撤銷的單一物件，並在結束時留下可驗證的紀錄。如果您做的是儀表板或分析功能，可能永遠用不到這些。但對於租車、共享汽車，或任何陌生人暫時使用車輛的情境，會話就是全部的重點。"
   },
   "compare.smartcarAlternative.body.session": {
-    "message": "工作階段"
+    "message": "會話"
   },
   "compare.smartcarAlternative.body.theArchitecturalDifferenceUnderneath": {
     "message": "底層的架構差異在於：Smartcar是經格式轉換的直通式轉送。它轉譯OEM資料流，再把結果交給您。它不是權威資料系統，沒有資料共享或同意模型，也無法自行架設。DIMO則是具備共享功能的資料儲存：接入的訊號會成為標準化的時間序列，讓車主可以共享、限定範圍與撤銷；而且由於核心開源，這套基礎架構您可以自行運行。"
@@ -1107,13 +1230,13 @@
     "message": "是（包括Smartcar、Flespi、Volteras）"
   },
   "compare.smartcarAlternative.body.digitalKeyAsPart": {
-    "message": "數位鑰匙納入工作階段"
+    "message": "數位鑰匙納入會話"
   },
   "compare.smartcarAlternative.body.perSessionSpendCap": {
-    "message": "每個工作階段的支出上限"
+    "message": "每個會話的支出上限"
   },
   "compare.smartcarAlternative.body.atomicRevocationOfA": {
-    "message": "一次性完整撤銷整個工作階段"
+    "message": "一次性完整撤銷整個會話"
   },
   "compare.smartcarAlternative.body.verifiableSignedAccessAudit": {
     "message": "可驗證、經簽署的存取稽核軌跡"
@@ -1122,7 +1245,7 @@
     "message": "計價模式有何不同"
   },
   "compare.smartcarAlternative.body.smartcarPricesPerConnected": {
-    "message": "Smartcar依連接的車輛數計價，並設有方案最低用量，當每輛連接的車都對應一位付費終端使用者時，這種模式很合適。DIMO則把這兩個決定分開。Hobbyist方案免費，車輛每輛每月$1.25，讓您在做出任何承諾之前，就能先用自己的車驗證點子。Core方案每月$349，含100輛車與更高的速率限制，適用於正式上線的應用程式。Enterprise方案另提供客製化SLA、地端部署與量販價格。同意與工作階段層本身不另收費，每個方案都內建。"
+    "message": "Smartcar依連接的車輛數計價，並設有方案最低用量，當每輛連接的車都對應一位付費終端使用者時，這種模式很合適。DIMO則把這兩個決定分開。Hobbyist方案免費，車輛每輛每月$1.25，讓您在做出任何承諾之前，就能先用自己的車驗證點子。Core方案每月$349，含100輛車與更高的速率限制，適用於正式上線的應用程式。Enterprise方案另提供客製化SLA、地端部署與量販價格。同意與會話層本身不另收費，每個方案都內建。"
   },
   "compare.smartcarAlternative.body.oneStructuralDifferenceMatters": {
     "message": "有一個結構性差異比數字更重要：DIMO的核心協定是開源的。如果哪天價格或條款不再適合您，您的退場方式是自行運行這套基礎架構，而不是針對另一個新的專有API重寫產品。"
@@ -1131,7 +1254,7 @@
     "message": "您可能根本不需要遷移"
   },
   "compare.smartcarAlternative.body.thisIsThePart": {
-    "message": "這是多數評估都忽略的一點：DIMO與Smartcar並不互斥。DIMO可以{em}Smartcar（以及Flespi或Volteras）接入資料，就像從OEM預言機或自家硬體接入一樣。如果您的Smartcar整合運作良好，就把它保留為連線層，再加上DIMO來補足Smartcar做不到的部分：儲存、車主同意、共享、工作階段與稽核軌跡。請參閱{link}，了解各種接入來源如何串接。"
+    "message": "這是多數評估都忽略的一點：DIMO與Smartcar並不互斥。DIMO可以{em}Smartcar（以及Flespi或Volteras）接入資料，就像從OEM預言機或自家硬體接入一樣。如果您的Smartcar整合運作良好，就把它保留為連線層，再加上DIMO來補足Smartcar做不到的部分：儲存、車主同意、共享、會話與稽核軌跡。請參閱{link}，了解各種接入來源如何串接。"
   },
   "compare.smartcarAlternative.body.through": {
     "message": "透過"
@@ -1155,7 +1278,7 @@
     "message": "Smartcar仍是正確選擇的情況"
   },
   "compare.smartcarAlternative.body.honestAnswerIfYour": {
-    "message": "老實說：如果您的產品只讀取資料、完全不涉及存取控制，而且您的使用者都在Smartcar的支援範圍內，那麼Smartcar是成熟且文件完善的選擇，換掉它對您幫助不大。開發者轉向DIMO的原因，幾乎都是產品藍圖已經超越唯讀：他們需要鑰匙、限定範圍的授權、以工作階段為單位的計費，或是主管機關認可的稽核軌跡；而要在唯讀API上硬加這些功能，就等於最難的部分得自己打造。"
+    "message": "老實說：如果您的產品只讀取資料、完全不涉及存取控制，而且您的使用者都在Smartcar的支援範圍內，那麼Smartcar是成熟且文件完善的選擇，換掉它對您幫助不大。開發者轉向DIMO的原因，幾乎都是產品藍圖已經超越唯讀：他們需要鑰匙、限定範圍的授權、以會話為單位的計費，或是主管機關認可的稽核軌跡；而要在唯讀API上硬加這些功能，就等於最難的部分得自己打造。"
   },
   "compare.smartcarAlternative.body.commonQuestions": {
     "message": "常見問題"
@@ -1167,10 +1290,10 @@
     "message": "需要硬體嗎？"
   },
   "compare.smartcarAlternative.body.yesRevocationIsAtomic": {
-    "message": "{strong}可以。撤銷是一次性完整完成的：鑰匙、資料授權與支出授權會一併終止，而工作階段紀錄會保留在稽核軌跡上。"
+    "message": "{strong}可以。撤銷是一次性完整完成的：鑰匙、資料授權與支出授權會一併終止，而會話紀錄會保留在稽核軌跡上。"
   },
   "compare.smartcarAlternative.body.canAVehicleOwner": {
-    "message": "車主能在工作階段進行中撤銷存取權限嗎？"
+    "message": "車主能在會話進行中撤銷存取權限嗎？"
   },
   "compare.smartcarAlternative.body.theSacdConsentModel": {
     "message": "{strong}SACD同意模型是專為GDPR與歐盟資料法打造的，詳情請參閱{link}。"
@@ -1185,7 +1308,7 @@
     "message": "該如何選擇"
   },
   "compare.smartcarAlternative.body.chooseSmartcarWhenYour": {
-    "message": "如果您的產品本質上是在{em}資料，例如使用狀況分析、電動車充電洞察，或需要里程表或電池狀態的服務，請選擇Smartcar。如果您的產品需要{em2}，例如無人化租車、共享汽車、車隊派遣、按工作階段計費的保險，請選擇DIMO。這類產品需要身分、鑰匙、資料、支出與撤銷，作為一個經同意、可稽核的單位來運作。"
+    "message": "如果您的產品本質上是在{em}資料，例如使用狀況分析、電動車充電洞察，或需要里程表或電池狀態的服務，請選擇Smartcar。如果您的產品需要{em2}，例如無人化租車、共享汽車、車隊派遣、按會話計費的保險，請選擇DIMO。這類產品需要身分、鑰匙、資料、支出與撤銷，作為一個經同意、可稽核的單位來運作。"
   },
   "compare.smartcarAlternative.body.reading": {
     "message": "讀取"
@@ -1197,7 +1320,7 @@
     "message": "這背後的模型就是{link}；您可以看看它如何應用在{link2}。至於產品本身，{link3}與{link4}頁面介紹了各項功能與訊號，{link5}也已公開（免費的Hobbyist方案、每月$349的Core方案），而{link6}會帶您完成第一次API呼叫。"
   },
   "compare.smartcarAlternative.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "compare.smartcarAlternative.body.rentalOperations": {
     "message": "租賃營運"
@@ -1215,10 +1338,10 @@
     "message": "開發者說明文件"
   },
   "compare.standardFleetAlternative.meta.title": {
-    "message": "DIMO vs Standard Fleet：開放、支援多家OEM的工作階段基礎架構 | DIMO"
+    "message": "DIMO vs Standard Fleet：開放、支援多家OEM的會話基礎架構 | DIMO"
   },
   "compare.standardFleetAlternative.meta.description": {
-    "message": "Standard Fleet證明了車隊需要聯網控制。DIMO以開放、不限廠牌的協定實現這一點，並提供可驗證的稽核軌跡與每個工作階段的支出管理，涵蓋已連接DIMO的50+個車輛品牌。"
+    "message": "Standard Fleet證明了車隊需要聯網控制。DIMO以開放、不限廠牌的協定實現這一點，並提供可驗證的稽核軌跡與每個會話的支出管理，涵蓋已連接DIMO的50+個車輛品牌。"
   },
   "compare.standardFleetAlternative.meta.h1": {
     "message": "DIMO vs Standard Fleet：開放協定、不限廠牌、可驗證的稽核軌跡"
@@ -1284,7 +1407,7 @@
     "message": "附加功能／外部服務"
   },
   "compare.standardFleetAlternative.body.perSessionSpendCapBuilt": {
-    "message": "內建每個工作階段的支出上限"
+    "message": "內建每個會話的支出上限"
   },
   "compare.standardFleetAlternative.body.lockIn": {
     "message": "綁定程度"
@@ -1308,13 +1431,13 @@
     "message": "可驗證的稽核軌跡"
   },
   "compare.standardFleetAlternative.body.cryptographicallySignedSessionRecord": {
-    "message": "經密碼學簽署的工作階段紀錄"
+    "message": "經密碼學簽署的會話紀錄"
   },
   "compare.standardFleetAlternative.body.bothFallOutOf": {
     "message": "兩者都源自同一個設計理念：把{link}打造成開放的基礎單元，而不是封閉的應用程式。看看它如何應用在{link2}，以及更全面的{link3}。"
   },
   "compare.standardFleetAlternative.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "compare.standardFleetAlternative.body.unmannedRentalOperations": {
     "message": "無人租賃營運"
@@ -1326,7 +1449,7 @@
     "message": "歐盟資料法下的車輛資料：OEM與車隊必須採取的行動 | DIMO"
   },
   "compliance.euDataAct.meta.description": {
-    "message": "歐盟資料法要求OEM向經授權的第三方開放車輛資料。本文說明法規遵循時程、具體要求，以及限定工作階段的同意如何滿足這些規定。"
+    "message": "歐盟資料法要求OEM向經授權的第三方開放車輛資料。本文說明法規遵循時程、具體要求，以及限定會話的同意如何滿足這些規定。"
   },
   "compliance.euDataAct.meta.h1": {
     "message": "歐盟資料法與車輛資料：OEM與車隊將面臨哪些改變"
@@ -1407,16 +1530,16 @@
     "message": "現有的聯網服務技術堆疊，大多從未以這四項能力為核心來設計。它們原本是為了提供自有功能而打造，事後才加上一個同意勾選框。資料法之所以困難，正是因為它要求這些特性必須是結構性的，而不是表面功夫。"
   },
   "compliance.euDataAct.body.howASessionModel": {
-    "message": "工作階段模型如何滿足要求"
+    "message": "會話模型如何滿足要求"
   },
   "compliance.euDataAct.body.aVehicleIsAn": {
-    "message": "車輛{em}是一種內建上述四項特性的存取事件。建立工作階段時，會帶有使用者的身分、明確的資料範圍與時間限制；工作階段結束時，存取權限會一次全部撤銷，並封存一份經簽署、可獨立驗證的紀錄。同意是建立工作階段的一部分，而不是事後附加的政策。這正是{link}所描述的內容。"
+    "message": "車輛{em}是一種內建上述四項特性的存取事件。建立會話時，會帶有使用者的身分、明確的資料範圍與時間限制；會話結束時，存取權限會一次全部撤銷，並封存一份經簽署、可獨立驗證的紀錄。同意是建立會話的一部分，而不是事後附加的政策。這正是{link}所描述的內容。"
   },
   "compliance.euDataAct.body.session": {
-    "message": "工作階段"
+    "message": "會話"
   },
   "compliance.euDataAct.body.sessionScopedConsent": {
-    "message": "限定工作階段的同意"
+    "message": "限定會話的同意"
   },
   "compliance.euDataAct.body.becauseTheAccessPrimitive": {
     "message": "由於存取基礎單元本身就會產生授權、範圍限定、撤銷與稽核軌跡，{strong}OEM只需整合一個存取層，就能在每個車型與市場沿用合規行為，不必為每個專案重新實作同意機制。同一個模型也會統一{link}的資料格式，這對管理多品牌混合車隊的業者來說相當重要。"
@@ -1431,7 +1554,7 @@
     "message": "從法規遵循成本到營收"
   },
   "compliance.euDataAct.body.itIsTemptingTo": {
-    "message": "人們很容易把資料法視為純粹的成本，但事實並非如此。滿足法規要求的這套經同意、限定範圍的存取，正是OEM積極追求的軟體營收的基礎。OEM整體的目標是到2030年，從軟體與聯網服務創造{strong}的營收。差別在於，合規之路與營收之路如今是{em}路。能授予經駕駛授權之工作階段的OEM，也能在此基礎上合法提供按工作階段計費的保險、Plug & Charge或維修保養服務，因為同意早已取得。"
+    "message": "人們很容易把資料法視為純粹的成本，但事實並非如此。滿足法規要求的這套經同意、限定範圍的存取，正是OEM積極追求的軟體營收的基礎。OEM整體的目標是到2030年，從軟體與聯網服務創造{strong}的營收。差別在於，合規之路與營收之路如今是{em}路。能授予經駕駛授權之會話的OEM，也能在此基礎上合法提供按會話計費的保險、Plug & Charge或維修保養服務，因為同意早已取得。"
   },
   "compliance.euDataAct.body.tensOfBillionsOf": {
     "message": "每年數百億美元"
@@ -1440,7 +1563,7 @@
     "message": "同一條"
   },
   "compliance.euDataAct.body.contrastThatWithThe": {
-    "message": "再對照封閉的做法。正如{link}所顯示，大量資料仲介模式如今已是負債，而不是資產。能在下一個十年拿下聯網服務營收的OEM，會是那些從第一個工作階段起，資料存取就經過同意且可稽核的業者，因為這是監管機關、保險業者，以及越來越多客戶唯一願意接受的方式。"
+    "message": "再對照封閉的做法。正如{link}所顯示，大量資料仲介模式如今已是負債，而不是資產。能在下一個十年拿下聯網服務營收的OEM，會是那些從第一個會話起，資料存取就經過同意且可稽核的業者，因為這是監管機關、保險業者，以及越來越多客戶唯一願意接受的方式。"
   },
   "compliance.euDataAct.body.ftcsGmOnstarOrder": {
     "message": "FTC對GM/OnStar的命令"
@@ -1581,13 +1704,13 @@
     "message": "資料管道"
   },
   "compliance.ftcGmConsent.body.thatIsExactlyWhat": {
-    "message": "這正是工作階段模型所提供的。{strong}存取權限依工作階段逐一建立，範圍限定在駕駛授權的內容，並以經簽署、可獨立驗證的紀錄封存。同意不是硬接在資料管道上的勾選框，而是存取建立方式的一部分，詳見{link}；由此產生的{link2}，正是核保人員或監管機關真正能夠接受的憑據。"
+    "message": "這正是會話模型所提供的。{strong}存取權限依會話逐一建立，範圍限定在駕駛授權的內容，並以經簽署、可獨立驗證的紀錄封存。同意不是硬接在資料管道上的勾選框，而是存取建立方式的一部分，詳見{link}；由此產生的{link2}，正是核保人員或監管機關真正能夠接受的憑據。"
   },
   "compliance.ftcGmConsent.body.dimoIsTheInfrastructure": {
     "message": "DIMO正是讓新模式得以運作的基礎架構："
   },
   "compliance.ftcGmConsent.body.sessionScopedConsent": {
-    "message": "限定工作階段的同意"
+    "message": "限定會話的同意"
   },
   "compliance.ftcGmConsent.body.auditTrail": {
     "message": "稽核軌跡"
@@ -1623,7 +1746,7 @@
     "message": "可以。以使用量計價的模式行之有效，也不會消失。改變的是資料來源。保險業者如今需要經駕駛授權、具可驗證軌跡的資料，這正是{link}所提供的，而不是剛失去最大買家的仲介資料來源。"
   },
   "compliance.ftcGmConsent.body.sessionAuditTrail": {
-    "message": "工作階段稽核軌跡"
+    "message": "會話稽核軌跡"
   },
   "compliance.ftcGmConsent.body.whatOemsAndInsurers": {
     "message": "OEM與保險業者應從中學到什麼"
@@ -1659,7 +1782,7 @@
     "message": "聯網汽車資料法規遵循：歐盟資料法、FTC、GDPR | DIMO"
   },
   "compliance.meta.description": {
-    "message": "車隊與OEM如何透過限定工作階段的同意與可驗證的稽核軌跡，讓聯網汽車資料符合歐盟資料法、FTC同意標準、GDPR與SB-1394。"
+    "message": "車隊與OEM如何透過限定會話的同意與可驗證的稽核軌跡，讓聯網汽車資料符合歐盟資料法、FTC同意標準、GDPR與SB-1394。"
   },
   "compliance.body.home.name": {
     "message": "首頁"
@@ -1686,7 +1809,7 @@
     "message": "同意優先的車輛資料存取如今是法律要求，而不只是道德上的選擇。"
   },
   "compliance.body.thisPageMapsThe": {
-    "message": "本頁整理正在重塑聯網汽車市場的各項法規，並說明工作階段式存取模型如何一次滿足所有要求，無需耗時多年自行開發。"
+    "message": "本頁整理正在重塑聯網汽車市場的各項法規，並說明會話式存取模型如何一次滿足所有要求，無需耗時多年自行開發。"
   },
   "compliance.body.theRegulatoryWave": {
     "message": "法規浪潮"
@@ -1710,7 +1833,7 @@
     "message": "{link}讓同意在結構上成為存取事件的一部分，而不是事後硬接上去的另一套政策。"
   },
   "compliance.body.gdprAndSessionScopedConsent": {
-    "message": "GDPR與限定工作階段的同意"
+    "message": "GDPR與限定會話的同意"
   },
   "compliance.body.requireVehicleAccessTo": {
     "message": "{link}要求車輛存取權限必須能由車主撤銷，且在設計上即可稽核。"
@@ -1719,22 +1842,22 @@
     "message": "加州SB-1394與UNECE R155"
   },
   "compliance.body.whyASessionModel": {
-    "message": "為何工作階段模型能一次滿足所有法規"
+    "message": "為何會話模型能一次滿足所有法規"
   },
   "compliance.body.eachOfTheseRules": {
-    "message": "這些規定要求的都是同樣四件事：明確授權、限定範圍的存取、一次全部撤銷，以及可驗證的軌跡。車輛{em}正好整合了這些特性。工作階段建立時，會帶有駕駛的身分、特定的資料範圍、支出上限與時間限制；使用情境結束時，所有權限會一次全部撤銷，並封存一份經加密簽署、可獨立驗證的紀錄。"
+    "message": "這些規定要求的都是同樣四件事：明確授權、限定範圍的存取、一次全部撤銷，以及可驗證的軌跡。車輛{em}正好整合了這些特性。會話建立時，會帶有駕駛的身分、特定的資料範圍、支出上限與時間限制；使用情境結束時，所有權限會一次全部撤銷，並封存一份經加密簽署、可獨立驗證的紀錄。"
   },
   "compliance.body.session": {
-    "message": "工作階段"
+    "message": "會話"
   },
   "compliance.body.becauseConsentIsPart": {
-    "message": "由於同意是建立工作階段這個基礎單元的一部分，而非下游的政策，同一套架構就能同時符合GDPR、歐盟資料法、FTC標準與SB-1394。請參閱{link}了解運作方式，並參閱{link2}了解更完整的模型。營運業者可以在{link3}中了解這如何應用於車隊，開發者則可以從{link4}開始。"
+    "message": "由於同意是建立會話這個基礎單元的一部分，而非下游的政策，同一套架構就能同時符合GDPR、歐盟資料法、FTC標準與SB-1394。請參閱{link}了解運作方式，並參閱{link2}了解更完整的模型。營運業者可以在{link3}中了解這如何應用於車隊，開發者則可以從{link4}開始。"
   },
   "compliance.body.sessionScopedConsent": {
-    "message": "限定工作階段的同意"
+    "message": "限定會話的同意"
   },
   "compliance.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "compliance.body.rentalOperations": {
     "message": "租賃營運"
@@ -1746,13 +1869,13 @@
     "message": "注意：在歐洲OEM採購中使用法規遵循相關用語前，應先完成正式認證審查；本頁內容僅供教育參考，不構成法律建議。"
   },
   "compliance.sessionScopedConsent.meta.title": {
-    "message": "車輛資料的限定工作階段同意：完整解析 | DIMO"
+    "message": "車輛資料的限定會話同意：完整解析 | DIMO"
   },
   "compliance.sessionScopedConsent.meta.description": {
-    "message": "說明什麼是限定工作階段的同意、為何「先授予再撤銷」優於全面性的資料分享，以及它如何從架構層面滿足GDPR、歐盟資料法與加州SB-1394。"
+    "message": "說明什麼是限定會話的同意、為何「先授予再撤銷」優於全面性的資料分享，以及它如何從架構層面滿足GDPR、歐盟資料法與加州SB-1394。"
   },
   "compliance.sessionScopedConsent.meta.h1": {
-    "message": "限定工作階段的同意：內建於存取基礎單元的同意"
+    "message": "限定會話的同意：內建於存取基礎單元的同意"
   },
   "compliance.sessionScopedConsent.body.home.name": {
     "message": "首頁"
@@ -1761,19 +1884,19 @@
     "message": "法規遵循"
   },
   "compliance.sessionScopedConsent.body.sessionScopedConsent.name": {
-    "message": "限定工作階段的同意"
+    "message": "限定會話的同意"
   },
   "compliance.sessionScopedConsent.body.complianceConsent": {
     "message": "法規遵循 · 同意"
   },
   "compliance.sessionScopedConsent.body.mostVehicleDataSystems": {
-    "message": "多數車輛資料系統把同意當成硬接在資料管道上的政策。限定工作階段的同意則讓它成為存取建立——以及撤銷——方式的一部分。"
+    "message": "多數車輛資料系統把同意當成硬接在資料管道上的政策。限定會話的同意則讓它成為存取建立——以及撤銷——方式的一部分。"
   },
   "compliance.sessionScopedConsent.body.meansTheUsersPermission": {
-    "message": "{strong}是指使用者的許可在結構上就是建立存取工作階段的一部分，而不是事後套用的另一套政策。車主不必授予服務全面且永久的車輛資料存取權，而是授權一個特定的工作階段：在明確的期間內、為明確的目的，開放明確範圍的資料與功能，期滿後所有權限一次全部撤銷。同意{em}"
+    "message": "{strong}是指使用者的許可在結構上就是建立存取會話的一部分，而不是事後套用的另一套政策。車主不必授予服務全面且永久的車輛資料存取權，而是授權一個特定的會話：在明確的期間內、為明確的目的，開放明確範圍的資料與功能，期滿後所有權限一次全部撤銷。同意{em}"
   },
   "compliance.sessionScopedConsent.body.sessionScopedConsent": {
-    "message": "限定工作階段的同意"
+    "message": "限定會話的同意"
   },
   "compliance.sessionScopedConsent.body.compliantByArchitectureNot": {
     "message": "從架構層面就符合法規，而不是靠政策。"
@@ -1794,10 +1917,10 @@
     "message": "FTC對GM/OnStar的命令"
   },
   "compliance.sessionScopedConsent.body.howSessionScopedConsentWorks": {
-    "message": "限定工作階段的同意如何運作"
+    "message": "限定會話的同意如何運作"
   },
   "compliance.sessionScopedConsent.body.aVehicleSessionIs": {
-    "message": "車輛工作階段以單一操作建立，並帶有存取所需的一切："
+    "message": "車輛會話以單一操作建立，並帶有存取所需的一切："
   },
   "compliance.sessionScopedConsent.body.whoIsBeingGranted": {
     "message": "{strong}獲授予存取權限的對象，並經過驗證。"
@@ -1818,13 +1941,13 @@
     "message": "支出與時間限制："
   },
   "compliance.sessionScopedConsent.body.whenTheSessionEnds": {
-    "message": "{strong}工作階段結束時，其中的所有權限會一併撤回，而不是一個系統接著一個系統處理。"
+    "message": "{strong}會話結束時，其中的所有權限會一併撤回，而不是一個系統接著一個系統處理。"
   },
   "compliance.sessionScopedConsent.body.atomicRevocation": {
     "message": "一次全部撤銷："
   },
   "compliance.sessionScopedConsent.body.whenTheSessionCloses": {
-    "message": "工作階段關閉時，會封存一份{strong}紀錄，記載授權內容與結束時間。由於同意是建立工作階段的一部分，沒有同意憑據就不可能取得存取權限，撤銷後也不可能殘留存取權限。監管機關要求的合規特性不是事後才加上去的，而是這套系統唯一的運作方式。"
+    "message": "會話關閉時，會封存一份{strong}紀錄，記載授權內容與結束時間。由於同意是建立會話的一部分，沒有同意憑據就不可能取得存取權限，撤銷後也不可能殘留存取權限。監管機關要求的合規特性不是事後才加上去的，而是這套系統唯一的運作方式。"
   },
   "compliance.sessionScopedConsent.body.cryptographicallySignedIndependentlyVerifiable": {
     "message": "經加密簽署、可獨立驗證的"
@@ -1833,13 +1956,13 @@
     "message": "具體範例：為期三天的租車"
   },
   "compliance.sessionScopedConsent.body.pictureADriverRenting": {
-    "message": "想像一位駕駛在週末租用一輛聯網汽車。透過限定工作階段的同意，租車在結帳時就會建立一個工作階段：驗證駕駛身分、核發數位鑰匙、將資料存取範圍限定為租期內的位置與行程遙測、設定充電與通行費的支出上限，並標記72小時的到期時間。駕駛能清楚看到自己授予了哪些權限。還車時，工作階段隨即結束：鑰匙失效、資料存取停止，整個安排的簽署紀錄也隨之封存。"
+    "message": "想像一位駕駛在週末租用一輛聯網汽車。透過限定會話的同意，租車在結帳時就會建立一個會話：驗證駕駛身分、核發數位鑰匙、將資料存取範圍限定為租期內的位置與行程遙測、設定充電與通行費的支出上限，並標記72小時的到期時間。駕駛能清楚看到自己授予了哪些權限。還車時，會話隨即結束：鑰匙失效、資料存取停止，整個安排的簽署紀錄也隨之封存。"
   },
   "compliance.sessionScopedConsent.body.nothingLingersThereIs": {
     "message": "一切都不會殘留。還車後不會有持續開放的資料串流，不會有仍落在陌生人手中且可用的鑰匙，也不需要任何人手動停用五套不同的系統。同意及其界限本身就是存取，因此結束存取就等於結束同意，乾淨俐落且有據可證。"
   },
   "compliance.sessionScopedConsent.body.blanketConsentVsSessionScoped": {
-    "message": "全面性同意 vs. 限定工作階段的同意"
+    "message": "全面性同意 vs. 限定會話的同意"
   },
   "compliance.sessionScopedConsent.body.property": {
     "message": "特性"
@@ -1881,25 +2004,25 @@
     "message": "一份政策文件"
   },
   "compliance.sessionScopedConsent.body.aSignedVerifiablePerSession": {
-    "message": "每個工作階段一份經簽署、可驗證的紀錄"
+    "message": "每個會話一份經簽署、可驗證的紀錄"
   },
   "compliance.sessionScopedConsent.body.whyThisSatisfiesMultiple": {
     "message": "為何這能一次滿足多項法規"
   },
   "compliance.sessionScopedConsent.body.theReasonASingle": {
-    "message": "單一模型之所以能同時符合GDPR、歐盟資料法與加州SB-1394，是因為它們最終都可歸結為同一個基礎單元：授權、限定範圍、撤銷與證明。全面性同意系統必須分別加上這些機制，再設法讓它們彼此協調。工作階段模型則只要授予存取，就會自然產生這四項成果。這就是同意{em}、而不是一層政策的意義。"
+    "message": "單一模型之所以能同時符合GDPR、歐盟資料法與加州SB-1394，是因為它們最終都可歸結為同一個基礎單元：授權、限定範圍、撤銷與證明。全面性同意系統必須分別加上這些機制，再設法讓它們彼此協調。會話模型則只要授予存取，就會自然產生這四項成果。這就是同意{em}、而不是一層政策的意義。"
   },
   "compliance.sessionScopedConsent.body.structurallyPartOfThe": {
-    "message": "在結構上就是建立工作階段這個基礎單元的一部分"
+    "message": "在結構上就是建立會話這個基礎單元的一部分"
   },
   "compliance.sessionScopedConsent.body.forTheTechnicalImplementation": {
-    "message": "關於撤銷機制的具體技術實作（直接對應SB-1394「可由車主撤銷」的要求），請參閱{link}。關於這些工作階段所屬的更完整模型，請參閱{link2}；開發者則可以從{link3}開始。"
+    "message": "關於撤銷機制的具體技術實作（直接對應SB-1394「可由車主撤銷」的要求），請參閱{link}。關於這些會話所屬的更完整模型，請參閱{link2}；開發者則可以從{link3}開始。"
   },
   "compliance.sessionScopedConsent.body.auditReadyVehicleAccess": {
     "message": "隨時可稽核的車輛存取"
   },
   "compliance.sessionScopedConsent.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "compliance.sessionScopedConsent.body.consentProduct": {
     "message": "Consent產品"
@@ -1935,10 +2058,10 @@
     "message": "法規遵循 · 稽核"
   },
   "compliance.vehicleAccessAuditTrail.body.newRulesRequireVehicle": {
-    "message": "新法規要求車輛存取必須可撤銷且可稽核。工作階段模型會自動產生這份紀錄——而保險業者理賠時需要的，正是同一份紀錄。"
+    "message": "新法規要求車輛存取必須可撤銷且可稽核。會話模型會自動產生這份紀錄——而保險業者理賠時需要的，正是同一份紀錄。"
   },
   "compliance.vehicleAccessAuditTrail.body.aVehicleAccessAudit": {
-    "message": "車輛存取稽核軌跡是一份可驗證的紀錄，載明誰獲授予車輛的存取權限、被允許做什麼，以及存取權限確切的結束時間。如今有兩項法規讓這成為強制要求，而非選配：{strong}要求車輛存取控制必須能由車主撤銷，{strong2}則要求車輛存取系統必須可稽核。工作階段模型能同時滿足兩者，在每次授予與撤銷存取時，都會產生經簽署、附時間戳記的紀錄。"
+    "message": "車輛存取稽核軌跡是一份可驗證的紀錄，載明誰獲授予車輛的存取權限、被允許做什麼，以及存取權限確切的結束時間。如今有兩項法規讓這成為強制要求，而非選配：{strong}要求車輛存取控制必須能由車主撤銷，{strong2}則要求車輛存取系統必須可稽核。會話模型能同時滿足兩者，在每次授予與撤銷存取時，都會產生經簽署、附時間戳記的紀錄。"
   },
   "compliance.vehicleAccessAuditTrail.body.californiaSb1394": {
     "message": "加州SB-1394"
@@ -1950,7 +2073,7 @@
     "message": "法規要求什麼"
   },
   "compliance.vehicleAccessAuditTrail.body.signedIn2024And": {
-    "message": "SB-1394於2024年簽署、2025年生效，要求聯網汽車的存取控制必須{strong}。其立法目的在於保護消費者，特別是防範跟蹤騷擾與遭棄置的存取權限，但對工程層面的影響非常具體：必須有真正的「關閉」開關，而且按下後必須真的停止存取。工作階段撤銷正是這項要求的技術實作。結束一個工作階段，就會一次撤回其中包含的所有權限。"
+    "message": "SB-1394於2024年簽署、2025年生效，要求聯網汽車的存取控制必須{strong}。其立法目的在於保護消費者，特別是防範跟蹤騷擾與遭棄置的存取權限，但對工程層面的影響非常具體：必須有真正的「關閉」開關，而且按下後必須真的停止存取。會話撤銷正是這項要求的技術實作。結束一個會話，就會一次撤回其中包含的所有權限。"
   },
   "compliance.vehicleAccessAuditTrail.body.revocableByTheVehicle": {
     "message": "能由車主撤銷"
@@ -1959,7 +2082,7 @@
     "message": "UNECE R155 / R156"
   },
   "compliance.vehicleAccessAuditTrail.body.inForceSinceJuly": {
-    "message": "R155（網路安全）與R156（軟體更新）自2024年7月起對新車型生效，要求車輛存取及其變更必須{strong}。能授予存取、卻無法提供可信紀錄說明誰在何時擁有存取權限的系統，就達不到標準。DIMO工作階段{strong2}：經過加密簽署且可獨立驗證，因此即使不是產生紀錄的一方，也能信任這份紀錄。"
+    "message": "R155（網路安全）與R156（軟體更新）自2024年7月起對新車型生效，要求車輛存取及其變更必須{strong}。能授予存取、卻無法提供可信紀錄說明誰在何時擁有存取權限的系統，就達不到標準。DIMO會話{strong2}：經過加密簽署且可獨立驗證，因此即使不是產生紀錄的一方，也能信任這份紀錄。"
   },
   "compliance.vehicleAccessAuditTrail.body.auditable": {
     "message": "可稽核"
@@ -1986,16 +2109,16 @@
     "message": "電動車保費比燃油車高出約49%"
   },
   "compliance.vehicleAccessAuditTrail.body.aVerifiableSessionRecord": {
-    "message": "可驗證的工作階段紀錄能填補這個缺口：它以核保人員能接受的形式，說明誰在駕駛、哪些遙測資料經過授權，以及工作階段何時結束。車隊得到更好的費率；保險業者得到更好的風險訊號；沒有人需要信任無法驗證的匯出資料。"
+    "message": "可驗證的會話紀錄能填補這個缺口：它以核保人員能接受的形式，說明誰在駕駛、哪些遙測資料經過授權，以及會話何時結束。車隊得到更好的費率；保險業者得到更好的風險訊號；沒有人需要信任無法驗證的匯出資料。"
   },
   "compliance.vehicleAccessAuditTrail.body.settlingADisputeWithout": {
     "message": "解決爭議，不必再做鑑識調查"
   },
   "compliance.vehicleAccessAuditTrail.body.considerADamageClaim": {
-    "message": "以租車還車時的損害理賠為例。若沒有工作階段紀錄，營運業者必須從一個系統調出預約資料、從另一個系統調出車載資通訊資料、從第三個系統調出鑰匙事件、再從第四個系統調出充電紀錄，才能還原事發經過，並寄望各時間戳記足夠吻合，好說服理賠人員。這個過程緩慢，而得出的說法，可信度也只取決於提出主張的營運業者本身。"
+    "message": "以租車還車時的損害理賠為例。若沒有會話紀錄，營運業者必須從一個系統調出預約資料、從另一個系統調出車載資通訊資料、從第三個系統調出鑰匙事件、再從第四個系統調出充電紀錄，才能還原事發經過，並寄望各時間戳記足夠吻合，好說服理賠人員。這個過程緩慢，而得出的說法，可信度也只取決於提出主張的營運業者本身。"
   },
   "compliance.vehicleAccessAuditTrail.body.withASessionRecord": {
-    "message": "有了工作階段紀錄，同樣的問題只需一次查詢：經驗證的駕駛是誰、擁有存取權限的時段、納入範圍的遙測資料，以及存取結束的時間點，全部經過簽署，理賠人員不必只聽營運業者的一面之詞。爭議能依據雙方都可獨立驗證的證據解決，對營運業者來說更快，對保險業者來說風險更低。"
+    "message": "有了會話紀錄，同樣的問題只需一次查詢：經驗證的駕駛是誰、擁有存取權限的時段、納入範圍的遙測資料，以及存取結束的時間點，全部經過簽署，理賠人員不必只聽營運業者的一面之詞。爭議能依據雙方都可獨立驗證的證據解決，對營運業者來說更快，對保險業者來說風險更低。"
   },
   "compliance.vehicleAccessAuditTrail.body.commonQuestions": {
     "message": "常見問題"
@@ -2010,22 +2133,22 @@
     "message": "這會與駕駛隱私衝突嗎？"
   },
   "compliance.vehicleAccessAuditTrail.body.theOppositeTheSame": {
-    "message": "恰恰相反。產生稽核軌跡的同一個工作階段，也會限定分享範圍並在還車時撤銷，因此這份紀錄記載的是早已經過同意且有邊界的存取。可稽核性與{link}是同一個基礎單元的一體兩面，而不是彼此取捨。"
+    "message": "恰恰相反。產生稽核軌跡的同一個會話，也會限定分享範圍並在還車時撤銷，因此這份紀錄記載的是早已經過同意且有邊界的存取。可稽核性與{link}是同一個基礎單元的一體兩面，而不是彼此取捨。"
   },
   "compliance.vehicleAccessAuditTrail.body.sessionScopedConsent": {
-    "message": "限定工作階段的同意"
+    "message": "限定會話的同意"
   },
   "compliance.vehicleAccessAuditTrail.body.whatAuditReadyAccessLooks": {
     "message": "隨時可稽核的存取實際上是什麼樣子"
   },
   "compliance.vehicleAccessAuditTrail.body.forEveryUseOf": {
-    "message": "每次使用車輛時，工作階段都會產生一份紀錄，內含駕駛經驗證的身分、納入範圍的資料與功能、支出上限、開始與結束時間，以及撤銷事件，並經過簽署，事後無法竄改。為爭議提供「誰在駕駛、有哪些遙測資料」只需一次查詢，不必跨五套互不相連的系統進行鑑識調查。"
+    "message": "每次使用車輛時，會話都會產生一份紀錄，內含駕駛經驗證的身分、納入範圍的資料與功能、支出上限、開始與結束時間，以及撤銷事件，並經過簽署，事後無法竄改。為爭議提供「誰在駕駛、有哪些遙測資料」只需一次查詢，不必跨五套互不相連的系統進行鑑識調查。"
   },
   "compliance.vehicleAccessAuditTrail.body.thisIsTheAuditability": {
     "message": "這是{link}中關於可稽核性的那一半。同意與稽核是同一個基礎單元的兩面。請在{link2}中了解它如何融入更完整的模型，並在{link3}中了解車隊如何實際運用。"
   },
   "compliance.vehicleAccessAuditTrail.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "compliance.vehicleAccessAuditTrail.body.fleetIntelligence": {
     "message": "車隊智慧"
@@ -3477,7 +3600,7 @@
     "message": "別再為了回答「這輛車現在在誰手上、對方花了多少錢」而在五套工具之間來回切換。單一{link}即可統一管理整個混合車隊的身分、數位鑰匙、資料與支出，而且從設計上就{link2}。"
   },
   "industries.rentals.hero.vehicleSession": {
-    "message": "車輛工作階段"
+    "message": "車輛會話"
   },
   "industries.rentals.hero.consentCompliant": {
     "message": "符合同意規範"
@@ -3756,7 +3879,7 @@
     "message": "打造能理解車輛資料、採取行動並將工作流程自動化的AI代理，從安排保養到監控車隊車況都能勝任。"
   },
   "products.components.components.autonomousVehicleIntelligence.example": {
-    "message": "建立能回應車輛事件、預約服務、支付服務費用、提醒駕駛人，並與您現有商業系統整合的代理。今天就開始為自駕車建立代理式工作階段。"
+    "message": "建立能回應車輛事件、預約服務、支付服務費用、提醒駕駛人，並與您現有商業系統整合的代理。今天就開始為自駕車建立代理式會話。"
   },
   "products.components.components.everythingYouNeed.type": {
     "message": "開發者工具"
@@ -3951,7 +4074,7 @@
     "message": "隱私優先的同意管理，具備密碼學驗證與法規遵循。"
   },
   "products.consent.schema.description": {
-    "message": "保護隱私、由使用者擁有的車輛資料同意管理：限定工作階段的權限，並以原子化方式授予與撤銷（SACD）。"
+    "message": "保護隱私、由使用者擁有的車輛資料同意管理：限定會話的權限，並以原子化方式授予與撤銷（SACD）。"
   },
   "products.consent.body.home.name": {
     "message": "首頁"
@@ -4146,7 +4269,7 @@
     "message": "直接在車內完成支付，並搭配可自訂的獎勵機制。"
   },
   "products.pay.schema.description": {
-    "message": "以工作階段為範圍的穩定幣支付管道，專為移動出行打造，涵蓋車內支付、費用報銷與每個工作階段的支出控管。"
+    "message": "以會話為範圍的穩定幣支付管道，專為移動出行打造，涵蓋車內支付、費用報銷與每個會話的支出控管。"
   },
   "products.pay.body.home.name": {
     "message": "首頁"
@@ -4317,7 +4440,7 @@
     "message": "代理記憶與情境"
   },
   "solutions.agenticExperiences.useCases.agentMemoryContext.description": {
-    "message": "為您的代理內建記憶層。跨工作階段保留對話記錄、使用者偏好與車輛情境，打造個人化體驗。"
+    "message": "為您的代理內建記憶層。跨會話保留對話記錄、使用者偏好與車輛情境，打造個人化體驗。"
   },
   "solutions.agenticExperiences.useCases.agentMemoryContext.example": {
     "message": "代理會記得過去的互動：「上次我們聊到您的機油該換了，要幫您預約嗎？」"
@@ -4809,7 +4932,7 @@
     "message": "正常運作時間SLA"
   },
   "solutions.fleetIntelligence.hero.seeEveryVehicleEvery": {
-    "message": "掌握每一輛車、每一個工作階段，{span}"
+    "message": "掌握每一輛車、每一個會話，{span}"
   },
   "solutions.fleetIntelligence.hero.acrossAMixedFleet": {
     "message": "全面涵蓋混合車隊"
@@ -4950,7 +5073,7 @@
     "message": "混合車隊管理與車載資通訊，盡在單一儀表板 | DIMO"
   },
   "solutions.fleetIntelligence.meta.description": {
-    "message": "已連線的50多個車輛品牌，透過單一API提供標準化的車載資通訊與工作階段控管。與保險公司共享可驗證紀錄，不必再核對五套系統。"
+    "message": "已連線的50多個車輛品牌，透過單一API提供標準化的車載資通訊與會話控管。與保險公司共享可驗證紀錄，不必再核對五套系統。"
   },
   "solutions.fleetIntelligence.meta.keywords": {
     "message": "車隊管理, 車隊追蹤, 車載資通訊, 車隊API, 車隊SDK, 預測性維護, 車隊最佳化, 車輛遙測"
@@ -4977,13 +5100,13 @@
     "message": "車隊智慧"
   },
   "solutions.fleetSpend.meta.title": {
-    "message": "車隊支出與電動車充電報銷，依工作階段結算 | DIMO"
+    "message": "車隊支出與電動車充電報銷，依會話結算 | DIMO"
   },
   "solutions.fleetSpend.meta.description": {
-    "message": "別再等到幾天後才核對充電、通行費與油費。DIMO將支出綁定至每個車輛工作階段：住家充電、公共充電與通行費，皆自動設定上限並完成對帳。"
+    "message": "別再等到幾天後才核對充電、通行費與油費。DIMO將支出綁定至每個車輛會話：住家充電、公共充電與通行費，皆自動設定上限並完成對帳。"
   },
   "solutions.fleetSpend.meta.h1": {
-    "message": "取車時即設定支出上限：充電、通行費與油費全部綁定工作階段"
+    "message": "取車時即設定支出上限：充電、通行費與油費全部綁定會話"
   },
   "solutions.fleetSpend.body.home.name": {
     "message": "首頁"
@@ -4998,13 +5121,13 @@
     "message": "解決方案 · 支出"
   },
   "solutions.fleetSpend.body.chargingTollsAndFuel": {
-    "message": "充電、通行費與油費是車隊中最容易漏財的支出項目，因為這些費用發生在取車之後，往往幾天後才對帳。只要將它們綁定至工作階段，漏洞就此堵住。"
+    "message": "充電、通行費與油費是車隊中最容易漏財的支出項目，因為這些費用發生在取車之後，往往幾天後才對帳。只要將它們綁定至會話，漏洞就此堵住。"
   },
   "solutions.fleetSpend.body.fleetSpendLeaksBecause": {
-    "message": "車隊支出之所以漏財，是因為缺少一個承載它的容器。駕駛人取車、充電、通過收費站，也許再加滿油，每一筆費用都落在不同的系統裡，數小時甚至數天後才拿去對照一筆誰也無法清楚比對的預約。DIMO將支出綁定至{strong}：取車時設定上限，每筆費用都歸屬於產生它的工作階段，對帳自動完成，不必再靠週一早上的試算表。"
+    "message": "車隊支出之所以漏財，是因為缺少一個承載它的容器。駕駛人取車、充電、通過收費站，也許再加滿油，每一筆費用都落在不同的系統裡，數小時甚至數天後才拿去對照一筆誰也無法清楚比對的預約。DIMO將支出綁定至{strong}：取車時設定上限，每筆費用都歸屬於產生它的會話，對帳自動完成，不必再靠週一早上的試算表。"
   },
   "solutions.fleetSpend.body.vehicleSession": {
-    "message": "車輛工作階段"
+    "message": "車輛會話"
   },
   "solutions.fleetSpend.body.whySpendLeaksToday": {
     "message": "支出為何漏財"
@@ -5034,19 +5157,19 @@
     "message": "公共充電："
   },
   "solutions.fleetSpend.body.incurredMidSessionBilledLater": {
-    "message": "{strong}在工作階段中途產生，事後才計費，且很少能對應到產生費用的那趟行程。"
+    "message": "{strong}在會話中途產生，事後才計費，且很少能對應到產生費用的那趟行程。"
   },
   "solutions.fleetSpend.body.tollsAndParking": {
     "message": "通行費與停車費："
   },
   "solutions.fleetSpend.body.handledSeparatelyTheseAre": {
-    "message": "分開處理，就是三套整合與三種對帳難題。納入工作階段一併處理，就只是一筆有上限、歸屬明確的明細項目。"
+    "message": "分開處理，就是三套整合與三種對帳難題。納入會話一併處理，就只是一筆有上限、歸屬明確的明細項目。"
   },
   "solutions.fleetSpend.body.plugAndChargeAsAPerSession": {
-    "message": "隨插即充，按工作階段計費的服務"
+    "message": "隨插即充，按會話計費的服務"
   },
   "solutions.fleetSpend.body.tyingSpendToThe": {
-    "message": "將支出綁定至工作階段，不只能省錢，還能開創營收。想像一下，{strong}，出差時再也不必為了充電下載六個App。如今這只是{strong2}，因為沒有工作階段可以掛上這筆費用。有了工作階段容器，充電、保險與其他按趟計費的服務，都能成為營運商真正可以提供並收費的項目，按工作階段定價，而不是埋在每日租金裡。"
+    "message": "將支出綁定至會話，不只能省錢，還能開創營收。想像一下，{strong}，出差時再也不必為了充電下載六個App。如今這只是{strong2}，因為沒有會話可以掛上這筆費用。有了會話容器，充電、保險與其他按趟計費的服務，都能成為營運商真正可以提供並收費的項目，按會話定價，而不是埋在每日租金裡。"
   },
   "solutions.fleetSpend.body.plugAndChargeOnYourNext": {
     "message": "下次租車就能隨插即充"
@@ -5058,13 +5181,13 @@
     "message": "運作方式"
   },
   "solutions.fleetSpend.body.whenAIsCreated": {
-    "message": "建立{link}時，它會連同身分、數位鑰匙與資料範圍，一併帶入支出上限。工作階段期間產生的費用會自動歸屬於該工作階段，並受上限約束；工作階段結束時，支出隨即完成對帳，並與工作階段的其他內容一同封存於同一份可驗證紀錄中。營運商每個工作階段只會看到一個數字，而不是四個需要對帳的資料來源。"
+    "message": "建立{link}時，它會連同身分、數位鑰匙與資料範圍，一併帶入支出上限。會話期間產生的費用會自動歸屬於該會話，並受上限約束；會話結束時，支出隨即完成對帳，並與會話的其他內容一同封存於同一份可驗證紀錄中。營運商每個會話只會看到一個數字，而不是四個需要對帳的資料來源。"
   },
   "solutions.fleetSpend.body.thisIsTheSpend": {
-    "message": "這是整體工作階段模型中的支出功能。請參閱{link}、{link2}，以及它如何融入{link3}。"
+    "message": "這是整體會話模型中的支出功能。請參閱{link}、{link2}，以及它如何融入{link3}。"
   },
   "solutions.fleetSpend.body.vehicleSessionInfrastructure": {
-    "message": "車輛工作階段基礎架構"
+    "message": "車輛會話基礎架構"
   },
   "solutions.fleetSpend.body.payProduct": {
     "message": "Pay產品"

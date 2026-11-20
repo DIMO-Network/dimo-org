@@ -6,7 +6,7 @@
 }
 
 .newsletterTitle {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 900;
   font-size: 1.5rem;
   color: #ffffff;
@@ -14,7 +14,7 @@
 }
 
 .newsletterDescription {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.7);
   margin: 0 0 1.25rem 0;
@@ -28,14 +28,14 @@
 .newsletterInputRow {
   display: flex;
   gap: 0;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #2c2c33;
   transition: border-color 0.2s ease;
 }
 
 .newsletterInputRow:focus-within {
-  border-color: #124bdb;
+  border-color: #8f99ff;
 }
 
 .newsletterInput {
@@ -44,7 +44,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: none;
   color: #ffffff;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-size: 0.95rem;
   outline: none;
 }
@@ -70,18 +70,18 @@
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.25rem;
-  background: #124bdb;
+  background: #4b58f5;
   border: none;
   color: #ffffff;
   cursor: pointer;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-size: 0.9rem;
   font-weight: 600;
   transition: background 0.2s ease;
 }
 
 .newsletterButton:hover {
-  background: #0f3fb8;
+  background: #5664ff;
 }
 
 .newsletterButton:disabled {
@@ -99,7 +99,7 @@
   border: 1px solid rgba(34, 197, 94, 0.3);
   border-radius: 8px;
   color: #22c55e;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-size: 0.95rem;
   font-weight: 500;
 }
@@ -108,12 +108,13 @@
   color: #ef4444;
   font-size: 0.85rem;
   margin: 0.5rem 0 0;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
 }
 
 /* Footer Styles */
 .footer {
-  background: #000000;
+  background: #16161a;
+  border-top: 1px solid #2c2c33;
   color: #ffffff;
   padding: 4rem 0 2rem;
   margin-top: 4rem;
@@ -138,7 +139,7 @@
 }
 
 .footerColumnTitle {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 900;
   font-size: 1.25rem;
   color: #ffffff;
@@ -160,7 +161,7 @@
 }
 
 .footerLinks a {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
@@ -170,7 +171,7 @@
 }
 
 .footerLinks a:hover {
-  color: #124bdb;
+  color: #8f99ff;
   text-decoration: none;
 }
 
@@ -221,7 +222,7 @@
 }
 
 .footerCopyright p {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);

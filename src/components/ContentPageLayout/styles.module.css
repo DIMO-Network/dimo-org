@@ -1,14 +1,8 @@
 .page {
-  background-color: #030303;
+  background-color: #16161a;
   color: #fff;
   min-height: 100vh;
-  font-family:
-    'Geist Variable',
-    'Geist',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--ifm-font-family-base);
   padding-top: 80px;
 }
 
@@ -21,9 +15,9 @@
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
-  color: #124bdb;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: #8f99ff;
   font-weight: 600;
 }
 
@@ -31,14 +25,14 @@
   /* fluid: ~30px at 390px viewports (long H1s wrapped to 5 lines), 48px desktop */
   font-size: clamp(1.9rem, 5.5vw + 0.5rem, 3rem);
   line-height: 1.05;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.02em;
   margin: 1rem 0;
 }
 
 .heroSubtitle {
   font-size: 1.25rem;
-  color: #a1a1aa;
+  color: #a09ca6;
   max-width: 680px;
   margin: 0 auto 2rem;
   line-height: 1.6;
@@ -48,12 +42,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #fff;
-  color: #000;
-  padding: 0 1.75rem;
-  height: 3.25rem;
-  border-radius: 8px;
-  font-weight: 600;
+  background: #4b58f5;
+  color: #ffffff;
+  padding: 0 1.5rem;
+  height: 3rem;
+  border-radius: 6px;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -67,7 +61,6 @@ button.cta {
 .cta:hover {
   color: #000;
   text-decoration: none;
-  transform: translateY(-2px);
 }
 
 .arrow {
@@ -90,7 +83,7 @@ button.cta {
   padding: 1rem 1.5rem 5rem;
   font-size: 1.0625rem;
   line-height: 1.75;
-  color: #d4d4d8;
+  color: #d9d6dd;
 }
 
 .article h2 {
@@ -110,7 +103,7 @@ button.cta {
 }
 
 .article a {
-  color: #6385d9;
+  color: #8f99ff;
 }
 
 .article ul,
@@ -132,7 +125,7 @@ button.cta {
 
 .article th,
 .article td {
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid #2c2c33;
   padding: 0.6rem 0.75rem;
   text-align: left;
 }
@@ -145,4 +138,13 @@ button.cta {
 .breadcrumbs.wide,
 .article.wide {
   max-width: 1080px;
+}
+
+/* --- DIMO design system headings (global h1-h3 weights use !important) --- */
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 500 !important;
+  letter-spacing: -0.02em;
 }
