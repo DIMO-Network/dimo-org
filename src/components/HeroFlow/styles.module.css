@@ -1,0 +1,170 @@
+.flow {
+  --flow-bg: var(--hp-bg, #16161a);
+  --flow-surface: var(--hp-surface, #1f1f24);
+  --flow-line: var(--hp-line, #2c2c33);
+  --flow-ink: var(--hp-ink, #faf9f6);
+  --flow-muted: var(--hp-muted, #a09ca6);
+  --flow-faint: var(--hp-faint, #6e6a74);
+  --flow-accent: var(--hp-accent, #8f99ff);
+
+  width: 100%;
+  font-family: var(--ifm-font-family-base);
+}
+
+.wide,
+.tall {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.tall {
+  display: none;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+@media (max-width: 860px) {
+  .wide {
+    display: none;
+  }
+  .tall {
+    display: block;
+  }
+}
+
+.colLabel {
+  fill: var(--flow-faint);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.card {
+  fill: var(--flow-surface);
+  stroke: var(--flow-line);
+}
+
+.glyph {
+  fill: none;
+  stroke: var(--flow-muted);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.brand {
+  fill: var(--flow-ink);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.brandSmall {
+  fill: var(--flow-ink);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.liveDot {
+  fill: var(--flow-accent);
+}
+
+.more {
+  fill: var(--flow-faint);
+  font-size: 13px;
+}
+
+.wire,
+.wireActive {
+  fill: none;
+  stroke: var(--flow-line);
+  stroke-width: 1.5;
+}
+
+.wireActive {
+  stroke: color-mix(in srgb, var(--flow-accent) 45%, var(--flow-line));
+}
+
+.packet {
+  fill: var(--flow-accent);
+}
+
+.hub {
+  fill: var(--flow-surface);
+  stroke: color-mix(in srgb, var(--flow-accent) 55%, var(--flow-line));
+  stroke-width: 1.5;
+}
+
+.hubTitle {
+  fill: var(--flow-ink);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.caption {
+  fill: var(--flow-muted);
+  font-size: 13px;
+}
+
+.divider {
+  stroke: var(--flow-line);
+}
+
+.signalLabel {
+  fill: var(--flow-muted);
+  font-size: 14px;
+}
+
+.signalValue {
+  fill: var(--flow-ink);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 13px;
+}
+
+.pill {
+  fill: none;
+  stroke: var(--flow-line);
+}
+
+.pillText {
+  fill: var(--flow-accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.appName {
+  fill: var(--flow-ink);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.appNameSmall {
+  fill: var(--flow-ink);
+  font-family: var(--ifm-heading-font-family);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.stateActive {
+  fill: var(--flow-accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stateExpired {
+  fill: var(--flow-faint);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.track {
+  fill: var(--flow-line);
+}
+
+.bar {
+  fill: var(--flow-accent);
+}

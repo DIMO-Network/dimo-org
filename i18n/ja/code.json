@@ -134,20 +134,14 @@
   "connectedCarApi.body.consoleDimoOrg": {
     "message": "console.dimo.org"
   },
-  "home.rotatingWords.vehicleData": {
-    "message": "車両データ"
+  "home.rotatingWords.connectedVehicleData": {
+    "message": "コネクテッドカーのデータ"
   },
   "home.rotatingWords.sessionBasedEconomy": {
     "message": "セッションベース経済"
   },
-  "home.rotatingWords.mobility": {
-    "message": "モビリティ"
-  },
-  "home.hero.new": {
-    "message": "新着"
-  },
-  "home.hero.checkUsOutOn": {
-    "message": "ProductHuntで公開中"
+  "home.rotatingWords.physicalAiInMobility": {
+    "message": "モビリティのフィジカルAI"
   },
   "home.hero.theInfrastructureBuiltFor": {
     "message": "インフラで支える{br}{word}"
@@ -176,14 +170,83 @@
   "home.featuredIn.allThirdPartyTrademarksAre": {
     "message": "第三者の商標はすべて各所有者に帰属し、独立した編集記事であることを示す目的でのみ使用しています。推薦や後援を意味するものではありません。"
   },
+  "home.whatIsDimo.points.brands.title": {
+    "message": "50以上のブランド"
+  },
+  "home.whatIsDimo.points.brands.desc": {
+    "message": "Tesla、Ford、BMW、Toyota、Hyundaiなどにひとつの統合で対応。"
+  },
+  "home.whatIsDimo.points.signals.title": {
+    "message": "リアルタイムの信号"
+  },
+  "home.whatIsDimo.points.signals.desc": {
+    "message": "位置情報、バッテリー、燃料、走行距離、タイヤ空気圧、故障コード。"
+  },
+  "home.whatIsDimo.points.consent.title": {
+    "message": "オーナーの同意"
+  },
+  "home.whatIsDimo.points.consent.desc": {
+    "message": "オーナーがセッションごとにアクセスを許可・取り消し。GDPRとEUデータ法に対応。"
+  },
+  "home.whatIsDimo.points.free.title": {
+    "message": "無料で始められる"
+  },
+  "home.whatIsDimo.points.free.desc": {
+    "message": "HobbyistプランでTypeScript、Python、C#のSDKを利用可能。"
+  },
   "home.whatIsDimo.whatIsDimo": {
     "message": "DIMOとは？"
   },
-  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
-    "message": "DIMO（Digital Infrastructure for Moving Objects）は、車両、ドライバー、サービスがオンデマンドでつながるセッションベース経済を支える車両データインフラです。DIMOは、Tesla、Ford、BMW、Toyota、Hyundaiを含む50以上のブランドについて、リアルタイムのテレメトリ、車両ID、オーナーの同意（SACD）を1つの権限管理されたAPIで扱い、車両アクセスを担います。そのため開発者は、メーカーごとに個別の統合を交渉することなく、アプリやビジネスを構築できます。開発者はconsole.dimo.orgで無料アカウントを作成し、APIキーを発行して、位置情報、バッテリー残量や燃料残量、走行距離、タイヤ空気圧、故障診断コードなどのリアルタイムの車両データを、GraphQLとRESTのエンドポイントから取得できます。公式SDKはTypeScript、Python、C#に対応しています。データを管理するのは車両オーナーです。オーナーは、詳細に設定でき監査可能な権限によってアクセスを付与または取り消すことができ、その権限はセッションごとに有効化し、失効させることもできます。これにより、アプリケーションは初めからGDPRとEUデータ法に準拠できます。プラットフォームのコアはオープンソースで、BYOD（Bring Your Own Device）のテレマティクスハードウェアにも対応しています。無料のHobbyistプランなら、開発者は数分で最初のAPI呼び出しを行えます。"
+  "home.whatIsDimo.headline": {
+    "message": "50以上の自動車ブランドに、ひとつのAPIで。"
   },
-  "home.whatIsDimo.startWithTheOverview": {
-    "message": "機能については{link}の概要から、シグナルのカタログについては{link2}のページから、プロバイダーを比較している場合は{link3}の比較からご覧ください。"
+  "home.whatIsDimo.headlineMuted": {
+    "message": "データの管理はオーナーの手に。"
+  },
+  "home.whatIsDimo.lede": {
+    "message": "DIMO（Digital Infrastructure for Moving Objects）は車両データインフラです。リアルタイムのテレメトリ、ID、オーナーの同意をひとつの許可制APIで扱えます。"
+  },
+  "home.whatIsDimo.readFullOverview": {
+    "message": "詳しい概要を読む"
+  },
+  "home.whatIsDimo.overview.start.title": {
+    "message": "数分で始められる"
+  },
+  "home.whatIsDimo.overview.start.account": {
+    "message": "{console}で無料アカウントを作成。"
+  },
+  "home.whatIsDimo.overview.start.keys": {
+    "message": "APIキーを発行。"
+  },
+  "home.whatIsDimo.overview.start.query": {
+    "message": "GraphQLまたはRESTでリアルタイムのデータを取得。TypeScript、Python、C#のSDKも利用可能。"
+  },
+  "home.whatIsDimo.overview.owners.title": {
+    "message": "アクセスはオーナーが管理"
+  },
+  "home.whatIsDimo.overview.owners.grant": {
+    "message": "細かく監査可能な権限（SACD）でアクセスを許可・取り消し。"
+  },
+  "home.whatIsDimo.overview.owners.session": {
+    "message": "権限はセッションごとに開始・失効できます。"
+  },
+  "home.whatIsDimo.overview.owners.compliance": {
+    "message": "標準でGDPRとEUデータ法に準拠。"
+  },
+  "home.whatIsDimo.overview.sessions.title": {
+    "message": "セッション型経済のために設計"
+  },
+  "home.whatIsDimo.overview.sessions.onDemand": {
+    "message": "車両、ドライバー、サービスがオンデマンドでつながります。"
+  },
+  "home.whatIsDimo.overview.sessions.noIntegrations": {
+    "message": "メーカーごとの個別統合は不要。"
+  },
+  "home.whatIsDimo.overview.sessions.open": {
+    "message": "コアはオープンソース。手持ちのテレマティクス機器も使えます。"
+  },
+  "home.whatIsDimo.learnMore": {
+    "message": "詳しく見る："
   },
   "home.whatIsDimo.connectedCarApi": {
     "message": "コネクテッドカーAPI"
@@ -1006,6 +1069,66 @@
   },
   "navbar.body.language": {
     "message": "言語"
+  },
+  "home.heroFlow.title": {
+    "message": "Tesla、Ford、BMW、Toyota、Hyundaiなど50以上のブランドの車両データが、ID、テレメトリ、同意をまとめたひとつのデータレイヤー、DIMOに集まります。アプリがデータを読めるのは、オーナーの期限付きの同意が有効な間だけです。"
+  },
+  "home.heroFlow.anyVehicle": {
+    "message": "あらゆる車両"
+  },
+  "home.heroFlow.oneDataLayer": {
+    "message": "ひとつのデータレイヤー"
+  },
+  "home.heroFlow.anyApp": {
+    "message": "あらゆるアプリ"
+  },
+  "home.heroFlow.moreBrands": {
+    "message": "+ ほか45ブランド"
+  },
+  "home.heroFlow.hubSubtitle": {
+    "message": "正規化され、許可された車両データ"
+  },
+  "home.heroFlow.signal.speed": {
+    "message": "速度"
+  },
+  "home.heroFlow.signal.battery": {
+    "message": "バッテリー"
+  },
+  "home.heroFlow.signal.odometer": {
+    "message": "走行距離"
+  },
+  "home.heroFlow.signal.tirePressure": {
+    "message": "タイヤ空気圧"
+  },
+  "home.heroFlow.signal.location": {
+    "message": "位置情報"
+  },
+  "home.heroFlow.pillar.identity": {
+    "message": "ID"
+  },
+  "home.heroFlow.pillar.telemetry": {
+    "message": "テレメトリ"
+  },
+  "home.heroFlow.pillar.consent": {
+    "message": "同意"
+  },
+  "home.heroFlow.app.rental": {
+    "message": "レンタカー"
+  },
+  "home.heroFlow.app.insurance": {
+    "message": "保険"
+  },
+  "home.heroFlow.app.fleet": {
+    "message": "フリート管理"
+  },
+  "home.heroFlow.sessionConsent": {
+    "message": "セッションの同意"
+  },
+  "home.heroFlow.active": {
+    "message": "有効"
+  },
+  "home.heroFlow.expired": {
+    "message": "期限切れ"
   },
   "compare.smartcarAlternative.meta.title": {
     "message": "DIMO vs Smartcar：データだけでなくセッションを制御 | DIMO"

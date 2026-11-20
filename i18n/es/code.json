@@ -134,20 +134,14 @@
   "connectedCarApi.body.consoleDimoOrg": {
     "message": "console.dimo.org"
   },
-  "home.rotatingWords.vehicleData": {
-    "message": "los datos vehiculares"
+  "home.rotatingWords.connectedVehicleData": {
+    "message": "los datos de vehículos conectados"
   },
   "home.rotatingWords.sessionBasedEconomy": {
     "message": "la economía basada en sesiones"
   },
-  "home.rotatingWords.mobility": {
-    "message": "la movilidad"
-  },
-  "home.hero.new": {
-    "message": "Nuevo"
-  },
-  "home.hero.checkUsOutOn": {
-    "message": "Visítanos en ProductHunt"
+  "home.rotatingWords.physicalAiInMobility": {
+    "message": "la IA física en la movilidad"
   },
   "home.hero.theInfrastructureBuiltFor": {
     "message": "La infraestructura creada para {br}{word}"
@@ -176,14 +170,83 @@
   "home.featuredIn.allThirdPartyTrademarksAre": {
     "message": "Todas las marcas comerciales de terceros son propiedad de sus respectivos dueños y solo identifican cobertura editorial independiente. No implican respaldo ni patrocinio."
   },
+  "home.whatIsDimo.points.brands.title": {
+    "message": "Más de 50 marcas"
+  },
+  "home.whatIsDimo.points.brands.desc": {
+    "message": "Tesla, Ford, BMW, Toyota, Hyundai y más con una sola integración."
+  },
+  "home.whatIsDimo.points.signals.title": {
+    "message": "Señales en vivo"
+  },
+  "home.whatIsDimo.points.signals.desc": {
+    "message": "Ubicación, batería, combustible, odómetro, presión de llantas y códigos de falla."
+  },
+  "home.whatIsDimo.points.consent.title": {
+    "message": "Consentimiento del propietario"
+  },
+  "home.whatIsDimo.points.consent.desc": {
+    "message": "Los propietarios otorgan y revocan el acceso por sesión. Listo para el RGPD y la Ley de Datos de la UE."
+  },
+  "home.whatIsDimo.points.free.title": {
+    "message": "Gratis para empezar"
+  },
+  "home.whatIsDimo.points.free.desc": {
+    "message": "Plan Hobbyist con SDK para TypeScript, Python y C#."
+  },
   "home.whatIsDimo.whatIsDimo": {
     "message": "¿Qué es DIMO?"
   },
-  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
-    "message": "DIMO (Digital Infrastructure for Moving Objects) es la infraestructura de datos vehiculares que impulsa la economía basada en sesiones, donde vehículos, conductores y servicios se conectan bajo demanda. DIMO gestiona el acceso vehicular mediante una sola API con permisos para telemetría en tiempo real, identidad vehicular y consentimiento del propietario (SACD) en más de 50 marcas, como Tesla, Ford, BMW, Toyota y Hyundai, para que los desarrolladores puedan crear apps y negocios sin negociar integraciones separadas con cada fabricante. Los desarrolladores crean una cuenta gratuita en console.dimo.org, generan claves de API y consultan datos vehiculares en vivo, como ubicación, nivel de batería y combustible, odómetro, presión de los neumáticos y códigos de diagnóstico de fallas, mediante endpoints GraphQL y REST, con SDK oficiales para TypeScript, Python y C#. Los propietarios de vehículos controlan sus datos: otorgan o revocan el acceso con permisos granulares y auditables que pueden activarse y vencer con cada sesión, lo que mantiene las aplicaciones en cumplimiento del RGPD y la Ley de Datos de la UE de forma predeterminada. El núcleo de la plataforma es de código abierto, admite hardware telemático propio (BYOD) y el nivel gratuito Hobbyist permite a los desarrolladores hacer su primera llamada a la API en minutos."
+  "home.whatIsDimo.headline": {
+    "message": "Una API para más de 50 marcas de autos."
   },
-  "home.whatIsDimo.startWithTheOverview": {
-    "message": "Empieza con la descripción general de la {link} para conocer sus capacidades, la página de la {link2} para el catálogo de señales, o la comparación {link3} si estás evaluando proveedores."
+  "home.whatIsDimo.headlineMuted": {
+    "message": "Los propietarios mantienen el control."
+  },
+  "home.whatIsDimo.lede": {
+    "message": "DIMO (Digital Infrastructure for Moving Objects) es infraestructura de datos vehiculares: una API con permisos para telemetría en vivo, identidad y consentimiento del propietario."
+  },
+  "home.whatIsDimo.readFullOverview": {
+    "message": "Leer la descripción completa"
+  },
+  "home.whatIsDimo.overview.start.title": {
+    "message": "Empieza en minutos"
+  },
+  "home.whatIsDimo.overview.start.account": {
+    "message": "Crea una cuenta gratuita en {console}."
+  },
+  "home.whatIsDimo.overview.start.keys": {
+    "message": "Genera claves de API."
+  },
+  "home.whatIsDimo.overview.start.query": {
+    "message": "Consulta datos en vivo con GraphQL o REST, o usa los SDK para TypeScript, Python y C#."
+  },
+  "home.whatIsDimo.overview.owners.title": {
+    "message": "Los propietarios controlan el acceso"
+  },
+  "home.whatIsDimo.overview.owners.grant": {
+    "message": "Otorgan o revocan el acceso con permisos granulares y auditables (SACD)."
+  },
+  "home.whatIsDimo.overview.owners.session": {
+    "message": "Los permisos pueden iniciar y vencer con cada sesión."
+  },
+  "home.whatIsDimo.overview.owners.compliance": {
+    "message": "Cumple con el RGPD y la Ley de Datos de la UE por defecto."
+  },
+  "home.whatIsDimo.overview.sessions.title": {
+    "message": "Hecho para la economía basada en sesiones"
+  },
+  "home.whatIsDimo.overview.sessions.onDemand": {
+    "message": "Vehículos, conductores y servicios se conectan bajo demanda."
+  },
+  "home.whatIsDimo.overview.sessions.noIntegrations": {
+    "message": "Sin integraciones separadas con cada fabricante."
+  },
+  "home.whatIsDimo.overview.sessions.open": {
+    "message": "Núcleo de código abierto. Usa tu propio hardware telemático."
+  },
+  "home.whatIsDimo.learnMore": {
+    "message": "Más información:"
   },
   "home.whatIsDimo.connectedCarApi": {
     "message": "API para autos conectados"
@@ -1006,6 +1069,66 @@
   },
   "navbar.body.language": {
     "message": "Idioma"
+  },
+  "home.heroFlow.title": {
+    "message": "Vehículos de Tesla, Ford, BMW, Toyota, Hyundai y más de 45 marcas envían datos a DIMO, una capa de datos para identidad, telemetría y consentimiento. Las apps leen esos datos solo mientras el consentimiento temporal del propietario está activo."
+  },
+  "home.heroFlow.anyVehicle": {
+    "message": "Cualquier vehículo"
+  },
+  "home.heroFlow.oneDataLayer": {
+    "message": "Una capa de datos"
+  },
+  "home.heroFlow.anyApp": {
+    "message": "Cualquier app"
+  },
+  "home.heroFlow.moreBrands": {
+    "message": "+ 45 marcas más"
+  },
+  "home.heroFlow.hubSubtitle": {
+    "message": "Datos vehiculares normalizados y con permisos"
+  },
+  "home.heroFlow.signal.speed": {
+    "message": "Velocidad"
+  },
+  "home.heroFlow.signal.battery": {
+    "message": "Batería"
+  },
+  "home.heroFlow.signal.odometer": {
+    "message": "Odómetro"
+  },
+  "home.heroFlow.signal.tirePressure": {
+    "message": "Presión de llantas"
+  },
+  "home.heroFlow.signal.location": {
+    "message": "Ubicación"
+  },
+  "home.heroFlow.pillar.identity": {
+    "message": "Identidad"
+  },
+  "home.heroFlow.pillar.telemetry": {
+    "message": "Telemetría"
+  },
+  "home.heroFlow.pillar.consent": {
+    "message": "Consentimiento"
+  },
+  "home.heroFlow.app.rental": {
+    "message": "Renta de autos"
+  },
+  "home.heroFlow.app.insurance": {
+    "message": "Seguros"
+  },
+  "home.heroFlow.app.fleet": {
+    "message": "Flotas"
+  },
+  "home.heroFlow.sessionConsent": {
+    "message": "Consentimiento de sesión"
+  },
+  "home.heroFlow.active": {
+    "message": "Activo"
+  },
+  "home.heroFlow.expired": {
+    "message": "Vencido"
   },
   "compare.smartcarAlternative.meta.title": {
     "message": "DIMO vs. Smartcar: control de sesiones, no solo datos | DIMO"

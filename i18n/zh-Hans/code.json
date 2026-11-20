@@ -134,20 +134,14 @@
   "connectedCarApi.body.consoleDimoOrg": {
     "message": "console.dimo.org"
   },
-  "home.rotatingWords.vehicleData": {
-    "message": "车辆数据"
+  "home.rotatingWords.connectedVehicleData": {
+    "message": "网联汽车数据"
   },
   "home.rotatingWords.sessionBasedEconomy": {
     "message": "会话经济"
   },
-  "home.rotatingWords.mobility": {
-    "message": "出行"
-  },
-  "home.hero.new": {
-    "message": "新"
-  },
-  "home.hero.checkUsOutOn": {
-    "message": "来ProductHunt看看我们"
+  "home.rotatingWords.physicalAiInMobility": {
+    "message": "出行领域的物理AI"
   },
   "home.hero.theInfrastructureBuiltFor": {
     "message": "专为{word}{br}打造的基础设施"
@@ -176,14 +170,83 @@
   "home.featuredIn.allThirdPartyTrademarksAre": {
     "message": "所有第三方商标均归其各自所有者所有，仅用于标识独立的媒体报道，不代表任何认可或赞助。"
   },
+  "home.whatIsDimo.points.brands.title": {
+    "message": "50多个品牌"
+  },
+  "home.whatIsDimo.points.brands.desc": {
+    "message": "Tesla、Ford、BMW、Toyota、Hyundai等，一次集成全部接入。"
+  },
+  "home.whatIsDimo.points.signals.title": {
+    "message": "实时信号"
+  },
+  "home.whatIsDimo.points.signals.desc": {
+    "message": "位置、电量、油量、里程、胎压和故障码。"
+  },
+  "home.whatIsDimo.points.consent.title": {
+    "message": "车主授权"
+  },
+  "home.whatIsDimo.points.consent.desc": {
+    "message": "车主按会话授予和撤销访问权限。符合GDPR和欧盟《数据法案》。"
+  },
+  "home.whatIsDimo.points.free.title": {
+    "message": "免费开始"
+  },
+  "home.whatIsDimo.points.free.desc": {
+    "message": "Hobbyist套餐，提供TypeScript、Python和C# SDK。"
+  },
   "home.whatIsDimo.whatIsDimo": {
     "message": "什么是DIMO？"
   },
-  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
-    "message": "DIMO（Digital Infrastructure for Moving Objects，移动物体数字基础设施）是驱动会话经济的车辆数据基础设施。在会话经济中，车辆、驾驶者与服务按需连接。DIMO通过单一、基于权限的API处理车辆访问，涵盖实时遥测、车辆身份和车主同意（SACD），支持Tesla、Ford、BMW、Toyota、Hyundai等50多个品牌，让开发者无需与每家制造商分别谈判集成，就能构建应用和业务。开发者可在console.dimo.org创建免费账号、生成API密钥，并通过GraphQL和REST端点查询位置、电量和油量、里程、胎压、诊断故障码等实时车辆数据，官方SDK支持TypeScript、Python和C#。车主掌控自己的数据：他们可以通过细粒度、可审计的权限授予或撤销访问，这些权限可随每次会话启用和失效，让应用默认符合GDPR和欧盟《数据法案》。平台核心开源，支持自带设备（BYOD）车联网硬件，免费的Hobbyist套餐让开发者几分钟内就能完成首次API调用。"
+  "home.whatIsDimo.headline": {
+    "message": "一个API，接入50多个汽车品牌。"
   },
-  "home.whatIsDimo.startWithTheOverview": {
-    "message": "您可以先阅读{link}概览了解功能，查看{link2}页面了解信号目录；如果您正在评估服务商，也可以参阅{link3}。"
+  "home.whatIsDimo.headlineMuted": {
+    "message": "数据始终由车主掌控。"
+  },
+  "home.whatIsDimo.lede": {
+    "message": "DIMO（Digital Infrastructure for Moving Objects）是车辆数据基础设施：通过一个基于授权的API获取实时遥测、身份和车主同意。"
+  },
+  "home.whatIsDimo.readFullOverview": {
+    "message": "阅读完整概述"
+  },
+  "home.whatIsDimo.overview.start.title": {
+    "message": "几分钟即可上手"
+  },
+  "home.whatIsDimo.overview.start.account": {
+    "message": "在{console}免费注册账户。"
+  },
+  "home.whatIsDimo.overview.start.keys": {
+    "message": "生成API密钥。"
+  },
+  "home.whatIsDimo.overview.start.query": {
+    "message": "通过GraphQL或REST查询实时数据，或使用TypeScript、Python和C# SDK。"
+  },
+  "home.whatIsDimo.overview.owners.title": {
+    "message": "访问权限由车主掌控"
+  },
+  "home.whatIsDimo.overview.owners.grant": {
+    "message": "通过细粒度、可审计的权限（SACD）授予或撤销访问。"
+  },
+  "home.whatIsDimo.overview.owners.session": {
+    "message": "权限可随每个会话开始和到期。"
+  },
+  "home.whatIsDimo.overview.owners.compliance": {
+    "message": "默认符合GDPR和欧盟《数据法案》。"
+  },
+  "home.whatIsDimo.overview.sessions.title": {
+    "message": "为会话经济而生"
+  },
+  "home.whatIsDimo.overview.sessions.onDemand": {
+    "message": "车辆、司机和服务按需连接。"
+  },
+  "home.whatIsDimo.overview.sessions.noIntegrations": {
+    "message": "无需与每家车企单独集成。"
+  },
+  "home.whatIsDimo.overview.sessions.open": {
+    "message": "核心开源。支持自带车载硬件。"
+  },
+  "home.whatIsDimo.learnMore": {
+    "message": "了解更多："
   },
   "home.whatIsDimo.connectedCarApi": {
     "message": "网联汽车API"
@@ -1006,6 +1069,66 @@
   },
   "navbar.body.language": {
     "message": "语言"
+  },
+  "home.heroFlow.title": {
+    "message": "来自Tesla、Ford、BMW、Toyota、Hyundai等50多个品牌的车辆数据汇入DIMO——一个涵盖身份、遥测和授权的数据层。只有在车主的限时授权有效期间，应用才能读取这些数据。"
+  },
+  "home.heroFlow.anyVehicle": {
+    "message": "任意车辆"
+  },
+  "home.heroFlow.oneDataLayer": {
+    "message": "一个数据层"
+  },
+  "home.heroFlow.anyApp": {
+    "message": "任意应用"
+  },
+  "home.heroFlow.moreBrands": {
+    "message": "+ 其他45个品牌"
+  },
+  "home.heroFlow.hubSubtitle": {
+    "message": "标准化、经授权的车辆数据"
+  },
+  "home.heroFlow.signal.speed": {
+    "message": "车速"
+  },
+  "home.heroFlow.signal.battery": {
+    "message": "电量"
+  },
+  "home.heroFlow.signal.odometer": {
+    "message": "里程"
+  },
+  "home.heroFlow.signal.tirePressure": {
+    "message": "胎压"
+  },
+  "home.heroFlow.signal.location": {
+    "message": "位置"
+  },
+  "home.heroFlow.pillar.identity": {
+    "message": "身份"
+  },
+  "home.heroFlow.pillar.telemetry": {
+    "message": "遥测"
+  },
+  "home.heroFlow.pillar.consent": {
+    "message": "授权"
+  },
+  "home.heroFlow.app.rental": {
+    "message": "租车应用"
+  },
+  "home.heroFlow.app.insurance": {
+    "message": "保险"
+  },
+  "home.heroFlow.app.fleet": {
+    "message": "车队管理"
+  },
+  "home.heroFlow.sessionConsent": {
+    "message": "会话授权"
+  },
+  "home.heroFlow.active": {
+    "message": "有效"
+  },
+  "home.heroFlow.expired": {
+    "message": "已到期"
   },
   "compare.smartcarAlternative.meta.title": {
     "message": "DIMO与Smartcar对比：掌控会话，而不只是数据 | DIMO"

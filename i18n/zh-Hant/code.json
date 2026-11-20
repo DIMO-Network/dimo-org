@@ -134,23 +134,17 @@
   "connectedCarApi.body.consoleDimoOrg": {
     "message": "console.dimo.org"
   },
-  "home.rotatingWords.vehicleData": {
-    "message": "車輛資料"
+  "home.rotatingWords.connectedVehicleData": {
+    "message": "聯網車輛資料"
   },
   "home.rotatingWords.sessionBasedEconomy": {
     "message": "工作階段經濟"
   },
-  "home.rotatingWords.mobility": {
-    "message": "移動服務"
-  },
-  "home.hero.new": {
-    "message": "全新"
-  },
-  "home.hero.checkUsOutOn": {
-    "message": "歡迎到ProductHunt看看我們"
+  "home.rotatingWords.physicalAiInMobility": {
+    "message": "移動領域的實體AI"
   },
   "home.hero.theInfrastructureBuiltFor": {
-    "message": "專為{br}{word}打造的基礎架構"
+    "message": "專為{word}{br}打造的基礎架構"
   },
   "home.hero.dimoIsBuildingThe": {
     "message": "DIMO正在為工作階段經濟打造基礎架構，讓車輛、駕駛人與各項服務隨需連接。打造能在每一趟行程、每一次租賃、每一次互動中創造價值的應用程式。"
@@ -176,14 +170,83 @@
   "home.featuredIn.allThirdPartyTrademarksAre": {
     "message": "所有第三方商標均為其各自擁有者之財產，僅用於標示獨立的編輯報導，並不代表任何背書或贊助關係。"
   },
+  "home.whatIsDimo.points.brands.title": {
+    "message": "50多個品牌"
+  },
+  "home.whatIsDimo.points.brands.desc": {
+    "message": "Tesla、Ford、BMW、Toyota、Hyundai等，一次整合全部串接。"
+  },
+  "home.whatIsDimo.points.signals.title": {
+    "message": "即時訊號"
+  },
+  "home.whatIsDimo.points.signals.desc": {
+    "message": "位置、電量、油量、里程、胎壓與故障碼。"
+  },
+  "home.whatIsDimo.points.consent.title": {
+    "message": "車主授權"
+  },
+  "home.whatIsDimo.points.consent.desc": {
+    "message": "車主依工作階段授予與撤銷存取權限。符合GDPR與歐盟《資料法》。"
+  },
+  "home.whatIsDimo.points.free.title": {
+    "message": "免費開始"
+  },
+  "home.whatIsDimo.points.free.desc": {
+    "message": "Hobbyist方案，提供TypeScript、Python與C# SDK。"
+  },
   "home.whatIsDimo.whatIsDimo": {
     "message": "DIMO是什麼？"
   },
-  "home.whatIsDimo.dimoDigitalInfrastructureFor": {
-    "message": "DIMO（Digital Infrastructure for Moving Objects，移動物件數位基礎架構）是驅動工作階段經濟的車輛資料基礎架構，讓車輛、駕駛人與各項服務隨需連接。DIMO透過單一權限控管的API處理車輛存取，提供涵蓋50+個品牌（包括Tesla、Ford、BMW、Toyota和Hyundai）的即時遙測、車輛身分與車主同意（SACD），讓開發者不必與每家車廠分別洽談整合，就能打造應用程式與事業。開發者可在console.dimo.org建立免費帳號、產生API金鑰，並透過GraphQL與REST端點查詢位置、電池電量與油量、里程表、胎壓、故障診斷碼等即時車輛資料，另有TypeScript、Python和C#官方SDK可用。車主掌控自己的資料：他們可透過精細、可稽核的權限授予或撤銷存取權限，這些權限能隨每個工作階段啟用與到期，讓應用程式預設就符合GDPR與歐盟資料法。平台核心為開源，支援自帶裝置的車載資通訊硬體，而免費的Hobbyist方案讓開發者幾分鐘內就能完成第一次API呼叫。"
+  "home.whatIsDimo.headline": {
+    "message": "一個API，串接50多個汽車品牌。"
   },
-  "home.whatIsDimo.startWithTheOverview": {
-    "message": "您可以從{link}概覽了解各項功能，到{link2}頁面查看訊號目錄；如果您正在評估供應商，也可以參考{link3}比較。"
+  "home.whatIsDimo.headlineMuted": {
+    "message": "資料始終由車主掌控。"
+  },
+  "home.whatIsDimo.lede": {
+    "message": "DIMO（Digital Infrastructure for Moving Objects）是車輛資料基礎設施：透過一個以授權為基礎的API取得即時遙測、身分與車主同意。"
+  },
+  "home.whatIsDimo.readFullOverview": {
+    "message": "閱讀完整概述"
+  },
+  "home.whatIsDimo.overview.start.title": {
+    "message": "幾分鐘即可上手"
+  },
+  "home.whatIsDimo.overview.start.account": {
+    "message": "在{console}免費註冊帳戶。"
+  },
+  "home.whatIsDimo.overview.start.keys": {
+    "message": "產生API金鑰。"
+  },
+  "home.whatIsDimo.overview.start.query": {
+    "message": "透過GraphQL或REST查詢即時資料，或使用TypeScript、Python與C# SDK。"
+  },
+  "home.whatIsDimo.overview.owners.title": {
+    "message": "存取權限由車主掌控"
+  },
+  "home.whatIsDimo.overview.owners.grant": {
+    "message": "透過細緻、可稽核的權限（SACD）授予或撤銷存取。"
+  },
+  "home.whatIsDimo.overview.owners.session": {
+    "message": "權限可隨每個工作階段開始與到期。"
+  },
+  "home.whatIsDimo.overview.owners.compliance": {
+    "message": "預設符合GDPR與歐盟《資料法》。"
+  },
+  "home.whatIsDimo.overview.sessions.title": {
+    "message": "為工作階段經濟而生"
+  },
+  "home.whatIsDimo.overview.sessions.onDemand": {
+    "message": "車輛、駕駛與服務隨需連線。"
+  },
+  "home.whatIsDimo.overview.sessions.noIntegrations": {
+    "message": "不必與每家車廠個別整合。"
+  },
+  "home.whatIsDimo.overview.sessions.open": {
+    "message": "核心開源。支援自備車載硬體。"
+  },
+  "home.whatIsDimo.learnMore": {
+    "message": "了解更多："
   },
   "home.whatIsDimo.connectedCarApi": {
     "message": "聯網汽車API"
@@ -1006,6 +1069,66 @@
   },
   "navbar.body.language": {
     "message": "語言"
+  },
+  "home.heroFlow.title": {
+    "message": "來自Tesla、Ford、BMW、Toyota、Hyundai等50多個品牌的車輛資料匯入DIMO——一個涵蓋身分、遙測與授權的資料層。只有在車主的限時授權有效期間，應用程式才能讀取這些資料。"
+  },
+  "home.heroFlow.anyVehicle": {
+    "message": "任何車輛"
+  },
+  "home.heroFlow.oneDataLayer": {
+    "message": "一個資料層"
+  },
+  "home.heroFlow.anyApp": {
+    "message": "任何應用"
+  },
+  "home.heroFlow.moreBrands": {
+    "message": "+ 其他45個品牌"
+  },
+  "home.heroFlow.hubSubtitle": {
+    "message": "標準化、經授權的車輛資料"
+  },
+  "home.heroFlow.signal.speed": {
+    "message": "車速"
+  },
+  "home.heroFlow.signal.battery": {
+    "message": "電量"
+  },
+  "home.heroFlow.signal.odometer": {
+    "message": "里程"
+  },
+  "home.heroFlow.signal.tirePressure": {
+    "message": "胎壓"
+  },
+  "home.heroFlow.signal.location": {
+    "message": "位置"
+  },
+  "home.heroFlow.pillar.identity": {
+    "message": "身分"
+  },
+  "home.heroFlow.pillar.telemetry": {
+    "message": "遙測"
+  },
+  "home.heroFlow.pillar.consent": {
+    "message": "授權"
+  },
+  "home.heroFlow.app.rental": {
+    "message": "租車應用"
+  },
+  "home.heroFlow.app.insurance": {
+    "message": "保險"
+  },
+  "home.heroFlow.app.fleet": {
+    "message": "車隊管理"
+  },
+  "home.heroFlow.sessionConsent": {
+    "message": "工作階段授權"
+  },
+  "home.heroFlow.active": {
+    "message": "有效"
+  },
+  "home.heroFlow.expired": {
+    "message": "已到期"
   },
   "compare.smartcarAlternative.meta.title": {
     "message": "DIMO vs Smartcar：掌控工作階段，不只是資料 | DIMO"
