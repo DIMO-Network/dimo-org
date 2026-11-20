@@ -298,7 +298,6 @@ function PricingGrid({
             {tier.badge && (
               <div className={styles.mostPopularBadge}>{tier.badge}</div>
             )}
-            <div className={styles.cardGlow} />
 
             <h3 className={styles.tierName}>{tier.name}</h3>
 
