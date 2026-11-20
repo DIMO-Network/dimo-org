@@ -5,14 +5,14 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #124bdb;
+  background: #4b58f5;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  box-shadow: 0 4px 20px rgba(18, 75, 219, 0.4);
+  box-shadow: 0 4px 20px rgba(75, 88, 245, 0.4);
   z-index: 1000;
   transition:
     transform 0.2s,
@@ -21,7 +21,7 @@
 
 .toggleButton:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 28px rgba(18, 75, 219, 0.55);
+  box-shadow: 0 6px 28px rgba(75, 88, 245, 0.55);
 }
 
 .panel {
@@ -115,7 +115,7 @@
 
 .userBubble {
   align-self: flex-end;
-  background: #124bdb;
+  background: #4b58f5;
   color: #fff;
   padding: 10px 14px;
   border-radius: 12px 12px 4px 12px;
@@ -159,7 +159,7 @@
 }
 
 .textInput:focus {
-  border-color: #124bdb;
+  border-color: #4b58f5;
 }
 
 .textInput::placeholder {
@@ -182,7 +182,7 @@
 }
 
 .textArea:focus {
-  border-color: #124bdb;
+  border-color: #4b58f5;
 }
 
 .textArea::placeholder {
@@ -190,7 +190,7 @@
 }
 
 .sendButton {
-  background: #124bdb;
+  background: #4b58f5;
   border: none;
   border-radius: 10px;
   color: #fff;
@@ -203,7 +203,7 @@
 }
 
 .sendButton:hover {
-  background: #1557f0;
+  background: #5664ff;
 }
 
 .sendButton:disabled {
@@ -235,7 +235,7 @@
 }
 
 .checkboxLabel input[type='checkbox'] {
-  accent-color: #124bdb;
+  accent-color: #4b58f5;
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -243,7 +243,7 @@
 
 .submitCheckboxes {
   margin-top: 8px;
-  background: #124bdb;
+  background: #4b58f5;
   border: none;
   border-radius: 10px;
   color: #fff;
@@ -255,7 +255,7 @@
 }
 
 .submitCheckboxes:hover {
-  background: #1557f0;
+  background: #5664ff;
 }
 
 .submitCheckboxes:disabled {

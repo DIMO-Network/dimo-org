@@ -4,28 +4,44 @@
  * work well for content-centric websites.
  */
 
-/* Geist is self-hosted as a single variable woff2 (100-900 range) via
-   @fontsource-variable/geist, bundled by webpack — no external font
+/* Funnel Display (headings) and Funnel Sans (body) are self-hosted variable
+   woff2 files via @fontsource-variable, bundled by webpack — no external font
    requests, no render-blocking Google Fonts stylesheet. */
-@import '@fontsource-variable/geist';
+@import '@fontsource-variable/funnel-display';
+@import '@fontsource-variable/funnel-sans';
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #124bdb;
-  --ifm-color-primary-dark: #bababa;
-  --ifm-color-primary-darker: #717171;
-  --ifm-color-primary-darkest: #323232;
-  --ifm-color-primary-light: #3965d6;
-  --ifm-color-primary-lighter: #6385d9;
-  --ifm-color-primary-lightest: #ffffff;
+  --ifm-color-primary: #3543e8;
+  --ifm-color-primary-dark: #1b2be5;
+  --ifm-color-primary-darker: #1928d9;
+  --ifm-color-primary-darkest: #1421b3;
+  --ifm-color-primary-light: #4f5beb;
+  --ifm-color-primary-lighter: #5b67ec;
+  --ifm-color-primary-lightest: #828af1;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
+  /* Paper and ink palette */
+  --ifm-background-color: #faf9f6;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: #faf9f6;
+  --ifm-font-color-base: #242326;
+  --ifm-toc-border-color: #ddd9df;
+  --dimo-menu-hover-bg: rgba(53, 67, 232, 0.08);
+  --dimo-menu-active-bg: rgba(53, 67, 232, 0.1);
+  --dimo-menu-active-hover-bg: rgba(53, 67, 232, 0.12);
+  --dimo-button-bg: #3543e8;
+  --dimo-button-hover-bg: #1928d9;
+
   /* Custom font variables */
   --ifm-font-family-base:
-    'Geist Variable', 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Funnel Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
+  --ifm-heading-font-family:
+    'Funnel Display Variable', 'Funnel Sans Variable', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --ifm-font-family-monospace:
     'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Oxygen Mono',
     'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono',
@@ -38,12 +54,9 @@
   --ifm-font-weight-bold: 700;
 }
 
-/* Chinese: system CJK fonts after Geist (which has no Han glyphs), never a
-   downloaded CJK webfont, so Largest Contentful Paint doesn't regress. This
-   sets the inherited base font only, so monospace and other explicit font
-   rules are untouched; module stylesheets that hard-code 'Geist Variable',
-   'Geist', sans-serif fall back to the browser's sans-serif for the page
-   language (PingFang/Microsoft YaHei/JhengHei on macOS and Windows). */
+/* Chinese: system CJK fonts after the Funnel faces (which have no Han
+   glyphs), never a downloaded CJK webfont, so Largest Contentful Paint doesn't
+   regress. Monospace and other explicit font rules are untouched. */
 html:lang(zh-Hans) {
   --dimo-font-cjk:
     'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Noto Sans SC',
@@ -55,24 +68,33 @@ html:lang(zh-Hant) {
     sans-serif;
 }
 html:is(:lang(zh-Hans), :lang(zh-Hant)) {
-  --ifm-font-family-base: 'Geist Variable', 'Geist', var(--dimo-font-cjk);
+  --ifm-font-family-base: 'Funnel Sans Variable', var(--dimo-font-cjk);
+  --ifm-heading-font-family:
+    'Funnel Display Variable', 'Funnel Sans Variable', var(--dimo-font-cjk);
 }
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #124bdb;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #8f99ff;
+  --ifm-color-primary-dark: #6775ff;
+  --ifm-color-primary-darker: #5363ff;
+  --ifm-color-primary-darkest: #3543e8;
+  --ifm-color-primary-light: #b7bdff;
+  --ifm-color-primary-lighter: #cbcfff;
+  --ifm-color-primary-lightest: #dfe2ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
-  /* True Black Dark Mode */
-  --ifm-background-color: #0b0b0e;
-  --ifm-background-surface-color: #161619; /* Slightly lighter for contrast */
-  --ifm-navbar-background-color: #0b0b0e;
-  --ifm-footer-background-color: #0b0b0e;
+  /* Neutral ink dark mode */
+  --ifm-background-color: #16161a;
+  --ifm-background-surface-color: #1f1f24;
+  --ifm-navbar-background-color: #16161a;
+  --ifm-footer-background-color: #16161a;
+  --ifm-font-color-base: #faf9f6;
+  --ifm-toc-border-color: #2c2c33;
+  --dimo-menu-hover-bg: rgba(255, 255, 255, 0.06);
+  --dimo-menu-active-bg: rgba(143, 153, 255, 0.14);
+  --dimo-menu-active-hover-bg: rgba(143, 153, 255, 0.18);
+  --dimo-button-bg: #4b58f5;
+  --dimo-button-hover-bg: #5664ff;
 }
 
 /* Custom utility classes for inline styling */
@@ -98,13 +120,7 @@ html:is(:lang(zh-Hans), :lang(zh-Hant)) {
 
 /* Universal Sans Display utility classes */
 .font-universal {
-  font-family:
-    'Geist Variable',
-    'Geist',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--ifm-font-family-base);
 }
 
 .font-weight-regular {
@@ -153,7 +169,7 @@ h6 {
 
 .special-links {
   border-style: solid;
-  border-color: #124bdb;
+  border-color: var(--ifm-color-primary);
 }
 
 /* Main navbar container */
@@ -239,7 +255,7 @@ html[data-theme='dark'] .header-github-link:before {
 
 /* Login button with arrow */
 .header-login-button {
-  background: #124bdb !important;
+  background: var(--dimo-button-bg) !important;
   color: #ffffff !important;
   border-radius: 6px !important;
   padding: 0.5rem 1rem !important;
@@ -258,7 +274,7 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 .header-login-button:hover {
-  background: #0d3ba8 !important;
+  background: var(--dimo-button-hover-bg) !important;
   color: #ffffff !important;
   transform: translateX(2px);
 }
@@ -371,35 +387,21 @@ html[data-theme='dark'] .header-github-link:before {
 
 /* Hover state for all links */
 .menu__link:hover {
-  background-color: rgba(18, 75, 219, 0.08) !important;
+  background-color: var(--dimo-menu-hover-bg) !important;
   text-decoration: none !important;
   color: var(--ifm-color-primary) !important;
 }
 
-html[data-theme='dark'] .menu__link:hover {
-  background-color: rgba(255, 255, 255, 0.06) !important;
-  color: #5b8af5 !important;
-}
-
 /* Active link styling */
 .menu__link--active {
-  background-color: rgba(18, 75, 219, 0.1) !important;
+  background-color: var(--dimo-menu-active-bg) !important;
   color: var(--ifm-color-primary) !important;
   font-weight: 550 !important;
 }
 
-html[data-theme='dark'] .menu__link--active {
-  background-color: rgba(18, 75, 219, 0.18) !important;
-  color: #5b8af5 !important;
-}
-
 /* Active link hover */
 .menu__link--active:hover {
-  background-color: rgba(18, 75, 219, 0.12) !important;
-}
-
-html[data-theme='dark'] .menu__link--active:hover {
-  background-color: rgba(18, 75, 219, 0.22) !important;
+  background-color: var(--dimo-menu-active-hover-bg) !important;
 }
 
 /* ================================
@@ -421,13 +423,8 @@ html[data-theme='dark'] .menu__link--active:hover {
 
 /* Category hover state */
 .menu__list-item-collapsible > .menu__link:hover {
-  background-color: rgba(18, 75, 219, 0.08) !important;
+  background-color: var(--dimo-menu-hover-bg) !important;
   color: var(--ifm-color-primary) !important;
-}
-
-html[data-theme='dark'] .menu__list-item-collapsible > .menu__link:hover {
-  background-color: rgba(255, 255, 255, 0.06) !important;
-  color: #5b8af5 !important;
 }
 
 /* Caret/chevron icon for collapsible items */
@@ -583,7 +580,7 @@ html[data-theme='dark'] .menu__list .menu__list {
 /* Pagination nav */
 .pagination-nav__link {
   border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 1rem;
   transition: all 0.2s ease;
 }
@@ -591,32 +588,30 @@ html[data-theme='dark'] .menu__list .menu__list {
 .pagination-nav__link:hover {
   border-color: var(--ifm-color-primary);
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(18, 75, 219, 0.1);
+  box-shadow: 0 2px 8px rgba(53, 67, 232, 0.1);
 }
 
 /* Code blocks */
 .theme-code-block {
-  border-radius: 8px;
+  border-radius: 6px;
   margin: 1rem 0;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--ifm-toc-border-color);
 }
 
 /* Tabs Styling */
 .tabs {
   margin-bottom: 0 !important;
   border-bottom: none !important;
-  background-color: #f3f4f6; /* Light gray for light mode */
+  background-color: #f3f0e9; /* Warm paper tint for light mode */
   padding: 0.5rem 0.5rem 0 0.5rem;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
   gap: 0.25rem;
 }
 
 html[data-theme='dark'] .tabs {
   background-color: #09090b; /* Match code block background */
-  border: 1px solid #2e2e2e;
+  border: 1px solid #2c2c33;
   border-bottom: none;
 }
 
@@ -691,7 +686,7 @@ div[role='tabpanel'] > .theme-code-block:first-child {
 
 /* Admonitions (info boxes) */
 .admonition {
-  border-radius: 8px;
+  border-radius: 6px;
   border-left-width: 4px;
 }
 

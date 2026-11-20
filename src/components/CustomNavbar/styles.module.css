@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 1rem; /* Slightly smaller font for better fit */
   color: #000000;
@@ -111,10 +111,10 @@
   background-color: #000000;
   color: #ffffff;
   padding: 0.5rem 1.25rem;
-  border-radius: 24px;
+  border-radius: 6px;
   text-decoration: none;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
-  font-weight: 700;
+  font-family: var(--ifm-font-family-base);
+  font-weight: 600;
   font-size: 0.9rem;
   letter-spacing: -0.01em;
   transition: all 0.2s ease;
@@ -199,7 +199,7 @@
 }
 
 .dropdownSectionTitle {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 700;
   font-size: 0.85rem;
   color: #666666;
@@ -214,7 +214,7 @@
   padding: 0.75rem;
   color: #000000;
   text-decoration: none;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 0.95rem;
   transition: all 0.2s ease;
@@ -238,7 +238,7 @@
   padding: 0.75rem;
   color: #000000;
   text-decoration: none;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 0.95rem;
   transition: all 0.2s ease;
@@ -398,7 +398,7 @@
 }
 
 .mobileMenuSectionTitle {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 900;
   font-size: 1.3rem;
   color: #000000;
@@ -408,7 +408,7 @@
 }
 
 .mobileMenuItem {
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 1.1rem;
   color: #4d4d4d;
@@ -436,7 +436,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 525;
   font-size: 1.1rem;
   color: #000000;
@@ -461,7 +461,7 @@
   padding: 1rem 2rem;
   border-radius: 50px;
   text-decoration: none;
-  font-family: 'Geist Variable', 'Geist', sans-serif;
+  font-family: var(--ifm-font-family-base);
   font-weight: 900;
   font-size: 1.1rem;
   text-align: center;
@@ -479,9 +479,9 @@
 
 /* --- Dark Mode Overrides --- */
 .navbarDark {
-  background-color: rgba(3, 3, 3, 0.85); /* Slightly increased opacity */
-  backdrop-filter: blur(16px); /* Increased blur */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(22, 22, 26, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #2c2c33;
 }
 
 .navbarDark .navItem {
@@ -490,7 +490,6 @@
 
 .navbarDark .navItem:hover {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .navbarDark .dropdownIcon {
@@ -502,20 +501,19 @@
 }
 
 .navbarDark .signInButtonNav {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #4b58f5;
+  color: #ffffff;
 }
 
 .navbarDark .signInButtonNav:hover {
-  background-color: #e2e8f0;
-  color: #000000;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  background-color: #5664ff;
+  color: #ffffff;
 }
 
 .navbarDark .dropdownMenu {
-  background: #0a0a0a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  background: #1f1f24;
+  border: 1px solid #2c2c33;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .navbarDark .dropdownSectionTitle {
@@ -569,7 +567,7 @@
 }
 
 .navbarDark .mobileMenuContent {
-  background-color: #0a0a0a;
+  background-color: #16161a;
   color: #ffffff;
 }
 
