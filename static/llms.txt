@@ -31,7 +31,7 @@
 - [Build guides](https://dimo.org/docs/build/building-with-ai/developer-kit): SDKs, the AI developer kit, and the DIMO MCP server.
 - [Examples](https://dimo.org/docs/examples/build-examples): community-built apps and reference integrations.
 - [Tutorials](https://dimo.org/docs/tutorials/connect-first-vehicle): step-by-step guide to connect a vehicle and read telemetry.
-- [Comparison](https://dimo.org/docs/comparison): DIMO vs Smartcar, Otonomo, High Mobility, and direct OEM APIs.
+- [Comparison](https://dimo.org/docs/comparison): DIMO vs Smartcar, High Mobility, One Auto API, and direct OEM APIs.
 
 ## Products
 - [Connected Car API](https://dimo.org/connected-car-api): telemetry, identity, commands, and consent across 50+ brands through one API.

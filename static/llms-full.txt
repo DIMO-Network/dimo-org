@@ -7816,103 +7816,70 @@ Choosing the right vehicle data platform? Here's an honest comparison to help yo
 
 ## Quick Comparison Table
 
-| Feature | DIMO | SmartCar | Otonomo | High Mobility | Custom OEM APIs |
-|---------|------|----------|---------|---------------|-----------------|
-| **Number of OEMs** | 50+ | 30+ | 25+ | 12+ | 1 per integration |
-| **Starting Price** | Free | $39/mo | Enterprise only | $49/mo | Varies (often $$$$) |
-| **Free Tier** | ✅ Yes (generous) | ❌ No | ❌ No | ❌ No | ❌ No |
+| Feature | DIMO | Smartcar | High Mobility | One Auto API | Custom OEM APIs |
+|---------|------|----------|---------------|--------------|-----------------|
+| **Number of OEMs** | 50+ | 40+ | ~30 | N/A | 1 per integration |
+| **Starting Price** | Free | Free | Free sandbox; €99/mo minimum live | Pay-as-you-go (no monthly fee) | Varies |
+| **Free Tier** | ✅ Yes (generous) | ✅ Yes (1 vehicle) | ⚠️ Free sandbox | ⚠️ Free sandbox | ❌ No |
 | **AI Agents** | ✅ Built-in | ❌ No | ❌ No | ❌ No | ❌ No |
-| **Privacy Model** | User-owned | Centralized | Centralized | Centralized | Varies |
-| **LATAM Support** | ✅ Yes | Limited | ❌ No | Limited | Varies |
-| **BYOD (Bring Own Data)** | ✅ Yes | ❌ No | Limited | ❌ No | N/A |
+| **Privacy Model** | User-owned | Centralized | Centralized | N/A | Varies |
+| **LATAM Support** | ✅ Yes | ❌ No | ❌ No (EU and UK) | Limited (global images) | Varies |
+| **BYOD (Bring Own Data)** | ✅ Yes | ❌ No | ❌ No | N/A | N/A |
 | **Open Source** | ✅ Core protocol | ❌ No | ❌ No | ❌ No | Varies |
-| **Real-time Data** | ✅ Yes (30s-live) | ✅ Yes | ⚠️ Delayed | ✅ Yes | ✅ Yes |
-| **Historical Data** | ✅ Unlimited | ⚠️ Limited | ✅ Yes | ⚠️ Limited | Varies |
-| **SDKs Available** | JS, Python, Go | JS, Python | REST only | JS, Python | Varies |
-| **GraphQL Support** | ✅ Yes | ❌ No | ❌ No | ❌ No | Varies |
-| **Webhook Support** | ✅ Yes | ✅ Yes | ⚠️ Limited | ✅ Yes | Varies |
-| **API Rate Limits** | 10-1000+ req/s | 5-60 req/min | Unknown | 1000 req/day | Varies |
-| **Setup Time** | 5 minutes | 10 minutes | Weeks | 15 minutes | Months |
+| **Real-time Data** | ✅ Yes (30s-live) | ✅ Yes | ✅ Yes | N/A | ✅ Yes |
+| **Historical Data** | ✅ Unlimited | ⚠️ Limited | ⚠️ Limited | ✅ Vehicle history reports | Varies |
+| **SDKs Available** | JS, Python, Go | JS, Python | JS, Python | 30+ languages | Varies |
+| **GraphQL Support** | ✅ Yes | ❌ No | ❌ No | ❌ No (REST API) | Varies |
+| **Webhook Support** | ✅ Yes | ✅ Yes | ✅ Yes | ⚠️ Callbacks on async reports | Varies |
+| **API Rate Limits** | 10-1000+ req/s | 120-request bucket, refills 2/min (adjustable) | 1000 req/day | 5-60 req/s (custom on Bespoke) | Varies |
+| **Setup Time** | 5 minutes | 10 minutes | 15 minutes | Minutes (instant sandbox) | Months |
 
 ---
 
 ## Detailed Comparisons
 
-### DIMO vs SmartCar
+### DIMO vs Smartcar
 
-**SmartCar** is a vehicle API platform focused on basic connected car functionality.
+**Smartcar** is a vehicle API platform focused on basic connected car functionality. Everyday Electric acquired it in October 2026.
 
 #### When to Choose DIMO
 
 Choose DIMO if you need:
 
-✅ **Free tier for testing** - SmartCar charges from day one ($39/mo minimum)
-✅ **AI-powered features** - Built-in agents, SmartCar has none
-✅ **50+ vehicle brands** - DIMO covers 20+ more brands than SmartCar
-✅ **Privacy-first architecture** - User-owned data vs SmartCar's centralized model
-✅ **LATAM coverage** - Strong support vs SmartCar's limited availability
-✅ **Open source options** - Core protocol is open, SmartCar is closed
+✅ **AI-powered features** - Built-in agents, Smartcar has none
+✅ **50+ vehicle brands** - Smartcar covers 40+
+✅ **Privacy-first architecture** - User-owned data vs Smartcar's centralized model
+✅ **LATAM coverage** - Smartcar covers North America and Europe only
+✅ **Open source options** - Core protocol is open, Smartcar is closed
 ✅ **Advanced data access** - Historical trip data, predictive maintenance, fleet analytics
 
 **Example use case:** You're building a fleet management platform for Latin America with AI-powered predictive maintenance.
 
-#### When to Choose SmartCar
+#### When to Choose Smartcar
 
-Choose SmartCar if:
+Choose Smartcar if:
 
-⚠️ **Only need basic vehicle data** - Location, odometer, fuel level (SmartCar specializes in simplicity)
-⚠️ **US-only market** - No LATAM requirements
+⚠️ **Only need basic vehicle data** - Location, odometer, fuel level (Smartcar specializes in simplicity)
+⚠️ **North America or Europe only** - No LATAM requirements
 ⚠️ **Small scale** - Less than 100 vehicles, don't need AI
-⚠️ **Want simpler API** - SmartCar has fewer features but is easier to learn
+⚠️ **Want simpler API** - Smartcar has fewer features but is easier to learn
 
 **Example use case:** You're building a simple mileage tracker for US-based customers.
 
 ---
 
-### DIMO vs Otonomo
-
-**Otonomo** is an enterprise vehicle data marketplace focused on data aggregation.
-
-#### When to Choose DIMO
-
-Choose DIMO if you need:
-
-✅ **Affordable pricing** - DIMO starts free, Otonomo is enterprise-only ($$$$)
-✅ **Real-time data** - DIMO provides 30-second updates, Otonomo has delays
-✅ **Direct API access** - DIMO gives you direct access, Otonomo is a marketplace
-✅ **AI capabilities** - Built-in agents and tools, Otonomo has none
-✅ **Developer-friendly** - SDKs, docs, community support vs enterprise sales process
-✅ **Faster deployment** - 5 minutes vs weeks of enterprise onboarding
-
-**Example use case:** You're a startup building a consumer app and need quick market entry.
-
-#### When to Choose Otonomo
-
-Choose Otonomo if:
-
-⚠️ **Enterprise budget** - >$100k/year budget available
-⚠️ **Data aggregation focus** - Need anonymized, aggregated data from many sources
-⚠️ **Insurance/Mobility services** - Specialized in these verticals
-⚠️ **Don't need real-time** - Batch data processing is acceptable
-
-**Example use case:** You're an insurance company analyzing driving patterns across 1M+ vehicles.
-
----
-
 ### DIMO vs High Mobility
 
-**High Mobility** is a vehicle connectivity API with focus on European market.
+**High Mobility** is a vehicle connectivity API for the European market (EU and UK).
 
 #### When to Choose DIMO
 
 Choose DIMO if you need:
 
-✅ **More OEMs** - 50+ vs High Mobility's 12+
-✅ **Free tier** - Test before committing, High Mobility charges from start
+✅ **More OEMs** - 50+ vs High Mobility's ~30
 ✅ **AI agents** - Built-in intelligence, High Mobility lacks this
-✅ **LATAM support** - Strong presence vs High Mobility's EU focus
+✅ **LATAM support** - High Mobility covers the EU and UK only
 ✅ **BYOD support** - Integrate existing hardware, High Mobility doesn't support
-✅ **Lower cost** - $349/mo vs High Mobility's higher enterprise pricing
 
 **Example use case:** Global fleet management with AI-powered insights.
 
@@ -7928,6 +7895,39 @@ Choose High Mobility if:
 
 ---
 
+### DIMO vs One Auto API
+
+**One Auto API** is a vehicle data API that combines multiple data providers.
+
+#### When to Choose DIMO
+
+Choose DIMO if you need:
+
+✅ **Vehicle telemetry** - 30-second location updates, fuel or battery level and odometer
+✅ **Multi-brand support** - 50+ vehicle brands through one API
+✅ **Diagnostics and driving data** - DTCs, tire pressure, trip history and driving behavior
+✅ **AI agents** - Built-in agents and predictive maintenance
+✅ **Privacy-first architecture** - User-owned data, with DIMO as a secure intermediary
+✅ **Free tier** - Start building with no credit card required
+
+**Example use case:** You're building a fleet app that tracks live location and predicts maintenance.
+
+#### When to Choose One Auto API
+
+Choose One Auto API if:
+
+⚠️ **Plate-to-VIN lookups** - All 50 US states, plus VIN decoding
+⚠️ **Valuations and history** - Retail market pricing, wholesale valuations, history and recall reports
+⚠️ **UK vehicle checks** - Finance, write-off, stolen, mileage and MOT history checks
+⚠️ **Specs and EV data** - Technical specs, OE build data, EV range and charging
+⚠️ **Service and running costs** - OE service history, maintenance cost forecasts and residual values
+⚠️ **Market data and images** - Used market inventory, buyer demand metrics and vehicle images
+⚠️ **One integration** - Multiple providers across the UK, Europe and North America
+
+**Example use case:** A dealer platform appraising trade-ins from a license plate.
+
+---
+
 ### DIMO vs Direct OEM APIs
 
 **Direct OEM APIs** means integrating with Tesla API, Ford API, BMW API, etc. separately.
@@ -7940,13 +7940,8 @@ Choose DIMO if you need:
 ✅ **Faster time to market** - 5 minutes vs 3-6 months per OEM
 ✅ **Consistent data format** - Normalized data vs 50 different schemas
 ✅ **No vendor negotiations** - No enterprise contracts, no OEM approval process
-✅ **Cost predictability** - Transparent pricing vs varied OEM costs
 ✅ **Maintenance burden** - DIMO handles API changes, you don't
 ✅ **AI capabilities** - Built-in agents, OEMs don't provide this
-
-**Cost comparison (10,000 vehicles):**
-- **DIMO:** $349/mo (Core plan)
-- **Direct OEM APIs:** $50k-$500k/year (licensing + development + maintenance)
 
 **Time to market comparison:**
 - **DIMO:** 5 minutes first API call, 1-2 days production
@@ -7961,7 +7956,6 @@ Choose direct OEM APIs if:
 ⚠️ **Single brand focus** - Only Tesla, only Ford, etc.
 ⚠️ **Need cutting-edge features** - Latest OEM features before DIMO adds them
 ⚠️ **Have resources** - Large engineering team to maintain integrations
-⚠️ **Very high volume** - >1M vehicles where direct may be cheaper
 ⚠️ **Custom requirements** - Unusual use cases needing OEM-specific features
 
 **Example use case:** Tesla-only app requiring the absolute latest Autopilot data.
@@ -7972,81 +7966,67 @@ Choose direct OEM APIs if:
 
 ### Data Access
 
-| Capability | DIMO | SmartCar | Otonomo | OEM APIs |
-|------------|------|----------|---------|----------|
-| Real-time location | ✅ 30s | ✅ 1min | ⚠️ 5-15min | ✅ Real-time |
-| Battery/Fuel level | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| Odometer | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| Speed | ✅ Yes | ⚠️ Limited | ⚠️ Limited | ✅ Yes |
-| Tire pressure | ✅ Yes | ❌ No | ❌ No | ✅ Yes |
-| Door locks | ✅ Yes | ✅ Yes | ❌ No | ✅ Yes |
-| Climate control | ✅ Yes | ⚠️ Limited | ❌ No | ✅ Yes |
-| Charge/Refuel status | ✅ Yes | ✅ Yes | ⚠️ Limited | ✅ Yes |
-| Diagnostic codes (DTCs) | ✅ Yes | ❌ No | ⚠️ Limited | ✅ Yes |
-| Trip history | ✅ Unlimited | ⚠️ 30 days | ✅ Yes | Varies |
-| Driving behavior | ✅ Yes | ❌ No | ✅ Yes | Varies |
+| Capability | DIMO | Smartcar | One Auto API | OEM APIs |
+|------------|------|----------|--------------|----------|
+| Real-time location | ✅ 30s | ✅ 1min | N/A | ✅ Real-time |
+| Battery/Fuel level | ✅ Yes | ✅ Yes | N/A | ✅ Yes |
+| Odometer | ✅ Yes | ✅ Yes | ⚠️ Recorded mileage history | ✅ Yes |
+| Speed | ✅ Yes | ⚠️ Limited | N/A | ✅ Yes |
+| Tire pressure | ✅ Yes | ❌ No | N/A | ✅ Yes |
+| Door locks | ✅ Yes | ✅ Yes | N/A | ✅ Yes |
+| Climate control | ✅ Yes | ⚠️ Limited | N/A | ✅ Yes |
+| Charge/Refuel status | ✅ Yes | ✅ Yes | N/A | ✅ Yes |
+| Diagnostic codes (DTCs) | ✅ Yes | ❌ No | N/A | ✅ Yes |
+| Trip history | ✅ Unlimited | ⚠️ 30 days | N/A | Varies |
+| Driving behavior | ✅ Yes | ❌ No | N/A | Varies |
+| License plate and VIN lookups | N/A | N/A | ✅ Yes | N/A |
+| VIN decoding and OE build data | N/A | N/A | ✅ Yes | N/A |
+| Vehicle valuations | N/A | N/A | ✅ Retail, wholesale and future values | N/A |
+| History and write-off checks | N/A | N/A | ✅ Finance, write-off and stolen checks | N/A |
+| MOT and mileage history | N/A | N/A | ✅ Yes (UK) | N/A |
+| Recall checks | N/A | N/A | ✅ UK and US | N/A |
+| Technical specs and options | N/A | N/A | ✅ Yes | N/A |
+| EV range, charging and battery data | N/A | N/A | ✅ Yes | N/A |
+| Service history and maintenance cost forecasts | N/A | N/A | ✅ Yes | N/A |
+| Market inventory and demand metrics | N/A | N/A | ✅ Yes | N/A |
+| Vehicle images | N/A | N/A | ✅ Yes | N/A |
 
 ### AI & Intelligence
 
-| Feature | DIMO | SmartCar | Otonomo | OEM APIs |
-|---------|------|----------|---------|----------|
+| Feature | DIMO | Smartcar | One Auto API | OEM APIs |
+|---------|------|----------|--------------|----------|
 | AI Agents | ✅ Built-in | ❌ None | ❌ None | ❌ None |
-| Predictive maintenance | ✅ Yes | ❌ No | ⚠️ Limited | ❌ No |
+| Predictive maintenance | ✅ Yes | ❌ No | ⚠️ Maintenance cost forecasts | ❌ No |
 | Natural language queries | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | Automated workflows | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | Context memory | ✅ Yes | ❌ No | ❌ No | ❌ No |
 | Custom tools | ✅ Yes | ❌ No | ❌ No | ❌ No |
+| AI-ready OpenAPI docs | N/A | N/A | ✅ Yes | N/A |
 
 ### Developer Experience
 
-| Aspect | DIMO | SmartCar | Otonomo | OEM APIs |
-|--------|------|----------|---------|----------|
-| Documentation quality | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
-| API consistency | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐ |
-| SDK quality | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
-| Community support | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ |
-| Example code | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
-| Time to first API call | 5 minutes | 10 minutes | Days | Months |
+| Aspect | DIMO | Smartcar | One Auto API | OEM APIs |
+|--------|------|----------|--------------|----------|
+| Documentation quality | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | N/A | ⭐⭐ |
+| API consistency | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | N/A | ⭐ |
+| SDK quality | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | N/A | ⭐⭐⭐ |
+| Community support | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | N/A | ⭐⭐ |
+| Example code | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | N/A | ⭐⭐⭐ |
+| Time to first API call | 5 minutes | 10 minutes | Minutes (instant sandbox) | Months |
 
 ---
 
-## Pricing Comparison
+## Published Pricing
 
-### Small Scale (1-100 vehicles)
+Each platform's list pricing, from its own pricing page. Check each site for current rates.
 
-| Platform | Monthly Cost | Setup Cost | Notes |
-|----------|--------------|------------|-------|
-| **DIMO** | $0-$474 | $0 | Free tier + $1.25/vehicle |
-| **SmartCar** | $39-$99+ | $0 | Minimum $39/mo |
-| **Otonomo** | N/A | N/A | Enterprise only |
-| **High Mobility** | $49-$199+ | $0 | Per-app pricing |
-| **OEM APIs** | $0-$5,000+ | $10k-$50k | Varies widely |
-
-**Winner for small scale:** DIMO (free tier + transparent pricing)
-
-### Medium Scale (100-10,000 vehicles)
-
-| Platform | Monthly Cost | Annual Cost | Notes |
-|----------|--------------|-------------|-------|
-| **DIMO** | $349-$1,349 | $4,188-$16,188 | Core plan + vehicles |
-| **SmartCar** | $1,000-$5,000+ | $12k-$60k+ | Volume pricing |
-| **Otonomo** | $10,000+ | $120k+ | Enterprise contract |
-| **High Mobility** | $5,000+ | $60k+ | Custom pricing |
-| **OEM APIs** | $5,000-$20,000+ | $60k-$240k+ | Per OEM + dev costs |
-
-**Winner for medium scale:** DIMO (5-10x cheaper than alternatives)
-
-### Enterprise Scale (10,000+ vehicles)
-
-| Platform | Annual Cost Estimate | Notes |
-|----------|---------------------|-------|
-| **DIMO** | Custom (contact sales) | Volume discounts available |
-| **SmartCar** | $100k-$500k+ | Volume pricing, min commitments |
-| **Otonomo** | $250k-$1M+ | Data marketplace fees |
-| **High Mobility** | $150k-$500k+ | Enterprise contracts |
-| **OEM APIs** | $500k-$5M+ | Multiple OEMs, maintenance |
-
-**Winner for enterprise:** DIMO (most flexible, best ROI)
+| Platform | Free option | Paid plans | Enterprise |
+|----------|-------------|------------|------------|
+| **DIMO** | Hobbyist: free + $1.25/vehicle/mo | Core: $349/mo billed annually ($399 monthly), 100 vehicles included, then $1.25/vehicle/mo | Custom |
+| **Smartcar** | Free: 1 connected vehicle, 3 simulated | Build: from $1.99/vehicle/mo per application, up to 500 vehicles | Custom (500-vehicle minimum) |
+| **High Mobility** | Free sandbox | €99/mo minimum, credited toward active vehicles; per-vehicle price depends on brand and data package | Lower unit pricing at volume |
+| **One Auto API** | Free sandbox | PrePay: pay per call, no monthly fee. Business: monthly fee + reduced per-call pricing | Bespoke: custom, with volume commitment options; Enterprise plan adds a dedicated account manager |
+| **Direct OEM APIs** | Varies | Negotiated per OEM | Negotiated per OEM |
 
 ---
 
@@ -8056,13 +8036,13 @@ Choose direct OEM APIs if:
 
 **Best choice:** DIMO
 
-- ✅ Free to start, low per-vehicle costs
+- ✅ Free to start
 - ✅ 50+ vehicle brands for broad market reach
 - ✅ AI agents for intelligent features
 - ✅ Privacy-first (users own their data)
 
 **Alternatives:**
-- SmartCar if you only need basic features and US market
+- Smartcar if you only need basic features and US market
 
 ### Fleet Management
 
@@ -8074,7 +8054,6 @@ Choose direct OEM APIs if:
 - ✅ Scalable pricing
 
 **Alternatives:**
-- Otonomo if you need aggregated industry data
 - Direct OEM APIs if single-brand fleet
 
 ### Dealership Services
@@ -8091,11 +8070,13 @@ Choose direct OEM APIs if:
 
 ### Insurance / Telematics
 
-**Best choice:** Depends on scale
+**Best choice:** DIMO
 
-- **Startups:** DIMO (low cost, quick start)
-- **Enterprise:** Otonomo (data marketplace, anonymization)
-- **Single-brand:** Direct OEM APIs
+- ✅ Driving behavior and trip history across 50+ brands
+- ✅ User consent built into every connection
+
+**Alternatives:**
+- Direct OEM APIs if you insure a single brand
 
 ### Mobility Services
 
@@ -8123,7 +8104,7 @@ const telemetry = await dimo.telemetry.latest(vehicleId);
 // Same structure for Tesla, Ford, BMW, etc.
 ```
 
-**SmartCar:**
+**Smartcar:**
 ```javascript
 // Similar approach, fewer OEMs
 const vehicles = await smartcar.getVehicles(accessToken);
@@ -8144,31 +8125,32 @@ const bmwData = await bmwAPI.vehicles(bmwId).status();
 | Platform | Typical Latency | Best Case | Worst Case |
 |----------|----------------|-----------|------------|
 | DIMO | 30 seconds | Real-time | 2 minutes |
-| SmartCar | 1 minute | 30 seconds | 5 minutes |
-| Otonomo | 5-15 minutes | 5 minutes | 1 hour |
-| OEM APIs | Real-time | Instant | 30 seconds |
+| Smartcar | 1 minute | 30 seconds | 5 minutes |
+| 5-15 minutes | 5 minutes | 1 hour |
+| Under 1 second for most endpoints | 51 ms | About 6.5 minutes (Ireland history check) |
+| Real-time | Instant | 30 seconds |
 
 ### Reliability
 
 | Platform | Uptime SLA | Avg Uptime | Support Response |
 |----------|------------|------------|------------------|
 | DIMO | 99.9% (Enterprise) | 99.95% | 4-8 hours |
-| SmartCar | 99.9% | 99.8% | 12-24 hours |
-| Otonomo | 99.5% | 99.5% | 1-3 days |
-| OEM APIs | None | 95-99% | Days-weeks |
+| Smartcar | 99.9% | 99.8% | 12-24 hours |
+| 99.5% | 99.5% | 1-3 days |
+| None | 95-99% | Days-weeks |
 
 ---
 
 ## Migration Guide
 
-### Migrating from SmartCar to DIMO
+### Migrating from Smartcar to DIMO
 
 **Time required:** 2-4 hours
 
 **Steps:**
-1. Replace SmartCar SDK with DIMO SDK
+1. Replace Smartcar SDK with DIMO SDK
 2. Update authentication flow
-3. Map SmartCar endpoints to DIMO endpoints
+3. Map Smartcar endpoints to DIMO endpoints
 4. Test with staging environment
 5. Deploy
 
@@ -8207,9 +8189,8 @@ const location = await dimo
 ```
 
 **Benefits of switching:**
-- ✅ 20+ more OEMs supported
+- ✅ More OEMs supported (50+ vs 40+)
 - ✅ AI agents included
-- ✅ Lower cost (free tier vs $39/mo minimum)
 - ✅ More data points available
 
 ---
@@ -8218,7 +8199,7 @@ const location = await dimo
 
 **Choose DIMO if:**
 
-1. ✅ You want to **start for free** and scale affordably
+1. ✅ You want to **start for free**
 2. ✅ You need data across **50+ vehicle brands** with one API
 3. ✅ You want **AI-powered features** out of the box
 4. ✅ You care about **user privacy** and data ownership
@@ -8231,8 +8212,7 @@ const location = await dimo
 
 **Consider alternatives if:**
 
-- ⚠️ You only need very basic vehicle data (location, odometer) in US only → **SmartCar**
-- ⚠️ You're an enterprise needing anonymized, aggregated data from millions of vehicles → **Otonomo**
+- ⚠️ You only need very basic vehicle data (location, odometer) in North America or Europe → **Smartcar**
 - ⚠️ You're building exclusively for one OEM and need the absolute latest features → **Direct OEM APIs**
 - ⚠️ You're focused solely on European market with specific OEM requirements → **High Mobility**
 
@@ -8253,13 +8233,10 @@ No credit card required. Start building in 5 minutes:
 ## Frequently Asked Questions
 
 **Q: Can I use DIMO alongside other platforms?**
-A: Yes! DIMO's BYOD feature lets you integrate with existing telematics providers or use DIMO + SmartCar simultaneously.
+A: Yes! DIMO's BYOD feature lets you integrate with existing telematics providers or use DIMO + Smartcar simultaneously.
 
 **Q: What if DIMO doesn't support my OEM yet?**
 A: New OEMs are added almost daily. Request support in Discord or contact [contact@dimo.org](mailto:contact@dimo.org). Most requests are fulfilled within 2-4 weeks.
-
-**Q: Is DIMO more expensive at high volume?**
-A: No. DIMO offers volume discounts for 10,000+ vehicles. Contact sales for custom enterprise pricing.
 
 **Q: Can I switch from another platform to DIMO?**
 A: Yes, migration typically takes 2-4 hours. We provide migration guides and support.
@@ -8269,7 +8246,7 @@ A: Never. Users own their data. DIMO is a secure intermediary, not a data broker
 
 ---
 
-**Last updated:** July 6, 2026
+**Last updated:** November 25, 2026
 
 **See something inaccurate?** Email [contact@dimo.org](mailto:contact@dimo.org) or contribute on [GitHub](https://github.com/DIMO-Network)
 
