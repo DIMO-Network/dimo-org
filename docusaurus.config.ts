@@ -96,8 +96,10 @@ const config: Config = {
         },
         blog: englishBuild && {
           showReadingTime: true,
+          // Substack-style list: one column of title, subtitle and byline rows.
+          blogListComponent: '@site/src/components/BlogList',
           blogSidebarTitle: 'Recent Posts',
-          blogSidebarCount: 10,
+          blogSidebarCount: 0,
           blogDescription:
             'Developer insights on vehicle data APIs, connected-car infrastructure, session-based consent, and mobility engineering from the DIMO team.',
           processBlogPosts: dropScheduledPosts,
