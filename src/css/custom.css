@@ -9,9 +9,11 @@
    requests, no render-blocking Google Fonts stylesheet. */
 @import '@fontsource-variable/funnel-display';
 @import '@fontsource-variable/funnel-sans';
+@import '@fontsource-variable/lora';
 
 /* You can override the default Infima variables here. */
 :root {
+  --dimo-font-serif: 'Lora Variable', Georgia, serif;
   --ifm-color-primary: #3543e8;
   --ifm-color-primary-dark: #1b2be5;
   --ifm-color-primary-darker: #1928d9;

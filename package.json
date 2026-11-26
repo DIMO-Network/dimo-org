@@ -38,6 +38,7 @@
     "@docusaurus/theme-mermaid": "^3.10.2",
     "@fontsource-variable/funnel-display": "^5.3.0",
     "@fontsource-variable/funnel-sans": "^5.3.0",
+    "@fontsource-variable/lora": "^5.3.0",
     "@mdx-js/react": "^3.1.1",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@vercel/analytics": "^2.0.1",
