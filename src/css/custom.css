@@ -851,7 +851,7 @@ html.blog-post-page article footer a[class*='tag'] {
 }
 
 /* Tag and author pages list posts with the stock item: match the serif titles */
-html.blog-wrapper:not(.blog-post-page) article header h2 {
+html.plugin-id-default.blog-wrapper:not(.blog-post-page) article header h2 {
   font-family: var(--dimo-font-serif);
   font-size: 1.75rem;
   font-weight: 600 !important;
@@ -859,6 +859,6 @@ html.blog-wrapper:not(.blog-post-page) article header h2 {
   letter-spacing: 0;
 }
 
-html.blog-wrapper:not(.blog-post-page) article header h2 a {
+html.plugin-id-default.blog-wrapper:not(.blog-post-page) article header h2 a {
   color: var(--ifm-heading-color);
 }

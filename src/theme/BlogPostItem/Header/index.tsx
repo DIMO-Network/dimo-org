@@ -3,6 +3,8 @@ import Link from '@docusaurus/Link';
 import { translate } from '@docusaurus/Translate';
 import { usePluralForm } from '@docusaurus/theme-common';
 import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
+import useRouteContext from '@docusaurus/useRouteContext';
+import OriginalHeader from '@theme-original/BlogPostItem/Header';
 import BlogPostItemHeaderTitle from '@theme/BlogPostItem/Header/Title';
 import { bylineSeparator } from '@site/src/lib/blog-meta';
 import styles from './styles.module.css';
@@ -32,7 +34,7 @@ function useReadingTime(readingTime: number | undefined): string | undefined {
 
 // Substack-style post header: title, subtitle, then an author row with
 // avatars, names, date and reading time.
-export default function BlogPostItemHeader(): ReactNode {
+function SubstackHeader(): ReactNode {
   const { metadata, isBlogPostPage } = useBlogPost();
   const { description, date, readingTime, authors } = metadata;
   const readingTimeLabel = useReadingTime(readingTime);
@@ -79,4 +81,11 @@ export default function BlogPostItemHeader(): ReactNode {
       </div>
     </header>
   );
+}
+
+// Only the default blog (/blog) gets the new header. The resources instance
+// renders tag and author pages through BlogPostItem too, and keeps the stock one.
+export default function BlogPostItemHeader(): ReactNode {
+  const { plugin } = useRouteContext();
+  return plugin.id === 'default' ? <SubstackHeader /> : <OriginalHeader />;
 }
