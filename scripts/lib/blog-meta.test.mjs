@@ -1,6 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { coverImage, bylineNames } from '../../src/lib/blog-meta.ts';
+import {
+  coverImage,
+  bylineNames,
+  bylineSeparator,
+} from '../../src/lib/blog-meta.ts';
 
 test('coverImage keeps real cover images', () => {
   assert.equal(
@@ -19,4 +23,12 @@ test('bylineNames joins author names like a Substack byline', () => {
   assert.equal(bylineNames(['DIMO Team']), 'DIMO Team');
   assert.equal(bylineNames(['A', 'B']), 'A and B');
   assert.equal(bylineNames(['A', 'B', 'C']), 'A, B and C');
+});
+
+test('bylineSeparator gives the text before each name', () => {
+  assert.deepEqual(
+    [0, 1, 2].map(i => bylineSeparator(i, 3)),
+    ['', ', ', ' and ']
+  );
+  assert.equal(bylineSeparator(1, 2), ' and ');
 });

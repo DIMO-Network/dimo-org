@@ -809,3 +809,56 @@ button.button--secondary.button--sm[aria-label='Collapse sidebar'] {
   margin: 0;
   padding: 0.25rem;
 }
+
+/* --- Blog post page: a Substack-style reading column --- */
+html.blog-post-page .main-wrapper .container > .row {
+  justify-content: center;
+}
+
+html.blog-post-page .main-wrapper .container > .row > main.col {
+  flex: 0 1 680px;
+  max-width: 680px;
+  margin-left: 0;
+  padding-top: 1rem;
+}
+
+/* The table of contents column */
+html.blog-post-page .main-wrapper .container > .row > .col.col--2 {
+  display: none;
+}
+
+html.blog-post-page article header h1 {
+  font-family: var(--dimo-font-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 600 !important;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ifm-heading-color);
+}
+
+html.blog-post-page article .markdown {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+html.blog-post-page article footer {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.875rem;
+}
+
+html.blog-post-page article footer a[class*='tag'] {
+  background: transparent;
+}
+
+/* Tag and author pages list posts with the stock item: match the serif titles */
+html.blog-wrapper:not(.blog-post-page) article header h2 {
+  font-family: var(--dimo-font-serif);
+  font-size: 1.75rem;
+  font-weight: 600 !important;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+html.blog-wrapper:not(.blog-post-page) article header h2 a {
+  color: var(--ifm-heading-color);
+}
